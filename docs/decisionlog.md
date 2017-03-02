@@ -1,7 +1,7 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
-## 24. Februar 2016
+## 24. Februar 2017
 - Alle Tasks werden als GitHub Issues erfasst und geplant mit Waffle
 - Code schreiben wir in Englisch
 - Commit Messages & Issues schreiben wir auf Englisch
