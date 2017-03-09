@@ -9,7 +9,7 @@ Als Schnittstelle soll die von Imagic ims Server bereitgestellte REST-API verwen
 *tbd*
 
 ## Stakeholder
-Issue #18
+![Stakeholderdiagramm](stakeholderdiagram.png)
 
 ## Anforderungskatalog
 ### Funktional
