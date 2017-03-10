@@ -1,9 +1,8 @@
-# Anforderungen
-## Anforderungen an das Cross-Platform Framework
+# Anforderungen an das Cross-Platform Framework
 
 `muss > soll > kann`
 
-### Technisch
+## Technisch
 
 ID | Anforderung | Gewichtung
 ---| ----------- | -------------
@@ -28,7 +27,7 @@ ID | Anforderung | Gewichtung
 19 | Video von Kamera beziehen | kann
 20 | Mehrere Dateien vom Gerät beziehen | kann
 
-### Organisatorisch
+## Organisatorisch
 ID | Anforderung | Gewichtung
 ---| ----------- | -------------
 50 | Kostenlos für OpenSource-Projekt | soll
