@@ -15,7 +15,7 @@ Als Schnittstelle soll die von Imagic ims Server bereitgestellte REST-API verwen
 ### Funktional
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
-FA1  | Bildupload | Der Client muss bis zu 20 :warning: Bilder aus der Galerie in das Imagic ims speichern können. | muss | PIC Systems | Maximalanzahl noch abzuklären
+FA1  | Bildupload | Der Client muss bis zu 20 :warning: Bilder aus der Galerie in das Imagic ims speichern können. | | PIC Systems | Maximalanzahl noch abzuklären
 FA2  | Kameraupload | Der Client muss ein Bild direkt von der Kamera des Smartphones in das Imagic ims speichern können.
 FA3  | Bildformat | Der Client muss die Bildformate PNG und JPEG in das Imagic ims speichern können. 
 FA4  | Metadaten | Der Client muss das Bild inkl. EXIF-Daten ins das Imagic ims speichern können.
@@ -51,6 +51,7 @@ NF11 | Version | Im Client soll die Version ersichtlich sein | | Support-Abteilu
 NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload oder API-Abfragen informieren | | Benutzer |
 NF13 | Abbruch | Aktionen welche länger als 10 :warning: Sekunden dauern sollen vom Benutzer abgebrochen werden können. || Benutzer |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic ims funktionieren welches 50'000 Fälle beinhaltet. | | PIC Systems |
+NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | | 
 
 ## Glossar
 
