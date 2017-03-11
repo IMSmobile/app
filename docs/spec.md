@@ -66,3 +66,6 @@ muss | Zwingende Anforderung, mandatory nach IEEE Std 830-1998
 soll | Gewünschte Anforderung, optional nach IEEE Std 830-1998
 kann | Optionale Anforderung, nice-to-have nach IEEE Std 830-1998
 Fall | Begriff der Polizei für eine Gruppiereinheit im Imagic ims
+
+## Quellen
+Icons von https://icons8.com/
