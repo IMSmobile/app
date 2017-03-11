@@ -1,6 +1,11 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 10. März 2017
+- Sobald ein erledigtes Item im Sprint Review besprochen wurde wird es im Waffle archiviert
+- Issues können auf Done gesetzt und dazugehörige Pull Request gemerged werden sofern während dem Review für die nicht systemkritischen Änderungen neue Issues erfasst wurden
+- Eine Begründung zu den [Anforderungen in der Spezifikation](spec.md#anforderungskatalog) erstellen wir erst wenn dafür Bedarf entsteht
+
 ## 24. Februar 2017
 - Alle Tasks werden als GitHub Issues erfasst und geplant mit Waffle
 - Code schreiben wir in Englisch
