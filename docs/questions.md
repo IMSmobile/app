@@ -17,7 +17,7 @@ Dürfen wir während der Entwicklung Feedback zum Mobile Client bei 1-2 Personen
 ### Themenbereich Prozesse
 Nach welchen Kriterien findet man heute die richtige Fallnummer im IMS zum Bild?  
 Wie ist der Prozess heute um ein Bild im Imagic IMS abzulegen wozu noch keine Fallnummer existiert.  
-:warning: Wenn pro Fall mehrere Bilder erfasst werden, wie sollen diese am liebsten via Mobile Device gespeichert werden?  
+Wie sollen bei mehreren Bildern pro Fall die Metadaten dazu erfasst werden?  
 Dürfen Polizisten im Einsatz mit ihrem Handy welches privat und geschäftlich genutzt wird Bilder aufnehmen?  
 
 ### Themenbereich Technik
