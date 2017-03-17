@@ -15,14 +15,14 @@ Issue #27
 ### Funktional
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
-FA1  | Bildupload | Der Client muss bis zu 20 :warning:#39 Bilder aus der Galerie in das Imagic ims speichern können. | | PIC Systems | Maximalanzahl noch abzuklären
+FA1  | Bildupload | Der Client muss bis zu 20 :warning:#39 Bilder aus der Galerie in das Imagic ims speichern können. | | PIC Systems | Maximalanzahl für PIC Systems ok, noch bei Kunden abzuklären
 FA2  | Kameraupload | Der Client muss ein Bild direkt von der Kamera des Smartphones in das Imagic ims speichern können.
 FA3  | Bildformat | Der Client muss die Bildformate PNG und JPEG in das Imagic ims speichern können. | | PIC Systems |
-FA4  | Metadaten | Der Client muss das Bild inkl. EXIF-Daten ins das Imagic ims speichern können.
-FA5  | Bildbeschreibung | Nach Auswahl der Bilder muss der Client dem Benutzer die Möglichkeit bieten eine Beschreibung dazu zu erfassen
-FA6  | Fallauswahl | Der Client muss dem Benutzer die Möglichkeit bieten einen bestehenden Fall auszwählen | | PIC Systems
-FA7  | Fallerstellung | Der Client muss dem Benutzer die Möglichkeit bieten einen neuen Fall zu erstellen | | PIC Systems
-FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Benutzer nur die erforderlichen Felder für die Fallerstellung anzeigen. | | PIC Systems | 
+FA4  | Bildattribute | Der Client muss das Bild inkl. EXIF-Daten ins das Imagic ims speichern können. | | PIC Systems |
+FA5  | Metadaten | Der Client muss dem Benutzer vor dem Speichern eines Bildes die Möglichkeit bieten Metadaten pro Bild zu erfassen | | PIC Systems |
+FA6  | Fallauswahl | Der Client muss dem Benutzer die Möglichkeit bieten einen bestehenden Fall auszwählen | | PIC Systems |
+FA7  | Fallerstellung | Der Client muss dem Benutzer die Möglichkeit bieten einen neuen Fall zu erstellen | | PIC Systems |
+FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Benutzer die Möglichkeit bieten Metadaten für den neuen Fall zu erfassen. | | PIC Systems | 
 FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu 5 Ebenen tiefen Struktur möglich sein. | | Imagic | 
 FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic ims Lizenzmodell halten. | | Imagic | 
 FA11 | iOS-muss | Der Client muss auf iPhone *tbd* mit iOS 10 :warning:#40 funktionsfähig sein. | | | Referenzgerät definieren
@@ -33,23 +33,25 @@ FA15 | Browser | Der Client kann auch mit einem modernen :warning:#38 Browser be
 FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | | Imagic, PIC Systems | 
 FA17 | Schnittstelle | Der Client muss mit dem Imagic ims über die REST-API kommunizieren. | | Imagic ims |
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | | Imagic ims |
-FA19 | Bildlöschung | Hochgeladene Bilder können wieder gelöscht werden. :warning:#39 | | | Imagic: nicht gewünscht. Besprechen mit PIC Systems
-FA20 | Bildanzeige | Bilder aus dem Imagic ims können im Client angezeigt werden. :warning:#39 | | | Imagic: kann man später machen. Besprechen mit PIC Systems
-FA21 | Pflichtfelder | Im Client müssen die im Imagic ims definierten Pflichtfelder ausgefüllt werden bevor das Bild ins Imagic ims gespeichert werden kann | | Imagic ims |
+~~FA19~~ | ~~Bildlöschung~~ | ~~Hochgeladene Bilder können wieder gelöscht werden.~~ | | | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht
+~~FA20~~ | ~~Bildanzeige~~ | ~~Bilder aus dem Imagic ims können im Client angezeigt werden.~~ | | | Imagic: kann man später machen. PIC Systems: nicht benötigt.
+FA21 | Pflichtfelder | Im Client müssen die im Imagic ims definierten Pflichtfelder ausgefüllt werden bevor das Bild ins Imagic ims gespeichert werden kann | | Imagic ims, PIC Systems |
 FA22 | Fallzuteilung | Der Client muss das Bild oder die Bilder zu einem Fall zuteilen können | | Imagic, PIC Systems | 
 FA23 | Fehlermeldung | Der Client soll dem Benutzer Fehler bei Berechtigungen und Lizenz anzeigen | | Imagic |
-FA24 | Filter | Der Client soll/muss :warning: dem Benutzer eine Möglichkeit bieten nach Fällen zu filtern | | Imagic | 
+FA24 | Filter | Der Client muss dem Benutzer eine Möglichkeit bieten nach Fällen zu filtern | | Imagic, PIC Systems | 
+FA25 | Mehrfachmetadaten | Der Client kann dem Benutzer die Möglichkeit bieten Metadaten zu erfassen welche zu sämtlichen ausgewählten Bildern gespeichert werden | | PIC Systems |
+FA26 | Feldfilter | Der Client soll dem Benutzer nur eine vom Benutzer definierte Auswahl der möglichen Felder anzeigen | | PIC Systems |  
 
 ### Nicht-Funktional
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
 NF1  | Design | Die Gestaltung des Clients soll die Design-Guidelines von Android und iOS erfüllen | | |
-NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Appstore publiziert werden können. | | Google und Apple | 
-NF3  | Kompabilität | Der Client soll nur mit bestimmten Versionen der REST-API funktionieren | | |
+NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Store publiziert werden können. | | Google und Apple | 
+NF3  | Kompabilität | Der Client muss mit REST-API Version 16Q2 bis und mit 17Q1 funktionieren | | |
 NF4  | Selbsterklärend | Der Client soll durch einen Benutzer welcher mit der Bedienung von Imagic ims vertraut ist ohne Schulung bedient werden können. | | |
-NF5  | Offline | Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen. | | Imagic: noch gar nicht nötigt, macht es zu komplex |
+~~NF5~~  | ~~Offline~~ | ~~Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen.~~ | | Imagic: noch gar nicht nötigt, macht es zu komplex. PIC Systems: nicht nötigt |
 NF6  | Verschlüsselung | Der Client soll verschlüsselt mit der REST-API kommunizieren. | | |
-NF7  | Deployment | Der Client kann durch ein Mobile Device Management von zentraler Stelle aus durch den IT-Verantwortlichen installiert, aktualisiert und deinstalliert werden. | | |
+~~NF7~~  | ~~Deployment~~ | ~~Der Client kann durch ein Mobile Device Management von zentraler Stelle aus durch den IT-Verantwortlichen installiert, aktualisiert und deinstalliert werden.~~ | | Nicht durch uns beeinflussbar |~~
 NF8  | Zentralkonfig | Der Client kann durch ein Mobile Device Managment z.B. mit Configuration Profile von zentraler Stelle aus durch den IT-Verantwortlichen konfiguriert werden. | | |
 NF9  | PIN-Code | Der Client kann nur genutzt werden wenn das Smartphone mit einer Sicherheits-Sperre (PIN-Code, Fingerabdruck etc) gegen Nutzung durch Drittpersonen geschützt ist. | | |
 NF10 | Opensource | Der Quellcode des Clients soll frei zugänglich und von verschiedenen Firmen nutzbar sein | | |
@@ -57,9 +59,9 @@ NF11 | Version | Im Client soll die Version ersichtlich sein | | Support-Abteilu
 NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload oder API-Abfragen informieren | | Benutzer |
 NF13 | Abbruch | Bilderupload und Änderung der Metadaten können jederzeit abgebrochen werden. || Benutzer |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic ims funktionieren welches 1'000'000 Fälle beinhaltet. | | Imagic |
-NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | | 
+NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | Benutzer | 
 NF16 | Wiederverwendbarkeit | Teile des Quellcodes des Clients soll wiederverwendbar sein für einen Browser-basierten Client | | Imagic |
-
+NF17 | Verbindungsunterbrüche | Nach einem Verbindungsunterbrüch zum Imagic ims soll die Übermittlung erneut möglich sein ohne dass der Benutzer sämtliche Angaben erneut eingeben muss | | PIC Systems | 
 
 ## Glossar
 
@@ -72,6 +74,7 @@ muss | Zwingende Anforderung, mandatory nach IEEE Std 830-1998
 soll | Gewünschte Anforderung, optional nach IEEE Std 830-1998
 kann | Optionale Anforderung, nice-to-have nach IEEE Std 830-1998
 Fall | Begriff der Polizei für eine Gruppiereinheit im Imagic ims
+Store | Apple Appstore oder Google Play Store
 
 ## Quellen
 Icons von https://icons8.com/
