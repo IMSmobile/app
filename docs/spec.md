@@ -16,7 +16,7 @@ Issue #27
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
 FA1  | Bildupload | Der Client muss bis zu 20 :warning:#39 Bilder aus der Galerie in das Imagic IMS speichern können. | | PIC Systems | Maximalanzahl für PIC Systems ok, noch bei Kunden abzuklären
-FA2  | Kameraupload | Der Client muss ein Bild direkt von der Kamera des Smartphones in das Imagic IMS speichern können.
+FA2  | Kameraupload | Der Client muss ein Bild direkt von der Kamera des Smartphones in das Imagic IMS speichern können. | | PIC Systems |
 FA3  | Bildformat | Der Client muss die Bildformate PNG und JPEG in das Imagic IMS speichern können. | | PIC Systems |
 FA4  | Bildattribute | Der Client muss das Bild inkl. EXIF-Daten ins das Imagic IMS speichern können. | | PIC Systems |
 FA5  | Metadaten | Der Client muss dem Benutzer vor dem Speichern eines Bildes die Möglichkeit bieten Metadaten pro Bild zu erfassen | | PIC Systems |
@@ -34,7 +34,7 @@ FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendat
 FA17 | Schnittstelle | Der Client muss mit dem Imagic IMS über die REST-API kommunizieren. | | Imagic IMS |
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | | Imagic IMS |
 ~~FA19~~ | ~~Bildlöschung~~ | ~~Hochgeladene Bilder können wieder gelöscht werden.~~ | | | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht
-~~FA20~~ | ~~Bildanzeige~~ | ~~Bilder aus dem Imagic IMS können im Client angezeigt werden.~~ | | | Imagic: kann man später machen. PIC Systems: nicht benötigt.
+FA20 | Bildanzeige | Bilder aus dem Imagic IMS können im Client angezeigt werden. | | | Imagic: kann man später machen. PIC Systems: nicht benötigt.
 FA21 | Pflichtfelder | Im Client müssen die im Imagic IMS definierten Pflichtfelder ausgefüllt werden bevor das Bild ins Imagic IMS gespeichert werden kann | | Imagic IMS, PIC Systems |
 FA22 | Fallzuteilung | Der Client muss das Bild oder die Bilder zu einem Fall zuteilen können | | Imagic, PIC Systems | 
 FA23 | Fehlermeldung | Der Client soll dem Benutzer Fehler bei Berechtigungen und Lizenz anzeigen | | Imagic |
