@@ -15,3 +15,12 @@ Cross-Platform App for ims.
 
 **Betreuer**
 - Roland Weber
+
+## Risikomanagement
+
+Die Risiken und der Umgang mit Risiken wird druch eine sepeartes Dokument https://github.com/IMSmobile/app/blob/master/docs/risikoanalyse.md beschrieben. 
+
+
+## Arbeitspakete
+
+Die Arbeitspakete werden als Github Issues erfasst und durch Labels Kategorisiert. Die Liste aller Arbeitspakete findet man unter https://github.com/IMSmobile/app/issues?utf8=%E2%9C%93&q=
