@@ -49,9 +49,9 @@ NF1  | Design | Die Gestaltung des Clients soll die Design-Guidelines von Androi
 NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Store publiziert werden können. | | Google und Apple | 
 NF3  | Kompabilität | Der Client muss mit REST-API Version 16Q2 bis und mit 17Q1 funktionieren | | |
 NF4  | Selbsterklärend | Der Client soll durch einen Benutzer welcher mit der Bedienung von Imagic ims vertraut ist ohne Schulung bedient werden können. | | |
-~~NF5~~  | ~~Offline~~ | ~~Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen.~~ | | Imagic: noch gar nicht nötigt, macht es zu komplex. PIC Systems: nicht nötigt |
+~~NF5~~  | ~~Offline~~ | ~~Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen.~~ | | | Wird weder von Imagic noch PIC Systems benötigt
 NF6  | Verschlüsselung | Der Client soll verschlüsselt mit der REST-API kommunizieren. | | |
-~~NF7~~  | ~~Deployment~~ | ~~Der Client kann durch ein Mobile Device Management von zentraler Stelle aus durch den IT-Verantwortlichen installiert, aktualisiert und deinstalliert werden.~~ | | Nicht durch uns beeinflussbar |~~
+~~NF7~~  | ~~Deployment~~ | ~~Der Client kann durch ein Mobile Device Management von zentraler Stelle aus durch den IT-Verantwortlichen installiert, aktualisiert und deinstalliert werden.~~ | | | Nicht durch uns beeinflussbar
 NF8  | Zentralkonfig | Der Client kann durch ein Mobile Device Managment z.B. mit Configuration Profile von zentraler Stelle aus durch den IT-Verantwortlichen konfiguriert werden. | | |
 NF9  | PIN-Code | Der Client kann nur genutzt werden wenn das Smartphone mit einer Sicherheits-Sperre (PIN-Code, Fingerabdruck etc) gegen Nutzung durch Drittpersonen geschützt ist. | | |
 NF10 | Opensource | Der Quellcode des Clients soll frei zugänglich und von verschiedenen Firmen nutzbar sein | | |
