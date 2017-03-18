@@ -54,11 +54,30 @@ IMS ist ein sehr flexibles Bildmanagement-System, bei welchem Workflows für ver
 Die primäre Benutzergruppe sind schweizerische Polizeieinheiten. Der neue Client sollte einen einfacheren Prozesses bereitstellen, um Bilder während ihrem täglichen Einsatz auf Streife in ihrem IMS Bildverwaltungssystem abzulegen. Die Lösung sollte offen genug sein um sämtliche Datenmodelle von weiteren Kundensegmenten wie Medizin, Industrie und Life Science abzudecken. Als sekundäre Benutzergruppe sehen wir die Verkäufer der IMS Software welche den Mobile Client zu Demonstrationszwecken nutzen können.
 
 Der Mobile Client soll eine schlanke und bedienerfreundliche Weg sein um nebst dem herkömmlichen IMS Client Daten und den unzähligen technischen Schnittstellen (XML. HL7. Dicom) Medien in das IMS abzuspeichern.
-<<Projektbeschreibung>>
+
 ### Lieferumfang
-<<Welche Deliverables sollen am Schluss verfügbar sein? Wie/wo wird das Deliverable (z.B. Software/Dokument/Hardware/…) ausgeliefert? Unter welchen Bedingungen/Restrictions werden die Deliverables zur Verfügung gestellt? >>
+
+Am Ende des Projekts wird eine Android sowie eine iOS Applikation auf dem Interent für den Download bereit gestellt. Ziel ist es, dass diese Applikation im offiziellen Playstore (Android) Appstore (iOS) öffentlich als kostenelose Applikation heruntergeladen werden kann. Jedoch gibt es keine Garantie dafür, da Applikationen von diesen Stores rejected werden können.
+
+Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) ersichtlich. Mit Imagic und Pic Systems wurde abgemacht, dass die "muss" Kritieren bis zum Ende der Projektdauer erfüllt sind.
+
+Es ist nicht vorgesehen eine Benutzer Dokumentation zu erstellen, da die Software von IMS Kunden ohne Schulung bediendbar sein sollte.
+
 
 ## Projektorganisation
+
+### Ansprechpartner
+Folgende Ansprechpartner stehen während dem Projekt zur Verfügung
+
+| Name        | Firma | Funktion |
+| ------------- |-------------|-------------|
+| Urs Gomez| Imagic Bildverarbeitung AG | Anforderungen Imagic |
+| Marcel Bachmann| Pic Systems AG | Anforderungen Pic System |
+| Roland Weber| Ergon AG | Betreuer Masterarbeit |
+| Susanne Rigling | HSR | Information Masterarbeit |
+
+### Stakeholder
+![Stakeholder](docs/stakeholderdiagram.png)
 <<Welche externen Stakeholder/Ansprechpartner sind beteiligt? Wer macht was?>>
 ### Organisationsstruktur
 <<Organigramm>>
