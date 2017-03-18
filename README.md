@@ -104,13 +104,53 @@ TBD
 ## Qualitätsmassnahmen
 <<Was wird unternommen damit das Produkt des Projektes, sowie dessen gesamter Verlauf eine hohe Qualität erreicht? Übersicht in einer Tabelle geben mit Massnahmen, Zeitraum und Ziel der Massnahme>>
 ### Dokumentation
-<<Wo befinden sich die Dokumente (SVN oder Git Server) und wie wird deren Qualität sichergestellt?>>
+Sämtliche Dokumentationen stehen im öffentlich Zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung. Wie auch beim Quellcode werden allen Änderungen an einem Dokument von einer Person im Sinne eines Reviews überprüft.
+
 ### Projektmanagement
 <<Welches Tool wird für Projektmanagement eingesetzt (z.B. Redmine oder Trac) und wie erfolgt dieser Einsatz? Dazugehörige Links und Logins (ohne Passwörter).>>
-### Entwicklung	18
-<<Wo befindet sich der Source Code (z.B. SVN oder Git) und wie wird dessen Qualität sichergestellt?>>
+### Entwicklung
+
+Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich Zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung.
+
 #### Vorgehen
-<<Vorgehen in der Entwicklung, Prozess, Standards>>
+Um ein rasches Kundenfeedback zu erhalten und damit wir Abschlussorientiert arbeiten können, wird das Projekt mit agiler Methoden entwickelt.
+
+Alle Entwickler der Applikation stehen hinter dem [Agilen Manifest](http://agilemanifesto.org/iso/de/manifesto.html).
+
+**Individuen und Interaktionen** mehr als Prozesse und Werkzeuge
+**Funktionierende Software** mehr als umfassende Dokumentation
+**Zusammenarbeit mit dem Kunden** mehr als Vertragsverhandlung
+**Reagieren auf Veränderung** mehr als das Befolgen eines Plans
+
+Das heisst, obwohl wir die Werte auf der rechten Seite wichtig finden,
+schätzen wir die Werte auf der linken Seite höher ein.
+
+Das Prozessvorgehen orientiert sich stark an Scrum. Die meisten Events und Artefakte wurden direkt vom [Scrum Guide](http://www.scrumguides.org/scrum-guide.html) übernommen. Es gibt jedoch Abweichungen bezüglich dem Scrum Team.
+
+#### Events
+
+Wir führen folgende im Scrum enthaltenen Events wiederholt durch. Da wir nicht jeden Tag und auch nicht zur gleichen Zeit am Projekt arbeiten verzichten wir auf das Daily Scrum Meeting. Informationen zum Zustand und Kommunikation findet via Slack (Messaging System) statt. Wir sind bedacht dass wir Impediments früh zu kommunizieren.
+
+| Event        | Beschreibung | Dauer |
+| ------------- |-------------|-------------|
+| Sprint        | Zeitdauer in welcher fokussiert an einem Ziel gearbeitet wird, welches Nutzen für den Kunden generiert.    | 2 Wochen |
+| Sprint Planning| Festlegen der Arbeit für den nächsten Sprint. | 1.5 Stunden |
+| Sprint Review| Demonstration der fertigen Inkremente an Stakeholder / Betreuer. | 1 Stunde |
+| Sprint Retrospektive| Analyse desletzten Sprints und definieren der geplanten Verbesserungen. | 1 Stunde |
+
+#### Artefakte
+Das Product Backlog sowie der Sprint Backlog kann online in einem [Waffle Kanban Board](https://waffle.io/IMSmobile/app) angesehen werden.
+
+| Artefakt | Beschreibung |
+| ------------- |-------------|
+| Product Backlog  | Anhand der Anforderungsspezifikation und später durch Kundeninput definierte Arbeitspakete|
+| Sprint Backlog  | Arbeitspakete welche innerhalb eines Sprints erledigt werden.|
+
+#### Team
+Im Gegensatz zu Scrum gibt es keinen Product Owner. Die Arbeit des Product Owners wird von den Teammitglieder gemeinsam durchgeführt. Die Anforderungen sowie auch die  Priorisierung der Arbeit entsteht durch die Stakeholder.
+
+Auch verzichten wir auf die Rolle des Scrum Master. Impediements werden jeweils sofort im Slack Chat gemeldet und zusammen angeschaut.
+
 #### Code Reviews
 <<Werden Code Reviews gemacht und wie werden diese gemacht?>>
 #### Code Style Guideline
