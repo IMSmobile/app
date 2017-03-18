@@ -3,6 +3,17 @@
 ## Vision
 Wir möchten es den Kunden von Imagic ims erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine möglichst plattformunabhängige Mobile-App entwickeln.
 
+Die Softwareentwicklung wollen wir Team durchführen. Das Software Projekt soll vom Greenfield durch Konzeption über Architektur bis hin zur Realisation durchgeführt werden.
+
+Die Produkt soll eine generische Open Source Lösung sein, welche das Produktsortiment von IMS erweitert.
+
+Mit Hilfe von Continuous Integration, Reviews und Tests werden wir versuchen eine hohe Softwarequalität zu erreichen, um ein erweiterbares Produkt abzuliefern.
+
+Unser persönliches Ziel ist es unser Wissen um moderne Cross-Platform Frameworks und Tooling zu erweitern. Durch gelungenes Interaction Design möchten wir dem Kunden eine Freude im Alltag bereiten. Auch möchten wir unser Leben erleichtern und eine Continuous Deployment Pipeline aufbauen, damit neue Releases rasch beim Kunden ankommen. 
+
+Am Schluss soll eine funktional vollständige Android und iOS App entstehen, welche in einem Software Repository zum Download bereitgestellt wird. Mit dieser App sollen digitale Medien auch benutzerfreundliche Art und Weise ohne Hürden ins IMS hochgeladen werden können um den Arbeitsalltag der Kunden zu erleichtern. 
+
+
 ## Allgemeine Angaben
 
 **Auftraggeber**
