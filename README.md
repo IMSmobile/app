@@ -21,7 +21,7 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 | Photo        | Name | E-Mail| 
 | ------------- |-------------|-------------|
-| ------------- |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
+| ![Niklaus Tschirky](BildNiklaus.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
 | ------------- |Michael Leu|michael.leu@hsr.ch|
 | ![Sandor Zbinden](sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
 
