@@ -21,7 +21,7 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 | Photo        | Name | E-Mail| 
 | ------------- |-------------|-------------|
-| ![Niklaus Tschirky](BildNiklaus.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
+| ![Niklaus Tschirky](niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
 | ------------- |Michael Leu|michael.leu@hsr.ch|
 | ![Sandor Zbinden](sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
 
@@ -39,10 +39,21 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [Kanban Board](https://waffle.io/IMSmobile/app)| Waffle Kanbanboard verknüpft mit Issues zeigt Backlog und Zustand des aktuellen Sprints|
 | [Zeiterfassung](https://docs.google.com/spreadsheets/d/1wPmgUyEP-KACbgbScPLBRBLKIGRuS5j_b-cGsaogbYE/edit?usp=sharing)| Google Spreadsheet Dokument zeigt Aufwand der Projektarbeit|
 | [Kalender](https://calendar.google.com/calendar/embed?src=3k1v67336orm53otamk6e4s1rc%40group.calendar.google.com&ctz=Europe/Paris) | Google Calendar für die Planung einzelner Ereginissen.
-### Glossar	
+### Glossar
 TBD
 
 ## Projekt Übersicht
+Durch das Projekt ims Mobile App entsteht eine Applikation um Medien via Mobile Devices im  digitale Bildmangementsystem ims zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswill [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
+
+Die Anforderungen sowie auch deren Priorisierung erfolgt von den Firmen Imagic AG und Pic System AG .
+
+Die Firma Imagic bietet Lösungen und Systeme für das digitale Bildmanagement. Dem Kunden werden Tools für die Aufnahme, Bearbeitung, Analyse, Verwaltung und Reporting von Bildmaterial angeboten. Diverse Schnittstellen erlauben die Integration einer Vielzahl Fremdapplikationen. Die Firma Pic Systems vertreibt die Bildmangamgement Lösung und ist für den Vertrieb, Installation und Instandhaltung der Software Lösung im Bereich der Polizei zuständig.
+
+IMS ist ein sehr flexibles Bildmanagement-System, bei welchem Workflows für verschiedene Zwecke erstellt werden können. Dies erlaubt es, dieselbe Code-Basis für verschiedene Kunden-Segmente wie Industrie, Medizin, Life-Sciences und Polizei einzusetzen.
+
+Die primäre Benutzergruppe sind schweizerische Polizeieinheiten. Der neue Client sollte einen einfacheren Prozesses bereitstellen, um Bilder während ihrem täglichen Einsatz auf Streife in ihrem IMS Bildverwaltungssystem abzulegen. Die Lösung sollte offen genug sein um sämtliche Datenmodelle von weiteren Kundensegmenten wie Medizin, Industrie und Life Science abzudecken. Als sekundäre Benutzergruppe sehen wir die Verkäufer der IMS Software welche den Mobile Client zu Demonstrationszwecken nutzen können.
+
+Der Mobile Client soll eine schlanke und bedienerfreundliche Weg sein um nebst dem herkömmlichen IMS Client Daten und den unzähligen technischen Schnittstellen (XML. HL7. Dicom) Medien in das IMS abzuspeichern.
 <<Projektbeschreibung>>
 ### Lieferumfang
 <<Welche Deliverables sollen am Schluss verfügbar sein? Wie/wo wird das Deliverable (z.B. Software/Dokument/Hardware/…) ausgeliefert? Unter welchen Bedingungen/Restrictions werden die Deliverables zur Verfügung gestellt? >>
