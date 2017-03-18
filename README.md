@@ -1,7 +1,7 @@
-# app
-Cross-Platform App for ims.
+# ims Mobile App
 
 ## Vision
+Wir möchten es den Kunden von Imagic ims erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine möglichst plattformunabhängige Mobile-App entwickeln.
 
 ## Allgemeine Angaben
 
