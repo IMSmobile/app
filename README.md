@@ -1,17 +1,17 @@
 # IMS Mobile Client App
 
 ## Vision
-Wir möchten es den Kunden von Imagic IMS erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine möglichst plattformunabhängige Mobile-App entwickeln.
+Wir möchten es den Kunden von Imagic IMS erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine plattformunabhängige Mobile-App entwickeln.
 
 ![Vision Visualisierung](vision_visualisierung.png)
 
-Die Softwareentwicklung wollen wir Team durchführen. Das Software Projekt soll vom Greenfield durch Konzeption über Architektur bis hin zur Realisation durchgeführt werden.
+Die Softwareentwicklung wollen wir Team durchführen. Das Software Projekt soll vom Greenfield zur Konzeption über Architektur bis hin zur Realisation durchgeführt werden.
 
-Die Produkt soll eine generische Open Source Lösung sein, welche das Produktsortiment von IMS erweitert.
+Das Produkt soll eine generische Open Source Lösung sein, welche das Produktsortiment von IMS erweitert.
 
 Mit Hilfe von Continuous Integration, Reviews und Tests werden wir versuchen eine hohe Softwarequalität zu erreichen, um ein erweiterbares Produkt abzuliefern.
 
-Unser persönliches Ziel ist es unser Wissen um moderne Cross-Platform Frameworks und Tooling zu erweitern. Durch gelungenes Interaction Design möchten wir dem Kunden eine Freude im Alltag bereiten. Auch möchten wir unser Leben erleichtern und eine Continuous Deployment Pipeline aufbauen, damit neue Releases rasch beim Kunden ankommen. 
+Unser persönliches Ziel ist es, unser Wissen um moderne Cross-Platform Frameworks und Tooling zu erweitern. Durch gelungenes Interaction Design möchten wir dem Kunden eine Freude im Alltag bereiten. Auch möchten wir unser Leben erleichtern und eine Continuous Deployment Pipeline aufbauen, damit neue Releases rasch und einfach beim Kunden ankommen. 
 
 Am Schluss soll eine funktional vollständige Android und iOS App entstehen, welche in einem Software Repository zum Download bereitgestellt wird. Mit dieser App sollen digitale Medien auf benutzerfreundliche Art und Weise ohne Hürden ins IMS hochgeladen werden können um den Arbeitsalltag der Kunden zu erleichtern. 
 
@@ -28,54 +28,54 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 ## Einführung
 ### Zweck
-Dieses Dokument Beschreibt die Organisation, Vorgehensweise und die verwendeten Werkzeuge für die Umsetzung des Projekts. Es dient als Einstiegspunkt um sämtliche Projektbezogenen Information zu erhalten.
+Dieses Dokument beschreibt die Organisation, Vorgehensweise und die verwendeten Werkzeuge für die Umsetzung des Projekts. Es dient als Einstiegspunkt um sämtliche projektbezogenen Information zu erhalten.
 
 ### Gültigkeitsbereich
-Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden fortlaufend ergänzt und können in der [Commit History](https://github.com/IMSmobile/app/commits/master/README.md) dieses Dokuments angesehen werden.
+Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden fortlaufend eingepflegt und können in der [Commit History](https://github.com/IMSmobile/app/commits/master/README.md) dieses Dokuments angesehen werden.
 ### Referenzen
 | Link        | Beschreibung |
 | ------------- |-------------|
-| [Arbeitspakete (Issues)](https://github.com/IMSmobile/app/issues?utf8=%E2%9C%93&q=)      | Arbeitspakete als als Github Issues erfasst und durch Labels Kategorisiert|
+| [Arbeitspakete (Issues)](https://github.com/IMSmobile/app/issues?utf8=%E2%9C%93&q=)      | Arbeitspakete werden als Github Issues erfasst und durch Labels kategorisiert|
 | [Kanban Board](https://waffle.io/IMSmobile/app)| Waffle Kanbanboard verknüpft mit Issues zeigt Backlog und Zustand des aktuellen Sprints|
 | [Zeiterfassung](https://docs.google.com/spreadsheets/d/1wPmgUyEP-KACbgbScPLBRBLKIGRuS5j_b-cGsaogbYE/edit?usp=sharing)| Google Spreadsheet Dokument zeigt Aufwand der Projektarbeit|
-| [Kalender](https://calendar.google.com/calendar/embed?src=3k1v67336orm53otamk6e4s1rc%40group.calendar.google.com&ctz=Europe/Paris) | Google Calendar für die Planung einzelner Ereginissen.
-| [Rest Dokumentation](https://sinv-56028.edu.hsr.ch/) | Dokumentation der IMS Rest Schnittstelle.
+| [Kalender](https://calendar.google.com/calendar/embed?src=3k1v67336orm53otamk6e4s1rc%40group.calendar.google.com&ctz=Europe/Paris) | Google Calendar für die Planung einzelner Ereignissen
+| [Rest Dokumentation](https://sinv-56028.edu.hsr.ch/) | Dokumentation der IMS Rest Schnittstelle
 
 
 ### Glossar
 Siehe [Glossar](docs/glossary.md).
 
 ## Projekt Übersicht
-Durch das Projekt IMS Mobile Client App entsteht eine Applikation um Medien via Mobile Devices im  digitale Bildmangementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswill [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
+Durch das Projekt IMS Mobile Client App entsteht eine Applikation um Medien via Mobile Devices im digitale Bildmanagementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
 
-Die Anforderungen sowie auch deren Priorisierung erfolgt von den Firmen Imagic AG und Pic System AG .
+Die Anforderungen sowie auch deren Priorisierung erfolgt in Abstimmung mit den Firmen Imagic AG und Pic System AG.
 
-Die Firma Imagic bietet Lösungen und Systeme für das digitale Bildmanagement. Dem Kunden werden Tools für die Aufnahme, Bearbeitung, Analyse, Verwaltung und Reporting von Bildmaterial angeboten. Diverse Schnittstellen erlauben die Integration einer Vielzahl Fremdapplikationen. Die Firma Pic Systems vertreibt die Bildmangamgement Lösung und ist für den Vertrieb, Installation und Instandhaltung der Software Lösung im Bereich der Polizei zuständig.
+Die Firma Imagic bietet Lösungen und Systeme für das digitale Bildmanagement. Dem Kunden werden Tools für die Aufnahme, Bearbeitung, Analyse, Verwaltung und Reporting von Bildmaterial angeboten. Diverse Schnittstellen erlauben die Integration einer Vielzahl Fremdapplikationen. Die Firma Pic Systems vertreibt die Bildmanagement Lösung und ist für den Vertrieb, Installation und Instandhaltung der Software Lösung im Bereich der Polizei zuständig.
 
 IMS ist ein sehr flexibles Bildmanagement-System, bei welchem Workflows für verschiedene Zwecke erstellt werden können. Dies erlaubt es, dieselbe Code-Basis für verschiedene Kunden-Segmente wie Industrie, Medizin, Life-Sciences und Polizei einzusetzen.
 
-Die primäre Benutzergruppe sind schweizerische Polizeieinheiten. Der neue Client sollte einen einfacheren Prozesses bereitstellen, um Bilder während ihrem täglichen Einsatz auf Streife in ihrem IMS Bildverwaltungssystem abzulegen. Die Lösung sollte offen genug sein um sämtliche Datenmodelle von weiteren Kundensegmenten wie Medizin, Industrie und Life Science abzudecken. Als sekundäre Benutzergruppe sehen wir die Verkäufer der IMS Software welche den Mobile Client zu Demonstrationszwecken nutzen können.
+Die primäre Benutzergruppe für den mobilen Client sind schweizerische Polizeieinheiten. Der neue Client sollte einen einfacheren Prozesses bereitstellen, um Bilder während ihrem täglichen Einsatz auf Streife in ihrem IMS Bildverwaltungssystem abzulegen. Die Lösung sollte offen genug sein um sämtliche Datenmodelle von weiteren Kundensegmenten wie Medizin, Industrie und Life Science abzudecken. Als sekundäre Benutzergruppe sehen wir die Verkäufer der IMS Software, welche den Mobile Client zu Demonstrationszwecken nutzen können.
 
-Der Mobile Client soll eine schlanke und bedienerfreundliche Weg sein um nebst dem herkömmlichen IMS Client Daten und den unzähligen technischen Schnittstellen (XML. HL7. Dicom) Medien in das IMS abzuspeichern.
+Der Mobile Client soll einen schlanken und bedienerfreundlichne Weg bieten um nebst dem herkömmlichen IMS Client Daten und den unzähligen technischen Schnittstellen (XML. HL7. Dicom) Medien in das IMS abzuspeichern.
 
 ### Lieferumfang
 
-Am Ende des Projekts wird eine Android sowie eine iOS Applikation auf dem Interent für den Download bereit gestellt. Ziel ist es, dass diese Applikation im offiziellen Playstore (Android) Appstore (iOS) öffentlich als kostenelose Applikation heruntergeladen werden kann. Jedoch gibt es keine Garantie dafür, da Applikationen von diesen Stores rejected werden können.
+Am Ende des Projekts wird eine Android sowie eine iOS Applikation im Internet für den Download bereit gestellt. Ziel ist es, dass diese Applikation in den offiziellen Appstores von Google (für Android) und Apple (für iOS) öffentlich als kostenlose Applikation heruntergeladen werden kann. Jedoch gibt es keine Garantie dafür, da Applikationen von diesen Stores abgelehnt werden können.
 
-Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) ersichtlich. Mit Imagic und Pic Systems wurde abgemacht, dass die "muss" Kritieren bis zum Ende der Projektdauer erfüllt sind.
+Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) ersichtlich. Mit unseren Kunden Imagic und Pic Systems wurde abgemacht, dass die "muss" Kriterien bis zum Ende der Projektdauer erfüllt sind.
 
-Es ist nicht vorgesehen eine Benutzer Dokumentation zu erstellen, da die Software von IMS Kunden ohne Schulung bediendbar sein sollte.
+Eine Benutzerdokumentation ist nicht vorgesehen, da die Software von IMS Kunden ohne Schulung bedienbar sein sollte.
 
 
 ## Projektorganisation
 
 ### Ansprechpartner
-Folgende Ansprechpartner stehen während dem Projekt zur Verfügung
+Folgende Ansprechpartner stehen während dem Projekt zur Verfügung:
 
 | Name        | Firma | Funktion |
 | ------------- |-------------|-------------|
-| Urs Gomez| Imagic Bildverarbeitung AG | Anforderungen Imagic |
-| Marcel Bachmann| Pic Systems AG | Anforderungen Pic System |
+| Urs Gomez| Imagic Bildverarbeitung AG | Anforderungen Imagic AG |
+| Marcel Bachmann| Pic Systems AG | Anforderungen Pic System AG |
 | Roland Weber| Ergon AG | Betreuer Masterarbeit |
 | Susanne Rigling | HSR | Information Masterarbeit |
 
@@ -89,7 +89,7 @@ TBD
 
 ## Risikomanagement
 
-Die Risiken und der Umgang mit Risiken wird druch eine sepeartes Dokument https://github.com/IMSmobile/app/blob/master/docs/risikoanalyse.md beschrieben. 
+Die Risiken und der Umgang mit Risiken wird durch eine seperates Dokument https://github.com/IMSmobile/app/blob/master/docs/risikoanalyse.md beschrieben. 
 
 ## Management Abläufe
 
@@ -100,9 +100,8 @@ Währen der Projektdauer zwischen 15.02.2017 - 28.08.2017 wird das Projekt in 13
 
 | Phase        | Beschreibung | Zeitbereich |
 | ------------- |-------------|-------------|
-| Anforderungsanalyse und Prototype | Sammeln der Anforderungen von Stakeholdern, evaluieren von verschiedenen Cross-Platform Frameworks | 24.02.2017 - 24.03.2017 |
+| Anforderungsanalyse und Prototype | Sammeln der Anforderungen von Stakeholdern, Evaluation von verschiedenen Cross-Platform Frameworks | 24.02.2017 - 24.03.2017 |
 | Design und Architektur | Erstellung von Interaction Design und Architektur der Software. Einrichten der Tools für das gewählte  Crossplatframework| 24.03.2017 - 07.04.2017 |
-| Implementierung | Implementierung der Anforderungen. Anpassen des Design, der Archtitektur und Anforderungen wenn Anpassungen nötig sind. Kontakt mit Stakeholder in 2 Wochen Ryhtmus| 07.04.2017 - 28.08.2017 |
 | Implementierung | Implementierung der Anforderungen. Anpassen des Design, der Archtitektur und Anforderungen wenn Anpassungen nötig sind. Kontakt mit Stakeholder in 2 Wochen Ryhtmus| 07.04.2017 - 18.08.2017 |
 | Abschluss und Übergabe | Abschliessen der Dokumentation für Abgabe des Projekts. Übergabe des Projekts an Imagic. | 18.08.2017 - 28.08.2017 |
 | Präsentation | Vorbereitung und Durchführung der öffentlichen Präsentation | 28.08.2017 - 04.09.2017 |
@@ -112,16 +111,16 @@ TBD
 ## Qualitätsmassnahmen
 <<Was wird unternommen damit das Produkt des Projektes, sowie dessen gesamter Verlauf eine hohe Qualität erreicht? Übersicht in einer Tabelle geben mit Massnahmen, Zeitraum und Ziel der Massnahme>>
 ### Dokumentation
-Sämtliche Dokumentationen stehen im öffentlich Zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung. Wie auch beim Quellcode werden allen Änderungen an einem Dokument von einer Person im Sinne eines Reviews überprüft.
+Sämtliche Dokumentationen stehen im öffentlich Zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung. Wie auch beim Quellcode werden allen Änderungen an einem Dokument von mindestens einer Person mithilfe eines Reviews überprüft.
 
 ### Projektmanagement
 <<Welches Tool wird für Projektmanagement eingesetzt (z.B. Redmine oder Trac) und wie erfolgt dieser Einsatz? Dazugehörige Links und Logins (ohne Passwörter).>>
 ### Entwicklung
 
-Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich Zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung.
+Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung.
 
 #### Vorgehen
-Um ein rasches Kundenfeedback zu erhalten und damit wir Abschlussorientiert arbeiten können, wird das Projekt mit agiler Methoden entwickelt.
+Um ein rasches Kundenfeedback zu erhalten und damit wir abschlussorientiert arbeiten können, wird das Projekt mit agiler Methoden entwickelt.
 
 Alle Entwickler der Applikation stehen hinter dem [Agilen Manifest](http://agilemanifesto.org/iso/de/manifesto.html).
 
@@ -137,14 +136,14 @@ Das Prozessvorgehen orientiert sich stark an Scrum. Die meisten Events und Artef
 
 #### Events
 
-Wir führen folgende im Scrum enthaltenen Events wiederholt durch. Da wir nicht jeden Tag und auch nicht zur gleichen Zeit am Projekt arbeiten verzichten wir auf das Daily Scrum Meeting. Informationen zum Zustand und Kommunikation findet via Slack (Messaging System) statt. Wir sind bedacht dass wir Impediments früh zu kommunizieren.
+Wir führen folgende im Scrum enthaltenen Events wiederholt durch. Da wir nicht jeden Tag und auch nicht zur gleichen Zeit am Projekt arbeiten verzichten wir auf das Daily Scrum Meeting. Für die Kommunikation und Statusupdates verwenden wir Slack (Messaging System), welches Schnittstellen zu den gängigen Entwicklerplattformen bereitstellt. Wir sind bedacht, dass wir Probleme und Hindernisse frühzeitig zu kommunizieren.
 
 | Event        | Beschreibung | Dauer |
 | ------------- |-------------|-------------|
 | Sprint        | Zeitdauer in welcher fokussiert an einem Ziel gearbeitet wird, welches Nutzen für den Kunden generiert.    | 2 Wochen |
 | Sprint Planning| Festlegen der Arbeit für den nächsten Sprint. | 1.5 Stunden |
 | Sprint Review| Demonstration der fertigen Inkremente an Stakeholder / Betreuer. | 1 Stunde |
-| Sprint Retrospektive| Analyse desletzten Sprints und definieren der geplanten Verbesserungen. | 1 Stunde |
+| Sprint Retrospektive| Analyse des letzten Sprints und definieren der geplanten Verbesserungen. | 1 Stunde |
 
 #### Artefakte
 Das Product Backlog sowie der Sprint Backlog kann online in einem [Waffle Kanban Board](https://waffle.io/IMSmobile/app) angesehen werden.
@@ -155,9 +154,9 @@ Das Product Backlog sowie der Sprint Backlog kann online in einem [Waffle Kanban
 | Sprint Backlog  | Arbeitspakete welche innerhalb eines Sprints erledigt werden.|
 
 #### Team
-Im Gegensatz zu Scrum gibt es keinen Product Owner. Die Arbeit des Product Owners wird von den Teammitglieder gemeinsam durchgeführt. Die Anforderungen sowie auch die  Priorisierung der Arbeit entsteht durch die Stakeholder.
+Im Gegensatz zu Scrum gibt es keinen Product Owner. Die Arbeit des Product Owners wird von den Teammitgliedern gemeinsam durchgeführt. Die Anforderungen sowie auch die Priorisierung der Arbeiten wird zusammen mit den Stakeholdern definiert.
 
-Auch verzichten wir auf die Rolle des Scrum Master. Impediements werden jeweils sofort im Slack Chat gemeldet und zusammen angeschaut.
+Auch verzichten wir auf die Rolle des Scrum Master. Problem und Hindernisse werden jeweils sofort im Slack Chat gemeldet und zusammen angeschaut.
 
 #### Code Reviews
 <<Werden Code Reviews gemacht und wie werden diese gemacht?>>
