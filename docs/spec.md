@@ -35,7 +35,7 @@ FA17 | Schnittstelle | Der Client muss mit dem Imagic ims über die REST-API kom
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | | Imagic ims |
 FA19 | Bildlöschung | Hochgeladene Bilder können wieder gelöscht werden. :warning:#39 | | | Besprechen mit PIC System und Imagic
 FA20 | Bildanzeige | Bilder aus dem Imagic ims können im Client angezeigt werden. :warning:#39 | | | Besprechen mit PIC System und Imagic
-FA21 | Aktualisierung | Benutzer können bei neuen Features oder Fehlerbehebungen die Software automatisch aktualisieren.| |Support Abteilung |
+FA21 | Aktualisierung | Software-Features oder Fehlerbehebungen im Client können automatisch aktualisiert werden. | |Support Abteilung |
 
 ### Nicht-Funktional
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
@@ -55,7 +55,7 @@ NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload 
 NF13 | Abbruch | Bilderupload und Änderung der Metadaten können jederzeit abgebrochen werden. || Benutzer |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic ims funktionieren welches 50'000 Fälle beinhaltet. | | PIC Systems |
 NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | Imagic |
-NF16| Fehlerverminderung | Wiederholte Regressionen sollen nach Behebung durch automatisierten Tests vermieden werden. | | Support-Abteilung |
+NF16| Fehlerverminderung | Wiederholte Regressionen sollen nach Behebung vermieden werden. | | Support-Abteilung |
 NF17 | Codeübergabe | Ims Entwickler können nach zwei Arbeitstagen kleinere Fehler selbständig beheben.| | ims Entwickler |
 
 
