@@ -39,6 +39,9 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [Kanban Board](https://waffle.io/IMSmobile/app)| Waffle Kanbanboard verknüpft mit Issues zeigt Backlog und Zustand des aktuellen Sprints|
 | [Zeiterfassung](https://docs.google.com/spreadsheets/d/1wPmgUyEP-KACbgbScPLBRBLKIGRuS5j_b-cGsaogbYE/edit?usp=sharing)| Google Spreadsheet Dokument zeigt Aufwand der Projektarbeit|
 | [Kalender](https://calendar.google.com/calendar/embed?src=3k1v67336orm53otamk6e4s1rc%40group.calendar.google.com&ctz=Europe/Paris) | Google Calendar für die Planung einzelner Ereginissen.
+| [Rest Dokumentation](https://sinv-56028.edu.hsr.ch/) | Dokumentation der IMS Rest Schnittstelle.
+
+
 ### Glossar
 TBD
 
