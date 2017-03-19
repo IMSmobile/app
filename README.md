@@ -1,7 +1,7 @@
-# ims Mobile App
+# IMS Mobile Client App
 
 ## Vision
-Wir möchten es den Kunden von Imagic ims erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine möglichst plattformunabhängige Mobile-App entwickeln.
+Wir möchten es den Kunden von Imagic IMS erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine möglichst plattformunabhängige Mobile-App entwickeln.
 
 ![Vision Visualisierung](vision_visualisierung.png)
 
@@ -43,10 +43,10 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 
 
 ### Glossar
-TBD
+Siehe [Glossar](docs/glossary.md).
 
 ## Projekt Übersicht
-Durch das Projekt ims Mobile App entsteht eine Applikation um Medien via Mobile Devices im  digitale Bildmangementsystem ims zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswill [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
+Durch das Projekt IMS Mobile Client App entsteht eine Applikation um Medien via Mobile Devices im  digitale Bildmangementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswill [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
 
 Die Anforderungen sowie auch deren Priorisierung erfolgt von den Firmen Imagic AG und Pic System AG .
 
