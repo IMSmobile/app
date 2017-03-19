@@ -74,16 +74,7 @@ NF19 | Codeübergabe | IMS Entwickler können nach zwei Arbeitstagen kleinere Fe
 
 ## Glossar
 
-Begriff | Bedeutung
-------- | ---------
-Client | IMS Mobile Client, die Software welche wir entwickeln
-Imagic | Imagic Bildverarbeitung AG, Hersteller des Imagic IMS
-Imagic IMS | Bildmanagement-System zur Erfassung, Bearbeitung, Speicherung, Visualisierung und Präsentation von digitalen Bildern, Filmen und allgemeinen Dokumenten für medizinische, industrielle und Verwaltungs-Institutionen.
-muss | Zwingende Anforderung, mandatory nach IEEE Std 830-1998
-soll | Gewünschte Anforderung, optional nach IEEE Std 830-1998
-kann | Optionale Anforderung, nice-to-have nach IEEE Std 830-1998
-Fall | Begriff der Polizei für eine Gruppiereinheit im Imagic IMS
-Store | Apple Appstore oder Google Play Store
+Siehe [Glossar](glossary.md).
 
 ## Quellen
 Icons von https://icons8.com/
