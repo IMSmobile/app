@@ -16,21 +16,21 @@ Issue #27
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
 FA1  | Bildupload | Der Client muss bis zu 20 :warning:#39 Bilder aus der Galerie in das Imagic ims speichern können. | | PIC Systems | Maximalanzahl noch abzuklären
-FA2  | Kameraupload | Der Client muss ein Bild direkt von der Kamera des Smartphones in das Imagic ims speichern können.
-FA3  | Bildformat | Der Client muss die Bildformate PNG und JPEG in das Imagic ims speichern können. 
-FA4  | Metadaten | Der Client muss das Bild inkl. EXIF-Daten ins das Imagic ims speichern können.
-FA5  | Bildbeschreibung | Nach Auswahl der Bilder muss der Client dem Benutzer die Möglichkeit bieten eine Beschreibung dazu zu erfassen
-FA6  | Fallauswahl | Der Client muss dem Benutzer die Möglichkeit bieten einen bestehenden Fall auszwählen | | PIC Systems
-FA7  | Fallerstellung | Der Client muss dem Benutzer die Möglichkeit bieten einen neuen Fall zu erstellen | | PIC Systems
-FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Benutzer nur die erforderlichen Felder für die Fallerstellung anzeigen. | | PIC Systems | 
-FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu 5 Ebenen tiefen Struktur möglich sein. | | Imagic | 
+FA2  | Kameraupload | Der Client muss ein Bild direkt von der Kamera des Smartphones in das Imagic ims speichern können. | | |
+FA3  | Bildformat | Der Client muss die Bildformate PNG und JPEG in das Imagic ims speichern können. | | |
+FA4  | Metadaten | Der Client muss das Bild inkl. EXIF-Daten ins das Imagic ims speichern können.| | |
+FA5  | Bildbeschreibung | Nach Auswahl der Bilder muss der Client dem Benutzer die Möglichkeit bieten eine Beschreibung dazu zu erfassen| | |
+FA6  | Fallauswahl | Der Client muss dem Benutzer die Möglichkeit bieten einen bestehenden Fall auszwählen | | PIC Systems |
+FA7  | Fallerstellung | Der Client muss dem Benutzer die Möglichkeit bieten einen neuen Fall zu erstellen | | PIC Systems |
+FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Benutzer nur die erforderlichen Felder für die Fallerstellung anzeigen. | | PIC Systems |
+FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu 5 Ebenen tiefen Struktur möglich sein. | | Imagic |
 FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic ims Lizenzmodell halten. | | 
 FA11 | iOS-muss | Der Client muss auf iPhone *tbd* mit iOS 10 :warning:#40 funktionsfähig sein. | | | Referenzgerät definieren
 FA12 | iOS-soll | Der Client soll auf iPhones mit iOS 8 :warning:#40 oder höher funktionsfähig sein. | | | 
 FA13 | Android-muss | Der Client muss auf Smartphone *tbd* mit Android *tbd* API Level *tbd* :warning:#40 funktionsfähig sein. | | | Referenzgerät definieren
-FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 :warning:#40 oder höher funktionsfähig sein. | | | 
+FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 :warning:#40 oder höher funktionsfähig sein. | | |
 FA15 | Browser | Der Client kann auch mit einem modernen :warning:#38 Browser benutzt werden. | | Imagic | Modern genauer definieren
-FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | | PIC Systems | 
+FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | | PIC Systems |
 FA17 | Schnittstelle | Der Client muss mit dem Imagic ims über die REST-API kommunizieren. | | Imagic ims |
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | | Imagic ims |
 FA19 | Bildlöschung | Hochgeladene Bilder können wieder gelöscht werden. :warning:#39 | | | Besprechen mit PIC System und Imagic
@@ -40,7 +40,7 @@ FA20 | Bildanzeige | Bilder aus dem Imagic ims können im Client angezeigt werde
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
 NF1  | Design | Die Gestaltung des Clients soll die Design-Guidelines von Android und iOS erfüllen | | |
-NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Appstore publiziert werden können. | | Google und Apple | 
+NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Appstore publiziert werden können. | | Google und Apple |
 NF3  | Kompabilität | Der Client soll nur mit bestimmten Versionen der REST-API funktionieren | | |
 NF4  | Selbsterklärend | Der Client soll durch einen Benutzer welcher mit der Bedienung von Imagic ims vertraut ist ohne Schulung bedient werden können. | | |
 NF5  | Offline | Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen. | | |
