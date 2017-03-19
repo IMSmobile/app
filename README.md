@@ -9,11 +9,11 @@ Die Softwareentwicklung wollen wir Team durchführen. Das Software Projekt soll 
 
 Das Produkt soll eine generische Open Source Lösung sein, welche das Produktsortiment von IMS erweitert.
 
-Mit Hilfe von Continuous Integration, Reviews und Tests werden wir versuchen eine hohe Softwarequalität zu erreichen, um ein erweiterbares Produkt abzuliefern.
+Mit Hilfe von Continuous Integration, Reviews und Tests werden wir versuchen eine hohe Softwarequalität zu erreichen, um ein einfach erweiterbares Produkt abzuliefern.
 
-Unser persönliches Ziel ist es, unser Wissen um moderne Cross-Platform Frameworks und Tooling zu erweitern. Durch gelungenes Interaction Design möchten wir dem Kunden eine Freude im Alltag bereiten. Auch möchten wir unser Leben erleichtern und eine Continuous Deployment Pipeline aufbauen, damit neue Releases rasch und einfach beim Kunden ankommen. 
+Unser persönliches Ziel ist es, unser Wissen um moderne Cross-Platform Frameworks und Tooling zu erweitern. Durch gelungenes Interaction Design möchten wir den Kunden eine Freude im Alltag bereiten. Auch möchten wir unser Leben erleichtern und eine Continuous Deployment Pipeline aufbauen, damit neue Releases rasch und einfach beim Kunden ankommen. 
 
-Am Schluss soll eine funktional vollständige Android und iOS App entstehen, welche in einem Software Repository zum Download bereitgestellt wird. Mit dieser App sollen digitale Medien auf benutzerfreundliche Art und Weise ohne Hürden ins IMS hochgeladen werden können um den Arbeitsalltag der Kunden zu erleichtern. 
+Am Schluss soll eine funktional vollständige Android und iOS App entstehen, welche in einem Software Repository zum Download bereitgestellt wird. Mit dieser App sollen digitale Medien auf benutzerfreundliche Art und Weise ins IMS hochgeladen werden können um den Arbeitsalltag der Kunden zu erleichtern. 
 
 
 ## Allgemeine Angaben
@@ -28,7 +28,7 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 ## Einführung
 ### Zweck
-Dieses Dokument beschreibt die Organisation, Vorgehensweise und die verwendeten Werkzeuge für die Umsetzung des Projekts. Es dient als Einstiegspunkt um sämtliche projektbezogenen Information zu erhalten.
+Dieses Dokument beschreibt die Organisation, Vorgehensweise sowie die verwendeten Werkzeuge für die Umsetzung des Projekts. Es dient als Einstiegspunkt um sämtliche projektbezogenen Information zu finden.
 
 ### Gültigkeitsbereich
 Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden fortlaufend eingepflegt und können in der [Commit History](https://github.com/IMSmobile/app/commits/master/README.md) dieses Dokuments angesehen werden.
@@ -43,10 +43,10 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 
 
 ### Glossar
-Siehe [Glossar](docs/glossary.md).
+Siehe [Glossar](docs/glossary.md)
 
 ## Projekt Übersicht
-Durch das Projekt IMS Mobile Client App entsteht eine Applikation um Medien via Mobile Devices im digitale Bildmanagementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
+Durch das Projekt IMS Mobile Client App entsteht eine Applikation um Medien via Mobile Devices im digitalen Bildmanagementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
 
 Die Anforderungen sowie auch deren Priorisierung erfolgt in Abstimmung mit den Firmen Imagic AG und Pic System AG.
 
@@ -60,7 +60,7 @@ Der Mobile Client soll einen schlanken und bedienerfreundlichne Weg bieten um ne
 
 ### Lieferumfang
 
-Am Ende des Projekts wird eine Android sowie eine iOS Applikation im Internet für den Download bereit gestellt. Ziel ist es, dass diese Applikation in den offiziellen Appstores von Google (für Android) und Apple (für iOS) öffentlich als kostenlose Applikation heruntergeladen werden kann. Jedoch gibt es keine Garantie dafür, da Applikationen von diesen Stores abgelehnt werden können.
+Am Ende des Projekts wird eine Android sowie eine iOS Applikation im Internet zum Download bereitgestellt. Ziel ist es, dass diese Applikation in den offiziellen Appstores von Google (für Android) und Apple (für iOS) öffentlich als kostenlose Applikation heruntergeladen werden kann. Jedoch gibt es keine Garantie dafür, da Applikationen von diesen Stores auch abgelehnt werden können.
 
 Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) ersichtlich. Mit unseren Kunden Imagic und Pic Systems wurde abgemacht, dass die "muss" Kriterien bis zum Ende der Projektdauer erfüllt sind.
 
@@ -102,12 +102,14 @@ Währen der Projektdauer zwischen 15.02.2017 - 28.08.2017 wird das Projekt in 13
 | ------------- |-------------|-------------|
 | Anforderungsanalyse und Prototype | Sammeln der Anforderungen von Stakeholdern, Evaluation von verschiedenen Cross-Platform Frameworks | 24.02.2017 - 24.03.2017 |
 | Design und Architektur | Erstellung von Interaction Design und Architektur der Software. Einrichten der Tools für das gewählte  Crossplatframework| 24.03.2017 - 07.04.2017 |
-| Implementierung | Implementierung der Anforderungen. Anpassen des Design, der Archtitektur und Anforderungen wenn Anpassungen nötig sind. Kontakt mit Stakeholder in 2 Wochen Ryhtmus| 07.04.2017 - 18.08.2017 |
-| Abschluss und Übergabe | Abschliessen der Dokumentation für Abgabe des Projekts. Übergabe des Projekts an Imagic. | 18.08.2017 - 28.08.2017 |
+| Implementierung | Implementierung der Anforderungen. Anpassen des Design, der Archtitektur und Anforderungen wenn Anpassungen nötig sind. Kontakt mit Stakeholder in 2 Wochen Rhythmus| 07.04.2017 - 18.08.2017 |
+| Abschluss und Übergabe | Abschliessen der Dokumentation für Abgabe des Projekts, Übergabe des Projekts an Imagic | 18.08.2017 - 28.08.2017 |
 | Präsentation | Vorbereitung und Durchführung der öffentlichen Präsentation | 28.08.2017 - 04.09.2017 |
 
 ## Infrastruktur
 TBD
+<<Framework-Abhängig>>
+
 ## Qualitätsmassnahmen
 <<Was wird unternommen damit das Produkt des Projektes, sowie dessen gesamter Verlauf eine hohe Qualität erreicht? Übersicht in einer Tabelle geben mit Massnahmen, Zeitraum und Ziel der Massnahme>>
 ### Dokumentation
@@ -142,7 +144,7 @@ Wir führen folgende im Scrum enthaltenen Events wiederholt durch. Da wir nicht 
 | ------------- |-------------|-------------|
 | Sprint        | Zeitdauer in welcher fokussiert an einem Ziel gearbeitet wird, welches Nutzen für den Kunden generiert.    | 2 Wochen |
 | Sprint Planning| Festlegen der Arbeit für den nächsten Sprint. | 1.5 Stunden |
-| Sprint Review| Demonstration der fertigen Inkremente an Stakeholder / Betreuer. | 1 Stunde |
+| Sprint Review| Demonstration der fertigen Inkremente für Stakeholder / Betreuer. | 1 Stunde |
 | Sprint Retrospektive| Analyse des letzten Sprints und definieren der geplanten Verbesserungen. | 1 Stunde |
 
 #### Artefakte
@@ -156,17 +158,22 @@ Das Product Backlog sowie der Sprint Backlog kann online in einem [Waffle Kanban
 #### Team
 Im Gegensatz zu Scrum gibt es keinen Product Owner. Die Arbeit des Product Owners wird von den Teammitgliedern gemeinsam durchgeführt. Die Anforderungen sowie auch die Priorisierung der Arbeiten wird zusammen mit den Stakeholdern definiert.
 
-Auch verzichten wir auf die Rolle des Scrum Master. Problem und Hindernisse werden jeweils sofort im Slack Chat gemeldet und zusammen angeschaut.
+Auch verzichten wir auf die Rolle des Scrum Master. Probleme und Hindernisse werden jeweils sofort im Slack Chat gemeldet und zusammen angeschaut.
 
 #### Code Reviews
 <<Werden Code Reviews gemacht und wie werden diese gemacht?>>
 #### Code Style Guideline
 <<Welche Code Style Guidelines werden angewendet? Sie brauchen keine eigenen Guidelines zu erfinden. Am besten referenzieren Sie existierende Guidelines, mit denen Sie einverstanden sind. Evtl. noch Abweichungen dazu dokumentieren.>>
+<<Framework-Abhängig>>
 ### Testing
 TBD
+<<Framework-Abhängig>>
 #### Unit Testing
 TBD
+<<Framework-Abhängig>>
 #### End to End Testing
 TBD
+<<Framework-Abhängig>>
 #### Manual Testing
 TBD
+<<Framework-Abhängig>>
