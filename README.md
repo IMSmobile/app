@@ -48,9 +48,9 @@ Siehe [Glossar](docs/glossary.md)
 ## Projekt Übersicht
 Durch das Projekt IMS Mobile Client App entsteht eine Applikation um Medien via Mobile Devices im digitalen Bildmanagementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Softwareengineering 2015 durchgeführt.
 
-Die Anforderungen sowie auch deren Priorisierung erfolgt in Abstimmung mit den Firmen Imagic AG und Pic System AG.
+Die Anforderungen sowie auch deren Priorisierung erfolgt in Abstimmung mit den Firmen Imagic AG und PIC System AG.
 
-Die Firma Imagic bietet Lösungen und Systeme für das digitale Bildmanagement. Dem Kunden werden Tools für die Aufnahme, Bearbeitung, Analyse, Verwaltung und Reporting von Bildmaterial angeboten. Diverse Schnittstellen erlauben die Integration einer Vielzahl Fremdapplikationen. Die Firma Pic Systems vertreibt die Bildmanagement Lösung und ist für den Vertrieb, Installation und Instandhaltung der Software Lösung im Bereich der Polizei zuständig.
+Die Firma Imagic bietet Lösungen und Systeme für das digitale Bildmanagement. Dem Kunden werden Tools für die Aufnahme, Bearbeitung, Analyse, Verwaltung und Reporting von Bildmaterial angeboten. Diverse Schnittstellen erlauben die Integration einer Vielzahl Fremdapplikationen. Die Firma PIC Systems vertreibt die Bildmanagement Lösung und ist für den Vertrieb, Installation und Instandhaltung der Software Lösung im Bereich der Polizei zuständig.
 
 IMS ist ein sehr flexibles Bildmanagement-System, bei welchem Workflows für verschiedene Zwecke erstellt werden können. Dies erlaubt es, dieselbe Code-Basis für verschiedene Kunden-Segmente wie Industrie, Medizin, Life-Sciences und Polizei einzusetzen.
 
@@ -62,7 +62,7 @@ Der Mobile Client soll einen schlanken und bedienerfreundlichne Weg bieten um ne
 
 Am Ende des Projekts wird eine Android sowie eine iOS Applikation im Internet zum Download bereitgestellt. Ziel ist es, dass diese Applikation in den offiziellen Appstores von Google (für Android) und Apple (für iOS) öffentlich als kostenlose Applikation heruntergeladen werden kann. Jedoch gibt es keine Garantie dafür, da Applikationen von diesen Stores auch abgelehnt werden können.
 
-Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) ersichtlich. Mit unseren Kunden Imagic und Pic Systems wurde abgemacht, dass die "muss" Kriterien bis zum Ende der Projektdauer erfüllt sind.
+Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) ersichtlich. Mit unseren Kunden Imagic und PIC Systems wurde abgemacht, dass die "muss" Kriterien bis zum Ende der Projektdauer erfüllt sind.
 
 Eine Benutzerdokumentation ist nicht vorgesehen, da die Software von IMS Kunden ohne Schulung bedienbar sein sollte.
 
@@ -75,7 +75,7 @@ Folgende Ansprechpartner stehen während dem Projekt zur Verfügung:
 | Name        | Firma | Funktion |
 | ------------- |-------------|-------------|
 | Urs Gomez| Imagic Bildverarbeitung AG | Anforderungen Imagic AG |
-| Marcel Bachmann| Pic Systems AG | Anforderungen Pic System AG |
+| Marcel Bachmann| PIC Systems AG | Anforderungen PIC System AG |
 | Roland Weber| Ergon AG | Betreuer Masterarbeit |
 | Susanne Rigling | HSR | Information Masterarbeit |
 
@@ -89,12 +89,12 @@ TBD
 
 ## Risikomanagement
 
-Die Risiken und der Umgang mit Risiken wird durch eine seperates Dokument https://github.com/IMSmobile/app/blob/master/docs/risikoanalyse.md beschrieben. 
+Die Risiken und der Umgang mit Risiken wird durch ein separates Dokument [Risiko Analyse](docs/risikoanalyse.md) beschrieben. 
 
 ## Management Abläufe
 
 ### Zeitliche Planung
-Währen der Projektdauer zwischen 15.02.2017 - 28.08.2017 wird das Projekt in 13 Sprints unterteilt. Jeder Sprint hat einen zeitlichen Aufwand von ca. 93 Stunden.
+Während der Projektdauer zwischen 15.02.2017 - 28.08.2017 wird das Projekt in 13 Sprints unterteilt. Jeder Sprint hat einen zeitlichen Aufwand von ca. 93 Stunden.
 
 #### Phasen
 
@@ -113,23 +113,23 @@ TBD
 ## Qualitätsmassnahmen
 <<Was wird unternommen damit das Produkt des Projektes, sowie dessen gesamter Verlauf eine hohe Qualität erreicht? Übersicht in einer Tabelle geben mit Massnahmen, Zeitraum und Ziel der Massnahme>>
 ### Dokumentation
-Sämtliche Dokumentationen stehen im öffentlich Zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung. Wie auch beim Quellcode werden allen Änderungen an einem Dokument von mindestens einer Person mithilfe eines Reviews überprüft.
+Sämtliche Dokumentationen stehen im öffentlich Zugänglichen [GitHub Repository](https://github.com/IMSmobile/app/) zur Verfügung. Wie auch beim Quellcode werden allen Änderungen an einem Dokument von mindestens einer Person mithilfe eines Reviews überprüft.
 
 ### Projektmanagement
 <<Welches Tool wird für Projektmanagement eingesetzt (z.B. Redmine oder Trac) und wie erfolgt dieser Einsatz? Dazugehörige Links und Logins (ohne Passwörter).>>
 ### Entwicklung
 
-Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich zugänglichen [Github Repository](https://github.com/IMSmobile/app/) zur Verfügung.
+Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich zugänglichen [GitHub Repository](https://github.com/IMSmobile/app/) zur Verfügung.
 
 #### Vorgehen
 Um ein rasches Kundenfeedback zu erhalten und damit wir abschlussorientiert arbeiten können, wird das Projekt mit agiler Methoden entwickelt.
 
 Alle Entwickler der Applikation stehen hinter dem [Agilen Manifest](http://agilemanifesto.org/iso/de/manifesto.html).
 
-**Individuen und Interaktionen** mehr als Prozesse und Werkzeuge
-**Funktionierende Software** mehr als umfassende Dokumentation
-**Zusammenarbeit mit dem Kunden** mehr als Vertragsverhandlung
-**Reagieren auf Veränderung** mehr als das Befolgen eines Plans
+**Individuen und Interaktionen** mehr als Prozesse und Werkzeuge  
+**Funktionierende Software** mehr als umfassende Dokumentation  
+**Zusammenarbeit mit dem Kunden** mehr als Vertragsverhandlung  
+**Reagieren auf Veränderung** mehr als das Befolgen eines Plans  
 
 Das heisst, obwohl wir die Werte auf der rechten Seite wichtig finden,
 schätzen wir die Werte auf der linken Seite höher ein.
