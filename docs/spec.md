@@ -26,9 +26,9 @@ FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Ben
 FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu 5 Ebenen tiefen Struktur möglich sein. | | Imagic | 
 FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic IMS Lizenzmodell halten. | | Imagic | 
 FA11 | iOS-muss | Der Client muss auf iPhone *tbd* mit iOS 10 :warning:#40 funktionsfähig sein. | | | Referenzgerät definieren
-FA12 | iOS-soll | Der Client soll auf iPhones mit iOS 8 :warning:#40 oder höher funktionsfähig sein. | | | 
+FA12 | iOS-soll | Der Client soll auf iPhones mit iOS 8 :warning:#40 oder höher funktionsfähig sein. | | |
 FA13 | Android-muss | Der Client muss auf Smartphone *tbd* mit Android *tbd* API Level *tbd* :warning:#40 funktionsfähig sein. | | | Referenzgerät definieren
-FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 :warning:#40 oder höher funktionsfähig sein. | | | 
+FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 :warning:#40 oder höher funktionsfähig sein. | | |
 FA15 | Browser | Der Client kann auch mit einem modernen :warning:#38 Browser benutzt werden. | | Imagic | Modern genauer definieren
 FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | | Imagic, PIC Systems | 
 FA17 | Schnittstelle | Der Client muss mit dem Imagic IMS über die REST-API kommunizieren. | | Imagic IMS |
@@ -41,11 +41,16 @@ FA23 | Fehlermeldung | Der Client soll dem Benutzer Fehler bei Berechtigungen un
 FA24 | Filter | Der Client muss dem Benutzer eine Möglichkeit bieten nach Fällen zu filtern | | Imagic, PIC Systems | 
 FA25 | Mehrfachmetadaten | Der Client kann dem Benutzer die Möglichkeit bieten Metadaten zu erfassen welche zu sämtlichen ausgewählten Bildern gespeichert werden | | PIC Systems |
 FA26 | Feldfilter | Der Client soll dem Benutzer nur eine vom Benutzer definierte Auswahl der möglichen Felder anzeigen | | PIC Systems |  
+FA27 | Aktualisierung | Software-Features oder Fehlerbehebungen im Client können automatisch aktualisiert werden. | |Support Abteilung |
 
 ### Nicht-Funktional
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
 NF1  | Design | Die Gestaltung des Clients soll die Design-Guidelines von Android und iOS erfüllen | | |
+NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Appstore publiziert werden können. | | Google und Apple |
+NF3  | Kompabilität | Der Client soll nur mit bestimmten Versionen der REST-API funktionieren | | |
+NF4  | Selbsterklärend | Der Client soll durch einen Benutzer welcher mit der Bedienung von Imagic ims vertraut ist ohne Schulung bedient werden können. | | |
+NF5  | Offline | Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen. | | |
 NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Store publiziert werden können. | | Google und Apple | 
 NF3  | Kompabilität | Der Client muss mit REST-API Version 16Q2 bis und mit 17Q1 funktionieren | | |
 NF4  | Selbsterklärend | Der Client soll durch einen Benutzer welcher mit der Bedienung von Imagic IMS vertraut ist ohne Schulung bedient werden können. | | |
@@ -58,10 +63,14 @@ NF10 | Opensource | Der Quellcode des Clients soll frei zugänglich und von vers
 NF11 | Version | Im Client soll die Version ersichtlich sein | | Support-Abteilung |
 NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload oder API-Abfragen informieren | | Benutzer |
 NF13 | Abbruch | Bilderupload und Änderung der Metadaten können jederzeit abgebrochen werden. || Benutzer |
+NF14 | Fallanzahl | Der Client soll mit einem Imagic ims funktionieren welches 50'000 Fälle beinhaltet. | | PIC Systems |
+NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | Imagic |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic IMS funktionieren welches 1'000'000 Fälle beinhaltet. | | Imagic |
 NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic IMS speichern können. | | Benutzer | 
 NF16 | Wiederverwendbarkeit | Teile des Quellcodes des Clients soll wiederverwendbar sein für einen Browser-basierten Client | | Imagic |
 NF17 | Verbindungsunterbrüche | Nach einem Verbindungsunterbrüch zum Imagic IMS soll die Übermittlung erneut möglich sein ohne dass der Benutzer sämtliche Angaben erneut eingeben muss | | PIC Systems | 
+NF18 | Fehlerverminderung | Wiederholte Regressionen sollen nach Behebung vermieden werden. | | Support-Abteilung |
+NF19 | Codeübergabe | IMS Entwickler können nach zwei Arbeitstagen kleinere Fehler selbständig beheben. | | IMS Entwickler |
 
 ## Glossar
 

@@ -12,12 +12,12 @@ ID | Anforderung | Gewichtung | Quelle
 4 | Externe REST API anbinden | muss | FA17
 5 | Mehrere Bilder von Galerie beziehen | muss | FA1
 6 | Bild von Kamera beziehen | soll | FA2
-7 | Unterstützt Unit-Testing | soll
-8 | Unterstützt Integration-Testing | soll
-9 | Integration in CI | kann
-10 | Integration in CD | kann
+7 | Unterstützt Unit-Testing | soll | NF18
+8 | Unterstützt Integration-Testing | soll | NF18
+9 | Integration in CI | kann | NF18
+10 | Integration in CD | kann  | FA27
 11 | Vorgefertigte einfache UI Elemente | soll | NF1
-12 | Gleiche Codebasis für alle Plattformen | muss
+12 | Gleiche Codebasis für alle Plattformen | muss | NF19
 13 | Native Code-Einbindung | kann
 14 | Unterstützt Verschlüsselungsalgorithmen | kann | NF6
 15 | Unterstützt Offline-Modus | kann | NF5
@@ -31,7 +31,7 @@ ID | Anforderung | Gewichtung | Quelle
 ID | Anforderung | Gewichtung | Quelle
 ---| ----------- | ---------- | ------
 50 | Kostenlos für OpenSource-Projekt | soll | NF10
-51 | Sprache ist den Entwicklern bekannt | muss
+51 | Sprache ist den Entwicklern bekannt | muss | NF19
 52 | Aktive Community | muss
 53 | Wird von Global Players verwendet und unterstüzt | soll
 54 | Dokumentation ist detailliert | soll
