@@ -24,9 +24,9 @@ FA6  | Fallauswahl | Der Client muss dem Benutzer die Möglichkeit bieten einen 
 FA7  | Fallerstellung | Der Client muss dem Benutzer die Möglichkeit bieten einen neuen Fall zu erstellen | | PIC Systems |
 FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Benutzer nur die erforderlichen Felder für die Fallerstellung anzeigen. | | PIC Systems |
 FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu 5 Ebenen tiefen Struktur möglich sein. | | Imagic |
-FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic ims Lizenzmodell halten. | | 
+FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic ims Lizenzmodell halten. | |
 FA11 | iOS-muss | Der Client muss auf iPhone *tbd* mit iOS 10 :warning:#40 funktionsfähig sein. | | | Referenzgerät definieren
-FA12 | iOS-soll | Der Client soll auf iPhones mit iOS 8 :warning:#40 oder höher funktionsfähig sein. | | | 
+FA12 | iOS-soll | Der Client soll auf iPhones mit iOS 8 :warning:#40 oder höher funktionsfähig sein. | | |
 FA13 | Android-muss | Der Client muss auf Smartphone *tbd* mit Android *tbd* API Level *tbd* :warning:#40 funktionsfähig sein. | | | Referenzgerät definieren
 FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 :warning:#40 oder höher funktionsfähig sein. | | |
 FA15 | Browser | Der Client kann auch mit einem modernen :warning:#38 Browser benutzt werden. | | Imagic | Modern genauer definieren
@@ -35,6 +35,7 @@ FA17 | Schnittstelle | Der Client muss mit dem Imagic ims über die REST-API kom
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | | Imagic ims |
 FA19 | Bildlöschung | Hochgeladene Bilder können wieder gelöscht werden. :warning:#39 | | | Besprechen mit PIC System und Imagic
 FA20 | Bildanzeige | Bilder aus dem Imagic ims können im Client angezeigt werden. :warning:#39 | | | Besprechen mit PIC System und Imagic
+FA21 | Aktualisierung | Benutzer können bei neuen Features oder Fehlerbehebungen die Software automatisch aktualisieren.| |Support Abteilung |
 
 ### Nicht-Funktional
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
@@ -53,7 +54,10 @@ NF11 | Version | Im Client soll die Version ersichtlich sein | | Support-Abteilu
 NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload oder API-Abfragen informieren | | Benutzer |
 NF13 | Abbruch | Bilderupload und Änderung der Metadaten können jederzeit abgebrochen werden. || Benutzer |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic ims funktionieren welches 50'000 Fälle beinhaltet. | | PIC Systems |
-NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | | 
+NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | Imagic |
+NF16| Fehlerverminderung | Wiederholte Regressionen sollen nach Behebung durch automatisierten Tests vermieden werden. | | Support-Abteilung |
+NF17 | Codeübergabe | Ims Entwickler können nach zwei Arbeitstagen kleinere Fehler selbständig beheben.| | ims Entwickler |
+
 
 ## Glossar
 
