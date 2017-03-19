@@ -100,6 +100,9 @@ Währen der Projektdauer zwischen 15.02.2017 - 28.08.2017 wird das Projekt in 13
 | Anforderungsanalyse und Prototype | Sammeln der Anforderungen von Stakeholdern, evaluieren von verschiedenen Cross-Platform Frameworks | 24.02.2017 - 24.03.2017 |
 | Design und Architektur | Erstellung von Interaction Design und Architektur der Software. Einrichten der Tools für das gewählte  Crossplatframework| 24.03.2017 - 07.04.2017 |
 | Implementierung | Implementierung der Anforderungen. Anpassen des Design, der Archtitektur und Anforderungen wenn Anpassungen nötig sind. Kontakt mit Stakeholder in 2 Wochen Ryhtmus| 07.04.2017 - 28.08.2017 |
+| Implementierung | Implementierung der Anforderungen. Anpassen des Design, der Archtitektur und Anforderungen wenn Anpassungen nötig sind. Kontakt mit Stakeholder in 2 Wochen Ryhtmus| 07.04.2017 - 18.08.2017 |
+| Abschluss und Übergabe | Abschliessen der Dokumentation für Abgabe des Projekts. Übergabe des Projekts an Imagic. | 18.08.2017 - 28.08.2017 |
+| Präsentation | Vorbereitung und Durchführung der öffentlichen Präsentation | 28.08.2017 - 04.09.2017 |
 
 ## Infrastruktur
 TBD
