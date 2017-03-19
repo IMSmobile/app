@@ -19,11 +19,11 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 ## Allgemeine Angaben
 ### Autor
 
-| Photo        | Name | E-Mail| 
-| ------------- |-------------|-------------|
+| Photo        | Name | E-Mail |
+| ------------ | ---- | ------ |
 | ![Niklaus Tschirky](niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
-| ------------- |Michael Leu|michael.leu@hsr.ch|
-| ![Sandor Zbinden](sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
+| ![Michael Leu](michael_leu.png) |Michael Leu|michael.leu@hsr.ch|
+| ![Sandro Zbinden](sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
 
 
 ## Einführung
