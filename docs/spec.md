@@ -6,7 +6,7 @@ Mit dem IMS Mobile Client möchten wir den Kunden von Imagic ermöglichen über 
 Als Schnittstelle soll die von Imagic IMS Server bereitgestellte REST-API verwendet werden.
 
 ## Vision
-Issue #27
+Siehe [Vision](../README.md#vision).
 
 ## Stakeholder
 ![Stakeholderdiagramm](stakeholderdiagram.png)
