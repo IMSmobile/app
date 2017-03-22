@@ -17,7 +17,7 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 ## Protokoll
 
 ### Projektfortschritt (18:00-18:30)
-- Aufzeigen des aktuellen Projektfortschritts (Projectplan, Anforderungsanalyse, Risikoanalayse, Framework Prototype Protokolle)
+- Aufzeigen des aktuellen Projektfortschritts (Projectplan, Anforderungsanalyse, Risikoanalayse, Framework Prototype, Protokolle, Zeiterfassung)
 
 
 ### Verbesserugnsvorschlage für Projekt (18:30-19:30)
