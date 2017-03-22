@@ -1,6 +1,9 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 22. März 2017
+- Namen werden bei Auflistungen alphabetisch nach Vornamen sortiert. Beispiel: **M**ichael Leu, **N**iklaus Tschirky **S**andro Zbinden
+
 ## 10. März 2017
 - Sobald ein erledigtes Item im Sprint Review besprochen wurde wird es im Waffle archiviert
 - Issues können auf Done gesetzt und dazugehörige Pull Request gemerged werden sofern während dem Review für die nicht systemkritischen Änderungen neue Issues erfasst wurden
