@@ -47,10 +47,6 @@ FA27 | Aktualisierung | Software-Features oder Fehlerbehebungen im Client könne
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
 ---- | ---- | ------------ | --------- | ----------- | ------
 NF1  | Design | Die Gestaltung des Clients soll die Design-Guidelines von Android und iOS erfüllen | | |
-NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Appstore publiziert werden können. | | Google und Apple |
-NF3  | Kompabilität | Der Client soll nur mit bestimmten Versionen der REST-API funktionieren | | |
-NF4  | Selbsterklärend | Der Client soll durch einen Benutzer welcher mit der Bedienung von Imagic ims vertraut ist ohne Schulung bedient werden können. | | |
-NF5  | Offline | Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen. | | |
 NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Store publiziert werden können. | | Google und Apple | 
 NF3  | Kompabilität | Der Client muss mit REST-API Version 16Q2 bis und mit 17Q1 funktionieren | | |
 NF4  | Selbsterklärend | Der Client soll durch einen Benutzer welcher mit der Bedienung von Imagic IMS vertraut ist ohne Schulung bedient werden können. | | |
