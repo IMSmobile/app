@@ -63,8 +63,6 @@ NF10 | Opensource | Der Quellcode des Clients soll frei zugänglich und von vers
 NF11 | Version | Im Client soll die Version ersichtlich sein | | Support-Abteilung |
 NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload oder API-Abfragen informieren | | Benutzer |
 NF13 | Abbruch | Bilderupload und Änderung der Metadaten können jederzeit abgebrochen werden. || Benutzer |
-NF14 | Fallanzahl | Der Client soll mit einem Imagic ims funktionieren welches 50'000 Fälle beinhaltet. | | PIC Systems |
-NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic ims speichern können. | | Imagic |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic IMS funktionieren welches 1'000'000 Fälle beinhaltet. | | Imagic |
 NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic IMS speichern können. | | Benutzer | 
 NF16 | Wiederverwendbarkeit | Teile des Quellcodes des Clients soll wiederverwendbar sein für einen Browser-basierten Client | | Imagic |
