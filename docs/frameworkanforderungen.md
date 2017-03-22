@@ -26,13 +26,13 @@ ID | Anforderung | Gewichtung | Quelle
 18 | Mehrere Videos von Galerie beziehen | kann
 19 | Video von Kamera beziehen | kann
 20 | Mehrere Dateien vom Gerät beziehen | kann
-21 | Erzeugen von dynamischen Felder | muss | FA5
-22 | Abfrage des Lockbildschirm Sicherheitsmodus | kann | NF9
+21 | Erzeugen von dynamischen Feldern | muss | FA5
+22 | Sicherstellen dass Gerät geschützt ist mit PIN oder ähnlich | kann | NF9
 23 | Anzeigen von Wartesymbolen | soll | NF12
 24 | Integriertes Error Handling |  soll | FA23
 25 | Asynchrones Nachladen von Listen | soll  | NF14
 26 | Asynchrone Queue Abarbeitung wenn App nicht angezeigt | soll | NF15
-27 | Erkennung von Netzwertunterbruch | soll | NF17
+27 | Erkennung von Netzwerktunterbruch | soll | NF17
 
 ## Organisatorisch
 ID | Anforderung | Gewichtung | Quelle
