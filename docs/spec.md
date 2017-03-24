@@ -11,6 +11,12 @@ Siehe [Vision](../README.md#vision).
 ## Stakeholder
 ![Stakeholderdiagramm](stakeholderdiagram.png)
 
+Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
+- **IMS Kunden**: Sie benutzen das Imagic IMS und ziehen daraus ihren Businessnutzen. *Ihre Hauptmotivation ist noch in Abklärung...*
+- **Imagic AG**: Sie entwicklen, verkaufen und supporten das Imagic IMS an die IMS Kunden. Ihre Hauptmotivation ist die Erweiterung ihres Produktprotfolios um eine einfache Möglichkeit Daten von mobilen Geräten in das Imagic IMS zu speichern. 
+- **PIC Systems**: Sie passen das Imagic IMS an die speziellen Bedürfnisse im Polizeibereich an und supporten das Imagic IMS für ausgewählte IMS Kunden in diesem Bereich. Ihre Hauptmotivation ist das Entwickeln einer Lösung für den Bildupload in das Imagic IMS für den täglichen Polizeieinsatz ausserhalb des Büros.
+- **Stores**: Sie prüfen und publizieren Apps und erlauben damit den IMS Kunden den IMS Mobile Client auf ihren Geräten zu installieren. Ihre Hauptmotivation ist die Qualtiät und Sicherheit ihrer Plattform sicherzustellen.
+
 ## Anforderungskatalog
 ### Funktional
 ID   | Name | Beschreibung | Priorität | Quelle      | Status
