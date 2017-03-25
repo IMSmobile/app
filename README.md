@@ -194,18 +194,26 @@ Damit die Wartezeit möglichst kurz gehalten wird, haben Reviews von einem Pull 
 #### Code Style Guideline
 <<Welche Code Style Guidelines werden angewendet? Sie brauchen keine eigenen Guidelines zu erfinden. Am besten referenzieren Sie existierende Guidelines, mit denen Sie einverstanden sind. Evtl. noch Abweichungen dazu dokumentieren.>>
 <<Framework-Abhängig>>
+
 ### Testing
-TBD
-<<Framework-Abhängig>>
+Um eine hohe Qualität zu ereichen und um Fehler nicht zu wiederholen, werden alle Anforderung und Defects unter Tests gestellt. Automatisierte Tests sind zu bevorzugen da diese ohne menschlichen Aufwand immer wieder ausgeführt werden können. Ist ein autmatisierter Test nicht möglich oder zu komplex werden manualle Test Cases erstellt. Auch für die wichtigsten Smoke Tests werden manuelle Testcases geschrieben.
+
+Bei jedem Relese müssen alle automatisierten und manuellen Tests durchgeführt werden. Gibt es Fehler muss diskutiert werden, ob diese als Showstopper einen Release verhindern. Falls die Fehler keinen Relase verhindern müssen sie in den Release Notes beschrieben werden.
+
 #### Unit Testing
-TBD
-<<Framework-Abhängig>>
+Unit Tests dienen dazu sicherzustellen dass eine Klasse Modular gebaut ist und wiederverwendet werden kann. Zudem dienen Unit Tests als Dokumentation der Klasse. Das Ausführen aller Unittests darf nicht länger als 30 Sekunden dauern.
+
+*TODO Example, Description Unit Testing with Framework*
+
 #### End to End Testing
-TBD
-<<Framework-Abhängig>>
+Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird versichtert das die Integration und Zusammenarbeit der verschidenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continouse Integration Server automatisiert ausgeführt werden.
+
+*TODO Example, Description Integration Testing with Framework*
 #### Manual Testing
-TBD
-<<Framework-Abhängig>>
+Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Deshalb werden manualle Test Cases geschrieben. Diese werden in jedem Sprint und vor jedem Release durchgeführt.
+
+*TODO Example Manual Testcase.*
+
 
 
 ## Quellen
