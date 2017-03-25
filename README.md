@@ -174,12 +174,13 @@ Auch verzichten wir auf die Rolle des Scrum Master. Probleme und Hindernisse wer
 Wir arbeiten nach [GitHub Flow](https://guides.github.com/introduction/flow/) und haben unser Repository so eingestellt dass bei einem Pull Request zwingend ein Review einer zweiten Person nötig ist bevor der Code in den master Branch einfliessen kann.
 
 Bei einem Review möchten wir
+- Überprüfen ob alle Punkte der Definition of Done eingehalten wurden
 - Den Code und nicht den Autor des Codes kritisieren
 - Unsere Kommentare positiv und und lösungsorientert formulieren
 - Mit Geduld und Respekt mit Unwissen umgehen
 - Auch Lob auszusprechen um die Arbeit des Anderen wertzuschätzen
 
-Damit die Wartezeit möglichst kurz gehalten wird haben Reviews von Pull Request immer Priorität vor dem Beginn einer neuen Aufgabe. Ausserdem können kleinere Fehler ohne Rücksprache mit dem Autor selbständig vom Reviewer behoben werden.
+Damit die Wartezeit möglichst kurz gehalten wird, haben Reviews von einem Pull Request immer Priorität gegenüber dem Beginn einer neuen Aufgabe. Ausserdem dürfen kleinere Fehler ohne Rücksprache mit dem Autor selbständig vom Reviewer behoben werden.
 
 #### Code Style Guideline
 <<Welche Code Style Guidelines werden angewendet? Sie brauchen keine eigenen Guidelines zu erfinden. Am besten referenzieren Sie existierende Guidelines, mit denen Sie einverstanden sind. Evtl. noch Abweichungen dazu dokumentieren.>>
