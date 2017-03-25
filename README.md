@@ -82,11 +82,6 @@ Folgende Ansprechpartner stehen während dem Projekt zur Verfügung:
 ### Stakeholder
 ![Stakeholder](docs/stakeholderdiagram.png)
 <<Welche externen Stakeholder/Ansprechpartner sind beteiligt? Wer macht was?>>
-### Organisationsstruktur
-<<Organigramm>>
-### Externe Schnittstellen
-TBD
-
 ## Risikomanagement
 
 Die Risiken und der Umgang mit Risiken wird durch ein separates Dokument [Risiko Analyse](docs/risikoanalyse.md) beschrieben. 
