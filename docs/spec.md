@@ -69,6 +69,3 @@ NF19 | Codeübergabe | IMS Entwickler können nach zwei Arbeitstagen kleinere Fe
 ## Glossar
 
 Siehe [Glossar](glossary.md).
-
-## Quellen
-Icons von https://icons8.com/
