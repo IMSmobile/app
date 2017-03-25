@@ -29,6 +29,7 @@ Unsere Entscheidungen werden hier protokolliert.
 - Jeder kann jederzeit Issues auf GitHub erstellen
 - Reviews haben Priorität vor neuen Tasks
 - Bei gemeinsamen Terminen muss man sich vorgängig abmelden
+- Unser Branching Modell ist [GitHub Flow](https://guides.github.com/introduction/flow/)
 
 ## 10. November 2016
 - Wir machen kein Vollständiges Scrum, dafür sind wir zuwenig Leute und haben keinen PO
