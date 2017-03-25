@@ -1,6 +1,11 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 24. März 2017
+- Wir entwickeln mit dem Framework Ionic2.
+- Pro Sprint ist eine Person im Team verantwortlich für die Kommunikation mit Stakeholdern und Betreuer.
+- Sprint Backlog und Backlog müssen immer priorisiert sein.
+
 ## 22. März 2017
 - Namen werden bei Auflistungen alphabetisch nach Vornamen sortiert. Beispiel: **M**ichael Leu, **N**iklaus Tschirky **S**andro Zbinden
 
