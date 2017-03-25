@@ -196,9 +196,9 @@ Damit die Wartezeit möglichst kurz gehalten wird, haben Reviews von einem Pull 
 <<Framework-Abhängig>>
 
 ### Testing
-Um eine hohe Qualität zu ereichen und um Fehler nicht zu wiederholen, werden alle Anforderung und Defects unter Tests gestellt. Automatisierte Tests sind zu bevorzugen da diese ohne menschlichen Aufwand immer wieder ausgeführt werden können. Ist ein autmatisierter Test nicht möglich oder zu komplex werden manualle Test Cases erstellt. Auch für die wichtigsten Smoke Tests werden manuelle Testcases geschrieben.
+Um eine hohe Qualität zu erreichen und um Fehler nicht zu wiederholen, werden alle Anforderung und Defects unter Tests gestellt. Automatisierte Tests sind zu bevorzugen da diese ohne menschlichen Aufwand immer wieder ausgeführt werden können. Ist ein automatisierter Test nicht möglich oder zu komplex werden manuelle Test Cases erstellt. Auch für die wichtigsten Smoke Tests werden manuelle Testcases geschrieben.
 
-Bei jedem Relese müssen alle automatisierten und manuellen Tests durchgeführt werden. Gibt es Fehler muss diskutiert werden, ob diese als Showstopper einen Release verhindern. Falls die Fehler keinen Relase verhindern müssen sie in den Release Notes beschrieben werden.
+Bei jedem Release müssen alle automatisierten und manuellen Tests durchgeführt werden. Gibt es Fehler muss diskutiert werden, ob diese als Showstopper einen Release verhindern. Falls die Fehler keinen Release verhindern müssen sie in den Release Notes beschrieben werden.
 
 #### Unit Testing
 Unit Tests dienen dazu sicherzustellen dass eine Klasse Modular gebaut ist und wiederverwendet werden kann. Zudem dienen Unit Tests als Dokumentation der Klasse. Das Ausführen aller Unittests darf nicht länger als 30 Sekunden dauern.
@@ -206,14 +206,14 @@ Unit Tests dienen dazu sicherzustellen dass eine Klasse Modular gebaut ist und w
 *TODO Example, Description Unit Testing with Framework*
 
 #### End to End Testing
-Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird versichtert das die Integration und Zusammenarbeit der verschidenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continouse Integration Server automatisiert ausgeführt werden.
+Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
 *TODO Example, Description Integration Testing with Framework*
+
 #### Manual Testing
-Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Deshalb werden manualle Test Cases geschrieben. Diese werden in jedem Sprint und vor jedem Release durchgeführt.
+Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Deshalb werden manuelle Test Cases geschrieben. Diese werden in jedem Sprint und vor jedem Release durchgeführt.
 
-*TODO Example Manual Testcase.*
-
+*TODO Example Manual Test Case.*
 
 
 ## Quellen
