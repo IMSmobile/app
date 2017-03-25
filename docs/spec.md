@@ -9,7 +9,7 @@ Als Schnittstelle soll die von Imagic IMS Server bereitgestellte REST-API verwen
 Siehe [Vision](../README.md#vision).
 
 ## Stakeholder
-![Stakeholderdiagramm](stakeholderdiagram.png)
+Siehe [Stakeholder](../README.md#stakeholder).
 
 ## Anforderungskatalog
 ### Funktional
@@ -69,6 +69,3 @@ NF19 | Codeübergabe | IMS Entwickler können nach zwei Arbeitstagen kleinere Fe
 ## Glossar
 
 Siehe [Glossar](glossary.md).
-
-## Quellen
-Icons von https://icons8.com/
