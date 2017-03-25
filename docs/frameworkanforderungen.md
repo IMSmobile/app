@@ -38,6 +38,6 @@ ID | Anforderung | Gewichtung | Quelle
 50 | Kostenlos für OpenSource-Projekt | soll | NF10
 51 | Sprache ist den Entwicklern bekannt | kann | NF19
 52 | Aktive Community | muss
-53 | Wird von Global Players verwendet und unterstüzt | soll | NF2
+53 | Wird von Global Players verwendet und unterstüzt | soll |
 54 | Dokumentation ist detailliert | soll
 55 | Framework-Updates sind möglich | soll
