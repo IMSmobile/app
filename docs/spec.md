@@ -25,11 +25,11 @@ FA7  | Fallerstellung | Der Client muss dem Benutzer die Möglichkeit bieten ein
 FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Benutzer die Möglichkeit bieten Metadaten für den neuen Fall zu erfassen. | | PIC Systems | 
 FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu 5 Ebenen tiefen Struktur möglich sein. | | Imagic | 
 FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic IMS Lizenzmodell halten. | | Imagic | 
-FA11 | iOS-muss | Der Client muss auf iPhone 6 mit iOS 10 funktionsfähig sein. | | | Referenzgerät definieren
+FA11 | iOS-muss | Der Client muss auf einem iPhone 6 mit iOS 10 funktionsfähig sein. | | |
 FA12 | iOS-soll | Der Client soll auf iPhones 5, 6 und 7 mit iOS 9 oder höher funktionsfähig sein. | | |
-FA13 | Android-muss | Der Client muss auf Smartphone mit Android  6.0 API Level (Marshmallow) funktionsfähig sein. | | | Referenzgerät definieren
-FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 (Lolipop) oder höher funktionsfähig sein. | | |
-FA15 | Browser | Der Client kann auch mit einem modernen Browser (Chrome: aktuelle Version, Firfox: aktuelle Version, Edge 14 und Internet Explorer 11 benutzt werden. | | Imagic | Modern genauer definieren
+FA13 | Android-muss | Der Client muss auf einem Samsung Galaxy S7 mit Android 6.0 API Level 23 (Marshmallow) funktionsfähig sein. | | |
+FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 (Lollipop) oder höher funktionsfähig sein. | | |
+FA15 | Browser | Der Client kann auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11 benutzt werden. | | Imagic | Modern genauer definieren
 FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | | Imagic, PIC Systems | 
 FA17 | Schnittstelle | Der Client muss mit dem Imagic IMS über die REST-API kommunizieren. | | Imagic IMS |
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | | Imagic IMS |
