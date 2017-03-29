@@ -34,11 +34,11 @@ Dürfen Polizisten im Einsatz mit ihrem Handy welches privat und geschäftlich g
 > Ja.
 
 ### Themenbereich Technik
-Soll der Daten-Transfer ins Imagic IMS erst bei WLAN Verbindung ausgeführt werden, besteht ein Abos mit begrenztem Datenvolumen?
+Soll der Daten-Transfer ins Imagic IMS erst bei WLAN Verbindung ausgeführt werden, besteht ein Abos mit begrenztem Datenvolumen?  
 > Es soll konfigurierbar sein, ab welcher Verbindungsqualität der Upload ausgeführt werden kann.  
 > Ja es bestehen begrenzte Datenvolumen. Daher soll es möglich sein, zu konfigurieren, ab wann kein Upload mehr möglich ist. Am besten mit Meldung an den Benutzer.
 
-Sind die Handys mit einem Mobile Device Management der Kapo gemanaged, existiert z.B. ein Configuration Profile unter iOS.
+Sind die Handys mit einem Mobile Device Management der Kapo gemanaged, existiert z.B. ein Configuration Profile unter iOS.  
 > Ja. Airwatch + Citrix + MobileIron werden genutzt.
 
 Welche mindest Version von IOS, Android ist momentan im Einsatz?  
