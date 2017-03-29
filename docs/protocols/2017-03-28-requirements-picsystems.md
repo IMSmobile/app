@@ -1,6 +1,6 @@
 # Kurzprotokoll Abstimmungs-Meeting mit PIC Systems
 
-Dienstag, 29.03.2017 16:00-18:30 bei PIC Systems AG, Glattbrugg
+Dienstag, 28.03.2017 16:00-18:30 bei PIC Systems AG, Glattbrugg
 
 ## Teilnehmer
 PIC Systems: Marcel Bachmann, Michael Bachmann  
