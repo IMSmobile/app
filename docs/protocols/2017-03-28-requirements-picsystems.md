@@ -8,7 +8,7 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 
 ## Traktanden
 - Referenzgerät iOS
-- Besprechen Feedback von Kunden und PIC Systems zu den Anforderungen in der [Spezifikation IMS Mobile Clent@tbd](https://github.com/IMSmobile/app/blob/master/docs/spec.md)
+- Besprechen Feedback von Kunden und PIC Systems zu den Anforderungen in der [Spezifikation IMS Mobile Client@tbd](https://github.com/IMSmobile/app/blob/master/docs/spec.md)
 - Besprechen der Antworten im [Fragenkatalog@tbd](https://github.com/IMSmobile/app/blob/master/docs/questions.md)
 
 ## Protokoll
@@ -34,13 +34,13 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 
 - FA24 (Filter): Für PIC Systems unnötig weil ihre Kunden aus anderen Apps direkt zum Fall navigieren. → Anforderung bleibt weil notwendig für Imagic.
 
-- FA25 (Mehrfachmetadaten): Eine Formularsteuerung wird nicht über die REST API angeboten. Einzelne Felder für alle zu übernehmen ist keine Anforderunge. Umsetzung in Form "für alle Übernehmen" beim erster Metadateneingabe wäre akzeptabel.
+- FA25 (Mehrfachmetadaten): Eine Formularsteuerung wird nicht über die REST API angeboten. Einzelne Felder für alle zu übernehmen ist keine Anforderunge. Umsetzung in Form "für alle Übernehmen" bei erster Metadateneingabe wäre akzeptabel.
 
-- FA26 (Feldfilter): PIC Systems hat etwas anderes vestanden. → Anforderung präzisieren mit "zur Eingabe von Metadaten anzeigen".
+- FA26 (Feldfilter): PIC Systems hat etwas anderes verstanden. → Anforderung präzisieren mit "zur Eingabe von Metadaten anzeigen".
 
 ### Diskussion Feedback neue funktionale Anforderungen (17:25-17:45)
 
-- FA28 (Publisher Link): Funktionaltät wird von REST API nicht angeboten. → Anforderung wird nicht aufgenommen.
+- FA28 (Publisher Link): Funktionalität wird von REST API nicht angeboten. → Anforderung wird nicht aufgenommen.
 
 - FA29 (Uploadbegrenzung): Grund ist um die Datenabos zu schonen. → Ist Aufgabe eines Mobile Device Management, Anforderung wird nicht aufgenommen.
 
@@ -69,7 +69,7 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 ### Diskussion Antworten im Fragenkatalog (18:10-18:15)
 
 - Fallerstellungs-Prozess: der Fokus soll liegen auf
-  - Den Aufruf aus anderen Apss bei existierenden Fällen
+  - Den Aufruf aus anderen Apps bei existierenden Fällen
   - Die Möglichkeit einen "Container" zu erstellen um die Bilder temporär dorthin hochzuladen
 
 ### Nächste Schritte (18:15-18:30)
