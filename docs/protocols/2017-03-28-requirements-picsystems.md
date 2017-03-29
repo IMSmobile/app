@@ -8,8 +8,8 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 
 ## Traktanden
 - Referenzgerät iOS
-- Besprechen Feedback von Kunden und PIC Systems zu den Anforderungen in der [Spezifikation IMS Mobile Client@tbd](https://github.com/IMSmobile/app/blob/master/docs/spec.md)
-- Besprechen der Antworten im [Fragenkatalog@tbd](https://github.com/IMSmobile/app/blob/master/docs/questions.md)
+- Besprechen Feedback von Kunden und PIC Systems zu den Anforderungen in der [Spezifikation IMS Mobile Client](https://github.com/IMSmobile/app/blob/master/docs/spec.md)
+- Besprechen der Antworten im [Fragenkatalog](https://github.com/IMSmobile/app/blob/master/docs/questions.md)
 
 ## Protokoll
 
