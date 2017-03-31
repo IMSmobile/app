@@ -49,7 +49,7 @@ FA31 | Filmupload | Aufnahme und Upload von Filmen sollte möglich sein. | | PIC
 ~~FA32~~ | ~~Uploadbegrenzung~~ | ~~Es kann möglich sein, eine Limite (Begrenzung) der Anzahl Bilder zu konfigurieren, die maximal pro Fall und pro Benutzer hochgeladen werden können.~~ | | PIC Systems | In Abklärung bei PIC Systems.
 FA33 | Bildentgegennahme | Es kann möglich sein, Bilder aus einer dritt App an den Mobile Client zu übermitteln, welche dann zugeteilt und upgeloadet werden können. | | PIC Systems |
 FA34 | Massenbildupload | Der Client soll bis zu 100 Bilder aus der Galerie in das Imagic IMS speichern können. | | PIC Systems | 
-FA35 | Galeriefrei | Es muss sichergestellt sein dass ein im Client direkt von der Kamera des Smartphones aufgenommenes Bild nicht in der Galerie des Smartphones gespeichert wird. | | PIC Systems |
+FA35 | Galerieschutz | Es muss sichergestellt sein dass ein im Client direkt von der Kamera des Smartphones aufgenommenes Bild nicht in der Galerie des Smartphones gespeichert wird. | | PIC Systems |
 FA36 | Bildschutz | Im Client direkt von der Kamera des Smartphones aufgenommene Bilder können nicht auf triviale Weise von Drittpersonen oder anderen Apps eingesehen werden. | | PIC Systems |
 FA37 | Startparameter | Navigation zu einem bestimmten Tabellen-Entry im IMS Mobile Client soll mit einem bestimmten Start-Parameter möglich sein. | _hoch_ | PIC Systems | 
 FA38 | Browserupload | Ein Bildupload (FA1) soll auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) möglich sein. | | PIC Systems | 
