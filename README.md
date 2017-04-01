@@ -21,8 +21,8 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 | Photo        | Name | E-Mail |
 | ------------ | ---- | ------ |
-| ![Niklaus Tschirky](niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
 | ![Michael Leu](michael_leu.png) |Michael Leu|michael.leu@hsr.ch|
+| ![Niklaus Tschirky](niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
 | ![Sandro Zbinden](sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
 
 
@@ -68,6 +68,8 @@ Eine Benutzerdokumentation ist nicht vorgesehen, da die Software von IMS Kunden 
 
 
 ## Projektorganisation
+
+Unsere Auftraggeber ist sowohl die Imagic AG wie auch die PIC Systems AG. Imagic AG beauftragt uns eine möglichst generische Lösung für sämtliche Einsatzbereiche zu entwicklen, während unsere enge Zusammenarbeit mit PIC Systems AG sicherstellt dass der Mobile Client für den täglichen Einsatz im Polizeibereich geeignet sein wird.
 
 ### Ansprechpartner
 Folgende Ansprechpartner stehen während dem Projekt zur Verfügung:
