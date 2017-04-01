@@ -66,6 +66,9 @@ Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) er
 
 Eine Benutzerdokumentation ist nicht vorgesehen, da die Software von IMS Kunden ohne Schulung bedienbar sein sollte.
 
+### Kostenvorgabe
+
+Das Projekt wird von der Firma Imagic AG und Picsystem AG finanziell unterstützt. Sämtliche Ausgaben werden erst nach Absprache getätigt.
 
 ## Projektorganisation
 
