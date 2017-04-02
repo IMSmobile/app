@@ -79,6 +79,95 @@ NF18 | Fehlerverminderung | Wiederholte Regressionen sollen nach Behebung vermie
 NF19 | Codeübergabe | IMS Entwickler können nach zwei Arbeitstagen kleinere Fehler selbständig beheben. | | IMS Entwickler |
 NF20 | Softwarepaket | Der Client muss als IPA und APK erzeugt werden können. | | PIC Systems |
 
+## Priorisierung
+
+### Vorgehen
+
+Zur initialen Priorisierung der Anforderungen arbeiten wir mit Wiegers Priorisierungsmatrix. Bei diesem Verfahren werden  Anforderungen durch folgenden Kriterien bewertet.
+
+- welchen Nutzen man hat, wenn die Anforderung umgesetzt wird,
+- welchen Schaden erleidet man, wenn man eine Anforderung nicht umsetzt,
+- wie hoch der Aufwand bzw. die Kosten sind,
+- wie hoch das Risiko ist.
+
+Danach werden aus Anforderugnen Backlog Items. Der Aufwand der Backlog Items wird noch einmal mit Story Points im Team geschätzt und vielleicht kleinere Prioritätsanpassungen durchgeführt.
+
+### Priorisierungsmatrix
+
+Für Nutzen, Schaden, Aufwand  Risko wurden Werte zwischen 1-9 eingetragen. Die genauen Berechnungsgrundlagen sind im Google Spreadsheet [Priorität Anforderungen](https://docs.google.com/spreadsheets/d/1cl-2JXs4DT9XrxSAEOfu3jKu25rMojmLpDIw2Eo8NLM/edit#gid=0) ersichtlich.
+
+
+| ID      | Anforderung         | Nutzen | Schaden | Wert | Wert (%) | Aufwand | Aufwand (%) | Risiko | Risiko (%) | Prio  | Rang |
+|---------|---------------------|--------|---------|------|----------|---------|-------------|--------|------------|-------|------|
+|         |                     |        |         |      |          |         |             |        |            |       |      |
+| Gewicht |                     | 2      | 1       |      |          | 0.5     |             | 0.5    |            |       |      |
+|         |                     |        |         |      |          |         |             |        |            |       |      |
+| FA1     | Bildupload          | 9      | 9       | 20   | 12.99%   | 6       | 2.38%       | 2      | 1.08%      | 20.00 | 3    |
+| FA2     | Kameraupload        | 5      | 4       | 11   | 7.14%    | 6       | 2.38%       | 3      | 1.61%      | 7.33  | 16   |
+| FA5     | Metadaten           | 7      | 4       | 13   | 8.44%    | 4       | 1.59%       | 2      | 1.08%      | 13.00 | 11   |
+| FA6     | Fallauswahl         | 8      | 9       | 19   | 12.34%   | 3       | 1.19%       | 2      | 1.08%      | 19.00 | 4    |
+| FA7     | Fallerstellung      | 5      | 5       | 12   | 7.79%    | 4       | 1.59%       | 2      | 1.08%      | 12.00 | 12   |
+| FA8     | Falldaten           | 7      | 7       | 16   | 10.39%   | 4       | 1.59%       | 2      | 1.08%      | 16.00 | 7    |
+| FA9     | Strukturtiefe       | 3      | 5       | 10   | 6.49%    | 5       | 1.98%       | 2      | 1.08%      | 10.00 | 14   |
+| FA10    | Lizenz              | 8      | 9       | 19   | 12.34%   | 2       | 0.79%       | 1      | 0.54%      | 38.00 | 2    |
+| FA15    | Browser             | 7      | 2       | 11   | 7.14%    | 7       | 2.78%       | 4      | 2.15%      | 5.50  | 19   |
+| FA16    | Direktupload        | 5      | 4       | 11   | 7.14%    | 4       | 1.59%       | 6      | 3.23%      | 3.67  | 24   |
+| FA17    | Schnittstelle       | 9      | 9       | 20   | 12.99%   | 6       | 2.38%       | 1      | 0.54%      | 40.00 | 1    |
+| FA18    | Entrypoint          | 3      | 1       | 6    | 3.90%    | 2       | 0.79%       | 3      | 1.61%      | 4.00  | 22   |
+| FA20    | Bildanzeige         | 5      | 2       | 9    | 5.84%    | 7       | 2.78%       | 2      | 1.08%      | 9.00  | 15   |
+| FA21    | Pflichtfelder       | 8      | 8       | 18   | 11.69%   | 3       | 1.19%       | 2      | 1.08%      | 18.00 | 5    |
+| FA22    | Fallzuteilung       | 7      | 8       | 17   | 11.04%   | 6       | 2.38%       | 2      | 1.08%      | 17.00 | 6    |
+| FA23    | Fehlermeldung       | 4      | 7       | 13   | 8.44%    | 2       | 0.79%       | 5      | 2.69%      | 5.20  | 20   |
+| FA24    | Filter              | 6      | 8       | 16   | 10.39%   | 4       | 1.59%       | 2      | 1.08%      | 16.00 | 7    |
+| FA25    | Mehrfachmetadaten   | 7      | 6       | 15   | 9.74%    | 3       | 1.19%       | 2      | 1.08%      | 15.00 | 9    |
+| FA26    | Feldfilter          | 7      | 7       | 16   | 10.39%   | 6       | 2.38%       | 3      | 1.61%      | 10.67 | 13   |
+| FA27    | Aktualisierung      | 6      | 4       | 12   | 7.79%    | 4       | 1.59%       | 8      | 4.30%      | 3.00  | 27   |
+| FA30    | Verbindungsqualität | 6      | 3       | 11   | 7.14%    | 2       | 0.79%       | 6      | 3.23%      | 3.67  | 24   |
+| FA31    | Filmupload          | 6      | 4       | 12   | 7.79%    | 6       | 2.38%       | 4      | 2.15%      | 6.00  | 18   |
+| FA33    | Bildentgegenahme    | 6      | 4       | 12   | 7.79%    | 5       | 1.98%       | 5      | 2.69%      | 4.80  | 21   |
+| FA34    | Massenbildupload    | 6      | 6       | 14   | 9.09%    | 5       | 1.98%       | 2      | 1.08%      | 14.00 | 10   |
+| FA36    | Bildschutz          | 6      | 4       | 12   | 7.79%    | 7       | 2.78%       | 7      | 3.76%      | 3.43  | 26   |
+| FA37    | Startparameter      | 7      | 7       | 16   | 10.39%   | 6       | 2.38%       | 8      | 4.30%      | 4.00  | 22   |
+| FA38    | Browserupload       | 7      | 8       | 17   | 11.04%   | 7       | 2.78%       | 5      | 2.69%      | 6.80  | 17   |
+|         |                     |        |         |      |          |         |             |        |            |       |      |
+| Summe   |                     |        | 154     |      |          | 126     |             | 93     |            |       |      |
+
+
+### Initiale Priorität der Anforderungen
+
+
+| Rang | Id   | Anforderung         |
+|------|------|---------------------|
+| 1    | FA17 | Schnittstelle       |
+| 2    | FA10 | Lizenz              |
+| 3    | FA1  | Bildupload          |
+| 4    | FA6  | Fallauswahl         |
+| 5    | FA21 | Pflichtfelder       |
+| 6    | FA22 | Fallzuteilung       |
+| 7    | FA8  | Falldaten           |
+| 7    | FA24 | Filter              |
+| 9    | FA25 | Mehrfachmetadaten   |
+| 10   | FA34 | Massenbildupload    |
+| 11   | FA5  | Metadaten           |
+| 12   | FA7  | Fallerstellung      |
+| 13   | FA26 | Feldfilter          |
+| 14   | FA9  | Strukturtiefe       |
+| 15   | FA20 | Bildanzeige         |
+| 16   | FA2  | Kameraupload        |
+| 17   | FA38 | Browserupload       |
+| 18   | FA31 | Filmupload          |
+| 19   | FA15 | Browser             |
+| 20   | FA23 | Fehlermeldung       |
+| 21   | FA33 | Bildentgegenahme    |
+| 22   | FA18 | Entrypoint          |
+| 22   | FA37 | Startparameter      |
+| 24   | FA16 | Direktupload        |
+| 24   | FA30 | Verbindungsqualität |
+| 26   | FA36 | Bildschutz          |
+| 27   | FA27 | Aktualisierung      |
+
+## Quelle 
+- [Wiegers Priorisierungsmatrix](http://www.orgismus.de/methoden/priorisieren-aber-richtig/)
 
 ## Glossar
 
