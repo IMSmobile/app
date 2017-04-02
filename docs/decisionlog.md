@@ -2,7 +2,7 @@
 Unsere Entscheidungen werden hier protokolliert.
 
 ## 1. April 2017
-- Bilder werden vorläufig nicht im IMS Mobile Client zwischengespeichert (keine App-interne Galerie).
+- Bilder werden vorläufig im IMS Mobile Client nur während dem Upload Prozess zwischengespeichert (keine App-interne Galerie).
 - Beim HSR Review übernimmt Michael die Rolle des _Lead Autor_ und Niklaus die Rolle des _Lead Prüfer_.
 
 ## 24. März 2017
