@@ -14,13 +14,15 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 | REST-Client |	Ja |	Ja | Ja |
 | Unterstützt SSL |	Ja |	Ja |	Ja, jedoch Probleme mit Prototype |
 | Dynamische Felder | Ja, jedoch nicht optimal | Ja | Ja |			
-| Unterstützt Webbrowser | Ja | Ja | Nein (Projekt in Entwicklung) |
+| Unterstützt Webbrowser | Ja | Nein | Nein (Projekt in Entwicklung) |
 
-## IONIC 2
+## Ionic 2
 ### Vorteile
 - Gute und komplette Bibliotheksfunktionen für HW-Ansteuerung
 - Layout kann in HTML beschrieben werden
 - Wird im Webbrowser unterstützt
+- Betriebsystemspezifsche UI-Komponenten
+- TypeScript erlaubt sauberere Javascript Programmierung
 ### Nachteile
 - Wenn Feature von Cordova nicht unterstützt wird, dann ist es schwierig zu implementieren
 - Relativ neu, keine Global Players dahinter
@@ -31,7 +33,6 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 ### Vorteile
 - Bietet eine Vielzahl an Plugins
 - Funktioniert dynamisch, kann auf Ereignisse gut reagieren
-- Lauffähig in Webbrowser
 
 ### Nachteile
 - Layout wird dynamisch erstellt
@@ -51,4 +52,4 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 - Wird im Webbrowser nicht unterstützt
 
 ## Entscheid
-Alle Frameworks liefern eine gute Ausgangslage für die Entwicklung des mobilen Clients. Wir haben uns für IONIC2 entschieden, da uns die integrierten Bibliotheksfunktionen und die eine einfache Layouterstellung überzeugt haben. Ausserdem ist es lauffähig im Webbrowser. Auch wenn wir noch Vorbehalte gegenüber der fehlenden (Global Player) Unterstützung haben, denken wir, dass die Vorteile überwiegen.
+Alle Frameworks liefern eine gute Ausgangslage für die Entwicklung des mobilen Clients. Wir haben uns für Ionic 2 entschieden, da uns die integrierten Bibliotheksfunktionen und die eine einfache Layouterstellung überzeugt haben. Ausserdem ist es lauffähig im Webbrowser. Ionic 2 baut auf dem Angular Framework auf. Dies hilft bei der Strukturierung des Quellcodes. Auch wenn wir noch Vorbehalte gegenüber der fehlenden (Global Player) Unterstützung haben, denken wir, dass die Vorteile überwiegen.
