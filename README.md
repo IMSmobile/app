@@ -147,7 +147,7 @@ Unsere Qualitätsmassnahmen umfassen folgende Punkte:
 
 ### Framework
 Für die Entwicklung der Software benutzen wir das Framework [Ionic 2](http://ionicframework.com/docs/).
-Die Anforderungen an das Framework wurden durch ein [Anforderungskatalog](docs/frameworkanforderungen.md) festgehalten. Drei Prototypen wurden erstellt und gegen die Anforderungen geprüft. Die Auswahl des Frameworks kann im Dokument [Framwork Entscheid](docs/Frameworkentscheid.md) nachgelesen werden.  
+Die Anforderungen an das Framework wurden in einem speziell dafür geschaffenen [Anforderungskatalog](docs/frameworkanforderungen.md) festgehalten. Drei Prototypen wurden erstellt und gegen die Anforderungen geprüft. Die Auswahl des Frameworks kann im Dokument [Framework Entscheid](docs/Frameworkentscheid.md) nachgelesen werden.  
 
 | Framework   | Prototype   |
 |---|---|
