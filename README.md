@@ -145,6 +145,18 @@ Unsere Qualitätsmassnahmen umfassen folgende Punkte:
 | Pflegen eines Glossars                                    | Gesamte Projektdauer                       | organisatorisch | Missverständnisse vermeiden
 | Quellcode und Dokumentations unter Versionsverwaltung     | Gesamte Projektdauer                       | organisatorisch | Änderungskontrolle und Nachverfolgbarkeit
 
+### Framework
+Für die Entwicklung der Software benutzen wir das Framework [Ionic 2](http://ionicframework.com/docs/).
+Die Anforderungen an das Framework wurden durch ein [Anforderungskatalog](docs/frameworkanforderungen.md) festgehalten. Drei Prototypen wurden erstellt und gegen die Anforderungen geprüft. Die Auswahl des Frameworks kann im Dokument [Framwork Entscheid](docs/Frameworkentscheid.md) nachgelesen werden.  
+
+| Framework   | Prototype   |
+|---|---|
+| Ionic 2  | https://github.com/IMSmobile/ionic2-prototype   |
+| Xamarin  | https://github.com/IMSmobile/XamarinPrototype  |
+| React Native | https://github.com/IMSmobile/rn-prototype   |
+
+                    
+
 ### Dokumentation
 Sämtliche Dokumentationen stehen im öffentlich Zugänglichen [GitHub Repository](https://github.com/IMSmobile/app/) zur Verfügung. Wie auch beim Quellcode werden allen Änderungen an einem Dokument von mindestens einer Person mithilfe eines Reviews überprüft.
 
