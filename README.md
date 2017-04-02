@@ -102,7 +102,8 @@ Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
 
 
 ## Kontextdiagramm
-
+![Kontextdiagramm](docs/Kontextdiagram_IMSmobileClient.png)
+Das Kontextdiagramm zeigt auf, dass sich der mobile Client mit mehreren Umgebungskomponenten austauscht. Der IMS mobile Client wird durch den Betreiber oder durch ein Mobile Device Managment System (MDM) mithilfe von Konfigurationsdateien konfiguriert. Lokale Einstellungen kann der Benutzer selber vornehmen. Die Mediendaten (Bilder, Filme) werden durch die Gallery, Kamera oder durch eine externe Applikation bereitgestellt. Die externe Applikation kann ausserdem Daten für eine Eintragidentifikation mitschicken. Der Benutzer wählt die Mediendaten aus und schickt sie mit Feldinformationen versehen weiter über den mobilen Client an die REST-Schnittstelle. Die REST-Schnittstelle bietet ausserdem Daten zur Navigation und Strukturierung für eine korrekten Datenablage im IMS System.
 
 ## Risikomanagement
 
