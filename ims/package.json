@@ -1,5 +1,5 @@
 {
-  "name": "ionic-hello-world",
+  "name": "imsMobileApp",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
@@ -7,7 +7,8 @@
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "test": "karma start ./test-config/karma.conf.js"
   },
   "dependencies": {
     "@angular/common": "2.4.8",
@@ -31,16 +32,23 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.1.4",
-    "typescript": "2.0.9"
+    "@ionic/cli-build-ionic-angular": "0.0.3",
+    "@ionic/cli-plugin-cordova": "0.0.9",
+    "@types/jasmine": "^2.5.41",
+    "@types/node": "^7.0.8",
+    "angular2-template-loader": "^0.6.2",
+    "html-loader": "^0.4.5",
+    "jasmine": "^2.5.3",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.3",
+    "null-loader": "^0.1.1",
+    "ts-loader": "^2.0.3",
+    "typescript": "2.1.6"
   },
-  "cordovaPlugins": [
-    "cordova-plugin-whitelist",
-    "cordova-plugin-console",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-device",
-    "ionic-plugin-keyboard",
-    "cordova-plugin-splashscreen"
-  ],
-  "cordovaPlatforms": [],
-  "description": "ims: An Ionic project"
+  "version": "0.0.1",
+  "description": "An Ionic project"
 }
