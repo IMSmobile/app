@@ -83,14 +83,14 @@ NF20 | Softwarepaket | Der Client muss als IPA und APK erzeugt werden können. |
 
 ### Vorgehen
 
-Zur initialen Priorisierung der Anforderungen arbeiten wir mit Wiegers Priorisierungsmatrix. Bei diesem Verfahren werden  Anforderungen durch folgenden Kriterien bewertet.
+Zur initialen Priorisierung der Anforderungen arbeiten wir mit Wiegers Priorisierungsmatrix. Bei diesem Verfahren werden Anforderungen durch folgenden Kriterien bewertet:
 
-- welchen Nutzen man hat, wenn die Anforderung umgesetzt wird,
-- welchen Schaden erleidet man, wenn man eine Anforderung nicht umsetzt,
-- wie hoch der Aufwand bzw. die Kosten sind,
-- wie hoch das Risiko ist.
+- Welchen Nutzen man hat, wenn die Anforderung umgesetzt wird?
+- Welchen Schaden erleidet man, wenn man eine Anforderung nicht umsetzt?
+- Wie hoch ist der Aufwand bzw. die Kosten ?
+- Wie hoch ist das Risiko ?
 
-Danach werden aus Anforderugnen User Stories und Epics. Bei User Stories werden die Anforderungen aus sicht des Users betrachtet. Es kann sein das mehrere Anforderungen in einer User Story abgeschlossen werden. Der Aufwand der User Stories wird mit Story Points im Team geschätzt und kleinere Prioritätsanpassungen durchgeführt.
+Danach werden aus Anforderungen User Stories und Epics. Bei User Stories werden die Anforderungen aus Sicht des Users betrachtet. Es kann sein, dass mehrere Anforderungen in einer User Story abgeschlossen werden. Der Aufwand der User Stories wird mit Story Points im Team geschätzt und mit kleineren Prioritätsanpassungen durchgeführt.
 
 ### Priorisierungsmatrix
 
@@ -147,7 +147,7 @@ Für Nutzen, Schaden, Aufwand  Risko wurden Werte zwischen 1-9 eingetragen. Die 
 
 ### Initiale Priorität der Anforderungen
 
-Dies ist die initalite Piroritätenliste der Anforderungen. Diese wird später im iterativen Prozess anhand von Kundenwünschen, Designentscheiden und weiteren nicht voraussehbaren Elementen angepasst. Anhand dieser Prioritätenliste wird die Backlogreihenfolge erstellt.
+Dies ist die initiale Prioritätenliste der Anforderungen. Diese wird später im iterativen Prozess anhand von Kundenwünschen, Designentscheiden und weiteren nicht planbaren Elementen angepasst. Anhand dieser Prioritätenliste wird die Backlogreihenfolge erstellt.
 
 | Rang | Id   | Anforderung            |
 |------|------|------------------------|
