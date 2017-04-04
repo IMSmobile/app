@@ -94,7 +94,7 @@ Danach werden aus Anforderungen User Stories und Epics. Bei User Stories werden 
 
 ### Priorisierungsmatrix
 
-Für Nutzen, Schaden, Aufwand  Risko wurden Werte zwischen 1-9 eingetragen. Die genauen Berechnungsgrundlagen sind im Google Spreadsheet [Priorität Anforderungen](https://docs.google.com/spreadsheets/d/1cl-2JXs4DT9XrxSAEOfu3jKu25rMojmLpDIw2Eo8NLM/edit#gid=0) ersichtlich. Hier nur das Resultat der Priorisierungsmatrix.
+Für Nutzen, Schaden, Aufwand  Risko wurden Werte zwischen 1-9 eingetragen. Die genauen Berechnungsgrundlagen sind im Google Spreadsheet [Priorität Anforderungen](https://docs.google.com/spreadsheets/d/1cl-2JXs4DT9XrxSAEOfu3jKu25rMojmLpDIw2Eo8NLM/edit#gid=0) ersichtlich. Hier wird nur das Resultat der Priorisierungsmatrix dargestellt.
 
 
 | ID      | Anforderung            | Nutzen | Schaden | Wert | Wert (%) | Aufwand | Aufwand (%) | Risiko | Risiko (%) | Prio  | Rang |
