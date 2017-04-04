@@ -1,7 +1,7 @@
 {
   "name": "imsMobileApp",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "IMS Mobile Team",
+  "homepage": "https://github.com/IMSmobile/app/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -50,5 +50,5 @@
     "typescript": "2.1.6"
   },
   "version": "0.0.1",
-  "description": "An Ionic project"
+  "description": "Cross-Platform Ionic App for IMS"
 }
