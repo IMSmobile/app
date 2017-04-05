@@ -190,7 +190,6 @@ git clone https://github.com/IMSmobile/app.git
 ```
 - Download npm dependencies
 ```bash
-cd ims
 npm install
 ```
 - Test installation
