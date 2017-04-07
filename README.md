@@ -205,16 +205,16 @@ Um besser mit Ionic arbeiten müssen folgende Plugins der Entwicklungsumgebung i
 
 | Plugin      | Befehl | Beschreibung |
 |---------|-------------|--------|
-|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2() | ext install ionic2* | Ionic 2 Code Completion       |
+|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2) | ext install ionic2* | Ionic 2 Code Completion       |
 | [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) |ext install debugger-for-chrome* | Javascript und Typscript Debugging via Google Chrome |
 
-***Plugin Installation** In Visual Studio Code mit Shortcut Ctrl + P und dem Befehl (z.B. ext install ionic2) ein Plugin installieren.
+**Plugin Installation**: In Visual Studio Code mit Shortcut `Ctrl + P` und dem Befehl (z.B. ext install ionic2) ein Plugin installieren.
 
 ###### Debugging
-Um eine Ionic App zu debuggen.
-- Chrome schliessen
-- In Visual Studio Code Ctrl + P und in Suchfeld: **> Ionic Serve Options** eingeben und ausführen (inklusive >)
-- Shortcut F5 drücken
+Um eine Ionic App zu debuggen:
+1. Chrome schliessen
+2. In Visual Studio Code `Ctrl + P` und in Suchfeld: `> Ionic Serve Options` eingeben und ausführen (inklusive `>`)
+3. Shortcut `F5` drücken
 
 #### Vorgehen
 Um ein rasches Kundenfeedback zu erhalten und damit wir abschlussorientiert arbeiten können, wird das Projekt mit agiler Methoden entwickelt.
