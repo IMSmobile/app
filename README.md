@@ -308,11 +308,6 @@ describe("A module ", function() {
 #### End to End Testing
 Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
-Mit folgendem Befehel können Unit Tests ausgeführt werden.
-```bash
-ionic serve
-npm run e2e
-```
 
 *TODO Example, Description Integration Testing with Framework*
 
