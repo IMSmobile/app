@@ -20,7 +20,7 @@ IMS Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky, Michael Leu
 - FA5: Nicht klar wenn es Pflichtfelder gibt. → FA5 präzisieren
 - FA7: Ist auch für Imagic ein muss.
 - Anforderung "Bild muss der untersten Ebene zugeteilt werden können" nicht vorhanden. → Anforderung erfassen
-- FA6-9: generischere Formulierung statt "Fall" gewünscht → Be.griff muss noch gefunden werden
+- FA6-9: generischere Formulierung statt "Fall" gewünscht → Begriff muss noch gefunden werden
 - FA10: Ist eine Vorgabe von Imagic. → Quelle anpassen
 - Neue Anforderung "Fehlerbehandlung bei Berechtigungs und Lizenzfehlern". → Anforderung erfassen
 - FA15: Browser wäre nur gewünscht, somit passt das "kann". → Neue Anforderung daraus "Code soll für Browser wiederverwertbar sein"
