@@ -1,6 +1,14 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 7. April 2017
+- Issues welche Code betreffen werden nicht speziell getagged.
+- Alle funktionalen Muss-Kriterien werden im Backlog erfasst.
+- Wir testen mit zwei Archiven: Polizei und Medizin.
+- Wenn ein Issue blockiert ist muss es mit `blocked` getaggt und der Beschreibung müssen die Blockaden als Checkboxes eingetragen sein.
+- Wartet man auf den Abschluss eines Issue an dem jemand Anderes arbeitet kann man eine Deadline verlangen.
+- Unser Ablauf am Sprint-Ende ist: Demonstration → Issues archivieren → Sprint Retrospektive → Sprint Planning.
+
 ## 6. April 2017
 - Eingedeutschte englische Wörter werden gross geschrieben.
 
