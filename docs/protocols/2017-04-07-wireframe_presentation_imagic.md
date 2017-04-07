@@ -3,7 +3,7 @@ Freitag, 07.04.2017 15:00-15:30 bei imagic AG, Glattbrugg
 
 ## Teilnehmer
 
-imagic: Patrik Wermelinger, Urs Gomez
+imagic: Patrik Wermelinger, Urs Gomez <br>
 IMS Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky
 
 ## Traktanden
@@ -16,8 +16,8 @@ IMS Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky
 - bisheriger Projektverlauf
 - Ausblick auf heutige Sitzung
 
-###Spezifikationen (15:05-15:10)
-- Lizenzfrage: Kaufmännische Frage noch offen, nicht wichtig für Entwicklerteam
+### Spezifikationen (15:05-15:10)
+- Lizenzfrage: Kaufmännische Frage noch offen, kein Einfluss aufs Entwicklerteam
 - Bilderanzahl: 20 Bilder muss, 100 Bilder soll
 
 ### Präsentation Wireframes (15:10-15:40)
