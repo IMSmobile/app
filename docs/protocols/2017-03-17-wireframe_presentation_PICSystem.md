@@ -3,7 +3,8 @@
 Freitag, 07.04.2017 13:00-14:00 bei PIC Systems AG, Glattbrugg
 
 ## Teilnehmer
-PIC Systems: Marcel Bachmann, Adrian Käser, Michael Bachmann
+
+PIC Systems: Marcel Bachmann, Adrian Käser, Michael Bachmann <br>
 IMS Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky
 
 ## Traktanden
@@ -28,7 +29,7 @@ Fragen von PIC System:
 - Fallerstellung sollte auch mithilfe von Startparameter möglich sein.
 - Mehrere Aufnahmen nacheinander in App ermöglichen, aktuell immer 2 Clicks notwendig -> Abwarten auf erste Funktionsprototypen
 
-### Referenzgerät
+### Referenzgerät und Verabschiedung (13:40-13:55)
 
 - Ipad Mini ab sofort (wurde zurückgesetzt, kann beliebig konfiguriert werden)
 - Iphone 6 in Zukunft
