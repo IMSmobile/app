@@ -282,13 +282,13 @@ Um automatisierte Tests zu schreiben brauchen wir das JavaScript Framework [jasm
 
 #### Karma
 
-Um automatisierte Tests auszuführen benutzen wir das Framework  [Karma](https://karma-runner.github.io/1.0/index.html). Diese Tool startet einen Webbrowser (Google Chrome) und führt die Javascript Tests direkt auf dem Webbrowser aus. Dort wird auch direkt das Resultat der Tests dargestellt. Zudem erkennt Karma Codeänderugnen und führt im Hintergrund alle benötigten Tests automatisch aus.
+Um automatisierte Tests auszuführen benutzen wir das Framework  [Karma](https://karma-runner.github.io/1.0/index.html). Diese Tool startet einen Webbrowser (Google Chrome) und führt die JavaScript Tests direkt auf dem Webbrowser aus. Dort wird auch direkt das Resultat der Tests dargestellt. Zudem erkennt Karma Codeänderungen und führt im Hintergrund alle benötigten Tests automatisch aus.
 
 #### Unit Testing
-Unit Tests dienen dazu sicherzustellen dass eine Klasse Modular gebaut ist und wiederverwendet werden kann. Zudem dienen Unit Tests als Dokumentation der Klasse. Das Ausführen aller Unittests darf nicht länger als 30 Sekunden dauern.
+Unit Tests dienen dazu sicherzustellen dass eine Klasse modular gebaut ist und wiederverwendet werden kann. Zudem dienen Unit Tests als Dokumentation der Klasse. Das Ausführen aller Unit Tests darf nicht länger als 30 Sekunden dauern.
 
-Mit folgendem Befehel können Unit Tests ausgeführt werden.
-```bash
+Mit folgendem Befehl können Unit Tests ausgeführt werden.
+```shell
 npm test
 ```
 
