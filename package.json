@@ -10,6 +10,9 @@
     "ionic:serve": "ionic-app-scripts serve",
     "test": "karma start ./test-config/karma.conf.js"
   },
+  "config": {
+    "ionic_source_map": "source-map"
+  },
   "dependencies": {
     "@angular/common": "2.4.8",
     "@angular/compiler": "2.4.8",
