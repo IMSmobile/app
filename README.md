@@ -5,7 +5,7 @@ Wir möchten es den Kunden von Imagic IMS erlauben auf einfache Weise via mobile
 
 ![Vision Visualisierung](vision_visualisierung.png)
 
-Die Softwareentwicklung wollen wir Team durchführen. Das Software Projekt soll vom Greenfield zur Konzeption über Architektur bis hin zur Realisation durchgeführt werden.
+Die Softwareentwicklung wollen wir im Team durchführen. Das Software Projekt soll vom Greenfield zur Konzeption über Architektur bis hin zur Realisation durchgeführt werden.
 
 Das Produkt soll eine generische Open Source Lösung sein, welche das Produktsortiment von IMS erweitert.
 
