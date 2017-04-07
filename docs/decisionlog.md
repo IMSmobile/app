@@ -1,6 +1,9 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 6. April 2017
+- Eingedeutschte englische Wörter werden gross geschrieben.
+
 ## 1. April 2017
 - Bilder werden vorläufig im IMS Mobile Client nur während dem Upload Prozess zwischengespeichert (keine App-interne Galerie).
 - Beim HSR Review übernimmt Michael die Rolle des _Lead Autor_ und Niklaus die Rolle des _Lead Prüfer_.
