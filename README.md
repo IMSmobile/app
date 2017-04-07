@@ -277,13 +277,42 @@ Um eine hohe Qualität zu erreichen und um Fehler nicht zu wiederholen, werden a
 
 Bei jedem Release müssen alle automatisierten und manuellen Tests durchgeführt werden. Gibt es Fehler muss diskutiert werden, ob diese als Showstopper einen Release verhindern. Falls die Fehler keinen Release verhindern müssen sie in den Release Notes beschrieben werden.
 
+#### Jasmine
+Um automatisierte Tests zu schreiben brauchen wir das JavaScript Framework [jasmine](https://jasmine.github.io/).
+
+#### Karma
+
+Um automatisierte Tests auszuführen benutzen wir das Framework  [Karma](https://karma-runner.github.io/1.0/index.html). Diese Tool startet einen Webbrowser (Google Chrome) und führt die Javascript Tests direkt auf dem Webbrowser aus. Dort wird auch direkt das Resultat der Tests dargestellt. Zudem erkennt Karma Codeänderugnen und führt im Hintergrund alle benötigten Tests automatisch aus.
+
 #### Unit Testing
 Unit Tests dienen dazu sicherzustellen dass eine Klasse Modular gebaut ist und wiederverwendet werden kann. Zudem dienen Unit Tests als Dokumentation der Klasse. Das Ausführen aller Unittests darf nicht länger als 30 Sekunden dauern.
 
-*TODO Example, Description Unit Testing with Framework*
+Mit folgendem Befehel können Unit Tests ausgeführt werden.
+```bash
+npm test
+```
+
+Hier ein abstraktes Beispiel eines Unit Tests. Weitere Beispiele findet man in der jasmine [Dokumentation](https://jasmine.github.io/2.0/introduction.html)
+
+```javascript
+describe("A module ", function() {
+  it("contains spec with an expectation", function() {
+    expect(true).toBe(true);
+  });
+  it("contains spec with another expectation", function() {
+    expect(true).toBe(true);
+  });
+});
+```
 
 #### End to End Testing
 Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
+
+Mit folgendem Befehel können Unit Tests ausgeführt werden.
+```bash
+ionic serve
+npm run e2e
+```
 
 *TODO Example, Description Integration Testing with Framework*
 
