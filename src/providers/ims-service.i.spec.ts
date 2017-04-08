@@ -7,12 +7,24 @@ import { Token } from '../model/token';
 
 describe('Provider: ImsService Integration Test', () => {
 
+    var originalTimeout;
+
+    beforeEach(function() {
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+    });
+
+    afterEach(function() {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    });
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [ImsService],
       imports: [HttpModule]
     }).compileComponents();
   }));
+
 
   it('Ims Version', async(inject([ImsService], (imsService: ImsService) => {
     imsService.getInfo(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
@@ -38,8 +50,14 @@ describe('Provider: ImsService Integration Test', () => {
       err =>  fail(err));
   })));
  
-   it('Ensure cat is uploaded', async(inject([ImsService], (imsService: ImsService) => {
+   it('Ensure image is uploaded', async(inject([ImsService], (imsService: ImsService) => {
    let token = imsService.postImageToContainer(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
+      res => console.log(res),
+      err =>  fail(err));
+  })));
+  
+  it('Ensure image is stored as entry', async(inject([ImsService], (imsService: ImsService) => {
+   let token = imsService.uploadImage(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
       res => console.log(res),
       err =>  fail(err));
   })));
