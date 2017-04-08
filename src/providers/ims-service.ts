@@ -87,7 +87,7 @@ export class ImsService {
   createContainerLocation(credential: Credential): Observable<string> {
     return this.getToken(credential).flatMap(token => {
       let uploadUrl = credential.server + "/rest/entries/40/Bild/uploads";
-      return this.postWithToken(credential, uploadUrl, token).flatMap(response => response.headers.get("location"));
+      return this.postWithToken(credential, uploadUrl, token).map(response => response.headers.get("location"));
     });
   }
 
