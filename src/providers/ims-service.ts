@@ -95,10 +95,28 @@ export class ImsService {
     return this.getToken(credential).flatMap(token => {
        return this.createContainerLocation(credential).flatMap(adress => {
          return this.getPicture().flatMap(image => {
-           console.log("Image:" + image + " size:" + image.size);
            return this.postToContainer(credential, adress, token, null, image)
          })
        })
     })
   }
+
+  createImageEntry(credential: Credential, url: string, token: Token) {
+    let headers = this.getHeadersWithToken(credential, token);
+    let entry = '{"fields":{"IDFall": "23691", "BILDNAME": "IMS Mobile App"}}';
+    return this.http.post(url, entry, { headers: headers });
+  }
+
+  uploadImage(credential:Credential): Observable<Response> {
+    return this.getToken(credential).flatMap(token => {
+       return this.createContainerLocation(credential).flatMap(adress => {
+         return this.getPicture().flatMap(image => {
+           return this.postToContainer(credential, adress, token, null, image).flatMap(respone => {
+              return this.createImageEntry(credential, adress, token);
+           })
+         })
+       })
+    })
+  }
+
 }
