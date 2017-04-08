@@ -1,11 +1,9 @@
 {
-  "rules": {
-    "no-duplicate-variable": true,
-    "no-unused-variable": [
-      true
-    ]
-  },
-  "rulesDirectory": [
-    "node_modules/tslint-eslint-rules/dist/rules"
-  ]
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint-ionic-rules"
+    ],
+    "jsRules": {},
+    "rules": {},
+    "rulesDirectory": []
 }
