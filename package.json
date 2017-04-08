@@ -41,6 +41,7 @@
     "@types/node": "^7.0.8",
     "angular2-template-loader": "^0.6.2",
     "gulp": "^3.9.1",
+    "gulp-tslint": "^7.1.0",
     "html-loader": "^0.4.5",
     "ionic-gulp-tslint": "^1.1.0",
     "jasmine": "^2.5.3",
