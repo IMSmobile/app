@@ -271,9 +271,15 @@ Bei einem Review möchten wir
 
 Damit die Wartezeit möglichst kurz gehalten wird, haben Reviews von einem Pull Request immer Priorität gegenüber dem Beginn einer neuen Aufgabe. Ausserdem dürfen kleinere Fehler ohne Rücksprache mit dem Autor selbständig vom Reviewer behoben werden.
 
-#### Code Style Guideline
+#### Code Guideline
 
-*TODO [#81](https://github.com/IMSmobile/app/issues/81)*
+Mit [tslint](https://palantir.github.io/tslint/)] wird der Quellcode automatisch gegen Code Guidelines geprüft. Das Ionic 2 Team stellt ein [default Ruleset für Guidelines](https://github.com/driftyco/tslint-ionic-rules) zur Verfügung.
+Wir übernehmen diese Guidelines als Standard und erweitern die Datei [tslint.json](tslint.json) mit zusätzlichen Regelen. 
+
+Um den Code gegen die Guidelines zu Prüfen verwenden wir das automatisierungs Tool [gulp](http://gulpjs.com/).
+```shell
+gulp lint
+```
 
 ### Testing
 Um eine hohe Qualität zu erreichen und um Fehler nicht zu wiederholen, werden alle Anforderung und Defects unter Tests gestellt. Automatisierte Tests sind zu bevorzugen da diese ohne menschlichen Aufwand immer wieder ausgeführt werden können. Ist ein automatisierter Test nicht möglich oder zu komplex werden manuelle Test Cases erstellt. Auch für die wichtigsten Smoke Tests werden manuelle Testcases geschrieben.
