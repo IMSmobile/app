@@ -1,6 +1,6 @@
 import { Credential } from './../model/credential';
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Info } from '../model/info';
 import { Token } from '../model/token';
@@ -81,7 +81,7 @@ export class ImsService {
   }
 
   getPicture(): Observable<Blob>{
-    return this.http.get("https://crossorigin.me/http://random.cat/meow").map(res => res.json()).flatMap(res => this.http.get(res.file)).flatMap(res => [new Blob([res.blob()])]);
+    return this.http.get("https://sinv-56028.edu.hsr.ch/assets/images/logo.png", {responseType: ResponseContentType.Blob}).map(res => res.blob());
   }
 
   createContainerLocation(credential: Credential): Observable<string> {
@@ -95,6 +95,7 @@ export class ImsService {
     return this.getToken(credential).flatMap(token => {
        return this.createContainerLocation(credential).flatMap(adress => {
          return this.getPicture().flatMap(image => {
+           console.log("Image:" + image + " size:" + image.size);
            return this.postToContainer(credential, adress, token, null, image)
          })
        })
