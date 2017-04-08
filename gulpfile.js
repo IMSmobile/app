@@ -9,7 +9,7 @@ gulp.task('lint', function () {
     },
     reporter: "verbose",
     reportOptions: {
-      emitError: true
+      emitError: false
     }
   });
 });
