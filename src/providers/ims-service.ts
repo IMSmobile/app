@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Info } from '../model/info';
+import { ImsHeaders } from '../model/imsHeaders';
 import { Token } from '../model/token';
 import { TokenService } from './token-service';
 
@@ -17,7 +18,7 @@ export class ImsService {
   }
 
   get(credential: Credential, url: string): Observable<any> {
-    let headers = this.getHeaders(credential);
+    let headers = new ImsHeaders(credential);
     return this.http.get(url, { headers: headers }).map(res => res.json());
   }
 
@@ -26,7 +27,7 @@ export class ImsService {
   }
 
   post(credential: Credential, url: string, postData: Object): Observable<Response> {
-    let headers = this.getHeaders(credential);
+    let headers = new ImsHeaders(credential);
     return this.http.post(url, postData, { headers: headers });
   }
 
@@ -44,16 +45,8 @@ export class ImsService {
     return this.http.post(url, data, { headers: headers });
   }
 
-  getHeaders(credential: Credential): Headers {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Allow-Control-Allow-Origin', '*');
-    headers.append("Authorization", "Basic " + btoa(credential.username + ":" + credential.password));
-    return headers;
-  }
-
   getHeadersWithToken(credential: Credential, token: Token): Headers {
-    let headers = this.getHeaders(credential);
+    let headers = new ImsHeaders(credential);
     headers.append("ims-rest-token" , token.token);
     return headers;
   }

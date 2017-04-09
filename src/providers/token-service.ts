@@ -5,6 +5,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Credential } from '../model/credential';
+import { ImsHeaders } from '../model/imsHeaders';
 import { Token } from '../model/token';
 
 @Injectable()
@@ -28,19 +29,13 @@ export class TokenService {
 
   getTokenForSegment(credential: Credential): Observable<string> {
     let segment = { "name": credential.segmentName };
-    return this.http.post(credential.server + "/rest/license/tokens", segment, { headers: this.getHeaders(credential) }).map(r => r.headers.get("location"));
+    return this.http.post(credential.server + "/rest/license/tokens", segment, { headers: new ImsHeaders(credential) }).map(r => r.headers.get("location"));
   }
 
   getTokenFromUrl(credential: Credential, location: string): Observable<Token> {
-    return this.http.get(location, { headers: this.getHeaders(credential) }).map(r => r.json());
+    return this.http.get(location, { headers: new ImsHeaders(credential) }).map(r => r.json());
   }
 
-  getHeaders(credential: Credential): Headers {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Allow-Control-Allow-Origin', '*');
-    headers.append("Authorization", "Basic " + btoa(credential.username + ":" + credential.password));
-    return headers;
-  }
+
 
 }
