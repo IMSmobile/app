@@ -5,6 +5,9 @@ import { HomePage } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TokenService } from '../providers/token-service';
+
+
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage
   ],
   providers: [
+    TokenService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

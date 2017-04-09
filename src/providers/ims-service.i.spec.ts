@@ -4,6 +4,8 @@ import { MockBackend } from '@angular/http/testing';
 import { ImsService } from './ims-service';
 import { Credential } from '../model/credential';
 import { Token } from '../model/token';
+import { TokenService } from './token-service';
+
 
 describe('Provider: ImsService Integration Test', () => {
 
@@ -20,7 +22,7 @@ describe('Provider: ImsService Integration Test', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ImsService],
+      providers: [ImsService, TokenService],
       imports: [HttpModule]
     }).compileComponents();
   }));
@@ -32,33 +34,29 @@ describe('Provider: ImsService Integration Test', () => {
       err =>  fail(err));
   })));
 
- it('Ensure token will be sent', async(inject([ImsService], (imsService: ImsService) => {
-   let token = imsService.getToken(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
-      token => console.log(token),
-      err =>  fail(err));
-  }))); 
-
  it('Ensure container location will be sent', async(inject([ImsService], (imsService: ImsService) => {
-   let token = imsService.createContainerLocation(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
+   let token = imsService.createContainerLocation(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin", "Rest Floating Client Read Write")).subscribe(
       adress => console.log(adress),
       err =>  fail(err));
   })));
 
    it('Ensure container location will be sent', async(inject([ImsService], (imsService: ImsService) => {
-   let token = imsService.createContainerLocation(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
+   let token = imsService.createContainerLocation(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin", "Rest Floating Client Read Write")).subscribe(
       adress => console.log(adress),
       err =>  fail(err));
   })));
  
    it('Ensure image is uploaded', async(inject([ImsService], (imsService: ImsService) => {
-   let token = imsService.postImageToContainer(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
+   let token = imsService.postImageToContainer(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin", "Rest Floating Client Read Write")).subscribe(
       res => console.log(res),
       err =>  fail(err));
   })));
   
+
   it('Ensure image is stored as entry', async(inject([ImsService], (imsService: ImsService) => {
-   let token = imsService.uploadImage(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin")).subscribe(
+   let token = imsService.uploadImage(new Credential("https://sinv-56028.edu.hsr.ch", "admin", "admin", "Rest Floating Client Read Write")).subscribe(
       res => console.log(res),
       err =>  fail(err));
   })));
+  
 });
