@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Credential } from '../model/credential';
 import { Token } from '../model/token';
@@ -12,8 +13,17 @@ export class TokenService {
   constructor(public http: Http) {
 
   }
+
+  private token: Token = null;
   getToken(credential: Credential): Observable<Token> {
-    return this.getTokenForSegment(credential).flatMap(l => this.getTokenFromUrl(credential, l));
+    if (this.token != null && new Date() < new Date(this.token.licenseExpirationDate)) {
+      return Observable.of(this.token);
+    } else {
+      return this.getTokenForSegment(credential).flatMap(l => this.getTokenFromUrl(credential, l)).map(loadedToken => {
+        this.token = loadedToken;
+        return loadedToken;
+      });
+    }
   }
 
   getTokenForSegment(credential: Credential): Observable<string> {

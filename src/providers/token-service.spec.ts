@@ -80,4 +80,26 @@ describe('Provider: TokenSerivce', () => {
       err => fail(err));
   }));
 
+  it('Should load Token from Rest API and then from cache', inject([TokenService, MockBackend], (tokenSerivce: TokenService, mockBackend) => {
+    mockBackend.connections.subscribe((connection) => {
+      if (connection.request.url.endsWith('/rest/license/tokens') && connection.request.method === RequestMethod.Post) {
+        connection.mockRespond(new Response(new ResponseOptions({
+          headers: new Headers({ "location": "http://test/rest/tokens/ABCD" })
+        })));
+      }
+      else if (connection.request.url.endsWith('/rest/tokens/ABCD') && connection.request.method === RequestMethod.Get) {
+        connection.mockRespond(new Response(new ResponseOptions({
+          body: { "token": "abc", "licenseExpirationDate": "2080-10-28T16:45:12Z" }
+        })));
+      }
+      else {
+        connection.mockRespond(new Response(new ResponseOptions({ status: 500, type: ResponseType.Error })));
+      }
+    });
+    const spy = spyOn(tokenSerivce, 'getTokenForSegment').and.callThrough();
+    tokenSerivce.getToken(new Credential("", "", "")).subscribe();
+    tokenSerivce.getToken(new Credential("", "", "")).subscribe();
+    expect(spy.calls.count()).toEqual(1);
+  }));
+
 });
