@@ -17,7 +17,7 @@ ID | Anforderung | Gewichtung | Quelle
 11 | Vorgefertigte einfache UI Elemente | soll | NF1
 12 | Gleiche Codebasis für alle Plattformen | muss | NF19
 13 | Native Code-Einbindung | kann
-14 | Unterstützt verschlüsselte Übertragung (HTTPS) | soll | NF6
+14 | Unterstützt verschlüsselte Übertragung (HTTPS) | muss | NF6
 15 | Unterstützt Offline-Modus | kann | NF5
 16 | Vorgefertigte Settings Speichermöglichkeiten | soll
 17 | Unterstüzt Benutzer-Authentifikation | muss | FA10
