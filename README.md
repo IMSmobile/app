@@ -3,7 +3,7 @@
 ## Vision
 Wir möchten es den Kunden von Imagic IMS erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine plattformunabhängige Mobile-App entwickeln.
 
-![Vision Visualisierung](vision_visualisierung.png)
+![Vision Visualisierung](docs/images/vision_visualisierung.png)
 
 Die Softwareentwicklung wollen wir im Team durchführen. Das Software Projekt soll vom Greenfield zur Konzeption über Architektur bis hin zur Realisation durchgeführt werden.
 
@@ -21,9 +21,9 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 | Photo        | Name | E-Mail |
 | ------------ | ---- | ------ |
-| ![Michael Leu](michael_leu.png) |Michael Leu|michael.leu@hsr.ch|
-| ![Niklaus Tschirky](niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
-| ![Sandro Zbinden](sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
+| ![Michael Leu](docs/images/michael_leu.png) |Michael Leu|michael.leu@hsr.ch|
+| ![Niklaus Tschirky](docs/images/niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
+| ![Sandro Zbinden](docs/images/sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
 
 
 ## Einführung
@@ -88,7 +88,7 @@ Folgende Ansprechpartner stehen während dem Projekt zur Verfügung:
 | Susanne Rigling | HSR | Information Masterarbeit |
 
 ### Stakeholder
-![Stakeholder](docs/stakeholderdiagram.png)
+![Stakeholder](docs/images/stakeholderdiagram.png)
 
 Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
 - **IMS Kunden**: Sie benutzen das Imagic IMS und ziehen daraus ihren Businessnutzen. Ihre Hauptmotivation ist die Möglichkeit mit ihren mobilen Geräten Bilder, Videos und andere Daten im Imagic IMS abzuspeichern.
@@ -105,7 +105,7 @@ Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
 
 
 ## Kontextdiagramm
-![Kontextdiagramm](docs/Kontextdiagram_IMSmobileClient.png)
+![Kontextdiagramm](docs/images/Kontextdiagram_IMSmobileClient.png)
 Das Kontextdiagramm zeigt auf, dass sich der Client mit mehreren Umgebungskomponenten austauscht. Er wird durch den Betreiber oder durch ein Mobile Device Management System (MDM) mit Hilfe von Konfigurationsdateien parametrisiert. Lokale Einstellungen kann der Benutzer selber vornehmen. Die Mediendaten (Bilder, Filme) werden durch die Galerie, Kamera oder durch eine externe Applikation bereitgestellt. Die externe Applikation kann ausserdem Daten für eine Eintragsidentifikation mitschicken. Der Benutzer wählt die Mediendaten aus und schickt sie mit Feldinformationen versehen weiter über den Client an die REST-Schnittstelle. Die REST-Schnittstelle bietet ausserdem Daten zur Navigation und Strukturierung für eine korrekten Datenablage im IMS Server.
 
 ## Risikomanagement
