@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/of';
@@ -26,7 +26,7 @@ export class TokenService {
   }
 
   loadTokenFromServer(credential: Credential): Observable<Token> {
-    return this.getTokenForSegment(credential).flatMap(l => this.getTokenFromUrl(credential, l))
+    return this.getTokenForSegment(credential).flatMap(l => this.getTokenFromUrl(credential, l));
   }
 
   cacheToken(token: Token): Token {
@@ -35,8 +35,8 @@ export class TokenService {
   }
 
   getTokenForSegment(credential: Credential): Observable<string> {
-    let segment = { "name": credential.segmentName };
-    return this.http.post(credential.server + "/rest/license/tokens", segment, { headers: new ImsHeaders(credential) }).map(r => r.headers.get("location"));
+    let segment = { 'name': credential.segmentName };
+    return this.http.post(credential.server + '/rest/license/tokens', segment, { headers: new ImsHeaders(credential) }).map(r => r.headers.get('location'));
   }
 
   getTokenFromUrl(credential: Credential, location: string): Observable<Token> {

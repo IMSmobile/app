@@ -1,5 +1,5 @@
 export class Credential {
-  server : string;
+  server: string;
   username: string;
   password: string;
   segmentName: string;

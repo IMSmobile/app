@@ -6,6 +6,7 @@ import { HomePage } from '../pages/home/home';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TokenService } from '../providers/token-service';
+import { UploadService } from '../providers/upload-service';
 
 
 
@@ -24,6 +25,7 @@ import { TokenService } from '../providers/token-service';
   ],
   providers: [
     TokenService,
+    UploadService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
