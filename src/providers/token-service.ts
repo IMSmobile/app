@@ -18,15 +18,18 @@ export class TokenService {
   private token: Token = null;
 
   getToken(credential: Credential): Observable<Token> {
-    console.log(this.token2);
     if (this.token != null && new Date() < new Date(this.token.licenseExpirationDate)) {
       return Observable.of(this.token);
     } else {
-      return this.getTokenForSegment(credential).flatMap(l => this.getTokenFromUrl(credential, l)).map(t => this.cacheToken(t));
+      return this.loadTokenFromServer(credential).map(t => this.cacheToken(t));
     }
   }
 
-  cacheToken(token:Token) : Token  {
+  loadTokenFromServer(credential: Credential): Observable<Token> {
+    return this.getTokenForSegment(credential).flatMap(l => this.getTokenFromUrl(credential, l))
+  }
+
+  cacheToken(token: Token): Token {
     this.token = token;
     return token;
   }
