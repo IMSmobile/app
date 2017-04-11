@@ -28,14 +28,15 @@ describe('Provider: UploadService Integration Test', () => {
     }).compileComponents();
   }));
 
+
   it('Ensure image is stored as entry', async(inject([UploadService, Http], (uploadService: UploadService, httpModule: HttpModule) => {
     let credential = new Credential('https://sinv-56028.edu.hsr.ch', 'admin', 'admin', 'Rest Floating Client Read Write');
     let imageEntry = new ImageEntry().set('IDFall', '23691').set('BILDNAME', 'IMS Mobile App');
     let image = new Image('image.png', getImage());
-    uploadService.uploadImage(credential, imageEntry, image).subscribe(
+    uploadService.uploadImage(credential, 40, imageEntry, image).subscribe(
       res => console.log(res),
       err => fail(err));
-  })));
+    })));
 });
 
 function getImage(): Blob {
