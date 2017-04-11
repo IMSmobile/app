@@ -3,9 +3,7 @@ import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions } from 
 import { MockBackend } from '@angular/http/testing';
 import { ImsService } from './ims-service';
 import { Credential } from '../model/credential';
-import { EntryPoint } from '../model/entry-point';
 import { Link } from '../model/link';
-import { LicensePoint } from '../model/license-point';
 import { EntryPointResponse } from '../model/test/entry-point-response';
 import { LicensePointResponse } from '../model/test/license-point-response';
 
