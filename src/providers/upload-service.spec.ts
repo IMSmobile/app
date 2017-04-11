@@ -45,7 +45,7 @@ describe('Provider: UploadService', () => {
       } else if (connection.request.url.endsWith(expectedUploadLocation) && connection.request.method === RequestMethod.Post) {
         connection.mockRespond(new Response(new ResponseOptions({headers: new Headers({ 'location': expectedContainerLocation })})));
       } else {
-        connection.mockRespond(new Response(new ResponseOptions({ status: 500, type: ResponseType.Error })));
+        connection.mockError(new Error('fail'));
       }
     });
     let credential = new Credential('', '', '');
@@ -81,7 +81,7 @@ describe('Provider: UploadService', () => {
       } else if (connection.request.url.endsWith('/rest/tokens/ABCD') && connection.request.method === RequestMethod.Get) {
         connection.mockRespond(new TokenResponse(new Token('abc', '2015-10-28T16:45:12Z')));
       } else {
-        connection.mockRespond(new Response(new ResponseOptions({ status: 500, type: ResponseType.Error })));
+        connection.mockError(new Error('fail'));
       }
     });
     let credential = new Credential('', '', '');
