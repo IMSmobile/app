@@ -1,5 +1,5 @@
 import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions, RequestMethod, ResponseType } from '@angular/http';
+import { Http, HttpModule, BaseRequestOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { TokenService } from './token-service';
 import { Credential } from '../model/credential';
