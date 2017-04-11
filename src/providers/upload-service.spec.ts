@@ -6,6 +6,8 @@ import { TokenService } from './token-service';
 import { Credential } from '../model/credential';
 import { ImageEntry } from '../model/imageEntry';
 import { Image } from '../model/image';
+import { TokenLocationResponse } from '../model/test/tokenLocationResponse';
+import { TokenResponse } from '../model/test/tokenResponse';
 import { Token } from '../model/token';
 import { ArchiveEntry } from '../model/archiveEntry';
 import { ArchiveTableEntry } from '../model/archiveTableEntry';
@@ -75,13 +77,9 @@ describe('Provider: UploadService', () => {
   it('Should upload image', inject([UploadService, MockBackend], (uploadService: UploadService, mockBackend) => {
     mockBackend.connections.subscribe((connection) => {
       if (connection.request.url.endsWith('/rest/license/tokens') && connection.request.method === RequestMethod.Post) {
-        connection.mockRespond(new Response(new ResponseOptions({
-          headers: new Headers({ 'location': 'http://test/rest/tokens/ABCD' })
-        })));
+        connection.mockRespond(new TokenLocationResponse( 'http://test/rest/tokens/ABCD'));
       } else if (connection.request.url.endsWith('/rest/tokens/ABCD') && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new Response(new ResponseOptions({
-          body: { 'token': 'abc', 'licenseExpirationDate': '2015-10-28T16:45:12Z' }
-        })));
+        connection.mockRespond(new TokenResponse(new Token('abc', '2015-10-28T16:45:12Z')));
       } else {
         connection.mockRespond(new Response(new ResponseOptions({ status: 500, type: ResponseType.Error })));
       }
