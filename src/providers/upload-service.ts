@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, ResponseContentType } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Credential } from '../model/credential';
 import { ImageEntry } from '../model/imageEntry';
@@ -40,9 +40,4 @@ export class UploadService {
   createImageEntry(credential: Credential, url: string, token: Token, imageEntry: ImageEntry) {
     return this.http.post(url, imageEntry.json(), { headers: new ImsHeaders(credential, token) });
   }
-
-  getImage(): Observable<Blob> { // TODO: move to test
-    return this.http.get('https://sinv-56028.edu.hsr.ch/assets/images/logo.png', { responseType: ResponseContentType.Blob }).map(res => res.blob());
-  }
-
 }

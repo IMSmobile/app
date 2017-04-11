@@ -46,6 +46,6 @@ describe('Provider: UploadService', () => {
     let credential = new Credential('', '', '');
     let imageEntry = new ImageEntry().set('IDFall', '23691').set('BILDNAME', 'IMS Mobile App');
     let image = new Image('image.jpg', new Blob());
-    uploadService.uploadImage(credential, imageEntry, image); //TODO assert that image is uploaded 
+    uploadService.uploadImage(credential, imageEntry, image); // TODO assert that image is uploaded 
   }));
 });
