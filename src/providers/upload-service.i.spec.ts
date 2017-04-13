@@ -1,5 +1,6 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule } from '@angular/http';
+import { ImsService } from './ims-service';
 import { UploadService } from './upload-service';
 import { Credential } from '../model/credential';
 import { TokenService } from './token-service';
@@ -23,7 +24,7 @@ describe('Provider: UploadService Integration Test', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [UploadService, TokenService],
+      providers: [UploadService, TokenService, ImsService],
       imports: [HttpModule]
     }).compileComponents();
   }));

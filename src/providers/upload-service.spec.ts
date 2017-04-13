@@ -3,6 +3,7 @@ import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions, Reques
 import { MockBackend } from '@angular/http/testing';
 import { UploadService } from './upload-service';
 import { TokenService } from './token-service';
+import { ImsService } from './ims-service';
 import { Credential } from '../model/credential';
 import { ImageEntry } from '../model/imageEntry';
 import { Image } from '../model/image';
@@ -20,6 +21,7 @@ describe('Provider: UploadService', () => {
       providers: [
         UploadService,
         TokenService,
+        ImsService,
         MockBackend,
         BaseRequestOptions,
         {
