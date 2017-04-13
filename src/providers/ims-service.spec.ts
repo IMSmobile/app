@@ -6,7 +6,7 @@ import { Credential } from '../model/credential';
 import { Link } from '../model/link';
 import { EntryPointResponse } from '../model/test/entry-point-response';
 import { LicensePointResponse } from '../model/test/license-point-response';
-
+import { MockImsBackend } from '../model/test/mock-ims-backend';
 
 describe('Provider: ImsService', () => {
 
@@ -18,50 +18,34 @@ describe('Provider: ImsService', () => {
 
       providers: [
         ImsService,
-        MockBackend,
+        MockImsBackend,
         BaseRequestOptions,
         {
           provide: Http,
           useFactory: (mockBackend, options) => {
             return new Http(mockBackend, options);
           },
-          deps: [MockBackend, BaseRequestOptions]
+          deps: [MockImsBackend, BaseRequestOptions]
         }
       ],
       imports: [HttpModule]
     }).compileComponents();
   }));
 
-  it('Ims Version', inject([ImsService, MockBackend], (imsService: ImsService, mockBackend) => {
-    const mockResponse = { 'version': 'V17Q1' };
-    mockBackend.connections.subscribe((connection) => {
-      connection.mockRespond(new Response(new ResponseOptions({
-        body: mockResponse
-      })));
-    });
-    imsService.getInfo(new Credential('', '', '')).subscribe(info => expect(info.version).toEqual('V17Q1'));
+
+  it('Ims Version', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+      imsService.getInfo(mockImsBackend.credential).subscribe(info => expect(info.version).toEqual(mockImsBackend.version));
   }));
 
-  it('Should get link to license resource', inject([ImsService, MockBackend], (imsService: ImsService, mockBackend) => {
-    let licenseUrl = 'http://test/rest/license';
-    mockBackend.connections.subscribe((connection) => connection.mockRespond(new EntryPointResponse([new Link('license', licenseUrl)])));
-    imsService.getEntryPoint(new Credential('', '', '')).subscribe(
-      entryPoint => expect(entryPoint.getLinkHref('license')).toEqual(licenseUrl),
+  it('Should get link to license resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getEntryPoint(mockImsBackend.credential).subscribe(
+      entryPoint => expect(entryPoint.getLinkHref('license')).toEqual(mockImsBackend.licenseUrl),
       err => fail(err));
   }));
 
-  it('Should get link to token resource', inject([ImsService, MockBackend], (imsService: ImsService, mockBackend) => {
-    let licenseUrl = 'http://test/rest/license';
-    let getTokensUrl = licenseUrl + '/tokens';
-    mockBackend.connections.subscribe((connection) => {
-      if (connection.request.url.endsWith('/rest')) {
-        connection.mockRespond(new EntryPointResponse([new Link('license', licenseUrl)]));
-      } else if (connection.request.url.endsWith('/rest/license')) {
-        connection.mockRespond(new LicensePointResponse(null, new Link('tokens', getTokensUrl)));
-      }
-    });
-    imsService.getTokensUrl(new Credential('', '', '')).subscribe(
-      link => expect(link).toEqual(getTokensUrl),
+  it('Should get link to token resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getTokensUrl(mockImsBackend.credential).subscribe(
+      link => expect(link).toEqual(mockImsBackend.tokensUrl),
       err => fail(err)
     );
   }));
