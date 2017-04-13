@@ -1,6 +1,6 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions, RequestMethod } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { MockImsBackend } from '../model/test/mock-ims-backend';
 import { TokenService } from './token-service';
 import { Credential } from '../model/credential';
 import { TokenLocationResponse } from '../model/test/tokenLocationResponse';
@@ -17,65 +17,44 @@ describe('Provider: TokenSerivce', () => {
 
       providers: [
         TokenService,
-        MockBackend,
+        MockImsBackend,
         BaseRequestOptions,
         {
           provide: Http,
-          useFactory: (mockBackend, options) => {
-            return new Http(mockBackend, options);
+          useFactory: (MockImsBackend, options) => {
+            return new Http(MockImsBackend, options);
           },
-          deps: [MockBackend, BaseRequestOptions]
+          deps: [MockImsBackend, BaseRequestOptions]
         }
       ],
       imports: [HttpModule]
     }).compileComponents();
   }));
 
-  it('Should get Token Location for Segment Name', inject([TokenService, MockBackend], (tokenSerivce: TokenService, mockBackend) => {
-    let expectedLocation = 'http://test/rest/tokens/ABCD';
-    mockBackend.connections.subscribe((connection) => connection.mockRespond(new TokenLocationResponse(expectedLocation)));
-    tokenSerivce.getTokenForSegment(new Credential('', '', '')).subscribe(
-      location => { expect(location).toEqual(expectedLocation); },
+  it('Should get Token Location for Segment Name', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
+    tokenSerivce.getTokenForSegment(mockImsBackend.credential).subscribe(
+      location => { expect(location).toEqual(mockImsBackend.tokenLoadingUrl); },
       err => fail(err));
   }));
 
-  it('Should get Token from Url', inject([TokenService, MockBackend], (tokenSerivce: TokenService, mockBackend) => {
-    mockBackend.connections.subscribe((connection) => connection.mockRespond(new TokenResponse(new Token('abc', '2015-10-28T16:45:12Z'))));
-    tokenSerivce.getTokenFromUrl(new Credential('', '', ''), 'http://test/rest/tokens/ABCD').subscribe(
-      token => expect(token.token).toEqual('abc'),
+  it('Should get Token from Url', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
+    tokenSerivce.getTokenFromUrl(mockImsBackend.credential, mockImsBackend.tokenLoadingUrl).subscribe(
+      token => expect(token.token).toEqual(mockImsBackend.tokenName),
       err => fail(err));
   }));
 
 
-  it('Should load Token from Rest API', inject([TokenService, MockBackend], (tokenSerivce: TokenService, mockBackend) => {
-    mockBackend.connections.subscribe((connection) => {
-      if (connection.request.url.endsWith('/rest/license/tokens') && connection.request.method === RequestMethod.Post) {
-        connection.mockRespond(new TokenLocationResponse('http://test/rest/tokens/ABCD'));
-      } else if (connection.request.url.endsWith('/rest/tokens/ABCD') && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new TokenResponse(new Token('abc', '2015-10-28T16:45:12Z')));
-      } else {
-        connection.mockError(new Error('fail'));
-      }
-    });
-    tokenSerivce.getToken(new Credential('', '', '')).subscribe(
-      token => expect(token.token).toEqual('abc'),
+  it('Should load Token from Rest API', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
+    tokenSerivce.getToken(mockImsBackend.credential).subscribe(
+      token => expect(token.token).toEqual(mockImsBackend.tokenName),
       err => fail(err));
   }));
 
-  it('Should load Token from Rest API and then from cache', inject([TokenService, MockBackend], (tokenSerivce: TokenService, mockBackend) => {
-    mockBackend.connections.subscribe((connection) => {
-      if (connection.request.url.endsWith('/rest/license/tokens') && connection.request.method === RequestMethod.Post) {
-        connection.mockRespond(new TokenLocationResponse('http://test/rest/tokens/ABCD'));
-      } else if (connection.request.url.endsWith('/rest/tokens/ABCD') && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new TokenResponse(new Token('abc', '2080-10-28T16:45:12Z')));
-      } else {
-        connection.mockError(new Error('fail'));
-      }
-    });
+  it('Should load Token from Rest API and then from cache', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
+    mockImsBackend.token = new Token(mockImsBackend.tokenName, '2080-10-28T16:45:12Z');
     const spy = spyOn(tokenSerivce, 'getTokenForSegment').and.callThrough();
-    tokenSerivce.getToken(new Credential('', '', '')).subscribe();
-    tokenSerivce.getToken(new Credential('', '', '')).subscribe();
+    tokenSerivce.getToken(mockImsBackend.credential).subscribe();
+    tokenSerivce.getToken(mockImsBackend.credential).subscribe();
     expect(spy.calls.count()).toEqual(1);
   }));
-
 });
