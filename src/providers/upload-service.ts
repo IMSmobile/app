@@ -1,3 +1,4 @@
+import { ImsService } from './ims-service';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -13,7 +14,7 @@ import { ArchiveEntry } from '../model/archiveEntry';
 @Injectable()
 export class UploadService {
 
-  constructor(public http: Http, public tokenService: TokenService) {
+  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService) {
   }
 
   uploadImage(credential: Credential, filterId: number, imageEntry: ImageEntry, image: Image): Observable<Response> {
@@ -33,9 +34,11 @@ export class UploadService {
   }
 
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
-    return this.http.get(credential.server + '/rest/entries/' + filterId, { headers: new ImsHeaders(credential, token) }).map(response => {
-      let data = response.json();
-      return new ArchiveEntry(data.archiveName, data.tables);
+    return this.imsService.getFilterUrl(credential, filterId).flatMap(filterUrl => {
+      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => {
+        let data = response.json();
+        return new ArchiveEntry(data.archiveName, data.tables);
+      });
     });
   }
 

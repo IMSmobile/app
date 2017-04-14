@@ -6,6 +6,7 @@ import { Info } from '../model/info';
 import { ImsHeaders } from '../model/imsHeaders';
 import { EntryPoint } from '../model/entry-point';
 import { LicensePoint } from '../model/license-point';
+import { EntriesPoint } from '../model/entries-point';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -21,6 +22,10 @@ export class ImsService {
     return this.getLicensePoint(credential).map(licensePoint => licensePoint.sessions.dataHref);
   }
 
+  getFilterUrl(credential: Credential, filterId: number): Observable<string>{
+    return this.getEntriesTable(credential).map(entriesPoint => entriesPoint.getLinkHref(filterId));
+  }
+
   getInfo(credential: Credential): Observable<Info> {
     return this.getEntryPointLink(credential, 'info').flatMap(infoUrl => {
       console.log(infoUrl);
@@ -28,6 +33,15 @@ export class ImsService {
         console.log(response);
         console.log(response.json());
         return response.json();
+      });
+    });
+  }
+
+  getEntriesTable(credential: Credential): Observable<EntriesPoint> {
+    return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl => {
+      return this.get(credential, entriesUrl).map(response => {
+        let data = response.json();
+        return new EntriesPoint(data.filters);
       });
     });
   }
