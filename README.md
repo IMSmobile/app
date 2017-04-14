@@ -276,9 +276,14 @@ Damit die Wartezeit möglichst kurz gehalten wird, haben Reviews von einem Pull 
 #### Code Guideline
 
 Mit [tslint](https://palantir.github.io/tslint/) wird der Quellcode automatisch gegen Code Guidelines geprüft. Das Ionic 2 Team stellt ein [default Ruleset für Guidelines](https://github.com/driftyco/tslint-ionic-rules) zur Verfügung.
-Wir übernehmen diese Guidelines als Standard und erweitern die Datei [tslint.json](tslint.json) mit zusätzlichen Regelen. 
+Wir übernehmen diese Guidelines als Standard und erweitern die Datei [tslint.json](tslint.json) mit zusätzlichen Regeln. 
 
-Um den Code gegen die Guidelines zu Prüfen verwenden wir das automatisierungs Tool [gulp](http://gulpjs.com/).
+Um den Code gegen die Guidelines zu Prüfen verwenden wir das Automatisierungs-Tool [gulp](http://gulpjs.com/).
+Die Installation des Tools erfolgt mit
+```shell
+npm install gulp-cli -g
+```
+Anschliessend kann jederzeit eine Prüfung durchgeführt werden mit
 ```shell
 gulp lint
 ```
