@@ -283,7 +283,7 @@ Die Installation des Tools erfolgt mit
 ```shell
 npm install gulp-cli -g
 ```
-Anschliessend kann jederzeit eine Prüfung durchgeführt werden mit
+Anschliessend kann mit folgendem Befehl eine Prüfung durchgeführt werden.
 ```shell
 gulp lint
 ```
