@@ -1,5 +1,4 @@
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { EntryPointResponse } from './entry-point-response';
 import { LicensePointResponse } from './license-point-response';
@@ -16,9 +15,9 @@ export class MockImsBackend extends MockBackend {
     public credential: Credential = new Credential(this.baseUrl, 'admin', 'admin', this.segmentName);
 
     public entryPointUrl: string = this.baseUrl + '/rest';
-    public licenseUrl: string = this.entryPointUrl + '/license'
-    public infoUrl: string = this.entryPointUrl + '/info'
-    public tokensUrl: string = this.licenseUrl + '/tokens'
+    public licenseUrl: string = this.entryPointUrl + '/license';
+    public infoUrl: string = this.entryPointUrl + '/info';
+    public tokensUrl: string = this.licenseUrl + '/tokens';
     public tokenLoadingUrl: string = this.tokensUrl + 'ABCDE';
     public version: string = 'V17Q1';
     public versionResponse = { 'version': this.version };
@@ -44,9 +43,8 @@ export class MockImsBackend extends MockBackend {
                     body: this.versionResponse
                 })));
             } else {
-                connection.mockError(new Error("No handling for: " + connection.request.url));
+                connection.mockError(new Error('No handling for: ' + connection.request.url));
             }
         });
     }
-    //)
 }

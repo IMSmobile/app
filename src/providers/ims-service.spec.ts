@@ -1,11 +1,6 @@
 import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsService } from './ims-service';
-import { Credential } from '../model/credential';
-import { Link } from '../model/link';
-import { EntryPointResponse } from '../model/test/entry-point-response';
-import { LicensePointResponse } from '../model/test/license-point-response';
 import { MockImsBackend } from '../model/test/mock-ims-backend';
 
 describe('Provider: ImsService', () => {

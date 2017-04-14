@@ -31,7 +31,7 @@ export class ImsService {
       });
     });
   }
-  
+
   getLicensePoint(credential: Credential): Observable<LicensePoint> {
     return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl => {
       return this.get(credential, licenseUrl).map(response => {
