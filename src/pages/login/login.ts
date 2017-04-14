@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 
 
 @Component({
@@ -8,10 +9,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  loginForm: FormGroup;
 
-  ionViewDidLoad() {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController) {
+    this.loginForm = this.formBuilder.group({
+      url: ['', Validators.required],
+      user: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+
+  login() {
+    console.log(this.loginForm.value)
   }
 
 }
