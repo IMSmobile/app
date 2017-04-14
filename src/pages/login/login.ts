@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { NavController, NavParams } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
+
 
 
 
@@ -20,7 +23,11 @@ export class LoginPage {
   }
 
   login() {
-    console.log(this.loginForm.value)
+    let loader = this.loadingCtrl.create({
+      content: "Connecting to IMS Server",
+      duration: 3000
+    });
+    loader.present();
   }
 
 }
