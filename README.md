@@ -210,8 +210,9 @@ Um besser mit Ionic arbeiten müssen folgende Plugins der Entwicklungsumgebung i
 
 | Plugin      | Befehl | Beschreibung |
 |---------|-------------|--------|
-|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2) | ext install ionic2* | Ionic 2 Code Completion       |
-| [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) |ext install debugger-for-chrome* | Javascript und Typscript Debugging via Google Chrome |
+|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2) | `ext install ionic2*` | Ionic 2 Code Completion       |
+| [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) | `ext install debugger-for-chrome*` | Javascript und Typscript Debugging via Google Chrome |
+|[TSLint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint) | `ext install tslint*` | Integration des [tslint Linters](#code-guideline) für TypeScript |
 
 **Plugin Installation**: In Visual Studio Code mit Shortcut `Ctrl + P` und dem Befehl (z.B. ext install ionic2) ein Plugin installieren.
 
