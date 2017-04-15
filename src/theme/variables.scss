@@ -60,7 +60,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 $text-input-highlight-color-valid: default;
-
+$text-input-ios-show-focus-highlight: true;
 @import "ionic.theme.default";
 
 
