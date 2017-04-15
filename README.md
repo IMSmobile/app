@@ -154,6 +154,7 @@ Unsere Qualitätsmassnahmen umfassen folgende Punkte:
 | Unit Tests                                                | Ab Phase Implementierung                   | konstruktiv     | Architektureinhaltung und Dokumentation
 | Pflegen eines Glossars                                    | Gesamte Projektdauer                       | organisatorisch | Missverständnisse vermeiden
 | Quellcode und Dokumentations unter Versionsverwaltung     | Gesamte Projektdauer                       | organisatorisch | Änderungskontrolle und Nachverfolgbarkeit
+| Wireframes                                                | Gesamte Projektdauer (Ausser bei Prototyp) | analytisch      | Prüfung auf Akzeptanz der Stakeholder
 
 ### Framework
 Für die Entwicklung der Software benutzen wir das Framework [Ionic 2](http://ionicframework.com/docs/).
@@ -332,6 +333,8 @@ Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. 
 
 *TODO Example Manual Test Case.*
 
+### Wireframes
+Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
 
 ## Quellen
 Icons von https://icons8.com/
