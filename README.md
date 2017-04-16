@@ -44,6 +44,7 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [REST API Dokumentation](https://sinv-56028.edu.hsr.ch/) | Dokumentation der IMS REST Schnittstelle |
 | [IMS Publisher Police](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_police/) | IMS Publisher mit konfiguriertem Polizeiarchiv |
 | [IMS Publisher Medicine](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_medicine/) | IMS Publisher mit konfiguriertem Medizinarchiv |
+| [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes der IMS Mobile App |
 
 
 
