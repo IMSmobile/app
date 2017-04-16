@@ -38,9 +38,22 @@ describe('Provider: ImsService', () => {
       err => fail(err));
   }));
 
+ it('Should get link to entries resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getEntryPoint(mockImsBackend.credential).subscribe(
+      entryPoint => expect(entryPoint.getLinkHref('entries')).toEqual(mockImsBackend.entriesUrl),
+      err => fail(err));
+  }));
+
   it('Should get link to token resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
     imsService.getTokensUrl(mockImsBackend.credential).subscribe(
       link => expect(link).toEqual(mockImsBackend.tokensUrl),
+      err => fail(err)
+    );
+  }));
+
+  it('Should get link to filter resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getFilterUrl(mockImsBackend.credential, mockImsBackend.filterId).subscribe(
+      link => expect(link).toEqual(mockImsBackend.filterResourceUrl),
       err => fail(err)
     );
   }));
