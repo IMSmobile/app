@@ -8,7 +8,8 @@
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "test": "karma start ./test-config/karma.conf.js"
+    "test": "karma start ./test-config/karma.conf.js",
+    "test-coverage": "karma start ./test-config/karma.conf.js --coverage"
   },
   "config": {
     "ionic_source_map": "source-map"
@@ -47,16 +48,22 @@
     "jasmine": "^2.5.3",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-sourcemap-loader": "^0.3.7",
+    "karma-typescript": "^3.0.0",
     "karma-verbose-reporter": "0.0.6",
     "karma-webpack": "^2.0.3",
     "null-loader": "^0.1.1",
+    "remap-istanbul": "^0.9.5",
+    "systemjs": "^0.20.12",
     "ts-loader": "^2.0.3",
     "tslint": "^5.0.0",
     "tslint-ionic-rules": "0.0.8",
-    "typescript": "2.1.6"
+    "typescript": "^2.1.6",
+    "istanbul-instrumenter-loader": "^2.0.0",
+    "karma-coverage-istanbul-reporter": "^1.0.0"
   },
   "version": "0.0.1",
   "description": "Cross-Platform Ionic App for IMS"
