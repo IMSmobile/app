@@ -105,6 +105,30 @@ Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
 ![Kontextdiagramm](docs/Kontextdiagram_IMSmobileClient.png)
 Das Kontextdiagramm zeigt auf, dass sich der Client mit mehreren Umgebungskomponenten austauscht. Er wird durch den Betreiber oder durch ein Mobile Device Management System (MDM) mit Hilfe von Konfigurationsdateien parametrisiert. Lokale Einstellungen kann der Benutzer selber vornehmen. Die Mediendaten (Bilder, Filme) werden durch die Galerie, Kamera oder durch eine externe Applikation bereitgestellt. Die externe Applikation kann ausserdem Daten für eine Eintragsidentifikation mitschicken. Der Benutzer wählt die Mediendaten aus und schickt sie mit Feldinformationen versehen weiter über den Client an die REST-Schnittstelle. Die REST-Schnittstelle bietet ausserdem Daten zur Navigation und Strukturierung für eine korrekten Datenablage im IMS Server.
 
+## Personas / Test Accounts
+
+Um ein besseres Bild der Benutzer der IMS Mobile App zu erhalten und auch um mit verschiedenen Benutzer zu testen wurden Personas erstellt. Diese Accounts existieren auf dem Testserver und man kann sich mit dem aufgelisteten Usename und Passwort einloggen.
+
+| Vorname | Nachname   | Firma                    | Funktion                   | Archive                    | Gruppen                | Username | Password    |
+|---------|------------|--------------------------|----------------------------|----------------------------|------------------------|----------|-------------|
+| Luca    | Habbicht   | Imagic AG                | IMS Verkäufer Medizin      | ims_med_test               | Verkauf                | luca     | freshwinter |
+| Petko   | Atanasov   | Imagic AG                | Support / Installation IMS | ims_med_test, workflow_db1 | Betrieb, Administrator | petko    | crazybone   |
+| Getraud | Schuttmann | Picsystem AG             | Betreiber IMS Instanz      | workflow_db1               | Betrieb, Administrator | getraud  | keenbird    |
+| Mia     | Giese      | Kantonspolizei | Detektivin Einbruch        | workflow_db1               | Upload_Benutzer        | mia      | bigshape    |
+| Lorenz  | Mayer      | Kantonspolizei | Polizist in Ausbildung     | workflow_db1               | Ansicht_Benutzer       | lorenz   | whiteplant  |
+| Jožica  | Grigorov   | Kantonspolizei | Leitung Polizeikorps       | workflow_db1               | Betrieb, Administrator | jožica   | megagame    |
+| Felizia | Montera    | Kantonspolizei | Innendienst                | workflow_db1               | Nicht_App_Benutzer     | felizia  | graypaper   |
+
+Die Personas sind in verschiedenen Gruppen, welche wiederum unterschiedliche Berechtigungen haben.
+
+| IMS Gruppe         | Administrator | Bilder Upload | Fälle erstellen | Fälle ansehen | App Benutzen |
+|--------------------|---------------|---------------|-----------------|---------------|--------------|
+| Betrieb            | Ja            | Ja            | Ja              | Ja            | Ja           |
+| Verkauf            | Nein          | Ja            | Ja              | Ja            | Ja           |
+| Upload_Benutzer    | Nein          | Ja            | Ja              | Ja            | Ja           |
+| Ansicht_Benutzer   | Nein          | Ja            | Nein            | Ja            | Ja           |
+| Nicht_App_Benutzer | Nein          | Nein          | Nein            | Nein          | Nein         |
+
 ## Risikomanagement
 
 Die Risiken und der Umgang mit Risiken wird durch ein separates Dokument [Risiko Analyse](docs/risikoanalyse.md) beschrieben. 
