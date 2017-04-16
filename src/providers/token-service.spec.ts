@@ -5,7 +5,7 @@ import { TokenService } from './token-service';
 import { ImsService } from './ims-service';
 import { Token } from '../model/token';
 
-describe('Provider: TokenSerivce', () => {
+describe('Provider: TokenService', () => {
 
   beforeEach(async(() => {
 
@@ -30,30 +30,30 @@ describe('Provider: TokenSerivce', () => {
     }).compileComponents();
   }));
 
-  it('Should get Token Location for Segment Name', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
-    tokenSerivce.getTokenForSegment(mockImsBackend.credential).subscribe(
+  it('Should get Token Location for Segment Name', inject([TokenService, MockImsBackend], (tokenService: TokenService, mockImsBackend: MockImsBackend) => {
+    tokenService.getTokenForSegment(mockImsBackend.credential).subscribe(
       location => { expect(location).toEqual(mockImsBackend.tokenLoadingUrl); },
       err => fail(err));
   }));
 
-  it('Should get Token from Url', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
-    tokenSerivce.getTokenFromUrl(mockImsBackend.credential, mockImsBackend.tokenLoadingUrl).subscribe(
+  it('Should get Token from Url', inject([TokenService, MockImsBackend], (tokenService: TokenService, mockImsBackend: MockImsBackend) => {
+    tokenService.getTokenFromUrl(mockImsBackend.credential, mockImsBackend.tokenLoadingUrl).subscribe(
       token => expect(token.token).toEqual(mockImsBackend.tokenName),
       err => fail(err));
   }));
 
 
-  it('Should load Token from Rest API', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
-    tokenSerivce.getToken(mockImsBackend.credential).subscribe(
+  it('Should load Token from Rest API', inject([TokenService, MockImsBackend], (tokenService: TokenService, mockImsBackend: MockImsBackend) => {
+    tokenService.getToken(mockImsBackend.credential).subscribe(
       token => expect(token.token).toEqual(mockImsBackend.tokenName),
       err => fail(err));
   }));
 
-  it('Should load Token from Rest API and then from cache', inject([TokenService, MockImsBackend], (tokenSerivce: TokenService, mockImsBackend: MockImsBackend) => {
+  it('Should load Token from Rest API and then from cache', inject([TokenService, MockImsBackend], (tokenService: TokenService, mockImsBackend: MockImsBackend) => {
     mockImsBackend.token = new Token(mockImsBackend.tokenName, '2080-10-28T16:45:12Z');
-    const spy = spyOn(tokenSerivce, 'getTokenForSegment').and.callThrough();
-    tokenSerivce.getToken(mockImsBackend.credential).subscribe();
-    tokenSerivce.getToken(mockImsBackend.credential).subscribe();
+    const spy = spyOn(tokenService, 'getTokenForSegment').and.callThrough();
+    tokenService.getToken(mockImsBackend.credential).subscribe();
+    tokenService.getToken(mockImsBackend.credential).subscribe();
     expect(spy.calls.count()).toEqual(1);
   }));
 });
