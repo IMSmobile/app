@@ -107,7 +107,7 @@ Das Kontextdiagramm zeigt auf, dass sich der Client mit mehreren Umgebungskompon
 
 ## Personas / Test Accounts
 
-Um ein besseres Bild der Benutzer der IMS Mobile App zu erhalten und auch um mit verschiedenen Benutzer zu testen wurden Personas erstellt. Diese Accounts existieren auf dem Testserver und man kann sich mit dem aufgelisteten Usename und Passwort einloggen.
+Um ein besseres Bild der Benutzer der IMS Mobile App zu erhalten und auch um mit verschiedenen Benutzern zu testen wurden Personas erstellt. Diese Accounts existieren auf dem Testserver und man kann sich mit dem aufgelisteten Username und Password einloggen.
 
 | Vorname | Nachname   | Firma                    | Funktion                   | Archive                    | Gruppen                | Username | Password    |
 |---------|------------|--------------------------|----------------------------|----------------------------|------------------------|----------|-------------|
@@ -119,9 +119,9 @@ Um ein besseres Bild der Benutzer der IMS Mobile App zu erhalten und auch um mit
 | Jožica  | Grigorov   | Kantonspolizei | Leitung Polizeikorps       | workflow_db1               | Betrieb, Administrator | jožica   | megagame    |
 | Felizia | Montera    | Kantonspolizei | Innendienst                | workflow_db1               | Nicht_App_Benutzer     | felizia  | graypaper   |
 
-Die Personas sind in verschiedenen Gruppen, welche wiederum unterschiedliche Berechtigungen haben.
+Die Personas sind verschiedenen Gruppen zugeteilt, welche wiederum unterschiedliche Berechtigungen haben.
 
-| IMS Gruppe         | Administrator | Bilder Upload | Fälle erstellen | Fälle ansehen | App Benutzen |
+| IMS Gruppe         | Administrator | Bilder Upload | Fälle erstellen | Fälle ansehen | App benutzen |
 |--------------------|---------------|---------------|-----------------|---------------|--------------|
 | Betrieb            | Ja            | Ja            | Ja              | Ja            | Ja           |
 | Verkauf            | Nein          | Ja            | Ja              | Ja            | Ja           |
