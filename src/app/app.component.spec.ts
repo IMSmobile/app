@@ -20,7 +20,7 @@ describe('MyApp Component', () => {
         StatusBar,
         SplashScreen
       ]
-    })
+    });
   }));
 
   beforeEach(() => {

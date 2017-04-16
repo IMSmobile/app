@@ -1,8 +1,7 @@
 import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsService } from './ims-service';
-import { Credential } from '../model/credential';
+import { MockImsBackend } from '../model/test/mock-ims-backend';
 
 describe('Provider: ImsService', () => {
 
@@ -14,28 +13,48 @@ describe('Provider: ImsService', () => {
 
       providers: [
         ImsService,
-        MockBackend,
+        MockImsBackend,
         BaseRequestOptions,
         {
           provide: Http,
           useFactory: (mockBackend, options) => {
             return new Http(mockBackend, options);
           },
-          deps: [MockBackend, BaseRequestOptions]
+          deps: [MockImsBackend, BaseRequestOptions]
         }
       ],
       imports: [HttpModule]
     }).compileComponents();
   }));
 
-  it('Ims Version', inject([ImsService, MockBackend], (imsService: ImsService, mockBackend) => {
-    const mockResponse = '{"version":"V17Q1"}';
-    mockBackend.connections.subscribe((connection) => {
-      connection.mockRespond(new Response(new ResponseOptions({
-        body: mockResponse
-      })));
-    });
-    imsService.getInfo(new Credential("", "", "")).subscribe(info => expect(info.version).toEqual("V17Q1"));
+
+  it('Ims Version', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+      imsService.getInfo(mockImsBackend.credential).subscribe(info => expect(info.version).toEqual(mockImsBackend.version));
   }));
 
+  it('Should get link to license resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getEntryPoint(mockImsBackend.credential).subscribe(
+      entryPoint => expect(entryPoint.getLinkHref('license')).toEqual(mockImsBackend.licenseUrl),
+      err => fail(err));
+  }));
+
+ it('Should get link to entries resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getEntryPoint(mockImsBackend.credential).subscribe(
+      entryPoint => expect(entryPoint.getLinkHref('entries')).toEqual(mockImsBackend.entriesUrl),
+      err => fail(err));
+  }));
+
+  it('Should get link to token resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getTokensUrl(mockImsBackend.credential).subscribe(
+      link => expect(link).toEqual(mockImsBackend.tokensUrl),
+      err => fail(err)
+    );
+  }));
+
+  it('Should get link to filter resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getEntriesFilterUrl(mockImsBackend.credential, mockImsBackend.filterId).subscribe(
+      link => expect(link).toEqual(mockImsBackend.filterResourceUrl),
+      err => fail(err)
+    );
+  }));
 });
