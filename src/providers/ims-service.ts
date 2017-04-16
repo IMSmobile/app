@@ -22,7 +22,7 @@ export class ImsService {
     return this.getLicensePoint(credential).map(licensePoint => licensePoint.sessions.dataHref);
   }
 
-  getFilterUrl(credential: Credential, filterId: number): Observable<string> {
+  getEntriesFilterUrl(credential: Credential, filterId: number): Observable<string> {
     return this.getEntriesTable(credential).map(entriesPoint => entriesPoint.getLinkHref(filterId));
   }
 

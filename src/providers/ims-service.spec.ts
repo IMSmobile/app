@@ -52,7 +52,7 @@ describe('Provider: ImsService', () => {
   }));
 
   it('Should get link to filter resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
-    imsService.getFilterUrl(mockImsBackend.credential, mockImsBackend.filterId).subscribe(
+    imsService.getEntriesFilterUrl(mockImsBackend.credential, mockImsBackend.filterId).subscribe(
       link => expect(link).toEqual(mockImsBackend.filterResourceUrl),
       err => fail(err)
     );

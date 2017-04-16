@@ -34,7 +34,7 @@ export class UploadService {
   }
 
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
-    return this.imsService.getFilterUrl(credential, filterId).flatMap(filterUrl => {
+    return this.imsService.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
       return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => {
         let data = response.json();
         return new ArchiveEntry(data.archiveName, data.tables);
