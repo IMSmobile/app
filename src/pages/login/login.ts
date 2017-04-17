@@ -49,9 +49,17 @@ export class LoginPage {
   }
 
   loginFailed(response: Response) {
+    if (response.status === 401) {
+      this.showAlert('Can\'t login with current credential');
+    } else {
+      this.showAlert('Can\'t connect to rest server at ' + this.loginForm.controls['server'].value);
+    }
+  }
+
+  showAlert(message: string) {
     let alert = this.alertCtrl.create({
-      title: 'No Connection',
-      subTitle: 'Can\'t connect to server at' + 'todo',
+      title: 'Failed',
+      subTitle: message,
       buttons: ['Dismiss']
     });
     alert.present();
