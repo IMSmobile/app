@@ -87,14 +87,6 @@ export class LoginPage {
     toast.present();
   }
 
-  showErrorMessage(message: string) {
-    let toast = this.toastCtrl.create({
-      message: 'Enter correct credentials',
-      duration: 3000,
-    });
-    toast.present();
-  }
-
   markAllAsTouched() {   // TODO this.loginForm.markAsTouched (mark all as touched in a single call) did not working maybe after update to Ionic
     this.loginForm.controls['server'].markAsTouched();
     this.loginForm.controls['user'].markAsTouched();
