@@ -28,10 +28,7 @@ export class ImsService {
 
   getInfo(credential: Credential): Observable<Info> {
     return this.getEntryPointLink(credential, 'info').flatMap(infoUrl => {
-      console.log(infoUrl);
       return this.get(credential, infoUrl).map(response => {
-        console.log(response);
-        console.log(response.json());
         return response.json();
       });
     });
