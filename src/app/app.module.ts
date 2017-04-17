@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
+import { AuthService } from '../providers/auth-service';
 
 
 
@@ -31,6 +32,7 @@ import { ImsService } from '../providers/ims-service';
     TokenService,
     UploadService,
     ImsService,
+    AuthService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
