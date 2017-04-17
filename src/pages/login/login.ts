@@ -7,7 +7,6 @@ import { Response } from '@angular/http';
 import { HomePage } from '../home/home';
 
 
-
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -85,7 +84,7 @@ export class LoginPage {
     toast.present();
   }
 
-  markAllAsTouched() { // TODO this.loginForm.markAsTouched (mark all as touched in a single call) did not working maybe after update to Ionic
+  markAllAsTouched() {   // TODO this.loginForm.markAsTouched (mark all as touched in a single call) did not working maybe after update to Ionic
     this.loginForm.controls['server'].markAsTouched();
     this.loginForm.controls['user'].markAsTouched();
     this.loginForm.controls['password'].markAsTouched();
