@@ -36,4 +36,13 @@ describe('Provider: AuthService', () => {
       err => fail(err)
     );
   }));
+
+  it('Should not store credentials if failed', inject([AuthService, MockImsBackend], (authService: AuthService, mockImsBackend: MockImsBackend) => {
+    let credential = mockImsBackend.credential;
+    credential.server = credential.server + 'failed';
+    authService.login(credential).subscribe(
+      info => fail('Should fail'),
+      err => expect(authService.currentCredential).toBeUndefined()
+    );
+  }));
 });
