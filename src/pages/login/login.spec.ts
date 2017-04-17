@@ -1,6 +1,6 @@
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { LoginPage } from './login';
-import { App, Config, Form, IonicModule, Keyboard, DomController, MenuController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../../model/test/mock-ims-backend';
@@ -49,13 +49,13 @@ describe('Page: Login', () => {
   });
 
   it('Should popup toast message with warning message', inject([ToastController], (toastController: ToastController) => {
-    const spy = spyOn(toastController, 'create').and.callThrough();
+    spyOn(toastController, 'create').and.callThrough();
     page.login();
     expect(toastController.create).toHaveBeenCalled();
   }));
 
   it('Load HomePage after successfull login', inject([NavController, MockImsBackend], (nav: NavController, mockImsBackend: MockImsBackend) => {
-    const spy = spyOn(nav, 'setRoot').and.callThrough();
+    spyOn(nav, 'setRoot').and.callThrough();
     let credential = mockImsBackend.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
