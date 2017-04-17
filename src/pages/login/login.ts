@@ -29,6 +29,7 @@ export class LoginPage {
     if (this.loginForm.invalid) {
       this.showToastMessage('Input required');
     } else {
+      this.showLoading();
       let credential = this.createCredential();
       this.authService.login(credential).subscribe(
         info => this.loginSuccessful(),
@@ -45,10 +46,12 @@ export class LoginPage {
   }
 
   loginSuccessful() {
+    this.hideLoading();
     this.navCtrl.setRoot(HomePage);
   }
 
   loginFailed(response: Response) {
+    this.hideLoading();
     if (response.status === 401) {
       this.showAlert('Can\'t login with current credential');
     } else {

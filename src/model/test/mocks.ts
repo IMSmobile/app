@@ -199,7 +199,6 @@ export class MenuMock {
 }
 
 export class AppMock {
-
   public getActiveNav(): NavMock {
     return new NavMock();
   }
@@ -215,6 +214,21 @@ export class NavParamsMock {
   }
   static setParams(value) {
     NavParamsMock.returnParam = value;
+  }
+}
+
+export class LoadingMock {
+
+  public create(): any {
+    return this;
+  }
+
+  public present() {
+
+  }
+
+  public dismiss() {
+    
   }
 }
 /* tslint:enable */
