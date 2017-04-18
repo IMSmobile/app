@@ -18,10 +18,10 @@ export class AuthService {
   }
 
   login(credentials): Observable<Info> {
-    return this.imsService.getInfo(credentials).map(info => this.setCurrentUser(info, credentials));
+    return this.imsService.getInfo(credentials).map(info => this.setCurrentCredential(info, credentials));
   }
 
-  setCurrentUser(info: Info, credentials: Credential): Info {
+  setCurrentCredential(info: Info, credentials: Credential): Info {
     this.currentCredential = credentials;
     return info;
   }
