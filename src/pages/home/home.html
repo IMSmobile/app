@@ -7,5 +7,9 @@
 </ion-header>
 
 <ion-content padding>
-  Start Page IMS Mobile App
+    <p>Take a Picture</p>
+    <ion-icon name="camera" on-tap="takePicture()"></ion-icon>
+    <img [src]="imageSrc" />
+    <p>Upload </p>
+    <ion-icon name="cloud-upload" on-tap="uploadPicture()"></ion-icon>
 </ion-content>
