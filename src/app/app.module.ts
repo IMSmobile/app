@@ -1,4 +1,4 @@
-import { Camera } from '@ionic-native/camera';
+import { CameraProvider } from './app.providers';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -31,7 +31,7 @@ import { ImsService } from '../providers/ims-service';
     ImsService,
     StatusBar,
     SplashScreen,
-    Camera,
+    CameraProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
