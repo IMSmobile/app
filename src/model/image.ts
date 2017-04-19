@@ -1,9 +1,9 @@
 export class Image {
   name: string;
-  data: Blob;
+  fileURI: string;
 
-  constructor(name: string, data: Blob) {
+  constructor(name: string, fileURI: string) {
     this.name = name;
-    this.data = data;
+    this.fileURI = fileURI;
   }
 }

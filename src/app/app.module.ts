@@ -11,6 +11,7 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
+import { Transfer} from '@ionic-native/transfer';
 
 
 
@@ -37,6 +38,7 @@ import { AuthService } from '../providers/auth-service';
     StatusBar,
     SplashScreen,
     CameraProvider,
+    Transfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
