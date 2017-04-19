@@ -7,14 +7,14 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button icon-left>
-    <ion-icon name="camera" on-tap="takePicture()"></ion-icon>
+  <button ion-button icon-left on-tap="takePicture()">
+    <ion-icon name="camera"></ion-icon>
     Take a Picture
   </button>
   <div *ngIf="imageSrc">
     <img [src]="imageSrc" />
-    <button ion-button icon-left>
-      <ion-icon name="cloud-upload" on-tap="uploadPicture()"></ion-icon>
+    <button ion-button icon-left on-tap="uploadPicture()">
+      <ion-icon name="cloud-upload"></ion-icon>
       Upload to IMS
     </button>
   </div>
