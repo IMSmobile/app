@@ -2,7 +2,6 @@ import { Camera } from '@ionic-native/camera';
 
 export class MockCamera extends Camera {
   getPicture(options) {
-    console.log('mock getPicture() called');
     const mockImage: string =
       'iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAESElEQVR42q2WC0ybVRTH/7d0hUILpYwC' +
       '8qzdCrSD0TFWYQmTkYExihDDw7BgJpi4+KAz0WzAZnTLFk2WgZI0YQaX6ZRuuiFuSyZKOnAW0AFTCsJw' +

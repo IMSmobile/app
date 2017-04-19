@@ -6,16 +6,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding text-center>
   <button ion-button icon-left on-tap="takePicture()">
     <ion-icon name="camera"></ion-icon>
     Take a Picture
   </button>
-  <div *ngIf="imageSrc">
+  <ion-card *ngIf="imageSrc">
     <img [src]="imageSrc" />
-    <button ion-button icon-left on-tap="uploadPicture()">
-      <ion-icon name="cloud-upload"></ion-icon>
-      Upload to IMS
-    </button>
-  </div>
+    <ion-card-content>
+      <button ion-button icon-left block on-tap="uploadPicture()">
+        <ion-icon name="cloud-upload"></ion-icon>
+        Upload to IMS
+      </button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
