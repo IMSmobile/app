@@ -1,6 +1,7 @@
 import { ImageEntry } from './../../model/imageEntry';
 import { Credential } from './../../model/credential';
 import { UploadService } from './../../providers/upload-service';
+import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NavController } from 'ionic-angular';
@@ -12,7 +13,7 @@ import { Image } from '../../model/image';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService) { }
+  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService) { }
   private imageSrc: string;
   private imageBlob: Blob;
 
@@ -28,17 +29,15 @@ export class HomePage {
     this.camera.getPicture(options).then((imageData) => {
       this.imageSrc = 'data:image/jpeg;base64,' + imageData;
       this.imageBlob = new Blob([this.fixBinary(atob(imageData))]);
-      console.log('Picture taken');
     }, (err) => {
       console.warn(err);
     });
   }
 
   public uploadPicture() {
-    let credential = new Credential('https://sinv-56028.edu.hsr.ch', 'admin', 'admin', 'Rest Floating Client Read Write');
-    let imageEntry = new ImageEntry().set('IDFall', '20537').set('BILDNAME', 'Image from App');
+    let imageEntry = new ImageEntry().set('IDFall', '20537').set('BILDNAME', 'Image from Camera');
     let image = new Image('SmartPhonePhoto.jpeg', this.imageBlob);
-    this.uploadService.uploadImage(credential, 40, imageEntry, image).subscribe(
+    this.uploadService.uploadImage(this.authService.currentCredential, 40, imageEntry, image).subscribe(
       response => console.log(response),
       err => console.warn(err));
   }
