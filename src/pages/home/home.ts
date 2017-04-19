@@ -26,13 +26,11 @@ export class HomePage {
     };
 
     this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
       this.imageSrc = 'data:image/jpeg;base64,' + imageData;
       this.imageBlob = new Blob([this.fixBinary(atob(imageData))]);
       console.log('Picture taken');
     }, (err) => {
-      // Handle error
+      console.warn(err);
     });
   }
 
@@ -46,15 +44,13 @@ export class HomePage {
   }
 
   private fixBinary(bin: string) {
-  var length = bin.length;
-  var buf = new ArrayBuffer(length);
-  var arr = new Uint8Array(buf);
-  for (var i = 0; i < length; i++) {
-    arr[i] = bin.charCodeAt(i);
+    var length = bin.length;
+    var buf = new ArrayBuffer(length);
+    var arr = new Uint8Array(buf);
+    for (var i = 0; i < length; i++) {
+      arr[i] = bin.charCodeAt(i);
+    }
+    return buf;
   }
-  return buf;
-}
-
-
 
 }
