@@ -1,0 +1,26 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content padding>
+  <img src="assets/images/logo.png">
+  <h2>IMS Mobile App</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-icon name="cloud" item-left></ion-icon>
+      <ion-input placeholder="Ims Rest Base Url" formControlName="server"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="person" item-left></ion-icon>
+      <ion-input placeholder="Ims Username" formControlName="user" [class.invalid]="submitAttempt"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock" item-left></ion-icon>
+      <ion-input type="password" placeholder="Ims Password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button type="submit" class="button-login" ion-button full>Login</button>
+    </ion-item>
+  </form>
+</ion-content>

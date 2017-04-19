@@ -35,7 +35,7 @@ describe('Provider: UploadService Integration Test', () => {
     let imageEntry = new ImageEntry().set('IDFall', '23691').set('BILDNAME', 'IMS Mobile App');
     let image = new Image('image.png', getImage());
     uploadService.uploadImage(credential, 40, imageEntry, image).subscribe(
-      res => console.log(res),
+      res => expect(res).toBeDefined(),
       err => fail(err));
     })));
 });
