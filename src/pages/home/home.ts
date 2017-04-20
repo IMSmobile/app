@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NavController, LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 import { Image } from '../../model/image';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'page-home',
@@ -13,8 +14,9 @@ import { Image } from '../../model/image';
 export class HomePage {
 
   constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController) { }
-  private imageSrc: string;
-  private loading: Loading;
+  imageSrc: string;
+  loading: Loading;
+  filterId: number = 40;
 
   public takePicture() {
 
@@ -23,7 +25,7 @@ export class HomePage {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation : true
+      correctOrientation: true
     };
 
     this.camera.getPicture(options).then((imageData) => {
@@ -37,16 +39,21 @@ export class HomePage {
     this.showLoading();
     let imageEntry = new ImageEntry().set('IDFall', '20537').set('BILDNAME', 'Image from Camera');
     let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
-    this.uploadService.uploadImage(this.authService.currentCredential, 40, imageEntry, image).subscribe(
-      response => {
-        this.hideLoading();
-        this.showToastMessage('Image successfully uploaded!');
-      },
-      err => {
-        this.hideLoading();
-        this.showAlert('Oops, something went wrong!');
-        console.warn(err);
-      });
+    this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
+      res => this.uploadSuccessful(),
+      err => this.uploadFailed(err)
+    );
+  }
+
+  uploadSuccessful() {
+    this.hideLoading();
+    this.showToastMessage('Image successfully uploaded!');
+  }
+
+  uploadFailed(err: Response) {
+    this.hideLoading();
+    this.showAlert('Oops, something went wrong!');
+    console.warn(err);
   }
 
   showAlert(message: string) {
