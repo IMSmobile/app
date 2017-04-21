@@ -1,6 +1,6 @@
 import { Response, ResponseOptions } from '@angular/http';
-import { LicensePoint } from '../license-point';
-import { Link } from '../link';
+import { LicensePoint } from '../../model/license-point';
+import { Link } from '../../model/link';
 
 export class LicensePointResponse extends Response {
 

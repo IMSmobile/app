@@ -4,13 +4,12 @@ import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingControl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
-import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock } from '../../model/test/mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock } from '../../mocks/mocks';
 import { Camera } from '@ionic-native/camera';
-import { MockCamera } from '../../providers/test/mock-camera';
+import { MockCamera } from '../../mocks/providers/mock-camera';
 import { UploadService } from '../../providers/upload-service';
-import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { TokenService } from '../../providers/token-service';
-import { MockUploadService } from '../../providers/test/mock-upload-service';
+import { MockUploadService } from '../../mocks/providers/mock-upload-service';
 
 describe('Page: Home', () => {
 

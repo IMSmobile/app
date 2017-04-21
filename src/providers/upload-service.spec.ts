@@ -1,4 +1,4 @@
-import { MockImsBackend } from './../model/test/mock-ims-backend';
+import { MockImsBackend } from '../mocks/mock-ims-backend';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { UploadService } from './upload-service';
@@ -7,7 +7,7 @@ import { ImsService } from './ims-service';
 import { ImageEntry } from '../model/imageEntry';
 import { Image } from '../model/image';
 import { Transfer } from '@ionic-native/transfer';
-import { MockTransfer } from './test/mock-transfer';
+import { MockTransfer } from '../mocks/providers/mock-transfer';
 
 describe('Provider: UploadService', () => {
 

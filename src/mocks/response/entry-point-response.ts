@@ -1,6 +1,6 @@
 import { Response, ResponseOptions } from '@angular/http';
-import { EntryPoint } from '../entry-point';
-import { Link } from '../link';
+import { EntryPoint } from '../../model/entry-point';
+import { Link } from '../../model/link';
 
 export class EntryPointResponse extends Response {
 

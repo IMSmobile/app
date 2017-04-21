@@ -1,5 +1,5 @@
 import { Response, ResponseOptions} from '@angular/http';
-import { Token } from '../token';
+import { Token } from '../../model/token';
 
 export class TokenResponse extends Response {
 

@@ -1,4 +1,4 @@
-import { EntriesPoint } from './../entries-point';
+import { EntriesPoint } from '../../model/entries-point';
 import { Response, ResponseOptions} from '@angular/http';
 
 export class EntriesResponse extends Response {

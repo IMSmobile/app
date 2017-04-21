@@ -1,4 +1,4 @@
-import { Transfer, TransferObject, FileUploadOptions, FileUploadResult } from '@ionic-native/transfer';
+import { FileUploadOptions, FileUploadResult } from '@ionic-native/transfer';
 
 export class MockTransfer {
   create() {

@@ -1,7 +1,7 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsService } from './ims-service';
-import { MockImsBackend } from '../model/test/mock-ims-backend';
+import { MockImsBackend } from '../mocks/mock-ims-backend';
 
 describe('Provider: ImsService', () => {
 
