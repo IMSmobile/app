@@ -7,6 +7,7 @@ import { ImsService } from './ims-service';
 import { ImageEntry } from '../model/imageEntry';
 import { Image } from '../model/image';
 import { Transfer } from '@ionic-native/transfer';
+import { MockTransfer } from './test/mock-transfer';
 
 describe('Provider: UploadService', () => {
 
@@ -19,7 +20,7 @@ describe('Provider: UploadService', () => {
         ImsService,
         MockImsBackend,
         BaseRequestOptions,
-        Transfer,
+        { provide: Transfer, useClass: MockTransfer },
         {
           provide: Http,
           useFactory: (mockImsBackend, options) => {
