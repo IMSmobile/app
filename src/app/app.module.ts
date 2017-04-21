@@ -10,6 +10,8 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 
 
 
@@ -20,6 +22,8 @@ import { AuthService } from '../providers/auth-service';
     LoginPage
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -35,7 +39,7 @@ import { AuthService } from '../providers/auth-service';
     AuthService,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
