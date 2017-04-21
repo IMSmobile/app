@@ -1,7 +1,7 @@
 import { CameraProvider } from './app.providers';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { MobileClient } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
@@ -17,16 +17,16 @@ import { Transfer} from '@ionic-native/transfer';
 
 @NgModule({
   declarations: [
-    MyApp,
+    MobileClient,
     HomePage,
     LoginPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MobileClient)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MobileClient,
     HomePage,
     LoginPage
   ],
