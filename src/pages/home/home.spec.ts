@@ -2,8 +2,6 @@ import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing'
 import { HomePage } from './home';
 import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { MockImsBackend } from '../../model/test/mock-ims-backend';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock } from '../../model/test/mocks';
@@ -12,8 +10,7 @@ import { MockCamera } from '../../providers/test/mock-camera';
 import { UploadService } from '../../providers/upload-service';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { TokenService } from '../../providers/token-service';
-import { Credential } from '../../model/credential';
-import { MockTransfer, MockTransferObject } from '../../providers/test/mock-transfer';
+import { MockUploadService } from '../../providers/test/mock-upload-service';
 
 describe('Page: Home', () => {
 
@@ -27,14 +24,7 @@ describe('Page: Home', () => {
       declarations: [HomePage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, MockImsBackend, BaseRequestOptions, UploadService, TokenService,
-        {
-          provide: Http,
-          useFactory: (MockImsBackend, options) => {
-            return new Http(MockImsBackend, options);
-          },
-          deps: [MockImsBackend, BaseRequestOptions]
-        },
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, MockUploadService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -43,10 +33,9 @@ describe('Page: Home', () => {
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
         { provide: Camera, useClass: MockCamera },
-        { provide: Transfer, useClass: MockTransfer },
-        { provide: TransferObject, useClass: MockTransferObject },
+        { provide: UploadService, useClass: MockUploadService }
       ],
-      imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
+      imports: [FormsModule, IonicModule, ReactiveFormsModule]
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(HomePage);
       page = fixture.componentInstance;
@@ -58,27 +47,28 @@ describe('Page: Home', () => {
     fixture.destroy();
   });
 
-  it('Show and Hide Loading while uploading', inject([MockImsBackend, AuthService], (mockImsBackend: MockImsBackend, authService: AuthService) => {
+  it('Show and Hide Loading while uploading', () => {
     spyOn(page, 'showLoading').and.callThrough();
     spyOn(page, 'hideLoading').and.callThrough();
-    authService.currentCredential = new Credential(mockImsBackend.baseUrl, '', '');
-    page.filterId = mockImsBackend.filterId;
-    page.imageSrc = '';
     page.uploadPicture();
     expect(page.showLoading).toHaveBeenCalledTimes(1);
-    // TODO: make expect work
-    // expect(page.hideLoading).toHaveBeenCalledTimes(1);
+    expect(page.hideLoading).toHaveBeenCalledTimes(1);
+  });
+
+  it('Show Toast after successfull upload', inject([ToastController], (toastController: ToastController) => {
+    spyOn(toastController, 'create').and.callThrough();
+    page.uploadPicture();
+    expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show Toast after successfull upload', inject([ToastController, MockImsBackend, AuthService], (toastController: ToastController, mockImsBackend: MockImsBackend, authService: AuthService) => {
-    spyOn(toastController, 'create').and.callThrough();
+    it('Show Error after failed upload', inject([AlertController, MockUploadService], (alertController: AlertController, mockUploadService: MockUploadService) => {
+    spyOn(alertController, 'create').and.callThrough();
     spyOn(page, 'showAlert').and.callThrough();
-    authService.currentCredential = new Credential(mockImsBackend.baseUrl, '', '');
-    page.filterId = mockImsBackend.filterId;
-    page.imageSrc = '';
+    mockUploadService.mockError('Fail');
+    page.uploadService = mockUploadService;
     page.uploadPicture();
-    // TODO: make expect work
-    // expect(toastController.create).toHaveBeenCalled();
+    expect(alertController.create).toHaveBeenCalledTimes(1);
+    expect(page.showAlert).toHaveBeenCalledTimes(1);
   }));
 
 });
