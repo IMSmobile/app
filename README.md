@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/IMSmobile/app.svg?branch=master)](https://travis-ci.org/IMSmobile/app)
+[![Coverage Status](https://coveralls.io/repos/github/IMSmobile/app/badge.svg)](https://coveralls.io/github/IMSmobile/app)
 
 # IMS Mobile Client App
 
@@ -45,8 +46,6 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [IMS Publisher Police](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_police/) | IMS Publisher mit konfiguriertem Polizeiarchiv |
 | [IMS Publisher Medicine](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_medicine/) | IMS Publisher mit konfiguriertem Medizinarchiv |
 | [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes der IMS Mobile App |
-
-
 
 ### Glossar
 Siehe [Glossar](docs/glossary.md)
@@ -274,6 +273,13 @@ Bei einem Review möchten wir
 - Auch Lob auszusprechen um die Arbeit des Anderen wertzuschätzen
 
 Damit die Wartezeit möglichst kurz gehalten wird, haben Reviews von einem Pull Request immer Priorität gegenüber dem Beginn einer neuen Aufgabe. Ausserdem dürfen kleinere Fehler ohne Rücksprache mit dem Autor selbständig vom Reviewer behoben werden.
+
+#### Code Coverage 
+Mit Code Coverage können wir sicher stellen, dass der Code in einem Test ausgeführt wurde. Die Code Coverage wird automatisch mit jedem Travis Build ausgeführt und kann danach online in [coveralls](https://coveralls.io/github/IMSmobile/app) angesehen werden. Eine lokale Code Coverage kann mit folgendem Befehl ausgeführt werden.
+```shell
+npm run test-coverage
+```
+
 
 #### Code Guideline
 
