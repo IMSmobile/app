@@ -3,6 +3,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MobileClient } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { PopoverPage } from '../pages/popover/popover';
+import { SettingsPage } from './../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +19,9 @@ import { Camera } from '@ionic-native/camera';
   declarations: [
     MobileClient,
     HomePage,
-    LoginPage
+    LoginPage,
+    PopoverPage,
+    SettingsPage
   ],
   imports: [
     IonicModule.forRoot(MobileClient)
@@ -26,7 +30,9 @@ import { Camera } from '@ionic-native/camera';
   entryComponents: [
     MobileClient,
     HomePage,
-    LoginPage
+    LoginPage,
+    PopoverPage,
+    SettingsPage
   ],
   providers: [
     TokenService,
