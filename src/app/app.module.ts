@@ -11,8 +11,9 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
-import { Transfer} from '@ionic-native/transfer';
-
+import { Transfer } from '@ionic-native/transfer';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { Transfer} from '@ionic-native/transfer';
     LoginPage
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MobileClient)
   ],
   bootstrap: [IonicApp],
@@ -39,7 +42,7 @@ import { Transfer} from '@ionic-native/transfer';
     SplashScreen,
     CameraProvider,
     Transfer,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
