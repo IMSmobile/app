@@ -6,7 +6,7 @@ import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
-import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock } from '../../mocks/mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
 import { HomePage } from '../home/home';
 
 describe('Page: Login', () => {
@@ -36,6 +36,7 @@ describe('Page: Login', () => {
         { provide: NavParams, useClass: NavParamsMock },
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
+        { provide: Storage, useClass: StorageMock }
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
     }).compileComponents().then(() => {

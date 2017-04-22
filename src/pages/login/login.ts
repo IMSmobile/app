@@ -5,7 +5,7 @@ import { AuthService } from '../../providers/auth-service';
 import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { HomePage } from '../home/home';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-login',
@@ -16,7 +16,7 @@ export class LoginPage {
   loginForm: FormGroup;
   loading: Loading;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public storage: Storage) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
@@ -47,6 +47,10 @@ export class LoginPage {
 
   loginSuccessful() {
     this.hideLoading();
+    this.storage.ready().then(() => {
+      this.storage.set('server', this.loginForm.controls['server'].value);
+      this.storage.set('user', this.loginForm.controls['user'].value);
+    });
     this.navCtrl.setRoot(HomePage);
   }
 
@@ -91,6 +95,13 @@ export class LoginPage {
     this.loginForm.controls['server'].markAsTouched();
     this.loginForm.controls['user'].markAsTouched();
     this.loginForm.controls['password'].markAsTouched();
+  }
+
+  ionViewDidLoad() {
+    this.storage.ready().then(() => {
+      this.storage.get('server').then(val => this.loginForm.controls['server'].setValue(val));
+      this.storage.get('user').then(val => this.loginForm.controls['user'].setValue(val));
+    });
   }
 
 }

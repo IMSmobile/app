@@ -1,3 +1,4 @@
+import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MobileClient } from './app.component';
@@ -24,7 +25,11 @@ import { Camera } from '@ionic-native/camera';
     SettingsPage
   ],
   imports: [
-    IonicModule.forRoot(MobileClient)
+    IonicModule.forRoot(MobileClient),
+    IonicStorageModule.forRoot({
+     name: 'imsClientDB',
+        driverOrder: ['websql']
+   })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,6 +47,7 @@ import { Camera } from '@ionic-native/camera';
     StatusBar,
     SplashScreen,
     Transfer,
+    IonicStorageModule,
     Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
