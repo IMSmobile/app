@@ -161,6 +161,11 @@ export class StatusMock {
 
 export class StorageMock {
 
+  public ready() : Promise<{}> {
+    return new Promise((resolve: Function) => {
+      resolve({});
+    });  }
+
   public get(key: string): Promise<{}> {
     return new Promise((resolve: Function) => {
       resolve({});

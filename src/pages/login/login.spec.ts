@@ -8,6 +8,8 @@ import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
 import { HomePage } from '../home/home';
+import { Storage } from '@ionic/storage';
+
 
 describe('Page: Login', () => {
 
