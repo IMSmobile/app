@@ -10,11 +10,14 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
+<<<<<<< HEAD
 import { Transfer } from '@ionic-native/transfer';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { Camera } from '@ionic-native/camera';
 
+=======
+>>>>>>> 8b22bd2377f2bd2131e95368bad60c888c70143a
 
 
 @NgModule({
@@ -24,9 +27,13 @@ import { Camera } from '@ionic-native/camera';
     LoginPage
   ],
   imports: [
+<<<<<<< HEAD
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MobileClient)
+=======
+    IonicModule.forRoot(MyApp)
+>>>>>>> 8b22bd2377f2bd2131e95368bad60c888c70143a
   ],
   bootstrap: [IonicApp],
   entryComponents: [
