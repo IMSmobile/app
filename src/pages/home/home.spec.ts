@@ -8,7 +8,6 @@ import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock,
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { Camera } from '@ionic-native/camera';
-import { MockCamera } from '../../mocks/providers/mock-camera';
 import { UploadService } from '../../providers/upload-service';
 import { TokenService } from '../../providers/token-service';
 import { MockUploadService } from '../../mocks/providers/mock-upload-service';
@@ -25,7 +24,7 @@ describe('Page: Home', () => {
       declarations: [HomePage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, MockUploadService, MockImsBackend, BaseRequestOptions,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, Camera,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -33,7 +32,6 @@ describe('Page: Home', () => {
         { provide: NavParams, useClass: NavParamsMock },
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
-        { provide: Camera, useClass: MockCamera },
         { provide: UploadService, useClass: MockUploadService },
         {
           provide: Http,
