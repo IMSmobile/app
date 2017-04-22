@@ -14,7 +14,7 @@ export class MockTransferObject  {
   }
 }
 
-class MockFileUploadResult {
+export class MockFileUploadResult {
   bytesSent: number;
   responseCode: number;
   response: string;
