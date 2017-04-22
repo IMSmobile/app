@@ -1,4 +1,3 @@
-import { CameraProvider } from './app.providers';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MobileClient } from './app.component';
@@ -14,6 +13,8 @@ import { AuthService } from '../providers/auth-service';
 import { Transfer } from '@ionic-native/transfer';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { Camera } from '@ionic-native/camera';
+
 
 
 @NgModule({
@@ -40,8 +41,8 @@ import { HttpModule } from '@angular/http';
     AuthService,
     StatusBar,
     SplashScreen,
-    CameraProvider,
     Transfer,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
