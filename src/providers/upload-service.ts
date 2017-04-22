@@ -2,19 +2,21 @@ import { ImsService } from './ims-service';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Credential } from '../model/credential';
-import { ImageEntry } from '../model/imageEntry';
-import { Image } from '../model/image';
+import 'rxjs/add/observable/fromPromise';
+import { Credential } from '../models/credential';
+import { ImageEntry } from '../models/imageEntry';
+import { Image } from '../models/image';
+import { ImsHeaders } from '../models/imsHeaders';
+import { Token } from '../models/token';
+import { ArchiveEntry } from '../models/archiveEntry';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './token-service';
-import { ImsHeaders } from '../model/imsHeaders';
-import { Token } from '../model/token';
-import { ArchiveEntry } from '../model/archiveEntry';
+import { Transfer, FileUploadOptions, TransferObject, FileUploadResult } from '@ionic-native/transfer';
 
 @Injectable()
 export class UploadService {
 
-  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService) {
+  constructor(public transfer: Transfer, public http: Http, public tokenService: TokenService, public imsService: ImsService) {
   }
 
   uploadImage(credential: Credential, filterId: number, imageEntry: ImageEntry, image: Image): Observable<Response> {
@@ -42,14 +44,23 @@ export class UploadService {
     });
   }
 
-  postToContainer(credential: Credential, url: string, token: Token, image: Image): Observable<Response> {
+  postToContainer(credential: Credential, url: string, token: Token, image: Image): Observable<FileUploadResult> {
+    const fileTransfer: TransferObject = this.transfer.create();
+
     let headers = new ImsHeaders(credential, token);
     headers.set('Content-Type', 'application/octet-stream');
     headers.append('Content-Disposition', 'attachment; filename=' + image.name);
-    return this.http.post(url, image.data, { headers: headers });
+
+    let options: FileUploadOptions = {
+      fileName: image.name,
+      headers: headers
+    };
+
+    return Observable.fromPromise(fileTransfer.upload(image.fileURI, url, options));
   }
 
   createImageEntry(credential: Credential, url: string, token: Token, imageEntry: ImageEntry) {
     return this.http.post(url, imageEntry.json(), { headers: new ImsHeaders(credential, token) });
   }
 }
+

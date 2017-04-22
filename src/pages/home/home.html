@@ -6,6 +6,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  Start Page IMS Mobile App
+<ion-content padding text-center>
+  <button ion-button icon-left on-tap="takePicture()">
+    <ion-icon name="camera"></ion-icon>
+    Take a Picture
+  </button>
+  <ion-card *ngIf="imageSrc">
+    <img [src]="imageSrc" />
+    <ion-card-content>
+      <button ion-button icon-left block on-tap="uploadPicture()">
+        <ion-icon name="cloud-upload"></ion-icon>
+        Upload to IMS
+      </button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

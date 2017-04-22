@@ -32,6 +32,9 @@
     "ionicons": "3.0.0",
     "rxjs": "5.0.1",
     "sw-toolbox": "3.4.0",
+    "@ionic-native/file": "^3.5.0",
+    "@ionic-native/camera": "^3.5.0",
+    "@ionic-native/transfer": "^3.5.0",
     "zone.js": "0.7.2"
   },
   "devDependencies": {
@@ -61,9 +64,9 @@
     "ts-loader": "^2.0.3",
     "tslint": "^5.0.0",
     "tslint-ionic-rules": "0.0.8",
-    "typescript": "^2.1.6",
     "istanbul-instrumenter-loader": "^2.0.0",
-    "karma-coverage-istanbul-reporter": "^1.0.0"
+    "karma-coverage-istanbul-reporter": "^1.0.0",
+    "typescript": "2.1.6"
   },
   "version": "0.0.1",
   "description": "Cross-Platform Ionic App for IMS"

@@ -4,17 +4,17 @@ import { IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { MyApp } from './app.component';
+import { MobileClient } from './app.component';
 
-describe('MyApp Component', () => {
+describe('MobileApp Component', () => {
   let fixture;
   let component;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MyApp],
+      declarations: [MobileClient],
       imports: [
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MobileClient)
       ],
       providers: [
         StatusBar,
@@ -24,11 +24,12 @@ describe('MyApp Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyApp);
+    fixture = TestBed.createComponent(MobileClient);
     component = fixture.componentInstance;
   });
 
   it ('should be created', () => {
-    expect(component instanceof MyApp).toBe(true);
+    expect(component instanceof MobileClient).toBe(true);
   });
+
 });

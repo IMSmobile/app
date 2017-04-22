@@ -1,7 +1,7 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { HttpModule} from '@angular/http';
 import { ImsService } from './ims-service';
-import { Credential } from '../model/credential';
+import { Credential } from '../models/credential';
 
 
 describe('Provider: ImsService Integration Test', () => {

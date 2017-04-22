@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { MobileClient } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
@@ -10,20 +10,21 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
-
+import { Transfer } from '@ionic-native/transfer';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
-    MyApp,
+    MobileClient,
     HomePage,
     LoginPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MobileClient)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MobileClient,
     HomePage,
     LoginPage
   ],
@@ -34,6 +35,8 @@ import { AuthService } from '../providers/auth-service';
     AuthService,
     StatusBar,
     SplashScreen,
+    Transfer,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
