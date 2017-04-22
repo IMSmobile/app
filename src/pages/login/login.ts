@@ -15,6 +15,7 @@ export class LoginPage {
 
   loginForm: FormGroup;
   loading: Loading;
+  isShowRestUrlField: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public storage: Storage) {
     this.loginForm = this.formBuilder.group({
@@ -101,6 +102,10 @@ export class LoginPage {
     this.storage.ready().then(() => {
       this.storage.get('server').then(val => this.loginForm.controls['server'].setValue(val));
       this.storage.get('user').then(val => this.loginForm.controls['user'].setValue(val));
+      this.storage.get('isShowRestUrlField').then(val => {
+        val === null ? this.isShowRestUrlField = true : this.isShowRestUrlField = val;
+        console.log(this.isShowRestUrlField);
+      });
     });
   }
 

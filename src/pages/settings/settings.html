@@ -8,5 +8,8 @@
 
 
 <ion-content padding>
-
+<ion-item>
+  <ion-label>Show Rest Url Field</ion-label>
+  <ion-toggle [(ngModel)]="isShowRestUrlField" (ionChange)="notify()"></ion-toggle>
+</ion-item>
 </ion-content>

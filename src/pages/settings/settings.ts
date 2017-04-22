@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-settings',
@@ -7,10 +9,22 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  public isShowRestUrlField: boolean;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    this.isShowRestUrlField = true;
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    this.storage.ready().then(() => {
+      this.storage.get('isShowRestUrlField').then(val => this.isShowRestUrlField = val);
+    });
+  }
+
+  public notify() {
+    this.storage.ready().then(() => {
+      this.storage.set('isShowRestUrlField', this.isShowRestUrlField);
+    });
   }
 
 }
