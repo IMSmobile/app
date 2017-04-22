@@ -30,7 +30,14 @@ module.exports = function (config) {
       terminal: true
     },
 
-    reporters: ['kjhtml', 'dots', 'verbose'],
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly'],
+      fixWebpackSourcePaths: true
+    },
+
+
+
+    reporters: config.coverage ? ['kjhtml', 'dots', 'coverage-istanbul', 'verbose'] : ['kjhtml', 'dots', 'verbose'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
