@@ -3,8 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ImsService } from './ims-service';
 import { Observable } from 'rxjs/Observable';
-import { Credential } from '../model/credential';
-import { Info } from '../model/info';
+import { Credential } from '../models/credential';
+import { Info } from '../models/info';
 
 
 

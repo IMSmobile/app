@@ -1,12 +1,13 @@
-import { Credential } from './../model/credential';
+
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Info } from '../model/info';
-import { ImsHeaders } from '../model/imsHeaders';
-import { EntryPoint } from '../model/entry-point';
-import { LicensePoint } from '../model/license-point';
-import { EntriesPoint } from '../model/entries-point';
+import { Info } from '../models/info';
+import { Credential } from './../models/credential';
+import { ImsHeaders } from '../models/imsHeaders';
+import { EntryPoint } from '../models/entry-point';
+import { LicensePoint } from '../models/license-point';
+import { EntriesPoint } from '../models/entries-point';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';

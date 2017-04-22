@@ -1,8 +1,8 @@
-import { Credential } from '../../model/credential';
-import { ImageEntry } from '../../model/imageEntry';
-import { Token } from '../../model/token';
-import { ArchiveEntry } from '../../model/archiveEntry';
-import { Image } from '../../model/image';
+import { Credential } from '../../models/credential';
+import { ImageEntry } from '../../models/imageEntry';
+import { Token } from '../../models/token';
+import { ArchiveEntry } from '../../models/archiveEntry';
+import { Image } from '../../models/image';
 import { Observable } from 'rxjs/Observable';
 import { Response, ResponseOptions, Headers } from '@angular/http';
 import { FileUploadResult } from '@ionic-native/transfer';

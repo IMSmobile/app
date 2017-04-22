@@ -2,10 +2,10 @@ import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule } from '@angular/http';
 import { ImsService } from './ims-service';
 import { UploadService } from './upload-service';
-import { Credential } from '../model/credential';
+import { Credential } from '../models/credential';
 import { TokenService } from './token-service';
-import { ImageEntry } from '../model/imageEntry';
-import { Image } from '../model/image';
+import { ImageEntry } from '../models/imageEntry';
+import { Image } from '../models/image';
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 

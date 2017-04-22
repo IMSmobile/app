@@ -4,8 +4,8 @@ import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { UploadService } from './upload-service';
 import { TokenService } from './token-service';
 import { ImsService } from './ims-service';
-import { ImageEntry } from '../model/imageEntry';
-import { Image } from '../model/image';
+import { ImageEntry } from '../models/imageEntry';
+import { Image } from '../models/image';
 import { Transfer } from '@ionic-native/transfer';
 import { MockTransfer } from '../mocks/providers/mock-transfer';
 

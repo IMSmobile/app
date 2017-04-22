@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams, LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { Credential } from '../../model/credential';
+import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { HomePage } from '../home/home';
 

@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/fromPromise';
-import { Credential } from '../model/credential';
-import { ImageEntry } from '../model/imageEntry';
-import { Image } from '../model/image';
+import { Credential } from '../models/credential';
+import { ImageEntry } from '../models/imageEntry';
+import { Image } from '../models/image';
+import { ImsHeaders } from '../models/imsHeaders';
+import { Token } from '../models/token';
+import { ArchiveEntry } from '../models/archiveEntry';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './token-service';
-import { ImsHeaders } from '../model/imsHeaders';
-import { Token } from '../model/token';
-import { ArchiveEntry } from '../model/archiveEntry';
 import { Transfer, FileUploadOptions, TransferObject, FileUploadResult } from '@ionic-native/transfer';
 
 @Injectable()

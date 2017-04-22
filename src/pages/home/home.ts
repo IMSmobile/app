@@ -1,10 +1,10 @@
-import { ImageEntry } from './../../model/imageEntry';
+import { ImageEntry } from './../../models/imageEntry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NavController, LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
-import { Image } from '../../model/image';
+import { Image } from '../../models/image';
 import { Response } from '@angular/http';
 
 @Component({

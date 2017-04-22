@@ -4,9 +4,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
-import { Credential } from '../model/credential';
-import { ImsHeaders } from '../model/imsHeaders';
-import { Token } from '../model/token';
+import { Credential } from '../models/credential';
+import { ImsHeaders } from '../models/imsHeaders';
+import { Token } from '../models/token';
 import { ImsService } from './ims-service';
 
 @Injectable()

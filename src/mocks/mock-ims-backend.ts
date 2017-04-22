@@ -6,13 +6,13 @@ import { LocationResponse } from './response//locationResponse';
 import { TokenResponse } from './response//tokenResponse';
 import { EntriesResponse } from './response/entriesResponse';
 import { ArchiveEntryResponse } from './response/archiveEntryResponse';
-import { ArchiveTableEntry } from '../model/archiveTableEntry';
-import { ArchiveEntry } from '../model/archiveEntry';
-import { Token } from '../model/token';
-import { Link } from '../model/link';
-import { Credential } from '../model/credential';
-import { Filter } from '../model/filter';
-import { EntriesPoint } from '../model/entries-point';
+import { ArchiveTableEntry } from '../models/archiveTableEntry';
+import { ArchiveEntry } from '../models/archiveEntry';
+import { Token } from '../models/token';
+import { Link } from '../models/link';
+import { Credential } from '../models/credential';
+import { Filter } from '../models/filter';
+import { EntriesPoint } from '../models/entries-point';
 
 export class MockImsBackend extends MockBackend {
 
