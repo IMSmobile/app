@@ -64,7 +64,6 @@
     "ts-loader": "^2.0.3",
     "tslint": "^5.0.0",
     "tslint-ionic-rules": "0.0.8",
-    "typescript": "^2.1.6",
     "istanbul-instrumenter-loader": "^2.0.0",
     "karma-coverage-istanbul-reporter": "^1.0.0"
   },
