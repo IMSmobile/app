@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock } from '../../mocks/mocks';
+import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
+import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { Camera } from '@ionic-native/camera';
 import { MockCamera } from '../../mocks/providers/mock-camera';
 import { UploadService } from '../../providers/upload-service';
@@ -23,7 +25,7 @@ describe('Page: Home', () => {
       declarations: [HomePage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, MockUploadService,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, MockUploadService, MockImsBackend, BaseRequestOptions,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -32,9 +34,16 @@ describe('Page: Home', () => {
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
         { provide: Camera, useClass: MockCamera },
-        { provide: UploadService, useClass: MockUploadService }
+        { provide: UploadService, useClass: MockUploadService },
+        {
+          provide: Http,
+          useFactory: (MockImsBackend, options) => {
+            return new Http(MockImsBackend, options);
+          },
+          deps: [MockImsBackend, BaseRequestOptions]
+        },
       ],
-      imports: [FormsModule, IonicModule, ReactiveFormsModule]
+      imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(HomePage);
       page = fixture.componentInstance;
@@ -60,7 +69,7 @@ describe('Page: Home', () => {
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-    it('Show Error after failed upload', inject([AlertController, MockUploadService], (alertController: AlertController, mockUploadService: MockUploadService) => {
+  it('Show Error after failed upload', inject([AlertController, MockUploadService], (alertController: AlertController, mockUploadService: MockUploadService) => {
     spyOn(alertController, 'create').and.callThrough();
     spyOn(page, 'showAlert').and.callThrough();
     mockUploadService.mockError('Fail');
