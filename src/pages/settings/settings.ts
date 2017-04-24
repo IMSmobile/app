@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { SettingService } from '../../providers/setting-service';
 
 
 @Component({
@@ -11,20 +11,12 @@ export class SettingsPage {
 
   public isShowRestUrlField: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-    this.isShowRestUrlField = true;
-  }
-
-  ionViewDidLoad() {
-    this.storage.ready().then(() => {
-      this.storage.get('isShowRestUrlField').then(val => this.isShowRestUrlField = val);
-    });
+  constructor(public navCtrl: NavController, public navParams: NavParams, public settingService: SettingService) {
+    this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);
   }
 
   public notify() {
-    this.storage.ready().then(() => {
-      this.storage.set('isShowRestUrlField', this.isShowRestUrlField);
-    });
+    this.settingService.setShowRestUrlField(this.isShowRestUrlField);
   }
 
 }

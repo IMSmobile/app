@@ -4,7 +4,7 @@ import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingControl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
-import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock } from '../../mocks/mocks';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { Camera } from '@ionic-native/camera';

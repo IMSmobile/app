@@ -6,6 +6,8 @@ import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
+import { SettingService } from '../../providers/setting-service';
+
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
 import { HomePage } from '../home/home';
 import { Storage } from '@ionic/storage';
@@ -23,7 +25,7 @@ describe('Page: Login', () => {
       declarations: [LoginPage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, MockImsBackend, BaseRequestOptions,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, MockImsBackend, BaseRequestOptions, SettingService,
         {
           provide: Http,
           useFactory: (MockImsBackend, options) => {

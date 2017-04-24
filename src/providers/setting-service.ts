@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
-import { Setting } from '../models/setting';
 
 
 

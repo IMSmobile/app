@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams, LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
+import { SettingService } from '../../providers/setting-service';
+
 import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { HomePage } from '../home/home';
-import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-login',
@@ -17,7 +19,7 @@ export class LoginPage {
   loading: Loading;
   isShowRestUrlField: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
@@ -48,10 +50,8 @@ export class LoginPage {
 
   loginSuccessful() {
     this.hideLoading();
-    this.storage.ready().then(() => {
-      this.storage.set('server', this.loginForm.controls['server'].value);
-      this.storage.set('user', this.loginForm.controls['user'].value);
-    });
+    this.settingService.setRestUrl(this.loginForm.controls['server'].value);
+    this.settingService.setUsername(this.loginForm.controls['user'].value);
     this.navCtrl.setRoot(HomePage);
   }
 
@@ -99,14 +99,9 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    this.storage.ready().then(() => {
-      this.storage.get('server').then(val => this.loginForm.controls['server'].setValue(val));
-      this.storage.get('user').then(val => this.loginForm.controls['user'].setValue(val));
-      this.storage.get('isShowRestUrlField').then(val => {
-        val === null ? this.isShowRestUrlField = true : this.isShowRestUrlField = val;
-        console.log(this.isShowRestUrlField);
-      });
-    });
+    this.settingService.getRestUrl().subscribe(val => this.loginForm.controls['server'].setValue(val));
+    this.settingService.getUsername().subscribe(val => this.loginForm.controls['user'].setValue(val));
+    this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);
   }
 
 }
