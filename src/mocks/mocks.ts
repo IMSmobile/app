@@ -160,22 +160,21 @@ export class StatusMock {
 }
 
 export class StorageMock {
+  store = {};
 
-  public ready() : Promise<{}> {
-    return new Promise((resolve: Function) => {
-      resolve({});
-    });  }
-
-  public get(key: string): Promise<{}> {
+  public ready(): Promise<{}> {
     return new Promise((resolve: Function) => {
       resolve({});
     });
   }
 
+  public get(key: string): Promise<string> {
+    return Promise.resolve(this.store[key]);
+  }
+
   public set(key: string, value: string): Promise<{}> {
-    return new Promise((resolve: Function) => {
-      resolve({ key: key, value: value });
-    });
+    this.store[key] = value;
+    return Promise.resolve({});
   }
 
   public remove(key: string): Promise<{}> {
@@ -233,7 +232,7 @@ export class LoadingMock {
   }
 
   public dismiss() {
-    
+
   }
 }
 /* tslint:enable */

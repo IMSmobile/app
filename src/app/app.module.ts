@@ -13,6 +13,8 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
+import { SettingService } from '../providers/setting-service';
+
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
 
@@ -27,9 +29,9 @@ import { Camera } from '@ionic-native/camera';
   imports: [
     IonicModule.forRoot(MobileClient),
     IonicStorageModule.forRoot({
-     name: 'imsClientDB',
-        driverOrder: ['websql']
-   })
+      name: 'imsClientDB',
+      driverOrder: ['websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,6 +51,7 @@ import { Camera } from '@ionic-native/camera';
     Transfer,
     IonicStorageModule,
     Camera,
+    SettingService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
