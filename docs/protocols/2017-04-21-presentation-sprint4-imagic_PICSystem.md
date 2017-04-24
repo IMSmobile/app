@@ -4,8 +4,8 @@ Freitag, 21.04.2017 10:00-10:30 bei PIC Systems AG, Glattbrugg
 
 ## Teilnehmer
 
-PIC Systems: Marcel Bachmann, Adrian Martin, Michael Bachmann <br>
-imagic: Urs Gomez, Patrik Wermelinger <br>
+PIC Systems: Marcel Bachmann, Adrian Martin, Michael Bachmann  
+Imagic: Urs Gomez, Patrik Wermelinger  
 IMS Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 
 ## Traktanden
@@ -16,7 +16,7 @@ IMS Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 ## Protokoll
 
 ### Tasks done
-- Wireframes Presentation -> bereits vergangene Woche gezeigt
+- Wireframes Presentation → bereits vergangene Woche gezeigt
 - Continuous Integration
 - Upload Image (without UI)
 - Icon / Splashscreen
@@ -24,7 +24,8 @@ IMS Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - TSLint Static Code Analysis
 - Personas / Test Accounts
 
--> Präsentiert, keine offenen Fragen erhalten
+→ Präsentiert, keine offenen Fragen erhalten
+
 ### In progress
 Kameraupload noch 2 Probleme:
 - Timeout bei Upload
@@ -39,13 +40,13 @@ Coverage:
 - Einzelne Dokumentation Tasks noch offen von HSR-Review
 - Einfache Auswahl von Entries sollte möglich sein
 
-### Feedback/ Input
-Auswahl von Netzwerk für Upload (WLAN, 4G, 3G oder langsamer) einbinden. -> ist bereits als Anforderung aufgenommen
-Kann GeräteID mitgegeben werden? Aktuell nicht wichtig, jedoch notiert.
+### Feedback / Input
+Auswahl von Netzwerk für Upload (WLAN, 4G, 3G oder langsamer) einbinden. → Ist bereits als Anforderung aufgenommen
+Kann Geräte-ID mitgegeben werden? Aktuell nicht wichtig, jedoch notiert.
 
-9. Mai Treffen von PIC mit Aargauer Kantonspolizei, wo wenn möglich ein erster Ansatz gezeigt werden kann.
+Am 9. Mai Treffen von PIC mit Aargauer Kantonspolizei, wo wenn möglich ein erster Ansatz gezeigt werden kann.
 
-Nachfrage wegen Galerie in NinjaMock/Abweichung aktuelle App ->Galerie soll wie in NinjaMock-Beispiel werden
+Nachfrage wegen Galerie in NinjaMock/Abweichung aktuelle App → Galerie soll wie in NinjaMock-Beispiel werden
 
 ### Nächster Termin
 05.05.2017 um 10:00
