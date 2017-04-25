@@ -1,6 +1,6 @@
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { HomePage } from './home';
-import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController, PopoverController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
@@ -24,7 +24,7 @@ describe('Page: Home', () => {
       declarations: [HomePage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, Camera,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, PopoverController, MockUploadService, MockImsBackend, BaseRequestOptions, Camera,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },

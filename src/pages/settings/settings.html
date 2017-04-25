@@ -1,0 +1,15 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-item>
+  <ion-label>Show Rest Url Field</ion-label>
+  <ion-toggle [(ngModel)]="isShowRestUrlField" (ionChange)="notify()"></ion-toggle>
+</ion-item>
+</ion-content>
