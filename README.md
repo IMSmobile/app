@@ -357,7 +357,18 @@ describe("A module ", function() {
 #### End to End Testing
 Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
+Damit E2E Tests ausgeführt werden können müssen zuerst die Komponenten installiert werden.
+ ```shell
+ npm install -g protractor
+ npm install -g webdriver-manager
+ webdriver-manager update
+ ``` 
 
+Danach können mit dem Befehel protractor die E2E Tests ausgeführt werden.
+
+ ```shell
+  protractor
+```
 *TODO Example, Description Integration Testing with Framework*
 
 #### Manual Testing
