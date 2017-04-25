@@ -8,7 +8,7 @@ before_script:
   - npm install -g gulp
   - npm install -g protractor
   - npm install -g webdriver-manager
-  - webdriver-manager update
+  - webdriver-manager update --gecko false
 script: 
   - gulp lint
   - npm run test-coverage
