@@ -1,6 +1,10 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 21. April 2017
+- Wir verzichten auf die Programmierung von Integration Tests auf eine echte REST Schnittstelle und gehen davon aus dass sich der IMS Server richtig verhält.
+- Unsere App nennen wir "Imagic IMS Mobile Client".
+
 ## 7. April 2017
 - Issues welche Code betreffen werden nicht speziell getagged.
 - Alle funktionalen Muss-Kriterien werden im Backlog erfasst.

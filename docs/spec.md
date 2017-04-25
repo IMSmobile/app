@@ -1,7 +1,7 @@
-# Spezifikation IMS Mobile Client
+# Spezifikation Imagic IMS Mobile Client
 
 ## Einleitung
-Mit dem IMS Mobile Client möchten wir den Kunden von Imagic ermöglichen über iOS und Android Smartphones digitale Medien (Bilder, Audio, Video, Texte) ins digitalen Bildmanagement-System Imagic IMS abzuspeichern.
+Mit dem Imagic IMS Mobile Client möchten wir den Kunden von Imagic ermöglichen über iOS und Android Smartphones digitale Medien (Bilder, Audio, Video, Texte) ins digitalen Bildmanagement-System Imagic IMS abzuspeichern.
 
 Als Schnittstelle soll die von Imagic IMS Server bereitgestellte REST-API verwendet werden.
 
@@ -12,6 +12,8 @@ Siehe [Vision](../README.md#vision).
 Siehe [Stakeholder](../README.md#stakeholder).
 
 ## Anforderungskatalog
+Aus Gründen der Lesbarkeit verwenden wir den Begriff _Client_ als Synonym für _Imagic IMS Mobile Client_.
+
 ### Funktional
 ID   | Name | Beschreibung | Quelle      | Bemerkungen
 ---- | ---- | ------------ | ----------- | -----------

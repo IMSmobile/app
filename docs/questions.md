@@ -1,7 +1,7 @@
 # Fragenkatalog für Stakeholder
 
 ## Imagic
-Unter welchem Account soll die App im Store publiziert werden?  
+Unter welchem Account soll der Mobile Client als App im Store publiziert werden?  
 Wie wird Sicherheit der REST Schnittstelle via Internet gewährleistet?  
 
 ## PIC Systems
@@ -58,7 +58,7 @@ Welcher Ablauf entspricht den Erwartungen?
 
 > Auswahl Fall → Auswahl Bilder → Erfassung Metadaten → Upload
 
-Wie oft würde der mobile Client pro Woche verwendet werden?  
+Wie oft würde der Mobile Client pro Woche verwendet werden?  
 > Kann nicht definiert werden.
 
 Wie wird heute im nach der passenden Fall-Nr gesucht?  

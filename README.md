@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/IMSmobile/app.svg?branch=master)](https://travis-ci.org/IMSmobile/app)
 [![Coverage Status](https://coveralls.io/repos/github/IMSmobile/app/badge.svg)](https://coveralls.io/github/IMSmobile/app)
 
-# IMS Mobile Client App
+# Imagic IMS Mobile Client
 
 ## Vision
 Wir möchten es den Kunden von Imagic IMS erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im IMS System abzuspeichern. Dazu möchten wir eine plattformunabhängige Mobile-App entwickeln.
@@ -45,13 +45,13 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [REST API Dokumentation](https://sinv-56028.edu.hsr.ch/) | Dokumentation der IMS REST Schnittstelle |
 | [IMS Publisher Police](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_police/) | IMS Publisher mit konfiguriertem Polizeiarchiv |
 | [IMS Publisher Medicine](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_medicine/) | IMS Publisher mit konfiguriertem Medizinarchiv |
-| [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes der IMS Mobile App |
+| [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes des Mobile Client |
 
 ### Glossar
 Siehe [Glossar](docs/glossary.md)
 
 ## Projekt Übersicht
-Durch das Projekt IMS Mobile Client App entsteht eine Applikation um Medien via Mobile Devices im digitalen Bildmanagementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.
+Durch das Projekt _Imagic IMS Mobile Client_ entsteht eine Applikation um Medien via Mobile Devices im digitalen Bildmanagementsystem IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.
 
 Die Anforderungen sowie auch deren Priorisierung erfolgt in Abstimmung mit den Firmen Imagic AG und PIC Systems AG.
 
@@ -59,9 +59,9 @@ Die Firma Imagic bietet Lösungen und Systeme für das digitale Bildmanagement. 
 
 IMS ist ein sehr flexibles Bildmanagement-System, bei welchem Workflows für verschiedene Zwecke erstellt werden können. Dies erlaubt es, dieselbe Code-Basis für verschiedene Kunden-Segmente wie Industrie, Medizin, Life-Sciences und Polizei einzusetzen.
 
-Die primäre Benutzergruppe für den mobilen Client sind schweizerische Polizeieinheiten. Der neue Client sollte einen einfacheren Prozesses bereitstellen, um Bilder während ihrem täglichen Einsatz auf Streife in ihrem IMS Bildverwaltungssystem abzulegen. Die Lösung sollte offen genug sein um sämtliche Datenmodelle von weiteren Kundensegmenten wie Medizin, Industrie und Life Science abzudecken. Als sekundäre Benutzergruppe sehen wir die Verkäufer der IMS Software, welche den Mobile Client zu Demonstrationszwecken nutzen können.
+Die primäre Benutzergruppe für den Mobile Client sind schweizerische Polizeieinheiten. Die neue App sollte einen einfacheren Prozesses bereitstellen, um Bilder während ihrem täglichen Einsatz auf Streife in ihrem IMS Bildverwaltungssystem abzulegen. Die Lösung sollte offen genug sein um sämtliche Datenmodelle von weiteren Kundensegmenten wie Medizin, Industrie und Life Science abzudecken. Als sekundäre Benutzergruppe sehen wir die Verkäufer der IMS Software, welche den Mobile Client zu Demonstrationszwecken nutzen können.
 
-Der Mobile Client soll einen schlanken und bedienerfreundlichen Weg bieten um nebst dem herkömmlichen IMS Client Daten und den unzähligen technischen Schnittstellen (XML. HL7. Dicom) Medien in das IMS abzuspeichern.
+Der Mobile Client soll einen schlanken und bedienerfreundlichen Weg bieten um nebst dem herkömmlichen IMS Client Daten und den unzähligen technischen Schnittstellen (XML, HL7, Dicom uvm.) Medien im Imagic IMS abzuspeichern.
 
 ### Lieferumfang
 
@@ -95,7 +95,7 @@ Folgende Ansprechpartner stehen während dem Projekt zur Verfügung:
 Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
 - **IMS Kunden**: Sie benutzen das Imagic IMS und ziehen daraus ihren Businessnutzen. Ihre Hauptmotivation ist die Möglichkeit mit ihren mobilen Geräten Bilder, Videos und andere Daten im Imagic IMS abzuspeichern.
   - **Benutzer**: Sie arbeiten mit dem Imagic IMS. Ihre Hauptmotivation ist die Erleichterung ihres Arbeitsalltags.
-  - **Betreiber IT-Infrastruktur**: Sie haben die Verantwortung für die Sicherheit und Verfügbarkeit der IT beim IMS Kunden. Ihre Hauptmotivation ist die gute Verwaltbarkeit des IMS Mobile Client z.B. mit einer Mobile Device Management Software.
+  - **Betreiber IT-Infrastruktur**: Sie haben die Verantwortung für die Sicherheit und Verfügbarkeit der IT beim IMS Kunden. Ihre Hauptmotivation ist die gute Verwaltbarkeit des Mobile Client z.B. mit einer Mobile Device Management Software.
 - **Imagic AG**: Sie entwickeln, verkaufen und supporten das Imagic IMS für Kunden und Partner wie z.B. PIC Systems. Ihre Hauptmotivation ist die Erweiterung ihres Produktportfolios um eine einfache Möglichkeit Daten von mobilen Geräten in das Imagic IMS zu speichern. 
   - **IMS Verkäufer**: Sie beraten, verkaufen und gestalten die Weiterentwicklung des Imagic IMS. Ihre Hauptmotivation ist dem Kunden eine überzeugende Lösung anbieten zu können.
   - **IMS Entwickler**: Sie entwickeln die Software. Ihre Hauptmotivation ist eine qualitativ hochwertige Codebasis.
@@ -103,16 +103,16 @@ Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
 - **PIC Systems**: Sie passen das Imagic IMS an die speziellen Bedürfnisse im Polizeibereich an und supporten das Imagic IMS für ihre Kunden. Ihre Hauptmotivation ist das Entwickeln einer Lösung für den Bildupload in das Imagic IMS für den täglichen Polizeieinsatz auf Streife oder im Aussendienst.
   - **IMS Verkäufer**: Sie beraten, verkaufen und gestalten die Weiterentwicklung des Imagic IMS für den Polizeibereich. Ihre Hauptmotivation ist dem Kunden eine überzeugende Lösung anbieten zu können.
   - **Betreiber IMS Instanz**: Sie konfigurieren und pflegen die Installation des Imagic IMS bei ihren Kunden. Ihre Hauptmotivation ist eine reibungslose Funktionsweise mit dem Imagic IMS Server.
-- **Stores**: Sie prüfen und publizieren Apps und erlauben damit den IMS Kunden auf einfache Weise den IMS Mobile Client auf ihren Geräten zu installieren. Ihre Hauptmotivation ist die Qualität und Sicherheit ihrer Plattform sicherzustellen.
+- **Stores**: Sie prüfen und publizieren Apps und erlauben damit den IMS Kunden auf einfache Weise den Mobile Client auf ihren Geräten zu installieren. Ihre Hauptmotivation ist die Qualität und Sicherheit ihrer Plattform sicherzustellen.
 
 
 ## Kontextdiagramm
 ![Kontextdiagramm](docs/images/Kontextdiagram_IMSmobileClient.png)
-Das Kontextdiagramm zeigt auf, dass sich der Client mit mehreren Umgebungskomponenten austauscht. Er wird durch den Betreiber oder durch ein Mobile Device Management System (MDM) mit Hilfe von Konfigurationsdateien parametrisiert. Lokale Einstellungen kann der Benutzer selber vornehmen. Die Mediendaten (Bilder, Filme) werden durch die Galerie, Kamera oder durch eine externe Applikation bereitgestellt. Die externe Applikation kann ausserdem Daten für eine Eintragsidentifikation mitschicken. Der Benutzer wählt die Mediendaten aus und schickt sie mit Feldinformationen versehen weiter über den Client an die REST-Schnittstelle. Die REST-Schnittstelle bietet ausserdem Daten zur Navigation und Strukturierung für eine korrekten Datenablage im IMS Server.
+Das Kontextdiagramm zeigt auf, dass sich der Mobile Client mit mehreren Umgebungskomponenten austauscht. Er wird durch den Betreiber oder durch ein Mobile Device Management System (MDM) mit Hilfe von Konfigurationsdateien parametrisiert. Lokale Einstellungen kann der Benutzer selber vornehmen. Die Mediendaten (Bilder, Filme) werden durch die Galerie, Kamera oder durch eine externe Applikation bereitgestellt. Die externe Applikation kann ausserdem Daten für eine Eintragsidentifikation mitschicken. Der Benutzer wählt die Mediendaten aus und schickt sie mit Feldinformationen versehen weiter über den Mobile Client an die REST-Schnittstelle. Die REST-Schnittstelle bietet ausserdem Daten zur Navigation und Strukturierung für eine korrekten Datenablage im IMS Server.
 
 ## Personas / Test Accounts
 
-Um ein besseres Bild der Benutzer der IMS Mobile App zu erhalten und auch um mit verschiedenen Benutzern zu testen wurden Personas erstellt. Diese Accounts existieren auf dem Testserver und man kann sich mit dem aufgelisteten Username und Password einloggen.
+Um ein besseres Bild der Benutzer des Mobile Clients zu erhalten und auch um mit verschiedenen Benutzern zu testen wurden Personas erstellt. Diese Accounts existieren auf dem Testserver und man kann sich mit dem aufgelisteten Username und Password einloggen.
 
 | Vorname | Nachname   | Firma                    | Funktion                   | Archive                    | Gruppen                | Username | Password    |
 |---------|------------|--------------------------|----------------------------|----------------------------|------------------------|----------|-------------|
@@ -126,13 +126,13 @@ Um ein besseres Bild der Benutzer der IMS Mobile App zu erhalten und auch um mit
 
 Die Personas sind verschiedenen Gruppen zugeteilt, welche wiederum unterschiedliche Berechtigungen haben.
 
-| IMS Gruppe         | Administrator | Bilder Upload | Fälle erstellen | Fälle ansehen | App benutzen |
-|--------------------|---------------|---------------|-----------------|---------------|--------------|
-| Betrieb            | Ja            | Ja            | Ja              | Ja            | Ja           |
-| Verkauf            | Nein          | Ja            | Ja              | Ja            | Ja           |
-| Upload_Benutzer    | Nein          | Ja            | Ja              | Ja            | Ja           |
-| Ansicht_Benutzer   | Nein          | Nein          | Nein            | Ja            | Ja           |
-| Nicht_App_Benutzer | Nein          | Nein          | Nein            | Nein          | Nein         |
+| IMS Gruppe         | Administrator | Bilder Upload | Fälle erstellen | Fälle ansehen | Mobile Client benutzen |
+|--------------------|---------------|---------------|-----------------|---------------|------------------------|
+| Betrieb            | Ja            | Ja            | Ja              | Ja            | Ja                     |
+| Verkauf            | Nein          | Ja            | Ja              | Ja            | Ja                     |
+| Upload_Benutzer    | Nein          | Ja            | Ja              | Ja            | Ja                     |
+| Ansicht_Benutzer   | Nein          | Nein          | Nein            | Ja            | Ja                     |
+| Nicht_App_Benutzer | Nein          | Nein          | Nein            | Nein          | Nein                   |
 
 ## Risikomanagement
 
@@ -154,7 +154,7 @@ Während der Projektdauer zwischen 15.02.2017 - 28.08.2017 wird das Projekt in 1
 | Präsentation | Vorbereitung und Durchführung der öffentlichen Präsentation | 28.08.2017 - 04.09.2017 |
 
 ## Infrastruktur
-Um unabhängig von der Imagic AG Infrastruktur zu sein haben wir uns entschieden auf einer virtuellen Maschine der HSR einen eigenen Demo Imagic IMS Server zu installieren. Die IMS REST API wird gegen aussen verschlüsselt durch dem [Caddy Webserver](https://caddyserver.com/) als Reverse Proxy bereitgestellt. So erhalten wir mit minimalem Aufwand eine Umgebung ähnlich wie wir sie bei IMS Kunden erwarten würden sobald sie die IMS REST API für ihre mobilen Clients freischalten würden. Mit der Demo-Installation erhalten wir auch vorgefertigte Beispielstrukturen inkl. Daten der Bereiche Medizin, Biochemie, Industrie und Polizei.
+Um unabhängig von der Imagic AG Infrastruktur zu sein haben wir uns entschieden auf einer virtuellen Maschine der HSR einen eigenen Demo Imagic IMS Server zu installieren. Die IMS REST API wird gegen aussen verschlüsselt durch dem [Caddy Webserver](https://caddyserver.com/) als Reverse Proxy bereitgestellt. So erhalten wir mit minimalem Aufwand eine Umgebung ähnlich wie wir sie bei IMS Kunden erwarten würden sobald sie die IMS REST API für den mobilen Einsatz freischalten würden. Mit der Demo-Installation erhalten wir auch vorgefertigte Beispielstrukturen inkl. Daten der Bereiche Medizin, Biochemie, Industrie und Polizei.
 
 Für die Versionsverwaltung des Quellcodes, aller projektrelevanten Dokumente, für das Issue-Tracking sowie für Reviews von Quellcode und Dokumenten nutzen wir die Plattform von GitHub.
 
