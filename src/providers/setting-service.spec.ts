@@ -20,7 +20,7 @@ describe('Provider: SettingService', () => {
         settingService.isShowRestUrlField().subscribe(isShowRestUrlField => expect(isShowRestUrlField).toBe(settingService.isShowRestUrlFieldDefault));
     }));
 
-    it('Settings should bebe written and read from store', async(inject([SettingService, Storage], (settingService: SettingService, storage: Storage) => {
+    it('Settings should be written and read from store', async(inject([SettingService, Storage], (settingService: SettingService, storage: Storage) => {
         storage.set(settingService.restUrlKey, 'abc');
         storage.set(settingService.usernameKey, 'def');
         storage.set(settingService.isShowRestUrlFieldKey, false);
