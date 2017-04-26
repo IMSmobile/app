@@ -29,8 +29,7 @@ import { Camera } from '@ionic-native/camera';
   imports: [
     IonicModule.forRoot(MobileClient),
     IonicStorageModule.forRoot({
-      name: 'imsClientDB',
-      driverOrder: ['websql']
+      name: 'imsClientDB'
     })
   ],
   bootstrap: [IonicApp],
