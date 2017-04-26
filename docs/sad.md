@@ -28,6 +28,7 @@ Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist do
 ## Ordner Struktur Konventionen
 
 Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden verwenden wir Order Struktur Konventionen. Diese Konventionen entsprechen im Grundsatz der Konvention von einem Ionic 2 Projekt.   
+
     .
     ├── docs                         # Dokumentationen
     ├── resources                    # Icon, Splashscreen
