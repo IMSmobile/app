@@ -357,6 +357,11 @@ describe("A module ", function() {
 #### End to End Testing
 Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
+Mit dem Befehel npm run e2e können alle End to End Tests ausgeführt werden.
+
+```shell
+npm run e2e
+```
 
 *TODO Example, Description Integration Testing with Framework*
 
