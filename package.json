@@ -9,7 +9,8 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "test": "karma start ./test-config/karma.conf.js",
-    "test-coverage": "karma start ./test-config/karma.conf.js --coverage"
+    "test-coverage": "karma start ./test-config/karma.conf.js --coverage",
+    "e2e":  "node node_modules/protractor/bin/webdriver-manager update && node  node_modules/protractor/bin/protractor"
   },
   "config": {
     "ionic_source_map": "source-map"
@@ -63,6 +64,7 @@
     "karma-verbose-reporter": "0.0.6",
     "karma-webpack": "^2.0.3",
     "null-loader": "^0.1.1",
+    "protractor": "^5.1.1",
     "remap-istanbul": "^0.9.5",
     "systemjs": "^0.20.12",
     "ts-loader": "^2.0.3",
