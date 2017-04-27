@@ -2,7 +2,7 @@
 
 Begriff | Bedeutung
 ------- | ---------
-Client | IMS Mobile Client, die Software welche wir entwickeln.
+Mobile Client | Synonym für Imagic IMS Mobile Client, die Software welche wir entwickeln.
 Imagic | Imagic Bildverarbeitung AG, Hersteller des Imagic IMS.
 PIC Systems | PIC Systems AG, Partner von Imagic und spezialisiert auf den Polizeibereich.
 Imagic IMS | Bildmanagement-System zur Erfassung, Bearbeitung, Speicherung, Visualisierung und Präsentation von digitalen Bildern, Filmen und allgemeinen Dokumenten für medizinische, industrielle und Verwaltungs-Institutionen.
