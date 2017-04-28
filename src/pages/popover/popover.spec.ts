@@ -3,6 +3,9 @@ import { NavController, NavParams, ViewController, IonicModule, Config, Platform
 import { NavParamsMock, ViewControllerMock, ConfigMock, PlatformMock, AppMock } from '../../mocks/mocks';
 import { PopoverPage } from './popover';
 import { SettingsPage } from '../settings/settings';
+import { AuthService } from '../../providers/auth-service';
+import { MockAuthService } from '../../mocks/providers/mock-auth-service';
+import { LoginPage } from '../login/login';
 
 describe('Page: Popover', () => {
 
@@ -21,7 +24,8 @@ describe('Page: Popover', () => {
         { provide: ViewController, useClass: ViewControllerMock },
         { provide: Config, useClass: ConfigMock },
         { provide: App, useClass: AppMock },
-        { provide: Platform, useClass: PlatformMock }
+        { provide: Platform, useClass: PlatformMock },
+        { provide: AuthService, useClass: MockAuthService }
       ],
       imports: [IonicModule]
     }).compileComponents().then(() => {
@@ -39,6 +43,18 @@ describe('Page: Popover', () => {
     spyOn(nav, 'push').and.callThrough();
     page.loadSettings();
     expect(nav.push).toHaveBeenCalledWith(SettingsPage);
+  }));
+
+  it('Go to Login Page on logout button', inject([NavController], (nav: NavController) => {
+    spyOn(nav, 'setRoot').and.callThrough();
+    page.logoutUser();
+    expect(nav.setRoot).toHaveBeenCalledWith(LoginPage);
+  }));
+
+  it('Clear settings on logout button', inject([AuthService], (authService: AuthService) => {
+    spyOn(authService, 'logout').and.callThrough();
+    page.logoutUser();
+    expect(authService.logout).toHaveBeenCalled();
   }));
 
 });
