@@ -178,6 +178,7 @@ export class StorageMock {
   }
 
   public remove(key: string): Promise<{}> {
+    this.store[key] = null;
     return new Promise((resolve: Function) => {
       resolve({ key: key });
     });
