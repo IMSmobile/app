@@ -4,7 +4,7 @@ import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { NavController, LoadingController, Loading, AlertController, ToastController, PopoverController } from 'ionic-angular';
+import { NavController, LoadingController, Loading, AlertController, ToastController, PopoverController, Popover, NavOptions } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { Response } from '@angular/http';
 
@@ -85,8 +85,8 @@ export class HomePage {
     toast.present();
   }
 
-  presentPopover(myEvent) {
-   let popover = this.popoverCtrl.create(PopoverPage);
+  presentPopover(myEvent?: NavOptions) {
+   let popover: Popover = this.popoverCtrl.create(PopoverPage);
    popover.present({
      ev: myEvent
    });

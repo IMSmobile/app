@@ -4,7 +4,7 @@ import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingControl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
-import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock } from '../../mocks/mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, PopoverControllerMock } from '../../mocks/mocks';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { Camera } from '@ionic-native/camera';
@@ -24,7 +24,7 @@ describe('Page: Home', () => {
       declarations: [HomePage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, PopoverController, MockUploadService, MockImsBackend, BaseRequestOptions, Camera,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, Camera,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -33,6 +33,7 @@ describe('Page: Home', () => {
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
         { provide: UploadService, useClass: MockUploadService },
+        { provide: PopoverController, useClass: PopoverControllerMock },
         {
           provide: Http,
           useFactory: (MockImsBackend, options) => {
@@ -75,6 +76,12 @@ describe('Page: Home', () => {
     page.uploadPicture();
     expect(alertController.create).toHaveBeenCalledTimes(1);
     expect(page.showAlert).toHaveBeenCalledTimes(1);
+  }));
+
+  it('Presents Popover', inject([PopoverController], (popoverController: PopoverController) => {
+    spyOn(popoverController, 'create').and.callThrough();
+    page.presentPopover(null);
+    expect(popoverController.create).toHaveBeenCalled();
   }));
 
 });

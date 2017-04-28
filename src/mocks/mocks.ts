@@ -235,4 +235,14 @@ export class LoadingMock {
 
   }
 }
+export class PopoverControllerMock {
+
+  public create(): any {
+    return this;
+  }
+
+  public present() {
+
+  }
+}
 /* tslint:enable */
