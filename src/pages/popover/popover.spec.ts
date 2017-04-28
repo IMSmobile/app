@@ -1,3 +1,4 @@
+import { MockSettingService } from './../../mocks/providers/mock-setting-service';
 import { Storage } from '@ionic/storage';
 import { StorageMock } from './../../mocks/mocks';
 import { SettingService } from './../../providers/setting-service';
@@ -21,13 +22,13 @@ describe('Page: Popover', () => {
         GestureController,
         DomController,
         Form,
-        SettingService,
         { provide: NavParams, useClass: NavParamsMock },
         { provide: ViewController, useClass: ViewControllerMock },
         { provide: Config, useClass: ConfigMock },
         { provide: App, useClass: AppMock },
         { provide: Platform, useClass: PlatformMock },
-        { provide: Storage, useClass: StorageMock }
+        { provide: Storage, useClass: StorageMock },
+        { provide: SettingService, useClass: MockSettingService }
       ],
       imports: [IonicModule]
     }).compileComponents().then(() => {
@@ -53,4 +54,9 @@ describe('Page: Popover', () => {
     expect(nav.setRoot).toHaveBeenCalledWith(LoginPage);
   }));
 
+ it('Clear settings on logout button', inject([SettingService], (settingService: SettingService) => {
+    spyOn(settingService, 'clearLoginData').and.callThrough();
+    page.logoutUser();
+    expect(settingService.clearLoginData).toHaveBeenCalled();
+  }));
 });

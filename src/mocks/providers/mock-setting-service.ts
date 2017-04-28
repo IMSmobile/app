@@ -30,4 +30,8 @@ export class MockSettingService {
     return Observable.of(this.showRestUrlField);
   }
 
+  clearLoginData(): Observable <any> {
+    return Observable.of(true);
+  }
+
 }
