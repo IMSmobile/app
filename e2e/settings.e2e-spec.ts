@@ -68,6 +68,7 @@ function login() {
 
 function waitUntilElementsAreClickable() {
   browser.wait(EC.stalenessOf($('.click-block-active')));
+  browser.sleep(500);
 }
 
 function waitUntilStorageReady() {
