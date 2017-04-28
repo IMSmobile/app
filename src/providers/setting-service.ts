@@ -43,6 +43,10 @@ export class SettingService {
     return this.readKey(this.isShowRestUrlFieldKey).map(val => val == null ? this.isShowRestUrlFieldDefault : val);
   }
 
+  clearLoginData(): Observable <any> {
+    return this.clearSetting(this.restUrlKey).flatMap(() => this.clearSetting(this.usernameKey).flatMap(() => this.clearSetting(this.isShowRestUrlFieldKey)));
+  }
+
   private readKey(key: string): Observable<any> {
     return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.get(key)));
   }
@@ -51,5 +55,9 @@ export class SettingService {
     this.storage.ready().then(() => {
       this.storage.set(key, value);
     });
+  }
+
+  private clearSetting(key: string): Observable<any> {
+    return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.remove(key)));
   }
 }
