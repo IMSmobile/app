@@ -13,7 +13,7 @@ import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock,
 import { LoadingService } from '../../providers/loading-service';
 import { EntriesPage } from '../entries/entries';
 import { Storage } from '@ionic/storage';
-
+import { AlertService } from '../../providers/alert-service';
 
 describe('Page: Login', () => {
 
@@ -27,7 +27,7 @@ describe('Page: Login', () => {
       declarations: [LoginPage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, MockImsBackend, BaseRequestOptions, LoadingService,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService, MockImsBackend, BaseRequestOptions, LoadingService, AlertService,
         {
           provide: Http,
           useFactory: (MockImsBackend, options) => {
@@ -63,15 +63,17 @@ describe('Page: Login', () => {
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show and Hide Loading in case of error', inject([LoadingService], (loadingService: LoadingService) => {
+  it('Show and Hide loading with alert on error', inject([LoadingService, AlertService], (loadingService: LoadingService, alertService: AlertService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
+    spyOn(alertService, 'showError').and.callThrough();
     page.loginForm.controls['server'].setValue('wrong');
     page.loginForm.controls['user'].setValue('wrong');
     page.loginForm.controls['password'].setValue('wrong');
     page.login();
     expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
+    expect(alertService.showError).toHaveBeenCalled();
   }));
 
   it('Show and Hide Loading in case of success', inject([LoadingService, MockImsBackend], (loadingService: LoadingService, mockImsBackend: MockImsBackend) => {

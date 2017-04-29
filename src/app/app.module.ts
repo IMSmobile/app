@@ -21,6 +21,7 @@ import { Camera } from '@ionic-native/camera';
 import { EntriesService } from '../providers/entries-service';
 import { CameraService } from '../providers/camera-service';
 import { LoadingService } from '../providers/loading-service';
+import { AlertService } from '../providers/alert-service';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { LoadingService } from '../providers/loading-service';
     EntriesService,
     CameraService,
     LoadingService,
+    AlertService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

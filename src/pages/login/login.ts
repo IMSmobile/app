@@ -8,6 +8,7 @@ import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { EntriesPage } from '../entries/entries';
 import { LoadingService } from '../../providers/loading-service';
+import { AlertService } from '../../providers/alert-service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginPage {
   loginForm: FormGroup;
   isShowRestUrlField: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService, public alertService: AlertService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
@@ -58,19 +59,10 @@ export class LoginPage {
   loginFailed(response: Response) {
     this.loadingService.hideLoading();
     if (response.status === 401) {
-      this.showAlert('Can\'t login with current credential');
+      this.alertService.showError('Can\'t login with current credential');
     } else {
-      this.showAlert('Can\'t connect to rest server at ' + this.loginForm.controls['server'].value);
+      this.alertService.showError('Can\'t connect to rest server at ' + this.loginForm.controls['server'].value);
     }
-  }
-
-  showAlert(message: string) {
-    let alert = this.alertCtrl.create({
-      title: 'Failed',
-      subTitle: message,
-      buttons: ['Dismiss']
-    });
-    alert.present();
   }
 
   showToastMessage(toastMessage: string) {
