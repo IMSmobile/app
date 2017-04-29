@@ -6,6 +6,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MorePopoverPage } from '../pages/more-popover/more-popover';
 import { SettingsPage } from './../pages/settings/settings';
+import { EntriesPage } from './../pages/entries/entries';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +25,8 @@ import { Camera } from '@ionic-native/camera';
     HomePage,
     LoginPage,
     MorePopoverPage,
-    SettingsPage
+    SettingsPage,
+    EntriesPage
   ],
   imports: [
     IonicModule.forRoot(MobileClient),
@@ -38,7 +40,8 @@ import { Camera } from '@ionic-native/camera';
     HomePage,
     LoginPage,
     MorePopoverPage,
-    SettingsPage
+    SettingsPage,
+    EntriesPage
   ],
   providers: [
     TokenService,

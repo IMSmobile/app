@@ -10,7 +10,7 @@ import { SettingService } from '../../providers/setting-service';
 import { MockSettingService } from '../../mocks/providers/mock-setting-service';
 
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
-import { HomePage } from '../home/home';
+import { EntriesPage } from '../entries/entries';
 import { Storage } from '@ionic/storage';
 
 
@@ -85,7 +85,7 @@ describe('Page: Login', () => {
     expect(page.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
-  it('Load HomePage after successfull login', inject([NavController, MockImsBackend], (nav: NavController, mockImsBackend: MockImsBackend) => {
+  it('Load EntriesPage after successfull login', inject([NavController, MockImsBackend], (nav: NavController, mockImsBackend: MockImsBackend) => {
     spyOn(nav, 'setRoot').and.callThrough();
     let credential = mockImsBackend.credential;
     page.loginForm.controls['server'].setValue(credential.server);
@@ -93,7 +93,7 @@ describe('Page: Login', () => {
     page.loginForm.controls['password'].setValue(credential.password);
     expect(page.loginForm.valid).toBeTruthy();
     page.login();
-    expect(nav.setRoot).toHaveBeenCalledWith(HomePage);
+    expect(nav.setRoot).toHaveBeenCalledWith(EntriesPage);
   }));
 
   it('Fill login form from Setting Service', inject([SettingService], (mockSettingService: MockSettingService) => {

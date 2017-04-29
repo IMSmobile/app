@@ -6,7 +6,7 @@ import { SettingService } from '../../providers/setting-service';
 
 import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
-import { HomePage } from '../home/home';
+import { EntriesPage } from '../entries/entries';
 
 
 @Component({
@@ -52,7 +52,7 @@ export class LoginPage {
     this.hideLoading();
     this.settingService.setRestUrl(this.loginForm.controls['server'].value);
     this.settingService.setUsername(this.loginForm.controls['user'].value);
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(EntriesPage);
   }
 
   loginFailed(response: Response) {

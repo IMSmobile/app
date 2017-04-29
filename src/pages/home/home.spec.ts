@@ -77,11 +77,4 @@ describe('Page: Home', () => {
     expect(alertController.create).toHaveBeenCalledTimes(1);
     expect(page.showAlert).toHaveBeenCalledTimes(1);
   }));
-
-  it('Presents Popover', inject([PopoverController], (popoverController: PopoverController) => {
-    spyOn(popoverController, 'create').and.callThrough();
-    page.presentPopover(null);
-    expect(popoverController.create).toHaveBeenCalled();
-  }));
-
 });

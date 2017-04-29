@@ -1,10 +1,9 @@
-import { MorePopoverPage } from './../more-popover/more-popover';
 import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { NavController, LoadingController, Loading, AlertController, ToastController, PopoverController, Popover, NavOptions } from 'ionic-angular';
+import { NavController, LoadingController, Loading, AlertController, ToastController} from 'ionic-angular';
 import { Image } from '../../models/image';
 import { Response } from '@angular/http';
 
@@ -14,7 +13,7 @@ import { Response } from '@angular/http';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public popoverCtrl: PopoverController) { }
+  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController) { }
   imageSrc: string;
   loading: Loading;
   filterId: number = 40;
@@ -84,12 +83,5 @@ export class HomePage {
     });
     toast.present();
   }
-
-  presentPopover(myEvent?: NavOptions) {
-   let popover: Popover = this.popoverCtrl.create(MorePopoverPage);
-   popover.present({
-     ev: myEvent
-   });
- }
 }
 
