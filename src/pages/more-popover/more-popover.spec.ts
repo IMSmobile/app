@@ -1,20 +1,20 @@
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { NavController, NavParams, ViewController, IonicModule, Config, Platform, GestureController, App, DomController, Form } from 'ionic-angular';
 import { NavParamsMock, ViewControllerMock, ConfigMock, PlatformMock, AppMock } from '../../mocks/mocks';
-import { PopoverPage } from './popover';
+import { MorePopoverPage } from './more-popover';
 import { SettingsPage } from '../settings/settings';
 import { AuthService } from '../../providers/auth-service';
 import { MockAuthService } from '../../mocks/providers/mock-auth-service';
 import { LoginPage } from '../login/login';
 
-describe('Page: Popover', () => {
+describe('Page: More Popover', () => {
 
-  let fixture: ComponentFixture<PopoverPage> = null;
-  let page: PopoverPage = null;
+  let fixture: ComponentFixture<MorePopoverPage> = null;
+  let page: MorePopoverPage = null;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PopoverPage],
+      declarations: [MorePopoverPage],
       providers: [
         NavController,
         GestureController,
@@ -29,7 +29,7 @@ describe('Page: Popover', () => {
       ],
       imports: [IonicModule]
     }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(PopoverPage);
+      fixture = TestBed.createComponent(MorePopoverPage);
       page = fixture.componentInstance;
       fixture.detectChanges();
     });

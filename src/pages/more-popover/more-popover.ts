@@ -5,10 +5,10 @@ import { AuthService } from '../../providers/auth-service';
 import { LoginPage } from '../login/login';
 
 @Component({
-  selector: 'page-popover',
-  templateUrl: 'popover.html'
+  selector: 'more-page-popover',
+  templateUrl: 'more-popover.html'
 })
-export class PopoverPage {
+export class MorePopoverPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public authService: AuthService ) { }
 
