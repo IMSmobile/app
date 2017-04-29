@@ -8,6 +8,8 @@ import { ImsHeaders } from '../models/imsHeaders';
 import { EntryPoint } from '../models/entry-point';
 import { LicensePoint } from '../models/license-point';
 import { EntriesPoint } from '../models/entries-point';
+import { Token } from '../models/token';
+import { ArchiveEntry } from '../models/archiveEntry';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -40,6 +42,21 @@ export class ImsService {
       return this.get(credential, entriesUrl).map(response => {
         let data = response.json();
         return new EntriesPoint(data.filters);
+      });
+    });
+  }
+
+  getUploadsLink(credential: Credential, filterId: number, token: Token): Observable<string> {
+    return this.getArchiveEntry(credential, filterId, token).flatMap(entry => {
+      return Observable.of(entry.getUploadsLink());
+    });
+  }
+
+  getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
+    return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
+      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => {
+        let data = response.json();
+        return new ArchiveEntry(data.archiveName, data.tables);
       });
     });
   }

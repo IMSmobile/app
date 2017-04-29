@@ -33,21 +33,12 @@ describe('Provider: UploadService', () => {
     }).compileComponents();
   }));
 
-
-  it('Should get an archive entry', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
-    uploadService.getArchiveEntry(mockImsBackend.credential, mockImsBackend.filterId, mockImsBackend.token).subscribe(
-      entry => expect(entry.getUploadsLink()).toEqual(mockImsBackend.containerRequestUrl),
-      err => fail(err)
-    );
-  }));
-
   it('Should create a container location', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
     uploadService.createContainerLocation(mockImsBackend.credential, mockImsBackend.filterId, mockImsBackend.token).subscribe(
       location => expect(location).toEqual(mockImsBackend.uploadContainerUrl),
       err => fail(err)
     );
   }));
-
 
   it('Should upload image', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
     let imageEntry = new ImageEntry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');

@@ -30,17 +30,8 @@ export class UploadService {
   }
 
   createContainerLocation(credential: Credential, filterId: number, token: Token): Observable<string> {
-    return this.getArchiveEntry(credential, filterId, token).flatMap(entry => {
-      return this.http.post(entry.getUploadsLink(), null, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location'));
-    });
-  }
-
-  getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
-    return this.imsService.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
-      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => {
-        let data = response.json();
-        return new ArchiveEntry(data.archiveName, data.tables);
-      });
+    return this.imsService.getUploadsLink(credential, filterId, token).flatMap(url => {
+      return this.http.post(url, null, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location'));
     });
   }
 
