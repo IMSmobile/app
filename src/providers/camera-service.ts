@@ -8,9 +8,7 @@ import 'rxjs/add/observable/fromPromise';
 @Injectable()
 export class CameraService {
 
-  constructor(public http: Http, public camera: Camera) {
-    console.log('Hello CameraService Provider');
-  }
+  constructor(public http: Http, public camera: Camera) {}
 
   public takePicture(): Observable<any> {
 
