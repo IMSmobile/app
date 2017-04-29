@@ -11,6 +11,8 @@ import { UploadService } from '../../providers/upload-service';
 import { TokenService } from '../../providers/token-service';
 import { MockUploadService } from '../../mocks/providers/mock-upload-service';
 import { CameraService } from '../../providers/camera-service';
+import { Camera } from '@ionic-native/camera';
+
 
 describe('Page: Home', () => {
 
@@ -25,7 +27,7 @@ describe('Page: Home', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, CameraService,
+        TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
