@@ -65,19 +65,13 @@ export class ImsService {
 
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
     return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
-      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => {
-        let data = response.json();
-        return new ArchiveEntry(data.archiveName, data.tables);
-      });
+      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json());
     });
   }
 
   getLicensePoint(credential: Credential): Observable<LicensePoint> {
     return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl => {
-      return this.get(credential, licenseUrl).map(response => {
-        let data = response.json();
-        return new LicensePoint(data.segments, data.sessions);
-      });
+      return this.get(credential, licenseUrl).map(response => response.json());
     });
   }
 
