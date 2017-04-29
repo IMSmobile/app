@@ -10,6 +10,7 @@ import { LicensePoint } from '../models/license-point';
 import { EntriesPoint } from '../models/entries-point';
 import { Token } from '../models/token';
 import { ArchiveEntry } from '../models/archiveEntry';
+import { ArchiveTableEntry } from '../models/archiveTableEntry';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -47,9 +48,11 @@ export class ImsService {
   }
 
   getUploadsLink(credential: Credential, filterId: number, token: Token): Observable<string> {
-    return this.getArchiveEntry(credential, filterId, token).flatMap(entry => {
-      return Observable.of(entry.getUploadsLink());
-    });
+    return this.getArchiveEntry(credential, filterId, token).map(entry => entry.tables.find(this.findImageTable).uploadHref);
+  }
+
+  private findImageTable(tableEntry: ArchiveTableEntry) {
+    return tableEntry.uploadHref != null;
   }
 
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {

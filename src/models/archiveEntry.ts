@@ -9,12 +9,4 @@ export class ArchiveEntry {
         this.tables = tables;
     }
 
-    getUploadsLink(): string {
-        for (let table of this.tables) {
-            if (table.uploadHref != null) {
-                return table.uploadHref;
-            }
-        }
-        throw new TypeError('No upload link found');
-    }
 }
