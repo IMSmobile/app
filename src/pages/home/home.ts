@@ -2,10 +2,11 @@ import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
-import { NavController, LoadingController, Loading, AlertController, ToastController, NavParams } from 'ionic-angular';
+import { NavController,  AlertController, ToastController, NavParams } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { Response } from '@angular/http';
 import { CameraService } from '../../providers/camera-service';
+import { LoadingService } from '../../providers/loading-service';
 
 @Component({
   selector: 'page-home',
@@ -15,14 +16,12 @@ export class HomePage {
 
   imageSrc: string;
   parentImageEntryId: string;
-  loading: Loading;
   filterId: number = 40;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
   }
-
 
   public takePicture() {
     this.cameraService.takePicture().subscribe(
@@ -35,7 +34,7 @@ export class HomePage {
   }
 
   public uploadPicture() {
-    this.showLoading();
+    this.loadingService.showLoading();
     let imageEntry = new Entry().set('IDFall', this.parentImageEntryId).set('BILDNAME', 'Image from Camera');
     let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
     this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
@@ -45,12 +44,12 @@ export class HomePage {
   }
 
   uploadSuccessful() {
-    this.hideLoading();
+    this.loadingService.hideLoading();
     this.showToastMessage('Image successfully uploaded!');
   }
 
   uploadFailed(err: Response) {
-    this.hideLoading();
+    this.loadingService.hideLoading();
     this.showAlert('Oops, something went wrong!');
     console.warn(err);
   }
@@ -62,17 +61,6 @@ export class HomePage {
       buttons: ['Dismiss']
     });
     alert.present();
-  }
-
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    this.loading.present();
-  }
-
-  hideLoading() {
-    this.loading.dismiss();
   }
 
   showToastMessage(toastMessage: string) {

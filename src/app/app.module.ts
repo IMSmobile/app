@@ -20,6 +20,7 @@ import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
 import { EntriesService } from '../providers/entries-service';
 import { CameraService } from '../providers/camera-service';
+import { LoadingService } from '../providers/loading-service';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CameraService } from '../providers/camera-service';
     SettingService,
     EntriesService,
     CameraService,
+    LoadingService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

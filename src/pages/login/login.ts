@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { NavController, NavParams, LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SettingService } from '../../providers/setting-service';
 
 import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { EntriesPage } from '../entries/entries';
+import { LoadingService } from '../../providers/loading-service';
 
 
 @Component({
@@ -16,10 +17,9 @@ import { EntriesPage } from '../entries/entries';
 export class LoginPage {
 
   loginForm: FormGroup;
-  loading: Loading;
   isShowRestUrlField: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
@@ -32,7 +32,7 @@ export class LoginPage {
     if (this.loginForm.invalid) {
       this.showToastMessage('Input required');
     } else {
-      this.showLoading();
+      this.loadingService.showLoading();
       let credential = this.createCredential();
       this.authService.login(credential).subscribe(
         info => this.loginSuccessful(),
@@ -49,14 +49,14 @@ export class LoginPage {
   }
 
   loginSuccessful() {
-    this.hideLoading();
+    this.loadingService.hideLoading();
     this.settingService.setRestUrl(this.loginForm.controls['server'].value);
     this.settingService.setUsername(this.loginForm.controls['user'].value);
     this.navCtrl.setRoot(EntriesPage);
   }
 
   loginFailed(response: Response) {
-    this.hideLoading();
+    this.loadingService.hideLoading();
     if (response.status === 401) {
       this.showAlert('Can\'t login with current credential');
     } else {
@@ -71,17 +71,6 @@ export class LoginPage {
       buttons: ['Dismiss']
     });
     alert.present();
-  }
-
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    this.loading.present();
-  }
-
-  hideLoading() {
-    this.loading.dismiss();
   }
 
   showToastMessage(toastMessage: string) {

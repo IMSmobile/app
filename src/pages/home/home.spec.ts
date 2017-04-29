@@ -11,6 +11,7 @@ import { UploadService } from '../../providers/upload-service';
 import { TokenService } from '../../providers/token-service';
 import { MockUploadService } from '../../mocks/providers/mock-upload-service';
 import { CameraService } from '../../providers/camera-service';
+import { LoadingService } from '../../providers/loading-service';
 import { Camera } from '@ionic-native/camera';
 
 
@@ -27,7 +28,7 @@ describe('Page: Home', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera,
+        TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -57,13 +58,13 @@ describe('Page: Home', () => {
     fixture.destroy();
   });
 
-  it('Show and Hide Loading while uploading', () => {
-    spyOn(page, 'showLoading').and.callThrough();
-    spyOn(page, 'hideLoading').and.callThrough();
+  it('Show and Hide Loading while uploading', inject([LoadingService], (loadingService: LoadingService) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
     page.uploadPicture();
-    expect(page.showLoading).toHaveBeenCalledTimes(1);
-    expect(page.hideLoading).toHaveBeenCalledTimes(1);
-  });
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
+  }));
 
   it('Show Toast after successfull upload', inject([ToastController], (toastController: ToastController) => {
     spyOn(toastController, 'create').and.callThrough();

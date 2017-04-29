@@ -10,6 +10,7 @@ import { SettingService } from '../../providers/setting-service';
 import { MockSettingService } from '../../mocks/providers/mock-setting-service';
 
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
+import { LoadingService } from '../../providers/loading-service';
 import { EntriesPage } from '../entries/entries';
 import { Storage } from '@ionic/storage';
 
@@ -26,7 +27,7 @@ describe('Page: Login', () => {
       declarations: [LoginPage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, MockImsBackend, BaseRequestOptions,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, MockImsBackend, BaseRequestOptions, LoadingService,
         {
           provide: Http,
           useFactory: (MockImsBackend, options) => {
@@ -62,27 +63,27 @@ describe('Page: Login', () => {
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show and Hide Loading in case of error', () => {
-    spyOn(page, 'showLoading').and.callThrough();
-    spyOn(page, 'hideLoading').and.callThrough();
+  it('Show and Hide Loading in case of error', inject([LoadingService], (loadingService: LoadingService) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
     page.loginForm.controls['server'].setValue('wrong');
     page.loginForm.controls['user'].setValue('wrong');
     page.loginForm.controls['password'].setValue('wrong');
     page.login();
-    expect(page.showLoading).toHaveBeenCalledTimes(1);
-    expect(page.hideLoading).toHaveBeenCalledTimes(1);
-  });
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
+  }));
 
-  it('Show and Hide Loading in case of success', inject([MockImsBackend], (mockImsBackend: MockImsBackend) => {
-    spyOn(page, 'showLoading').and.callThrough();
-    spyOn(page, 'hideLoading').and.callThrough();
+  it('Show and Hide Loading in case of success', inject([LoadingService, MockImsBackend], (loadingService: LoadingService, mockImsBackend: MockImsBackend) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
     let credential = mockImsBackend.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
     page.login();
-    expect(page.showLoading).toHaveBeenCalledTimes(1);
-    expect(page.hideLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
   it('Load EntriesPage after successfull login', inject([NavController, MockImsBackend], (nav: NavController, mockImsBackend: MockImsBackend) => {
