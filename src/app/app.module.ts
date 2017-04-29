@@ -19,6 +19,7 @@ import { SettingService } from '../providers/setting-service';
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
 import { EntriesService } from '../providers/entries-service';
+import { CameraService } from '../providers/camera-service';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { EntriesService } from '../providers/entries-service';
     Camera,
     SettingService,
     EntriesService,
+    CameraService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

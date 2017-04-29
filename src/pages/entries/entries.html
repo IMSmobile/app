@@ -3,7 +3,7 @@
   <ion-navbar>
     <ion-title>Entries</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="presentPopover($event)" id="barButtonMore">
+      <button ion-button icon-only (tap)="presentPopover($event)" id="barButtonMore">
        <ion-icon name="more"></ion-icon>
      </button>
     </ion-buttons>
@@ -24,7 +24,7 @@
             IACreationDate: {{entry.fields.IACreationDate}}
           </ion-col>
           <ion-col>
-            <button ion-button>
+            <button ion-button (tap)="takePictureForEntry(entry.fields.IDFall)">
           <ion-icon name="camera" item-right></ion-icon>
           </button>
           </ion-col>

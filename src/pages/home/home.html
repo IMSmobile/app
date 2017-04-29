@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Imagic IMS Mobile Client
+      Upload Image to {{parentImageEntryId}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,7 +9,7 @@
 <ion-content padding text-center>
   <button ion-button icon-left on-tap="takePicture()">
     <ion-icon name="camera"></ion-icon>
-    Take a Picture
+    Take a New Picture
   </button>
   <ion-card *ngIf="imageSrc">
     <img [src]="imageSrc" />

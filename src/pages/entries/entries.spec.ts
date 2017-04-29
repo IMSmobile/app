@@ -10,6 +10,7 @@ import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { Camera } from '@ionic-native/camera';
 import { TokenService } from '../../providers/token-service';
 import { EntriesService } from '../../providers/entries-service';
+import { CameraService } from '../../providers/camera-service';
 import { Info } from '../../models/info';
 
 describe('Page: Entries', () => {
@@ -24,7 +25,9 @@ describe('Page: Entries', () => {
       declarations: [EntriesPage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController, AuthService, ImsService, TokenService, MockImsBackend, BaseRequestOptions, Camera, GestureController,
+        App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
+        AuthService, ImsService, TokenService, MockImsBackend, BaseRequestOptions, Camera, GestureController,
+        CameraService,
         { provide: App, useClass: AppMock },
         { provide: Config, useClass: ConfigMock },
         { provide: Platform, useClass: PlatformMock },

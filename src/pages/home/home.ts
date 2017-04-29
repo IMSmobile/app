@@ -2,10 +2,10 @@ import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { NavController, LoadingController, Loading, AlertController, ToastController} from 'ionic-angular';
+import { NavController, LoadingController, Loading, AlertController, ToastController, NavParams } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { Response } from '@angular/http';
+import { CameraService } from '../../providers/camera-service';
 
 @Component({
   selector: 'page-home',
@@ -13,31 +13,30 @@ import { Response } from '@angular/http';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController) { }
   imageSrc: string;
+  parentImageEntryId: string;
   loading: Loading;
   filterId: number = 40;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+    this.imageSrc = navParams.get('imageSrc');
+    this.parentImageEntryId = navParams.get('parentImageEntryId');
+  }
+
+
   public takePicture() {
-
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
-    };
-
-    this.camera.getPicture(options).then((imageData) => {
-      this.imageSrc = imageData;
-    }, (err) => {
-      console.warn(err);
-    });
+    this.cameraService.takePicture().subscribe(
+      imageData => {
+        this.imageSrc = imageData;
+      },
+      err => {
+        console.warn(err);
+      });
   }
 
   public uploadPicture() {
     this.showLoading();
-    let imageEntry = new Entry().set('IDFall', '20537').set('BILDNAME', 'Image from Camera');
+    let imageEntry = new Entry().set('IDFall', this.parentImageEntryId).set('BILDNAME', 'Image from Camera');
     let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
     this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
       res => this.uploadSuccessful(),
