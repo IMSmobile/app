@@ -13,6 +13,8 @@ import { MockUploadService } from '../../mocks/providers/mock-upload-service';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { Camera } from '@ionic-native/camera';
+import { AlertService } from '../../providers/alert-service';
+import { Observable } from 'rxjs/Observable';
 
 
 describe('Page: Home', () => {
@@ -28,7 +30,7 @@ describe('Page: Home', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService,
+        TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -72,13 +74,28 @@ describe('Page: Home', () => {
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show Error after failed upload', inject([AlertController, MockUploadService], (alertController: AlertController, mockUploadService: MockUploadService) => {
-    spyOn(alertController, 'create').and.callThrough();
-    spyOn(page, 'showAlert').and.callThrough();
+  it('Show Error after failed upload', inject([AlertService, MockUploadService], (alertService: AlertService, mockUploadService: MockUploadService) => {
+    spyOn(alertService, 'showError').and.callThrough();
     mockUploadService.mockError('Fail');
     page.uploadService = mockUploadService;
     page.uploadPicture();
-    expect(alertController.create).toHaveBeenCalledTimes(1);
-    expect(page.showAlert).toHaveBeenCalledTimes(1);
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('set imageSrc after taking picture', inject([CameraService], (cameraService: CameraService) => {
+    let imageSource = '/my/picture.jpg';
+    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
+    page.takePicture();
+    expect(cameraService.takePicture).toHaveBeenCalled();
+    expect(page.imageSrc).toBe(imageSource);
+  }));
+
+  it('show error when failing to take picture', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
+    let error = Observable.throw(new Error('oops'));
+    spyOn(cameraService, 'takePicture').and.returnValue(error);
+    spyOn(alertService, 'showError').and.callThrough();
+    page.takePicture();
+    expect(cameraService.takePicture).toHaveBeenCalled();
+    expect(alertService.showError).toHaveBeenCalled();
   }));
 });

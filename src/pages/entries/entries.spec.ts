@@ -15,6 +15,7 @@ import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
 import { Info } from '../../models/info';
 import { Observable } from 'rxjs/Observable';
+import { HomePage } from '../home/home';
 
 describe('Page: Entries', () => {
 
@@ -90,6 +91,30 @@ describe('Page: Entries', () => {
     page.ionViewDidLoad();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Push to Home Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
+    let parentImageEntryId: string = '123';
+    let imageSource = '/my/picture.jpg';
+    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
+    spyOn(navController, 'push').and.callThrough();
+    page.takePictureForEntry(parentImageEntryId);
+    expect(cameraService.takePicture).toHaveBeenCalled();
+    expect(navController.push).toHaveBeenCalledWith(
+      HomePage,
+      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId }
+    );
+  }));
+
+  it('Show alert when failing to take picture', inject([CameraService, NavController, AlertService], (cameraService: CameraService, navController: NavController, alertService: AlertService) => {
+    let error = Observable.throw(new Error('oops'));
+    spyOn(cameraService, 'takePicture').and.returnValue(error);
+    spyOn(navController, 'push').and.callThrough();
+    spyOn(alertService, 'showError').and.callThrough();
+    page.takePictureForEntry('1');
+    expect(cameraService.takePicture).toHaveBeenCalled();
+    expect(navController.push).toHaveBeenCalledTimes(0);
     expect(alertService.showError).toHaveBeenCalled();
   }));
 

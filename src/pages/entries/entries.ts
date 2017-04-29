@@ -21,12 +21,8 @@ export class EntriesPage {
 
   public takePictureForEntry(parentImageEntryId: string) {
     this.cameraService.takePicture().subscribe(
-      imageSrc => {
-        this.navCtrl.push(HomePage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId });
-      },
-      err => {
-        console.warn(err);
-      });
+      imageSrc => this.navCtrl.push(HomePage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId }),
+      err => this.alertService.showError('Failed to take picture.'));
   }
 
   ionViewDidLoad() {
@@ -38,7 +34,7 @@ export class EntriesPage {
       },
       err => {
         this.loadingService.hideLoading();
-        this.alertService.showError('Failed to load entries');
+        this.alertService.showError('Failed to load entries.');
       });
   }
 

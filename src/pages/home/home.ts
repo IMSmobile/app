@@ -2,11 +2,12 @@ import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
-import { NavController,  AlertController, ToastController, NavParams } from 'ionic-angular';
+import { NavController,  ToastController, NavParams } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { Response } from '@angular/http';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
+import { AlertService } from '../../providers/alert-service';
 
 @Component({
   selector: 'page-home',
@@ -18,19 +19,15 @@ export class HomePage {
   parentImageEntryId: string;
   filterId: number = 40;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
   }
 
   public takePicture() {
     this.cameraService.takePicture().subscribe(
-      imageData => {
-        this.imageSrc = imageData;
-      },
-      err => {
-        console.warn(err);
-      });
+      imageData => this.imageSrc = imageData,
+      err => this.alertService.showError('Failed to take picture.'));
   }
 
   public uploadPicture() {
@@ -50,17 +47,7 @@ export class HomePage {
 
   uploadFailed(err: Response) {
     this.loadingService.hideLoading();
-    this.showAlert('Oops, something went wrong!');
-    console.warn(err);
-  }
-
-  showAlert(message: string) {
-    let alert = this.alertCtrl.create({
-      title: 'Failed',
-      subTitle: message,
-      buttons: ['Dismiss']
-    });
-    alert.present();
+    this.alertService.showError('Failed to upload image.');
   }
 
   showToastMessage(toastMessage: string) {
