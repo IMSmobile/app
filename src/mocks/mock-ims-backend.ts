@@ -13,6 +13,9 @@ import { Link } from '../models/link';
 import { Credential } from '../models/credential';
 import { Filter } from '../models/filter';
 import { EntriesPoint } from '../models/entries-point';
+import { ParentImageEntriesResponse } from './response/parent-image-entries-response';
+import { Entries } from '../models/entries';
+import { Entry } from '../models/entry';
 
 export class MockImsBackend extends MockBackend {
 
@@ -39,8 +42,7 @@ export class MockImsBackend extends MockBackend {
     public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
     public uploadContainerUrl: string = this.containerRequestUrl + '/XYZ';
     public imageLocationUrl: string = this.filterResourceUrl + 'Bild/123';
-
-
+    public parentImageEntries: Entries = new Entries([new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
 
     constructor() {
         super();
@@ -61,6 +63,8 @@ export class MockImsBackend extends MockBackend {
                 connection.mockRespond(new LocationResponse(this.uploadContainerUrl));
             } else if (connection.request.url.endsWith(this.uploadContainerUrl) && connection.request.method === RequestMethod.Post) {
                 connection.mockRespond(new LocationResponse(this.imageLocationUrl));
+            } else if (connection.request.url.endsWith(this.parentImageEntriesUrl) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntries));
             } else if (connection.request.url.endsWith(this.infoUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new Response(new ResponseOptions({
                     body: this.versionResponse
