@@ -8,7 +8,6 @@ import { ImageEntry } from '../models/imageEntry';
 import { Image } from '../models/image';
 import { ImsHeaders } from '../models/imsHeaders';
 import { Token } from '../models/token';
-import { ArchiveEntry } from '../models/archiveEntry';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './token-service';
 import { Transfer, FileUploadOptions, TransferObject, FileUploadResult } from '@ionic-native/transfer';
