@@ -6,9 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { Credential } from '../models/credential';
 import { Info } from '../models/info';
 
-
-
-
 @Injectable()
 export class AuthService {
 
@@ -19,6 +16,10 @@ export class AuthService {
 
   login(credentials): Observable<Info> {
     return this.imsService.getInfo(credentials).map(info => this.setCurrentCredential(info, credentials));
+  }
+
+  logout() {
+    this.currentCredential = null;
   }
 
   setCurrentCredential(info: Info, credentials: Credential): Info {

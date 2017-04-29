@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MobileClient } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { PopoverPage } from '../pages/popover/popover';
+import { MorePopoverPage } from '../pages/more-popover/more-popover';
 import { SettingsPage } from './../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,7 +23,7 @@ import { Camera } from '@ionic-native/camera';
     MobileClient,
     HomePage,
     LoginPage,
-    PopoverPage,
+    MorePopoverPage,
     SettingsPage
   ],
   imports: [
@@ -37,7 +37,7 @@ import { Camera } from '@ionic-native/camera';
     MobileClient,
     HomePage,
     LoginPage,
-    PopoverPage,
+    MorePopoverPage,
     SettingsPage
   ],
   providers: [

@@ -1,4 +1,4 @@
-import { PopoverPage } from './../popover/popover';
+import { MorePopoverPage } from './../more-popover/more-popover';
 import { ImageEntry } from './../../models/imageEntry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
@@ -86,7 +86,7 @@ export class HomePage {
   }
 
   presentPopover(myEvent?: NavOptions) {
-   let popover: Popover = this.popoverCtrl.create(PopoverPage);
+   let popover: Popover = this.popoverCtrl.create(MorePopoverPage);
    popover.present({
      ev: myEvent
    });
