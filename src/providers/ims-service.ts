@@ -51,8 +51,16 @@ export class ImsService {
     return this.getArchiveEntry(credential, filterId, token).map(entry => entry.tables.find(this.findImageTable).uploadHref);
   }
 
-  private findImageTable(tableEntry: ArchiveTableEntry) {
+  getParentImageEntriesLink(credential: Credential, filterId: number, token: Token): Observable<string> {
+    return this.getArchiveEntry(credential, filterId, token).map(entry => this.findParentImageTable(entry).dataHref);
+  }
+
+  private findImageTable(tableEntry: ArchiveTableEntry): boolean {
     return tableEntry.uploadHref != null;
+  }
+
+  private findParentImageTable(archiveEntry: ArchiveEntry): ArchiveTableEntry {
+    return archiveEntry.tables[(archiveEntry.tables.length - 2)];
   }
 
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {

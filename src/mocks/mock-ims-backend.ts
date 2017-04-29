@@ -35,7 +35,8 @@ export class MockImsBackend extends MockBackend {
     public token: Token = new Token(this.tokenName, this.tokenExpirationDate);
     public filterTable: Filter[] = [new Filter(this.filterResourceUrl, this.filterId.toString())];
     public containerRequestUrl: string = this.filterResourceUrl + '/Bild/uploads';
-    public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall'), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
+    public parentImageEntriesUrl: string = this.filterResourceUrl + '/Fall';
+    public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
     public uploadContainerUrl: string = this.containerRequestUrl + '/XYZ';
     public imageLocationUrl: string = this.filterResourceUrl + 'Bild/123';
 
