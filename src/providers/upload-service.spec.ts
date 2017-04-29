@@ -4,7 +4,7 @@ import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { UploadService } from './upload-service';
 import { TokenService } from './token-service';
 import { ImsService } from './ims-service';
-import { ImageEntry } from '../models/imageEntry';
+import { Entry } from '../models/entry';
 import { Image } from '../models/image';
 import { Transfer } from '@ionic-native/transfer';
 import { MockTransfer } from '../mocks/providers/mock-transfer';
@@ -41,7 +41,7 @@ describe('Provider: UploadService', () => {
   }));
 
   it('Should upload image', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
-    let imageEntry = new ImageEntry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
+    let imageEntry = new Entry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
     let image = new Image('image.jpg', '');
     uploadService.uploadImage(mockImsBackend.credential, mockImsBackend.filterId, imageEntry, image).subscribe(
       response => expect(response.headers.get('location')).toEqual(mockImsBackend.imageLocationUrl),

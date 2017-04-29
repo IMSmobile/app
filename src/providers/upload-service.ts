@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/fromPromise';
 import { Credential } from '../models/credential';
-import { ImageEntry } from '../models/imageEntry';
+import { Entry } from '../models/entry';
 import { Image } from '../models/image';
 import { ImsHeaders } from '../models/imsHeaders';
 import { Token } from '../models/token';
@@ -18,7 +18,7 @@ export class UploadService {
   constructor(public transfer: Transfer, public http: Http, public tokenService: TokenService, public imsService: ImsService) {
   }
 
-  uploadImage(credential: Credential, filterId: number, imageEntry: ImageEntry, image: Image): Observable<Response> {
+  uploadImage(credential: Credential, filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
     return this.tokenService.getToken(credential).flatMap(token => {
       return this.createContainerLocation(credential, filterId, token).flatMap(adress => {
         return this.postToContainer(credential, adress, token, image).flatMap(response => {
@@ -49,7 +49,7 @@ export class UploadService {
     return Observable.fromPromise(fileTransfer.upload(image.fileURI, url, options));
   }
 
-  createImageEntry(credential: Credential, url: string, token: Token, imageEntry: ImageEntry) {
+  createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry) {
     return this.http.post(url, imageEntry.json(), { headers: new ImsHeaders(credential, token) });
   }
 }

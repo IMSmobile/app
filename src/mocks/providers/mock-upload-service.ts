@@ -1,5 +1,5 @@
 import { Credential } from '../../models/credential';
-import { ImageEntry } from '../../models/imageEntry';
+import { Entry } from '../../models/entry';
 import { Token } from '../../models/token';
 import { ArchiveEntry } from '../../models/archiveEntry';
 import { Image } from '../../models/image';
@@ -19,7 +19,7 @@ export class MockUploadService {
     tokenService: any;
     imsService: any;
 
-    uploadImage(credential: Credential, filterId: number, imageEntry: ImageEntry, image: Image): Observable<Response> {
+    uploadImage(credential: Credential, filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
         if (this.mockErrorMessage) {
             return Observable.throw(new Error(this.mockErrorMessage));
         } else {
@@ -44,7 +44,7 @@ export class MockUploadService {
         return null;
     }
 
-    createImageEntry(credential: Credential, url: string, token: Token, imageEntry: ImageEntry): Observable<Response> {
+    createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry): Observable<Response> {
         return null;
     }
 }

@@ -1,5 +1,5 @@
 import { MorePopoverPage } from './../more-popover/more-popover';
-import { ImageEntry } from './../../models/imageEntry';
+import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
@@ -38,7 +38,7 @@ export class HomePage {
 
   public uploadPicture() {
     this.showLoading();
-    let imageEntry = new ImageEntry().set('IDFall', '20537').set('BILDNAME', 'Image from Camera');
+    let imageEntry = new Entry().set('IDFall', '20537').set('BILDNAME', 'Image from Camera');
     let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
     this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
       res => this.uploadSuccessful(),
