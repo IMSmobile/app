@@ -16,6 +16,7 @@ import { AlertService } from '../../providers/alert-service';
 import { Info } from '../../models/info';
 import { Observable } from 'rxjs/Observable';
 import { HomePage } from '../home/home';
+import 'rxjs/add/observable/throw';
 
 describe('Page: Entries', () => {
 

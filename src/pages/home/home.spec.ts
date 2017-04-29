@@ -5,16 +5,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, PopoverControllerMock } from '../../mocks/mocks';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
+import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { UploadService } from '../../providers/upload-service';
 import { TokenService } from '../../providers/token-service';
-import { MockUploadService } from '../../mocks/providers/mock-upload-service';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { Camera } from '@ionic-native/camera';
 import { AlertService } from '../../providers/alert-service';
 import { Observable } from 'rxjs/Observable';
+import { Transfer } from '@ionic-native/transfer';
+import 'rxjs/add/observable/throw';
 
 
 describe('Page: Home', () => {
@@ -30,7 +31,7 @@ describe('Page: Home', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, MockUploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService,
+        TokenService, UploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -38,7 +39,6 @@ describe('Page: Home', () => {
         { provide: NavParams, useClass: NavParamsMock },
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
-        { provide: UploadService, useClass: MockUploadService },
         { provide: PopoverController, useClass: PopoverControllerMock },
         {
           provide: Http,
@@ -60,24 +60,26 @@ describe('Page: Home', () => {
     fixture.destroy();
   });
 
-  it('Show and Hide Loading while uploading', inject([LoadingService], (loadingService: LoadingService) => {
+  it('Show and Hide Loading while uploading', inject([LoadingService, UploadService], (loadingService: LoadingService, uploadService: UploadService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
+    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
     page.uploadPicture();
     expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
-  it('Show Toast after successfull upload', inject([ToastController], (toastController: ToastController) => {
+  it('Show Toast after successfull upload', inject([ToastController, UploadService], (toastController: ToastController, uploadService: UploadService) => {
     spyOn(toastController, 'create').and.callThrough();
+    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
     page.uploadPicture();
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show Error after failed upload', inject([AlertService, MockUploadService], (alertService: AlertService, mockUploadService: MockUploadService) => {
+  it('Show Error after failed upload', inject([AlertService, UploadService], (alertService: AlertService, uploadService: UploadService) => {
+    let error = Observable.throw(new Error('oops'));
     spyOn(alertService, 'showError').and.callThrough();
-    mockUploadService.mockError('Fail');
-    page.uploadService = mockUploadService;
+    spyOn(uploadService, 'uploadImage').and.returnValue(error);
     page.uploadPicture();
     expect(alertService.showError).toHaveBeenCalled();
   }));
