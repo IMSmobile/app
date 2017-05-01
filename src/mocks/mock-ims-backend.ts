@@ -16,6 +16,7 @@ import { EntriesPoint } from '../models/entries-point';
 import { ParentImageEntriesResponse } from './response/parent-image-entries-response';
 import { Entries } from '../models/entries';
 import { Entry } from '../models/entry';
+import { Pagination } from '../models/pagination';
 
 export class MockImsBackend extends MockBackend {
 
@@ -42,7 +43,11 @@ export class MockImsBackend extends MockBackend {
     public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
     public uploadContainerUrl: string = this.containerRequestUrl + '/XYZ';
     public imageLocationUrl: string = this.filterResourceUrl + 'Bild/123';
-    public parentImageEntries: Entries = new Entries([new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
+    public parentImageEntriesNextPageUrl: string = this.parentImageEntriesUrl + '&start=20&pageSize=20';
+    public parentImageEntriesNextNextPageUrl: string = this.parentImageEntriesUrl + '&start=40&pageSize=20';
+    public paretImageEntriesPagination: Pagination = new Pagination({nextPage: this.parentImageEntriesNextPageUrl});
+    public parentImageEntries: Entries = new Entries(this.paretImageEntriesPagination, [new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
+    public parentImageEntriesNextPage: Entries = new Entries(new Pagination({nextPage: this.parentImageEntriesNextNextPageUrl}), [new Entry().set('IdFall', '21'), new Entry().set('IdFall', '22')]);
 
     constructor() {
         super();
@@ -65,6 +70,8 @@ export class MockImsBackend extends MockBackend {
                 connection.mockRespond(new LocationResponse(this.imageLocationUrl));
             } else if (connection.request.url.endsWith(this.parentImageEntriesUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntries));
+            } else if (connection.request.url.endsWith(this.parentImageEntriesNextPageUrl) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntriesNextPage));
             } else if (connection.request.url.endsWith(this.infoUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new Response(new ResponseOptions({
                     body: this.versionResponse

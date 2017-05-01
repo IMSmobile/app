@@ -13,23 +13,26 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-card *ngFor="let entry of entries">
-      <ion-card-header>
-        IDFall: {{entry.fields.IDFall}}
-      </ion-card-header>
-      <ion-card-content>
-        <ion-row>
-          <ion-col>
-            IACreationDate: {{entry.fields.IACreationDate}}
-          </ion-col>
-          <ion-col>
-            <button ion-button (tap)="takePictureForEntry(entry.fields.IDFall)">
+  <ion-infinite-scroll (ionInfinite)="infiniteEntries($event)">
+    <ion-list>
+      <ion-card *ngFor="let entry of entries">
+        <ion-card-header>
+          IDFall: {{entry.fields.IDFall}}
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              IACreationDate: {{entry.fields.IACreationDate}}
+            </ion-col>
+            <ion-col>
+              <button ion-button (tap)="takePictureForEntry(entry.fields.IDFall)">
           <ion-icon name="camera" item-right></ion-icon>
           </button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+    <ion-infinite-scroll-content loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

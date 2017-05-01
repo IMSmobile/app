@@ -4,7 +4,7 @@ import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingControl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
-import { ConfigMock, PlatformMock, NavParamsMock, AppMock, LoadingMock, PopoverControllerMock, AlertMock } from '../../mocks/mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, AppMock, LoadingMock, PopoverControllerMock, AlertMock, InfiniteScrollMock } from '../../mocks/mocks';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../../mocks/mock-ims-backend';
 import { Camera } from '@ionic-native/camera';
@@ -71,6 +71,7 @@ describe('Page: Entries', () => {
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
     page.ionViewDidLoad();
     expect(page.entries).toEqual(mockImsBackend.parentImageEntries.entries);
+    expect(page.nextPage).toEqual(mockImsBackend.parentImageEntriesNextPageUrl);
   }));
 
   it('Show and hide loading when successful', inject([MockImsBackend, AuthService, LoadingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService) => {
@@ -93,6 +94,44 @@ describe('Page: Entries', () => {
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
     expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Disables infinite scroll when there is no next page', () => {
+    let infiniteScroll = new InfiniteScrollMock();
+    spyOn(infiniteScroll, 'enable').and.callThrough();
+    page.nextPage = null;
+    page.infiniteEntries(infiniteScroll);
+    expect(infiniteScroll.enable).toHaveBeenCalledWith(false);
+  });
+
+  it('Completes infinite scroll on new items', inject([MockImsBackend, EntriesService], (mockImsBackend: MockImsBackend, entriesService: EntriesService) => {
+    let infiniteScroll = new InfiniteScrollMock();
+    spyOn(infiniteScroll, 'complete').and.callThrough();
+    spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(mockImsBackend.parentImageEntriesNextPage));
+    page.nextPage = mockImsBackend.parentImageEntriesNextPageUrl;
+    page.infiniteEntries(infiniteScroll);
+    expect(infiniteScroll.complete).toHaveBeenCalled();
+  }));
+
+  it('Completes infinite scroll and alerts on error', inject([MockImsBackend, EntriesService, AlertService], (mockImsBackend: MockImsBackend, entriesService: EntriesService, alertService: AlertService) => {
+    let infiniteScroll = new InfiniteScrollMock();
+    let error = Observable.throw(new Error('oops'));
+    spyOn(infiniteScroll, 'complete').and.callThrough();
+    spyOn(entriesService, 'getEntries').and.returnValue(error);
+    spyOn(alertService, 'showError').and.callThrough();
+    page.nextPage = mockImsBackend.parentImageEntriesNextPageUrl;
+    page.infiniteEntries(infiniteScroll);
+    expect(infiniteScroll.complete).toHaveBeenCalled();
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Load next entries on infinite scroll', inject([MockImsBackend, EntriesService], (mockImsBackend: MockImsBackend, entriesService: EntriesService) => {
+    spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(mockImsBackend.parentImageEntriesNextPage));
+    page.nextPage = mockImsBackend.parentImageEntriesNextPageUrl;
+    page.entries = new Array(...mockImsBackend.parentImageEntries.entries);
+    page.infiniteEntries(new InfiniteScrollMock());
+    expect(page.entries).toEqual(mockImsBackend.parentImageEntries.entries.concat(mockImsBackend.parentImageEntriesNextPage.entries));
+    expect(page.nextPage).toBe(mockImsBackend.parentImageEntriesNextNextPageUrl);
   }));
 
   it('Push to Home Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {

@@ -8,6 +8,7 @@ import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from './../../providers/alert-service';
 import { HomePage } from '../home/home';
+import { Entries } from '../../models/entries';
 
 @Component({
   selector: 'page-entries',
@@ -15,7 +16,8 @@ import { HomePage } from '../home/home';
 })
 export class EntriesPage {
 
-  entries: Entry[];
+  entries: Entry[] = [];
+  nextPage: string;
 
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService) { }
 
@@ -29,7 +31,7 @@ export class EntriesPage {
     this.loadingService.showLoading();
     this.entriesService.getParentImageEntries(this.authService.currentCredential, 40).subscribe(
       entries => {
-        this.entries = entries.entries;
+        this.updateEntries(entries);
         this.loadingService.hideLoading();
       },
       err => {
@@ -37,6 +39,28 @@ export class EntriesPage {
         this.alertService.showError('Failed to load entries.');
       });
   }
+
+  infiniteEntries(infiniteScroll) {
+    if (this.nextPage == null) {
+      infiniteScroll.enable(false);
+    } else {
+      this.entriesService.getEntries(this.authService.currentCredential, this.nextPage).subscribe(
+        entries => {
+          this.updateEntries(entries);
+          infiniteScroll.complete();
+        },
+        err => {
+          infiniteScroll.complete();
+          this.alertService.showError('Failed to load more entries.');
+        });
+    }
+  }
+
+  updateEntries(entries: Entries): void {
+    this.entries.push(...entries.entries);
+    this.nextPage = entries.pagination.nextPage;
+  }
+
 
   presentPopover(myEvent?: NavOptions) {
     let popover: Popover = this.popoverCtrl.create(MorePopoverPage);

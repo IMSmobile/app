@@ -34,5 +34,11 @@ describe('Provider: EntriesService', () => {
       err => fail(err));
   }));
 
+  it('Gets next page of parent image entries', inject([EntriesService, MockImsBackend], (entriesService: EntriesService, mockImsBackend: MockImsBackend) => {
+    let credential = mockImsBackend.credential;
+    entriesService.getParentImageEntries(credential, mockImsBackend.filterId).flatMap(entries => entriesService.getEntries(credential, entries.pagination.nextPage)).subscribe(
+      entries => expect(entries).toBe(mockImsBackend.parentImageEntriesNextPage),
+      err => fail(err));
+  }));
 });
 
