@@ -3,6 +3,8 @@ import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { MockImsBackend } from '../mocks/mock-ims-backend';
 import { AuthService } from './auth-service';
 import { ImsService } from './ims-service';
+import { Credential } from '../models/credential';
+import { Info } from '../models/info';
 
 describe('Provider: AuthService', () => {
 
@@ -44,5 +46,12 @@ describe('Provider: AuthService', () => {
       info => fail('Should fail'),
       err => expect(authService.currentCredential).toBeUndefined()
     );
+  }));
+
+  it('Should clear credentials on logout', inject([AuthService], (authService: AuthService) => {
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
+    authService.logout();
+    expect(authService.currentCredential).toBeNull();
   }));
 });

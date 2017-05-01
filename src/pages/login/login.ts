@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams, LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
+import { SettingService } from '../../providers/setting-service';
+
 import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { HomePage } from '../home/home';
@@ -15,8 +17,9 @@ export class LoginPage {
 
   loginForm: FormGroup;
   loading: Loading;
+  isShowRestUrlField: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
@@ -47,6 +50,8 @@ export class LoginPage {
 
   loginSuccessful() {
     this.hideLoading();
+    this.settingService.setRestUrl(this.loginForm.controls['server'].value);
+    this.settingService.setUsername(this.loginForm.controls['user'].value);
     this.navCtrl.setRoot(HomePage);
   }
 
@@ -91,6 +96,12 @@ export class LoginPage {
     this.loginForm.controls['server'].markAsTouched();
     this.loginForm.controls['user'].markAsTouched();
     this.loginForm.controls['password'].markAsTouched();
+  }
+
+  ionViewDidLoad() {
+    this.settingService.getRestUrl().subscribe(val => this.loginForm.controls['server'].setValue(val));
+    this.settingService.getUsername().subscribe(val => this.loginForm.controls['user'].setValue(val));
+    this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);
   }
 
 }

@@ -160,17 +160,21 @@ export class StatusMock {
 }
 
 export class StorageMock {
+  store = {};
 
-  public get(key: string): Promise<{}> {
+  public ready(): Promise<{}> {
     return new Promise((resolve: Function) => {
       resolve({});
     });
   }
 
+  public get(key: string): Promise<string> {
+    return Promise.resolve(this.store[key]);
+  }
+
   public set(key: string, value: string): Promise<{}> {
-    return new Promise((resolve: Function) => {
-      resolve({ key: key, value: value });
-    });
+    this.store[key] = value;
+    return Promise.resolve({});
   }
 
   public remove(key: string): Promise<{}> {
@@ -228,7 +232,32 @@ export class LoadingMock {
   }
 
   public dismiss() {
-    
+
   }
 }
+export class PopoverControllerMock {
+
+  public create(): any {
+    return this;
+  }
+
+  public present() {
+
+  }
+}
+
+export class ViewControllerMock {
+  public _setHeader(): any {
+    return {}
+  }
+  public _setIONContent(): any {
+    return {}
+  }
+  public _setIONContentRef(): any {
+    return {}
+  }
+  public dismiss() {
+  }
+}
+
 /* tslint:enable */
