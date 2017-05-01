@@ -18,6 +18,14 @@ import { SettingService } from '../providers/setting-service';
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
 
+import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '4f2a84b8'
+  }
+};
+
 @NgModule({
   declarations: [
     MobileClient,
@@ -28,6 +36,7 @@ import { Camera } from '@ionic-native/camera';
   ],
   imports: [
     IonicModule.forRoot(MobileClient),
+    CloudModule.forRoot(cloudSettings),
     IonicStorageModule.forRoot({
       name: 'imsClientDB'
     })
