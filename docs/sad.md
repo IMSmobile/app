@@ -28,10 +28,10 @@ Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist do
 ## Ordner Struktur Konventionen
 
 Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden verwenden wir Order Struktur Konventionen. Diese Konventionen entsprechen im Grundsatz der Konvention von einem Ionic 2 Projekt.   
-
     .
     ├── docs                         # Dokumentationen
     ├── resources                    # Icon, Splashscreen
+    |── scripts                      # Scripts für Travis CI oder Installationen
     ├── src                          # Sourcecode Files
     ├──── app                        # Zusammenstellung der App, Depdency Managment Konfiugration
     ├──── assets                     # Bilder die innerhalb der App gebraucht werden
@@ -48,3 +48,4 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──────── any-service.ts         # Serviceklasse
     ├──── themes                     # scss Files für die Gestaltung der App 
     ├── e2e                          # Automatisierte End to End Tests
+
