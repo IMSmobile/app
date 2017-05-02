@@ -1,3 +1,5 @@
+import { QueryBuilderService } from './query-builder-service';
+import { QueryFragment } from './../models/queryFragment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -11,13 +13,13 @@ import { ImsHeaders } from '../models/imsHeaders';
 @Injectable()
 export class EntriesService {
 
-  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService) {
+  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public queryBuilderService: QueryBuilderService) {
   }
 
-  getParentImageEntries(credential: Credential, filterId: number): Observable<Entries> {
+  getParentImageEntries(credential: Credential, filterId: number, queryFragments: QueryFragment[]): Observable<Entries> {
     return this.tokenService.getToken(credential).flatMap(token => {
       return this.imsService.getParentImageEntriesLink(credential, filterId, token).flatMap(entriesLink => {
-        return this.getEntries(credential, entriesLink);
+        return this.getEntries(credential, entriesLink + this.queryBuilderService.generate(queryFragments));
       });
     });
   }

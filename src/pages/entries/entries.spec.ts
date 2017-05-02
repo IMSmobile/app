@@ -1,3 +1,4 @@
+import { QueryBuilderService } from './../../providers/query-builder-service';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { EntriesPage } from './entries';
 import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, PopoverController, GestureController, AlertController } from 'ionic-angular';
@@ -32,7 +33,7 @@ describe('Page: Entries', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, MockImsBackend, BaseRequestOptions, Camera, GestureController,
-        CameraService, LoadingService, AlertService,
+        CameraService, LoadingService, AlertService, QueryBuilderService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -69,6 +70,7 @@ describe('Page: Entries', () => {
   it('Load entries when ion view did load', inject([EntriesService, MockImsBackend, AuthService], (entriesService: EntriesService, mockImsBackend: MockImsBackend, authService: AuthService) => {
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    page.sort = mockImsBackend.query;
     page.ionViewDidLoad();
     expect(page.entries).toEqual(mockImsBackend.parentImageEntries.entries);
     expect(page.nextPage).toEqual(mockImsBackend.parentImageEntriesNextPageUrl);

@@ -22,6 +22,7 @@ import { EntriesService } from '../providers/entries-service';
 import { CameraService } from '../providers/camera-service';
 import { LoadingService } from '../providers/loading-service';
 import { AlertService } from '../providers/alert-service';
+import { QueryBuilderService } from './../providers/query-builder-service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AlertService } from '../providers/alert-service';
     CameraService,
     LoadingService,
     AlertService,
+    QueryBuilderService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

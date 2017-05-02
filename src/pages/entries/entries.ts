@@ -1,3 +1,4 @@
+import { QueryFragment } from './../../models/queryFragment';
 import { Component } from '@angular/core';
 import { NavController, PopoverController, NavOptions, Popover } from 'ionic-angular';
 import { MorePopoverPage } from '../more-popover/more-popover';
@@ -18,6 +19,7 @@ export class EntriesPage {
 
   entries: Entry[] = [];
   nextPage: string;
+  sort: QueryFragment[] = [new QueryFragment('sort', 'IACreationDate+desc')];
 
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService) { }
 
@@ -29,7 +31,7 @@ export class EntriesPage {
 
   ionViewDidLoad() {
     this.loadingService.showLoading();
-    this.entriesService.getParentImageEntries(this.authService.currentCredential, 40).subscribe(
+    this.entriesService.getParentImageEntries(this.authService.currentCredential, 40, this.sort).subscribe(
       entries => {
         this.updateEntries(entries);
         this.loadingService.hideLoading();

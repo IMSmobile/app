@@ -1,3 +1,5 @@
+import { QueryBuilderService } from './../providers/query-builder-service';
+import { QueryFragment } from './../models/queryFragment';
 import { Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { EntryPointResponse } from './response//entry-point-response';
@@ -40,11 +42,14 @@ export class MockImsBackend extends MockBackend {
     public filterTable: Filter[] = [new Filter(this.filterResourceUrl, this.filterId.toString())];
     public containerRequestUrl: string = this.filterResourceUrl + '/Bild/uploads';
     public parentImageEntriesUrl: string = this.filterResourceUrl + '/Fall';
+    public query: QueryFragment[] = [new QueryFragment('testkey', 'testvalue')];
+    public queryBuilder: QueryBuilderService = new QueryBuilderService();
+    public parentImageEntriesUrlWithQuery: string = this.parentImageEntriesUrl + this.queryBuilder.generate(this.query);
     public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
     public uploadContainerUrl: string = this.containerRequestUrl + '/XYZ';
     public imageLocationUrl: string = this.filterResourceUrl + 'Bild/123';
-    public parentImageEntriesNextPageUrl: string = this.parentImageEntriesUrl + '&start=20&pageSize=20';
-    public parentImageEntriesNextNextPageUrl: string = this.parentImageEntriesUrl + '&start=40&pageSize=20';
+    public parentImageEntriesNextPageUrl: string = this.parentImageEntriesUrlWithQuery + '&start=20&pageSize=20';
+    public parentImageEntriesNextNextPageUrl: string = this.parentImageEntriesUrlWithQuery + '&start=40&pageSize=20';
     public paretImageEntriesPagination: Pagination = new Pagination({nextPage: this.parentImageEntriesNextPageUrl});
     public parentImageEntries: Entries = new Entries(this.paretImageEntriesPagination, [new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
     public parentImageEntriesNextPage: Entries = new Entries(new Pagination({nextPage: this.parentImageEntriesNextNextPageUrl}), [new Entry().set('IdFall', '21'), new Entry().set('IdFall', '22')]);
@@ -68,7 +73,7 @@ export class MockImsBackend extends MockBackend {
                 connection.mockRespond(new LocationResponse(this.uploadContainerUrl));
             } else if (connection.request.url.endsWith(this.uploadContainerUrl) && connection.request.method === RequestMethod.Post) {
                 connection.mockRespond(new LocationResponse(this.imageLocationUrl));
-            } else if (connection.request.url.endsWith(this.parentImageEntriesUrl) && connection.request.method === RequestMethod.Get) {
+            } else if (connection.request.url.endsWith(this.parentImageEntriesUrlWithQuery) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntries));
             } else if (connection.request.url.endsWith(this.parentImageEntriesNextPageUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntriesNextPage));
