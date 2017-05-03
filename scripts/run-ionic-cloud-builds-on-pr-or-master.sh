@@ -18,8 +18,6 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ "$TRAVIS_BRANCH" == "master" ]; th
     sleep 2
     androidStatus=$(ionic package info "$androidBuildId" | awk '/status / {print $NF}')
     iosStatus=$(ionic package info "$iosBuildId" | awk '/status / {print $NF}')
-    echo "androidstatus: $androidStatus"
-    echo "iosstatus: $iosStatus"
     if [ "$androidStatus" == "SUCCESS" ] && [ "$iosStatus" == "SUCCESS" ]; then
       echo "Packaging successfull!"
 			ionic package info "$androidBuildId"
