@@ -32,7 +32,7 @@ FA12 | iOS-soll | Der Client soll auf iPhones 5, 6 und 7 mit iOS 9 oder höher f
 FA13 | Android-muss | Der Client muss auf einem Samsung Galaxy S7 mit Android 6.0 API Level 23 (Marshmallow) funktionsfähig sein. | Imagic |
 FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 (Lollipop) oder höher funktionsfähig sein. | Imagic |
 FA15 | Browser | Der Client kann auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) benutzt werden. | Imagic, PIC Systems |
-FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | Imagic | 
+FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | Imagic | Wenn aktiviert, können Spezifikationen wie NF15 und NF17 nur eingeschränkt erfüllt werden.
 FA17 | Schnittstelle | Der Client muss mit dem Imagic IMS über die REST-API kommunizieren. | Imagic IMS |
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | Imagic IMS |
 ~~FA19~~ | ~~Bildlöschung~~ | ~~Hochgeladene Bilder können wieder gelöscht werden.~~ | | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht
@@ -42,7 +42,7 @@ FA22 | Fallzuteilung | Der Client muss das Bild oder die Bilder zu einem Fall zu
 FA23 | Fehlermeldung | Der Client soll dem Benutzer Fehler bei Berechtigungen und Lizenz anzeigen. | Imagic |
 FA24 | Filter | Der Client muss dem Benutzer eine Möglichkeit bieten nach Fällen zu filtern. | Imagic, PIC Systems | 
 FA25 | Mehrfachmetadaten | Der Client kann dem Benutzer die Möglichkeit bieten Metadaten zu erfassen welche zu sämtlichen ausgewählten Bildern gespeichert werden. | PIC Systems |
-FA26 | Feldfilter | Der Client soll dem Benutzer nur eine vom Benutzer definierte Auswahl der möglichen Felder zur Eingabe von Metadaten anzeigen. | PIC Systems |  
+FA26 | Feldfilter | Der Client soll so eingestellt werden können dass dem Benutzer nur eine definierte Auswahl von Feldern zur Eingabe von Metadaten angezeigt wird. | PIC Systems |  
 FA27 | Aktualisierung | Software-Features oder Fehlerbehebungen im Client können automatisch aktualisiert werden. | Support Abteilung |
 ~~FA28~~ | ~~Publisherlink~~ | ~~Nach fertigem Upload der Bilder soll es möglich sein, einen Publisher Link zu erhalten, welcher dann mittels "Weiterleiten" an andere (dritt) Apps übermittelt werden können.~~ | PIC Systems | Funktionaltät wird nicht von der REST API angeboten, kann deshalb nicht realisiert werden. 
 ~~FA29~~ | ~~Uploadbegrenzung~~ | ~~Es muss möglich sein, eine Begrenzung des Upload-Datenvolumens pro Monat zu konfigurieren.~~ | PIC Systems | Wird als Aufgabe eines Mobile Device Management angesehen.
@@ -74,9 +74,9 @@ NF11 | Version | Im Client soll die Version ersichtlich sein. | Support-Abteilun
 NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload oder API-Abfragen informieren. | Benutzer |
 NF13 | Abbruch | Bilderupload und Änderung der Metadaten können jederzeit abgebrochen werden. | Benutzer |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic IMS funktionieren welches 1'000'000 Fälle beinhaltet. | Imagic, PIC Systems |
-NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic IMS speichern können. | Benutzer | 
+NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic IMS speichern können. | Benutzer | Wenn Direktupload aktiviert ist, muss der Hintergrundupload nicht verfügbar sein.
 NF16 | Wiederverwendbarkeit | Teile des Quellcodes des Clients soll wiederverwendbar sein für einen Browser-basierten Client. | Imagic, PIC Systems |
-NF17 | Verbindungsunterbrüche | Nach einem Verbindungsunterbrüch zum Imagic IMS soll die Übermittlung erneut möglich sein ohne dass der Benutzer sämtliche Angaben erneut eingeben muss. | PIC Systems | 
+NF17 | Verbindungsunterbrüche | Nach einem Verbindungsunterbrüch zum Imagic IMS soll die Übermittlung erneut möglich sein ohne dass der Benutzer sämtliche Angaben erneut eingeben muss. | PIC Systems | Wenn Direktupload aktiviert ist, kann die Verarbeitung von Verbindungsunterbrüchen eingeschränkt sein.
 NF18 | Fehlerverminderung | Wiederholte Regressionen sollen nach Behebung vermieden werden. | Support-Abteilung |
 NF19 | Codeübergabe | IMS Entwickler können nach zwei Arbeitstagen kleinere Fehler selbständig beheben. | IMS Entwickler |
 NF20 | Softwarepaket | Der Client muss als IPA und APK erzeugt werden können. | PIC Systems |
