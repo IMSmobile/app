@@ -357,13 +357,24 @@ describe("A module ", function() {
 #### End to End Testing
 Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
-Mit dem Befehel npm run e2e können alle End to End Tests ausgeführt werden.
+Mit folgendem Befehl können alle End to End Tests ausgeführt werden.
 
 ```shell
 npm run e2e
 ```
 
 *TODO Example, Description Integration Testing with Framework*
+
+#### Build Testing
+Mit Build Testing stellen wir sicher dass unsere Software in ein gültiges Paketformat (`.ipa` oder `.apk`) für Smartphones umgewandelt werden kann. Dazu verwenden wir den Service [Ionic Package](https://docs.ionic.io/services/package/).
+
+Mit folgenden Befehlen kann ein Build für Android sowie iOS gestartet und verifiziert werden:
+
+```shell
+ionic package build android --noresources --profile dev
+ionic package build ios --noresources --profile dev
+ionic package list
+```
 
 #### Manual Testing
 Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Deshalb werden manuelle Test Cases geschrieben. Diese werden in jedem Sprint und vor jedem Release durchgeführt.
