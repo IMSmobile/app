@@ -32,7 +32,7 @@ FA12 | iOS-soll | Der Client soll auf iPhones 5, 6 und 7 mit iOS 9 oder höher f
 FA13 | Android-muss | Der Client muss auf einem Samsung Galaxy S7 mit Android 6.0 API Level 23 (Marshmallow) funktionsfähig sein. | Imagic |
 FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 (Lollipop) oder höher funktionsfähig sein. | Imagic |
 FA15 | Browser | Der Client kann auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) benutzt werden. | Imagic, PIC Systems |
-FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | Imagic | 
+FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | Imagic | Wenn aktiviert können Funktionen wie NF15 und NF17 wegfallen.
 FA17 | Schnittstelle | Der Client muss mit dem Imagic IMS über die REST-API kommunizieren. | Imagic IMS |
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | Imagic IMS |
 ~~FA19~~ | ~~Bildlöschung~~ | ~~Hochgeladene Bilder können wieder gelöscht werden.~~ | | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht
