@@ -42,7 +42,7 @@ FA22 | Fallzuteilung | Der Client muss das Bild oder die Bilder zu einem Fall zu
 FA23 | Fehlermeldung | Der Client soll dem Benutzer Fehler bei Berechtigungen und Lizenz anzeigen. | Imagic |
 FA24 | Filter | Der Client muss dem Benutzer eine Möglichkeit bieten nach Fällen zu filtern. | Imagic, PIC Systems | 
 FA25 | Mehrfachmetadaten | Der Client kann dem Benutzer die Möglichkeit bieten Metadaten zu erfassen welche zu sämtlichen ausgewählten Bildern gespeichert werden. | PIC Systems |
-FA26 | Feldfilter | Der Client soll dem Benutzer nur eine vom Benutzer definierte Auswahl der möglichen Felder zur Eingabe von Metadaten anzeigen. | PIC Systems |  
+FA26 | Feldfilter | Der Client soll so eingestellt werden können dass dem Benutzer nur eine definierte Auswahl von Feldern zur Eingabe von Metadaten angezeigt wird. | PIC Systems |  
 FA27 | Aktualisierung | Software-Features oder Fehlerbehebungen im Client können automatisch aktualisiert werden. | Support Abteilung |
 ~~FA28~~ | ~~Publisherlink~~ | ~~Nach fertigem Upload der Bilder soll es möglich sein, einen Publisher Link zu erhalten, welcher dann mittels "Weiterleiten" an andere (dritt) Apps übermittelt werden können.~~ | PIC Systems | Funktionaltät wird nicht von der REST API angeboten, kann deshalb nicht realisiert werden. 
 ~~FA29~~ | ~~Uploadbegrenzung~~ | ~~Es muss möglich sein, eine Begrenzung des Upload-Datenvolumens pro Monat zu konfigurieren.~~ | PIC Systems | Wird als Aufgabe eines Mobile Device Management angesehen.
