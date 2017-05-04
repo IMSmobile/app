@@ -4,7 +4,7 @@ Freitag, 07.04.2017 13:00-14:00 bei PIC Systems AG, Glattbrugg
 
 ## Teilnehmer
 
-PIC Systems: Marcel Bachmann, Adrian Käser, Michael Bachmann  
+PIC Systems: Marcel Bachmann, Adrian Martin, Michael Bachmann  
 IMS Mobile Client Entwickler: Niklaus Tschirky, Sandro Zbinden
 
 ## Traktanden
