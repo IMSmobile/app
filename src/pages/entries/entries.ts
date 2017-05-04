@@ -21,7 +21,7 @@ export class EntriesPage {
 
   entries: Entry[] = [];
   nextPage: string;
-  sort: QueryFragment[] = [new QueryFragment('sort', 'IACreationDate+desc')];
+  sort: QueryFragment[] = [new QueryFragment('sort', 'IAModificationDate+desc')];
   popover: Popover;
 
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events) { }
