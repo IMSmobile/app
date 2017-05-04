@@ -1,6 +1,6 @@
 import { QueryFragment } from './../../models/queryFragment';
 import { Component } from '@angular/core';
-import { NavController, PopoverController, NavOptions, Popover } from 'ionic-angular';
+import { NavController, PopoverController, NavOptions, Popover, Events } from 'ionic-angular';
 import { MorePopoverPage } from '../more-popover/more-popover';
 import { Entry } from '../../models/entry';
 import { EntriesService } from './../../providers/entries-service';
@@ -10,6 +10,8 @@ import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from './../../providers/alert-service';
 import { HomePage } from '../home/home';
 import { Entries } from '../../models/entries';
+import { SettingsPage } from '../settings/settings';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-entries',
@@ -20,8 +22,9 @@ export class EntriesPage {
   entries: Entry[] = [];
   nextPage: string;
   sort: QueryFragment[] = [new QueryFragment('sort', 'IACreationDate+desc')];
+  popover: Popover;
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService) { }
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events) { }
 
   public takePictureForEntry(parentImageEntryId: string) {
     this.cameraService.takePicture().subscribe(
@@ -63,10 +66,26 @@ export class EntriesPage {
     this.nextPage = entries.pagination.nextPage;
   }
 
+  ionViewWillEnter() {
+    this.events.subscribe('nav:settings-page', () => {
+      this.popover.dismiss();
+      this.navCtrl.push(SettingsPage);
+    });
+    this.events.subscribe('nav:login-page', () => {
+      this.popover.dismiss();
+      this.authService.logout();
+      this.navCtrl.setRoot(LoginPage);
+    });
+  }
+
+  ionViewWillLeave() {
+    this.events.unsubscribe('nav:settings-page');
+    this.events.unsubscribe('nav:login-page');
+  }
 
   presentPopover(myEvent?: NavOptions) {
-    let popover: Popover = this.popoverCtrl.create(MorePopoverPage);
-    popover.present({
+    this.popover = this.popoverCtrl.create(MorePopoverPage);
+    this.popover.present({
       ev: myEvent
     });
   }

@@ -24,6 +24,14 @@ import { LoadingService } from '../providers/loading-service';
 import { AlertService } from '../providers/alert-service';
 import { QueryBuilderService } from './../providers/query-builder-service';
 
+import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '4f2a84b8'
+  }
+};
+
 @NgModule({
   declarations: [
     MobileClient,
@@ -35,6 +43,7 @@ import { QueryBuilderService } from './../providers/query-builder-service';
   ],
   imports: [
     IonicModule.forRoot(MobileClient),
+    CloudModule.forRoot(cloudSettings),
     IonicStorageModule.forRoot({
       name: 'imsClientDB'
     })

@@ -100,7 +100,7 @@ Nebst dem Imagic IMS selber unterscheiden wir generell vier Stakeholdergruppen:
   - **IMS Verkäufer**: Sie beraten, verkaufen und gestalten die Weiterentwicklung des Imagic IMS. Ihre Hauptmotivation ist dem Kunden eine überzeugende Lösung anbieten zu können.
   - **IMS Entwickler**: Sie entwickeln die Software. Ihre Hauptmotivation ist eine qualitativ hochwertige Codebasis.
   - **IMS Support-Abteilung**: Sie stehen den Kunden oder Partnern bei Problemen zur Seite. Ihre Hauptmotivation ist eine reibungslose Installation der Software und gute Diagnosemöglichkeit bei Problemen.
-- **PIC Systems**: Sie passen das Imagic IMS an die speziellen Bedürfnisse im Polizeibereich an und supporten das Imagic IMS für ihre Kunden. Ihre Hauptmotivation ist das Entwickeln einer Lösung für den Bildupload in das Imagic IMS für den täglichen Polizeieinsatz auf Streife oder im Aussendienst.
+- **PIC Systems**: Sie passen das Imagic IMS an die speziellen Bedürfnisse im Polizeibereich an und supporten das Imagic IMS für ihre Kunden. Ihre Hauptmotivation ist das Entwickeln einer Lösung für den Bildupload in das Imagic IMS für den täglichen Polizeieinsatz auf Streife oder im Aussendienst. Sie vertreten auch die rechtlichen Vorgaben und Sicherheitsanforderungen ihrer Kunden. 
   - **IMS Verkäufer**: Sie beraten, verkaufen und gestalten die Weiterentwicklung des Imagic IMS für den Polizeibereich. Ihre Hauptmotivation ist dem Kunden eine überzeugende Lösung anbieten zu können.
   - **Betreiber IMS Instanz**: Sie konfigurieren und pflegen die Installation des Imagic IMS bei ihren Kunden. Ihre Hauptmotivation ist eine reibungslose Funktionsweise mit dem Imagic IMS Server.
 - **Stores**: Sie prüfen und publizieren Apps und erlauben damit den IMS Kunden auf einfache Weise den Mobile Client auf ihren Geräten zu installieren. Ihre Hauptmotivation ist die Qualität und Sicherheit ihrer Plattform sicherzustellen.
@@ -357,13 +357,24 @@ describe("A module ", function() {
 #### End to End Testing
 Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
-Mit dem Befehel npm run e2e können alle End to End Tests ausgeführt werden.
+Mit folgendem Befehl können alle End to End Tests ausgeführt werden.
 
 ```shell
 npm run e2e
 ```
 
 *TODO Example, Description Integration Testing with Framework*
+
+#### Build Testing
+Mit Build Testing stellen wir sicher dass unsere Software in ein gültiges Paketformat (`.ipa` oder `.apk`) für Smartphones umgewandelt werden kann. Dazu verwenden wir den Service [Ionic Package](https://docs.ionic.io/services/package/).
+
+Mit folgenden Befehlen kann ein Build für Android sowie iOS gestartet und verifiziert werden:
+
+```shell
+ionic package build android --noresources --profile dev
+ionic package build ios --noresources --profile dev
+ionic package list
+```
 
 #### Manual Testing
 Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Deshalb werden manuelle Test Cases geschrieben. Diese werden in jedem Sprint und vor jedem Release durchgeführt.

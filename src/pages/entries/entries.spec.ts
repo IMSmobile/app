@@ -1,7 +1,7 @@
 import { QueryBuilderService } from './../../providers/query-builder-service';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { EntriesPage } from './entries';
-import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, PopoverController, GestureController, AlertController } from 'ionic-angular';
+import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, PopoverController, GestureController, AlertController, Events } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
@@ -18,6 +18,8 @@ import { Info } from '../../models/info';
 import { Observable } from 'rxjs/Observable';
 import { HomePage } from '../home/home';
 import 'rxjs/add/observable/throw';
+import { SettingsPage } from '../settings/settings';
+import { LoginPage } from '../login/login';
 
 describe('Page: Entries', () => {
 
@@ -33,7 +35,7 @@ describe('Page: Entries', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, MockImsBackend, BaseRequestOptions, Camera, GestureController,
-        CameraService, LoadingService, AlertService, QueryBuilderService,
+        CameraService, LoadingService, AlertService, QueryBuilderService, Events,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -158,6 +160,50 @@ describe('Page: Entries', () => {
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledTimes(0);
     expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Go to Settings Page and dismiss popover on load Settings', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
+    page.ionViewWillEnter();
+    page.popover = popoverController.create({});
+    spyOn(nav, 'push').and.callThrough();
+    spyOn(page.popover, 'dismiss').and.callThrough();
+
+    events.publish('nav:settings-page');
+
+    expect(nav.push).toHaveBeenCalledWith(SettingsPage);
+    expect(page.popover.dismiss).toHaveBeenCalled();
+
+  }));
+
+
+  it('Go to Login Page and dismiss popover on logout button', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
+    page.ionViewWillEnter();
+    page.popover = popoverController.create({});
+    spyOn(nav, 'setRoot').and.callThrough();
+    spyOn(page.popover, 'dismiss').and.callThrough();
+
+    events.publish('nav:login-page');
+
+    expect(nav.setRoot).toHaveBeenCalledWith(LoginPage);
+    expect(page.popover.dismiss).toHaveBeenCalled();
+  }));
+
+
+  it('Clear settings on logout button', inject([AuthService, PopoverController, Events], (authService: AuthService, popoverController: PopoverController, events: Events) => {
+    page.ionViewWillEnter();
+    page.popover = popoverController.create({});
+    spyOn(authService, 'logout').and.callThrough();
+
+    events.publish('nav:login-page');
+
+    expect(authService.logout).toHaveBeenCalled();
+  }));
+
+  it('Event unsubscribed due to android issue on leaving of page', inject([Events], (events: Events) => {
+    spyOn(page.events, 'unsubscribe').and.callThrough();
+    page.ionViewWillLeave();
+    expect(page.events.unsubscribe).toHaveBeenCalledWith('nav:login-page');
+    expect(page.events.unsubscribe).toHaveBeenCalledWith('nav:settings-page');
   }));
 
 });
