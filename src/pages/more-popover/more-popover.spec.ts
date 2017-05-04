@@ -1,11 +1,7 @@
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
-import { NavController, NavParams, ViewController, IonicModule, Config, Platform, GestureController, App, DomController, Form } from 'ionic-angular';
+import { NavController, NavParams, ViewController, IonicModule, Config, Platform, GestureController, App, DomController, Form, Events } from 'ionic-angular';
 import { NavParamsMock, ViewControllerMock, ConfigMock, PlatformMock, AppMock } from '../../mocks/mocks';
 import { MorePopoverPage } from './more-popover';
-import { SettingsPage } from '../settings/settings';
-import { AuthService } from '../../providers/auth-service';
-import { MockAuthService } from '../../mocks/providers/mock-auth-service';
-import { LoginPage } from '../login/login';
 
 describe('Page: More Popover', () => {
 
@@ -16,6 +12,7 @@ describe('Page: More Popover', () => {
     TestBed.configureTestingModule({
       declarations: [MorePopoverPage],
       providers: [
+        Events,
         NavController,
         GestureController,
         DomController,
@@ -25,7 +22,6 @@ describe('Page: More Popover', () => {
         { provide: Config, useClass: ConfigMock },
         { provide: App, useClass: AppMock },
         { provide: Platform, useClass: PlatformMock },
-        { provide: AuthService, useClass: MockAuthService }
       ],
       imports: [IonicModule]
     }).compileComponents().then(() => {
@@ -39,22 +35,16 @@ describe('Page: More Popover', () => {
     fixture.destroy();
   });
 
-  it('Go to Settings Page on load Settings', inject([NavController], (nav: NavController) => {
-    spyOn(nav, 'push').and.callThrough();
+  it('Load Settings Page event triggered', inject([Events], (events: Events) => {
+    spyOn(events, 'publish').and.callThrough();
     page.loadSettings();
-    expect(nav.push).toHaveBeenCalledWith(SettingsPage);
+    expect(events.publish).toHaveBeenCalledWith('nav:settings-page');
   }));
 
-  it('Go to Login Page on logout button', inject([NavController], (nav: NavController) => {
-    spyOn(nav, 'setRoot').and.callThrough();
+  it('Load Login Page event triggered', inject([Events], (events: Events) => {
+    spyOn(events, 'publish').and.callThrough();
     page.logoutUser();
-    expect(nav.setRoot).toHaveBeenCalledWith(LoginPage);
-  }));
-
-  it('Clear settings on logout button', inject([AuthService], (authService: AuthService) => {
-    spyOn(authService, 'logout').and.callThrough();
-    page.logoutUser();
-    expect(authService.logout).toHaveBeenCalled();
+    expect(events.publish).toHaveBeenCalledWith('nav:login-page');
   }));
 
 });

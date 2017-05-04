@@ -4,9 +4,11 @@ import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { NavController, LoadingController, Loading, AlertController, ToastController, PopoverController, Popover, NavOptions } from 'ionic-angular';
+import { NavController, LoadingController, Loading, AlertController, ToastController, PopoverController, Popover, NavOptions, Events } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { Response } from '@angular/http';
+import { SettingsPage } from './../settings/settings';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -14,10 +16,14 @@ import { Response } from '@angular/http';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public popoverCtrl: PopoverController) { }
   imageSrc: string;
   loading: Loading;
   filterId: number = 40;
+  popover: Popover;
+
+
+  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public popoverCtrl: PopoverController, public events: Events) {
+  }
 
   public takePicture() {
 
@@ -85,11 +91,29 @@ export class HomePage {
     toast.present();
   }
 
+  ionViewWillEnter() {
+    this.events.subscribe('nav:settings-page', () => {
+      this.popover.dismiss();
+      this.navCtrl.push(SettingsPage);
+    });
+    this.events.subscribe('nav:login-page', () => {
+      this.popover.dismiss();
+      this.authService.logout();
+      this.navCtrl.setRoot(LoginPage);
+    });
+  }
+
+  ionViewWillLeave() {
+    this.events.unsubscribe('nav:settings-page');
+    this.events.unsubscribe('nav:login-page');
+  }
+
+
   presentPopover(myEvent?: NavOptions) {
-   let popover: Popover = this.popoverCtrl.create(MorePopoverPage);
-   popover.present({
-     ev: myEvent
-   });
- }
+    this.popover = this.popoverCtrl.create(MorePopoverPage);
+    this.popover.present({
+      ev: myEvent
+    });
+  }
 }
 
