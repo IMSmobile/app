@@ -244,6 +244,10 @@ export class PopoverControllerMock {
   public present() {
 
   }
+
+  public dismiss() {
+
+  }
 }
 
 export class ViewControllerMock {

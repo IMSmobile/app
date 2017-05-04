@@ -1,8 +1,5 @@
-import { SettingsPage } from './../settings/settings';
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
-import { LoginPage } from '../login/login';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'more-page-popover',
@@ -10,16 +7,13 @@ import { LoginPage } from '../login/login';
 })
 export class MorePopoverPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public authService: AuthService ) { }
+  constructor(public events: Events) { }
 
   loadSettings() {
-    this.navCtrl.push(SettingsPage);
-    this.viewCtrl.dismiss();
+    this.events.publish('nav:settings-page');
   }
 
   logoutUser() {
-    this.authService.logout();
-    this.viewCtrl.dismiss();
-    this.navCtrl.setRoot(LoginPage);
+    this.events.publish('nav:login-page');
   }
 }
