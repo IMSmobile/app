@@ -35,7 +35,7 @@ FA15 | Browser | Der Client kann auch mit einem modernen Browser (Chrome: aktuel
 FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | Imagic | Wenn aktiviert, können Spezifikationen wie NF15 und NF17 nur eingeschränkt erfüllt werden.
 FA17 | Schnittstelle | Der Client muss mit dem Imagic IMS über die REST-API kommunizieren. | Imagic IMS |
 FA18 | Entrypoint | Der Client soll über den REST-API Eingangspunkt die Ressourcen der API ansprechen. | Imagic IMS |
-~~FA19~~ | ~~Bildlöschung~~ | ~~Hochgeladene Bilder können wieder gelöscht werden.~~ | | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht
+~~FA19~~ | ~~Bildlöschung~~ | ~~Hochgeladene Bilder können wieder gelöscht werden.~~ | | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht.
 FA20 | Bildanzeige | Bilder aus dem Imagic IMS können im Client angezeigt werden. | | Imagic: kann man später machen. PIC Systems: nicht benötigt.
 FA21 | Pflichtfelder | Im Client müssen die im Imagic IMS definierten Pflichtfelder ausgefüllt werden bevor das Bild ins Imagic IMS gespeichert werden kann. | Imagic IMS |
 FA22 | Fallzuteilung | Der Client muss das Bild oder die Bilder zu einem Fall zuteilen können. | Imagic, PIC Systems | 
@@ -55,7 +55,7 @@ FA35 | Galerieschutz | Es muss sichergestellt sein dass ein im Client direkt von
 FA36 | Bildschutz | Im Client direkt von der Kamera des Smartphones aufgenommene Bilder können nicht auf triviale Weise von Drittpersonen oder anderen Apps eingesehen werden. | PIC Systems | Als nicht trivial einsehbar gilt, wenn die Bilder nicht mithilfe der Standard Systemapps (Galerie, Cloudmanager usw.) eingesehen werden können. Auch eine kurzfristige Speicherung der Bilder im App-spezifischen Temporärverzeichnis mit sofortiger Löschung nach Upload ist möglich.
 FA37 | Startparameter | Navigation zu einem bestimmten Tabellen-Entry im IMS Mobile Client soll mit einem bestimmten Start-Parameter möglich sein. | PIC Systems | Hohe Priorisierung von PIC Systems gewünscht
 FA38 | Browserupload | Ein Bildupload (FA1) soll auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) möglich sein. | PIC Systems | 
-
+~~FA39~~  | ~~Fallmodifikation~~ | ~~Der Client soll dem Benutzer die Möglichkeit bieten Falldaten anzupassen.~~ | HSR Review | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht.
 
 ### Nicht-Funktional
 ID   | Name | Beschreibung | Quelle      | Bemerkungen
@@ -80,6 +80,9 @@ NF17 | Verbindungsunterbrüche | Nach einem Verbindungsunterbrüch zum Imagic IM
 NF18 | Fehlerverminderung | Wiederholte Regressionen sollen nach Behebung vermieden werden. | Support-Abteilung |
 NF19 | Codeübergabe | IMS Entwickler können nach zwei Arbeitstagen kleinere Fehler selbständig beheben. | IMS Entwickler |
 NF20 | Softwarepaket | Der Client muss als IPA und APK erzeugt werden können. | PIC Systems |
+NF21 | Sprache | Die Texte welche der Benutzer im Client sieht müssen auf Deutsch sein. | Imagic, PIC Systems | |
+~~NF22~~ | ~~Internationalisierung~~ | ~~Der Client soll mehrere Sprachen unterstützen.~~ | | Imagic: nicht benötigt. PIC Systems: nicht benötigt.
+
 
 ## Priorisierung
 
