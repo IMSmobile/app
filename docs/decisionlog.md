@@ -1,6 +1,12 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 5. Mai 2017
+- Hinter jedem `subscribe()` muss auch ein `catch()` sein.
+- Keine Validierung des JSON von der REST API erhalten nicht, wir sehen keine Vorteile für Fehlerbehandlung.
+- Wir implementieren keine App-interne Feedback-Funktion, ist Ionic View abgedeckt.
+- Wir nutzen [Semantinc Versioning](http://semver.org) für Versionierung.
+
 ## 21. April 2017
 - Wir verzichten auf die Programmierung von Integration Tests auf eine echte REST Schnittstelle und gehen davon aus dass sich der IMS Server richtig verhält.
 - Unsere App nennen wir "Imagic IMS Mobile Client".
