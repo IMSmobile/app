@@ -4,7 +4,7 @@ import { ImsService } from './ims-service';
 import { UploadService } from './upload-service';
 import { Credential } from '../models/credential';
 import { TokenService } from './token-service';
-import { ImageEntry } from '../models/imageEntry';
+import { Entry } from '../models/entry';
 import { Image } from '../models/image';
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
@@ -45,7 +45,7 @@ describe('Provider: UploadService Integration Test', () => {
   it('Ensure image is stored as entry', async(inject([UploadService], (uploadService: UploadService) => {
     let credential = new Credential('https://sinv-56028.edu.hsr.ch', 'admin', 'admin', 'Rest Floating Client Read Write');
     let image = new Image('image.png', 'does not matter as we use blob from mock service.jpg');
-    let imageEntry = new ImageEntry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
+    let imageEntry = new Entry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
     uploadService.uploadImage(credential, 40, imageEntry, image).subscribe(
       res => expect(res).toBeDefined(),
       err => fail(err));

@@ -57,4 +57,18 @@ describe('Provider: ImsService', () => {
       err => fail(err)
     );
   }));
+
+  it('Should get an upload link', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getUploadsLink(mockImsBackend.credential, mockImsBackend.filterId, mockImsBackend.token).subscribe(
+      url => expect(url).toEqual(mockImsBackend.containerRequestUrl),
+      err => fail(err)
+    );
+  }));
+
+  it('Should get parent image entries link', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getParentImageEntriesLink(mockImsBackend.credential, mockImsBackend.filterId, mockImsBackend.token).subscribe(
+      url => expect(url).toEqual(mockImsBackend.parentImageEntriesUrl),
+      err => fail(err)
+    );
+  }));
 });

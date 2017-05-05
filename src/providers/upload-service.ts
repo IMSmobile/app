@@ -4,11 +4,10 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/fromPromise';
 import { Credential } from '../models/credential';
-import { ImageEntry } from '../models/imageEntry';
+import { Entry } from '../models/entry';
 import { Image } from '../models/image';
 import { ImsHeaders } from '../models/imsHeaders';
 import { Token } from '../models/token';
-import { ArchiveEntry } from '../models/archiveEntry';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './token-service';
 import { Transfer, FileUploadOptions, TransferObject, FileUploadResult } from '@ionic-native/transfer';
@@ -19,7 +18,7 @@ export class UploadService {
   constructor(public transfer: Transfer, public http: Http, public tokenService: TokenService, public imsService: ImsService) {
   }
 
-  uploadImage(credential: Credential, filterId: number, imageEntry: ImageEntry, image: Image): Observable<Response> {
+  uploadImage(credential: Credential, filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
     return this.tokenService.getToken(credential).flatMap(token => {
       return this.createContainerLocation(credential, filterId, token).flatMap(adress => {
         return this.postToContainer(credential, adress, token, image).flatMap(response => {
@@ -30,17 +29,8 @@ export class UploadService {
   }
 
   createContainerLocation(credential: Credential, filterId: number, token: Token): Observable<string> {
-    return this.getArchiveEntry(credential, filterId, token).flatMap(entry => {
-      return this.http.post(entry.getUploadsLink(), null, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location'));
-    });
-  }
-
-  getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
-    return this.imsService.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
-      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => {
-        let data = response.json();
-        return new ArchiveEntry(data.archiveName, data.tables);
-      });
+    return this.imsService.getUploadsLink(credential, filterId, token).flatMap(url => {
+      return this.http.post(url, null, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location'));
     });
   }
 
@@ -59,7 +49,7 @@ export class UploadService {
     return Observable.fromPromise(fileTransfer.upload(image.fileURI, url, options));
   }
 
-  createImageEntry(credential: Credential, url: string, token: Token, imageEntry: ImageEntry) {
+  createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry) {
     return this.http.post(url, imageEntry.json(), { headers: new ImsHeaders(credential, token) });
   }
 }

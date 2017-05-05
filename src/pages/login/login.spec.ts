@@ -10,9 +10,10 @@ import { SettingService } from '../../providers/setting-service';
 import { MockSettingService } from '../../mocks/providers/mock-setting-service';
 
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
-import { HomePage } from '../home/home';
+import { LoadingService } from '../../providers/loading-service';
+import { EntriesPage } from '../entries/entries';
 import { Storage } from '@ionic/storage';
-
+import { AlertService } from '../../providers/alert-service';
 
 describe('Page: Login', () => {
 
@@ -26,7 +27,7 @@ describe('Page: Login', () => {
       declarations: [LoginPage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService, MockImsBackend, BaseRequestOptions,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService, MockImsBackend, BaseRequestOptions, LoadingService, AlertService,
         {
           provide: Http,
           useFactory: (MockImsBackend, options) => {
@@ -62,30 +63,32 @@ describe('Page: Login', () => {
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show and Hide Loading in case of error', () => {
-    spyOn(page, 'showLoading').and.callThrough();
-    spyOn(page, 'hideLoading').and.callThrough();
+  it('Show and Hide loading with alert on error', inject([LoadingService, AlertService], (loadingService: LoadingService, alertService: AlertService) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
+    spyOn(alertService, 'showError').and.callThrough();
     page.loginForm.controls['server'].setValue('wrong');
     page.loginForm.controls['user'].setValue('wrong');
     page.loginForm.controls['password'].setValue('wrong');
     page.login();
-    expect(page.showLoading).toHaveBeenCalledTimes(1);
-    expect(page.hideLoading).toHaveBeenCalledTimes(1);
-  });
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
 
-  it('Show and Hide Loading in case of success', inject([MockImsBackend], (mockImsBackend: MockImsBackend) => {
-    spyOn(page, 'showLoading').and.callThrough();
-    spyOn(page, 'hideLoading').and.callThrough();
+  it('Show and Hide Loading in case of success', inject([LoadingService, MockImsBackend], (loadingService: LoadingService, mockImsBackend: MockImsBackend) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
     let credential = mockImsBackend.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
     page.login();
-    expect(page.showLoading).toHaveBeenCalledTimes(1);
-    expect(page.hideLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
-  it('Load HomePage after successfull login', inject([NavController, MockImsBackend], (nav: NavController, mockImsBackend: MockImsBackend) => {
+  it('Load EntriesPage after successfull login', inject([NavController, MockImsBackend], (nav: NavController, mockImsBackend: MockImsBackend) => {
     spyOn(nav, 'setRoot').and.callThrough();
     let credential = mockImsBackend.credential;
     page.loginForm.controls['server'].setValue(credential.server);
@@ -93,7 +96,7 @@ describe('Page: Login', () => {
     page.loginForm.controls['password'].setValue(credential.password);
     expect(page.loginForm.valid).toBeTruthy();
     page.login();
-    expect(nav.setRoot).toHaveBeenCalledWith(HomePage);
+    expect(nav.setRoot).toHaveBeenCalledWith(EntriesPage);
   }));
 
   it('Fill login form from Setting Service', inject([SettingService], (mockSettingService: MockSettingService) => {

@@ -6,6 +6,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MorePopoverPage } from '../pages/more-popover/more-popover';
 import { SettingsPage } from './../pages/settings/settings';
+import { EntriesPage } from './../pages/entries/entries';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +18,11 @@ import { SettingService } from '../providers/setting-service';
 
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
+import { EntriesService } from '../providers/entries-service';
+import { CameraService } from '../providers/camera-service';
+import { LoadingService } from '../providers/loading-service';
+import { AlertService } from '../providers/alert-service';
+import { QueryBuilderService } from './../providers/query-builder-service';
 
 import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
 
@@ -32,7 +38,8 @@ const cloudSettings: CloudSettings = {
     HomePage,
     LoginPage,
     MorePopoverPage,
-    SettingsPage
+    SettingsPage,
+    EntriesPage
   ],
   imports: [
     IonicModule.forRoot(MobileClient),
@@ -47,7 +54,8 @@ const cloudSettings: CloudSettings = {
     HomePage,
     LoginPage,
     MorePopoverPage,
-    SettingsPage
+    SettingsPage,
+    EntriesPage
   ],
   providers: [
     TokenService,
@@ -60,6 +68,11 @@ const cloudSettings: CloudSettings = {
     IonicStorageModule,
     Camera,
     SettingService,
+    EntriesService,
+    CameraService,
+    LoadingService,
+    AlertService,
+    QueryBuilderService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

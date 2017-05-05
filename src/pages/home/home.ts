@@ -1,14 +1,13 @@
-import { MorePopoverPage } from './../more-popover/more-popover';
-import { ImageEntry } from './../../models/imageEntry';
+import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { NavController, LoadingController, Loading, AlertController, ToastController, PopoverController, Popover, NavOptions, Events } from 'ionic-angular';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { Response } from '@angular/http';
-import { SettingsPage } from './../settings/settings';
-import { LoginPage } from '../login/login';
+import { CameraService } from '../../providers/camera-service';
+import { LoadingService } from '../../providers/loading-service';
+import { AlertService } from '../../providers/alert-service';
 
 @Component({
   selector: 'page-home',
@@ -17,34 +16,24 @@ import { LoginPage } from '../login/login';
 export class HomePage {
 
   imageSrc: string;
-  loading: Loading;
+  parentImageEntryId: string;
   filterId: number = 40;
-  popover: Popover;
 
 
-  constructor(public navCtrl: NavController, public camera: Camera, public uploadService: UploadService, public authService: AuthService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public popoverCtrl: PopoverController, public events: Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController) {
+    this.imageSrc = navParams.get('imageSrc');
+    this.parentImageEntryId = navParams.get('parentImageEntryId');
   }
 
   public takePicture() {
-
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
-    };
-
-    this.camera.getPicture(options).then((imageData) => {
-      this.imageSrc = imageData;
-    }, (err) => {
-      console.warn(err);
-    });
+    this.cameraService.takePicture().subscribe(
+      imageData => this.imageSrc = imageData,
+      err => this.alertService.showError('Failed to take picture.'));
   }
 
   public uploadPicture() {
-    this.showLoading();
-    let imageEntry = new ImageEntry().set('IDFall', '20537').set('BILDNAME', 'Image from Camera');
+    this.loadingService.showLoading();
+    let imageEntry = new Entry().set('IDFall', this.parentImageEntryId).set('BILDNAME', 'Image from Camera');
     let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
     this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
       res => this.uploadSuccessful(),
@@ -53,34 +42,13 @@ export class HomePage {
   }
 
   uploadSuccessful() {
-    this.hideLoading();
+    this.loadingService.hideLoading();
     this.showToastMessage('Image successfully uploaded!');
   }
 
   uploadFailed(err: Response) {
-    this.hideLoading();
-    this.showAlert('Oops, something went wrong!');
-    console.warn(err);
-  }
-
-  showAlert(message: string) {
-    let alert = this.alertCtrl.create({
-      title: 'Failed',
-      subTitle: message,
-      buttons: ['Dismiss']
-    });
-    alert.present();
-  }
-
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    this.loading.present();
-  }
-
-  hideLoading() {
-    this.loading.dismiss();
+    this.loadingService.hideLoading();
+    this.alertService.showError('Failed to upload image.');
   }
 
   showToastMessage(toastMessage: string) {
@@ -89,31 +57,6 @@ export class HomePage {
       duration: 5000,
     });
     toast.present();
-  }
-
-  ionViewWillEnter() {
-    this.events.subscribe('nav:settings-page', () => {
-      this.popover.dismiss();
-      this.navCtrl.push(SettingsPage);
-    });
-    this.events.subscribe('nav:login-page', () => {
-      this.popover.dismiss();
-      this.authService.logout();
-      this.navCtrl.setRoot(LoginPage);
-    });
-  }
-
-  ionViewWillLeave() {
-    this.events.unsubscribe('nav:settings-page');
-    this.events.unsubscribe('nav:login-page');
-  }
-
-
-  presentPopover(myEvent?: NavOptions) {
-    this.popover = this.popoverCtrl.create(MorePopoverPage);
-    this.popover.present({
-      ev: myEvent
-    });
   }
 }
 

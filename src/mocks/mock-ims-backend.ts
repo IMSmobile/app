@@ -1,3 +1,5 @@
+import { QueryBuilderService } from './../providers/query-builder-service';
+import { QueryFragment } from './../models/queryFragment';
 import { Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { EntryPointResponse } from './response//entry-point-response';
@@ -13,6 +15,10 @@ import { Link } from '../models/link';
 import { Credential } from '../models/credential';
 import { Filter } from '../models/filter';
 import { EntriesPoint } from '../models/entries-point';
+import { ParentImageEntriesResponse } from './response/parent-image-entries-response';
+import { Entries } from '../models/entries';
+import { Entry } from '../models/entry';
+import { Pagination } from '../models/pagination';
 
 export class MockImsBackend extends MockBackend {
 
@@ -35,11 +41,18 @@ export class MockImsBackend extends MockBackend {
     public token: Token = new Token(this.tokenName, this.tokenExpirationDate);
     public filterTable: Filter[] = [new Filter(this.filterResourceUrl, this.filterId.toString())];
     public containerRequestUrl: string = this.filterResourceUrl + '/Bild/uploads';
-    public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall'), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
+    public parentImageEntriesUrl: string = this.filterResourceUrl + '/Fall';
+    public query: QueryFragment[] = [new QueryFragment('testkey', 'testvalue')];
+    public queryBuilder: QueryBuilderService = new QueryBuilderService();
+    public parentImageEntriesUrlWithQuery: string = this.parentImageEntriesUrl + this.queryBuilder.generate(this.query);
+    public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
     public uploadContainerUrl: string = this.containerRequestUrl + '/XYZ';
     public imageLocationUrl: string = this.filterResourceUrl + 'Bild/123';
-
-
+    public parentImageEntriesNextPageUrl: string = this.parentImageEntriesUrlWithQuery + '&start=20&pageSize=20';
+    public parentImageEntriesNextNextPageUrl: string = this.parentImageEntriesUrlWithQuery + '&start=40&pageSize=20';
+    public paretImageEntriesPagination: Pagination = new Pagination({nextPage: this.parentImageEntriesNextPageUrl});
+    public parentImageEntries: Entries = new Entries(this.paretImageEntriesPagination, [new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
+    public parentImageEntriesNextPage: Entries = new Entries(new Pagination({nextPage: this.parentImageEntriesNextNextPageUrl}), [new Entry().set('IdFall', '21'), new Entry().set('IdFall', '22')]);
 
     constructor() {
         super();
@@ -60,6 +73,10 @@ export class MockImsBackend extends MockBackend {
                 connection.mockRespond(new LocationResponse(this.uploadContainerUrl));
             } else if (connection.request.url.endsWith(this.uploadContainerUrl) && connection.request.method === RequestMethod.Post) {
                 connection.mockRespond(new LocationResponse(this.imageLocationUrl));
+            } else if (connection.request.url.endsWith(this.parentImageEntriesUrlWithQuery) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntries));
+            } else if (connection.request.url.endsWith(this.parentImageEntriesNextPageUrl) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntriesNextPage));
             } else if (connection.request.url.endsWith(this.infoUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new Response(new ResponseOptions({
                     body: this.versionResponse

@@ -264,4 +264,12 @@ export class ViewControllerMock {
   }
 }
 
+
+export class InfiniteScrollMock {
+  public enable(enable: boolean) {
+  }
+  public complete() {
+  }
+}
+
 /* tslint:enable */

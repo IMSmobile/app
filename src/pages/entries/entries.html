@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Entries</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="presentPopover($event)" id="barButtonMore">
+       <ion-icon name="more"></ion-icon>
+     </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-infinite-scroll (ionInfinite)="infiniteEntries($event)">
+    <ion-list>
+      <ion-item *ngFor="let entry of entries">
+        <h1 ion-text color="primary">{{entry.fields.IDFall}}</h1>
+        <p>
+          FALL_NR_: {{entry.fields.FALL_NR_}}<br />
+          Created: {{entry.fields.IACreationDate | date:'short'}}<br />
+          Modified: {{entry.fields.IAModificationDate | date:'short'}}
+        </p>
+        <button ion-button (tap)="takePictureForEntry(entry.fields.IDFall)" item-right>
+          <ion-icon name="camera"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll-content loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
