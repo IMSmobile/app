@@ -2,7 +2,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MobileClient } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { UploadPage } from '../pages/upload/upload';
 import { LoginPage } from '../pages/login/login';
 import { MorePopoverPage } from '../pages/more-popover/more-popover';
 import { SettingsPage } from './../pages/settings/settings';
@@ -35,7 +35,7 @@ const cloudSettings: CloudSettings = {
 @NgModule({
   declarations: [
     MobileClient,
-    HomePage,
+    UploadPage,
     LoginPage,
     MorePopoverPage,
     SettingsPage,
@@ -51,7 +51,7 @@ const cloudSettings: CloudSettings = {
   bootstrap: [IonicApp],
   entryComponents: [
     MobileClient,
-    HomePage,
+    UploadPage,
     LoginPage,
     MorePopoverPage,
     SettingsPage,
