@@ -1,5 +1,5 @@
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
-import { HomePage } from './home';
+import { UploadPage } from './upload';
 import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController, PopoverController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
@@ -18,16 +18,16 @@ import { Transfer } from '@ionic-native/transfer';
 import 'rxjs/add/observable/throw';
 
 
-describe('Page: Home', () => {
+describe('Page: Upload', () => {
 
-  let fixture: ComponentFixture<HomePage> = null;
-  let page: HomePage = null;
+  let fixture: ComponentFixture<UploadPage> = null;
+  let page: UploadPage = null;
 
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
 
-      declarations: [HomePage],
+      declarations: [UploadPage],
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
@@ -50,7 +50,7 @@ describe('Page: Home', () => {
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
     }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(HomePage);
+      fixture = TestBed.createComponent(UploadPage);
       page = fixture.componentInstance;
       fixture.detectChanges();
     });

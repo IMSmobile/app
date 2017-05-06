@@ -8,7 +8,7 @@ import { AuthService } from './../../providers/auth-service';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from './../../providers/alert-service';
-import { HomePage } from '../home/home';
+import { UploadPage } from '../upload/upload';
 import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
@@ -28,7 +28,7 @@ export class EntriesPage {
 
   public takePictureForEntry(parentImageEntryId: string) {
     this.cameraService.takePicture().subscribe(
-      imageSrc => this.navCtrl.push(HomePage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId }),
+      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId }),
       err => this.alertService.showError('Failed to take picture.'));
   }
 
