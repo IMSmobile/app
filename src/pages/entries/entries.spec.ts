@@ -16,7 +16,7 @@ import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
 import { Info } from '../../models/info';
 import { Observable } from 'rxjs/Observable';
-import { HomePage } from '../home/home';
+import { UploadPage } from '../upload/upload';
 import 'rxjs/add/observable/throw';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
@@ -138,7 +138,7 @@ describe('Page: Entries', () => {
     expect(page.nextPage).toBe(mockImsBackend.parentImageEntriesNextNextPageUrl);
   }));
 
-  it('Push to Home Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
+  it('Push to Upload Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
     let parentImageEntryId: string = '123';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
@@ -146,7 +146,7 @@ describe('Page: Entries', () => {
     page.takePictureForEntry(parentImageEntryId);
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledWith(
-      HomePage,
+      UploadPage,
       { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId }
     );
   }));

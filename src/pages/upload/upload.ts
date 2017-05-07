@@ -10,10 +10,10 @@ import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-upload',
+  templateUrl: 'upload.html'
 })
-export class HomePage {
+export class UploadPage {
 
   imageSrc: string;
   parentImageEntryId: string;
