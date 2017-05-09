@@ -15,9 +15,9 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 
 ### Projektfortschritt (18:30-19:17)
 - Aufzeigen des aktuellen Projektfortschritts (Sprint Reviews, Demo des Mobile Clients, HSR Review Massnahmen, CI und Coverage Tools, Ausblick, Wireframes, Ionic View, Architektur mit Providers und Pages)
-- Feedback: Aussage was bis Projektende erreicht wird fehlt → [#275](https://github.com/IMSmobile/app/issues/275) zur erstellung eines Burn-Up Charts erfasst.
+- Feedback: Aussage was bis Projektende erreicht wird fehlt → [#275](https://github.com/IMSmobile/app/issues/275) zur Erstellung eines Burn-Up Charts erfasst.
 
 ### Organisatorisches (19:17-19:30)
-- Teilnahme von Roland an eine Sprint-Review wäre ideal. → Einladungen an kommende Sprint-Reviews an Roland versandt.
+- Teilnahme von Roland an einem Sprint-Review wäre ideal. → Einladungen an kommende Sprint-Reviews an Roland versandt.
 - Kommunikation zu Roland ist gut so. 
-- Nächstes Treffen organsiert.
+- Nächstes Treffen organisiert.
