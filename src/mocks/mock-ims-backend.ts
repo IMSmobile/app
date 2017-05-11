@@ -1,3 +1,11 @@
+import { MetadataField } from './../models/metadata-field';
+import { MetadataTableFields } from './../models/metadata-table-fields';
+import { ModelFieldsPointResponse } from './response/model-fields-point-response';
+import { ModelTables } from './../models/model-tables';
+import { ModelTablesPointResponse } from './response/model-tables-point-response';
+import { ModelArchivesPointResponse } from './response/model-archives-point-response';
+import { ModelLink } from './../models/model-link';
+import { ModelArchives } from './../models/model-archives';
 import { QueryBuilderService } from './../providers/query-builder-service';
 import { QueryFragment } from './../models/queryFragment';
 import { Response, ResponseOptions, RequestMethod } from '@angular/http';
@@ -30,6 +38,7 @@ export class MockImsBackend extends MockBackend {
     public licenseUrl: string = this.entryPointUrl + '/license';
     public infoUrl: string = this.entryPointUrl + '/info';
     public entriesUrl: string = this.entryPointUrl + '/entries';
+    public modelsUrl: string = this.entryPointUrl + '/models';
     public tokensUrl: string = this.licenseUrl + '/tokens';
     public tokenLoadingUrl: string = this.tokensUrl + '/ABCDE';
     public filterId: number = 40;
@@ -53,14 +62,33 @@ export class MockImsBackend extends MockBackend {
     public paretImageEntriesPagination: Pagination = new Pagination({nextPage: this.parentImageEntriesNextPageUrl});
     public parentImageEntries: Entries = new Entries(this.paretImageEntriesPagination, [new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
     public parentImageEntriesNextPage: Entries = new Entries(new Pagination({nextPage: this.parentImageEntriesNextNextPageUrl}), [new Entry().set('IdFall', '21'), new Entry().set('IdFall', '22')]);
+    public modelArchiveName: string = 'workflow_db1';
+    public modelTablesUrl: string = this.modelsUrl + '/workflow_db1';
+    public modelArchives: ModelArchives = new ModelArchives([new ModelLink(this.modelTablesUrl, this.modelArchiveName)]);
+    public modelTableFieldsUrl: string = this.modelTablesUrl + '/Fall';
+    public modelImageTableName: string = 'Bild';
+    public modelImageTableFieldsUrl: string = this.modelTablesUrl + '/Bild';
+    public modelTables: ModelTables = new ModelTables(this.modelArchiveName, [new ModelLink(this.modelTableFieldsUrl, 'Fall'), new ModelLink(this.modelImageTableFieldsUrl, this.modelImageTableName)]);
+    public modelFieldIdentifierName: string = 'BILDNAME';
+    public modelFieldParentreferenceName: string = 'IDFall';
+    public modelFieldIdentifier: MetadataField = new MetadataField(this.modelFieldIdentifierName, 'STRING', false, false, true, true, 10);
+    public modelFieldParentreference: MetadataField = new MetadataField(this.modelFieldParentreferenceName, 'STRING', false, false, true, true, 10);
+    public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true , false, 10);
+    public modelFields: MetadataTableFields = new MetadataTableFields(this.modelImageTableName, this.modelFieldIdentifierName, this.modelFieldParentreferenceName, [this.modelFieldIdentifier, this.modelFieldParentreference, this.modelFieldOptionalString]);
 
     constructor() {
         super();
         this.connections.subscribe((connection) => {
             if (connection.request.url.endsWith(this.entryPointUrl) && connection.request.method === RequestMethod.Get) {
-                connection.mockRespond(new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl)]));
+                connection.mockRespond(new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]));
             } else if (connection.request.url.endsWith(this.licenseUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new LicensePointResponse(null, new Link('tokens', this.tokensUrl)));
+            } else if (connection.request.url.endsWith(this.modelsUrl) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ModelArchivesPointResponse(this.modelArchives));
+            } else if (connection.request.url.endsWith(this.modelTablesUrl) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ModelTablesPointResponse(this.modelTables));
+            } else if (connection.request.url.endsWith(this.modelImageTableFieldsUrl) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ModelFieldsPointResponse(this.modelFields));
             } else if (connection.request.url.endsWith(this.tokensUrl) && connection.request.method === RequestMethod.Post) {
                 connection.mockRespond(new LocationResponse(this.tokenLoadingUrl));
             } else if (connection.request.url.endsWith(this.tokenLoadingUrl) && connection.request.method === RequestMethod.Get) {

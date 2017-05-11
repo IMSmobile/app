@@ -1,13 +1,10 @@
 import { Credential } from './../models/credential';
 import { MetadataTableFields } from './../models/metadata-table-fields';
 import { ModelLink } from './../models/model-link';
-import { ModelArchives } from './../models/model-archives';
 import { ImsService } from './ims-service';
 import { ModelTables } from './../models/model-tables';
-
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
@@ -35,17 +32,12 @@ export class ModelService {
   }
 
   getModelArchiveUrl(credential: Credential, archive: string): Observable<string> {
-    return this.getModelArchives(credential).map(modelArchives => modelArchives.archives.find(this.findModelArchive, archive).dataHref);
+    return this.imsService.getModelArchives(credential).map(modelArchives => modelArchives.archives.find(this.findModelArchive, archive).dataHref);
   }
 
-  getModelArchives(credential: Credential): Observable<ModelArchives> {
-    return this.imsService.getEntryPointLink(credential, 'models').flatMap(entriesUrl => {
-      return this.imsService.get(credential, entriesUrl).map(response => response.json());
-    });
-  }
-
-  private findModelArchive(modelArchive: ModelLink): boolean {
-    return modelArchive.name === this.toString();
+  // tslint:disable-next-line
+  private findModelArchive(this: string, modelArchive: ModelLink): boolean {
+    return modelArchive.name === this;
   }
 
 }

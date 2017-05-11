@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +10,7 @@ import { EntriesPoint } from '../models/entries-point';
 import { Token } from '../models/token';
 import { ArchiveEntry } from '../models/archiveEntry';
 import { ArchiveTableEntry } from '../models/archiveTableEntry';
+import { ModelArchives } from './../models/model-archives';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -88,6 +88,12 @@ export class ImsService {
   get(credential: Credential, url: string): Observable<Response> {
     let headers = new ImsHeaders(credential);
     return this.http.get(url, { headers: headers });
+  }
+
+  getModelArchives(credential: Credential): Observable<ModelArchives> {
+    return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl => {
+      return this.get(credential, entriesUrl).map(response => response.json());
+    });
   }
 
 }
