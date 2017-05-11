@@ -90,11 +90,11 @@ export class ImsService {
     return this.http.get(url, { headers: headers });
   }
 
-  private findEntryPointLinkByName(link: Link): boolean {
-    return link.link === this.toString();
+  private findEntryPointLinkByName(this: string, link: Link): boolean {
+    return link.link === this;
   }
 
-  private findFilterLinkById(filter: Filter): boolean {
+  private findFilterLinkById(this: number, filter: Filter): boolean {
     return filter.id === this.toString();
   }
 
