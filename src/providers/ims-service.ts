@@ -10,6 +10,8 @@ import { EntriesPoint } from '../models/entries-point';
 import { Token } from '../models/token';
 import { ArchiveEntry } from '../models/archiveEntry';
 import { ArchiveTableEntry } from '../models/archiveTableEntry';
+import { Link } from '../models/link';
+import { Filter } from '../models/filter';
 import { ModelArchives } from './../models/model-archives';
 
 import 'rxjs/add/operator/map';
@@ -27,7 +29,7 @@ export class ImsService {
   }
 
   getEntriesFilterUrl(credential: Credential, filterId: number): Observable<string> {
-    return this.getEntriesTable(credential).map(entriesPoint => entriesPoint.getLinkHref(filterId));
+    return this.getEntriesTable(credential).map(entriesPoint => entriesPoint.filters.find(this.findFilterLinkById, filterId).dataHref);
   }
 
   getInfo(credential: Credential): Observable<Info> {
@@ -76,13 +78,11 @@ export class ImsService {
   }
 
   getEntryPointLink(credential: Credential, linkConstant: string): Observable<string> {
-    return this.getEntryPoint(credential).map(entryPoint => entryPoint.getLinkHref(linkConstant));
+    return this.getEntryPoint(credential).map(entryPoint => entryPoint.links.find(this.findEntryPointLinkByName, linkConstant).dataHref);
   }
 
   getEntryPoint(credential: Credential): Observable<EntryPoint> {
-    return this.get(credential, credential.server + '/rest').map(response => {
-      return new EntryPoint(response.json().links);
-    });
+    return this.get(credential, credential.server + '/rest').map(response => response.json());
   }
 
   get(credential: Credential, url: string): Observable<Response> {
@@ -96,4 +96,13 @@ export class ImsService {
     });
   }
 
+  // tslint:disable-next-line
+  private findEntryPointLinkByName(this: string, link: Link): boolean {
+    return link.link === this;
+  }
+
+  // tslint:disable-next-line
+  private findFilterLinkById(this: number, filter: Filter): boolean {
+    return filter.id === this.toString();
+  }
 }

@@ -29,18 +29,20 @@ describe('Provider: ImsService', () => {
 
 
   it('Ims Version', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
-      imsService.getInfo(mockImsBackend.credential).subscribe(info => expect(info.version).toEqual(mockImsBackend.version));
-  }));
-
-  it('Should get link to license resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
-    imsService.getEntryPoint(mockImsBackend.credential).subscribe(
-      entryPoint => expect(entryPoint.getLinkHref('license')).toEqual(mockImsBackend.licenseUrl),
+    imsService.getInfo(mockImsBackend.credential).subscribe(
+      info => expect(info.version).toEqual(mockImsBackend.version),
       err => fail(err));
   }));
 
- it('Should get link to entries resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
-    imsService.getEntryPoint(mockImsBackend.credential).subscribe(
-      entryPoint => expect(entryPoint.getLinkHref('entries')).toEqual(mockImsBackend.entriesUrl),
+  it('Should get link to license resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getEntryPointLink(mockImsBackend.credential, 'license').subscribe(
+      entryPoint => expect(entryPoint).toEqual(mockImsBackend.licenseUrl),
+      err => fail(err));
+  }));
+
+  it('Should get link to entries resource', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getEntryPointLink(mockImsBackend.credential, 'entries').subscribe(
+      entryPoint => expect(entryPoint).toEqual(mockImsBackend.entriesUrl),
       err => fail(err));
   }));
 
