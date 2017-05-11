@@ -1,3 +1,5 @@
+import { ModelService } from './../../providers/model-service';
+import { Info } from './../../models/info';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { UploadPage } from './upload';
 import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController, PopoverController } from 'ionic-angular';
@@ -31,7 +33,7 @@ describe('Page: Upload', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, UploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer,
+        TokenService, UploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -99,5 +101,35 @@ describe('Page: Upload', () => {
     page.takePicture();
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Show and hide loading when successful', inject([MockImsBackend, AuthService, LoadingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    page.ionViewDidLoad();
+    expect(page.mandatoryFields.length).toBeGreaterThan(0);
+    expect(loadingService.showLoading).toHaveBeenCalled();
+    expect(loadingService.hideLoading).toHaveBeenCalled();
+  }));
+
+  it('Show and hide loading with alert on error', inject([MockImsBackend, AuthService, LoadingService, ModelService, AlertService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService, modelService: ModelService, alertService: AlertService) => {
+    let error = Observable.throw(new Error('oops'));
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
+    spyOn(alertService, 'showError').and.callThrough();
+    spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(error);
+    page.ionViewDidLoad();
+    expect(loadingService.showLoading).toHaveBeenCalled();
+    expect(loadingService.hideLoading).toHaveBeenCalled();
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Check if parent reference is not included', inject([MockImsBackend, AuthService], (mockImsBackend: MockImsBackend, authService: AuthService ) => {
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    page.ionViewDidLoad();
+    expect(page.mandatoryFields).not.toContain(mockImsBackend.modelFieldParentreference);
   }));
 });

@@ -11,13 +11,19 @@
     <ion-icon name="camera"></ion-icon>
     Take a New Picture
   </button>
-  <ion-card *ngIf="imageSrc">
-    <img [src]="imageSrc" />
-    <ion-card-content>
-      <button ion-button icon-left block on-tap="uploadPicture()">
+  <form [formGroup]="fieldsForm" (ngSubmit)="uploadPicture()">
+    <ion-item *ngFor="let field of mandatoryFields">
+      <ion-label fixed>{{field.name}}</ion-label>
+      <ion-input type="text" formControlName="{{field.name}}"></ion-input>
+    </ion-item>
+    <ion-card *ngIf="imageSrc">
+      <img [src]="imageSrc" />
+      <ion-card-content>
+        <button type="submit" ion-button icon-left block>
         <ion-icon name="cloud-upload"></ion-icon>
         Upload to IMS
       </button>
-    </ion-card-content>
-  </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </form>
 </ion-content>
