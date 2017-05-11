@@ -73,4 +73,11 @@ describe('Provider: ImsService', () => {
       err => fail(err)
     );
   }));
+
+  it('Should get model archives', inject([ImsService, MockImsBackend], (imsService: ImsService, mockImsBackend: MockImsBackend) => {
+    imsService.getModelArchives(mockImsBackend.credential).subscribe(
+      modelArchives => expect(modelArchives).toEqual(mockImsBackend.modelArchives),
+      err => fail(err)
+    );
+  }));
 });
