@@ -23,10 +23,12 @@ export class UploadPage {
   filterId: number = 40;
   mandatoryFields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
+  uploadSegment: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
+    this.uploadSegment = 'image';
   }
 
   ionViewDidLoad() {
@@ -54,7 +56,10 @@ export class UploadPage {
 
   public takePicture() {
     this.cameraService.takePicture().subscribe(
-      imageData => this.imageSrc = imageData,
+      imageData => {
+        this.imageSrc = imageData;
+        this.uploadSegment = 'image';
+      },
       err => this.alertService.showError('Failed to take picture.'));
   }
 
@@ -95,8 +100,8 @@ export class UploadPage {
     toast.present();
   }
 
-    markAllAsTouched() {
-      this.mandatoryFields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
+  markAllAsTouched() {
+    this.mandatoryFields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
   }
 
 }
