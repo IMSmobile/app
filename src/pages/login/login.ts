@@ -33,12 +33,8 @@ export class LoginPage {
     if (this.loginForm.invalid) {
       this.showToastMessage('Input required');
     } else {
-      this.loadingService.showLoading();
       let credential = this.createCredential();
-      this.authService.login(credential).subscribe(
-        info => this.loginSuccessful(),
-        err => this.loginFailed(err)
-      );
+      this.loadingService.subscribeWithLoading(this.authService.login(credential), info => this.loginSuccessful(), err => this.loginFailed(err));
     }
   }
 
@@ -50,14 +46,12 @@ export class LoginPage {
   }
 
   loginSuccessful() {
-    this.loadingService.hideLoading();
     this.settingService.setRestUrl(this.loginForm.controls['server'].value);
     this.settingService.setUsername(this.loginForm.controls['user'].value);
     this.navCtrl.setRoot(EntriesPage);
   }
 
   loginFailed(response: Response) {
-    this.loadingService.hideLoading();
     if (response.status === 401) {
       this.alertService.showError('Can\'t login with current credential');
     } else {
