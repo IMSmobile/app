@@ -35,7 +35,6 @@ export class ModelService {
     return this.imsService.getModelArchives(credential).map(modelArchives => modelArchives.archives.find(this.findModelArchive, archive).dataHref);
   }
 
-  // tslint:disable-next-line
   private findModelArchive(this: string, modelArchive: ModelLink): boolean {
     return modelArchive.name === this;
   }
