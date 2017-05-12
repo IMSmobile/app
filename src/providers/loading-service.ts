@@ -14,12 +14,12 @@ export class LoadingService {
     this.showLoading();
     observable.subscribe(
       succ => {
-        next(succ);
         this.hideLoading();
+        next(succ);
       },
       err => {
-        error(err);
         this.hideLoading();
+        error(err);
       });
   }
 
