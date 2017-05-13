@@ -11,6 +11,8 @@ import { Response } from '@angular/http';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
+import { SettingService } from '../../providers/setting-service';
+import { MetadataTableFields } from '../../models/metadata-table-fields';
 
 @Component({
   selector: 'page-upload',
@@ -21,11 +23,12 @@ export class UploadPage {
   imageSrc: string;
   parentImageEntryId: string;
   filterId: number = 40;
-  mandatoryFields: MetadataField[] = [];
+  fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
   uploadSegment: string;
+  archiveName: string = 'workflow_db1';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.uploadSegment = 'metadata';
@@ -33,9 +36,10 @@ export class UploadPage {
 
   ionViewDidLoad() {
     this.loadingService.showLoading();
-    this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, 'workflow_db1').subscribe(
+    this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName).subscribe(
       tableFields => {
-        this.mandatoryFields = tableFields.fields.filter(field => field.mandatory === true && field.name !== tableFields.parentReferenceField);
+        this.fields = tableFields.fields.filter(field => field.mandatory === true && field.name !== tableFields.parentReferenceField);
+        this.addAdditionalFields(tableFields);
         this.initFormData();
         this.loadingService.hideLoading();
       },
@@ -45,9 +49,18 @@ export class UploadPage {
       });
   }
 
+  addAdditionalFields(tableFields: MetadataTableFields) {
+    tableFields.fields.forEach(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).subscribe(active => {
+      if (active) {
+        this.fields.push(field);
+        this.initFormData();
+      }
+    }));
+  }
+
   initFormData() {
     var formData = {};
-    this.mandatoryFields.forEach(field => {
+    this.fields.forEach(field => {
       formData[field.name] = [''];
       formData[field.name].push(Validators.required);
     });
@@ -69,7 +82,7 @@ export class UploadPage {
     } else {
       this.loadingService.showLoading();
       let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
-      this.mandatoryFields.forEach(field => {
+      this.fields.forEach(field => {
         let value = this.fieldsForm.controls[field.name].value;
         imageEntry = imageEntry.set(field.name, value);
       });
@@ -100,7 +113,7 @@ export class UploadPage {
   }
 
   markAllAsTouched() {
-    this.mandatoryFields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
+    this.fields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
   }
 
 }

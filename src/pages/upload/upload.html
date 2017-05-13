@@ -27,7 +27,7 @@
     </div>
     <ion-list *ngSwitchCase="'metadata'" id="id-list">
       <form [formGroup]="fieldsForm">
-        <ion-item *ngFor="let field of mandatoryFields">
+        <ion-item *ngFor="let field of fields">
           <ion-label>{{field.name}}</ion-label>
           <ion-input type="text" formControlName="{{field.name}}"></ion-input>
         </ion-item>
