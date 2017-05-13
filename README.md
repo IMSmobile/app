@@ -311,14 +311,9 @@ npm run test-coverage
 Mit [tslint](https://palantir.github.io/tslint/) wird der Quellcode automatisch gegen Code Guidelines geprüft. Das Ionic 2 Team stellt ein [default Ruleset für Guidelines](https://github.com/driftyco/tslint-ionic-rules) zur Verfügung.
 Wir übernehmen diese Guidelines als Standard und erweitern die Datei [tslint.json](tslint.json) mit zusätzlichen Regeln. 
 
-Um den Code gegen die Guidelines zu Prüfen verwenden wir das Automatisierungs-Tool [gulp](http://gulpjs.com/).
-Die Installation des Tools erfolgt mit
+Mit folgendem Befehl kann eine Prüfung durchgeführt werden.
 ```shell
-npm install gulp-cli -g
-```
-Anschliessend kann mit folgendem Befehl eine Prüfung durchgeführt werden.
-```shell
-gulp lint
+npm run lint
 ```
 
 ### Testing

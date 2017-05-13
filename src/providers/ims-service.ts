@@ -96,12 +96,10 @@ export class ImsService {
     });
   }
 
-  // tslint:disable-next-line
   private findEntryPointLinkByName(this: string, link: Link): boolean {
     return link.link === this;
   }
 
-  // tslint:disable-next-line
   private findFilterLinkById(this: number, filter: Filter): boolean {
     return filter.id === this.toString();
   }
