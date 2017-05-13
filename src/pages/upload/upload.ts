@@ -58,7 +58,6 @@ export class UploadPage {
     this.cameraService.takePicture().subscribe(
       imageData => {
         this.imageSrc = imageData;
-        this.uploadSegment = 'image';
       },
       err => this.alertService.showError('Failed to take picture.'));
   }

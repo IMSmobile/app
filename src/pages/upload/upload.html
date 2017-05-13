@@ -20,24 +20,30 @@
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <form [formGroup]="fieldsForm" (ngSubmit)="uploadPicture()">
-    <div [ngSwitch]="uploadSegment">
-      <ion-card *ngSwitchCase="'image'">
-        <img [src]="imageSrc" />
-      </ion-card>
-      <ion-list *ngSwitchCase="'metadata'">
+  <div class="detail-switch" [ngSwitch]="uploadSegment">
+    <div class="detail-image-container" *ngSwitchCase="'image'">
+      <img class="scaled-image" [src]="imageSrc" />
+    </div>
+    <ion-list *ngSwitchCase="'metadata'" id="id-list">
+      <form [formGroup]="fieldsForm">
         <ion-item *ngFor="let field of mandatoryFields">
           <ion-label fixed>{{field.name}}</ion-label>
           <ion-input type="text" formControlName="{{field.name}}"></ion-input>
         </ion-item>
-      </ion-list>
-    </div>
-    <ion-fab right bottom>
-      <button ion-fab type="submit" color="secondary">
-        <ion-icon name="send"></ion-icon>
-      </button>
-    </ion-fab>
-  </form>
+      </form>
+    </ion-list>
+  </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="thumbnail-image-container">
+      <img class="scaled-image" [src]="imageSrc" />
+    </div>
+  </ion-toolbar>
+</ion-footer>
+<ion-fab right bottom>
+  <button ion-fab (tap)="uploadPicture()" color="secondary">
+    <ion-icon name="send"></ion-icon>
+  </button>
+</ion-fab>
