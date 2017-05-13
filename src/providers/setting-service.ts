@@ -15,6 +15,7 @@ export class SettingService {
   usernameKey: string = 'user';
   isShowRestUrlFieldKey: string = 'isShowRestUrlField';
   isShowRestUrlFieldDefault: boolean = true;
+  fieldPathSeparator = '.';
 
   constructor(public storage: Storage) {
   }
@@ -25,6 +26,18 @@ export class SettingService {
 
   setUsername(username: string) {
     this.storeSetting(this.usernameKey, username);
+  }
+
+  getFieldState(archive: string, table: string, field: string): Observable<boolean> {
+    return this.readKey(this.getFieldKey(archive, table, field));
+  }
+
+  setFieldState(archive: string, table: string, field: string, isActive: boolean) {
+    this.storeSetting(this.getFieldKey(archive, table, field), isActive);
+  }
+
+  getFieldKey(archive: string, table: string, field: string) {
+    return archive + this.fieldPathSeparator + table + this.fieldPathSeparator + field;
   }
 
   setShowRestUrlField(isShowRestUrlField: boolean) {

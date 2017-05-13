@@ -29,4 +29,9 @@ describe('Provider: SettingService', () => {
         settingService.getUsername().subscribe(username => expect(username).toBe('def'));
         settingService.isShowRestUrlField().subscribe(isShowRestUrlField => expect(isShowRestUrlField).toBeFalsy());
     })));
+
+    it('Field state should be read store', async(inject([SettingService, Storage], (settingService: SettingService, storage: Storage) => {
+        storage.set(settingService.getFieldKey('archive', 'table', 'field'), true);
+        settingService.getFieldState('archive', 'table', 'field').subscribe(active => expect(active).toBeTruthy());
+    })));
 });
