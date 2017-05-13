@@ -28,7 +28,7 @@ export class UploadPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
-    this.uploadSegment = 'image';
+    this.uploadSegment = 'metadata';
   }
 
   ionViewDidLoad() {
