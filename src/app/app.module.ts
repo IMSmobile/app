@@ -1,3 +1,4 @@
+import { ModelService } from './../providers/model-service';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -73,6 +74,7 @@ const cloudSettings: CloudSettings = {
     LoadingService,
     AlertService,
     QueryBuilderService,
+    ModelService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
