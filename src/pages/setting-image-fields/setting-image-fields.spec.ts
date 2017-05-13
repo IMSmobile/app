@@ -90,4 +90,35 @@ describe('Page: Image Settings Fields', () => {
     expect(page.fields).not.toContain(mockImsBackend.modelFieldIdentifier);
   }));
 
+
+  it('Loading called if successfull. And alert service not called', inject([AuthService, MockImsBackend, ModelService, LoadingService, AlertService], (authService: AuthService, mockImsBackend: MockImsBackend, modelService: ModelService, loadingService: LoadingService, alertService: AlertService) => {
+    page.archiveName = mockImsBackend.modelArchiveName;
+    page.tableName = mockImsBackend.modelImageTableName;
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
+    spyOn(alertService, 'showError').and.callThrough();
+    page.ionViewDidLoad();
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
+    expect(alertService.showError).not.toHaveBeenCalled();
+  }));
+
+  it('Loading called on error', inject([ModelService, LoadingService], (modelService: ModelService, loadingService: LoadingService) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
+    spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(Observable.throw(new Error('Fail')));
+    page.ionViewDidLoad();
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
+  }));
+
+  it('Alert called in case of error. ', inject([ModelService, AlertService], (modelService: ModelService, alertService: AlertService) => {
+    spyOn(alertService, 'showError').and.callThrough();
+    spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(Observable.throw(new Error('Fail')));
+    page.ionViewDidLoad();
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
 });
