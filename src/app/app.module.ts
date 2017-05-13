@@ -1,3 +1,5 @@
+import { ModelService } from './../providers/model-service';
+import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -39,7 +41,8 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     MorePopoverPage,
     SettingsPage,
-    EntriesPage
+    EntriesPage,
+    SettingImageFieldsPage
   ],
   imports: [
     IonicModule.forRoot(MobileClient),
@@ -55,7 +58,8 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     MorePopoverPage,
     SettingsPage,
-    EntriesPage
+    EntriesPage,
+    SettingImageFieldsPage
   ],
   providers: [
     TokenService,
@@ -73,6 +77,7 @@ const cloudSettings: CloudSettings = {
     LoadingService,
     AlertService,
     QueryBuilderService,
+    ModelService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

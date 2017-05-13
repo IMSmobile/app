@@ -1,0 +1,15 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Image Fields Setting</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item *ngFor="let field of fields">
+    <ion-label>{{field.name}}</ion-label>
+    <ion-toggle [(ngModel)]="field.active" (ionChange)="notify(field.name, field.active)"></ion-toggle>
+  </ion-item>
+</ion-content>

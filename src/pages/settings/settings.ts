@@ -1,3 +1,4 @@
+import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SettingService } from '../../providers/setting-service';
@@ -19,4 +20,7 @@ export class SettingsPage {
     this.settingService.setShowRestUrlField(this.isShowRestUrlField);
   }
 
+  loadImageFieldSettings() {
+    this.navCtrl.push(SettingImageFieldsPage);
+  }
 }
