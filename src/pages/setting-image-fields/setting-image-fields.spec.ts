@@ -121,4 +121,25 @@ describe('Page: Image Settings Fields', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
+  it('All fields displayed after loading', inject([AuthService, MockImsBackend], (authService: AuthService, mockImsBackend: MockImsBackend) => {
+    page.archiveName = mockImsBackend.modelArchiveName;
+    page.tableName = mockImsBackend.modelImageTableName;
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    page.ionViewDidLoad();
+    page.fields.forEach(field => expect(field.display).toBeTruthy());
+  }));
+
+  it('After search fields are filtered', inject([AuthService, MockImsBackend], (authService: AuthService, mockImsBackend: MockImsBackend) => {
+    page.archiveName = mockImsBackend.modelArchiveName;
+    page.tableName = mockImsBackend.modelImageTableName;
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    page.ionViewDidLoad();
+    let event = { target: { value: mockImsBackend.modelFieldOptionalString.name } };
+    page.filterFields(event);
+    page.fields.forEach(field => {
+      expect(field.display === (field.name === mockImsBackend.modelFieldOptionalString.name)).toBeTruthy();
+    });
+  }));
 });
