@@ -37,7 +37,7 @@ export class SettingService {
   }
 
   getFieldKey(archive: string, table: string, field: string) {
-    return archive + this.fieldPathSeparator + table + this.fieldPathSeparator + field;
+    return [archive, table, field].join('.');
   }
 
   setShowRestUrlField(isShowRestUrlField: boolean) {
