@@ -8,6 +8,9 @@ describe('Settings E2E Test', () => {
   let moreButton: ElementFinder = element(by.id('barButtonMore'));
   let settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
   let settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
+  let settingsImageFieldSettingButton: ElementFinder = element(by.id('settingsImageFieldSettingButton'));
+  let settingsImageFieldIADeletedToggle: ElementFinder = element(by.id('settingsImageFieldIADeletedToggle'));
+  let settingsImageFieldIADeletedToggleChecked: ElementFinder = $('#settingsImageFieldIADeletedToggle .toggle-checked');
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -53,11 +56,37 @@ describe('Settings E2E Test', () => {
     loginPage.isServerInputPresent().then(displayed => expect(displayed).toBeFalsy());
   });
 
+  it('Should persist image field settings', () => {
+    loginPage.login();
+    waitUntilElementsAreClickable();
+    moreButton.click();
+    waitUntilElementsAreClickable();
+    settingsButton.click();
+    waitUntilElementsAreClickable();
+    settingsImageFieldSettingButton.click();
+    waitUntilElementsAreClickable();
+    browser.isElementPresent(settingsImageFieldIADeletedToggleChecked).then(present => expect(present).toBeFalsy());
+    settingsImageFieldIADeletedToggle.click();
+    waitUntilStorageReady();
+    loginPage.loadPage();
+    waitUntilElementsAreClickable();
+    loginPage.passwordInput.sendKeys(loginPage.password);
+    loginPage.loginButton.click();
+    waitUntilElementsAreClickable();
+    moreButton.click();
+    waitUntilElementsAreClickable();
+    settingsButton.click();
+    waitUntilElementsAreClickable();
+    settingsImageFieldSettingButton.click();
+    waitUntilElementsAreClickable();
+    browser.isElementPresent(settingsImageFieldIADeletedToggleChecked).then(present => expect(present).toBeTruthy());
+  });
+
 });
 
 function waitUntilElementsAreClickable() {
   browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-  browser.sleep(500);
+  browser.sleep(1000);
 }
 
 function waitUntilStorageReady() {

@@ -10,6 +10,6 @@
 <ion-content padding>
   <ion-item *ngFor="let field of fields">
     <ion-label>{{field.name}}</ion-label>
-    <ion-toggle [(ngModel)]="field.active" (ionChange)="notify(field.name, field.active)"></ion-toggle>
+    <ion-toggle [(ngModel)]="field.active" (ionChange)="notify(field.name, field.active)" id="settingsImageField{{field.name}}Toggle"></ion-toggle>
   </ion-item>
 </ion-content>
