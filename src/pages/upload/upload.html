@@ -3,21 +3,47 @@
     <ion-title>
       Upload Image to {{parentImageEntryId}}
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="takePicture()" color="primary">
+       <ion-icon name="camera"></ion-icon>
+     </button>
+    </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="uploadSegment">
+      <ion-segment-button value="metadata">
+        MetaData
+      </ion-segment-button>
+      <ion-segment-button value="image">
+        Image
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
-
-<ion-content padding text-center>
-  <button ion-button icon-left on-tap="takePicture()">
-    <ion-icon name="camera"></ion-icon>
-    Take a New Picture
-  </button>
-  <ion-card *ngIf="imageSrc">
-    <img [src]="imageSrc" />
-    <ion-card-content>
-      <button ion-button icon-left block on-tap="uploadPicture()">
-        <ion-icon name="cloud-upload"></ion-icon>
-        Upload to IMS
-      </button>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  <div class="detail-switch" [ngSwitch]="uploadSegment">
+    <div class="detail-image-container" *ngSwitchCase="'image'">
+      <img class="scaled-image" [src]="imageSrc" />
+    </div>
+    <ion-list *ngSwitchCase="'metadata'" id="id-list">
+      <form [formGroup]="fieldsForm">
+        <ion-item *ngFor="let field of mandatoryFields">
+          <ion-label fixed>{{field.name}}</ion-label>
+          <ion-input type="text" formControlName="{{field.name}}"></ion-input>
+        </ion-item>
+      </form>
+    </ion-list>
+  </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="thumbnail-image-container">
+      <img class="scaled-image" [src]="imageSrc" />
+    </div>
+  </ion-toolbar>
+</ion-footer>
+<ion-fab right bottom>
+  <button ion-fab (tap)="uploadPicture()" color="secondary">
+    <ion-icon name="send"></ion-icon>
+  </button>
+</ion-fab>
