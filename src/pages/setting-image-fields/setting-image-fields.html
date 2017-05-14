@@ -10,7 +10,7 @@
 <ion-content padding>
   <ion-searchbar (ionInput)="filterFields($event)"></ion-searchbar>
   <ion-list *ngFor="let field of fields">
-    <ion-item *ngIf="field.display">
+    <ion-item *ngIf="field.display" class="fieldItem">
       <ion-label>{{field.name}}</ion-label>
       <ion-toggle [(ngModel)]="field.active" (ionChange)="notify(field.name, field.active)" id="settingsImageField{{field.name}}Toggle"></ion-toggle>
     </ion-item>

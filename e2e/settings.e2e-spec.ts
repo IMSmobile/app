@@ -61,6 +61,14 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.reloadPage();
     browser.isElementPresent(settingsImageFieldBOOLEANNOToggleChecked).then(present => expect(present).toBeTruthy());
   });
+
+  it('Should filter image field settings', () => {
+    settingImageFieldsPage.loadPage();
+    settingImageFieldsPage.filterFields('K');
+    settingImageFieldsPage.verifyFieldsDisplayed(3);
+    settingImageFieldsPage.filterFields('Key');
+    settingImageFieldsPage.verifyFieldsDisplayed(2);
+  });
 });
 
 function waitUntilStorageReady() {
