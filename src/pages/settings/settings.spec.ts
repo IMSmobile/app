@@ -1,3 +1,4 @@
+import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { SettingsPage } from './settings';
 import { App, Config, Form, IonicModule, Keyboard, Haptic, GestureController, DomController, NavController, Platform, NavParams } from 'ionic-angular';
@@ -51,5 +52,11 @@ describe('Page: Settings', () => {
 
   it('SettingService is initialized correctly', async(inject([SettingService], (settingService: SettingService) => {
     settingService.isShowRestUrlField().subscribe(val => expect(page.isShowRestUrlField).toBe(val));
+  })));
+
+  it('Should load SettingsImageFields page', async(inject([SettingService, NavController], (settingService: SettingService, navController: NavController) => {
+    spyOn(navController, 'push').and.callThrough();
+    page.loadImageFieldSettings();
+    expect(navController.push).toHaveBeenCalledWith(SettingImageFieldsPage);
   })));
 });

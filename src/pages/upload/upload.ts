@@ -11,6 +11,10 @@ import { Response } from '@angular/http';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
+import { SettingService } from '../../providers/setting-service';
+import { MetadataTableFields } from '../../models/metadata-table-fields';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
   selector: 'page-upload',
@@ -21,33 +25,44 @@ export class UploadPage {
   imageSrc: string;
   parentImageEntryId: string;
   filterId: number = 40;
-  mandatoryFields: MetadataField[] = [];
+  fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
-  uploadSegment: string;
+  archiveName: string = 'workflow_db1';
+  uploadSegment: string = 'metadata';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
-    this.uploadSegment = 'metadata';
   }
 
   ionViewDidLoad() {
-    this.loadingService.showLoading();
-    this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, 'workflow_db1').subscribe(
-      tableFields => {
-        this.mandatoryFields = tableFields.fields.filter(field => field.mandatory === true && field.name !== tableFields.parentReferenceField);
-        this.initFormData();
-        this.loadingService.hideLoading();
-      },
-      err => {
-        this.loadingService.hideLoading();
-        this.alertService.showError('Failed to load metadata fields.');
-      });
+    let imageTableMetaData: Observable<MetadataTableFields> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName);
+    let imageTableMetaDataFields: Observable<MetadataField[]> = imageTableMetaData.flatMap(tableFields => {
+      let allFields: Observable<MetadataField[]> = Observable.forkJoin(tableFields.fields.map(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).map(active => {
+        field.active = active || this.isMandatory(field, tableFields.parentReferenceField);
+        return field;
+      })));
+      return allFields.map(this.mapActiveFields);
+    });
+    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => {console.log(err); this.alertService.showError('Failed to load metadata fields.'); });
+  }
+
+  mapActiveFields(fields: MetadataField[]): MetadataField[] {
+    return fields.filter(field => field.active);
+  }
+
+  isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
+    return field.mandatory === true && field.name !== parentReferenceFieldName;
+  }
+
+  initFields(fields: MetadataField[]) {
+    this.fields = fields;
+    this.initFormData();
   }
 
   initFormData() {
     var formData = {};
-    this.mandatoryFields.forEach(field => {
+    this.fields.forEach(field => {
       formData[field.name] = [''];
       formData[field.name].push(Validators.required);
     });
@@ -69,7 +84,7 @@ export class UploadPage {
     } else {
       this.loadingService.showLoading();
       let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
-      this.mandatoryFields.forEach(field => {
+      this.fields.forEach(field => {
         let value = this.fieldsForm.controls[field.name].value;
         imageEntry = imageEntry.set(field.name, value);
       });
@@ -100,7 +115,7 @@ export class UploadPage {
   }
 
   markAllAsTouched() {
-    this.mandatoryFields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
+    this.fields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
   }
 
 }

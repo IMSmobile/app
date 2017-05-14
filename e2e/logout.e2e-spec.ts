@@ -1,5 +1,5 @@
 import { browser, element, by, ElementFinder, protractor, $, ExpectedConditions } from 'protractor';
-import { LoginPageOjbect } from './login-page-object';
+import { LoginPageOjbect } from './page-objects/login-page-object';
 
 describe('Logout E2E Test', () => {
 
@@ -31,17 +31,17 @@ describe('Logout E2E Test', () => {
     browser.executeScript('window.indexedDB.deleteDatabase("imsClientDB")');
   });
 
-  it('Should return to Loginscreen', () => {
-    loginPage.login();
-    waitUntilElementsAreClickable();
-    moreButton.click();
-    waitUntilElementsAreClickable();
-    logoutButton.click();
-    waitUntilPageReady();
-    loginPage.getServerInputText().then(text => expect(text).toEqual(loginPage.server));
-    loginPage.getUserInputText().then(text => expect(text).toEqual(loginPage.user));
-    loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));
-  });
+    it('Should return to Loginscreen', () => {
+      loginPage.login();
+      waitUntilElementsAreClickable();
+      moreButton.click();
+      waitUntilElementsAreClickable();
+      logoutButton.click();
+      waitUntilPageReady();
+      loginPage.getServerInputText().then(text => expect(text).toEqual(loginPage.server));
+      loginPage.getUserInputText().then(text => expect(text).toEqual(loginPage.user));
+      loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));
+    });
 });
 
 function waitUntilElementsAreClickable() {

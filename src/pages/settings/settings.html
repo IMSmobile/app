@@ -8,8 +8,9 @@
 
 
 <ion-content padding>
-<ion-item>
-  <ion-label>Show Rest Url Field</ion-label>
-  <ion-toggle [(ngModel)]="isShowRestUrlField" (ionChange)="notify()" id="settingsShowRestUrlFieldToggle"></ion-toggle>
-</ion-item>
+  <ion-item>
+    <ion-label>Show Rest Url Field</ion-label>
+    <ion-toggle [(ngModel)]="isShowRestUrlField" (ionChange)="notify()" id="settingsShowRestUrlFieldToggle"></ion-toggle>
+  </ion-item>
+  <button ion-item (click)="loadImageFieldSettings()" id="settingsImageFieldSettingButton">Image Field Settings</button>
 </ion-content>

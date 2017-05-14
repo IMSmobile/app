@@ -1,13 +1,19 @@
 import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
-import { LoginPageOjbect } from './login-page-object';
+import { SettingsPageOjbect } from './page-objects/settings-page-object';
+import { SettingImageFieldsPageOjbect } from './page-objects/setting-image-field-page-object';
+import { LoginPageOjbect } from './page-objects/login-page-object';
+import { EntriesPageOjbect } from './page-objects/entries-page-object';
 
 describe('Settings E2E Test', () => {
 
   let originalTimeout;
+  let settingsPage = new SettingsPageOjbect();
   let loginPage = new LoginPageOjbect();
-  let moreButton: ElementFinder = element(by.id('barButtonMore'));
-  let settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
+  let entriesPage = new EntriesPageOjbect();
+  let settingImageFieldsPage = new SettingImageFieldsPageOjbect();
   let settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
+  let settingsImageFieldBOOLEANNOToggle: ElementFinder = element(by.id('settingsImageFieldBOOLEANNOToggle'));
+  let settingsImageFieldBOOLEANNOToggleChecked: ElementFinder = $('#settingsImageFieldBOOLEANNOToggle .toggle-checked');
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -30,7 +36,6 @@ describe('Settings E2E Test', () => {
     browser.executeScript('window.indexedDB.deleteDatabase("imsClientDB")');
   });
 
-
   it('Should store user and server into settings', () => {
     loginPage.login();
     waitUntilStorageReady();
@@ -41,24 +46,30 @@ describe('Settings E2E Test', () => {
   });
 
   it('Should disable server field through disabling in settingspage', () => {
-    loginPage.login();
-    waitUntilElementsAreClickable();
-    moreButton.click();
-    waitUntilElementsAreClickable();
-    settingsButton.click();
-    waitUntilElementsAreClickable();
+    settingsPage.loadPage();
     settingsShowRestUrlFieldToggle.click();
     waitUntilStorageReady();
     loginPage.loadPage();
     loginPage.isServerInputPresent().then(displayed => expect(displayed).toBeFalsy());
   });
 
-});
+  it('Should persist image field settings', () => {
+    settingImageFieldsPage.loadPage();
+    browser.isElementPresent(settingsImageFieldBOOLEANNOToggleChecked).then(present => expect(present).toBeFalsy());
+    settingsImageFieldBOOLEANNOToggle.click();
+    waitUntilStorageReady();
+    settingImageFieldsPage.reloadPage();
+    browser.isElementPresent(settingsImageFieldBOOLEANNOToggleChecked).then(present => expect(present).toBeTruthy());
+  });
 
-function waitUntilElementsAreClickable() {
-  browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-  browser.sleep(500);
-}
+  it('Should filter image field settings', () => {
+    settingImageFieldsPage.loadPage();
+    settingImageFieldsPage.filterFields('K');
+    settingImageFieldsPage.verifyFieldsDisplayed(3);
+    settingImageFieldsPage.filterFields('Key');
+    settingImageFieldsPage.verifyFieldsDisplayed(2);
+  });
+});
 
 function waitUntilStorageReady() {
   browser.sleep(1000);
