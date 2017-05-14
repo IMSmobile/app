@@ -106,9 +106,10 @@ describe('Page: Upload', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading when successful', inject([MockImsBackend, AuthService, LoadingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService) => {
+  it('Show and hide loading when successful', inject([MockImsBackend, AuthService, LoadingService, SettingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
     page.ionViewDidLoad();
@@ -117,12 +118,13 @@ describe('Page: Upload', () => {
     expect(loadingService.hideLoading).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading with alert on error', inject([MockImsBackend, AuthService, LoadingService, ModelService, AlertService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService, modelService: ModelService, alertService: AlertService) => {
+  it('Show and hide loading with alert on error', inject([MockImsBackend, AuthService, LoadingService, ModelService, AlertService, SettingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService, modelService: ModelService, alertService: AlertService, settingService: SettingService) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     spyOn(alertService, 'showError').and.callThrough();
     spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(error);
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
@@ -130,8 +132,9 @@ describe('Page: Upload', () => {
   }));
 
 
-  it('Check if parent reference is not included', inject([MockImsBackend, AuthService], (mockImsBackend: MockImsBackend, authService: AuthService) => {
+  it('Check if parent reference is not included', inject([MockImsBackend, AuthService, SettingService], (mockImsBackend: MockImsBackend, authService: AuthService, settingService: SettingService) => {
     let testInfo: Info = { version: '9000' };
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
     page.ionViewDidLoad();
     expect(page.fields).not.toContain(mockImsBackend.modelFieldParentreference);
@@ -141,7 +144,7 @@ describe('Page: Upload', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
-    page.addAdditionalFields(mockImsBackend.modelFields);
+    page.ionViewDidLoad();
     expect(page.fields).toContain(mockImsBackend.modelFieldOptionalString);
   }));
 
@@ -149,7 +152,7 @@ describe('Page: Upload', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
-    page.addAdditionalFields(mockImsBackend.modelFields);
+    page.ionViewDidLoad();
     expect(page.fields).not.toContain(mockImsBackend.modelFieldOptionalString);
   }));
 

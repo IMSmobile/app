@@ -13,6 +13,8 @@ import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
 import { SettingService } from '../../providers/setting-service';
 import { MetadataTableFields } from '../../models/metadata-table-fields';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
   selector: 'page-upload',
@@ -34,27 +36,28 @@ export class UploadPage {
   }
 
   ionViewDidLoad() {
-    this.loadingService.showLoading();
-    this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName).subscribe(
-      tableFields => {
-        this.fields = tableFields.fields.filter(field => field.mandatory === true && field.name !== tableFields.parentReferenceField);
-        this.addAdditionalFields(tableFields);
-        this.initFormData();
-        this.loadingService.hideLoading();
-      },
-      err => {
-        this.loadingService.hideLoading();
-        this.alertService.showError('Failed to load metadata fields.');
-      });
+    let imageTableMetaData: Observable<MetadataTableFields> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName);
+    let imageTableMetaDataFields: Observable<MetadataField[]> = imageTableMetaData.flatMap(tableFields => {
+      let allFields: Observable<MetadataField[]> = Observable.forkJoin(tableFields.fields.map(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).map(active => {
+        field.active = active || this.isMandatory(field, tableFields.parentReferenceField);
+        return field;
+      })));
+      return allFields.map(this.mapActiveFields);
+    });
+    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => {console.log(err); this.alertService.showError('Failed to load metadata fields.'); });
   }
 
-  addAdditionalFields(tableFields: MetadataTableFields) {
-    tableFields.fields.forEach(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).subscribe(active => {
-      if (active) {
-        this.fields.push(field);
-        this.initFormData();
-      }
-    }));
+  mapActiveFields(fields: MetadataField[]): MetadataField[] {
+    return fields.filter(field => field.active);
+  }
+
+  isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
+    return field.mandatory === true && field.name !== parentReferenceFieldName;
+  }
+
+  initFields(fields: MetadataField[]) {
+    this.fields = fields;
+    this.initFormData();
   }
 
   initFormData() {
