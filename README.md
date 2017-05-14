@@ -381,7 +381,7 @@ ionic upload
 ```
 Anschliessend kann die soeben hochgeladene Software-Version sofort innerhalb des Ionic View auf einem Smartphone überprüft werden.
 
-Mit dokumentierten manuellen Test Cases welche wir vor jedem Sprint-Review und vor jedem Release durchführen möchten wir die die Funktion aller bereits implementierten Muss-Anforderungen sicherstellen.
+Mit dokumentierten manuellen Test Cases, welche wir vor jedem Sprint-Review und vor jedem Release durchführen, möchten wir die die Funktion aller bereits implementierten Muss-Anforderungen sicherstellen.
 
 *TODO Example Manual Test Case.*
 
