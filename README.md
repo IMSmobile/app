@@ -372,7 +372,16 @@ ionic package list
 ```
 
 #### Manual Testing
-Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Deshalb werden manuelle Test Cases geschrieben. Diese werden in jedem Sprint und vor jedem Release durchgeführt.
+Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Für eine Prüfung der Darstellung auf den Referenzgeräten im Vergleich zu den Wireframes sind noch immer manuelle Tests nötig.
+
+Um während der Entwicklng einen raschen Test-Zyklus auf iOS-Geräten zu erreichen setzen wir den Service [Ionic View](http://view.ionic.io/) ein. Mit folgenden Befehlen kann die Software für Ionic View paketiert und hochgeladen werden:
+```shell
+npm run ionic:build
+ionic upload
+```
+Anschliessend kann die soeben hochgeladene Software-Version sofort innerhalb des Ionic View auf einem Smartphone überprüft werden.
+
+Mit dokumentierten manuellen Test Cases welche wir vor jedem Sprint-Review und vor jedem Release durchführen möchten wir die die Funktion aller bereits implementierten Muss-Anforderungen sicherstellen.
 
 *TODO Example Manual Test Case.*
 
