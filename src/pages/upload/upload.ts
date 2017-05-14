@@ -26,6 +26,7 @@ export class UploadPage {
   fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
   archiveName: string = 'workflow_db1';
+  uploadSegment: string = 'metadata';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService) {
     this.imageSrc = navParams.get('imageSrc');
