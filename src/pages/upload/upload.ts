@@ -25,13 +25,11 @@ export class UploadPage {
   filterId: number = 40;
   fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
-  uploadSegment: string;
   archiveName: string = 'workflow_db1';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
-    this.uploadSegment = 'metadata';
   }
 
   ionViewDidLoad() {
