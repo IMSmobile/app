@@ -1,17 +1,16 @@
 #!/bin/bash
 set -e
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ "$TRAVIS_BRANCH" == "master" ]; then
-  echo "Preparing project assets for upload:"
-  npm run ionic:build
+PATH="$(dirname $0)/../node_modules/ionic/bin:$PATH"
 
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ "$TRAVIS_BRANCH" == "master" ]; then
   echo "Submitting Android build:"
   ionic package build android --noresources --profile dev | tee android-submit.out
-  androidBuildId=$(awk '/Build ID:/ {print $NF}' android-submit.out)
+  androidBuildId=$(awk '/ Build / {print $3}' android-submit.out)
 
   echo "Submitting iOS build:"
   ionic package build ios --noresources --profile dev | tee ios-submit.out
-  iosBuildId=$(awk '/Build ID:/ {print $NF}' ios-submit.out)
+  iosBuildId=$(awk '/ Build / {print $3}' ios-submit.out)
 
   echo "Awaiting build completion... "
   for i in $(seq 1 180); do
