@@ -1,3 +1,5 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { ModelService } from './../providers/model-service';
 import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
 import { IonicStorageModule } from '@ionic/storage';
@@ -45,6 +47,8 @@ const cloudSettings: CloudSettings = {
     SettingImageFieldsPage
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MobileClient),
     CloudModule.forRoot(cloudSettings),
     IonicStorageModule.forRoot({
