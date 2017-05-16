@@ -29,7 +29,7 @@ FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu
 FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic IMS Lizenzmodell halten. | Imagic | 
 FA11 | iOS-muss | Der Client muss auf einem iPhone 6 mit iOS 10 funktionsfähig sein. | Imagic, PIC Systems |
 FA12 | iOS-soll | Der Client soll auf iPhones 5, 6 und 7 mit iOS 9 oder höher funktionsfähig sein. | Imagic, PIC Systems |
-FA13 | Android-muss | Der Client muss auf einem Samsung Galaxy S7 mit Android 6.0 API Level 23 (Marshmallow) funktionsfähig sein. | Imagic |
+FA13 | Android-muss | Der Client muss auf einem Samsung Galaxy S7 mit Android 7.0 API Level 24 (Nougat) funktionsfähig sein. | Imagic |
 FA14 | Android-soll | Der Client soll auf Smartphones mit Android 5.1 API Level 22 (Lollipop) oder höher funktionsfähig sein. | Imagic |
 FA15 | Browser | Der Client kann auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) benutzt werden. | Imagic, PIC Systems |
 FA16 | Direktupload | Der Client kann so eingestellt werden dass keine Mediendaten auf dem Gerät zwischengespeichert werden | Imagic | Wenn aktiviert, können Spezifikationen wie NF15 und NF17 nur eingeschränkt erfüllt werden.
