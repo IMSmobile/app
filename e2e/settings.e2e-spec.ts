@@ -13,7 +13,6 @@ describe('Settings E2E Test', () => {
   let settingImageFieldsPage = new SettingImageFieldsPageOjbect();
   let settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
   let settingsImageFieldBOOLEANNOToggle: ElementFinder = element(by.id('settingsImageFieldBOOLEANNOToggle'));
-  let settingsImageFieldBOOLEANNOToggleChecked: ElementFinder = $('#settingsImageFieldBOOLEANNOToggle .toggle-checked');
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -55,11 +54,11 @@ describe('Settings E2E Test', () => {
 
   it('Should persist image field settings', () => {
     settingImageFieldsPage.loadPage();
-    browser.isElementPresent(settingsImageFieldBOOLEANNOToggleChecked).then(present => expect(present).toBeFalsy());
+    settingsImageFieldBOOLEANNOToggle.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
     settingsImageFieldBOOLEANNOToggle.click();
     waitUntilStorageReady();
     settingImageFieldsPage.reloadPage();
-    browser.isElementPresent(settingsImageFieldBOOLEANNOToggleChecked).then(present => expect(present).toBeTruthy());
+    settingsImageFieldBOOLEANNOToggle.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
   });
 
   it('Should filter image field settings', () => {
