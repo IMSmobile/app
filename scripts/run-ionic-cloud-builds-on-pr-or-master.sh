@@ -4,6 +4,9 @@ set -e
 PATH="$(dirname $0)/../node_modules/ionic/bin:$PATH"
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] || [ "$TRAVIS_BRANCH" == "master" ]; then
+  echo "Logging in:"
+  ionic login "$IONIC_EMAIL" "$IONIC_PASSWORD"
+
   echo "Submitting Android build:"
   ionic package build android --noresources --profile dev | tee android-submit.out
   androidBuildId=$(awk '/ Build / {print $3}' android-submit.out)
