@@ -15,6 +15,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class SettingImageFieldsPage {
 
   fields: MetadataField[];
+  displayFields: MetadataField[];
   tableName: string;
   archiveName: string = 'workflow_db1';
 
@@ -28,6 +29,7 @@ export class SettingImageFieldsPage {
         this.fields = tableFields.fields.filter(field => field.mandatory === false && field.name !== tableFields.parentReferenceField && field.writable === true);
         this.fields.forEach(field => field.display = true);
         this.fields.forEach(field => this.settingService.getFieldState(this.archiveName, this.tableName, field.name).subscribe(active => field.active = active));
+        this.displayFields = this.fields;
       },
       err => {
         this.alertService.showError('Failed to load metadata fields.');
@@ -48,5 +50,6 @@ export class SettingImageFieldsPage {
         }
       });
     }
+    this.displayFields = this.fields.filter(field => field.display);
   }
 }
