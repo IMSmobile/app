@@ -106,47 +106,48 @@ Für Nutzen, Schaden, Aufwand  Risko wurden Werte zwischen 1-9 eingetragen. Die 
 |---------|------------------------|--------|---------|------|----------|---------|-------------|--------|------------|-------|------|
 | Gewicht |                        | 2      | 1       |      |          | 0.5     |             | 0.5    |            |       |      |
 |         |                        |        |         |      |          |         |             |        |            |       |      |
-| FA1     | Bildupload             | 9      | 9       | 20   | 8.77%    | 6       | 1.68%       | 2      | 0.68%      | 20.00 | 5    |
-| FA2     | Kameraupload           | 5      | 4       | 11   | 4.82%    | 6       | 1.68%       | 3      | 1.03%      | 7.33  | 21   |
-| FA5     | Metadaten              | 7      | 4       | 13   | 5.70%    | 4       | 1.12%       | 2      | 0.68%      | 13.00 | 14   |
-| FA6     | Fallauswahl            | 8      | 9       | 19   | 8.33%    | 3       | 0.84%       | 2      | 0.68%      | 19.00 | 6    |
-| FA7     | Fallerstellung         | 5      | 5       | 12   | 5.26%    | 4       | 1.12%       | 2      | 0.68%      | 12.00 | 15   |
-| FA8     | Falldaten              | 7      | 7       | 16   | 7.02%    | 4       | 1.12%       | 2      | 0.68%      | 16.00 | 10   |
-| FA9     | Strukturtiefe          | 3      | 5       | 10   | 4.39%    | 5       | 1.40%       | 2      | 0.68%      | 10.00 | 19   |
+| FA1     | Bildupload             | 9      | 9       | 20   | 8.77%    | 6       | 1.68%       | 2      | 0.68%      | 20.00 | 6    |
+| FA2     | Kameraupload           | 5      | 4       | 11   | 4.82%    | 6       | 1.68%       | 3      | 1.03%      | 7.33  | 22   |
+| FA5     | Metadaten              | 7      | 4       | 13   | 5.70%    | 4       | 1.12%       | 2      | 0.68%      | 13.00 | 15   |
+| FA6     | Fallauswahl            | 8      | 9       | 19   | 8.33%    | 3       | 0.84%       | 2      | 0.68%      | 19.00 | 7    |
+| FA7     | Fallerstellung         | 5      | 5       | 12   | 5.26%    | 4       | 1.12%       | 2      | 0.68%      | 12.00 | 16   |
+| FA8     | Falldaten              | 7      | 7       | 16   | 7.02%    | 4       | 1.12%       | 2      | 0.68%      | 16.00 | 11   |
+| FA9     | Strukturtiefe          | 3      | 5       | 10   | 4.39%    | 5       | 1.40%       | 2      | 0.68%      | 10.00 | 20   |
 | FA10    | Lizenz                 | 8      | 9       | 19   | 8.33%    | 2       | 0.56%       | 1      | 0.34%      | 38.00 | 2    |
-| FA15    | Browser                | 7      | 2       | 11   | 4.82%    | 7       | 1.96%       | 4      | 1.37%      | 5.50  | 25   |
-| FA16    | Direktupload           | 5      | 4       | 11   | 4.82%    | 4       | 1.12%       | 6      | 2.05%      | 3.67  | 35   |
+| FA15    | Browser                | 7      | 2       | 11   | 4.82%    | 7       | 1.96%       | 4      | 1.37%      | 5.50  | 26   |
+| FA16    | Direktupload           | 5      | 4       | 11   | 4.82%    | 4       | 1.12%       | 6      | 2.05%      | 3.67  | 36   |
 | FA17    | Schnittstelle          | 9      | 9       | 20   | 8.77%    | 6       | 1.68%       | 1      | 0.34%      | 40.00 | 1    |
-| FA18    | Entrypoint             | 3      | 1       | 6    | 2.63%    | 2       | 0.56%       | 3      | 1.03%      | 4.00  | 29   |
-| FA20    | Bildanzeige            | 5      | 2       | 9    | 3.95%    | 7       | 1.96%       | 2      | 0.68%      | 9.00  | 20   |
-| FA21    | Pflichtfelder          | 8      | 8       | 18   | 7.89%    | 3       | 0.84%       | 2      | 0.68%      | 18.00 | 7    |
-| FA22    | Fallzuteilung          | 7      | 8       | 17   | 7.46%    | 6       | 1.68%       | 2      | 0.68%      | 17.00 | 9    |
-| FA23    | Fehlermeldung          | 4      | 7       | 13   | 5.70%    | 2       | 0.56%       | 5      | 1.71%      | 5.20  | 26   |
-| FA24    | Filter                 | 6      | 8       | 16   | 7.02%    | 4       | 1.12%       | 2      | 0.68%      | 16.00 | 10   |
-| FA25    | Mehrfachmetadaten      | 7      | 6       | 15   | 6.58%    | 3       | 0.84%       | 2      | 0.68%      | 15.00 | 12   |
-| FA26    | Feldfilter             | 7      | 7       | 16   | 7.02%    | 6       | 1.68%       | 3      | 1.03%      | 10.67 | 16   |
-| FA27    | Aktualisierung         | 6      | 4       | 12   | 5.26%    | 4       | 1.12%       | 8      | 2.74%      | 3.00  | 38   |
-| FA30    | Verbindungsqualität    | 6      | 3       | 11   | 4.82%    | 2       | 0.56%       | 6      | 2.05%      | 3.67  | 35   |
-| FA31    | Filmupload             | 6      | 4       | 12   | 5.26%    | 6       | 1.68%       | 4      | 1.37%      | 6.00  | 24   |
-| FA33    | Bildentgegenahme       | 6      | 4       | 12   | 5.26%    | 5       | 1.40%       | 5      | 1.71%      | 4.80  | 27   |
-| FA34    | Massenbildupload       | 6      | 6       | 14   | 6.14%    | 5       | 1.40%       | 2      | 0.68%      | 14.00 | 13   |
-| FA36    | Bildschutz             | 6      | 4       | 12   | 5.26%    | 7       | 1.96%       | 7      | 2.40%      | 3.43  | 37   |
-| FA37    | Startparameter         | 7      | 7       | 16   | 7.02%    | 6       | 1.68%       | 8      | 2.74%      | 4.00  | 29   |
-| FA38    | Browserupload          | 7      | 8       | 17   | 7.46%    | 7       | 1.96%       | 5      | 1.71%      | 6.80  | 23   |
-| NF2     | Publisher              | 5      | 5       | 12   | 5.26%    | 6       | 1.68%       | 8      | 2.74%      | 3.00  | 38   |
-| NF5     | Offline                | 3      | 5       | 10   | 4.39%    | 8       | 2.23%       | 5      | 1.71%      | 4.00  | 29   |
+| FA18    | Entrypoint             | 3      | 1       | 6    | 2.63%    | 2       | 0.56%       | 3      | 1.03%      | 4.00  | 30   |
+| FA20    | Bildanzeige            | 5      | 2       | 9    | 3.95%    | 7       | 1.96%       | 2      | 0.68%      | 9.00  | 21   |
+| FA21    | Pflichtfelder          | 8      | 8       | 18   | 7.89%    | 3       | 0.84%       | 2      | 0.68%      | 18.00 | 8    |
+| FA22    | Fallzuteilung          | 7      | 8       | 17   | 7.46%    | 6       | 1.68%       | 2      | 0.68%      | 17.00 | 10   |
+| FA23    | Fehlermeldung          | 4      | 7       | 13   | 5.70%    | 2       | 0.56%       | 5      | 1.71%      | 5.20  | 27   |
+| FA24    | Filter                 | 6      | 8       | 16   | 7.02%    | 4       | 1.12%       | 2      | 0.68%      | 16.00 | 11   |
+| FA25    | Mehrfachmetadaten      | 7      | 6       | 15   | 6.58%    | 3       | 0.84%       | 2      | 0.68%      | 15.00 | 13   |
+| FA26    | Feldfilter             | 7      | 7       | 16   | 7.02%    | 6       | 1.68%       | 3      | 1.03%      | 10.67 | 17   |
+| FA27    | Aktualisierung         | 6      | 4       | 12   | 5.26%    | 4       | 1.12%       | 8      | 2.74%      | 3.00  | 39   |
+| FA30    | Verbindungsqualität    | 6      | 3       | 11   | 4.82%    | 2       | 0.56%       | 6      | 2.05%      | 3.67  | 36   |
+| FA31    | Filmupload             | 6      | 4       | 12   | 5.26%    | 6       | 1.68%       | 4      | 1.37%      | 6.00  | 25   |
+| FA33    | Bildentgegenahme       | 6      | 4       | 12   | 5.26%    | 5       | 1.40%       | 5      | 1.71%      | 4.80  | 28   |
+| FA34    | Massenbildupload       | 6      | 6       | 14   | 6.14%    | 5       | 1.40%       | 2      | 0.68%      | 14.00 | 14   |
+| FA36    | Bildschutz             | 6      | 4       | 12   | 5.26%    | 7       | 1.96%       | 7      | 2.40%      | 3.43  | 38   |
+| FA37    | Startparameter         | 7      | 7       | 16   | 7.02%    | 6       | 1.68%       | 8      | 2.74%      | 4.00  | 30   |
+| FA38    | Browserupload          | 7      | 8       | 17   | 7.46%    | 7       | 1.96%       | 5      | 1.71%      | 6.80  | 24   |
+| NF2     | Publisher              | 5      | 5       | 12   | 5.26%    | 6       | 1.68%       | 8      | 2.74%      | 3.00  | 39   |
+| NF5     | Offline                | 3      | 5       | 10   | 4.39%    | 8       | 2.23%       | 5      | 1.71%      | 4.00  | 30   |
 | NF6     | Verschlüsselung        | 8      | 9       | 19   | 8.33%    | 1       | 0.28%       | 1      | 0.34%      | 38.00 | 2    |
-| NF8     | Zentralkonfig          | 6      | 8       | 16   | 7.02%    | 5       | 1.40%       | 7      | 2.40%      | 4.57  | 28   |
-| NF11    | Version                | 5      | 4       | 11   | 4.82%    | 2       | 0.56%       | 1      | 0.34%      | 22.00 | 4    |
-| NF12    | Wartezeiten            | 7      | 7       | 16   | 7.02%    | 2       | 0.56%       | 3      | 1.03%      | 10.67 | 16   |
-| NF13    | Abbruch                | 3      | 5       | 10   | 4.39%    | 5       | 1.40%       | 5      | 1.71%      | 4.00  | 29   |
-| NF14    | Fallanzahl             | 6      | 4       | 12   | 5.26%    | 4       | 1.12%       | 6      | 2.05%      | 4.00  | 29   |
-| NF15    | Hintergrund            | 7      | 5       | 14   | 6.14%    | 6       | 1.68%       | 7      | 2.40%      | 4.00  | 29   |
-| NF17    | Verbindungsunterbrüche | 9      | 7       | 18   | 7.89%    | 6       | 1.68%       | 5      | 1.71%      | 7.20  | 22   |
-| NF18    | Fehlerverminderung     | 8      | 6       | 16   | 7.02%    | 6       | 1.68%       | 3      | 1.03%      | 10.67 | 16   |
-| NF20    | Softwarepaket          | 7      | 9       | 18   | 7.89%    | 2       | 0.56%       | 2      | 0.68%      | 18.00 | 7    |
-|         |                        |        |         |      |          |         |             |        |            |       |      |
+| NF8     | Zentralkonfig          | 6      | 8       | 16   | 7.02%    | 5       | 1.40%       | 7      | 2.40%      | 4.57  | 29   |
+| NF11    | Version                | 5      | 4       | 11   | 4.82%    | 2       | 0.56%       | 1      | 0.34%      | 22.00 | 5    |
+| NF12    | Wartezeiten            | 7      | 7       | 16   | 7.02%    | 2       | 0.56%       | 3      | 1.03%      | 10.67 | 17   |
+| NF13    | Abbruch                | 3      | 5       | 10   | 4.39%    | 5       | 1.40%       | 5      | 1.71%      | 4.00  | 30   |
+| NF14    | Fallanzahl             | 6      | 4       | 12   | 5.26%    | 4       | 1.12%       | 6      | 2.05%      | 4.00  | 30   |
+| NF15    | Hintergrund            | 7      | 5       | 14   | 6.14%    | 6       | 1.68%       | 7      | 2.40%      | 4.00  | 30   |
+| NF17    | Verbindungsunterbrüche | 9      | 7       | 18   | 7.89%    | 6       | 1.68%       | 5      | 1.71%      | 7.20  | 23   |
+| NF18    | Fehlerverminderung     | 8      | 6       | 16   | 7.02%    | 6       | 1.68%       | 3      | 1.03%      | 10.67 | 17   |
+| NF20    | Softwarepaket          | 7      | 9       | 18   | 7.89%    | 2       | 0.56%       | 2      | 0.68%      | 18.00 | 8    |
+| NF21    | Sprache                | 8      | 6       | 16   | 7.02%    | 1       | 0.28%       | 1      | 0.34%      | 32.00 | 4    |
 | Summe   |                        |        | 228     |      |          | 179     |             | 146    |            |       |      |
+
 
 
 
@@ -159,42 +160,43 @@ Dies ist die initiale Prioritätenliste der Anforderungen. Diese wird später im
 | 1    | FA17 | Schnittstelle          |
 | 2    | FA10 | Lizenz                 |
 | 2    | NF6  | Verschlüsselung        |
-| 4    | NF11 | Version                |
-| 5    | FA1  | Bildupload             |
-| 6    | FA6  | Fallauswahl            |
-| 7    | FA21 | Pflichtfelder          |
-| 7    | NF20 | Softwarepaket          |
-| 9    | FA22 | Fallzuteilung          |
-| 10   | FA8  | Falldaten              |
-| 10   | FA24 | Filter                 |
-| 12   | FA25 | Mehrfachmetadaten      |
-| 13   | FA34 | Massenbildupload       |
-| 14   | FA5  | Metadaten              |
-| 15   | FA7  | Fallerstellung         |
-| 16   | FA26 | Feldfilter             |
-| 16   | NF12 | Wartezeiten            |
-| 16   | NF18 | Fehlerverminderung     |
-| 19   | FA9  | Strukturtiefe          |
-| 20   | FA20 | Bildanzeige            |
-| 21   | FA2  | Kameraupload           |
-| 22   | NF17 | Verbindungsunterbrüche |
-| 23   | FA38 | Browserupload          |
-| 24   | FA31 | Filmupload             |
-| 25   | FA15 | Browser                |
-| 26   | FA23 | Fehlermeldung          |
-| 27   | FA33 | Bildentgegenahme       |
-| 28   | NF8  | Zentralkonfig          |
-| 29   | FA18 | Entrypoint             |
-| 29   | FA37 | Startparameter         |
-| 29   | NF5  | Offline                |
-| 29   | NF13 | Abbruch                |
-| 29   | NF14 | Fallanzahl             |
-| 29   | NF15 | Hintergrund            |
-| 35   | FA16 | Direktupload           |
-| 35   | FA30 | Verbindungsqualität    |
-| 37   | FA36 | Bildschutz             |
-| 38   | FA27 | Aktualisierung         |
-| 38   | NF2  | Publisher              |
+| 4    | NF21 | Sprache                |
+| 5    | NF11 | Version                |
+| 6    | FA1  | Bildupload             |
+| 7    | FA6  | Fallauswahl            |
+| 8    | FA21 | Pflichtfelder          |
+| 8    | NF20 | Softwarepaket          |
+| 10   | FA22 | Fallzuteilung          |
+| 11   | FA8  | Falldaten              |
+| 11   | FA24 | Filter                 |
+| 13   | FA25 | Mehrfachmetadaten      |
+| 14   | FA34 | Massenbildupload       |
+| 15   | FA5  | Metadaten              |
+| 16   | FA7  | Fallerstellung         |
+| 17   | FA26 | Feldfilter             |
+| 17   | NF12 | Wartezeiten            |
+| 17   | NF18 | Fehlerverminderung     |
+| 20   | FA9  | Strukturtiefe          |
+| 21   | FA20 | Bildanzeige            |
+| 22   | FA2  | Kameraupload           |
+| 23   | NF17 | Verbindungsunterbrüche |
+| 24   | FA38 | Browserupload          |
+| 25   | FA31 | Filmupload             |
+| 26   | FA15 | Browser                |
+| 27   | FA23 | Fehlermeldung          |
+| 28   | FA33 | Bildentgegenahme       |
+| 29   | NF8  | Zentralkonfig          |
+| 30   | FA18 | Entrypoint             |
+| 30   | FA37 | Startparameter         |
+| 30   | NF5  | Offline                |
+| 30   | NF13 | Abbruch                |
+| 30   | NF14 | Fallanzahl             |
+| 30   | NF15 | Hintergrund            |
+| 36   | FA16 | Direktupload           |
+| 36   | FA30 | Verbindungsqualität    |
+| 38   | FA36 | Bildschutz             |
+| 39   | FA27 | Aktualisierung         |
+| 39   | NF2  | Publisher              |
 
 ## Quelle 
 - [Wiegers Priorisierungsmatrix](http://www.orgismus.de/methoden/priorisieren-aber-richtig/)
