@@ -16,10 +16,11 @@ export class CameraService {
   };
 
   ignoredErrors: (string|number)[] = [
-    'Selection cancelled.', // Android
-    'Camera cancelled.',    // Android
-    20,                     // Android: permission not granted
-    'no image selected'     // iOS: cancelled
+    'Selection cancelled.',    // Android
+    'Camera cancelled.',       // Android
+    20,                        // Android: permission not granted
+    'no image selected',       // iOS: cancelled
+    'has no access to camera'  // iOS: permission not granted
   ];
   errorCodePreMessage: string = 'Error ';
 
