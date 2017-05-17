@@ -16,7 +16,7 @@ Mit Hilfe von Continuous Integration, Reviews und Tests werden wir versuchen ein
 
 Unser persönliches Ziel ist es, unser Wissen um moderne Cross-Platform Frameworks und Tooling zu erweitern. Durch gelungenes Interaction Design möchten wir den Kunden eine Freude im Alltag bereiten. Auch möchten wir unser Leben erleichtern und eine Continuous Deployment Pipeline aufbauen, damit neue Releases rasch und einfach beim Kunden ankommen. 
 
-Am Schluss soll eine funktional vollständige Android und iOS App entstehen, welche in einem Store zum Download bereitgestellt werden kann. Mit dieser App sollen digitale Medien auf benutzerfreundliche Art und Weise ins IMS hochgeladen werden können um den Arbeitsalltag der Kunden zu erleichtern.
+Am Schluss soll eine funktional vollständige Android und iOS App entstehen, welche in einem Store zum Download bereitgestellt wird. Mit dieser App sollen digitale Medien auf benutzerfreundliche Art und Weise ins IMS hochgeladen werden können um den Arbeitsalltag der Kunden zu erleichtern.
 
 
 ## Allgemeine Angaben
