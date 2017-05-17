@@ -127,7 +127,7 @@ describe('Page: Image Settings Fields', () => {
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
     page.ionViewDidLoad();
-    page.fields.forEach(field => expect(field.display).toBeTruthy());
+    page.displayFields.forEach(field => expect(field.display).toBeTruthy());
   }));
 
   it('After search fields are filtered', inject([AuthService, MockImsBackend], (authService: AuthService, mockImsBackend: MockImsBackend) => {
@@ -138,7 +138,7 @@ describe('Page: Image Settings Fields', () => {
     page.ionViewDidLoad();
     let event = { target: { value: mockImsBackend.modelFieldOptionalString.name } };
     page.filterFields(event);
-    page.fields.forEach(field => {
+    page.displayFields.forEach(field => {
       expect(field.display === (field.name === mockImsBackend.modelFieldOptionalString.name)).toBeTruthy();
     });
   }));
