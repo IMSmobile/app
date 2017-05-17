@@ -75,10 +75,10 @@ export class EntriesPage {
     this.events.unsubscribe('nav:login-page');
   }
 
-  presentPopover(myEvent?: NavOptions) {
+  presentPopover(event) {
     this.popover = this.popoverCtrl.create(MorePopoverPage);
     this.popover.present({
-      ev: myEvent
+      ev: event
     });
   }
 
