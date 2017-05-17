@@ -1,6 +1,6 @@
 import { QueryFragment } from './../../models/queryFragment';
 import { Component } from '@angular/core';
-import { NavController, PopoverController, NavOptions, Popover, Events } from 'ionic-angular';
+import { NavController, PopoverController, Popover, Events } from 'ionic-angular';
 import { MorePopoverPage } from '../more-popover/more-popover';
 import { Entry } from '../../models/entry';
 import { EntriesService } from './../../providers/entries-service';
@@ -75,10 +75,10 @@ export class EntriesPage {
     this.events.unsubscribe('nav:login-page');
   }
 
-  presentPopover(myEvent?: NavOptions) {
+  presentPopover(event) {
     this.popover = this.popoverCtrl.create(MorePopoverPage);
     this.popover.present({
-      ev: myEvent
+      ev: event
     });
   }
 
