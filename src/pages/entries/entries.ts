@@ -1,6 +1,6 @@
 import { QueryFragment } from './../../models/queryFragment';
 import { Component } from '@angular/core';
-import { NavController, PopoverController, NavOptions, Popover, Events } from 'ionic-angular';
+import { NavController, PopoverController, Popover, Events } from 'ionic-angular';
 import { MorePopoverPage } from '../more-popover/more-popover';
 import { Entry } from '../../models/entry';
 import { EntriesService } from './../../providers/entries-service';
