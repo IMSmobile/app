@@ -1,4 +1,4 @@
-import { ArchiveTableEntry } from './archiveTableEntry';
+import { ArchiveTableEntry } from './archive-table-entry';
 
 export class ArchiveEntry {
     archiveName: string;

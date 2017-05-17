@@ -1,5 +1,5 @@
 import { QueryBuilderService } from './query-builder-service';
-import { QueryFragment } from './../models/queryFragment';
+import { QueryFragment } from './../models/query-fragment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { TokenService } from './token-service';
 import { Credential } from '../models/credential';
 import { Entries } from '../models/entries';
-import { ImsHeaders } from '../models/imsHeaders';
+import { ImsHeaders } from '../models/ims-headers';
 
 @Injectable()
 export class EntriesService {
