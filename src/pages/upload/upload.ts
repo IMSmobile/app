@@ -44,7 +44,7 @@ export class UploadPage {
       })));
       return allFields.map(this.mapActiveFields);
     });
-    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => {console.log(err); this.alertService.showError('Failed to load metadata fields.'); });
+    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => this.alertService.showError('Failed to load metadata fields.'));
   }
 
   mapActiveFields(fields: MetadataField[]): MetadataField[] {
