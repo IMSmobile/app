@@ -1,4 +1,4 @@
-import { QueryFragment } from './../../models/queryFragment';
+import { QueryFragment } from './../../models/query-fragment';
 import { Component } from '@angular/core';
 import { NavController, PopoverController, NavOptions, Popover, Events } from 'ionic-angular';
 import { MorePopoverPage } from '../more-popover/more-popover';

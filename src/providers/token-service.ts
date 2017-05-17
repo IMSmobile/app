@@ -5,7 +5,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Credential } from '../models/credential';
-import { ImsHeaders } from '../models/imsHeaders';
+import { ImsHeaders } from '../models/ims-headers';
 import { Token } from '../models/token';
 import { ImsService } from './ims-service';
 

@@ -1,4 +1,4 @@
-import { QueryFragment } from './../models/queryFragment';
+import { QueryFragment } from './../models/query-fragment';
 export class QueryBuilderService {
 
   public generate(queryFragments: QueryFragment[]): string {
