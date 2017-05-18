@@ -70,10 +70,7 @@ export class UploadPage {
   }
 
   public takePicture() {
-    this.cameraService.takePicture().subscribe(
-      imageData => this.imageSrc = imageData,
-      err => this.cameraService.showAlertOnError(err)
-    );
+    this.cameraService.takePicture().subscribe(imageData => this.imageSrc = imageData, this.cameraService.showAlertOnError);
   }
 
   public uploadPicture() {
