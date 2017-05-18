@@ -20,15 +20,14 @@ import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
 import { SettingService } from '../providers/setting-service';
 
-import { Transfer } from '@ionic-native/transfer';
-import { Camera } from '@ionic-native/camera';
 import { EntriesService } from '../providers/entries-service';
 import { CameraService } from '../providers/camera-service';
 import { LoadingService } from '../providers/loading-service';
 import { AlertService } from '../providers/alert-service';
 import { QueryBuilderService } from './../providers/query-builder-service';
 
-import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+import { AppProviders } from './app.providers';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -72,9 +71,9 @@ const cloudSettings: CloudSettings = {
     AuthService,
     StatusBar,
     SplashScreen,
-    Transfer,
     IonicStorageModule,
-    Camera,
+    AppProviders.getTransferProvider(),
+    AppProviders.getCameraProvider(),
     SettingService,
     EntriesService,
     CameraService,
