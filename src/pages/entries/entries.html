@@ -19,7 +19,7 @@
           Created: {{entry.fields.IACreationDate | date:'short'}}<br />
           Modified: {{entry.fields.IAModificationDate | date:'short'}}
         </p>
-        <button ion-button (click)="takePictureForEntry(entry.fields.IDFall)" item-right>
+        <button ion-button (click)="takePictureForEntry(entry.fields.IDFall)" id="entriesCameraButton{{entry.fields.IDFall}}" item-right>
           <ion-icon name="camera"></ion-icon>
         </button>
       </ion-item>

@@ -6,6 +6,7 @@ import { LoginPageOjbect } from './login-page-object';
 export class EntriesPageOjbect {
     moreButton: ElementFinder = element(by.id('barButtonMore'));
     settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
+    entriesCameraButton: ElementFinder = element(by.id('entriesCameraButton34617'));
     loginPage = new LoginPageOjbect();
 
     loadPage() {
@@ -24,6 +25,11 @@ export class EntriesPageOjbect {
         this.moreButton.click();
         this.waitUntilElementsAreClickable();
         this.settingsButton.click();
+        this.waitUntilElementsAreClickable();
+    }
+
+    pushEntriesCameraButtonOnEntry34617() {
+        this.entriesCameraButton.click();
         this.waitUntilElementsAreClickable();
     }
 
