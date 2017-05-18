@@ -142,9 +142,11 @@ describe('Page: Entries', () => {
     let parentImageEntryId: string = '123';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
+    spyOn(cameraService, 'showAlertOnError').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
     page.takePictureForEntry(parentImageEntryId);
     expect(cameraService.takePicture).toHaveBeenCalled();
+    expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
       { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId }
@@ -155,11 +157,11 @@ describe('Page: Entries', () => {
     let error = Observable.throw(new Error('oops'));
     spyOn(cameraService, 'takePicture').and.returnValue(error);
     spyOn(navController, 'push').and.callThrough();
-    spyOn(alertService, 'showError').and.callThrough();
+    spyOn(cameraService, 'showAlertOnError').and.callThrough();
     page.takePictureForEntry('1');
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledTimes(0);
-    expect(alertService.showError).toHaveBeenCalled();
+    expect(cameraService.showAlertOnError).toHaveBeenCalled();
   }));
 
   it('Go to Settings Page and dismiss popover on load Settings', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
