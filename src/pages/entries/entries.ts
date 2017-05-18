@@ -28,7 +28,8 @@ export class EntriesPage {
 
   public takePictureForEntry(parentImageEntryId: string) {
     this.cameraService.takePicture().subscribe(
-      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId }), this.cameraService.showAlertOnError);
+      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId }),
+      err => this.cameraService.showAlertOnError(err));
   }
 
   ionViewDidLoad() {
