@@ -1,5 +1,5 @@
 import { QueryBuilderService } from './query-builder-service';
-import { MockImsBackend } from '../mocks/mock-ims-backend';
+import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { TokenService } from './token-service';
@@ -14,7 +14,7 @@ describe('Provider: EntriesService', () => {
       providers: [
         TokenService,
         ImsService,
-        MockImsBackend,
+        ImsBackendMock,
         EntriesService,
         BaseRequestOptions,
         QueryBuilderService,
@@ -23,20 +23,20 @@ describe('Provider: EntriesService', () => {
           useFactory: (mockImsBackend, options) => {
             return new Http(mockImsBackend, options);
           },
-          deps: [MockImsBackend, BaseRequestOptions]
+          deps: [ImsBackendMock, BaseRequestOptions]
         }
       ],
       imports: [HttpModule]
     }).compileComponents();
   }));
 
-  it('Gets parent image entries', inject([EntriesService, MockImsBackend], (entriesService: EntriesService, mockImsBackend: MockImsBackend) => {
+  it('Gets parent image entries', inject([EntriesService, ImsBackendMock], (entriesService: EntriesService, mockImsBackend: ImsBackendMock) => {
     entriesService.getParentImageEntries(mockImsBackend.credential, mockImsBackend.filterId, mockImsBackend.query).subscribe(
       entries => expect(entries).toBe(mockImsBackend.parentImageEntries),
       err => fail(err));
   }));
 
-  it('Gets next page of parent image entries', inject([EntriesService, MockImsBackend], (entriesService: EntriesService, mockImsBackend: MockImsBackend) => {
+  it('Gets next page of parent image entries', inject([EntriesService, ImsBackendMock], (entriesService: EntriesService, mockImsBackend: ImsBackendMock) => {
     let credential = mockImsBackend.credential;
     entriesService.getParentImageEntries(credential, mockImsBackend.filterId, mockImsBackend.query).flatMap(entries => entriesService.getEntries(credential, entries.pagination.nextPage)).subscribe(
       entries => expect(entries).toBe(mockImsBackend.parentImageEntriesNextPage),

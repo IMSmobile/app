@@ -28,7 +28,7 @@ import { Entries } from '../models/entries';
 import { Entry } from '../models/entry';
 import { Pagination } from '../models/pagination';
 
-export class MockImsBackend extends MockBackend {
+export class ImsBackendMock extends MockBackend {
 
     public baseUrl: string = 'http://restserver:9000';
     public segmentName: string = 'Ims Mobile Rest Segement';

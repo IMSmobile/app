@@ -9,7 +9,7 @@ import { ImsService } from '../../providers/ims-service';
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, PopoverControllerMock, StorageMock } from '../../mocks/mocks';
 import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { MockImsBackend } from '../../mocks/mock-ims-backend';
+import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { UploadService } from '../../providers/upload-service';
 import { TokenService } from '../../providers/token-service';
 import { CameraService } from '../../providers/camera-service';
@@ -35,7 +35,7 @@ describe('Page: Upload', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, UploadService, MockImsBackend, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
+        TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -47,10 +47,10 @@ describe('Page: Upload', () => {
         { provide: Storage, useClass: StorageMock },
         {
           provide: Http,
-          useFactory: (MockImsBackend, options) => {
-            return new Http(MockImsBackend, options);
+          useFactory: (ImsBackendMock, options) => {
+            return new Http(ImsBackendMock, options);
           },
-          deps: [MockImsBackend, BaseRequestOptions]
+          deps: [ImsBackendMock, BaseRequestOptions]
         },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
@@ -106,19 +106,19 @@ describe('Page: Upload', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading when successful', inject([MockImsBackend, AuthService, LoadingService, SettingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
+  it('Show and hide loading when successful', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     page.ionViewDidLoad();
     expect(page.fields.length).toBeGreaterThan(0);
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading with alert on error', inject([MockImsBackend, AuthService, LoadingService, ModelService, AlertService, SettingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService, modelService: ModelService, alertService: AlertService, settingService: SettingService) => {
+  it('Show and hide loading with alert on error', inject([ImsBackendMock, AuthService, LoadingService, ModelService, AlertService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, modelService: ModelService, alertService: AlertService, settingService: SettingService) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
@@ -132,28 +132,28 @@ describe('Page: Upload', () => {
   }));
 
 
-  it('Check if parent reference is not included', inject([MockImsBackend, AuthService, SettingService], (mockImsBackend: MockImsBackend, authService: AuthService, settingService: SettingService) => {
+  it('Check if parent reference is not included', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     let testInfo: Info = { version: '9000' };
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
-    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     page.ionViewDidLoad();
-    expect(page.fields).not.toContain(mockImsBackend.modelFieldParentreference);
+    expect(page.fields).not.toContain(imsBackendMock.modelFieldParentreference);
   }));
 
-  it('Additional not mandatory fields', inject([MockImsBackend, AuthService, SettingService, Storage], (mockImsBackend: MockImsBackend, authService: AuthService, settingService: SettingService, storage: Storage) => {
+  it('Additional not mandatory fields', inject([ImsBackendMock, AuthService, SettingService, Storage], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService, storage: Storage) => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     page.ionViewDidLoad();
-    expect(page.fields).toContain(mockImsBackend.modelFieldOptionalString);
+    expect(page.fields).toContain(imsBackendMock.modelFieldOptionalString);
   }));
 
-  it('Do not add additional not mandatory fields when not configured', inject([MockImsBackend, AuthService, SettingService, Storage], (mockImsBackend: MockImsBackend, authService: AuthService, settingService: SettingService, storage: Storage) => {
+  it('Do not add additional not mandatory fields when not configured', inject([ImsBackendMock, AuthService, SettingService, Storage], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService, storage: Storage) => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     let testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     page.ionViewDidLoad();
-    expect(page.fields).not.toContain(mockImsBackend.modelFieldOptionalString);
+    expect(page.fields).not.toContain(imsBackendMock.modelFieldOptionalString);
   }));
 
 });
