@@ -47,7 +47,7 @@ FA27 | Aktualisierung | Software-Features oder Fehlerbehebungen im Client könne
 ~~FA28~~ | ~~Publisherlink~~ | ~~Nach fertigem Upload der Bilder soll es möglich sein, einen Publisher Link zu erhalten, welcher dann mittels "Weiterleiten" an andere (dritt) Apps übermittelt werden können.~~ | PIC Systems | Funktionaltät wird nicht von der REST API angeboten, kann deshalb nicht realisiert werden. 
 ~~FA29~~ | ~~Uploadbegrenzung~~ | ~~Es muss möglich sein, eine Begrenzung des Upload-Datenvolumens pro Monat zu konfigurieren.~~ | PIC Systems | Wird als Aufgabe eines Mobile Device Management angesehen.
 FA30 | Verbindungsqualität | Die erlaubte Verbindungsqualität (3G/4G/WLAN) ab welcher ein Upload von Bildern gestattet ist soll konfigurierbar sein. | PIC Systems | 
-FA31 | Filmupload | Sämtliche Anforderungen mit Bildern sollen auch mit Filmen möglich sein. | PIC Systems |
+FA31 | Filmupload | Sämtliche Anforderungen, welche für Bildern gelten, sollen auch mit Filmaufnahmen möglich sein. | PIC Systems |
 ~~FA32~~ | ~~Uploadbegrenzung~~ | ~~Es kann möglich sein, eine Limite (Begrenzung) der Anzahl Bilder zu konfigurieren, die maximal pro Fall und pro Benutzer hochgeladen werden können.~~ | PIC Systems | Die Uploadbegrenzung wird sinnvollerweise durch eine Mobile Device Management Software sichergestellt.
 FA33 | Bildentgegennahme | Es kann möglich sein, Bilder aus einer dritt App an den Mobile Client zu übermitteln, welche dann zugeteilt und upgeloadet werden können. | PIC Systems |
 FA34 | Massenbildupload | Der Client soll bis zu 100 Bilder aus der Galerie in das Imagic IMS speichern können. | PIC Systems | 
