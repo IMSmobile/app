@@ -32,7 +32,7 @@ export class SettingImageFieldsPage {
         this.displayFields = this.fields;
       },
       err => {
-        this.alertService.showError('Failed to load metadata fields.');
+        this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.');
       });
   }
 
