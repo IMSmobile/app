@@ -1,4 +1,4 @@
-export class MockCamera {
+export class CameraMock {
   DestinationType = { 'FILE_URI': 'FILE_URI' };
   EncodingType = { 'JPEG': 'JPEG' };
   MediaType = { 'PICTURE': 'PICTURE' };
