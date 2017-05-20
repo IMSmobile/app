@@ -56,6 +56,7 @@ FA36 | Bildschutz | Im Client direkt von der Kamera des Smartphones aufgenommene
 FA37 | Startparameter | Navigation zu einem bestimmten Tabellen-Entry im IMS Mobile Client soll mit einem bestimmten Start-Parameter möglich sein. | PIC Systems | Hohe Priorisierung von PIC Systems gewünscht
 FA38 | Browserupload | Ein Bildupload (FA1) soll auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) möglich sein. | PIC Systems | 
 ~~FA39~~  | ~~Fallmodifikation~~ | ~~Der Client soll dem Benutzer die Möglichkeit bieten Falldaten anzupassen.~~ | HSR Review | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht.
+FA40 | Dokumentation | Entwickler müssen das Projekt aufsetzen und fortsetzen können.| Betreuer Review | Eine Entwickler Dokumentation reicht für Imagic und PIC Systems.
 
 ### Nicht-Funktional
 ID   | Name | Beschreibung | Quelle      | Bemerkungen
