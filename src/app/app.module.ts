@@ -48,7 +48,11 @@ const cloudSettings: CloudSettings = {
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MobileClient, {backButtonText: 'Zurück'}),
+    IonicModule.forRoot(MobileClient, {
+      platforms: {
+        ios: { backButtonText: 'Zurück' }
+      }
+    }),
     CloudModule.forRoot(cloudSettings),
     IonicStorageModule.forRoot({
       name: 'imsClientDB'
