@@ -1,6 +1,5 @@
 import { Entry } from './../../models/entry';
 import { Image } from './../../models/image';
-import { Credential } from './../../models/credential';
 import { ModelService } from './../../providers/model-service';
 import { Info } from './../../models/info';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';

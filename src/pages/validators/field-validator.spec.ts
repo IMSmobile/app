@@ -1,7 +1,7 @@
 import { FieldValidator } from './field-validator';
 import { IntegerValidator } from './integer-validator';
 import { MetadataField } from './../../models/metadata-field';
-import { FormControl, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 describe('Validator: Field Validator Provider', () => {
 
