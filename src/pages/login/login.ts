@@ -31,7 +31,7 @@ export class LoginPage {
   login() {
     this.markAllAsTouched();
     if (this.loginForm.invalid) {
-      this.showToastMessage('Input required');
+      this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
       let credential = this.createCredential();
       this.loadingService.subscribeWithLoading(this.authService.login(credential), info => this.loginSuccessful(), err => this.loginFailed(err));
@@ -53,9 +53,9 @@ export class LoginPage {
 
   loginFailed(response: Response) {
     if (response.status === 401) {
-      this.alertService.showError('Can\'t login with current credential');
+      this.alertService.showError('Benutzername oder Passwort ist falsch');
     } else {
-      this.alertService.showError('Can\'t connect to rest server at ' + this.loginForm.controls['server'].value);
+      this.alertService.showError('Verbindung zum IMS Rest Server ' + this.loginForm.controls['server'].value + ' nicht möglich');
     }
   }
 

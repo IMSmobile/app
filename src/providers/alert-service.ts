@@ -4,8 +4,8 @@ import { AlertController, Alert } from 'ionic-angular';
 @Injectable()
 export class AlertService {
 
-  errorTitle: string = 'Failed';
-  errorButtonText: string = 'Dismiss';
+  errorTitle: string = 'Fehler';
+  errorButtonText: string = 'Schliessen';
 
   constructor(public alertCtrl: AlertController) { }
 
