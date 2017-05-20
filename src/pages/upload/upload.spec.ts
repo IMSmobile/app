@@ -1,3 +1,6 @@
+import { Entry } from './../../models/entry';
+import { Image } from './../../models/image';
+import { Credential } from './../../models/credential';
 import { ModelService } from './../../providers/model-service';
 import { Info } from './../../models/info';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
@@ -154,6 +157,31 @@ describe('Page: Upload', () => {
     authService.setCurrentCredential(testInfo, mockImsBackend.credential);
     page.ionViewDidLoad();
     expect(page.fields).not.toContain(mockImsBackend.modelFieldOptionalString);
+  }));
+
+  it('should upload non empty fields metadata fields', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
+    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    page.fields.push(mockImsBackend.modelFieldOptionalString);
+    let formData = {};
+    formData[mockImsBackend.modelFieldOptionalString.name] = ['value'];
+    page.fieldsForm = page.formBuilder.group(formData);
+    page.uploadPicture();
+    let entry = new Entry();
+    entry = entry.set('IDFall', 'default');
+    entry = entry.set(mockImsBackend.modelFieldOptionalString.name, 'value');
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, 40, entry, jasmine.any(Image));
+  }));
+
+  it('should not upload empty fields metadata fields', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
+    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    page.fields.push(mockImsBackend.modelFieldOptionalString);
+    let formData = {};
+    formData[mockImsBackend.modelFieldOptionalString.name] = [''];
+    page.fieldsForm = page.formBuilder.group(formData);
+    page.uploadPicture();
+    let entry = new Entry();
+    entry = entry.set('IDFall', 'default');
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, 40, entry, jasmine.any(Image));
   }));
 
 });

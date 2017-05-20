@@ -1,3 +1,4 @@
+import { FieldValidator } from './../validators/field-validator';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MetadataField } from './../../models/metadata-field';
 import { ModelService } from './../../providers/model-service';
@@ -64,7 +65,7 @@ export class UploadPage {
     var formData = {};
     this.fields.forEach(field => {
       formData[field.name] = [''];
-      formData[field.name].push(Validators.required);
+      formData[field.name].push(Validators.compose(FieldValidator.getValidatorFunctions(field)));
     });
     this.fieldsForm = this.formBuilder.group(formData);
   }
@@ -84,7 +85,9 @@ export class UploadPage {
       let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
       this.fields.forEach(field => {
         let value = this.fieldsForm.controls[field.name].value;
-        imageEntry = imageEntry.set(field.name, value);
+        if (value) {
+          imageEntry = imageEntry.set(field.name, value);
+        }
       });
       let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
       this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
