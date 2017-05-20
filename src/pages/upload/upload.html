@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Upload Image to {{parentImageEntryId}}
+      Bildupload zu {{parentImageEntryId}}
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (tap)="takePicture()" color="primary">
@@ -12,10 +12,10 @@
   <ion-toolbar>
     <ion-segment [(ngModel)]="uploadSegment">
       <ion-segment-button value="metadata">
-        MetaData
+        Metadaten
       </ion-segment-button>
       <ion-segment-button value="image">
-        Image
+        Bild
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
