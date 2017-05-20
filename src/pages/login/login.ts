@@ -53,9 +53,9 @@ export class LoginPage {
 
   loginFailed(response: Response) {
     if (response.status === 401) {
-      this.alertService.showError('Benutzername oder Passwort ist falsch');
+      this.alertService.showError('Benutzername oder Passwort ist falsch.');
     } else {
-      this.alertService.showError('Verbindung zum IMS Rest Server ' + this.loginForm.controls['server'].value + ' nicht möglich');
+      this.alertService.showError('Verbindung zum IMS Rest Server ' + this.loginForm.controls['server'].value + ' nicht möglich.');
     }
   }
 
