@@ -158,24 +158,24 @@ describe('Page: Upload', () => {
     expect(page.fields).not.toContain(imsBackendMock.modelFieldOptionalString);
   }));
 
-  it('should upload non empty fields metadata fields', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
+  it('should upload non empty fields metadata fields', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
-    page.fields.push(mockImsBackend.modelFieldOptionalString);
+    page.fields.push(imsBackendMock.modelFieldOptionalString);
     let formData = {};
-    formData[mockImsBackend.modelFieldOptionalString.name] = ['value'];
+    formData[imsBackendMock.modelFieldOptionalString.name] = ['value'];
     page.fieldsForm = page.formBuilder.group(formData);
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set('IDFall', 'default');
-    entry = entry.set(mockImsBackend.modelFieldOptionalString.name, 'value');
+    entry = entry.set(imsBackendMock.modelFieldOptionalString.name, 'value');
     expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, 40, entry, jasmine.any(Image));
   }));
 
-  it('should not upload empty fields metadata fields', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
+  it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
-    page.fields.push(mockImsBackend.modelFieldOptionalString);
+    page.fields.push(imsBackendMock.modelFieldOptionalString);
     let formData = {};
-    formData[mockImsBackend.modelFieldOptionalString.name] = [''];
+    formData[imsBackendMock.modelFieldOptionalString.name] = [''];
     page.fieldsForm = page.formBuilder.group(formData);
     page.uploadPicture();
     let entry = new Entry();
