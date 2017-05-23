@@ -78,7 +78,7 @@ export class UploadPage {
   public uploadPicture() {
     this.markAllAsTouched();
     if (this.fieldsForm.invalid) {
-      this.showToastMessage('Alle Felder müssen ausgefüllt werden');
+      this.showToastMessage('Alle Felder müssen valide sein');
     } else {
       this.loadingService.showLoading();
       let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
