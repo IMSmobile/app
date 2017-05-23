@@ -1,6 +1,6 @@
 import { Http } from '@angular/http';
-import { MockTransferBlob } from './../mocks/providers/mock-transfer-blob';
-import { MockCamera } from './../mocks/providers/mock-camera';
+import { TransferBlobMock } from './../mocks/providers/transfer-blob-mock';
+import { CameraMock } from './../mocks/providers/camera-mock';
 import { Transfer } from '@ionic-native/transfer';
 import { Provider } from '@angular/core';
 import { Platform } from 'ionic-angular';
@@ -14,7 +14,7 @@ export class AppProviders {
         if (this.deviceRunningCordova(platform)) {
           return new Camera();
         } else {
-          return new MockCamera();
+          return new CameraMock();
         }
       }, deps: [Platform]
     };
@@ -26,7 +26,7 @@ export class AppProviders {
         if (this.deviceRunningCordova(platform)) {
           return new Transfer();
         } else {
-          return new MockTransferBlob(http);
+          return new TransferBlobMock(http);
         }
       }, deps: [Http, Platform]
     };

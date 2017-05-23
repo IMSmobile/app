@@ -7,7 +7,7 @@ import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { ConfigMock, PlatformMock, NavParamsMock, AppMock, LoadingMock, PopoverControllerMock, AlertMock, InfiniteScrollMock } from '../../mocks/mocks';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { MockImsBackend } from '../../mocks/mock-ims-backend';
+import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { Camera } from '@ionic-native/camera';
 import { TokenService } from '../../providers/token-service';
 import { EntriesService } from '../../providers/entries-service';
@@ -34,7 +34,7 @@ describe('Page: Entries', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
-        AuthService, ImsService, TokenService, MockImsBackend, BaseRequestOptions, Camera, GestureController,
+        AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
         CameraService, LoadingService, AlertService, QueryBuilderService, Events,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
@@ -45,10 +45,10 @@ describe('Page: Entries', () => {
         { provide: PopoverController, useClass: PopoverControllerMock },
         {
           provide: Http,
-          useFactory: (MockImsBackend, options) => {
-            return new Http(MockImsBackend, options);
+          useFactory: (imsBackendMock, options) => {
+            return new Http(imsBackendMock, options);
           },
-          deps: [MockImsBackend, BaseRequestOptions]
+          deps: [ImsBackendMock, BaseRequestOptions]
         },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
@@ -69,26 +69,26 @@ describe('Page: Entries', () => {
     expect(popoverController.create).toHaveBeenCalled();
   }));
 
-  it('Load entries when ion view did load', inject([EntriesService, MockImsBackend, AuthService], (entriesService: EntriesService, mockImsBackend: MockImsBackend, authService: AuthService) => {
+  it('Load entries when ion view did load', inject([EntriesService, ImsBackendMock, AuthService], (entriesService: EntriesService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     let testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
-    page.sort = mockImsBackend.query;
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.sort = imsBackendMock.query;
     page.ionViewDidLoad();
-    expect(page.entries).toEqual(mockImsBackend.parentImageEntries.entries);
-    expect(page.nextPage).toEqual(mockImsBackend.parentImageEntriesNextPageUrl);
+    expect(page.entries).toEqual(imsBackendMock.parentImageEntries.entries);
+    expect(page.nextPage).toEqual(imsBackendMock.parentImageEntriesNextPageUrl);
   }));
 
-  it('Show and hide loading when successful', inject([MockImsBackend, AuthService, LoadingService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService) => {
+  it('Show and hide loading when successful', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     let testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, mockImsBackend.credential);
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     page.ionViewDidLoad();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading with alert on error', inject([MockImsBackend, AuthService, LoadingService, EntriesService, AlertService], (mockImsBackend: MockImsBackend, authService: AuthService, loadingService: LoadingService, entriesService: EntriesService, alertService: AlertService) => {
+  it('Show and hide loading with alert on error', inject([ImsBackendMock, AuthService, LoadingService, EntriesService, AlertService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, entriesService: EntriesService, alertService: AlertService) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
@@ -108,34 +108,34 @@ describe('Page: Entries', () => {
     expect(infiniteScroll.enable).toHaveBeenCalledWith(false);
   });
 
-  it('Completes infinite scroll on new items', inject([MockImsBackend, EntriesService], (mockImsBackend: MockImsBackend, entriesService: EntriesService) => {
+  it('Completes infinite scroll on new items', inject([ImsBackendMock, EntriesService], (imsBackendMock: ImsBackendMock, entriesService: EntriesService) => {
     let infiniteScroll = new InfiniteScrollMock();
     spyOn(infiniteScroll, 'complete').and.callThrough();
-    spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(mockImsBackend.parentImageEntriesNextPage));
-    page.nextPage = mockImsBackend.parentImageEntriesNextPageUrl;
+    spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(imsBackendMock.parentImageEntriesNextPage));
+    page.nextPage = imsBackendMock.parentImageEntriesNextPageUrl;
     page.infiniteEntries(infiniteScroll);
     expect(infiniteScroll.complete).toHaveBeenCalled();
   }));
 
-  it('Completes infinite scroll and alerts on error', inject([MockImsBackend, EntriesService, AlertService], (mockImsBackend: MockImsBackend, entriesService: EntriesService, alertService: AlertService) => {
+  it('Completes infinite scroll and alerts on error', inject([ImsBackendMock, EntriesService, AlertService], (imsBackendMock: ImsBackendMock, entriesService: EntriesService, alertService: AlertService) => {
     let infiniteScroll = new InfiniteScrollMock();
     let error = Observable.throw(new Error('oops'));
     spyOn(infiniteScroll, 'complete').and.callThrough();
     spyOn(entriesService, 'getEntries').and.returnValue(error);
     spyOn(alertService, 'showError').and.callThrough();
-    page.nextPage = mockImsBackend.parentImageEntriesNextPageUrl;
+    page.nextPage = imsBackendMock.parentImageEntriesNextPageUrl;
     page.infiniteEntries(infiniteScroll);
     expect(infiniteScroll.complete).toHaveBeenCalled();
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
-  it('Load next entries on infinite scroll', inject([MockImsBackend, EntriesService], (mockImsBackend: MockImsBackend, entriesService: EntriesService) => {
-    spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(mockImsBackend.parentImageEntriesNextPage));
-    page.nextPage = mockImsBackend.parentImageEntriesNextPageUrl;
-    page.entries = new Array(...mockImsBackend.parentImageEntries.entries);
+  it('Load next entries on infinite scroll', inject([ImsBackendMock, EntriesService], (imsBackendMock: ImsBackendMock, entriesService: EntriesService) => {
+    spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(imsBackendMock.parentImageEntriesNextPage));
+    page.nextPage = imsBackendMock.parentImageEntriesNextPageUrl;
+    page.entries = new Array(...imsBackendMock.parentImageEntries.entries);
     page.infiniteEntries(new InfiniteScrollMock());
-    expect(page.entries).toEqual(mockImsBackend.parentImageEntries.entries.concat(mockImsBackend.parentImageEntriesNextPage.entries));
-    expect(page.nextPage).toBe(mockImsBackend.parentImageEntriesNextNextPageUrl);
+    expect(page.entries).toEqual(imsBackendMock.parentImageEntries.entries.concat(imsBackendMock.parentImageEntriesNextPage.entries));
+    expect(page.nextPage).toBe(imsBackendMock.parentImageEntriesNextNextPageUrl);
   }));
 
   it('Push to Upload Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {

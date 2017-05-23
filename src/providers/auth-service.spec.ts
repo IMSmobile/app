@@ -1,6 +1,6 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { MockImsBackend } from '../mocks/mock-ims-backend';
+import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { AuthService } from './auth-service';
 import { ImsService } from './ims-service';
 import { Credential } from '../models/credential';
@@ -17,30 +17,30 @@ describe('Provider: AuthService', () => {
       providers: [
         AuthService,
         ImsService,
-        MockImsBackend,
+        ImsBackendMock,
         BaseRequestOptions,
         {
           provide: Http,
-          useFactory: (MockImsBackend, options) => {
-            return new Http(MockImsBackend, options);
+          useFactory: (ImsBackendMock, options) => {
+            return new Http(ImsBackendMock, options);
           },
-          deps: [MockImsBackend, BaseRequestOptions]
+          deps: [ImsBackendMock, BaseRequestOptions]
         }
       ],
       imports: [HttpModule]
     }).compileComponents();
   }));
 
-  it('Should store credentials if succeed', inject([AuthService, MockImsBackend], (authService: AuthService, mockImsBackend: MockImsBackend) => {
-    let credential = mockImsBackend.credential;
+  it('Should store credentials if succeed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    let credential = imsBackendMock.credential;
     authService.login(credential).subscribe(
       info => expect(authService.currentCredential.username).toEqual(credential.username),
       err => fail(err)
     );
   }));
 
-  it('Should not store credentials if failed', inject([AuthService, MockImsBackend], (authService: AuthService, mockImsBackend: MockImsBackend) => {
-    let credential = mockImsBackend.credential;
+  it('Should not store credentials if failed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    let credential = imsBackendMock.credential;
     credential.server = credential.server + 'failed';
     authService.login(credential).subscribe(
       info => fail('Should fail'),

@@ -34,7 +34,7 @@ export class EntriesPage {
 
   ionViewDidLoad() {
     let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, 40, this.sort);
-    this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Failed to load entries.'));
+    this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
   }
 
   infiniteEntries(infiniteScroll) {
@@ -48,7 +48,7 @@ export class EntriesPage {
         },
         err => {
           infiniteScroll.complete();
-          this.alertService.showError('Failed to load more entries.');
+          this.alertService.showError('Beim Laden weiterer Einträge ist ein Fehler aufgetreten.');
         });
     }
   }

@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Settings</ion-title>
+    <ion-title>Einstellungen</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,8 +9,8 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label>Show Rest Url Field</ion-label>
+    <ion-label>Zeige IMS Rest Url Feld</ion-label>
     <ion-toggle [(ngModel)]="isShowRestUrlField" (ionChange)="notify()" id="settingsShowRestUrlFieldToggle"></ion-toggle>
   </ion-item>
-  <button ion-item (click)="loadImageFieldSettings()" id="settingsImageFieldSettingButton">Image Field Settings</button>
+  <button ion-item (click)="loadImageFieldSettings()" id="settingsImageFieldSettingButton">Einstellungen der Bildupload Felder</button>
 </ion-content>

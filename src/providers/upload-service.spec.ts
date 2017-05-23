@@ -1,4 +1,4 @@
-import { MockImsBackend } from '../mocks/mock-ims-backend';
+import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { UploadService } from './upload-service';
@@ -7,7 +7,7 @@ import { ImsService } from './ims-service';
 import { Entry } from '../models/entry';
 import { Image } from '../models/image';
 import { Transfer } from '@ionic-native/transfer';
-import { MockTransfer } from '../mocks/providers/mock-transfer';
+import { TransferMock } from '../mocks/providers/transfer-mock';
 
 describe('Provider: UploadService', () => {
 
@@ -18,33 +18,33 @@ describe('Provider: UploadService', () => {
         UploadService,
         TokenService,
         ImsService,
-        MockImsBackend,
+        ImsBackendMock,
         BaseRequestOptions,
-        { provide: Transfer, useClass: MockTransfer },
+        { provide: Transfer, useClass: TransferMock },
         {
           provide: Http,
           useFactory: (mockImsBackend, options) => {
             return new Http(mockImsBackend, options);
           },
-          deps: [MockImsBackend, BaseRequestOptions]
+          deps: [ImsBackendMock, BaseRequestOptions]
         }
       ],
       imports: [HttpModule]
     }).compileComponents();
   }));
 
-  it('Should create a container location', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
-    uploadService.createContainerLocation(mockImsBackend.credential, mockImsBackend.filterId, mockImsBackend.token).subscribe(
-      location => expect(location).toEqual(mockImsBackend.uploadContainerUrl),
+  it('Should create a container location', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
+    uploadService.createContainerLocation(imsBackendMock.credential, imsBackendMock.filterId, imsBackendMock.token).subscribe(
+      location => expect(location).toEqual(imsBackendMock.uploadContainerUrl),
       err => fail(err)
     );
   }));
 
-  it('Should upload image', inject([UploadService, MockImsBackend], (uploadService: UploadService, mockImsBackend: MockImsBackend) => {
+  it('Should upload image', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
     let imageEntry = new Entry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
     let image = new Image('image.jpg', '');
-    uploadService.uploadImage(mockImsBackend.credential, mockImsBackend.filterId, imageEntry, image).subscribe(
-      response => expect(response.headers.get('location')).toEqual(mockImsBackend.imageLocationUrl),
+    uploadService.uploadImage(imsBackendMock.credential, imsBackendMock.filterId, imageEntry, image).subscribe(
+      response => expect(response.headers.get('location')).toEqual(imsBackendMock.imageLocationUrl),
       err => fail(err)
     );
   }));

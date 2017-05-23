@@ -25,7 +25,7 @@ export class LoadingService {
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Bitte warten...'
     });
     this.loading.present();
   }

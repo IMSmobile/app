@@ -1,20 +1,20 @@
 import { FileUploadOptions, FileUploadResult } from '@ionic-native/transfer';
 
-export class MockTransfer {
+export class TransferMock {
   create() {
-    return new MockTransferObject();
+    return new TransferObjectMock();
   }
 }
 
-export class MockTransferObject  {
+export class TransferObjectMock  {
   upload(fileUrl: string, url: string, options?: FileUploadOptions, trustAllHosts?: boolean): Promise<FileUploadResult> {
     return new Promise((resolve, reject) => {
-      resolve(new MockFileUploadResult());
+      resolve(new FileUploadResultMock());
     });
   }
 }
 
-export class MockFileUploadResult {
+export class FileUploadResultMock {
   bytesSent: number;
   responseCode: number;
   response: string;
