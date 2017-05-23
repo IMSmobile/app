@@ -7,6 +7,11 @@ export class SettingImageFieldsPageOjbect {
     settingsPage = new SettingsPageOjbect();
     settingsImageFieldSearchbar: ElementFinder = element(by.css('input.searchbar-input'));
     settingsImageFieldDisplayedFields: ElementArrayFinder = element.all(by.className('fieldItem'));
+    settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
+    settingsImageFieldBOOLEANNOToggle: ElementFinder = element(by.id('settingsImageFieldBOOLEANNOToggle'));
+    settingsImageFieldMEMOFELDToggle: ElementFinder = element(by.id('settingsImageFieldMEMOFELDToggle'));
+    settingsImageFieldTEXTFELDToggle: ElementFinder = element(by.id('settingsImageFieldTEXTFELDToggle'));
+    settingsImageFieldINTEGERFELDToggle: ElementFinder = element(by.id('settingsImageFieldINTEGERFELDToggle'));
 
     loadPage() {
         this.settingsPage.loadPage();
@@ -27,5 +32,24 @@ export class SettingImageFieldsPageOjbect {
         browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
         browser.sleep(1000);
     }
+
+    toggleFieldSettings(toggleField: ElementFinder) {
+        toggleField.click();
+        this.waitUntilStorageReady();
+    }
+    verifyToggleActive(toggleField: ElementFinder) {
+        toggleField.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
+
+    }
+
+    verifyToggleInactive(toggleField: ElementFinder) {
+        toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
+
+    }
+
+    waitUntilStorageReady() {
+        browser.sleep(1000);
+    }
+
 }
 
