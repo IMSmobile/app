@@ -61,6 +61,8 @@ $colors: (
 // default are overridden.
 $text-input-highlight-color-valid: default;
 $text-input-ios-show-focus-highlight: true;
+$text-input-ios-show-invalid-highlight: false;
+$text-input-md-show-invalid-highlight: false;
 @import "ionic.theme.default";
 
 
