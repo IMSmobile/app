@@ -1,5 +1,6 @@
 import { MetadataField } from './../../models/metadata-field';
 import { IntegerValidator } from './integer-validator';
+import { DoubleValidator } from './double-validator';
 import { ValidatorFn, Validators, FormControl } from '@angular/forms';
 
 export class FieldValidator {
@@ -17,6 +18,8 @@ export class FieldValidator {
     }
     if (field.type === 'INTEGER') {
       validators.push(IntegerValidator.isValid);
+    } else if (field.type === 'DOUBLE') {
+      validators.push(DoubleValidator.isValid);
     }
     return validators;
   }
