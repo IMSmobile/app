@@ -22,7 +22,6 @@ import 'rxjs/add/observable/forkJoin';
   templateUrl: 'upload.html'
 })
 export class UploadPage {
-  myjson: any = JSON;
   imageSrc: string;
   parentImageEntryId: string;
   filterId: number = 40;
