@@ -69,7 +69,9 @@ Am Ende des Projekts wird eine Android sowie eine iOS Applikation im Internet zu
 
 Der Umfang der Applikation ist anhand der [Anforderungsanalyse](docs/spec.md) ersichtlich. Mit unseren Kunden Imagic und PIC Systems wurde abgemacht, dass die "muss" Kriterien bis zum Ende der Projektdauer erfüllt sind.
 
-Eine Benutzerdokumentation ist nicht vorgesehen, da die Software von IMS Kunden ohne Schulung bedienbar sein sollte.
+Zusätzlich zur Applikation wird eine Entwicklerdokumentation abgegeben. Durch diese Dokumentation wird sichergestellt das zukünftige Entwickler das Projekt einfach aufsetzen und sämtliche Tools für die Entwicklung verstehen.
+
+Eine Benutzerdokumentation ist nicht vorgesehen, da die Software von IMS Kunden ohne Schulung bedienbar sein sollte. 
 
 ### Kostenvorgabe
 

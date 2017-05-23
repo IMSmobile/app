@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-export class MockSettingService {
+export class SettingServiceMock {
 
   restUrl: string = 'https://test';
   username: string = 'testuser';

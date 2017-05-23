@@ -1,14 +1,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Image Fields Setting</ion-title>
+    <ion-title>Bildupload Felder</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-searchbar (ionInput)="filterFields($event)"></ion-searchbar>
+  <ion-searchbar (ionInput)="filterFields($event)" placeholder="Suche"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let field of displayFields" class="fieldItem">
       <ion-label>{{field.name}}</ion-label>

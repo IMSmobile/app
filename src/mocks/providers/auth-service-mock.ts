@@ -2,14 +2,14 @@ import { Credential } from '../../models/credential';
 import { Observable } from 'rxjs/Observable';
 import { Info } from '../../models/info';
 
-export class MockAuthService {
+export class AuthServiceMock {
 
-  mockInfo: Info = { version: '9000'};
+  infoMock: Info = { version: '9000'};
   currentCredential: Credential;
 
   login(credentials): Observable<Info> {
     this.setCurrentCredential = credentials;
-    return Observable.of(this.mockInfo);
+    return Observable.of(this.infoMock);
   }
 
   logout() {

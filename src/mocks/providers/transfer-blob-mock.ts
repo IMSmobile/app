@@ -1,11 +1,11 @@
 import { FileUploadOptions, FileUploadResult } from '@ionic-native/transfer';
 import { Http, Headers, Response } from '@angular/http';
-import { MockFileUploadResult } from './mock-transfer';
+import { FileUploadResultMock } from './transfer-mock';
 import 'rxjs/add/operator/toPromise';
 
 
 
-export class MockTransferBlob {
+export class TransferBlobMock {
   http: Http;
 
   constructor(http: Http) {
@@ -13,12 +13,12 @@ export class MockTransferBlob {
   }
 
   create() {
-    return new MockTransferBlobObject(this.http);
+    return new TransferBlobObjectMock(this.http);
   }
 
 }
 
-export class MockTransferBlobObject {
+export class TransferBlobObjectMock {
   http: Http;
 
   constructor(http: Http) {
@@ -32,7 +32,7 @@ export class MockTransferBlobObject {
   }
 
   toFileUploadResult(response: Response): FileUploadResult {
-    let result = new MockFileUploadResult();
+    let result = new FileUploadResultMock();
     result.headers = response.headers;
     result.responseCode = response.status;
     return result;

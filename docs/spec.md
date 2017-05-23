@@ -56,6 +56,7 @@ FA36 | Bildschutz | Im Client direkt von der Kamera des Smartphones aufgenommene
 FA37 | Startparameter | Navigation zu einem bestimmten Tabellen-Entry im IMS Mobile Client soll mit einem bestimmten Start-Parameter möglich sein. | PIC Systems | Hohe Priorisierung von PIC Systems gewünscht
 FA38 | Browserupload | Ein Bildupload (FA1) soll auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) möglich sein. | PIC Systems | 
 ~~FA39~~  | ~~Fallmodifikation~~ | ~~Der Client soll dem Benutzer die Möglichkeit bieten Falldaten anzupassen.~~ | HSR Review | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht.
+FA40 | Dokumentation | Entwickler müssen das Projekt aufsetzen und fortsetzen können.| Betreuer Review | Eine Entwickler Dokumentation reicht für Imagic und PIC Systems.
 
 ### Nicht-Funktional
 ID   | Name | Beschreibung | Quelle      | Bemerkungen
@@ -72,7 +73,7 @@ NF8  | Zentralkonfig | Der Client soll durch ein Mobile Device Managment z.B. mi
 NF10 | Opensource | Der Quellcode des Clients soll frei zugänglich und von verschiedenen Firmen nutzbar sein. | Imagic, PIC Systems |
 NF11 | Version | Im Client soll die Version ersichtlich sein. | Support-Abteilung |
 NF12 | Wartezeiten | Der Client soll den Benutzer über Wartezeiten beim Upload oder API-Abfragen informieren. | Benutzer |
-NF13 | Abbruch | Bilderupload und Änderung der Metadaten können jederzeit abgebrochen werden. | Benutzer |
+NF13 | Abbruch | Bilderupload und Änderung der Metadaten können bis zur Bestätigung des Uploads abgebrochen werden. | Benutzer |
 NF14 | Fallanzahl | Der Client soll mit einem Imagic IMS funktionieren welches 1'000'000 Fälle beinhaltet. | Imagic, PIC Systems |
 NF15 | Hintergrund | Der Client soll im Hintergrund ein Bild in das Imagic IMS speichern können. | Benutzer | Wenn Direktupload aktiviert ist, muss der Hintergrundupload nicht verfügbar sein.
 NF16 | Wiederverwendbarkeit | Teile des Quellcodes des Clients soll wiederverwendbar sein für einen Browser-basierten Client. | Imagic, PIC Systems |

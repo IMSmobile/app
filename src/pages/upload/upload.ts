@@ -45,7 +45,7 @@ export class UploadPage {
       })));
       return allFields.map(this.mapActiveFields);
     });
-    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => this.alertService.showError('Failed to load metadata fields.'));
+    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
 
   mapActiveFields(fields: MetadataField[]): MetadataField[] {
@@ -79,7 +79,7 @@ export class UploadPage {
   public uploadPicture() {
     this.markAllAsTouched();
     if (this.fieldsForm.invalid) {
-      this.showToastMessage('Invalid input');
+      this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
       this.loadingService.showLoading();
       let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
@@ -99,12 +99,12 @@ export class UploadPage {
 
   uploadSuccessful() {
     this.loadingService.hideLoading();
-    this.showToastMessage('Image successfully uploaded!');
+    this.showToastMessage('Bild wurde erfolgreich gespeichert!');
   }
 
   uploadFailed(err: Response) {
     this.loadingService.hideLoading();
-    this.alertService.showError('Failed to upload image.');
+    this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.');
   }
 
   showToastMessage(toastMessage: string) {
