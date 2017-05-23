@@ -2,7 +2,7 @@ import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ 
 import { SettingsPageOjbect } from './page-objects/settings-page-object';
 import { SettingImageFieldsPageOjbect } from './page-objects/setting-image-field-page-object';
 import { LoginPageOjbect } from './page-objects/login-page-object';
-import { EntriesPageOjbect } from './page-objects/entries-page-object';
+import { EntriesPageObject } from './page-objects/entries-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Upload E2E Test', () => {
@@ -10,7 +10,7 @@ describe('Upload E2E Test', () => {
   let originalTimeout;
   let settingsPage = new SettingsPageOjbect();
   let loginPage = new LoginPageOjbect();
-  let entriesPage = new EntriesPageOjbect();
+  let entriesPage = new EntriesPageObject();
   let uploadPage = new UploadPageObject();
 
   beforeEach(function () {

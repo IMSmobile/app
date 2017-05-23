@@ -12,21 +12,16 @@ export class LoginPageOjbect {
     userInput: ElementFinder = element(by.css('input[formControlName=user]'));
     passwordInput: ElementFinder = element(by.css('input[formControlName=password]'));
 
-
     login() {
+        this.loadPage();
+        this.serverInput.clear();
         this.serverInput.sendKeys(this.server);
+        this.userInput.clear();
         this.userInput.sendKeys(this.user);
         this.passwordInput.sendKeys(this.password);
         this.loginButton.click();
         browser.waitForAngular();
     }
-
-    loginWithPasswordOnly() {
-        this.passwordInput.sendKeys(this.password);
-        this.loginButton.click();
-    }
-
-
 
     loadPage() {
         browser.get('');
@@ -39,6 +34,7 @@ export class LoginPageOjbect {
     getUserInputText(): promise.Promise<string> {
         return this.userInput.getAttribute('value');
     }
+
     getPasswordInputText(): promise.Promise<string> {
         return this.passwordInput.getAttribute('value');
     }

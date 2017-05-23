@@ -15,13 +15,12 @@ describe('Login E2E Test', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
+  beforeEach(() => {
+    browser.get('');
+  });
 
-    beforeEach(() => {
-        browser.get('');
-    });
-
-    it('Toast Message appears with failed login attempt', () => {
-        loginButton.click();
-        element.all(by.className('toast-message')).count().then(c => expect(c).toBe(1));
-    });
+  it('Toast Message appears with failed login attempt', () => {
+      loginButton.click();
+      element.all(by.className('toast-message')).count().then(c => expect(c).toBe(1));
+  });
 });

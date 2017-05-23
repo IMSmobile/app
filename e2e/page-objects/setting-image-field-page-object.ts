@@ -13,11 +13,6 @@ export class SettingImageFieldsPageOjbect {
         this.settingsPage.pushToSettingImageFieldsPage();
     }
 
-    reloadPage() {
-        this.settingsPage.reloadPage();
-        this.settingsPage.pushToSettingImageFieldsPage();
-    }
-
     filterFields(filter: string) {
         this.settingsImageFieldSearchbar.clear();
         this.settingsImageFieldSearchbar.sendKeys(filter);
