@@ -1,6 +1,10 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 19. Mai 2017
+- Bei jedem Meeting wird im Vorraus das Ziel des Meetings und ein Zeitraum (Timebox) definiert.
+- Im Sprint Planning werden falls nötig Lösungsansätze zur Umsetzung und Design eines Backlog Items diskutiert.
+
 ## 5. Mai 2017
 - Hinter jedem `subscribe()` muss auch ein `catch()` sein.
 - Kein validieren des JSON von der REST API. Wir sehen keine Vorteile für Fehlerbehandlung.
