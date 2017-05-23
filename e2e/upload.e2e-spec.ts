@@ -36,12 +36,12 @@ describe('Upload E2E Test', () => {
     browser.executeScript('window.indexedDB.deleteDatabase("imsClientDB")');
   });
 
-  // it('Should store user and server into settings', () => {
-  //   uploadPage.loadPage();
-  //   uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
-  //   uploadPage.clickUploadImageButton();
-  //   browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
-  // });
+  it('Should store user and server into settings', () => {
+    uploadPage.loadPage();
+    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
+    uploadPage.clickUploadImageButton();
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
+  });
 
   it('Should add fields and testing invalid inputs', () => {
     settingImageFieldsPageOjbect.loadPage();
