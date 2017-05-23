@@ -27,10 +27,15 @@
     </div>
     <ion-list *ngSwitchCase="'metadata'" id="id-list">
       <form [formGroup]="fieldsForm">
-        <ion-item *ngFor="let field of fields">
-          <ion-label>{{field.name}}</ion-label>
-          <ion-input type="text" formControlName="{{field.name}}"></ion-input>
-        </ion-item>
+        <div *ngFor="let field of fields">
+          <ion-item>
+            <ion-label>{{field.name}}</ion-label>
+            <ion-input type="text" formControlName="{{field.name}}"></ion-input>
+          </ion-item>
+          <div class="invalid" *ngIf="!fieldsForm.controls[field.name].valid && (fieldsForm.controls[field.name].touched || fieldsForm.controls[field.name].dirty) ">
+            <p>{{getErrorMessage(fieldsForm.controls[field.name])}}</p>
+          </div>
+        </div>
       </form>
     </ion-list>
   </div>

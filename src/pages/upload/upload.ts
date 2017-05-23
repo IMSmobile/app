@@ -1,5 +1,5 @@
 import { FieldValidator } from './../validators/field-validator';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MetadataField } from './../../models/metadata-field';
 import { ModelService } from './../../providers/model-service';
 import { Entry } from './../../models/entry';
@@ -22,7 +22,7 @@ import 'rxjs/add/observable/forkJoin';
   templateUrl: 'upload.html'
 })
 export class UploadPage {
-
+  myjson: any = JSON;
   imageSrc: string;
   parentImageEntryId: string;
   filterId: number = 40;
@@ -117,6 +117,10 @@ export class UploadPage {
 
   markAllAsTouched() {
     this.fields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
+  }
+
+  getErrorMessage(formControl: FormControl): string {
+    return FieldValidator.getErrorMessage(formControl);
   }
 
 }
