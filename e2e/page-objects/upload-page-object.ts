@@ -10,16 +10,28 @@ export class UploadPageObject {
     uploadImageButton: ElementFinder = element(by.id('uploadImageButton'));
     memofeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=MEMOFELD]'));
     textfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=TEXTFELD]'));
+    integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
+    uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
+    uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
+
+
 
     loadPage() {
         this.entriesPage.loadPage();
         this.entriesPage.pushEntriesCameraButtonOnEntry34617();
     }
 
-    setBildname(text: string) {
-        this.bildNameFieldInput.sendKeys(text);
+    writeToTextField(textField: ElementFinder, text: string) {
+        textField.clear();
+        textField.sendKeys(text);
         browser.waitForAngular();
     }
+
+    clickIntoTextField(textField: ElementFinder) {
+        textField.click();
+        browser.waitForAngular();
+    }
+
 
     clickUploadImageButton() {
         this.uploadImageButton.click();

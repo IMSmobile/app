@@ -1,3 +1,4 @@
+import { SettingImageFieldsPage } from './../src/pages/setting-image-fields/setting-image-fields';
 import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
 import { SettingsPageOjbect } from './page-objects/settings-page-object';
 import { SettingImageFieldsPageOjbect } from './page-objects/setting-image-field-page-object';
@@ -12,6 +13,7 @@ describe('Upload E2E Test', () => {
   let loginPage = new LoginPageOjbect();
   let entriesPage = new EntriesPageObject();
   let uploadPage = new UploadPageObject();
+  let settingImageFieldsPageOjbect = new SettingImageFieldsPageOjbect();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -36,9 +38,31 @@ describe('Upload E2E Test', () => {
 
   it('Should store user and server into settings', () => {
     uploadPage.loadPage();
-    uploadPage.setBildname('e2e Test');
+    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10  * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
+  });
+
+  it('Should add fields and testing invalid inputs', () => {
+    settingImageFieldsPageOjbect.loadPage();
+    settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle.click();
+    uploadPage.loadPage();
+    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
+    uploadPage.clickIntoTextField(uploadPage.integerfeldFieldInput);
+    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivBILDNAME), 3 * 1000);
+    uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '3.14');
+    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
+    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 3 * 1000);
+    uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '1337');
+    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
+    uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '12a');
+    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
+    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
+    uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '1337');
+    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'FieldValidation');
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivBILDNAME), 10 * 1000);
   });
 });
 
