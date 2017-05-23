@@ -12,6 +12,7 @@ export class SettingImageFieldsPageOjbect {
     settingsImageFieldMEMOFELDToggle: ElementFinder = element(by.id('settingsImageFieldMEMOFELDToggle'));
     settingsImageFieldTEXTFELDToggle: ElementFinder = element(by.id('settingsImageFieldTEXTFELDToggle'));
     settingsImageFieldINTEGERFELDToggle: ElementFinder = element(by.id('settingsImageFieldINTEGERFELDToggle'));
+    settingsImageFieldFLOATFELDToggle: ElementFinder = element(by.id('settingsImageFieldFLOATFELDToggle'));
 
     loadPage() {
         this.settingsPage.loadPage();

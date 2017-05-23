@@ -36,16 +36,17 @@ describe('Upload E2E Test', () => {
     browser.executeScript('window.indexedDB.deleteDatabase("imsClientDB")');
   });
 
-  it('Should store user and server into settings', () => {
-    uploadPage.loadPage();
-    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
-    uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
-  });
+  // it('Should store user and server into settings', () => {
+  //   uploadPage.loadPage();
+  //   uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
+  //   uploadPage.clickUploadImageButton();
+  //   browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
+  // });
 
   it('Should add fields and testing invalid inputs', () => {
     settingImageFieldsPageOjbect.loadPage();
     settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle.click();
+    settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle.click();
     uploadPage.loadPage();
     uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
     uploadPage.clickIntoTextField(uploadPage.integerfeldFieldInput);
@@ -59,10 +60,15 @@ describe('Upload E2E Test', () => {
     uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '12a');
     uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
     browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
-    uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '1337');
+    uploadPage.writeToTextField(uploadPage.floatfeldFieldInput, '0a1242');
+    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
+    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivFLOATFELD), 10 * 1000);
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'FieldValidation');
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
+    uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '1337');
+    uploadPage.writeToTextField(uploadPage.floatfeldFieldInput, '123.456');
     browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivBILDNAME), 10 * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivFLOATFELD), 10 * 1000);
   });
 });
 
