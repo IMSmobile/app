@@ -29,11 +29,50 @@ export class UploadPageObject {
         browser.waitForAngular();
     }
 
+    clickIntoBildNameTextField() {
+        this.clickIntoTextField(this.bildNameFieldInput);
+    }
+
+    clickIntoIntegerTextField() {
+        this.clickIntoTextField(this.integerfeldFieldInput);
+    }
+
     clickIntoTextField(textField: ElementFinder) {
         textField.click();
         browser.waitForAngular();
     }
 
+    verifyBildNameErrorDivVisible() {
+        this.verifyErrorDivVisible(this.uploadFieldErrorDivBILDNAME);
+    }
+
+    verifyIntegerErrorDivVisible() {
+        this.verifyErrorDivVisible(this.uploadFieldErrorDivINTEGERFELD);
+    }
+
+    verifyFloatErrorDivVisible() {
+        this.verifyErrorDivVisible(this.uploadFieldErrorDivFLOATFELD);
+    }
+
+    verifyErrorDivVisible(errorDiv: ElementFinder) {
+        browser.wait(ExpectedConditions.visibilityOf(errorDiv), 3 * 1000);
+    }
+
+    verifyBildNameErrorDivInvisible() {
+        this.verifyErrorDivInvisible(this.uploadFieldErrorDivBILDNAME);
+    }
+
+    verifyIntegerErrorDivInvisible() {
+        this.verifyErrorDivInvisible(this.uploadFieldErrorDivINTEGERFELD);
+    }
+
+    verifyFloatErrorDivInvisible() {
+        this.verifyErrorDivInvisible(this.uploadFieldErrorDivFLOATFELD);
+    }
+
+    verifyErrorDivInvisible(errorDiv: ElementFinder) {
+        browser.wait(ExpectedConditions.invisibilityOf(errorDiv), 3 * 1000);
+    }
 
     clickUploadImageButton() {
         this.uploadImageButton.click();

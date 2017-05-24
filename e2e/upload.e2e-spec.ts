@@ -43,32 +43,40 @@ describe('Upload E2E Test', () => {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
   });
 
+
+
   it('Should add fields and testing invalid inputs', () => {
     settingImageFieldsPageOjbect.loadPage();
     settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle.click();
     settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle.click();
     uploadPage.loadPage();
-    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
-    uploadPage.clickIntoTextField(uploadPage.integerfeldFieldInput);
-    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivBILDNAME), 3 * 1000);
+
+    uploadPage.clickIntoBildNameTextField();
+    uploadPage.clickIntoIntegerTextField();
+    uploadPage.verifyBildNameErrorDivVisible();
+
     uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '3.14');
-    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
-    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 3 * 1000);
+    uploadPage.clickIntoBildNameTextField();
+    uploadPage.verifyIntegerErrorDivVisible();
+
     uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '1337');
-    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
+    uploadPage.clickIntoBildNameTextField();
+    uploadPage.verifyIntegerErrorDivInvisible();
+
     uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '12a');
-    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
-    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
+    uploadPage.clickIntoBildNameTextField();
+    uploadPage.verifyIntegerErrorDivVisible();
+
     uploadPage.writeToTextField(uploadPage.floatfeldFieldInput, '0a1242');
-    uploadPage.clickIntoTextField(uploadPage.bildNameFieldInput);
-    browser.wait(ExpectedConditions.visibilityOf(uploadPage.uploadFieldErrorDivFLOATFELD), 10 * 1000);
+    uploadPage.clickIntoBildNameTextField();
+    uploadPage.verifyFloatErrorDivVisible();
+
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'FieldValidation');
     uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '1337');
     uploadPage.writeToTextField(uploadPage.floatfeldFieldInput, '123.456');
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivBILDNAME), 10 * 1000);
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivINTEGERFELD), 10 * 1000);
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.uploadFieldErrorDivFLOATFELD), 10 * 1000);
+    uploadPage.verifyBildNameErrorDivInvisible();
+    uploadPage.verifyIntegerErrorDivInvisible();
+    uploadPage.verifyFloatErrorDivInvisible();
   });
 });
 
