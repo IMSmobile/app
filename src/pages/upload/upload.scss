@@ -36,4 +36,14 @@ page-upload {
   .fab-md  {
       bottom: $toolbar-md-height / 2;
   }
+
+  .invalid {
+      border: 1px solid #ea6153;
+      margin: 5px 2px 5px 2px;
+   }
+   
+   .invalid p {
+      color: #ea6153;
+      padding: 5px
+   }
 }

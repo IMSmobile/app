@@ -3,7 +3,7 @@ import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 import { LoginPageOjbect } from './login-page-object';
 
-export class EntriesPageOjbect {
+export class EntriesPageObject {
     moreButton: ElementFinder = element(by.id('barButtonMore'));
     settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
     entriesCameraButton: ElementFinder = element(by.id('entriesCameraButton34617'));
@@ -11,13 +11,6 @@ export class EntriesPageOjbect {
 
     loadPage() {
         this.loginPage.login();
-        this.waitUntilElementsAreClickable();
-    }
-
-    reloadPage() {
-        this.loginPage.loadPage();
-        this.waitUntilElementsAreClickable();
-        this.loginPage.loginWithPasswordOnly();
         this.waitUntilElementsAreClickable();
     }
 

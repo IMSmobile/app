@@ -8,7 +8,6 @@ describe('Logout E2E Test', () => {
   let moreButton: ElementFinder = element(by.id('barButtonMore'));
   let logoutButton: ElementFinder = element(by.id('morePopoverLogoutButton'));
 
-
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
@@ -17,7 +16,6 @@ describe('Logout E2E Test', () => {
   afterEach(function () {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
-
 
   beforeEach(() => {
     loginPage = new LoginPageOjbect();
@@ -31,17 +29,17 @@ describe('Logout E2E Test', () => {
     browser.executeScript('window.indexedDB.deleteDatabase("imsClientDB")');
   });
 
-    it('Should return to Loginscreen', () => {
-      loginPage.login();
-      waitUntilElementsAreClickable();
-      moreButton.click();
-      waitUntilElementsAreClickable();
-      logoutButton.click();
-      waitUntilPageReady();
-      loginPage.getServerInputText().then(text => expect(text).toEqual(loginPage.server));
-      loginPage.getUserInputText().then(text => expect(text).toEqual(loginPage.user));
-      loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));
-    });
+  it('Should return to Loginscreen', () => {
+    loginPage.login();
+    waitUntilElementsAreClickable();
+    moreButton.click();
+    waitUntilElementsAreClickable();
+    logoutButton.click();
+    waitUntilPageReady();
+    loginPage.getServerInputText().then(text => expect(text).toEqual(loginPage.server));
+    loginPage.getUserInputText().then(text => expect(text).toEqual(loginPage.user));
+    loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));
+  });
 });
 
 function waitUntilElementsAreClickable() {
