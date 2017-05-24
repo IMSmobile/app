@@ -1,3 +1,4 @@
+import { FieldValidatorService } from './../../providers/field-validator-service';
 import { Entry } from './../../models/entry';
 import { Image } from './../../models/image';
 import { ModelService } from './../../providers/model-service';
@@ -37,7 +38,8 @@ describe('Page: Upload', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
+        TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService, 
+        FieldValidatorService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },

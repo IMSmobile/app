@@ -28,6 +28,7 @@ import { QueryBuilderService } from './../providers/query-builder-service';
 
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AppProviders } from './app.providers';
+import { FieldValidatorService } from '../providers/field-validator-service';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -85,6 +86,7 @@ const cloudSettings: CloudSettings = {
     AlertService,
     QueryBuilderService,
     ModelService,
+    FieldValidatorService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

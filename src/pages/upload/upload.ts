@@ -1,4 +1,3 @@
-import { FieldValidator } from './../validators/field-validator';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MetadataField } from './../../models/metadata-field';
 import { ModelService } from './../../providers/model-service';
@@ -13,6 +12,8 @@ import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
 import { SettingService } from '../../providers/setting-service';
+import { FieldValidatorService } from '../../providers/field-validator-service';
+
 import { MetadataTableFields } from '../../models/metadata-table-fields';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
@@ -30,7 +31,7 @@ export class UploadPage {
   archiveName: string = 'workflow_db1';
   uploadSegment: string = 'metadata';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
   }
@@ -64,7 +65,7 @@ export class UploadPage {
     var formData = {};
     this.fields.forEach(field => {
       formData[field.name] = [''];
-      formData[field.name].push(Validators.compose(FieldValidator.getValidatorFunctions(field)));
+      formData[field.name].push(Validators.compose(this.fieldValidatorService.getValidatorFunctions(field)));
     });
     this.fieldsForm = this.formBuilder.group(formData);
   }
@@ -119,8 +120,7 @@ export class UploadPage {
   }
 
   getErrorMessage(formControl: FormControl): string {
-    return FieldValidator.getErrorMessage(formControl);
+    return this.fieldValidatorService.getErrorMessage(formControl);
   }
-
 }
 
