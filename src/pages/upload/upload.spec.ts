@@ -1,3 +1,4 @@
+import { DoubleValidator } from './../../validators/double-validator';
 import { FieldValidatorService } from './../../providers/field-validator-service';
 import { Entry } from './../../models/entry';
 import { Image } from './../../models/image';
@@ -6,7 +7,7 @@ import { Info } from './../../models/info';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { UploadPage } from './upload';
 import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController, PopoverController, GestureController } from 'ionic-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, PopoverControllerMock, StorageMock } from '../../mocks/mocks';
@@ -38,7 +39,7 @@ describe('Page: Upload', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService, 
+        TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
         FieldValidatorService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
@@ -183,6 +184,13 @@ describe('Page: Upload', () => {
     let entry = new Entry();
     entry = entry.set('IDFall', 'default');
     expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, 40, entry, jasmine.any(Image));
+  }));
+
+  it('should call field validator service in case of an error', inject([FieldValidatorService], (fieldValidatorService: FieldValidatorService) => {
+    spyOn(fieldValidatorService, 'getErrorMessage').and.callThrough();
+    let control = new FormControl('12a', DoubleValidator.isValid);
+    page.getErrorMessage(control);
+    expect(fieldValidatorService.getErrorMessage).toHaveBeenCalledWith(control);
   }));
 
 });
