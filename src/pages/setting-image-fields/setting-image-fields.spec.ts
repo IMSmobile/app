@@ -16,6 +16,7 @@ import { SettingService } from '../../providers/setting-service';
 import { ConfigMock, PlatformMock, NavParamsMock, AppMock, StorageMock } from '../../mocks/mocks';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/observable/of';
+import { ImsFieldSelectionComponent } from '../../components/ims-field-selection/ims-field-selection';
 
 
 
@@ -28,7 +29,7 @@ describe('Page: Image Settings Fields', () => {
 
     TestBed.configureTestingModule({
 
-      declarations: [SettingImageFieldsPage],
+      declarations: [SettingImageFieldsPage, ImsFieldSelectionComponent],
 
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic,
@@ -60,12 +61,13 @@ describe('Page: Image Settings Fields', () => {
     fixture.destroy();
   });
 
-  it('Image Field Settings should be persisted', inject([SettingService], (settingService: SettingService) => {
+  it('Image Field Settings should be persisted', inject([SettingService, ImsBackendMock], (settingService: SettingService, imsBackendMock: ImsBackendMock) => {
     page.archiveName = 'archive';
     page.tableName = 'table';
     spyOn(settingService, 'setFieldState').and.callThrough();
-    page.notify('field1', true);
-    expect(settingService.setFieldState).toHaveBeenCalledWith(page.archiveName, page.tableName, 'field1', true);
+    imsBackendMock.modelFieldIdentifier.active = true;
+    page.fieldToggled(imsBackendMock.modelFieldIdentifier);
+    expect(settingService.setFieldState).toHaveBeenCalledWith(page.archiveName, page.tableName, imsBackendMock.modelFieldIdentifier.name, true);
   }));
 
   it('Fields have been intialized from archive and  settings store', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
@@ -121,25 +123,4 @@ describe('Page: Image Settings Fields', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
-  it('All fields displayed after loading', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    page.archiveName = imsBackendMock.modelArchiveName;
-    page.tableName = imsBackendMock.modelImageTableName;
-    let testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-    page.ionViewDidLoad();
-    page.displayFields.forEach(field => expect(field.display).toBeTruthy());
-  }));
-
-  it('After search fields are filtered', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    page.archiveName = imsBackendMock.modelArchiveName;
-    page.tableName = imsBackendMock.modelImageTableName;
-    let testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-    page.ionViewDidLoad();
-    let event = { target: { value: imsBackendMock.modelFieldOptionalString.name } };
-    page.filterFields(event);
-    page.displayFields.forEach(field => {
-      expect(field.display === (field.name === imsBackendMock.modelFieldOptionalString.name)).toBeTruthy();
-    });
-  }));
 });

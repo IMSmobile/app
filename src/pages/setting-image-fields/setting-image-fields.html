@@ -8,5 +8,5 @@
 
 
 <ion-content padding>
-  <ims-field-selection></ims-field-selection>
+  <ims-field-selection [fields]="fields" (fieldToggled)=fieldToggled($event)></ims-field-selection>
 </ion-content>
