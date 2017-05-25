@@ -1,3 +1,8 @@
+import { ModelService } from './../../providers/model-service';
+import { SettingService } from './../../providers/setting-service';
+import { MetadataField } from './../../models/metadata-field';
+import { MetadataTableFields } from './../../models/metadata-table-fields';
+import { Observable } from 'rxjs/Observable';
 import { QueryFragment } from './../../models/query-fragment';
 import { Component } from '@angular/core';
 import { NavController, PopoverController, Popover, Events } from 'ionic-angular';
@@ -18,13 +23,14 @@ import { LoginPage } from '../login/login';
   templateUrl: 'entries.html'
 })
 export class EntriesPage {
-
+  archiveName: string = 'workflow_db1';
   entries: Entry[] = [];
   nextPage: string;
   sort: QueryFragment[] = [new QueryFragment('sort', 'IAModificationDate+desc')];
   popover: Popover;
+  fields: MetadataField[];
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events) { }
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
 
   public takePictureForEntry(parentImageEntryId: string) {
     this.cameraService.takePicture().subscribe(
@@ -35,6 +41,19 @@ export class EntriesPage {
   ionViewDidLoad() {
     let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, 40, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
+    let metaData: Observable<MetadataTableFields> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.archiveName);
+    let metaDataFields: Observable<MetadataField[]> = metaData.flatMap(tableFields => {
+      let allFields: Observable<MetadataField[]> = Observable.forkJoin(tableFields.fields.map(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).map(active => {
+        field.active = active;
+        return field;
+      })));
+      return allFields.map(this.mapActiveFields);
+    });
+    this.loadingService.subscribeWithLoading(metaDataFields, fields => { this.fields = fields; console.log(fields); }, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+  }
+
+  mapActiveFields(fields: MetadataField[]): MetadataField[] {
+    return fields.filter(field => field.active);
   }
 
   infiniteEntries(infiniteScroll) {

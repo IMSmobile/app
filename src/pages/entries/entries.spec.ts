@@ -1,3 +1,7 @@
+import { Storage } from '@ionic/storage';
+import { StorageMock } from './../../mocks/mocks';
+import { SettingService } from './../../providers/setting-service';
+import { ModelService } from './../../providers/model-service';
 import { QueryBuilderService } from './../../providers/query-builder-service';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { EntriesPage } from './entries';
@@ -35,6 +39,7 @@ describe('Page: Entries', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
+        ModelService, SettingService,
         CameraService, LoadingService, AlertService, QueryBuilderService, Events,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
@@ -43,6 +48,8 @@ describe('Page: Entries', () => {
         { provide: NavParams, useClass: NavParamsMock },
         { provide: LoadingController, useClass: LoadingMock },
         { provide: PopoverController, useClass: PopoverControllerMock },
+        { provide: Storage, useClass: StorageMock },
+
         {
           provide: Http,
           useFactory: (imsBackendMock, options) => {
@@ -59,7 +66,7 @@ describe('Page: Entries', () => {
     });
   }));
 
-  afterEach(() => {
+  afterEach(() => { 
     fixture.destroy();
   });
 
