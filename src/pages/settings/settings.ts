@@ -1,3 +1,4 @@
+import { SettingEntriesFieldsPage } from './../setting-entries-fields/setting-entries-fields';
 import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -23,4 +24,9 @@ export class SettingsPage {
   loadImageFieldSettings() {
     this.navCtrl.push(SettingImageFieldsPage);
   }
+
+  loadEntriesListFieldSettings() {
+    this.navCtrl.push(SettingEntriesFieldsPage);
+  }
+
 }

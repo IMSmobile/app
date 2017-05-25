@@ -1,3 +1,4 @@
+import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ModelService } from './../providers/model-service';
@@ -46,6 +47,7 @@ const cloudSettings: CloudSettings = {
     SettingsPage,
     EntriesPage,
     SettingImageFieldsPage,
+    SettingEntriesFieldsPage,
     ImsFieldSelectionComponent
   ],
   imports: [
@@ -69,7 +71,8 @@ const cloudSettings: CloudSettings = {
     MorePopoverPage,
     SettingsPage,
     EntriesPage,
-    SettingImageFieldsPage
+    SettingImageFieldsPage,
+    SettingEntriesFieldsPage
   ],
   providers: [
     TokenService,
