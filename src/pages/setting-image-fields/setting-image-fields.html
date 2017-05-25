@@ -8,11 +8,5 @@
 
 
 <ion-content padding>
-  <ion-searchbar (ionInput)="filterFields($event)" placeholder="Suche"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let field of displayFields" class="fieldItem">
-      <ion-label>{{field.name}}</ion-label>
-      <ion-toggle [(ngModel)]="field.active" (ionChange)="notify(field.name, field.active)" id="settingsImageField{{field.name}}Toggle"></ion-toggle>
-    </ion-item>
-  </ion-list>
+  <ims-field-selection></ims-field-selection>
 </ion-content>
