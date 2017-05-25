@@ -54,9 +54,9 @@ describe('Provider: LoadingService', () => {
     }));
 
     it('Should dismmisa on hide loading', inject([LoadingService], (loadingService: LoadingService) => {
-        loadingService.showLoading();
-        spyOn(loadingService.loading, 'dismiss').and.callThrough();
-        loadingService.hideLoading();
-        expect(loadingService.loading.dismiss).toHaveBeenCalled();
+        let loading = loadingService.showLoading();
+        spyOn(loading, 'dismiss').and.callThrough();
+        loadingService.hideLoading(loading);
+        expect(loading.dismiss).toHaveBeenCalled();
     }));
 });
