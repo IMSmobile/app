@@ -25,6 +25,16 @@ export class ModelService {
     return this.getModelTables(credential, archive).map(modelTable => modelTable.tables[(modelTable.tables.length - 1)].dataHref);
   }
 
+  getMetadataFieldsOfParentImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
+    return this.getModelParentImageTableUrl(credential, archive).flatMap(tableUrl => {
+      return this.imsService.get(credential, tableUrl).map(response => response.json());
+    });
+  }
+
+  getModelParentImageTableUrl(credential: Credential, archive: string): Observable<string> {
+    return this.getModelTables(credential, archive).map(modelTable => modelTable.tables[(modelTable.tables.length - 2)].dataHref);
+  }
+
   getModelTables(credential: Credential, archive: string): Observable<ModelTables> {
     return this.getModelArchiveUrl(credential, archive).flatMap(archiveUrl => {
       return this.imsService.get(credential, archiveUrl).map(response => response.json());
