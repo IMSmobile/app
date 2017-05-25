@@ -90,22 +90,13 @@ export class UploadPage {
         }
       });
       let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
-      this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
-        res => this.uploadSuccessful(),
-        err => this.uploadFailed(err)
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image),
+        res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
+        err => this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.')
       );
     }
   }
 
-  uploadSuccessful() {
-    this.loadingService.hideLoading();
-    this.showToastMessage('Bild wurde erfolgreich gespeichert!');
-  }
-
-  uploadFailed(err: Response) {
-    this.loadingService.hideLoading();
-    this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.');
-  }
 
   showToastMessage(toastMessage: string) {
     let toast = this.toastCtrl.create({
