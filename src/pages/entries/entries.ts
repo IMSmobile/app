@@ -24,6 +24,7 @@ import { LoginPage } from '../login/login';
 })
 export class EntriesPage {
   archiveName: string = 'workflow_db1';
+  filterId: number = 40;
   entries: Entry[] = [];
   nextPage: string;
   sort: QueryFragment[] = [new QueryFragment('sort', 'IAModificationDate+desc')];
@@ -40,7 +41,7 @@ export class EntriesPage {
   }
 
   ionViewDidLoad() {
-    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, 40, this.sort);
+    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
   }
 
