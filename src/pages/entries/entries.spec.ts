@@ -107,6 +107,30 @@ describe('Page: Entries', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
+  it('Sets title field to identifier field', inject([ImsBackendMock, AuthService], (imsBackendMock: ImsBackendMock, authService: AuthService) => {
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadSelectedFieldsAndTitle();
+    expect(page.titleField).toEqual(imsBackendMock.parentImageModelFieldIdentifierName);
+  }));
+
+  it('Has fields when set in setting service', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadSelectedFieldsAndTitle();
+    expect(page.fields).toContain(imsBackendMock.parentImageModelFieldOptionalString);
+    expect(page.fields).toContain(imsBackendMock.parentImageModelFieldParentreference);
+  }));
+
+  it('Does not have any fields when nothing is set', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadSelectedFieldsAndTitle();
+    expect(page.fields.length).toBe(0);
+  }));
+
   it('Disables infinite scroll when there is no next page', () => {
     let infiniteScroll = new InfiniteScrollMock();
     spyOn(infiniteScroll, 'enable').and.callThrough();
