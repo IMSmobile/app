@@ -42,6 +42,14 @@ export class EntriesPage {
   ionViewDidLoad() {
     let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, 40, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
+  }
+
+  ionViewWillEnter() {
+    this.subscribeToEvents();
+    this.loadSelectedFieldsAndTitle();
+  }
+
+  loadSelectedFieldsAndTitle() {
     let metaData: Observable<MetadataTableFields> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.archiveName);
     let metaDataFields: Observable<MetadataField[]> = metaData.flatMap(tableFields => {
       let allFields: Observable<MetadataField[]> = Observable.forkJoin(tableFields.fields.map(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).map(active => {
@@ -79,7 +87,7 @@ export class EntriesPage {
     this.nextPage = entries.pagination.nextPage;
   }
 
-  ionViewWillEnter() {
+  subscribeToEvents() {
     this.events.subscribe('nav:settings-page', () => {
       this.popover.dismiss();
       this.navCtrl.push(SettingsPage);
