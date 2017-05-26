@@ -66,7 +66,7 @@ describe('Page: Entries', () => {
     });
   }));
 
-  afterEach(() => { 
+  afterEach(() => {
     fixture.destroy();
   });
 
