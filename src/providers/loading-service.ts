@@ -6,31 +6,38 @@ import { LoadingController, Loading } from 'ionic-angular';
 @Injectable()
 export class LoadingService {
 
+  loading: Loading;
+  concurrentLoadings: number = 0;
 
   constructor(public loadingCtrl: LoadingController) { }
 
   subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void) {
-    let loading = this.showLoading();
+    this.showLoading();
     observable.subscribe(
       succ => {
-        this.hideLoading(loading);
+        this.hideLoading();
         next(succ);
       },
       err => {
-        this.hideLoading(loading);
+        this.hideLoading();
         error(err);
       });
   }
 
   showLoading() {
-    let loading = this.loadingCtrl.create({
-      content: 'Bitte warten...'
-    });
-    loading.present();
-    return loading;
+    if (this.concurrentLoadings === 0) {
+      this.loading = this.loadingCtrl.create({
+        content: 'Bitte warten...'
+      });
+      this.loading.present();
+    }
+    this.concurrentLoadings = this.concurrentLoadings + 1;
   }
 
-  hideLoading(loading: Loading) {
-    loading.dismiss();
+  hideLoading() {
+    if (this.concurrentLoadings === 1) {
+      this.loading.dismiss();
+    }
+    this.concurrentLoadings = this.concurrentLoadings - 1;
   }
 }
