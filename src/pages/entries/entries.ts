@@ -30,7 +30,7 @@ export class EntriesPage {
   sort: QueryFragment[] = [new QueryFragment('sort', 'IAModificationDate+desc')];
   popover: Popover;
   fields: MetadataField[];
-  identifierField: string;
+  titleField: string;
 
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
 
@@ -57,7 +57,7 @@ export class EntriesPage {
         field.active = active;
         return field;
       })));
-      this.identifierField = tableFields.identifierField;
+      this.titleField = tableFields.identifierField;
       return allFields.map(this.mapActiveFields);
     });
     this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
