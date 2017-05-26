@@ -172,7 +172,7 @@ describe('Page: Entries', () => {
   }));
 
   it('Go to Settings Page and dismiss popover on load Settings', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
-    page.ionViewWillEnter();
+    page.subscribeToEvents();
     page.popover = popoverController.create({});
     spyOn(nav, 'push').and.callThrough();
     spyOn(page.popover, 'dismiss').and.callThrough();
@@ -181,12 +181,10 @@ describe('Page: Entries', () => {
 
     expect(nav.push).toHaveBeenCalledWith(SettingsPage);
     expect(page.popover.dismiss).toHaveBeenCalled();
-
   }));
 
-
   it('Go to Login Page and dismiss popover on logout button', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
-    page.ionViewWillEnter();
+    page.subscribeToEvents();
     page.popover = popoverController.create({});
     spyOn(nav, 'setRoot').and.callThrough();
     spyOn(page.popover, 'dismiss').and.callThrough();
@@ -197,9 +195,8 @@ describe('Page: Entries', () => {
     expect(page.popover.dismiss).toHaveBeenCalled();
   }));
 
-
   it('Clear settings on logout button', inject([AuthService, PopoverController, Events], (authService: AuthService, popoverController: PopoverController, events: Events) => {
-    page.ionViewWillEnter();
+    page.subscribeToEvents();
     page.popover = popoverController.create({});
     spyOn(authService, 'logout').and.callThrough();
 
