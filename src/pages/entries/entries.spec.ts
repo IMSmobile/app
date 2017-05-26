@@ -85,23 +85,30 @@ describe('Page: Entries', () => {
     expect(page.nextPage).toEqual(imsBackendMock.parentImageEntriesNextPageUrl);
   }));
 
-  it('Show and hide loading when successful', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
+  it('Set parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadParentImageReferenceField();
+    expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);
+  }));
+
+  it('Show and hide loading when successful when loading initial entries', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-    page.ionViewDidLoad();
+    page.loadInitialParentImageEntries();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading with alert on error', inject([ImsBackendMock, AuthService, LoadingService, EntriesService, AlertService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, entriesService: EntriesService, alertService: AlertService) => {
+  it('Show and hide loading indicator with alert on error when loading initial entries', inject([ImsBackendMock, AuthService, LoadingService, EntriesService, AlertService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, entriesService: EntriesService, alertService: AlertService) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     spyOn(alertService, 'showError').and.callThrough();
     spyOn(entriesService, 'getParentImageEntries').and.returnValue(error);
-    page.ionViewDidLoad();
+    page.loadInitialParentImageEntries();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
     expect(alertService.showError).toHaveBeenCalled();
@@ -171,16 +178,17 @@ describe('Page: Entries', () => {
 
   it('Push to Upload Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
     let parentImageEntryId: string = '123';
+    let entryTitle: string = 'Test Entry';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
-    page.takePictureForEntry(parentImageEntryId);
+    page.takePictureForEntry(parentImageEntryId, entryTitle);
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId }
+      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
   }));
 
@@ -189,7 +197,7 @@ describe('Page: Entries', () => {
     spyOn(cameraService, 'takePicture').and.returnValue(error);
     spyOn(navController, 'push').and.callThrough();
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
-    page.takePictureForEntry('1');
+    page.takePictureForEntry('1', 'test');
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledTimes(0);
     expect(cameraService.showAlertOnError).toHaveBeenCalled();

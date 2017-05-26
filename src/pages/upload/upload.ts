@@ -29,10 +29,12 @@ export class UploadPage {
   fieldsForm: FormGroup = new FormGroup({});
   archiveName: string = 'workflow_db1';
   uploadSegment: string = 'metadata';
+  entryTitle: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
+    this.entryTitle = navParams.get('entryTitle');
   }
 
   ionViewDidLoad() {

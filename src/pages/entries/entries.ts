@@ -31,16 +31,27 @@ export class EntriesPage {
   popover: Popover;
   fields: MetadataField[];
   titleField: string;
+  parentImageReferenceField: string;
 
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
 
-  public takePictureForEntry(parentImageEntryId: string) {
+  public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.cameraService.takePicture().subscribe(
-      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId }),
+      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }),
       err => this.cameraService.showAlertOnError(err));
   }
 
   ionViewDidLoad() {
+    this.loadParentImageReferenceField();
+    this.loadInitialParentImageEntries();
+  }
+
+  loadParentImageReferenceField() {
+    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName);
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+  }
+
+  loadInitialParentImageEntries() {
     let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
   }
