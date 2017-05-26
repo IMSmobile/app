@@ -40,6 +40,7 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | ------------- |-------------|
 | [Arbeitspakete (Issues)](https://github.com/IMSmobile/app/issues?utf8=%E2%9C%93&q=)      | Arbeitspakete werden als Github Issues erfasst und durch Labels kategorisiert|
 | [Kanban Board](https://waffle.io/IMSmobile/app)| Waffle Kanbanboard verknüpft mit Issues zeigt Backlog und Zustand des aktuellen Sprints|
+| [Burnup Chart](https://docs.google.com/spreadsheets/d/1xm9ytSJTCfuZGIuy3rtBODxPf5nHPiAcZkGWlJf7iIY/edit?usp=sharing) | Zeigt auf wieviel wir bis Projektende voraussichtlich erreichen werden |
 | [Zeiterfassung](https://docs.google.com/spreadsheets/d/1wPmgUyEP-KACbgbScPLBRBLKIGRuS5j_b-cGsaogbYE/edit?usp=sharing)| Google Spreadsheet Dokument zeigt Aufwand der Projektarbeit|
 | [Kalender](https://calendar.google.com/calendar/embed?src=3k1v67336orm53otamk6e4s1rc%40group.calendar.google.com&ctz=Europe/Paris) | Google Calendar für die Planung einzelner Ereignisse |
 | [REST API Dokumentation](https://sinv-56028.edu.hsr.ch/) | Dokumentation der IMS REST Schnittstelle |
@@ -207,6 +208,8 @@ Nach Abschluss des Reviews wird der Pull Request mit einem Merge in den *master 
 Am Sprintende werden die Issues in der Spalte *Done* kurz besprochen und über die Waffle Archivfunktion auf dem Kanbanboard ausgeblendet.
 
 In der Sprint Retrospektive arbeiten wir mit dem [Fun Retro Board](http://funretro.github.io/distributed/) um eine kontinuierliche Verbesserung unserer Arbeitsweise zu erreichen.
+
+Dank dem [Burnup Chart](https://docs.google.com/spreadsheets/d/1xm9ytSJTCfuZGIuy3rtBODxPf5nHPiAcZkGWlJf7iIY/edit?usp=sharing) können wir laufend eine Aussage darüber machen was wir bis Projektende voraussichtlich erreichen werden resp. für welche Aufgaben keine Zeit mehr bleiben wird. Dies hilft uns auch zusammen mit den Stakeholdern die verbleibenden Aufgaben richtig zu priorisieren.
 
 ### Entwicklung
 
