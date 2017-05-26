@@ -13,7 +13,7 @@
   <ion-infinite-scroll (ionInfinite)="infiniteEntries($event)">
     <ion-list>
       <ion-item *ngFor="let entry of entries">
-        <h1 ion-text color="primary">{{entry.fields.IDFall}}</h1>
+        <h1 ion-text color="primary">{{entry.fields[identifierField]}}</h1>
           <div *ngFor="let field of fields">{{field.name}} : {{entry.fields[field.name]}}</div>
         <button ion-button (click)="takePictureForEntry(entry.fields.IDFall)" id="entriesCameraButton{{entry.fields.IDFall}}" item-right>
           <ion-icon name="camera"></ion-icon>
