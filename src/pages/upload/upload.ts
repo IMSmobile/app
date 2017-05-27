@@ -12,8 +12,6 @@ import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
 import { SettingService } from '../../providers/setting-service';
 import { FieldValidatorService } from '../../providers/field-validator-service';
-
-import { MetadataTableFields } from '../../models/metadata-table-fields';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/observable/concat';

@@ -1,7 +1,6 @@
 import { ModelService } from './../../providers/model-service';
 import { SettingService } from './../../providers/setting-service';
 import { MetadataField } from './../../models/metadata-field';
-import { MetadataTableFields } from './../../models/metadata-table-fields';
 import { Observable } from 'rxjs/Observable';
 import { QueryFragment } from './../../models/query-fragment';
 import { Component } from '@angular/core';
