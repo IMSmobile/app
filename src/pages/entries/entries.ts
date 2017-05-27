@@ -62,20 +62,11 @@ export class EntriesPage {
   }
 
   loadSelectedFieldsAndTitle() {
-    let metaData: Observable<MetadataTableFields> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.archiveName);
-    let metaDataFields: Observable<MetadataField[]> = metaData.flatMap(tableFields => {
-      let allFields: Observable<MetadataField[]> = Observable.forkJoin(tableFields.fields.map(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).map(active => {
-        field.active = active;
-        return field;
-      })));
+    let metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.archiveName).flatMap(tableFields => {
       this.titleField = tableFields.identifierField;
-      return allFields.map(this.mapActiveFields);
+      return this.settingService.getActiveFields(this.archiveName, tableFields);
     });
     this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
-  }
-
-  mapActiveFields(fields: MetadataField[]): MetadataField[] {
-    return fields.filter(field => field.active);
   }
 
   infiniteEntries(infiniteScroll) {

@@ -1,3 +1,5 @@
+import { MetadataTableFields } from './../models/metadata-table-fields';
+import { MetadataField } from './../models/metadata-field';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
@@ -26,6 +28,17 @@ export class SettingService {
 
   setUsername(username: string) {
     this.storeSetting(this.usernameKey, username);
+  }
+
+  getActiveFields(archiveName: string, tableFields: MetadataTableFields): Observable<MetadataField[]> {
+    return Observable.forkJoin(tableFields.fields.map(field => this.getFieldState(archiveName, tableFields.name, field.name).map(active => {
+      field.active = active;
+      return field;
+    }))).map(this.mapActiveFields);
+  }
+
+  private mapActiveFields(fields: MetadataField[]): MetadataField[] {
+    return fields.filter(field => field.active);
   }
 
   getFieldState(archive: string, table: string, field: string): Observable<boolean> {

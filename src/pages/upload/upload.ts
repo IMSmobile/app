@@ -16,6 +16,7 @@ import { FieldValidatorService } from '../../providers/field-validator-service';
 import { MetadataTableFields } from '../../models/metadata-table-fields';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/observable/concat';
 
 @Component({
   selector: 'page-upload',
@@ -38,27 +39,20 @@ export class UploadPage {
   }
 
   ionViewDidLoad() {
-    let imageTableMetaData: Observable<MetadataTableFields> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName);
-    let imageTableMetaDataFields: Observable<MetadataField[]> = imageTableMetaData.flatMap(tableFields => {
-      let allFields: Observable<MetadataField[]> = Observable.forkJoin(tableFields.fields.map(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).map(active => {
-        field.active = active || this.isMandatory(field, tableFields.parentReferenceField);
-        return field;
-      })));
-      return allFields.map(this.mapActiveFields);
+    let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName).flatMap(tableFields => {
+      let mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
+      let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.archiveName, tableFields);
+      return Observable.concat(mandatoryFields, activeFields);
     });
-    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
-  }
-
-  mapActiveFields(fields: MetadataField[]): MetadataField[] {
-    return fields.filter(field => field.active);
+    this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
     return field.mandatory === true && field.name !== parentReferenceFieldName;
   }
 
-  initFields(fields: MetadataField[]) {
-    this.fields = fields;
+  appendFields(fields: MetadataField[]) {
+    this.fields = this.fields.concat(fields);
     this.initFormData();
   }
 
