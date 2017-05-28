@@ -29,9 +29,16 @@ describe('Provider: ModelService', () => {
     }).compileComponents();
   }));
 
-it('Should get image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
+  it('Should get image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getMetadataFieldsOfImageTable(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       metadataTableFields => expect(metadataTableFields).toEqual(imsBackendMock.modelFields),
+      err => fail(err)
+    );
+  }));
+
+  it('Should get parent image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
+    modelService.getMetadataFieldsOfParentImageTable(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
+      metadataTableFields => expect(metadataTableFields).toEqual(imsBackendMock.parentImageModelFields),
       err => fail(err)
     );
   }));
@@ -39,6 +46,13 @@ it('Should get image table metadata fields', inject([ModelService, ImsBackendMoc
   it('Should get link to image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getModelImageTableUrl(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       url => expect(url).toEqual(imsBackendMock.modelImageTableFieldsUrl),
+      err => fail(err)
+    );
+  }));
+
+  it('Should get link to parent image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
+    modelService.getModelParentImageTableUrl(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
+      url => expect(url).toEqual(imsBackendMock.modelTableFieldsUrl),
       err => fail(err)
     );
   }));

@@ -1,3 +1,7 @@
+import { ModelService } from './../../providers/model-service';
+import { SettingService } from './../../providers/setting-service';
+import { MetadataField } from './../../models/metadata-field';
+import { Observable } from 'rxjs/Observable';
 import { QueryFragment } from './../../models/query-fragment';
 import { Component } from '@angular/core';
 import { NavController, PopoverController, Popover, Events } from 'ionic-angular';
@@ -18,23 +22,50 @@ import { LoginPage } from '../login/login';
   templateUrl: 'entries.html'
 })
 export class EntriesPage {
-
+  archiveName: string = 'workflow_db1';
+  filterId: number = 40;
   entries: Entry[] = [];
   nextPage: string;
   sort: QueryFragment[] = [new QueryFragment('sort', 'IAModificationDate+desc')];
   popover: Popover;
+  fields: MetadataField[];
+  titleField: string;
+  parentImageReferenceField: string;
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events) { }
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
 
-  public takePictureForEntry(parentImageEntryId: string) {
+  public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.cameraService.takePicture().subscribe(
-      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId }),
+      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }),
       err => this.cameraService.showAlertOnError(err));
   }
 
   ionViewDidLoad() {
-    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, 40, this.sort);
+    this.loadParentImageReferenceField();
+    this.loadInitialParentImageEntries();
+  }
+
+  loadParentImageReferenceField() {
+    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName);
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+  }
+
+  loadInitialParentImageEntries() {
+    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
+  }
+
+  ionViewWillEnter() {
+    this.subscribeToEvents();
+    this.loadSelectedFieldsAndTitle();
+  }
+
+  loadSelectedFieldsAndTitle() {
+    let metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.archiveName).flatMap(tableFields => {
+      this.titleField = tableFields.identifierField;
+      return this.settingService.getActiveFields(this.archiveName, tableFields);
+    });
+    this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
 
   infiniteEntries(infiniteScroll) {
@@ -58,7 +89,7 @@ export class EntriesPage {
     this.nextPage = entries.pagination.nextPage;
   }
 
-  ionViewWillEnter() {
+  subscribeToEvents() {
     this.events.subscribe('nav:settings-page', () => {
       this.popover.dismiss();
       this.navCtrl.push(SettingsPage);

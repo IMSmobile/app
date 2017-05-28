@@ -20,20 +20,20 @@ describe('Provider: LoadingService', () => {
 
     it('Success function called in execute wiht loading', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
         let toCheck = '';
-        loadingService.subscribeWithLoading(Observable.of('success'), suc => toCheck = suc, err => {});
+        loadingService.subscribeWithLoading(Observable.of('success'), suc => toCheck = suc, err => { });
         expect(toCheck).toBe('success');
     }));
 
     it('Error function called in execute with loading', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
         let toCheck = '';
-        loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), suc => next => {}, err => toCheck = 'error');
+        loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), suc => next => { }, err => toCheck = 'error');
         expect(toCheck).toBe('error');
     }));
 
     it('Show and hide loading when successful', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
         spyOn(loadingService, 'showLoading').and.callThrough();
         spyOn(loadingService, 'hideLoading').and.callThrough();
-        loadingService.subscribeWithLoading(Observable.of('success'), next => {}, err => {});
+        loadingService.subscribeWithLoading(Observable.of('success'), next => { }, err => { });
         expect(loadingService.showLoading).toHaveBeenCalled();
         expect(loadingService.hideLoading).toHaveBeenCalled();
     }));
@@ -42,7 +42,7 @@ describe('Provider: LoadingService', () => {
     it('Show and hide loading with alert on error', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
         spyOn(loadingService, 'showLoading').and.callThrough();
         spyOn(loadingService, 'hideLoading').and.callThrough();
-        loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), next => {}, err => {});
+        loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), next => { }, err => { });
         expect(loadingService.showLoading).toHaveBeenCalled();
         expect(loadingService.hideLoading).toHaveBeenCalled();
     }));
@@ -58,5 +58,18 @@ describe('Provider: LoadingService', () => {
         spyOn(loadingService.loading, 'dismiss').and.callThrough();
         loadingService.hideLoading();
         expect(loadingService.loading.dismiss).toHaveBeenCalled();
+    }));
+
+    it('Ensure single loading instance is running', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
+        spyOn(loadingController, 'create').and.callThrough();
+        loadingService.showLoading();
+        spyOn(loadingService.loading, 'dismiss').and.callThrough();
+        loadingService.showLoading();
+        loadingService.hideLoading();
+        loadingService.showLoading();
+        loadingService.hideLoading();
+        loadingService.hideLoading();
+        expect(loadingController.create).toHaveBeenCalledTimes(1);
+        expect(loadingService.loading.dismiss).toHaveBeenCalledTimes(1);
     }));
 });

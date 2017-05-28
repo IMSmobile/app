@@ -1,33 +1,75 @@
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
+import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 import { LoginPageOjbect } from './login-page-object';
 
 export class EntriesPageObject {
-    moreButton: ElementFinder = element(by.id('barButtonMore'));
-    settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
-    entriesCameraButton: ElementFinder = element(by.id('entriesCameraButton34617'));
-    loginPage = new LoginPageOjbect();
+  moreButton: ElementFinder = element(by.id('barButtonMore'));
+  settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
+  entriesItem: ElementFinder = element(by.id('entriesItem34617'));
+  entriesTitle: ElementFinder = this.entriesItem.element(by.tagName('h1'));
+  entriesFields: ElementArrayFinder = this.entriesItem.all(by.css('.entries-fields'));
+  entriesFirstMetaDataField: ElementFinder = this.entriesFields.get(0);
+  entriesSecondMetaDataField: ElementFinder = this.entriesFields.get(1);
+  entriesThirdMetaDataField: ElementFinder = this.entriesFields.get(2);
+  entriesCameraButton: ElementFinder = this.entriesItem.element(by.tagName('button'));
+  loginPage = new LoginPageOjbect();
 
-    loadPage() {
-        this.loginPage.login();
-        this.waitUntilElementsAreClickable();
-    }
+  loadPage() {
+    this.loginPage.login();
+    this.waitUntilElementsAreClickable();
+  }
 
-    pushToSettingsPage() {
-        this.moreButton.click();
-        this.waitUntilElementsAreClickable();
-        this.settingsButton.click();
-        this.waitUntilElementsAreClickable();
-    }
+  pushToSettingsPage() {
+    this.moreButton.click();
+    this.waitUntilElementsAreClickable();
+    this.settingsButton.click();
+    this.waitUntilElementsAreClickable();
+  }
 
-    pushEntriesCameraButtonOnEntry34617() {
-        this.entriesCameraButton.click();
-        this.waitUntilElementsAreClickable();
-    }
+  pushEntriesCameraButtonOnEntry34617() {
+    this.entriesCameraButton.click();
+    this.waitUntilElementsAreClickable();
+  }
 
-    waitUntilElementsAreClickable() {
-        browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-        browser.sleep(1000);
-    }
+  waitUntilElementsAreClickable() {
+    browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
+    browser.sleep(1000);
+  }
+
+  verifyEntriesTitleVisible() {
+    browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), 3 * 1000);
+  }
+
+  verifyNoFieldsVisible() {
+    browser.wait(ExpectedConditions.and(
+      ExpectedConditions.invisibilityOf(this.entriesFirstMetaDataField),
+      ExpectedConditions.invisibilityOf(this.entriesSecondMetaDataField),
+      ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField)
+    ), 3 * 1000);
+  }
+
+  verifyOnlyFirstFieldVisible() {
+    browser.wait(ExpectedConditions.and(
+      ExpectedConditions.invisibilityOf(this.entriesSecondMetaDataField),
+      ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField)
+    ), 3 * 1000);
+  }
+
+  verifyOnlyFirstTwoFieldsVisible() {
+    browser.wait(ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField), 3 * 1000);
+  }
+
+  verifyFirstFieldStartsWith(text: string) {
+    this.verifyFieldStartsWith(text, this.entriesFirstMetaDataField);
+  }
+
+  verifySecondFieldStartsWith(text: string) {
+    this.verifyFieldStartsWith(text, this.entriesSecondMetaDataField);
+  }
+
+  verifyFieldStartsWith(text: string, field: ElementFinder) {
+    browser.wait(ExpectedConditions.visibilityOf(field), 3 * 1000);
+    expect(field.getText()).toMatch(new RegExp('^' + text));
+  }
 }

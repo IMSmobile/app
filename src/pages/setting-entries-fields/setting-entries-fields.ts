@@ -1,17 +1,17 @@
 import { SettingService } from './../../providers/setting-service';
 import { AlertService } from './../../providers/alert-service';
-import { MetadataField } from './../../models/metadata-field';
 import { ModelService } from './../../providers/model-service';
 import { AuthService } from './../../providers/auth-service';
 import { LoadingService } from './../../providers/loading-service';
+import { MetadataField } from './../../models/metadata-field';
 import { Component } from '@angular/core';
 
 
 @Component({
-  selector: 'page-setting-image-fields',
-  templateUrl: 'setting-image-fields.html'
+  selector: 'page-setting-entries-fields',
+  templateUrl: 'setting-entries-fields.html',
 })
-export class SettingImageFieldsPage {
+export class SettingEntriesFieldsPage {
 
   tableName: string;
   archiveName: string = 'workflow_db1';
@@ -21,11 +21,10 @@ export class SettingImageFieldsPage {
 
 
   ionViewDidLoad() {
-    this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName),
+    this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.archiveName),
       tableFields => {
         this.tableName = tableFields.name;
-        this.fields = tableFields.fields.filter(field => field.mandatory === false && field.name !== tableFields.parentReferenceField && field.writable === true);
-        this.fields.forEach(field => field.display = true);
+        this.fields = tableFields.fields;
         this.fields.forEach(field => this.settingService.getFieldState(this.archiveName, this.tableName, field.name).subscribe(active => field.active = active));
       },
       err => {

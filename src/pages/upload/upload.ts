@@ -7,16 +7,14 @@ import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
 import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { Image } from '../../models/image';
-import { Response } from '@angular/http';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
 import { SettingService } from '../../providers/setting-service';
 import { FieldValidatorService } from '../../providers/field-validator-service';
-
-import { MetadataTableFields } from '../../models/metadata-table-fields';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/observable/concat';
 
 @Component({
   selector: 'page-upload',
@@ -30,34 +28,29 @@ export class UploadPage {
   fieldsForm: FormGroup = new FormGroup({});
   archiveName: string = 'workflow_db1';
   uploadSegment: string = 'metadata';
+  entryTitle: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
+    this.entryTitle = navParams.get('entryTitle');
   }
 
   ionViewDidLoad() {
-    let imageTableMetaData: Observable<MetadataTableFields> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName);
-    let imageTableMetaDataFields: Observable<MetadataField[]> = imageTableMetaData.flatMap(tableFields => {
-      let allFields: Observable<MetadataField[]> = Observable.forkJoin(tableFields.fields.map(field => this.settingService.getFieldState(this.archiveName, tableFields.name, field.name).map(active => {
-        field.active = active || this.isMandatory(field, tableFields.parentReferenceField);
-        return field;
-      })));
-      return allFields.map(this.mapActiveFields);
+    let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName).flatMap(tableFields => {
+      let mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
+      let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.archiveName, tableFields);
+      return Observable.concat(mandatoryFields, activeFields);
     });
-    this.loadingService.subscribeWithLoading(imageTableMetaDataFields, fields => this.initFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
-  }
-
-  mapActiveFields(fields: MetadataField[]): MetadataField[] {
-    return fields.filter(field => field.active);
+    this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
     return field.mandatory === true && field.name !== parentReferenceFieldName;
   }
 
-  initFields(fields: MetadataField[]) {
-    this.fields = fields;
+  appendFields(fields: MetadataField[]) {
+    this.fields = this.fields.concat(fields);
     this.initFormData();
   }
 
@@ -81,7 +74,6 @@ export class UploadPage {
     if (this.fieldsForm.invalid) {
       this.showToastMessage('Alle Felder müssen valide sein');
     } else {
-      this.loadingService.showLoading();
       let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
       this.fields.forEach(field => {
         let value = this.fieldsForm.controls[field.name].value;
@@ -90,22 +82,13 @@ export class UploadPage {
         }
       });
       let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
-      this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image).subscribe(
-        res => this.uploadSuccessful(),
-        err => this.uploadFailed(err)
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image),
+        res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
+        err => this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.')
       );
     }
   }
 
-  uploadSuccessful() {
-    this.loadingService.hideLoading();
-    this.showToastMessage('Bild wurde erfolgreich gespeichert!');
-  }
-
-  uploadFailed(err: Response) {
-    this.loadingService.hideLoading();
-    this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.');
-  }
 
   showToastMessage(toastMessage: string) {
     let toast = this.toastCtrl.create({

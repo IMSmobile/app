@@ -54,14 +54,14 @@ export class ImsBackendMock extends MockBackend {
     public query: QueryFragment[] = [new QueryFragment('testkey', 'testvalue')];
     public queryBuilder: QueryBuilderService = new QueryBuilderService();
     public parentImageEntriesUrlWithQuery: string = this.parentImageEntriesUrl + this.queryBuilder.generate(this.query);
-    public archiveEntry: ArchiveEntry = new  ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
+    public archiveEntry: ArchiveEntry = new ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
     public uploadContainerUrl: string = this.containerRequestUrl + '/XYZ';
     public imageLocationUrl: string = this.filterResourceUrl + 'Bild/123';
     public parentImageEntriesNextPageUrl: string = this.parentImageEntriesUrlWithQuery + '&start=20&pageSize=20';
     public parentImageEntriesNextNextPageUrl: string = this.parentImageEntriesUrlWithQuery + '&start=40&pageSize=20';
-    public paretImageEntriesPagination: Pagination = new Pagination({nextPage: this.parentImageEntriesNextPageUrl});
+    public paretImageEntriesPagination: Pagination = new Pagination({ nextPage: this.parentImageEntriesNextPageUrl });
     public parentImageEntries: Entries = new Entries(this.paretImageEntriesPagination, [new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
-    public parentImageEntriesNextPage: Entries = new Entries(new Pagination({nextPage: this.parentImageEntriesNextNextPageUrl}), [new Entry().set('IdFall', '21'), new Entry().set('IdFall', '22')]);
+    public parentImageEntriesNextPage: Entries = new Entries(new Pagination({ nextPage: this.parentImageEntriesNextNextPageUrl }), [new Entry().set('IdFall', '21'), new Entry().set('IdFall', '22')]);
     public modelArchiveName: string = 'workflow_db1';
     public modelTablesUrl: string = this.modelsUrl + '/workflow_db1';
     public modelArchives: ModelArchives = new ModelArchives([new ModelLink(this.modelTablesUrl, this.modelArchiveName)]);
@@ -73,8 +73,16 @@ export class ImsBackendMock extends MockBackend {
     public modelFieldParentreferenceName: string = 'IDFall';
     public modelFieldIdentifier: MetadataField = new MetadataField(this.modelFieldIdentifierName, 'STRING', false, false, true, true, 10);
     public modelFieldParentreference: MetadataField = new MetadataField(this.modelFieldParentreferenceName, 'STRING', false, false, true, true, 10);
-    public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true , false, 10);
+    public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, 10);
     public modelFields: MetadataTableFields = new MetadataTableFields(this.modelImageTableName, this.modelFieldIdentifierName, this.modelFieldParentreferenceName, [this.modelFieldIdentifier, this.modelFieldParentreference, this.modelFieldOptionalString]);
+
+    public parentImageTableName: string = 'Fall';
+    public parentImageModelFieldIdentifierName: string = 'FALL_NR';
+    public parentImageModelFieldParentReferenceName: string = 'IDArt';
+    public parentImageModelFieldParentreference: MetadataField = new MetadataField(this.parentImageModelFieldParentReferenceName, 'STRING', false, false, true, true, 10);
+    public parentImageModelFieldIdentifier: MetadataField = new MetadataField(this.parentImageModelFieldIdentifierName, 'STRING', false, false, true, true, 10);
+    public parentImageModelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, 10);
+    public parentImageModelFields: MetadataTableFields = new MetadataTableFields(this.parentImageTableName, this.parentImageModelFieldIdentifierName, this.parentImageModelFieldParentReferenceName, [this.parentImageModelFieldIdentifier, this.parentImageModelFieldParentreference, this.parentImageModelFieldOptionalString]);
 
     constructor() {
         super();
@@ -89,6 +97,8 @@ export class ImsBackendMock extends MockBackend {
                 connection.mockRespond(new ModelTablesPointResponse(this.modelTables));
             } else if (connection.request.url.endsWith(this.modelImageTableFieldsUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new ModelFieldsPointResponse(this.modelFields));
+            } else if (connection.request.url.endsWith(this.modelTableFieldsUrl) && connection.request.method === RequestMethod.Get) {
+                connection.mockRespond(new ModelFieldsPointResponse(this.parentImageModelFields));
             } else if (connection.request.url.endsWith(this.tokensUrl) && connection.request.method === RequestMethod.Post) {
                 connection.mockRespond(new LocationResponse(this.tokenLoadingUrl));
             } else if (connection.request.url.endsWith(this.tokenLoadingUrl) && connection.request.method === RequestMethod.Get) {

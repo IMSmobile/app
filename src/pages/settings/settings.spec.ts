@@ -1,3 +1,4 @@
+import { SettingEntriesFieldsPage } from './../setting-entries-fields/setting-entries-fields';
 import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { SettingsPage } from './settings';
@@ -59,4 +60,11 @@ describe('Page: Settings', () => {
     page.loadImageFieldSettings();
     expect(navController.push).toHaveBeenCalledWith(SettingImageFieldsPage);
   })));
+
+it('Should load SettingEntriesFieldsPage page', async(inject([SettingService, NavController], (settingService: SettingService, navController: NavController) => {
+    spyOn(navController, 'push').and.callThrough();
+    page.loadEntriesListFieldSettings();
+    expect(navController.push).toHaveBeenCalledWith(SettingEntriesFieldsPage);
+  })));
+
 });

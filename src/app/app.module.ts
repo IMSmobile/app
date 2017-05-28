@@ -1,3 +1,4 @@
+import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ModelService } from './../providers/model-service';
@@ -29,6 +30,7 @@ import { QueryBuilderService } from './../providers/query-builder-service';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AppProviders } from './app.providers';
 import { FieldValidatorService } from '../providers/field-validator-service';
+import { ImsFieldSelectionComponent } from '../components/ims-field-selection/ims-field-selection';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -44,7 +46,9 @@ const cloudSettings: CloudSettings = {
     MorePopoverPage,
     SettingsPage,
     EntriesPage,
-    SettingImageFieldsPage
+    SettingImageFieldsPage,
+    SettingEntriesFieldsPage,
+    ImsFieldSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,8 @@ const cloudSettings: CloudSettings = {
     MorePopoverPage,
     SettingsPage,
     EntriesPage,
-    SettingImageFieldsPage
+    SettingImageFieldsPage,
+    SettingEntriesFieldsPage
   ],
   providers: [
     TokenService,

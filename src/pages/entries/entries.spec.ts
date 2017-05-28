@@ -1,3 +1,7 @@
+import { Storage } from '@ionic/storage';
+import { StorageMock } from './../../mocks/mocks';
+import { SettingService } from './../../providers/setting-service';
+import { ModelService } from './../../providers/model-service';
 import { QueryBuilderService } from './../../providers/query-builder-service';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { EntriesPage } from './entries';
@@ -35,6 +39,7 @@ describe('Page: Entries', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
+        ModelService, SettingService,
         CameraService, LoadingService, AlertService, QueryBuilderService, Events,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
@@ -43,6 +48,8 @@ describe('Page: Entries', () => {
         { provide: NavParams, useClass: NavParamsMock },
         { provide: LoadingController, useClass: LoadingMock },
         { provide: PopoverController, useClass: PopoverControllerMock },
+        { provide: Storage, useClass: StorageMock },
+
         {
           provide: Http,
           useFactory: (imsBackendMock, options) => {
@@ -78,26 +85,57 @@ describe('Page: Entries', () => {
     expect(page.nextPage).toEqual(imsBackendMock.parentImageEntriesNextPageUrl);
   }));
 
-  it('Show and hide loading when successful', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
+  it('Set parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadParentImageReferenceField();
+    expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);
+  }));
+
+  it('Show and hide loading when successful when loading initial entries', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-    page.ionViewDidLoad();
+    page.loadInitialParentImageEntries();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading with alert on error', inject([ImsBackendMock, AuthService, LoadingService, EntriesService, AlertService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, entriesService: EntriesService, alertService: AlertService) => {
+  it('Show and hide loading indicator with alert on error when loading initial entries', inject([ImsBackendMock, AuthService, LoadingService, EntriesService, AlertService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, entriesService: EntriesService, alertService: AlertService) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     spyOn(alertService, 'showError').and.callThrough();
     spyOn(entriesService, 'getParentImageEntries').and.returnValue(error);
-    page.ionViewDidLoad();
+    page.loadInitialParentImageEntries();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
     expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Sets title field to identifier field', inject([ImsBackendMock, AuthService], (imsBackendMock: ImsBackendMock, authService: AuthService) => {
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadSelectedFieldsAndTitle();
+    expect(page.titleField).toEqual(imsBackendMock.parentImageModelFieldIdentifierName);
+  }));
+
+  it('Has fields when set in setting service', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadSelectedFieldsAndTitle();
+    expect(page.fields).toContain(imsBackendMock.parentImageModelFieldOptionalString);
+    expect(page.fields).toContain(imsBackendMock.parentImageModelFieldParentreference);
+  }));
+
+  it('Does not have any fields when nothing is set', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    page.loadSelectedFieldsAndTitle();
+    expect(page.fields.length).toBe(0);
   }));
 
   it('Disables infinite scroll when there is no next page', () => {
@@ -140,16 +178,17 @@ describe('Page: Entries', () => {
 
   it('Push to Upload Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
     let parentImageEntryId: string = '123';
+    let entryTitle: string = 'Test Entry';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
-    page.takePictureForEntry(parentImageEntryId);
+    page.takePictureForEntry(parentImageEntryId, entryTitle);
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId }
+      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
   }));
 
@@ -158,14 +197,14 @@ describe('Page: Entries', () => {
     spyOn(cameraService, 'takePicture').and.returnValue(error);
     spyOn(navController, 'push').and.callThrough();
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
-    page.takePictureForEntry('1');
+    page.takePictureForEntry('1', 'test');
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledTimes(0);
     expect(cameraService.showAlertOnError).toHaveBeenCalled();
   }));
 
   it('Go to Settings Page and dismiss popover on load Settings', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
-    page.ionViewWillEnter();
+    page.subscribeToEvents();
     page.popover = popoverController.create({});
     spyOn(nav, 'push').and.callThrough();
     spyOn(page.popover, 'dismiss').and.callThrough();
@@ -174,12 +213,10 @@ describe('Page: Entries', () => {
 
     expect(nav.push).toHaveBeenCalledWith(SettingsPage);
     expect(page.popover.dismiss).toHaveBeenCalled();
-
   }));
 
-
   it('Go to Login Page and dismiss popover on logout button', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
-    page.ionViewWillEnter();
+    page.subscribeToEvents();
     page.popover = popoverController.create({});
     spyOn(nav, 'setRoot').and.callThrough();
     spyOn(page.popover, 'dismiss').and.callThrough();
@@ -190,9 +227,8 @@ describe('Page: Entries', () => {
     expect(page.popover.dismiss).toHaveBeenCalled();
   }));
 
-
   it('Clear settings on logout button', inject([AuthService, PopoverController, Events], (authService: AuthService, popoverController: PopoverController, events: Events) => {
-    page.ionViewWillEnter();
+    page.subscribeToEvents();
     page.popover = popoverController.create({});
     spyOn(authService, 'logout').and.callThrough();
 
