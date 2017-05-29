@@ -142,7 +142,7 @@ describe('Page: Upload', () => {
     let testInfo: Info = { version: '9000' };
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-        authService.setArchive(imsBackendMock.policeFilter);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.ionViewDidLoad();
     expect(page.fields).not.toContain(imsBackendMock.modelFieldParentreference);
   }));
@@ -151,8 +151,8 @@ describe('Page: Upload', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-     authService.setArchive(imsBackendMock.policeFilter);
-   page.ionViewDidLoad();
+    authService.setArchive(imsBackendMock.policeFilter);
+    page.ionViewDidLoad();
     expect(page.fields).toContain(imsBackendMock.modelFieldOptionalString);
   }));
 
@@ -160,13 +160,14 @@ describe('Page: Upload', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-     authService.setArchive(imsBackendMock.policeFilter);
-   page.ionViewDidLoad();
+    authService.setArchive(imsBackendMock.policeFilter);
+    page.ionViewDidLoad();
     expect(page.fields).not.toContain(imsBackendMock.modelFieldOptionalString);
   }));
 
-  it('should upload non empty fields metadata fields', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
+  it('should upload non empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     let formData = {};
     formData[imsBackendMock.modelFieldOptionalString.name] = ['value'];
@@ -175,11 +176,12 @@ describe('Page: Upload', () => {
     let entry = new Entry();
     entry = entry.set('IDFall', 'default');
     entry = entry.set(imsBackendMock.modelFieldOptionalString.name, 'value');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, 40, entry, jasmine.any(Image));
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
   }));
 
-  it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
+  it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     let formData = {};
     formData[imsBackendMock.modelFieldOptionalString.name] = [''];
@@ -187,7 +189,7 @@ describe('Page: Upload', () => {
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set('IDFall', 'default');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, 40, entry, jasmine.any(Image));
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
   }));
 
   it('should call field validator service in case of an error', inject([FieldValidatorService], (fieldValidatorService: FieldValidatorService) => {

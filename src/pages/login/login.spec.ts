@@ -8,13 +8,13 @@ import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { SettingService } from '../../providers/setting-service';
-import { SettingServiceMock } from '../../mocks/providers/setting-service-mock';
 
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
 import { LoadingService } from '../../providers/loading-service';
 import { EntriesPage } from '../entries/entries';
 import { Storage } from '@ionic/storage';
 import { AlertService } from '../../providers/alert-service';
+import { Observable } from 'rxjs/Observable';
 
 describe('Page: Login', () => {
 
@@ -28,7 +28,7 @@ describe('Page: Login', () => {
       declarations: [LoginPage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,
         {
           provide: Http,
           useFactory: (ImsBackendMock, options) => {
@@ -44,7 +44,6 @@ describe('Page: Login', () => {
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
         { provide: Storage, useClass: StorageMock },
-        { provide: SettingService, useClass: SettingServiceMock }
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
     }).compileComponents().then(() => {
@@ -112,11 +111,16 @@ describe('Page: Login', () => {
     expect(nav.setRoot).toHaveBeenCalledWith(EntriesPage);
   }));
 
-  it('Fill login form from Setting Service', inject([SettingService], (settingServiceMock: SettingServiceMock) => {
-    settingServiceMock.setShowRestUrlField(false);
+  it('Fill login form from Setting Service', inject([SettingService], (settingService: SettingService) => {
+    let testShowRestUrlField = false;
+    let testRestUrl = 'testUrl';
+    let testUsername = 'testUser';
+    spyOn(settingService, 'isShowRestUrlField').and.returnValue(Observable.of(testShowRestUrlField));
+    spyOn(settingService, 'getRestUrl').and.returnValue(Observable.of(testRestUrl));
+    spyOn(settingService, 'getUsername').and.returnValue(Observable.of(testUsername));
     page.ionViewDidLoad();
-    expect(page.isShowRestUrlField).toEqual(settingServiceMock.showRestUrlField);
-    expect(page.loginForm.controls['server'].value).toEqual(settingServiceMock.restUrl);
-    expect(page.loginForm.controls['user'].value).toEqual(settingServiceMock.username);
+    expect(page.isShowRestUrlField).toEqual(testShowRestUrlField);
+    expect(page.loginForm.controls['server'].value).toEqual(testRestUrl);
+    expect(page.loginForm.controls['user'].value).toEqual(testUsername);
   }));
 });
