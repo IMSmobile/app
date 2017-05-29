@@ -23,10 +23,8 @@ import 'rxjs/add/observable/concat';
 export class UploadPage {
   imageSrc: string;
   parentImageEntryId: string;
-  filterId: number = 40;
   fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
-  archiveName: string = 'workflow_db1';
   uploadSegment: string = 'metadata';
   entryTitle: string;
 
@@ -37,9 +35,9 @@ export class UploadPage {
   }
 
   ionViewDidLoad() {
-    let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName).flatMap(tableFields => {
+    let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       let mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
-      let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.archiveName, tableFields);
+      let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
     });
     this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
@@ -82,7 +80,7 @@ export class UploadPage {
         }
       });
       let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
-      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image),
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, image),
         res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
         err => this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.')
       );

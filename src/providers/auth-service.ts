@@ -10,6 +10,8 @@ import { Info } from '../models/info';
 export class AuthService {
 
   currentCredential: Credential;
+  archive: string = 'workflow_db1';
+  filterId: number=  40;
 
   constructor(public http: Http, public imsService: ImsService) {
   }
