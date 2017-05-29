@@ -1,3 +1,4 @@
+import { Filter } from './../models/filter';
 import { MetadataTableFields } from './../models/metadata-table-fields';
 import { MetadataField } from './../models/metadata-field';
 import { Injectable } from '@angular/core';
@@ -15,6 +16,7 @@ export class SettingService {
 
   restUrlKey: string = 'server';
   usernameKey: string = 'user';
+  filterKey: string = 'filter';
   isShowRestUrlFieldKey: string = 'isShowRestUrlField';
   isShowRestUrlFieldDefault: boolean = true;
   fieldPathSeparator = '.';
@@ -28,6 +30,10 @@ export class SettingService {
 
   setUsername(username: string) {
     this.storeSetting(this.usernameKey, username);
+  }
+
+  setFilter(filter: Filter) {
+    this.storeSetting(this.filterKey, filter);
   }
 
   getActiveFields(archiveName: string, tableFields: MetadataTableFields): Observable<MetadataField[]> {
@@ -63,6 +69,10 @@ export class SettingService {
 
   getUsername(): Observable<string> {
     return this.readKey(this.usernameKey);
+  }
+
+  getFilter(): Observable<Filter> {
+    return this.readKey(this.filterKey);
   }
 
   isShowRestUrlField(): Observable<boolean> {

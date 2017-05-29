@@ -1,3 +1,4 @@
+import { SettingService } from './setting-service';
 import { Filter } from './../models/filter';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
@@ -11,10 +12,11 @@ import { Info } from '../models/info';
 export class AuthService {
 
   currentCredential: Credential;
-  archive: string = 'workflow_db1';
-  filterId: number = 40;
+  archive: string;
+  filterId: number;
 
-  constructor(public http: Http, public imsService: ImsService) {
+  constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) {
+    this.settingService.getFilter().subscribe(filter => { if (filter) { this.archive = filter.archiveName; this.filterId = Number(filter.id); }});
   }
 
   login(credentials): Observable<Info> {
@@ -31,6 +33,7 @@ export class AuthService {
   }
 
   setArchive(filter: Filter) {
+    this.settingService.setFilter(filter);
     this.archive = filter.archiveName;
     this.filterId = Number(filter.id);
   }

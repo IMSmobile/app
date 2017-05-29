@@ -1,3 +1,4 @@
+import { SettingService } from './../../providers/setting-service';
 import { EntriesPage } from './../entries/entries';
 import { ImsService } from './../../providers/ims-service';
 import { SettingArchivePage } from './setting-archive';
@@ -6,7 +7,7 @@ import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing'
 import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, GestureController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
-import { ConfigMock, PlatformMock, NavParamsMock, AppMock, AlertMock, LoadingMock } from '../../mocks/mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { UploadService } from '../../providers/upload-service';
@@ -29,13 +30,14 @@ describe('Page: Archive Settings', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
-        UploadService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, GestureController,
+        UploadService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, GestureController, SettingService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
         { provide: Platform, useClass: PlatformMock },
         { provide: NavParams, useClass: NavParamsMock },
         { provide: LoadingController, useClass: LoadingMock },
+        { provide: Storage, useClass: StorageMock },
         {
           provide: Http,
           useFactory: (ImsBackendMock, options) => {
@@ -76,15 +78,6 @@ describe('Page: Archive Settings', () => {
   }));
 
   it('Show Error after failed upload', inject([AlertService, ImsService], (alertService: AlertService, imsService: ImsService) => {
-    let error = Observable.throw(new Error('oops'));
-    spyOn(alertService, 'showError').and.callThrough();
-    spyOn(imsService, 'getEntriesTable').and.returnValue(error);
-    page.ionViewDidLoad();
-    expect(alertService.showError).toHaveBeenCalled();
-  }));
-
-
-  it('Should load EntriesPage after archive selection', inject([AlertService, ImsService], (alertService: AlertService, imsService: ImsService) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(alertService, 'showError').and.callThrough();
     spyOn(imsService, 'getEntriesTable').and.returnValue(error);

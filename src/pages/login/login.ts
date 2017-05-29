@@ -1,3 +1,4 @@
+import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
@@ -48,7 +49,11 @@ export class LoginPage {
   loginSuccessful() {
     this.settingService.setRestUrl(this.loginForm.controls['server'].value);
     this.settingService.setUsername(this.loginForm.controls['user'].value);
-    this.navCtrl.setRoot(EntriesPage);
+    if (this.authService.filterId) {
+      this.navCtrl.setRoot(EntriesPage);
+    } else {
+      this.navCtrl.setRoot(SettingArchivePage);
+    }
   }
 
   loginFailed(response: Response) {

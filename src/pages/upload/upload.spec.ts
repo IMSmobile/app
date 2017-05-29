@@ -117,6 +117,7 @@ describe('Page: Upload', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.ionViewDidLoad();
     expect(page.fields.length).toBeGreaterThan(0);
     expect(loadingService.showLoading).toHaveBeenCalled();
@@ -141,6 +142,7 @@ describe('Page: Upload', () => {
     let testInfo: Info = { version: '9000' };
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+        authService.setArchive(imsBackendMock.policeFilter);
     page.ionViewDidLoad();
     expect(page.fields).not.toContain(imsBackendMock.modelFieldParentreference);
   }));
@@ -149,7 +151,8 @@ describe('Page: Upload', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-    page.ionViewDidLoad();
+     authService.setArchive(imsBackendMock.policeFilter);
+   page.ionViewDidLoad();
     expect(page.fields).toContain(imsBackendMock.modelFieldOptionalString);
   }));
 
@@ -157,7 +160,8 @@ describe('Page: Upload', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
-    page.ionViewDidLoad();
+     authService.setArchive(imsBackendMock.policeFilter);
+   page.ionViewDidLoad();
     expect(page.fields).not.toContain(imsBackendMock.modelFieldOptionalString);
   }));
 

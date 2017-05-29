@@ -1,3 +1,4 @@
+import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { LoginPage } from './login';
 import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController } from 'ionic-angular';
@@ -88,8 +89,20 @@ describe('Page: Login', () => {
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
-  it('Load EntriesPage after successfull login', inject([NavController, ImsBackendMock], (nav: NavController, imsBackendMock: ImsBackendMock) => {
+  it('Load SettingArchivePage after successfull login without stored filter', inject([NavController, ImsBackendMock], (nav: NavController, imsBackendMock: ImsBackendMock) => {
     spyOn(nav, 'setRoot').and.callThrough();
+    let credential = imsBackendMock.credential;
+    page.loginForm.controls['server'].setValue(credential.server);
+    page.loginForm.controls['user'].setValue(credential.username);
+    page.loginForm.controls['password'].setValue(credential.password);
+    expect(page.loginForm.valid).toBeTruthy();
+    page.login();
+    expect(nav.setRoot).toHaveBeenCalledWith(SettingArchivePage);
+  }));
+
+  it('Load EntriesPage after successfull login with a stored filter', inject([NavController, ImsBackendMock, AuthService], (nav: NavController, imsBackendMock: ImsBackendMock, authService: AuthService) => {
+    spyOn(nav, 'setRoot').and.callThrough();
+    authService.setArchive(imsBackendMock.policeFilter);
     let credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);

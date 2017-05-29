@@ -79,6 +79,7 @@ describe('Page: Entries', () => {
   it('Load entries when ion view did load', inject([EntriesService, ImsBackendMock, AuthService], (entriesService: EntriesService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.sort = imsBackendMock.query;
     page.ionViewDidLoad();
     expect(page.entries).toEqual(imsBackendMock.parentImageEntries.entries);
@@ -88,6 +89,7 @@ describe('Page: Entries', () => {
   it('Set parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.loadParentImageReferenceField();
     expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);
   }));
@@ -97,6 +99,7 @@ describe('Page: Entries', () => {
     spyOn(loadingService, 'hideLoading').and.callThrough();
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.loadInitialParentImageEntries();
     expect(loadingService.showLoading).toHaveBeenCalled();
     expect(loadingService.hideLoading).toHaveBeenCalled();
@@ -117,6 +120,7 @@ describe('Page: Entries', () => {
   it('Sets title field to identifier field', inject([ImsBackendMock, AuthService], (imsBackendMock: ImsBackendMock, authService: AuthService) => {
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.loadSelectedFieldsAndTitle();
     expect(page.titleField).toEqual(imsBackendMock.parentImageModelFieldIdentifierName);
   }));
@@ -125,6 +129,7 @@ describe('Page: Entries', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.loadSelectedFieldsAndTitle();
     expect(page.fields).toContain(imsBackendMock.parentImageModelFieldOptionalString);
     expect(page.fields).toContain(imsBackendMock.parentImageModelFieldParentreference);
@@ -134,6 +139,7 @@ describe('Page: Entries', () => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
     page.loadSelectedFieldsAndTitle();
     expect(page.fields.length).toBe(0);
   }));
