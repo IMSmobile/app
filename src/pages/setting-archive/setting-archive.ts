@@ -26,4 +26,8 @@ export class SettingArchivePage {
     this.loadingService.subscribeWithLoading(filtersObservable, filters => this.filters = filters, err => this.alertService.showError('Beim Laden der Filter ist ein Fehler aufgetreten'));
   }
 
+  selectFilter(filter: Filter) {
+    console.log('Filter', filter);
+  }
+
 }

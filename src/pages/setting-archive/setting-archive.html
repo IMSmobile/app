@@ -7,5 +7,9 @@
 
 
 <ion-content padding>
-
+  <ion-list>
+    <div *ngFor="let filter of filters">
+      <button ion-item (click)="selectFilter(filter)">{{filter.archiveName}} ({{filter.id}})</button>
+    </div>
+  </ion-list>
 </ion-content>
