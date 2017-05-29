@@ -1,3 +1,4 @@
+import { EntriesPage } from './../entries/entries';
 import { ImsService } from './../../providers/ims-service';
 import { SettingArchivePage } from './setting-archive';
 import { Info } from './../../models/info';
@@ -6,7 +7,7 @@ import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingControl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { ConfigMock, PlatformMock, NavParamsMock, AppMock, AlertMock, LoadingMock } from '../../mocks/mocks';
-import { Http, HttpModule, BaseRequestOptions} from '@angular/http';
+import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { UploadService } from '../../providers/upload-service';
 import { LoadingService } from '../../providers/loading-service';
@@ -82,5 +83,25 @@ describe('Page: Archive Settings', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
+
+  it('Should load EntriesPage after archive selection', inject([AlertService, ImsService], (alertService: AlertService, imsService: ImsService) => {
+    let error = Observable.throw(new Error('oops'));
+    spyOn(alertService, 'showError').and.callThrough();
+    spyOn(imsService, 'getEntriesTable').and.returnValue(error);
+    page.ionViewDidLoad();
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+  it('Should load EntriesPage after archive selection', inject([NavController, ImsBackendMock], (nav: NavController, imsBackendMock: ImsBackendMock) => {
+    spyOn(nav, 'setRoot').and.callThrough();
+    page.selectFilter(imsBackendMock.policeFilter);
+    expect(nav.setRoot).toHaveBeenCalledWith(EntriesPage);
+  }));
+
+  it('Should select the archive EntriesPage after archive selection', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    spyOn(authService, 'setArchive').and.callThrough();
+    page.selectFilter(imsBackendMock.policeFilter);
+    expect(authService.setArchive).toHaveBeenCalledWith(imsBackendMock.policeFilter);
+  }));
 
 });

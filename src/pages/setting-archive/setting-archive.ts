@@ -1,3 +1,4 @@
+import { EntriesPage } from './../entries/entries';
 import { AlertService } from './../../providers/alert-service';
 import { Filter } from './../../models/filter';
 import { Observable } from 'rxjs/Observable';
@@ -27,7 +28,8 @@ export class SettingArchivePage {
   }
 
   selectFilter(filter: Filter) {
-    console.log('Filter', filter);
+    this.authService.setArchive(filter);
+    this.navCtrl.setRoot(EntriesPage);
   }
 
 }

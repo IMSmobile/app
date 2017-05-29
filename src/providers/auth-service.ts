@@ -1,3 +1,4 @@
+import { Filter } from './../models/filter';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -11,7 +12,7 @@ export class AuthService {
 
   currentCredential: Credential;
   archive: string = 'workflow_db1';
-  filterId: number=  40;
+  filterId: number = 40;
 
   constructor(public http: Http, public imsService: ImsService) {
   }
@@ -27,5 +28,10 @@ export class AuthService {
   setCurrentCredential(info: Info, credentials: Credential): Info {
     this.currentCredential = credentials;
     return info;
+  }
+
+  setArchive(filter: Filter) {
+    this.archive = filter.archiveName;
+    this.filterId = Number(filter.id);
   }
 }
