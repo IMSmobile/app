@@ -7,10 +7,18 @@ export class SettingArchivePageObject {
   loginPage = new LoginPageOjbect();
   loadArchiveButtonworkflow_db1_42: ElementFinder = element(by.id('loadArchiveButtonworkflow_db1_42'));
   loadArchiveButtonims_med_test_43: ElementFinder = element(by.id('loadArchiveButtonims_med_test_43'));
+  archiveSelectionLogoutButton: ElementFinder = element(by.id('archiveSelectionLogoutButton'));
 
 
   loadPage() {
     this.loginPage.login();
+    this.waitUntilElementsAreClickable();
+  }
+
+  logoutWhenNoArchive() {
+    this.waitUntilElementsAreClickable();
+    expect(ExpectedConditions.visibilityOf(this.archiveSelectionLogoutButton));
+    this.archiveSelectionLogoutButton.click();
     this.waitUntilElementsAreClickable();
   }
 
