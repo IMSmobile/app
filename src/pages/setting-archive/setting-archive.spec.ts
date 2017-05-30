@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { SettingService } from './../../providers/setting-service';
 import { EntriesPage } from './../entries/entries';
 import { ImsService } from './../../providers/ims-service';

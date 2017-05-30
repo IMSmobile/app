@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { StorageMock } from './../mocks/mocks';
 import { SettingService } from './setting-service';
 import { TestBed, inject, async } from '@angular/core/testing';
