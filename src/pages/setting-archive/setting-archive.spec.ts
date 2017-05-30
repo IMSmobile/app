@@ -1,3 +1,4 @@
+import { EntriesPoint } from './../../models/entries-point';
 import { Storage } from '@ionic/storage';
 import { SettingService } from './../../providers/setting-service';
 import { EntriesPage } from './../entries/entries';
@@ -68,8 +69,8 @@ describe('Page: Archive Settings', () => {
     expect(page.filters).not.toContain(imsBackendMock.notAppFilter);
   }));
 
-  it('Should have valid filters defined', inject([AuthService, ImsBackendMock, ImsService], (authService: AuthService, imsBackendMock: ImsBackendMock, imsSerivce: ImsService) => {
-    spyOn(imsSerivce, 'getEntriesTable').and.returnValue(Observable.of([]));
+  it('Should detect when no valid filters', inject([AuthService, ImsBackendMock, ImsService], (authService: AuthService, imsBackendMock: ImsBackendMock, imsSerivce: ImsService) => {
+    spyOn(imsSerivce, 'getEntriesTable').and.returnValue(Observable.of(new EntriesPoint([])));
     page.ionViewDidLoad();
     expect(page.noValidFilters).toBeTruthy();
   }));
