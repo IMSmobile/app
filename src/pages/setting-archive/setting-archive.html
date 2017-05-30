@@ -12,5 +12,8 @@
       <button ion-item (click)="selectFilter(filter)">{{filter.archiveName}} ({{filter.id}})</button>
     </div>
   </ion-list>
-  <p *ngIf="!hasValidFilters">Damit der Client funktioniert muss mindestens ein Filter mit dem Namen <strong>{{filterName}}</strong> existieren.</p>
+  <div *ngIf="noValidFilters">
+    <p>Damit der Client funktioniert muss mindestens ein Filter mit dem Namen <strong>{{filterName}}</strong> existieren.</p>
+    <button ion-button (click)="logout()">Abmelden</button>
+  </div>
 </ion-content>

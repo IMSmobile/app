@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { EntriesPage } from './../entries/entries';
 import { AlertService } from './../../providers/alert-service';
 import { Filter } from './../../models/filter';
@@ -36,6 +37,11 @@ export class SettingArchivePage {
   selectFilter(filter: Filter) {
     this.authService.setArchive(filter);
     this.navCtrl.setRoot(EntriesPage);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

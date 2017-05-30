@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { EntriesPoint } from './../../models/entries-point';
 import { Storage } from '@ionic/storage';
 import { SettingService } from './../../providers/setting-service';
@@ -104,6 +105,14 @@ describe('Page: Archive Settings', () => {
     spyOn(authService, 'setArchive').and.callThrough();
     page.selectFilter(imsBackendMock.policeFilter);
     expect(authService.setArchive).toHaveBeenCalledWith(imsBackendMock.policeFilter);
+  }));
+
+  it('Clear settings on logout button', inject([AuthService, NavController], (authService: AuthService, navController: NavController) => {
+    spyOn(authService, 'logout').and.callThrough();
+    spyOn(navController, 'setRoot').and.callThrough();
+    page.logout();
+    expect(authService.logout).toHaveBeenCalled();
+    expect(navController.setRoot).toHaveBeenCalledWith(LoginPage);
   }));
 
 });
