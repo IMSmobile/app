@@ -17,6 +17,7 @@ export class SettingArchivePage {
 
   filters: Filter[] = [];
   filterName: string = 'IMS_Mobile_Client';
+  noValidFilters: boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public imsService: ImsService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService) {
@@ -24,7 +25,12 @@ export class SettingArchivePage {
 
   ionViewDidLoad() {
     let filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable(this.authService.currentCredential).map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));
-    this.loadingService.subscribeWithLoading(filtersObservable, filters => this.filters = filters, err => this.alertService.showError('Beim Laden der Filter ist ein Fehler aufgetreten'));
+    this.loadingService.subscribeWithLoading(filtersObservable, filters => this.initFilter(filters), err => this.alertService.showError('Beim Laden der Filter ist ein Fehler aufgetreten'));
+  }
+
+  initFilter(filters: Filter[]) {
+    this.filters = filters;
+    this.noValidFilters = filters.length === 0;
   }
 
   selectFilter(filter: Filter) {

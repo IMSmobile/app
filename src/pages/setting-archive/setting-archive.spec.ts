@@ -68,6 +68,13 @@ describe('Page: Archive Settings', () => {
     expect(page.filters).not.toContain(imsBackendMock.notAppFilter);
   }));
 
+  it('Should have valid filters defined', inject([AuthService, ImsBackendMock, ImsService], (authService: AuthService, imsBackendMock: ImsBackendMock, imsSerivce: ImsService) => {
+    spyOn(imsSerivce, 'getEntriesTable').and.returnValue(Observable.of([]));
+    page.ionViewDidLoad();
+    expect(page.noValidFilters).toBeTruthy();
+  }));
+
+
   it('Show and Hide Loading while loading', inject([LoadingService, AuthService, ImsBackendMock], (loadingService: LoadingService, authService: AuthService, imsBackendMock: ImsBackendMock) => {
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
