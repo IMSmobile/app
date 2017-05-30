@@ -153,7 +153,6 @@ describe('Page: Login', () => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
     spyOn(page, 'navigateAfterLogin').and.returnValue(null);
     let credential = imsBackendMock.credential;
-    let testInfo: Info = { version: '9000' };
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
@@ -167,7 +166,6 @@ describe('Page: Login', () => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.throw('oops'));
     spyOn(alertService, 'showError').and.callThrough();
     let credential = imsBackendMock.credential;
-    let testInfo: Info = { version: '9000' };
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
