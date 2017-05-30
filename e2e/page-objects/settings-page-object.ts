@@ -14,6 +14,10 @@ export class SettingsPageOjbect {
         this.entriesPage.pushToSettingsPage();
     }
 
+    reloadPage() {
+        this.entriesPage.reloadPage();
+        this.entriesPage.pushToSettingsPage();
+    }
     pushToSettingImageFieldsPage() {
         this.settingsImageFieldSettingButton.click();
         this.waitUntilElementsAreClickable();

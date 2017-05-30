@@ -44,7 +44,7 @@ describe('Entries E2E Test', () => {
   it('Should show only the one selected field', () => {
     settingEntriesFieldsPage.loadPage();
     settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle.click();
-    entriesPage.loadPage();
+    entriesPage.reloadPage();
     entriesPage.verifyFirstFieldStartsWith('MEMOFELD');
     entriesPage.verifyOnlyFirstFieldVisible();
   });
@@ -53,7 +53,7 @@ describe('Entries E2E Test', () => {
     settingEntriesFieldsPage.loadPage();
     settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle.click();
     settingEntriesFieldsPage.settingsEntriesFieldTEXTFELDToggle.click();
-    entriesPage.loadPage();
+    entriesPage.reloadPage();
     entriesPage.verifyFirstFieldStartsWith('MEMOFELD');
     entriesPage.verifySecondFieldStartsWith('TEXTFELD');
     entriesPage.verifyOnlyFirstTwoFieldsVisible();
