@@ -9,6 +9,7 @@ export class EntriesPageObject {
   moreButton: ElementFinder = element(by.id('barButtonMore'));
   settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
   entriesItem: ElementFinder = element(by.id('entriesItem34617'));
+  medicineEntriesItem: ElementFinder = element(by.id('entriesItem75'));
   entriesTitle: ElementFinder = this.entriesItem.element(by.tagName('h1'));
   entriesFields: ElementArrayFinder = this.entriesItem.all(by.css('.entries-fields'));
   entriesFirstMetaDataField: ElementFinder = this.entriesFields.get(0);

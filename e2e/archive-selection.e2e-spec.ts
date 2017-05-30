@@ -38,8 +38,17 @@ describe('Archive Selection E2E Test', () => {
     loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));
   });
 
+  it('Should select archive from selection, which should be stored as standard', () => {
+    loginPage.login();
+    waitUntilBrowserReady();
+    settingsArchivePage.selectMedicineArchiveWithFilter43();
+    loginPage.login();
+    waitUntilBrowserReady();
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+  });
+
 });
 
-function waitUntilStorageReady() {
+function waitUntilBrowserReady() {
   browser.sleep(1000);
 }
