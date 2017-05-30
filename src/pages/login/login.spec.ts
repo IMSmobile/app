@@ -1,3 +1,4 @@
+import { Info } from './../../models/info';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { LoginPage } from './login';
@@ -88,26 +89,29 @@ describe('Page: Login', () => {
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
-  it('Load SettingArchivePage after successfull login without stored filter', inject([NavController, ImsBackendMock], (nav: NavController, imsBackendMock: ImsBackendMock) => {
+  it('Load SettingArchivePage after successfull login without stored filter', inject([NavController, ImsBackendMock, SettingService], (nav: NavController, imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(nav, 'setRoot').and.callThrough();
+    spyOn(settingService, 'getFilter').and.returnValue(Observable.of(null));
     let credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
     expect(page.loginForm.valid).toBeTruthy();
-    page.login();
+    page.loginSuccessful();
     expect(nav.setRoot).toHaveBeenCalledWith(SettingArchivePage);
   }));
 
-  it('Load EntriesPage after successfull login with a stored filter', inject([NavController, ImsBackendMock, AuthService], (nav: NavController, imsBackendMock: ImsBackendMock, authService: AuthService) => {
+  it('Load EntriesPage after successfull login with a stored filter', inject([NavController, ImsBackendMock, AuthService, SettingService], (nav: NavController, imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     spyOn(nav, 'setRoot').and.callThrough();
-    authService.setArchive(imsBackendMock.policeFilter);
+    spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
     let credential = imsBackendMock.credential;
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, credential);
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
     expect(page.loginForm.valid).toBeTruthy();
-    page.login();
+    page.loginSuccessful();
     expect(nav.setRoot).toHaveBeenCalledWith(EntriesPage);
   }));
 
@@ -123,4 +127,53 @@ describe('Page: Login', () => {
     expect(page.loginForm.controls['server'].value).toEqual(testRestUrl);
     expect(page.loginForm.controls['user'].value).toEqual(testUsername);
   }));
+
+  it('Sets archive in auth settings', inject([ImsBackendMock, AuthService], (imsBackendMock: ImsBackendMock, authService: AuthService) => {
+    spyOn(authService, 'setArchive').and.returnValue(null);
+    page.navigateAfterLogin(imsBackendMock.policeFilter);
+    expect(authService.setArchive).toHaveBeenCalledWith(imsBackendMock.policeFilter);
+  }));
+
+  it('Stores user and url', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
+    spyOn(settingService, 'setRestUrl').and.callThrough();
+    spyOn(settingService, 'setUsername').and.callThrough();
+    let credential = imsBackendMock.credential;
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, credential);
+    page.loginForm.controls['server'].setValue(credential.server);
+    page.loginForm.controls['user'].setValue(credential.username);
+    page.loginForm.controls['password'].setValue(credential.password);
+    expect(page.loginForm.valid).toBeTruthy();
+    page.loginSuccessful();
+    expect(settingService.setRestUrl).toHaveBeenCalledWith(credential.server);
+    expect(settingService.setUsername).toHaveBeenCalledWith(credential.username);
+  }));
+
+  it('Loads filter from settings and continues if successfull', inject([ImsBackendMock, SettingService], (imsBackendMock: ImsBackendMock, settingService: SettingService) => {
+    spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
+    spyOn(page, 'navigateAfterLogin').and.returnValue(null);
+    let credential = imsBackendMock.credential;
+    let testInfo: Info = { version: '9000' };
+    page.loginForm.controls['server'].setValue(credential.server);
+    page.loginForm.controls['user'].setValue(credential.username);
+    page.loginForm.controls['password'].setValue(credential.password);
+    expect(page.loginForm.valid).toBeTruthy();
+    page.loginSuccessful();
+    expect(settingService.getFilter).toHaveBeenCalledWith(credential.server, credential.username);
+    expect(page.navigateAfterLogin).toHaveBeenCalledTimes(1);
+  }));
+
+  it('Shows error when failing to load filter', inject([ImsBackendMock, SettingService, AlertService], (imsBackendMock: ImsBackendMock, settingService: SettingService, alertService: AlertService) => {
+    spyOn(settingService, 'getFilter').and.returnValue(Observable.throw('oops'));
+    spyOn(alertService, 'showError').and.callThrough();
+    let credential = imsBackendMock.credential;
+    let testInfo: Info = { version: '9000' };
+    page.loginForm.controls['server'].setValue(credential.server);
+    page.loginForm.controls['user'].setValue(credential.username);
+    page.loginForm.controls['password'].setValue(credential.password);
+    expect(page.loginForm.valid).toBeTruthy();
+    page.loginSuccessful();
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
 });

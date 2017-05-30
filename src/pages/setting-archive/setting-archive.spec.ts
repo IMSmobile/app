@@ -1,3 +1,4 @@
+import { Credential } from './../../models/credential';
 import { LoginPage } from './../login/login';
 import { EntriesPoint } from './../../models/entries-point';
 import { Storage } from '@ionic/storage';
@@ -95,14 +96,18 @@ describe('Page: Archive Settings', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
-  it('Should load EntriesPage after archive selection', inject([NavController, ImsBackendMock], (nav: NavController, imsBackendMock: ImsBackendMock) => {
+  it('Should load EntriesPage after archive selection', inject([NavController, ImsBackendMock, AuthService], (nav: NavController, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(nav, 'setRoot').and.callThrough();
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     page.selectFilter(imsBackendMock.policeFilter);
     expect(nav.setRoot).toHaveBeenCalledWith(EntriesPage);
   }));
 
   it('Should select the archive EntriesPage after archive selection', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
     spyOn(authService, 'setArchive').and.callThrough();
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     page.selectFilter(imsBackendMock.policeFilter);
     expect(authService.setArchive).toHaveBeenCalledWith(imsBackendMock.policeFilter);
   }));

@@ -16,7 +16,7 @@ export class SettingService {
 
   restUrlKey: string = 'server';
   usernameKey: string = 'user';
-  filterKey: string = 'filter';
+  filterKeyPrefix: string = 'filter';
   isShowRestUrlFieldKey: string = 'isShowRestUrlField';
   isShowRestUrlFieldDefault: boolean = true;
   fieldPathSeparator = '.';
@@ -32,8 +32,12 @@ export class SettingService {
     this.storeSetting(this.usernameKey, username);
   }
 
-  setFilter(filter: Filter) {
-    this.storeSetting(this.filterKey, filter);
+  setFilter(server: string, user: string, filter: Filter) {
+    this.storeSetting(this.getFilterKey(server, user), filter);
+  }
+
+  getFilterKey(server: string, user: string): string {
+    return [this.filterKeyPrefix, server, user].join(this.fieldPathSeparator);
   }
 
   getActiveFields(archiveName: string, tableFields: MetadataTableFields): Observable<MetadataField[]> {
@@ -71,8 +75,8 @@ export class SettingService {
     return this.readKey(this.usernameKey);
   }
 
-  getFilter(): Observable<Filter> {
-    return this.readKey(this.filterKey);
+  getFilter(server: string, user: string): Observable<Filter> {
+    return this.readKey(this.getFilterKey(server, user));
   }
 
   isShowRestUrlField(): Observable<boolean> {

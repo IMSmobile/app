@@ -1,3 +1,4 @@
+import { Filter } from './../../models/filter';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -47,9 +48,15 @@ export class LoginPage {
   }
 
   loginSuccessful() {
-    this.settingService.setRestUrl(this.loginForm.controls['server'].value);
-    this.settingService.setUsername(this.loginForm.controls['user'].value);
-    if (this.authService.filterId) {
+    let credential: Credential = this.createCredential();
+    this.settingService.setRestUrl(credential.server);
+    this.settingService.setUsername(credential.username);
+    this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => this.alertService.showError('Fehler beim Laden der Archive Einstellungen'));
+  }
+
+  navigateAfterLogin(filter: Filter) {
+    if (filter) {
+      this.authService.setArchive(filter);
       this.navCtrl.setRoot(EntriesPage);
     } else {
       this.navCtrl.setRoot(SettingArchivePage);

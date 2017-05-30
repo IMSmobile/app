@@ -16,7 +16,6 @@ export class AuthService {
   filterId: number;
 
   constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) {
-    this.settingService.getFilter().subscribe(filter => { if (filter) { this.archive = filter.archiveName; this.filterId = Number(filter.id); }});
   }
 
   login(credentials): Observable<Info> {
@@ -33,7 +32,7 @@ export class AuthService {
   }
 
   setArchive(filter: Filter) {
-    this.settingService.setFilter(filter);
+    this.settingService.setFilter(this.currentCredential.server, this.currentCredential.username, filter);
     this.archive = filter.archiveName;
     this.filterId = Number(filter.id);
   }

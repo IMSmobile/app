@@ -1,3 +1,4 @@
+import { Credential } from './../../models/credential';
 import { DoubleValidator } from './../../validators/double-validator';
 import { FieldValidatorService } from './../../providers/field-validator-service';
 import { Entry } from './../../models/entry';
@@ -167,6 +168,9 @@ describe('Page: Upload', () => {
 
   it('should upload non empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    let testInfo: Info = { version: '9000' };
+    let testCredentials: Credential = new Credential('https://test', 'testuser', 'testpass', 'testsegment');
+    authService.setCurrentCredential(testInfo, testCredentials);
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     let formData = {};
@@ -176,11 +180,14 @@ describe('Page: Upload', () => {
     let entry = new Entry();
     entry = entry.set('IDFall', 'default');
     entry = entry.set(imsBackendMock.modelFieldOptionalString.name, 'value');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
   }));
 
   it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    let testInfo: Info = { version: '9000' };
+    let testCredentials: Credential = new Credential('https://test', 'testuser', 'testpass', 'testsegment');
+    authService.setCurrentCredential(testInfo, testCredentials);
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     let formData = {};
@@ -189,7 +196,7 @@ describe('Page: Upload', () => {
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set('IDFall', 'default');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(undefined, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
   }));
 
   it('should call field validator service in case of an error', inject([FieldValidatorService], (fieldValidatorService: FieldValidatorService) => {

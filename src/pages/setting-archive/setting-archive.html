@@ -14,6 +14,6 @@
   </ion-list>
   <div *ngIf="noValidFilters">
     <p>Damit der Client funktioniert muss mindestens ein Filter mit dem Namen <strong>{{filterName}}</strong> existieren.</p>
-    <button ion-button (click)="logout()" id="archiveSelectionLogoutButton">Abmelden</button>
+    <button ion-button full (click)="logout()" id="archiveSelectionLogoutButton">Abmelden</button>
   </div>
 </ion-content>
