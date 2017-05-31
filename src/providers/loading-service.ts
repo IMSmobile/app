@@ -15,14 +15,16 @@ export class LoadingService {
     this.showLoading();
     observable.subscribe(
       succ => {
-        this.hideLoading();
         next(succ);
       },
       err => {
         this.hideLoading();
         error(err);
+      }, () => {
+        this.hideLoading();
       });
   }
+
 
   showLoading() {
     if (this.concurrentLoadings === 0) {
