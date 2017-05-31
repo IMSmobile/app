@@ -9,11 +9,11 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item *ngIf="isShowRestUrlField === true">
       <ion-icon name="cloud" item-start></ion-icon>
-      <ion-input placeholder="IMS Rest Url" formControlName="server"></ion-input>
+      <ion-input type="url" placeholder="IMS Rest Url" formControlName="server"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="person" item-start></ion-icon>
-      <ion-input placeholder="IMS Benutzername" formControlName="user" [class.invalid]="submitAttempt"></ion-input>
+      <ion-input placeholder="IMS Benutzername" formControlName="user" [class.invalid]="submitAttempt" autocapitalize="none"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="lock" item-start></ion-icon>
