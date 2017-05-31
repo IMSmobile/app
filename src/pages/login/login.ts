@@ -29,7 +29,6 @@ export class LoginPage {
   }
 
   login() {
-    this.loginForm.markAsTouched();
     if (this.loginForm.invalid) {
       this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
