@@ -40,6 +40,8 @@ describe('Upload E2E Test', () => {
     uploadPage.loadPage();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('loading-wrapper'))), 10 * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(element(by.className('loading-wrapper'))), 10 * 1000);
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
   });
 
