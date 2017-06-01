@@ -60,7 +60,7 @@ describe('Archive Selection E2E Test', () => {
 
   it('Should keep archiv specfic fields settings when reselecting archive', () => {
     settingImageFieldsPage.loadPage();
-    settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     entriesPage.reloadPage();
     entriesPage.pushToSettingsPage();

@@ -36,11 +36,6 @@ export class SettingImageFieldsPageOjbect {
         this.settingsImageFieldDisplayedFields.count().then(actualCount => expect(actualCount).toBe(count));
     }
 
-    toggleFieldSettings(toggleField: ElementFinder) {
-        Helpers.waitUntilElementIsReady(toggleField);
-        toggleField.click();
-        Helpers.waitUntilStorageReady();
-    }
     verifyToggleActive(toggleField: ElementFinder) {
         Helpers.waitUntilElementIsReady(toggleField);
         toggleField.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
