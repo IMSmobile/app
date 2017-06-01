@@ -93,6 +93,6 @@ export class EntriesPageObject {
   }
 
   waitEntriesPageLoaded() {
-    browser.sleep(5000);
+    browser.sleep(10000);
   }
 }
