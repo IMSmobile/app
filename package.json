@@ -11,7 +11,7 @@
     "lint": "ionic-app-scripts lint --bailOnLintError true",
     "test": "karma start ./test-config/karma.conf.js",
     "test-coverage": "karma start ./test-config/karma.conf.js --coverage",
-    "e2e": "node node_modules/protractor/bin/webdriver-manager update && node  node_modules/protractor/bin/protractor"
+    "e2e": "npm run clean && npm run build && node node_modules/protractor/bin/webdriver-manager update && node node_modules/protractor/bin/protractor"
   },
   "config": {
     "ionic_source_map": "source-map"
