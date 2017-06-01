@@ -36,6 +36,6 @@ export class SettingsPageOjbect {
 
     waitUntilElementsAreClickable() {
         browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-        browser.sleep(1000);
+        browser.sleep(2000);
     }
 }

@@ -59,7 +59,7 @@ export class UploadPageObject {
     }
 
     verifyErrorDivVisible(errorDiv: ElementFinder) {
-        browser.wait(ExpectedConditions.visibilityOf(errorDiv), 3 * 1000);
+        browser.wait(ExpectedConditions.visibilityOf(errorDiv), 10000);
     }
 
     verifyBildNameErrorDivInvisible() {
@@ -75,7 +75,7 @@ export class UploadPageObject {
     }
 
     verifyErrorDivInvisible(errorDiv: ElementFinder) {
-        browser.wait(ExpectedConditions.invisibilityOf(errorDiv), 3 * 1000);
+        browser.wait(ExpectedConditions.invisibilityOf(errorDiv), 10000);
     }
 
     clickUploadImageButton() {

@@ -62,5 +62,5 @@ describe('Entries E2E Test', () => {
 });
 
 function waitUntilStorageReady() {
-  browser.sleep(1000);
+  browser.sleep(2000);
 }

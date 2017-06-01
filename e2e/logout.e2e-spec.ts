@@ -45,9 +45,9 @@ describe('Logout E2E Test', () => {
 
 function waitUntilElementsAreClickable() {
   browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-  browser.sleep(500);
+  browser.sleep(1000);
 }
 
 function waitUntilPageReady() {
-  browser.sleep(1000);
+  browser.sleep(2000);
 }

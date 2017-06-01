@@ -36,7 +36,7 @@ export class SettingImageFieldsPageOjbect {
 
     waitUntilElementsAreClickable() {
         browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-        browser.sleep(1000);
+        browser.sleep(2000);
     }
 
     toggleFieldSettings(toggleField: ElementFinder) {
@@ -56,7 +56,7 @@ export class SettingImageFieldsPageOjbect {
     }
 
     waitUntilStorageReady() {
-        browser.sleep(1000);
+        browser.sleep(2000);
     }
 
 }

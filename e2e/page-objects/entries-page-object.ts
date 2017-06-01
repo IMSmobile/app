@@ -47,7 +47,7 @@ export class EntriesPageObject {
   }
 
   verifyEntriesTitleVisible() {
-    browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), 10000);
   }
 
   verifyNoFieldsVisible() {
@@ -66,7 +66,7 @@ export class EntriesPageObject {
   }
 
   verifyOnlyFirstTwoFieldsVisible() {
-    browser.wait(ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField), 3 * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField), 10000);
   }
 
   verifyFirstFieldStartsWith(text: string) {
@@ -78,7 +78,7 @@ export class EntriesPageObject {
   }
 
   verifyFieldStartsWith(text: string, field: ElementFinder) {
-    browser.wait(ExpectedConditions.visibilityOf(field), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(field), 10000);
     expect(field.getText()).toMatch(new RegExp('^' + text));
   }
 }
