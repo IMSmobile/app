@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
@@ -59,7 +60,7 @@ export class UploadPageObject {
     }
 
     verifyErrorDivVisible(errorDiv: ElementFinder) {
-        browser.wait(ExpectedConditions.visibilityOf(errorDiv), 10000);
+        browser.wait(ExpectedConditions.visibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     verifyBildNameErrorDivInvisible() {
@@ -75,7 +76,7 @@ export class UploadPageObject {
     }
 
     verifyErrorDivInvisible(errorDiv: ElementFinder) {
-        browser.wait(ExpectedConditions.invisibilityOf(errorDiv), 10000);
+        browser.wait(ExpectedConditions.invisibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     clickUploadImageButton() {

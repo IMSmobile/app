@@ -47,7 +47,7 @@ export class SettingImageFieldsPageOjbect {
     }
 
     verifyToggleAbsent(toggleField: ElementFinder) {
-        browser.wait(ExpectedConditions.stalenessOf(toggleField), 10000);
+        browser.wait(ExpectedConditions.stalenessOf(toggleField), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     verifyToggleInactive(toggleField: ElementFinder) {

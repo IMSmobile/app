@@ -1,3 +1,4 @@
+import { Helpers } from './helpers/helpers';
 import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
 import { SettingsPageOjbect } from './page-objects/settings-page-object';
 import { SettingImageFieldsPageOjbect } from './page-objects/setting-image-field-page-object';
@@ -64,7 +65,7 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.verifyToggleInactive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     uploadPage.reloadPage();
-    browser.wait(ExpectedConditions.visibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(uploadPage.memofeldFieldInput), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should not show disabled field in upload page', () => {
@@ -74,7 +75,7 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     uploadPage.reloadPage();
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.memofeldFieldInput), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should show enabled fields in upload page', () => {
@@ -84,8 +85,8 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldTEXTFELDToggle);
     uploadPage.reloadPage();
-    browser.wait(ExpectedConditions.visibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
-    browser.wait(ExpectedConditions.visibilityOf(uploadPage.textfeldFieldInput), 10  * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(uploadPage.memofeldFieldInput), Helpers.DEFAULT_WAIT_TIMEOUT);
+    browser.wait(ExpectedConditions.visibilityOf(uploadPage.textfeldFieldInput), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should not show disabled field in upload page', () => {
@@ -99,8 +100,8 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldTEXTFELDToggle);
     uploadPage.reloadPage();
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
-    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.textfeldFieldInput), 10  * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.memofeldFieldInput), Helpers.DEFAULT_WAIT_TIMEOUT);
+    browser.wait(ExpectedConditions.invisibilityOf(uploadPage.textfeldFieldInput), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should filter image field settings', () => {

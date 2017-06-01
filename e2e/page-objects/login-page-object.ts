@@ -39,7 +39,7 @@ export class LoginPageOjbect {
 
     verifyToastErrorMessage() {
         expect(this.toastMessage.isDisplayed()).toBeTruthy();
-        browser.wait(ExpectedConditions.visibilityOf(this.toastMessage), 10000);
+        browser.wait(ExpectedConditions.visibilityOf(this.toastMessage), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     clickLoginButton() {

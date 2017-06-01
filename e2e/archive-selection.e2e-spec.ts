@@ -1,3 +1,4 @@
+import { Helpers } from './helpers/helpers';
 import { SettingArchivePageObject } from './page-objects/setting-archive-page-object';
 import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
 import { SettingsPageOjbect } from './page-objects/settings-page-object';
@@ -43,18 +44,18 @@ describe('Archive Selection E2E Test', () => {
     loginPage.login();
     settingsArchivePage.selectMedicineArchiveWithFilter43();
     loginPage.login();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 10000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should be able to change archive via settings', () => {
     entriesPage.loadPage();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.entriesItem), 10000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.entriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
     entriesPage.pushToSettingsPage();
     settingsPage.pushToSettingArchivePage();
     settingsArchivePage.selectMedicineArchiveWithFilter43();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 10000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
     loginPage.login();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 10000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should keep archiv specfic fields settings when reselecting archive', () => {
