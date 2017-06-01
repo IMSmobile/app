@@ -41,11 +41,9 @@ describe('Archive Selection E2E Test', () => {
 
   it('Should select archive from selection, which should be stored as standard', () => {
     loginPage.login();
-    waitUntilBrowserReady();
     settingsArchivePage.selectMedicineArchiveWithFilter43();
     loginPage.login();
-    waitUntilBrowserReady();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 10000);
   });
 
   it('Should be able to change archive via settings', () => {

@@ -28,8 +28,14 @@ export class SettingArchivePageObject {
   }
 
   selectMedicineArchiveWithFilter43() {
+    this.waitUntilElementIsClickable(this.loadArchiveButtonims_med_test_43)
     this.loadArchiveButtonims_med_test_43.click();
-    this.waitUntilElementsAreClickable();
+  }
+
+  waitUntilElementIsClickable(element: ElementFinder) {
+    browser.wait(ExpectedConditions.elementToBeClickable(element), 10000);
+    browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
+    browser.waitForAngular();
   }
 
   waitUntilElementsAreClickable() {
