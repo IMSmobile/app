@@ -1,4 +1,3 @@
-import { Helpers } from './helpers';
 import { browser, ElementFinder, $, ExpectedConditions } from 'protractor';
 
 export class Helpers {
@@ -8,7 +7,7 @@ export class Helpers {
   static waitUntilElementIsReady(element: ElementFinder) {
     browser.wait(ExpectedConditions.elementToBeClickable(element), Helpers.DEFAULT_WAIT_TIMEOUT);
     browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')), Helpers.DEFAULT_WAIT_TIMEOUT);
-    Helpers.waitUntilLoaderFinished();
+    this.waitUntilLoaderFinished();
     browser.waitForAngular();
   }
 
