@@ -13,4 +13,10 @@ export class Helpers {
     browser.sleep(2000);
   }
 
+  static toggleFieldSettings(toggleField: ElementFinder) {
+    this.waitUntilElementIsReady(toggleField);
+    toggleField.click();
+    this.waitUntilStorageReady();
+  }
+
 }

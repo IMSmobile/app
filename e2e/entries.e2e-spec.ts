@@ -1,3 +1,4 @@
+import { Helpers } from './helpers/helpers';
 import { browser } from 'protractor';
 import { SettingEntriesFieldsPageOjbect } from './page-objects/setting-entries-field-page-object';
 import { LoginPageOjbect } from './page-objects/login-page-object';
@@ -43,7 +44,7 @@ describe('Entries E2E Test', () => {
 
   it('Should show only the one selected field', () => {
     settingEntriesFieldsPage.loadPage();
-    settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle.click();
+    Helpers.toggleFieldSettings(settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle);
     entriesPage.reloadPage();
     entriesPage.verifyFirstFieldStartsWith('MEMOFELD');
     entriesPage.verifyOnlyFirstFieldVisible();
@@ -51,8 +52,8 @@ describe('Entries E2E Test', () => {
 
   it('Should show only the two selected fields', () => {
     settingEntriesFieldsPage.loadPage();
-    settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle.click();
-    settingEntriesFieldsPage.settingsEntriesFieldTEXTFELDToggle.click();
+    Helpers.toggleFieldSettings(settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle);
+    Helpers.toggleFieldSettings(settingEntriesFieldsPage.settingsEntriesFieldTEXTFELDToggle);
     entriesPage.reloadPage();
     entriesPage.verifyFirstFieldStartsWith('MEMOFELD');
     entriesPage.verifySecondFieldStartsWith('TEXTFELD');
@@ -61,6 +62,3 @@ describe('Entries E2E Test', () => {
 
 });
 
-function waitUntilStorageReady() {
-  browser.sleep(2000);
-}

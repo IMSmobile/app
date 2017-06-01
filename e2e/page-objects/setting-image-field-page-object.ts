@@ -26,18 +26,14 @@ export class SettingImageFieldsPageOjbect {
     }
 
     filterFields(filter: string) {
+        Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
         this.settingsImageFieldSearchbar.clear();
         this.settingsImageFieldSearchbar.sendKeys(filter);
-        this.waitUntilElementsAreClickable();
+        Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
     }
 
     verifyFieldsDisplayed(count: number) {
         this.settingsImageFieldDisplayedFields.count().then(actualCount => expect(actualCount).toBe(count));
-    }
-
-    waitUntilElementsAreClickable() {
-        browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-        browser.sleep(2000);
     }
 
     toggleFieldSettings(toggleField: ElementFinder) {
@@ -55,6 +51,7 @@ export class SettingImageFieldsPageOjbect {
     }
 
     verifyToggleInactive(toggleField: ElementFinder) {
+        Helpers.waitUntilElementIsReady(toggleField);
         toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
     }
 
