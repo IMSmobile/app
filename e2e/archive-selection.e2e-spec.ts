@@ -12,6 +12,7 @@ describe('Archive Selection E2E Test', () => {
   let settingsArchivePage = new SettingArchivePageObject();
   let loginPage = new LoginPageOjbect();
   let entriesPage = new EntriesPageObject();
+  let settingsPage = new SettingsPageOjbect();
   let uploadPage = new UploadPageObject();
   let settingImageFieldsPage = new SettingImageFieldsPageOjbect();
 
@@ -47,6 +48,17 @@ describe('Archive Selection E2E Test', () => {
     browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
   });
 
+  it('Should be able to change archive via settings', () => {
+    entriesPage.loadPage();
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.entriesItem), 3 * 1000);
+    entriesPage.pushToSettingsPage();
+    settingsPage.pushToSettingArchivePage();
+    settingsArchivePage.selectMedicineArchiveWithFilter43();
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+    loginPage.login();
+    waitUntilBrowserReady();
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+  });
 });
 
 function waitUntilBrowserReady() {

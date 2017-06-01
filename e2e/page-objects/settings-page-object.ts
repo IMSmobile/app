@@ -7,6 +7,7 @@ export class SettingsPageOjbect {
     entriesPage = new EntriesPageObject();
     settingsImageFieldSettingButton: ElementFinder = element(by.id('settingsImageFieldSettingButton'));
     settingsEntriesFieldSettingButton: ElementFinder = element(by.id('settingsEntriesListFieldSettingButton'));
+    settingsArchiveButton: ElementFinder = element(by.id('settingsArchiveButton'));
 
 
     loadPage() {
@@ -25,6 +26,11 @@ export class SettingsPageOjbect {
 
     pushToSettingEntriesFieldsPage() {
         this.settingsEntriesFieldSettingButton.click();
+        this.waitUntilElementsAreClickable();
+    }
+
+    pushToSettingArchivePage() {
+        this.settingsArchiveButton.click();
         this.waitUntilElementsAreClickable();
     }
 
