@@ -29,6 +29,7 @@ export class UploadPageObject {
         this.entriesPage.pushEntriesCameraButtonOnEntry34617();
     }
     writeToTextField(textField: ElementFinder, text: string) {
+        Helpers.waitUntilElementIsReady(textField);
         textField.clear();
         textField.sendKeys(text);
         browser.waitForAngular();
@@ -43,6 +44,7 @@ export class UploadPageObject {
     }
 
     clickIntoTextField(textField: ElementFinder) {
+        Helpers.waitUntilElementIsReady(textField);
         textField.click();
         browser.waitForAngular();
     }
@@ -80,6 +82,7 @@ export class UploadPageObject {
     }
 
     clickUploadImageButton() {
+        Helpers.waitUntilElementIsReady(this.uploadImageButton);
         this.uploadImageButton.click();
     }
 }

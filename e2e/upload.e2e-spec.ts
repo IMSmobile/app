@@ -45,12 +45,10 @@ describe('Upload E2E Test', () => {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
-
-
   it('Should add fields and testing invalid inputs', () => {
     settingImageFieldsPageOjbect.loadPage();
-    settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle.click();
-    settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle.click();
+    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle);
     uploadPage.reloadPage();
 
     uploadPage.clickIntoBildNameTextField();
@@ -81,7 +79,3 @@ describe('Upload E2E Test', () => {
     uploadPage.verifyFloatErrorDivInvisible();
   });
 });
-
-function waitUntilStorageReady() {
-  browser.sleep(2000);
-}

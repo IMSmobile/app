@@ -47,13 +47,8 @@ export class EntriesPageObject {
   }
 
   pushEntriesCameraButtonOnEntry34617() {
+    Helpers.waitUntilElementIsReady(this.entriesCameraButton);
     this.entriesCameraButton.click();
-    this.waitUntilElementsAreClickable();
-  }
-
-  waitUntilElementsAreClickable() {
-    browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-    browser.sleep(1000);
   }
 
   verifyEntriesTitleVisible() {
