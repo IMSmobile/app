@@ -14,36 +14,31 @@ export class SettingsPageOjbect {
     loadPage() {
         this.entriesPage.loadPage();
         this.entriesPage.pushToSettingsPage();
+        this.waitUntilPopoverClosed();
     }
 
     reloadPage() {
         this.entriesPage.reloadPage();
         this.entriesPage.pushToSettingsPage();
-    }
-    pushToSettingImageFieldsPage() {
         this.waitUntilPopoverClosed();
+    }
+
+    pushToSettingImageFieldsPage() {
         Helpers.waitUntilElementIsReady(this.settingsImageFieldSettingButton);
         this.settingsImageFieldSettingButton.click();
     }
 
     pushToSettingEntriesFieldsPage() {
-        this.waitUntilPopoverClosed();
         Helpers.waitUntilElementIsReady(this.settingsEntriesFieldSettingButton);
         this.settingsEntriesFieldSettingButton.click();
     }
 
     pushToSettingArchivePage() {
-        this.waitUntilPopoverClosed();
         Helpers.waitUntilElementIsReady(this.settingsArchiveButton);
         this.settingsArchiveButton.click();
     }
 
     waitUntilPopoverClosed() {
         browser.wait(ExpectedConditions.stalenessOf($('.popover-wrapper')));
-    }
-
-    waitUntilElementsAreClickable() {
-        browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-        browser.sleep(2000);
     }
 }
