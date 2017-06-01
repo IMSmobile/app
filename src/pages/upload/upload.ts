@@ -27,6 +27,8 @@ export class UploadPage {
   fieldsForm: FormGroup = new FormGroup({});
   uploadSegment: string = 'metadata';
   entryTitle: string;
+  parentImageReferenceField: string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
     this.imageSrc = navParams.get('imageSrc');
@@ -35,12 +37,22 @@ export class UploadPage {
   }
 
   ionViewDidLoad() {
+    this.loadParentImageReferenceField();
+    this.loadUploadFields();
+  }
+
+  loadUploadFields() {
     let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       let mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
       let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
     });
     this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+  }
+
+  loadParentImageReferenceField() {
+    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
@@ -72,7 +84,7 @@ export class UploadPage {
     if (this.fieldsForm.invalid) {
       this.showToastMessage('Alle Felder müssen valide sein');
     } else {
-      let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
+      let imageEntry = new Entry().set(this.parentImageReferenceField, this.parentImageEntryId);
       this.fields.forEach(field => {
         let value = this.fieldsForm.controls[field.name].value;
         if (value) {

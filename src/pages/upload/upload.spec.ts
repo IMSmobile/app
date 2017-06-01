@@ -176,9 +176,10 @@ describe('Page: Upload', () => {
     let formData = {};
     formData[imsBackendMock.modelFieldOptionalString.name] = ['value'];
     page.fieldsForm = page.formBuilder.group(formData);
+    page.parentImageReferenceField = imsBackendMock.modelFieldParentreferenceName;
     page.uploadPicture();
     let entry = new Entry();
-    entry = entry.set('IDFall', 'default');
+    entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
     entry = entry.set(imsBackendMock.modelFieldOptionalString.name, 'value');
     expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
   }));
@@ -193,10 +194,19 @@ describe('Page: Upload', () => {
     let formData = {};
     formData[imsBackendMock.modelFieldOptionalString.name] = [''];
     page.fieldsForm = page.formBuilder.group(formData);
+    page.parentImageReferenceField = imsBackendMock.modelFieldParentreferenceName;
     page.uploadPicture();
     let entry = new Entry();
-    entry = entry.set('IDFall', 'default');
+    entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
     expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
+  }));
+
+  it('should initialize parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
+    page.loadParentImageReferenceField();
+    expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);
   }));
 
   it('should call field validator service in case of an error', inject([FieldValidatorService], (fieldValidatorService: FieldValidatorService) => {
