@@ -2,6 +2,7 @@ var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
  
 exports.config = {
     allScriptsTimeout: 11000,
+    getPageTimeout: 30000,
     directConnect: true,
     capabilities: {
         'browserName': 'chrome',
