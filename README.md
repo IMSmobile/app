@@ -383,8 +383,10 @@ ionic package list
 ```
 
 #### Travis CI
-Mit der Hilfe von Travis CI wird nach einem Push auf GitHub automatisch eine Continuous Integration durchgeführt. Diese umfasst das Durchführen von Unit Tests, End to End Test, Linterüberprüfung, Code Coverage und einen automatischen Build für die gewünschten Betriebsysteme (iOS und Android). Im Falle eines Pullrequests wird zusätzlich die mit dem Masterbranch zusammengemergte getestet.
+Mit der Hilfe von Travis CI wird nach einem Push auf GitHub automatisch eine Continuous Integration durchgeführt. Diese umfasst das Durchführen von Unit Tests, End to End Test, Linterüberprüfung, Code Coverage und einen automatischen Build für iOS und Android. Im Falle eines Pullrequests wird zusätzlich zum Push eine mit dem Masterbranch zusammengemergte Version getestet.
 Das Ergebnis der Continuous Integration wird grafisch in GitHub sowie auf unserem Kanbanboard angezeigt. Bei Bedarf kann auch der Log der Tests auf der Travis-Website eingesehen werden.
+
+Dank dieses Tools ist es möglich, eine stabile und unabhängige Testumgebung zu entwickeln und mit wenig Aufwand zu betreiben. Sie kombiniert die Test mit einem automatischen Build und nimmt durch die Automatisierung viele manuelle Arbeitsschritte ab.
 
 #### Manual Testing
 Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Für eine Prüfung der Darstellung auf den Referenzgeräten im Vergleich zu den Wireframes sind noch immer manuelle Tests nötig.
