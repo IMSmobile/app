@@ -1,4 +1,4 @@
-import { browser, element, by, ElementFinder, $, promise } from 'protractor';
+import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,6 +11,7 @@ export class LoginPageOjbect {
     serverInput: ElementFinder = element(by.css('input[formControlName=server]'));
     userInput: ElementFinder = element(by.css('input[formControlName=user]'));
     passwordInput: ElementFinder = element(by.css('input[formControlName=password]'));
+    toastMessage: ElementFinder = element(by.className('toast-message'));
 
     login() {
         this.loginWithCredentials(this.user, this.password);
@@ -27,12 +28,21 @@ export class LoginPageOjbect {
         this.userInput.clear();
         this.userInput.sendKeys(user);
         this.passwordInput.sendKeys(password);
-        this.loginButton.click();
+        this.clickLoginButton();
         browser.waitForAngular();
     }
 
     loadPage() {
         browser.get('');
+    }
+
+    verifyToastErrorMessage() {
+        expect(this.toastMessage.isDisplayed()).toBeTruthy();
+        browser.wait(ExpectedConditions.visibilityOf(this.toastMessage), 10000);
+    }
+
+    clickLoginButton() {
+        this.loginButton.click();
     }
 
     getServerInputText(): promise.Promise<string> {

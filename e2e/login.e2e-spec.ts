@@ -1,6 +1,7 @@
+import { LoginPageOjbect } from './page-objects/login-page-object';
 import { browser, element, by, ElementFinder } from 'protractor';
 
-let loginButton: ElementFinder = element.all(by.className('button-login')).first();
+let loginPage = new LoginPageOjbect();
 
 describe('Login E2E Test', () => {
 
@@ -16,11 +17,11 @@ describe('Login E2E Test', () => {
   });
 
   beforeEach(() => {
-    browser.get('');
+    loginPage.loadPage();
   });
 
   it('Toast Message appears with failed login attempt', () => {
-      loginButton.click();
-      element.all(by.className('toast-message')).count().then(c => expect(c).toBe(1));
+    loginPage.clickLoginButton();
+    loginPage.verifyToastErrorMessage();
   });
 });
