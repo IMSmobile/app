@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
@@ -54,6 +55,7 @@ export class LoginPageOjbect {
     }
 
     getPasswordInputText(): promise.Promise<string> {
+        Helpers.waitUntilElementIsReady(this.passwordInput);
         return this.passwordInput.getAttribute('value');
     }
 

@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
@@ -40,24 +41,24 @@ export class SettingImageFieldsPageOjbect {
     }
 
     toggleFieldSettings(toggleField: ElementFinder) {
+        Helpers.waitUntilElementIsReady(toggleField);
         toggleField.click();
-        this.waitUntilStorageReady();
+        Helpers.waitUntilStorageReady();
     }
     verifyToggleActive(toggleField: ElementFinder) {
+        Helpers.waitUntilElementIsReady(toggleField);
         toggleField.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
     }
 
     verifyToggleAbsent(toggleField: ElementFinder) {
-        expect(ExpectedConditions.stalenessOf(toggleField)).toBeTruthy();
+        browser.wait(ExpectedConditions.stalenessOf(toggleField), 10000);
     }
 
     verifyToggleInactive(toggleField: ElementFinder) {
         toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
     }
 
-    waitUntilStorageReady() {
-        browser.sleep(2000);
-    }
+
 
 }
 

@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { LoginPageOjbect } from './login-page-object';
 import { SettingArchivePageObject } from './setting-archive-page-object';
 import { SettingArchivePage } from './../../src/pages/setting-archive/setting-archive';
@@ -22,18 +23,19 @@ export class EntriesPageObject {
   loadPage() {
     this.settingArchivePageObject.loadPage();
     this.settingArchivePageObject.selectPoliceArchiveWithFilter42();
+    this.waitEntriesPageLoaded();
   }
 
   reloadPage() {
     this.loginPage.login();
-    this.waitUntilElementsAreClickable();
+    this.waitEntriesPageLoaded();
   }
 
   pushToSettingsPage() {
+    Helpers.waitUntilElementIsReady(this.moreButton);
     this.moreButton.click();
-    this.waitUntilElementsAreClickable();
+    Helpers.waitUntilElementIsReady(this.settingsButton);
     this.settingsButton.click();
-    this.waitUntilElementsAreClickable();
   }
 
   pushEntriesCameraButtonOnEntry34617() {
@@ -80,5 +82,9 @@ export class EntriesPageObject {
   verifyFieldStartsWith(text: string, field: ElementFinder) {
     browser.wait(ExpectedConditions.visibilityOf(field), 10000);
     expect(field.getText()).toMatch(new RegExp('^' + text));
+  }
+
+  waitEntriesPageLoaded() {
+    browser.sleep(5000);
   }
 }

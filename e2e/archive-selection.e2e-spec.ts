@@ -48,14 +48,13 @@ describe('Archive Selection E2E Test', () => {
 
   it('Should be able to change archive via settings', () => {
     entriesPage.loadPage();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.entriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.entriesItem), 10000);
     entriesPage.pushToSettingsPage();
     settingsPage.pushToSettingArchivePage();
     settingsArchivePage.selectMedicineArchiveWithFilter43();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 10000);
     loginPage.login();
-    waitUntilBrowserReady();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 10000);
   });
 
   it('Should keep archiv specfic fields settings when reselecting archive', () => {
@@ -76,7 +75,3 @@ describe('Archive Selection E2E Test', () => {
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
   });
 });
-
-function waitUntilBrowserReady() {
-  browser.sleep(1000);
-}

@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
@@ -20,18 +21,25 @@ export class SettingsPageOjbect {
         this.entriesPage.pushToSettingsPage();
     }
     pushToSettingImageFieldsPage() {
+        this.waitUntilPopoverClosed();
+        Helpers.waitUntilElementIsReady(this.settingsImageFieldSettingButton);
         this.settingsImageFieldSettingButton.click();
-        this.waitUntilElementsAreClickable();
     }
 
     pushToSettingEntriesFieldsPage() {
+        this.waitUntilPopoverClosed();
+        Helpers.waitUntilElementIsReady(this.settingsEntriesFieldSettingButton);
         this.settingsEntriesFieldSettingButton.click();
-        this.waitUntilElementsAreClickable();
     }
 
     pushToSettingArchivePage() {
+        this.waitUntilPopoverClosed();
+        Helpers.waitUntilElementIsReady(this.settingsArchiveButton);
         this.settingsArchiveButton.click();
-        this.waitUntilElementsAreClickable();
+    }
+
+    waitUntilPopoverClosed() {
+        browser.wait(ExpectedConditions.stalenessOf($('.popover-wrapper')));
     }
 
     waitUntilElementsAreClickable() {
