@@ -1,3 +1,5 @@
+import { SettingService } from './setting-service';
+import { Filter } from './../models/filter';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -10,8 +12,10 @@ import { Info } from '../models/info';
 export class AuthService {
 
   currentCredential: Credential;
+  archive: string;
+  filterId: number;
 
-  constructor(public http: Http, public imsService: ImsService) {
+  constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) {
   }
 
   login(credentials): Observable<Info> {
@@ -25,5 +29,11 @@ export class AuthService {
   setCurrentCredential(info: Info, credentials: Credential): Info {
     this.currentCredential = credentials;
     return info;
+  }
+
+  setArchive(filter: Filter) {
+    this.settingService.setFilter(this.currentCredential.server, this.currentCredential.username, filter);
+    this.archive = filter.archiveName;
+    this.filterId = Number(filter.id);
   }
 }

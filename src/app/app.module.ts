@@ -1,3 +1,4 @@
+import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -48,7 +49,8 @@ const cloudSettings: CloudSettings = {
     EntriesPage,
     SettingImageFieldsPage,
     SettingEntriesFieldsPage,
-    ImsFieldSelectionComponent
+    ImsFieldSelectionComponent,
+    SettingArchivePage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ const cloudSettings: CloudSettings = {
     SettingsPage,
     EntriesPage,
     SettingImageFieldsPage,
-    SettingEntriesFieldsPage
+    SettingEntriesFieldsPage,
+    SettingArchivePage
   ],
   providers: [
     TokenService,

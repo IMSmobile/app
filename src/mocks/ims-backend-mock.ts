@@ -48,7 +48,11 @@ export class ImsBackendMock extends MockBackend {
     public tokenName: string = 'EDFC';
     public tokenExpirationDate: string = '2015-10-28T16:45:12Z';
     public token: Token = new Token(this.tokenName, this.tokenExpirationDate);
-    public filterTable: Filter[] = [new Filter(this.filterResourceUrl, this.filterId.toString())];
+    public modelArchiveName: string = 'workflow_db1';
+    public policeFilter: Filter = new Filter(this.filterResourceUrl, this.filterId.toString(), 'IMS_Mobile_Client', this.modelArchiveName);
+    public medicineFilter: Filter = new Filter(this.entriesUrl + '/42', '41', 'IMS_Mobile_Client', 'medref');
+    public notAppFilter: Filter = new Filter(this.entriesUrl + '/42', '42', 'Wrong_Filter_Name', 'any_archive');
+    public filterTable: Filter[] = [this.policeFilter, this.medicineFilter, this.notAppFilter];
     public containerRequestUrl: string = this.filterResourceUrl + '/Bild/uploads';
     public parentImageEntriesUrl: string = this.filterResourceUrl + '/Fall';
     public query: QueryFragment[] = [new QueryFragment('testkey', 'testvalue')];
@@ -62,7 +66,6 @@ export class ImsBackendMock extends MockBackend {
     public paretImageEntriesPagination: Pagination = new Pagination({ nextPage: this.parentImageEntriesNextPageUrl });
     public parentImageEntries: Entries = new Entries(this.paretImageEntriesPagination, [new Entry().set('IdFall', '1'), new Entry().set('IdFall', '2')]);
     public parentImageEntriesNextPage: Entries = new Entries(new Pagination({ nextPage: this.parentImageEntriesNextNextPageUrl }), [new Entry().set('IdFall', '21'), new Entry().set('IdFall', '22')]);
-    public modelArchiveName: string = 'workflow_db1';
     public modelTablesUrl: string = this.modelsUrl + '/workflow_db1';
     public modelArchives: ModelArchives = new ModelArchives([new ModelLink(this.modelTablesUrl, this.modelArchiveName)]);
     public modelTableFieldsUrl: string = this.modelTablesUrl + '/Fall';

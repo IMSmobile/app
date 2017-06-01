@@ -23,12 +23,12 @@ import 'rxjs/add/observable/concat';
 export class UploadPage {
   imageSrc: string;
   parentImageEntryId: string;
-  filterId: number = 40;
   fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
-  archiveName: string = 'workflow_db1';
   uploadSegment: string = 'metadata';
   entryTitle: string;
+  parentImageReferenceField: string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
     this.imageSrc = navParams.get('imageSrc');
@@ -37,12 +37,22 @@ export class UploadPage {
   }
 
   ionViewDidLoad() {
-    let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName).flatMap(tableFields => {
+    this.loadParentImageReferenceField();
+    this.loadUploadFields();
+  }
+
+  loadUploadFields() {
+    let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       let mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
-      let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.archiveName, tableFields);
+      let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
     });
     this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+  }
+
+  loadParentImageReferenceField() {
+    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
@@ -74,7 +84,7 @@ export class UploadPage {
     if (this.fieldsForm.invalid) {
       this.showToastMessage('Alle Felder müssen valide sein');
     } else {
-      let imageEntry = new Entry().set('IDFall', this.parentImageEntryId);
+      let imageEntry = new Entry().set(this.parentImageReferenceField, this.parentImageEntryId);
       this.fields.forEach(field => {
         let value = this.fieldsForm.controls[field.name].value;
         if (value) {
@@ -82,7 +92,7 @@ export class UploadPage {
         }
       });
       let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
-      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.filterId, imageEntry, image),
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, image),
         res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
         err => this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.')
       );

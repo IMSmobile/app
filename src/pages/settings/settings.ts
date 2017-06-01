@@ -1,3 +1,4 @@
+import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../setting-entries-fields/setting-entries-fields';
 import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
 import { Component } from '@angular/core';
@@ -27,6 +28,10 @@ export class SettingsPage {
 
   loadEntriesListFieldSettings() {
     this.navCtrl.push(SettingEntriesFieldsPage);
+  }
+
+  loadArchiveSettings() {
+    this.navCtrl.push(SettingArchivePage);
   }
 
 }

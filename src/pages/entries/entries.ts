@@ -22,8 +22,6 @@ import { LoginPage } from '../login/login';
   templateUrl: 'entries.html'
 })
 export class EntriesPage {
-  archiveName: string = 'workflow_db1';
-  filterId: number = 40;
   entries: Entry[] = [];
   nextPage: string;
   sort: QueryFragment[] = [new QueryFragment('sort', 'IAModificationDate+desc')];
@@ -46,12 +44,12 @@ export class EntriesPage {
   }
 
   loadParentImageReferenceField() {
-    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.archiveName);
+    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
 
   loadInitialParentImageEntries() {
-    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.filterId, this.sort);
+    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
   }
 
@@ -61,9 +59,9 @@ export class EntriesPage {
   }
 
   loadSelectedFieldsAndTitle() {
-    let metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.archiveName).flatMap(tableFields => {
+    let metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       this.titleField = tableFields.identifierField;
-      return this.settingService.getActiveFields(this.archiveName, tableFields);
+      return this.settingService.getActiveFields(this.authService.archive, tableFields);
     });
     this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
   }
