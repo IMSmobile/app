@@ -89,5 +89,6 @@ export class EntriesPageObject {
 
   waitEntriesPageLoaded() {
     browser.sleep(10000);
+    Helpers.waitUntilLoaderFinished();
   }
 }
