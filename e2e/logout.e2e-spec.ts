@@ -7,8 +7,6 @@ describe('Logout E2E Test', () => {
   let originalTimeout;
   let loginPage: LoginPageOjbect = new LoginPageOjbect();
   let entriesPage: EntriesPageObject = new EntriesPageObject();
-  let moreButton: ElementFinder = element(by.id('barButtonMore'));
-  let logoutButton: ElementFinder = element(by.id('morePopoverLogoutButton'));
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -32,11 +30,7 @@ describe('Logout E2E Test', () => {
 
   it('Should return to Loginscreen', () => {
     entriesPage.loadPage();
-    waitUntilElementsAreClickable();
-    moreButton.click();
-    waitUntilElementsAreClickable();
-    logoutButton.click();
-    waitUntilPageReady();
+    entriesPage.logout();
     loginPage.getServerInputText().then(text => expect(text).toEqual(loginPage.server));
     loginPage.getUserInputText().then(text => expect(text).toEqual(loginPage.user));
     loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));

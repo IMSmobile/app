@@ -47,10 +47,12 @@ export class LoginPageOjbect {
     }
 
     getServerInputText(): promise.Promise<string> {
+        Helpers.waitUntilElementIsReady(this.serverInput);
         return this.serverInput.getAttribute('value');
     }
 
     getUserInputText(): promise.Promise<string> {
+        Helpers.waitUntilElementIsReady(this.userInput);
         return this.userInput.getAttribute('value');
     }
 
