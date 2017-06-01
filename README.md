@@ -46,7 +46,7 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [REST API Dokumentation](https://sinv-56028.edu.hsr.ch/) | Dokumentation der IMS REST Schnittstelle |
 | [IMS Publisher Police](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_police/) | IMS Publisher mit konfiguriertem Polizeiarchiv |
 | [IMS Publisher Medicine](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_medicine/) | IMS Publisher mit konfiguriertem Medizinarchiv |
-| [Continuous Integration Server](https://travis-ci.org/IMSmobile/app) | Travis CI Continuous Integration Test Server mit Log |
+| [Continuous Integration Server](https://travis-ci.org/IMSmobile/app) | Travis Continuous Integration Test Server mit Log |
 | [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes des Mobile Client |
 
 ### Glossar
@@ -382,8 +382,9 @@ ionic package build ios --noresources --profile dev
 ionic package list
 ```
 
-#### Travis CI
-Mit der Hilfe von Travis CI wird nach einem Push auf GitHub automatisch eine Continuous Integration durchgeführt. Diese umfasst das Durchführen von Unit Tests, End to End Test, Linterüberprüfung, Code Coverage und einen automatischen Build für iOS und Android. Im Falle eines Pullrequests wird zusätzlich zum Push eine mit dem Masterbranch zusammengemergte Version getestet.
+#### Continuous Integration
+Mit der Hilfe von Travis CI wird nach einem Push auf GitHub automatisch eine Continuous Integration durchgeführt. Diese umfasst das Durchführen von Unit Tests, End to End Test, Linterüberprüfung, Code Coverage und einen automatischen Build für iOS und Android. Im Falle eines Pullrequests wird zusätzlich zum Push eine mit dem Masterbranch zusammengemergte Version getestet. Nur wenn sämtliche Tests ohne Fehler durchgeführt wurden darf der Pullrequest gemerged werden.  
+
 Das Ergebnis der Continuous Integration wird grafisch in GitHub sowie auf unserem Kanbanboard angezeigt. Bei Bedarf kann auch der Log der Tests auf der Travis-Website eingesehen werden.
 
 Dank dieses Tools ist es möglich, eine stabile und unabhängige Testumgebung zu entwickeln und mit wenig Aufwand zu betreiben. Sie kombiniert die Test mit einem automatischen Build und nimmt durch die Automatisierung viele manuelle Arbeitsschritte ab.
