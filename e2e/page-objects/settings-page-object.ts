@@ -24,16 +24,19 @@ export class SettingsPageOjbect {
     }
 
     pushToSettingImageFieldsPage() {
+        this.waitUntilPopoverClosed();
         Helpers.waitUntilElementIsReady(this.settingsImageFieldSettingButton);
         this.settingsImageFieldSettingButton.click();
     }
 
     pushToSettingEntriesFieldsPage() {
+        this.waitUntilPopoverClosed();
         Helpers.waitUntilElementIsReady(this.settingsEntriesFieldSettingButton);
         this.settingsEntriesFieldSettingButton.click();
     }
 
     pushToSettingArchivePage() {
+        this.waitUntilPopoverClosed();
         Helpers.waitUntilElementIsReady(this.settingsArchiveButton);
         this.settingsArchiveButton.click();
     }
