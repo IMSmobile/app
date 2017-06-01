@@ -45,12 +45,14 @@ export class SettingImageFieldsPageOjbect {
     }
     verifyToggleActive(toggleField: ElementFinder) {
         toggleField.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
+    }
 
+    verifyToggleAbsent(toggleField: ElementFinder) {
+        expect(ExpectedConditions.stalenessOf(toggleField)).toBeTruthy();
     }
 
     verifyToggleInactive(toggleField: ElementFinder) {
         toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
-
     }
 
     waitUntilStorageReady() {

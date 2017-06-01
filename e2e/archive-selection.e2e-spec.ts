@@ -59,6 +59,24 @@ describe('Archive Selection E2E Test', () => {
     waitUntilBrowserReady();
     browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
   });
+
+  it('Should keep archiv specfic fields settings when reselecting archive', () => {
+    settingImageFieldsPage.loadPage();
+    settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
+    settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
+    entriesPage.reloadPage();
+    entriesPage.pushToSettingsPage();
+    settingsPage.pushToSettingArchivePage();
+    settingsArchivePage.selectMedicineArchiveWithFilter43();
+    settingImageFieldsPage.reloadPage();
+    settingImageFieldsPage.verifyToggleAbsent(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
+    entriesPage.reloadPage();
+    entriesPage.pushToSettingsPage();
+    settingsPage.pushToSettingArchivePage();
+    settingsArchivePage.selectPoliceArchiveWithFilter42();
+    settingImageFieldsPage.reloadPage();
+    settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
+  });
 });
 
 function waitUntilBrowserReady() {
