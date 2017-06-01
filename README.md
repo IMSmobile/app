@@ -234,6 +234,9 @@ npm install
 ionic serve
 ```
 
+##### IMS Rest Konfiguration
+Damit der Mobile Client mit einem Imagic IMS funktioniert muss mindestens ein Filter mit dem Namen **IMS_Mobile_Client** existieren.  
+
 ##### Entwicklungsumgebung
 Zur Entwicklung von Ionic brauchen wir [Visual Studio Code](https://code.visualstudio.com/).
 

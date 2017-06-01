@@ -1,3 +1,6 @@
+import { Storage } from '@ionic/storage';
+import { StorageMock } from './../mocks/mocks';
+import { SettingService } from './setting-service';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
@@ -19,6 +22,8 @@ describe('Provider: AuthService', () => {
         ImsService,
         ImsBackendMock,
         BaseRequestOptions,
+        SettingService,
+        { provide: Storage, useClass: StorageMock },
         {
           provide: Http,
           useFactory: (ImsBackendMock, options) => {
@@ -53,5 +58,13 @@ describe('Provider: AuthService', () => {
     authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     authService.logout();
     expect(authService.currentCredential).toBeNull();
+  }));
+
+  it('Should store the filter after archive selection', inject([AuthService, SettingService, ImsBackendMock], (authService: AuthService, settingService: SettingService, imsBackendMock: ImsBackendMock) => {
+    spyOn(settingService, 'setFilter').and.callThrough();
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
+    authService.setArchive(imsBackendMock.policeFilter);
+    expect(settingService.setFilter).toHaveBeenCalledWith(authService.currentCredential.server, authService.currentCredential.username, imsBackendMock.policeFilter);
   }));
 });

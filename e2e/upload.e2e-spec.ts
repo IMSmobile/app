@@ -25,7 +25,6 @@ describe('Upload E2E Test', () => {
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageOjbect();
     loginPage.loadPage();
   });
 
@@ -51,7 +50,7 @@ describe('Upload E2E Test', () => {
     settingImageFieldsPageOjbect.loadPage();
     settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle.click();
     settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle.click();
-    uploadPage.loadPage();
+    uploadPage.reloadPage();
 
     uploadPage.clickIntoBildNameTextField();
     uploadPage.clickIntoIntegerTextField();

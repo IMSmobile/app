@@ -13,12 +13,20 @@ export class LoginPageOjbect {
     passwordInput: ElementFinder = element(by.css('input[formControlName=password]'));
 
     login() {
+        this.loginWithCredentials(this.user, this.password);
+    }
+
+    loginWithUserWithNoAccess() {
+        this.loginWithCredentials('felizia', 'graypaper');
+    }
+
+    loginWithCredentials(user: string, password: string) {
         this.loadPage();
         this.serverInput.clear();
         this.serverInput.sendKeys(this.server);
         this.userInput.clear();
-        this.userInput.sendKeys(this.user);
-        this.passwordInput.sendKeys(this.password);
+        this.userInput.sendKeys(user);
+        this.passwordInput.sendKeys(password);
         this.loginButton.click();
         browser.waitForAngular();
     }

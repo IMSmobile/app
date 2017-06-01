@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Archive Auswahl</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <div *ngFor="let filter of filters">
+      <button ion-item (click)="selectFilter(filter)" id="loadArchiveButton{{filter.archiveName}}_{{filter.id}}">{{filter.archiveName}} ({{filter.id}})</button>
+    </div>
+  </ion-list>
+  <div *ngIf="noValidFilters">
+    <p>Damit der Client funktioniert muss mindestens ein Filter mit dem Namen <strong>{{filterName}}</strong> existieren.</p>
+    <button ion-button full (click)="logout()" id="archiveSelectionLogoutButton">Abmelden</button>
+  </div>
+</ion-content>

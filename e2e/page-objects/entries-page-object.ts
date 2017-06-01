@@ -1,21 +1,30 @@
+import { LoginPageOjbect } from './login-page-object';
+import { SettingArchivePageObject } from './setting-archive-page-object';
+import { SettingArchivePage } from './../../src/pages/setting-archive/setting-archive';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
-import { LoginPageOjbect } from './login-page-object';
 
 export class EntriesPageObject {
   moreButton: ElementFinder = element(by.id('barButtonMore'));
   settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
   entriesItem: ElementFinder = element(by.id('entriesItem34617'));
+  medicineEntriesItem: ElementFinder = element(by.id('entriesItem75'));
   entriesTitle: ElementFinder = this.entriesItem.element(by.tagName('h1'));
   entriesFields: ElementArrayFinder = this.entriesItem.all(by.css('.entries-fields'));
   entriesFirstMetaDataField: ElementFinder = this.entriesFields.get(0);
   entriesSecondMetaDataField: ElementFinder = this.entriesFields.get(1);
   entriesThirdMetaDataField: ElementFinder = this.entriesFields.get(2);
   entriesCameraButton: ElementFinder = this.entriesItem.element(by.tagName('button'));
+  settingArchivePageObject = new SettingArchivePageObject();
   loginPage = new LoginPageOjbect();
 
   loadPage() {
+    this.settingArchivePageObject.loadPage();
+    this.settingArchivePageObject.selectPoliceArchiveWithFilter42();
+  }
+
+  reloadPage() {
     this.loginPage.login();
     this.waitUntilElementsAreClickable();
   }

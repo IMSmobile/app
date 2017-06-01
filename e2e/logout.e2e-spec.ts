@@ -1,10 +1,12 @@
+import { EntriesPageObject } from './page-objects/entries-page-object';
 import { browser, element, by, ElementFinder, protractor, $, ExpectedConditions } from 'protractor';
 import { LoginPageOjbect } from './page-objects/login-page-object';
 
 describe('Logout E2E Test', () => {
 
   let originalTimeout;
-  let loginPage: LoginPageOjbect;
+  let loginPage: LoginPageOjbect = new LoginPageOjbect();
+  let entriesPage: EntriesPageObject = new EntriesPageObject();
   let moreButton: ElementFinder = element(by.id('barButtonMore'));
   let logoutButton: ElementFinder = element(by.id('morePopoverLogoutButton'));
 
@@ -18,7 +20,6 @@ describe('Logout E2E Test', () => {
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageOjbect();
     loginPage.loadPage();
   });
 
@@ -30,7 +31,7 @@ describe('Logout E2E Test', () => {
   });
 
   it('Should return to Loginscreen', () => {
-    loginPage.login();
+    entriesPage.loadPage();
     waitUntilElementsAreClickable();
     moreButton.click();
     waitUntilElementsAreClickable();

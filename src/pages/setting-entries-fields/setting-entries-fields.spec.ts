@@ -61,23 +61,23 @@ describe('Page: Parent Entries Settings Fields', () => {
     fixture.destroy();
   });
 
-  it('Image Field Settings should be persisted', inject([SettingService, ImsBackendMock], (settingService: SettingService, imsBackendMock: ImsBackendMock) => {
-    page.archiveName = 'archive';
+  it('Image Field Settings should be persisted', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
+    authService.archive = 'archive';
     page.tableName = 'table';
     spyOn(settingService, 'setFieldState').and.callThrough();
     imsBackendMock.parentImageModelFieldIdentifier.active = true;
     page.fieldToggled(imsBackendMock.parentImageModelFieldIdentifier);
-    expect(settingService.setFieldState).toHaveBeenCalledWith(page.archiveName, page.tableName, imsBackendMock.parentImageModelFieldIdentifier.name, true);
+    expect(settingService.setFieldState).toHaveBeenCalledWith(authService.archive, page.tableName, imsBackendMock.parentImageModelFieldIdentifier.name, true);
   }));
 
   it('Fields have been intialized from archive and  settings store', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    page.archiveName = imsBackendMock.modelArchiveName;
+    authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.parentImageTableName;
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();
-    expect(settingService.getFieldState).toHaveBeenCalledWith(page.archiveName, page.tableName, imsBackendMock.parentImageModelFieldOptionalString.name);
+    expect(settingService.getFieldState).toHaveBeenCalledWith(authService.archive, page.tableName, imsBackendMock.parentImageModelFieldOptionalString.name);
     expect(page.fields.find(field => field.name === imsBackendMock.parentImageModelFieldOptionalString.name).active).toBeTruthy();
   }));
 

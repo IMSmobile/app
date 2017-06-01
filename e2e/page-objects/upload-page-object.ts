@@ -23,6 +23,10 @@ export class UploadPageObject {
         this.entriesPage.pushEntriesCameraButtonOnEntry34617();
     }
 
+    reloadPage() {
+        this.entriesPage.reloadPage();
+        this.entriesPage.pushEntriesCameraButtonOnEntry34617();
+    }
     writeToTextField(textField: ElementFinder, text: string) {
         textField.clear();
         textField.sendKeys(text);

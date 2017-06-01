@@ -55,7 +55,7 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.loadPage();
     settingImageFieldsPage.verifyToggleInactive(settingImageFieldsPage.settingsImageFieldBOOLEANNOToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldBOOLEANNOToggle);
-    settingImageFieldsPage.loadPage();
+    settingImageFieldsPage.reloadPage();
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldBOOLEANNOToggle);
   });
 
@@ -63,7 +63,7 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.loadPage();
     settingImageFieldsPage.verifyToggleInactive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
-    uploadPage.loadPage();
+    uploadPage.reloadPage();
     browser.wait(ExpectedConditions.visibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
   });
 
@@ -73,7 +73,7 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
-    uploadPage.loadPage();
+    uploadPage.reloadPage();
     browser.wait(ExpectedConditions.invisibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
   });
 
@@ -83,7 +83,7 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.verifyToggleInactive(settingImageFieldsPage.settingsImageFieldTEXTFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldTEXTFELDToggle);
-    uploadPage.loadPage();
+    uploadPage.reloadPage();
     browser.wait(ExpectedConditions.visibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
     browser.wait(ExpectedConditions.visibilityOf(uploadPage.textfeldFieldInput), 10  * 1000);
   });
@@ -98,7 +98,7 @@ describe('Settings E2E Test', () => {
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldTEXTFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldTEXTFELDToggle);
-    uploadPage.loadPage();
+    uploadPage.reloadPage();
     browser.wait(ExpectedConditions.invisibilityOf(uploadPage.memofeldFieldInput), 10  * 1000);
     browser.wait(ExpectedConditions.invisibilityOf(uploadPage.textfeldFieldInput), 10  * 1000);
   });

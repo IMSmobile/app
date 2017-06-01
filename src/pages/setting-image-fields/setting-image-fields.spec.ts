@@ -61,28 +61,28 @@ describe('Page: Image Settings Fields', () => {
     fixture.destroy();
   });
 
-  it('Image Field Settings should be persisted', inject([SettingService, ImsBackendMock], (settingService: SettingService, imsBackendMock: ImsBackendMock) => {
-    page.archiveName = 'archive';
+  it('Image Field Settings should be persisted', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
+    authService.archive = 'archive';
     page.tableName = 'table';
     spyOn(settingService, 'setFieldState').and.callThrough();
     imsBackendMock.modelFieldIdentifier.active = true;
     page.fieldToggled(imsBackendMock.modelFieldIdentifier);
-    expect(settingService.setFieldState).toHaveBeenCalledWith(page.archiveName, page.tableName, imsBackendMock.modelFieldIdentifier.name, true);
+    expect(settingService.setFieldState).toHaveBeenCalledWith(authService.archive, page.tableName, imsBackendMock.modelFieldIdentifier.name, true);
   }));
 
   it('Fields have been intialized from archive and  settings store', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    page.archiveName = imsBackendMock.modelArchiveName;
+    authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();
-    expect(settingService.getFieldState).toHaveBeenCalledWith(page.archiveName, page.tableName, imsBackendMock.modelFieldOptionalString.name);
+    expect(settingService.getFieldState).toHaveBeenCalledWith(authService.archive, page.tableName, imsBackendMock.modelFieldOptionalString.name);
     expect(page.fields.find(field => field.name === imsBackendMock.modelFieldOptionalString.name).active).toBeTruthy();
   }));
 
   it('Fields do not contain mandatory or identifier fields ', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    page.archiveName = imsBackendMock.modelArchiveName;
+    authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
@@ -94,7 +94,7 @@ describe('Page: Image Settings Fields', () => {
 
 
   it('Loading called if successfull. And alert service not called', inject([AuthService, ImsBackendMock, ModelService, LoadingService, AlertService], (authService: AuthService, imsBackendMock: ImsBackendMock, modelService: ModelService, loadingService: LoadingService, alertService: AlertService) => {
-    page.archiveName = imsBackendMock.modelArchiveName;
+    authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
