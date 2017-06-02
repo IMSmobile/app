@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
@@ -25,39 +26,31 @@ export class SettingImageFieldsPageOjbect {
     }
 
     filterFields(filter: string) {
+        Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
         this.settingsImageFieldSearchbar.clear();
         this.settingsImageFieldSearchbar.sendKeys(filter);
-        this.waitUntilElementsAreClickable();
+        Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
     }
 
     verifyFieldsDisplayed(count: number) {
         this.settingsImageFieldDisplayedFields.count().then(actualCount => expect(actualCount).toBe(count));
     }
 
-    waitUntilElementsAreClickable() {
-        browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-        browser.sleep(1000);
-    }
-
-    toggleFieldSettings(toggleField: ElementFinder) {
-        toggleField.click();
-        this.waitUntilStorageReady();
-    }
     verifyToggleActive(toggleField: ElementFinder) {
+        Helpers.waitUntilElementIsReady(toggleField);
         toggleField.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
     }
 
     verifyToggleAbsent(toggleField: ElementFinder) {
-        expect(ExpectedConditions.stalenessOf(toggleField)).toBeTruthy();
+        browser.wait(ExpectedConditions.stalenessOf(toggleField), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     verifyToggleInactive(toggleField: ElementFinder) {
+        Helpers.waitUntilElementIsReady(toggleField);
         toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
     }
 
-    waitUntilStorageReady() {
-        browser.sleep(1000);
-    }
+
 
 }
 

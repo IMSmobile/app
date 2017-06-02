@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
@@ -28,6 +29,7 @@ export class UploadPageObject {
         this.entriesPage.pushEntriesCameraButtonOnEntry34617();
     }
     writeToTextField(textField: ElementFinder, text: string) {
+        Helpers.waitUntilElementIsReady(textField);
         textField.clear();
         textField.sendKeys(text);
         browser.waitForAngular();
@@ -42,6 +44,7 @@ export class UploadPageObject {
     }
 
     clickIntoTextField(textField: ElementFinder) {
+        Helpers.waitUntilElementIsReady(textField);
         textField.click();
         browser.waitForAngular();
     }
@@ -59,7 +62,7 @@ export class UploadPageObject {
     }
 
     verifyErrorDivVisible(errorDiv: ElementFinder) {
-        browser.wait(ExpectedConditions.visibilityOf(errorDiv), 3 * 1000);
+        browser.wait(ExpectedConditions.visibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     verifyBildNameErrorDivInvisible() {
@@ -75,10 +78,11 @@ export class UploadPageObject {
     }
 
     verifyErrorDivInvisible(errorDiv: ElementFinder) {
-        browser.wait(ExpectedConditions.invisibilityOf(errorDiv), 3 * 1000);
+        browser.wait(ExpectedConditions.invisibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     clickUploadImageButton() {
+        Helpers.waitUntilElementIsReady(this.uploadImageButton);
         this.uploadImageButton.click();
     }
 }

@@ -1,3 +1,4 @@
+import { Helpers } from './helpers/helpers';
 import { SettingArchivePageObject } from './page-objects/setting-archive-page-object';
 import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
 import { SettingsPageOjbect } from './page-objects/settings-page-object';
@@ -41,28 +42,25 @@ describe('Archive Selection E2E Test', () => {
 
   it('Should select archive from selection, which should be stored as standard', () => {
     loginPage.login();
-    waitUntilBrowserReady();
     settingsArchivePage.selectMedicineArchiveWithFilter43();
     loginPage.login();
-    waitUntilBrowserReady();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should be able to change archive via settings', () => {
     entriesPage.loadPage();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.entriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.entriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
     entriesPage.pushToSettingsPage();
     settingsPage.pushToSettingArchivePage();
     settingsArchivePage.selectMedicineArchiveWithFilter43();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
     loginPage.login();
-    waitUntilBrowserReady();
-    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(entriesPage.medicineEntriesItem), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
   it('Should keep archiv specfic fields settings when reselecting archive', () => {
     settingImageFieldsPage.loadPage();
-    settingImageFieldsPage.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
     entriesPage.reloadPage();
     entriesPage.pushToSettingsPage();
@@ -78,7 +76,3 @@ describe('Archive Selection E2E Test', () => {
     settingImageFieldsPage.verifyToggleActive(settingImageFieldsPage.settingsImageFieldMEMOFELDToggle);
   });
 });
-
-function waitUntilBrowserReady() {
-  browser.sleep(1000);
-}

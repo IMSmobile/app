@@ -2,6 +2,7 @@ import { LoginPageOjbect } from './login-page-object';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
+import { Helpers } from '../helpers/helpers';
 
 export class SettingArchivePageObject {
   loginPage = new LoginPageOjbect();
@@ -12,28 +13,21 @@ export class SettingArchivePageObject {
 
   loadPage() {
     this.loginPage.login();
-    this.waitUntilElementsAreClickable();
   }
 
   logoutWhenNoArchive() {
-    this.waitUntilElementsAreClickable();
+    Helpers.waitUntilElementIsReady(this.archiveSelectionLogoutButton);
     expect(ExpectedConditions.visibilityOf(this.archiveSelectionLogoutButton));
     this.archiveSelectionLogoutButton.click();
-    this.waitUntilElementsAreClickable();
   }
 
   selectPoliceArchiveWithFilter42() {
+    Helpers.waitUntilElementIsReady(this.loadArchiveButtonworkflow_db1_42);
     this.loadArchiveButtonworkflow_db1_42.click();
-    this.waitUntilElementsAreClickable();
   }
 
   selectMedicineArchiveWithFilter43() {
+    Helpers.waitUntilElementIsReady(this.loadArchiveButtonims_med_test_43);
     this.loadArchiveButtonims_med_test_43.click();
-    this.waitUntilElementsAreClickable();
-  }
-
-  waitUntilElementsAreClickable() {
-    browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-    browser.sleep(1500);
   }
 }

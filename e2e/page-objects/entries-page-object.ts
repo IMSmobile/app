@@ -1,3 +1,4 @@
+import { Helpers } from './../helpers/helpers';
 import { LoginPageOjbect } from './login-page-object';
 import { SettingArchivePageObject } from './setting-archive-page-object';
 import { SettingArchivePage } from './../../src/pages/setting-archive/setting-archive';
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 export class EntriesPageObject {
   moreButton: ElementFinder = element(by.id('barButtonMore'));
   settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
+  logoutButton: ElementFinder = element(by.id('morePopoverLogoutButton'));
   entriesItem: ElementFinder = element(by.id('entriesItem34617'));
   medicineEntriesItem: ElementFinder = element(by.id('entriesItem75'));
   entriesTitle: ElementFinder = this.entriesItem.element(by.tagName('h1'));
@@ -22,32 +24,35 @@ export class EntriesPageObject {
   loadPage() {
     this.settingArchivePageObject.loadPage();
     this.settingArchivePageObject.selectPoliceArchiveWithFilter42();
+    this.waitEntriesPageLoaded();
   }
 
   reloadPage() {
     this.loginPage.login();
-    this.waitUntilElementsAreClickable();
+    this.waitEntriesPageLoaded();
   }
 
   pushToSettingsPage() {
+    Helpers.waitUntilElementIsReady(this.moreButton);
     this.moreButton.click();
-    this.waitUntilElementsAreClickable();
+    Helpers.waitUntilElementIsReady(this.settingsButton);
     this.settingsButton.click();
-    this.waitUntilElementsAreClickable();
+  }
+
+  logout() {
+    Helpers.waitUntilElementIsReady(this.moreButton);
+    this.moreButton.click();
+    Helpers.waitUntilElementIsReady(this.logoutButton);
+    this.logoutButton.click();
   }
 
   pushEntriesCameraButtonOnEntry34617() {
+    Helpers.waitUntilElementIsReady(this.entriesCameraButton);
     this.entriesCameraButton.click();
-    this.waitUntilElementsAreClickable();
-  }
-
-  waitUntilElementsAreClickable() {
-    browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-    browser.sleep(1000);
   }
 
   verifyEntriesTitleVisible() {
-    browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
   verifyNoFieldsVisible() {
@@ -55,18 +60,18 @@ export class EntriesPageObject {
       ExpectedConditions.invisibilityOf(this.entriesFirstMetaDataField),
       ExpectedConditions.invisibilityOf(this.entriesSecondMetaDataField),
       ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField)
-    ), 3 * 1000);
+    ), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
   verifyOnlyFirstFieldVisible() {
     browser.wait(ExpectedConditions.and(
       ExpectedConditions.invisibilityOf(this.entriesSecondMetaDataField),
       ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField)
-    ), 3 * 1000);
+    ), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
   verifyOnlyFirstTwoFieldsVisible() {
-    browser.wait(ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField), 3 * 1000);
+    browser.wait(ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
   verifyFirstFieldStartsWith(text: string) {
@@ -78,7 +83,12 @@ export class EntriesPageObject {
   }
 
   verifyFieldStartsWith(text: string, field: ElementFinder) {
-    browser.wait(ExpectedConditions.visibilityOf(field), 3 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(field), Helpers.DEFAULT_WAIT_TIMEOUT);
     expect(field.getText()).toMatch(new RegExp('^' + text));
+  }
+
+  waitEntriesPageLoaded() {
+    browser.sleep(10000);
+    Helpers.waitUntilLoaderFinished();
   }
 }

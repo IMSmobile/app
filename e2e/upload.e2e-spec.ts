@@ -1,3 +1,4 @@
+import { Helpers } from './helpers/helpers';
 import { SettingImageFieldsPage } from './../src/pages/setting-image-fields/setting-image-fields';
 import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
 import { SettingsPageOjbect } from './page-objects/settings-page-object';
@@ -39,17 +40,15 @@ describe('Upload E2E Test', () => {
     uploadPage.loadPage();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('loading-wrapper'))), 10 * 1000);
-    browser.wait(ExpectedConditions.invisibilityOf(element(by.className('loading-wrapper'))), 10 * 1000);
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), 10 * 1000);
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('loading-wrapper'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    browser.wait(ExpectedConditions.invisibilityOf(element(by.className('loading-wrapper'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
-
-
 
   it('Should add fields and testing invalid inputs', () => {
     settingImageFieldsPageOjbect.loadPage();
-    settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle.click();
-    settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle.click();
+    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle);
     uploadPage.reloadPage();
 
     uploadPage.clickIntoBildNameTextField();
@@ -80,7 +79,3 @@ describe('Upload E2E Test', () => {
     uploadPage.verifyFloatErrorDivInvisible();
   });
 });
-
-function waitUntilStorageReady() {
-  browser.sleep(1000);
-}

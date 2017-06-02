@@ -1,4 +1,5 @@
-import { browser, element, by, ElementFinder, $, promise } from 'protractor';
+import { Helpers } from './../helpers/helpers';
+import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,6 +12,7 @@ export class LoginPageOjbect {
     serverInput: ElementFinder = element(by.css('input[formControlName=server]'));
     userInput: ElementFinder = element(by.css('input[formControlName=user]'));
     passwordInput: ElementFinder = element(by.css('input[formControlName=password]'));
+    toastMessage: ElementFinder = element(by.className('toast-message'));
 
     login() {
         this.loginWithCredentials(this.user, this.password);
@@ -27,7 +29,7 @@ export class LoginPageOjbect {
         this.userInput.clear();
         this.userInput.sendKeys(user);
         this.passwordInput.sendKeys(password);
-        this.loginButton.click();
+        this.clickLoginButton();
         browser.waitForAngular();
     }
 
@@ -35,15 +37,27 @@ export class LoginPageOjbect {
         browser.get('');
     }
 
+    verifyToastErrorMessage() {
+        expect(this.toastMessage.isDisplayed()).toBeTruthy();
+        browser.wait(ExpectedConditions.visibilityOf(this.toastMessage), Helpers.DEFAULT_WAIT_TIMEOUT);
+    }
+
+    clickLoginButton() {
+        this.loginButton.click();
+    }
+
     getServerInputText(): promise.Promise<string> {
+        Helpers.waitUntilElementIsReady(this.serverInput);
         return this.serverInput.getAttribute('value');
     }
 
     getUserInputText(): promise.Promise<string> {
+        Helpers.waitUntilElementIsReady(this.userInput);
         return this.userInput.getAttribute('value');
     }
 
     getPasswordInputText(): promise.Promise<string> {
+        Helpers.waitUntilElementIsReady(this.passwordInput);
         return this.passwordInput.getAttribute('value');
     }
 
