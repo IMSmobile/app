@@ -41,10 +41,10 @@ IMS Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 Sortierung von Eintragbeschreibungsfelder möglich? → Aktuell nicht möglich, kann zu einem späteren Zeitpunkt nochmals angeschaut werden.
 
 ### Feedback / Input
-Speicherung der Usereinstellungen: aktuell auf Gerät → in Zukunft über REST-Schnittstelle oder MDM (Issues erfasst)
-Mandatory Felder könnten besser angezeigt werden (z.B. mit Stern oder roter Umrandung)
-Burnup Chart, bessere Repräsentation der Erreichbarkeit (Anzahl Punkte bei Ende Masterarbeit)
-Backlog Priorisierung → Aufzeigen, was erreichbar ist. Anhand dieses Schlussstrichs kann Imagic und PIC System entschieden, was eher erledigt werden soll und was weniger wichtiger ist. → Werkzeug zur besseren Priorisierung einführen (Hin und Herschieben der Tasks mit Erreichbarkeit). Wurde als Issue aufgenommen.
+Speicherung der Usereinstellungen: aktuell auf Gerät → in Zukunft über REST-Schnittstelle oder MDM (Issues erfasst)  
+Mandatory Felder könnten besser angezeigt werden (z.B. mit Stern oder roter Umrandung)  
+Burnup Chart, bessere Repräsentation der Erreichbarkeit (Anzahl Punkte bei Ende Masterarbeit)  
+Backlog Priorisierung → Aufzeigen, was erreichbar ist. Anhand dieses Schlussstrichs kann Imagic und PIC System entschieden, was eher erledigt werden soll und was weniger wichtiger ist. → Werkzeug zur besseren Priorisierung einführen (Hin und Herschieben der Tasks mit Erreichbarkeit). Wurde als Issue aufgenommen.  
 UDID von Patrick Bohren anfordern, damit auf seinem iPhone die Developerversion deployt werden kann.
 ### Nächster Termin
 16.06.2017 um 10:00
