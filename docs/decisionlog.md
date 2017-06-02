@@ -1,6 +1,11 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 2. Juni 2017
+- Pro Sprint sollten sich jeder 2 Stunden Zeit nehmen um den Code zu lesen.
+- Refactorings werden im eigenem Branch commitet.
+- Vor der Implementierung eines Features wird nach Lösungen ähnlicher Problemen in anderen Projekten gesucht.
+
 ## 19. Mai 2017
 - Bei jedem Meeting wird im Vorraus das Ziel des Meetings und ein Zeitraum (Timebox) definiert.
 - Im Sprint Planning werden falls nötig Lösungsansätze zur Umsetzung und Design eines Backlog Items diskutiert.
