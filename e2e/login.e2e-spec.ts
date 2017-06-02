@@ -24,4 +24,11 @@ describe('Login E2E Test', () => {
     loginPage.clickLoginButton();
     loginPage.verifyToastErrorMessage();
   });
+
+  it('Toast Message appears with failed login attempt', () => {
+    loginPage.loginWithCredentials('admin', 'WRONG_PASSWORD');
+    loginPage.verifyErrorMessage();
+  });
+
+
 });
