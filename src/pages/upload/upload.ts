@@ -80,6 +80,12 @@ export class UploadPage {
       err => this.cameraService.showAlertOnError(err));
   }
 
+  public getGalleryImage() {
+    this.cameraService.getGalleryImage().subscribe(
+      imageData => this.imageSrc = imageData,
+      err => this.cameraService.showAlertOnError(err));
+  }
+
   public uploadPicture() {
     this.markAllAsTouched();
     if (this.fieldsForm.invalid) {

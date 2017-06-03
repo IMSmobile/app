@@ -114,6 +114,23 @@ describe('Page: Upload', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
+  it('set imageSrc after getting image from gallery', inject([CameraService], (cameraService: CameraService) => {
+    let imageSource = '/my/picture.jpg';
+    spyOn(cameraService, 'getGalleryImage').and.returnValue(Observable.of(imageSource));
+    page.getGalleryImage();
+    expect(cameraService.getGalleryImage).toHaveBeenCalled();
+    expect(page.imageSrc).toBe(imageSource);
+  }));
+
+  it('show error when failing to get image from gallery', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
+    let error = Observable.throw(new Error('oops'));
+    spyOn(cameraService, 'getGalleryImage').and.returnValue(error);
+    spyOn(alertService, 'showError').and.callThrough();
+    page.getGalleryImage();
+    expect(cameraService.getGalleryImage).toHaveBeenCalled();
+    expect(alertService.showError).toHaveBeenCalled();
+  }));
+
   it('Show and hide loading when successful', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
