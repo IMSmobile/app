@@ -17,7 +17,9 @@ export class EntriesPageObject {
   entriesFirstMetaDataField: ElementFinder = this.entriesFields.get(0);
   entriesSecondMetaDataField: ElementFinder = this.entriesFields.get(1);
   entriesThirdMetaDataField: ElementFinder = this.entriesFields.get(2);
-  entriesCameraButton: ElementFinder = this.entriesItem.element(by.tagName('button'));
+  entriesCameraButton: ElementFinder = this.entriesItem.element(by.css('.cameraButton'));
+  entriesGalleryButton: ElementFinder = this.entriesItem.element(by.css('.galleryButton'));
+
   settingArchivePageObject = new SettingArchivePageObject();
   loginPage = new LoginPageOjbect();
 
@@ -49,6 +51,11 @@ export class EntriesPageObject {
   pushEntriesCameraButtonOnEntry34617() {
     Helpers.waitUntilElementIsReady(this.entriesCameraButton);
     this.entriesCameraButton.click();
+  }
+
+  pushEntriesGalleryButtonOnEntry34617() {
+    Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
+    this.entriesGalleryButton.click();
   }
 
   verifyEntriesTitleVisible() {
