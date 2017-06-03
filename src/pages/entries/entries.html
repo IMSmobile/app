@@ -18,6 +18,9 @@
         <button ion-button (click)="takePictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" id="entriesCameraButton{{entry.fields[parentImageReferenceField]}}" item-right>
           <ion-icon name="camera"></ion-icon>
         </button>
+        <button ion-button (click)="getGalleryImageForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" id="entriesGalleryButton{{entry.fields[parentImageReferenceField]}}" item-right>
+          <ion-icon name="image"></ion-icon>
+        </button>
       </ion-item>
     </ion-list>
     <ion-infinite-scroll-content loadingText="Mehr Daten werden geladen..."></ion-infinite-scroll-content>
