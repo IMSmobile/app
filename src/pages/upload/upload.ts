@@ -80,8 +80,8 @@ export class UploadPage {
       err => this.cameraService.showAlertOnError(err));
   }
 
-  public getGalleryImage() {
-    this.cameraService.getGalleryImage().subscribe(
+  public getGalleryPicture() {
+    this.cameraService.getGalleryPicture().subscribe(
       imageData => this.imageSrc = imageData,
       err => this.cameraService.showAlertOnError(err));
   }

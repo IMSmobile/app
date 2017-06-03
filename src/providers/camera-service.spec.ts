@@ -43,7 +43,7 @@ describe('Provider: CameraService', () => {
 
   it('requests picture from gallery with the correct options', inject([CameraService, Camera], (cameraService: CameraService, camera: Camera) => {
     spyOn(camera, 'getPicture').and.callThrough();
-    cameraService.getGalleryImage();
+    cameraService.getGalleryPicture();
     expect(camera.getPicture).toHaveBeenCalledWith(cameraService.galleryOptions);
   }));
 

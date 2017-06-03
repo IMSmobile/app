@@ -116,18 +116,18 @@ describe('Page: Upload', () => {
 
   it('set imageSrc after getting image from gallery', inject([CameraService], (cameraService: CameraService) => {
     let imageSource = '/my/picture.jpg';
-    spyOn(cameraService, 'getGalleryImage').and.returnValue(Observable.of(imageSource));
-    page.getGalleryImage();
-    expect(cameraService.getGalleryImage).toHaveBeenCalled();
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
+    page.getGalleryPicture();
+    expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(page.imageSrc).toBe(imageSource);
   }));
 
   it('show error when failing to get image from gallery', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
     let error = Observable.throw(new Error('oops'));
-    spyOn(cameraService, 'getGalleryImage').and.returnValue(error);
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(error);
     spyOn(alertService, 'showError').and.callThrough();
-    page.getGalleryImage();
-    expect(cameraService.getGalleryImage).toHaveBeenCalled();
+    page.getGalleryPicture();
+    expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(alertService.showError).toHaveBeenCalled();
   }));
 

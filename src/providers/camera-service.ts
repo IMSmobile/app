@@ -40,7 +40,7 @@ export class CameraService {
     return Observable.fromPromise(this.camera.getPicture(this.pictureOptions));
   }
 
-  public getGalleryImage(): Observable<any> {
+  public getGalleryPicture(): Observable<any> {
     return Observable.fromPromise(this.camera.getPicture(this.galleryOptions));
   }
 

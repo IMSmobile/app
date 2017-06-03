@@ -39,9 +39,9 @@ export class EntriesPage {
       err => this.cameraService.showAlertOnError(err));
   }
 
-  public getGalleryImageForEntry(parentImageEntryId: string, entryTitle: string) {
+  public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
-      this.cameraService.getGalleryImage(),
+      this.cameraService.getGalleryPicture(),
       imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
       err => this.cameraService.showAlertOnError(err));
   }

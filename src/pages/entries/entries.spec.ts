@@ -215,11 +215,11 @@ describe('Page: Entries', () => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
     let imageSource = '/my/picture.jpg';
-    spyOn(cameraService, 'getGalleryImage').and.returnValue(Observable.of(imageSource));
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
-    page.getGalleryImageForEntry(parentImageEntryId, entryTitle);
-    expect(cameraService.getGalleryImage).toHaveBeenCalled();
+    page.getGalleryPictureForEntry(parentImageEntryId, entryTitle);
+    expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
@@ -229,11 +229,11 @@ describe('Page: Entries', () => {
 
   it('Show alert when failing to get picture from gallery', inject([CameraService, NavController, AlertService], (cameraService: CameraService, navController: NavController, alertService: AlertService) => {
     let error = Observable.throw(new Error('oops'));
-    spyOn(cameraService, 'getGalleryImage').and.returnValue(error);
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(error);
     spyOn(navController, 'push').and.callThrough();
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
-    page.getGalleryImageForEntry('1', 'test');
-    expect(cameraService.getGalleryImage).toHaveBeenCalled();
+    page.getGalleryPictureForEntry('1', 'test');
+    expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledTimes(0);
     expect(cameraService.showAlertOnError).toHaveBeenCalled();
   }));
