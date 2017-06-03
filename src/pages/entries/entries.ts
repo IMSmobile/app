@@ -33,7 +33,8 @@ export class EntriesPage {
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
-    this.cameraService.takePicture().subscribe(
+    this.loadingService.subscribeWithLoading(
+      this.cameraService.takePicture(),
       imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }),
       err => this.cameraService.showAlertOnError(err));
   }

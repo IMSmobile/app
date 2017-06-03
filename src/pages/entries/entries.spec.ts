@@ -182,15 +182,17 @@ describe('Page: Entries', () => {
     expect(page.nextPage).toBe(imsBackendMock.parentImageEntriesNextNextPageUrl);
   }));
 
-  it('Push to Upload Page after taking picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
+  it('Push to Upload Page after taking picture', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
     page.takePictureForEntry(parentImageEntryId, entryTitle);
     expect(cameraService.takePicture).toHaveBeenCalled();
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
     expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
