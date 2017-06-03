@@ -211,15 +211,17 @@ describe('Page: Entries', () => {
     expect(cameraService.showAlertOnError).toHaveBeenCalled();
   }));
 
-  it('Push to Upload Page after getting picture from gallery', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
+  it('Push to Upload Page after getting picture from gallery', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
     spyOn(cameraService, 'showAlertOnError').and.callThrough();
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
     page.getGalleryPictureForEntry(parentImageEntryId, entryTitle);
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
     expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
