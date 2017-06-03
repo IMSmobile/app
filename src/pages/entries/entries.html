@@ -15,10 +15,10 @@
       <ion-item *ngFor="let entry of entries" id="entriesItem{{entry.fields[parentImageReferenceField]}}">
         <h1 ion-text color="primary">{{entry.fields[titleField]}}</h1>
         <div *ngFor="let field of fields" class="entries-fields">{{field.name}} : {{entry.fields[field.name]}}</div>
-        <button ion-button (click)="takePictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="cameraButton" id="entriesCameraButton{{entry.fields[parentImageReferenceField]}}" item-right>
+        <button ion-button (click)="takePictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="cameraButton" item-right>
           <ion-icon name="camera"></ion-icon>
         </button>
-        <button ion-button (click)="getGalleryPictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="galleryButton" id="entriesGalleryButton{{entry.fields[parentImageReferenceField]}}" item-right>
+        <button ion-button (click)="getGalleryPictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="galleryButton" item-right>
           <ion-icon name="image"></ion-icon>
         </button>
       </ion-item>
