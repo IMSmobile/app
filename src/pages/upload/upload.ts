@@ -74,7 +74,8 @@ export class UploadPage {
   }
 
   public takePicture() {
-    this.cameraService.takePicture().subscribe(
+    this.loadingService.subscribeWithLoading(
+      this.cameraService.takePicture(),
       imageData => this.imageSrc = imageData,
       err => this.cameraService.showAlertOnError(err));
   }

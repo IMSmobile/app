@@ -95,10 +95,12 @@ describe('Page: Upload', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
-  it('set imageSrc after taking picture', inject([CameraService], (cameraService: CameraService) => {
+  it('set imageSrc after taking picture', inject([CameraService, LoadingService], (cameraService: CameraService, loadingService: LoadingService) => {
     let imageSource = '/my/picture.jpg';
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
     page.takePicture();
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(page.imageSrc).toBe(imageSource);
   }));
