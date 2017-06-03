@@ -13,7 +13,7 @@ export class LoginPageOjbect {
     userInput: ElementFinder = element(by.css('input[formControlName=user]'));
     passwordInput: ElementFinder = element(by.css('input[formControlName=password]'));
     toastMessage: ElementFinder = element(by.className('toast-message'));
-    errorDialog: ElementFinder = element(by.className('alert -wrapper'));
+    errorDialog: ElementFinder = element(by.className('alert-wrapper'));
 
     login() {
         this.loginWithCredentials(this.user, this.password);
@@ -43,7 +43,7 @@ export class LoginPageOjbect {
         browser.wait(ExpectedConditions.visibilityOf(this.toastMessage), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
-    verifyErrorMessage() {
+    verifyErrorDialog() {
         browser.wait(ExpectedConditions.visibilityOf(this.errorDialog), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
