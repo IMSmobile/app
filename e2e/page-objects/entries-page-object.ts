@@ -88,7 +88,17 @@ export class EntriesPageObject {
   }
 
   waitEntriesPageLoaded() {
-    browser.sleep(10000);
+    this.waitIonViewDidLoad();
+    this.waitIonViewDidEnter();
+  }
+
+  waitIonViewDidLoad() {
+    browser.sleep(1000);
+    Helpers.waitUntilLoaderFinished();
+  }
+
+  waitIonViewDidEnter() {
+    browser.sleep(1000);
     Helpers.waitUntilLoaderFinished();
   }
 }
