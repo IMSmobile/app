@@ -9,6 +9,16 @@ export class CameraService {
 
   pictureOptions: CameraOptions = {
     quality: 100,
+    sourceType: this.camera.PictureSourceType.CAMERA,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    correctOrientation: true
+  };
+
+  galleryOptions: CameraOptions = {
+    quality: 100,
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: this.camera.DestinationType.FILE_URI,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
@@ -28,6 +38,10 @@ export class CameraService {
 
   public takePicture(): Observable<any> {
     return Observable.fromPromise(this.camera.getPicture(this.pictureOptions));
+  }
+
+  public getGalleryImage(): Observable<any> {
+    return Observable.fromPromise(this.camera.getPicture(this.galleryOptions));
   }
 
   public showAlertOnError(error: (string|number)) {
