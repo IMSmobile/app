@@ -31,7 +31,6 @@ export class LoginPage {
   }
 
   login() {
-    this.markAllAsTouched();
     if (this.loginForm.invalid) {
       this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
@@ -77,12 +76,6 @@ export class LoginPage {
       duration: 3000,
     });
     toast.present();
-  }
-
-  markAllAsTouched() {   // TODO this.loginForm.markAsTouched (mark all as touched in a single call) did not working maybe after update to Ionic
-    this.loginForm.controls['server'].markAsTouched();
-    this.loginForm.controls['user'].markAsTouched();
-    this.loginForm.controls['password'].markAsTouched();
   }
 
   ionViewDidLoad() {
