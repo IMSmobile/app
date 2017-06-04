@@ -29,7 +29,7 @@
       <form [formGroup]="fieldsForm">
         <div *ngFor="let field of fields">
           <ion-item>
-            <ion-label><span *ngIf="field.mandatory" class="mandatory" id="mandatory{{field.name}}">* </span>{{field.name}}</ion-label>
+            <ion-label>{{field.name}}<span *ngIf="field.mandatory" class="mandatory" id="mandatory{{field.name}}"> *</span></ion-label>
             <ion-input type="text" formControlName="{{field.name}}"></ion-input>
           </ion-item>
           <div class="invalid" *ngIf="!fieldsForm.controls[field.name].valid && (fieldsForm.controls[field.name].touched || fieldsForm.controls[field.name].dirty) " id="uploadFieldErrorDiv{{field.name}}">
