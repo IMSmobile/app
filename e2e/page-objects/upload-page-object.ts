@@ -16,8 +16,8 @@ export class UploadPageObject {
     uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
     uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
     uploadFieldErrorDivFLOATFELD: ElementFinder = element(by.id('uploadFieldErrorDivFLOATFELD'));
-
-
+    bildNameMandatoryMarker: ElementFinder = element(by.id('mandatoryBILDNAME'));
+    integerfeldMandatoryMarker: ElementFinder = element(by.id('mandatoryINTEGERFELD'));
 
     loadPage() {
         this.entriesPage.loadPage();
@@ -79,6 +79,14 @@ export class UploadPageObject {
 
     verifyErrorDivInvisible(errorDiv: ElementFinder) {
         browser.wait(ExpectedConditions.invisibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
+    }
+
+    verifyBildNameMarkedAsMandatoryField() {
+        browser.wait(ExpectedConditions.visibilityOf(this.bildNameMandatoryMarker), Helpers.DEFAULT_WAIT_TIMEOUT);
+    }
+
+    verifyIntegerNotMarkedAsMandatoryField() {
+        browser.wait(ExpectedConditions.invisibilityOf(this.integerfeldMandatoryMarker), Helpers.DEFAULT_WAIT_TIMEOUT);
     }
 
     clickUploadImageButton() {
