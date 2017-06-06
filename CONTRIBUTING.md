@@ -10,4 +10,8 @@ Eine Issue gilt als abgeschlossen wenn:
 - Keine TODO Kommentare im Code zu finden sind
 - Der Pull Request einem Review unterzogen wurde und unseren Qualitätsanforderungen entspricht
 - Das Issue geschlossen wurde (entweder durch Commit-Messages oder manuell auf dem Kanbanboard)
-- Die Funktionalität auf einem iOS und Android Gerät getestet wurde 
+- Die Funktionalität auf einem iOS und Android Gerät getestet wurde
+- Die Version gemäss Sematic Versioning in folgenden Files erhöht wurde
+  - package.ts
+  - src/pages/login.ts
+  - config.xml
