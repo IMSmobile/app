@@ -403,6 +403,11 @@ Mit dokumentierten manuellen Test Cases, welche wir vor jedem Sprint-Review und 
 
 *TODO Example Manual Test Case.*
 
+### Versionierung
+Mit jedem Pull Request bei welchem Dateien im /src oder /e2e Ordner verändert werden, wird die Version gemäss [Sematic Versioning](http://semver.org/) angepasst. Dieser Schritt passiert manuell.
+Die Files welche angepasst werden müssen stehen in der [Definition of Done](CONTRIBUTING.md).
+
+
 ### Wireframes
 Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
 
