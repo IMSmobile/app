@@ -16,6 +16,7 @@ export class UploadPageObject {
     uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
     uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
     uploadFieldErrorDivFLOATFELD: ElementFinder = element(by.id('uploadFieldErrorDivFLOATFELD'));
+    getGalleryPictureButton: ElementFinder = element(by.id('getGalleryPictureButton'));
     bildNameMandatoryMarker: ElementFinder = element(by.id('mandatoryBILDNAME'));
     integerfeldMandatoryMarker: ElementFinder = element(by.id('mandatoryINTEGERFELD'));
 
@@ -33,6 +34,11 @@ export class UploadPageObject {
         textField.clear();
         textField.sendKeys(text);
         browser.waitForAngular();
+    }
+
+    selectNewPictureFromGallery() {
+        Helpers.waitUntilElementIsReady(this.getGalleryPictureButton);
+        this.getGalleryPictureButton.click();
     }
 
     clickIntoBildNameTextField() {

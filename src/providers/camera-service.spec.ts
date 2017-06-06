@@ -35,6 +35,18 @@ describe('Provider: CameraService', () => {
     cameraService.takePicture().subscribe(res => expect(res).toBeNull(), err => expect(err).toEqual(error));
   }));
 
+  it('requests picture from camera with the correct options', inject([CameraService, Camera], (cameraService: CameraService, camera: Camera) => {
+    spyOn(camera, 'getPicture').and.callThrough();
+    cameraService.takePicture();
+    expect(camera.getPicture).toHaveBeenCalledWith(cameraService.pictureOptions);
+  }));
+
+  it('requests picture from gallery with the correct options', inject([CameraService, Camera], (cameraService: CameraService, camera: Camera) => {
+    spyOn(camera, 'getPicture').and.callThrough();
+    cameraService.getGalleryPicture();
+    expect(camera.getPicture).toHaveBeenCalledWith(cameraService.galleryOptions);
+  }));
+
   it('does not show alert on ignored error', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
     spyOn(alertService, 'showError').and.callThrough();
     cameraService.showAlertOnError(cameraService.ignoredErrors[0]);

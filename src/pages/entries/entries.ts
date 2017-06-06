@@ -35,8 +35,19 @@ export class EntriesPage {
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
-      imageSrc => this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }),
+      imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
       err => this.cameraService.showAlertOnError(err));
+  }
+
+  public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
+    this.loadingService.subscribeWithLoading(
+      this.cameraService.getGalleryPicture(),
+      imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
+      err => this.cameraService.showAlertOnError(err));
+  }
+
+  pushToUploadPageWithPicture(imageSrc: string, parentImageEntryId: string, entryTitle: string) {
+    this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle });
   }
 
   ionViewDidLoad() {

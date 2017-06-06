@@ -211,6 +211,35 @@ describe('Page: Entries', () => {
     expect(cameraService.showAlertOnError).toHaveBeenCalled();
   }));
 
+  it('Push to Upload Page after getting picture from gallery', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
+    let parentImageEntryId: string = '123';
+    let entryTitle: string = 'Test Entry';
+    let imageSource = '/my/picture.jpg';
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
+    spyOn(cameraService, 'showAlertOnError').and.callThrough();
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
+    spyOn(navController, 'push').and.callThrough();
+    page.getGalleryPictureForEntry(parentImageEntryId, entryTitle);
+    expect(cameraService.getGalleryPicture).toHaveBeenCalled();
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
+    expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
+    expect(navController.push).toHaveBeenCalledWith(
+      UploadPage,
+      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
+    );
+  }));
+
+  it('Show alert when failing to get picture from gallery', inject([CameraService, NavController, AlertService], (cameraService: CameraService, navController: NavController, alertService: AlertService) => {
+    let error = Observable.throw(new Error('oops'));
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(error);
+    spyOn(navController, 'push').and.callThrough();
+    spyOn(cameraService, 'showAlertOnError').and.callThrough();
+    page.getGalleryPictureForEntry('1', 'test');
+    expect(cameraService.getGalleryPicture).toHaveBeenCalled();
+    expect(navController.push).toHaveBeenCalledTimes(0);
+    expect(cameraService.showAlertOnError).toHaveBeenCalled();
+  }));
+
   it('Go to Settings Page and dismiss popover on load Settings', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
     page.subscribeToEvents();
     page.popover = popoverController.create({});

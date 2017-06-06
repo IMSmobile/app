@@ -2,6 +2,7 @@ export class CameraMock {
   DestinationType = { 'FILE_URI': 'FILE_URI' };
   EncodingType = { 'JPEG': 'JPEG' };
   MediaType = { 'PICTURE': 'PICTURE' };
+  PictureSourceType = { 'CAMERA': 'CAMERA', 'PHOTOLIBRARY': 'PHOTOLIBRARY' };
 
   getPicture(options) {
     return new Promise((resolve, reject) => {
