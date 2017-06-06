@@ -1,3 +1,4 @@
+import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
 import { BrowserModule } from '@angular/platform-browser';
@@ -95,7 +96,7 @@ const cloudSettings: CloudSettings = {
     QueryBuilderService,
     ModelService,
     FieldValidatorService,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: ImsErrorHandler }
   ]
 })
 export class AppModule { }
