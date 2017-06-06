@@ -404,7 +404,7 @@ Mit dokumentierten manuellen Test Cases, welche wir vor jedem Sprint-Review und 
 *TODO Example Manual Test Case.*
 
 ### Versionierung
-Mit jedem Pull Request bei welchem Dateien im /src oder /e2e Ordner verändert werden, wird die Version gemäss [Sematic Versioning](http://semver.org/) angepasst. Dieser Schritt passiert manuell.
+Mit jedem Pull Request bei welchem Dateien im /src oder /e2e Ordner verändert werden, wird die Version gemäss [Semantic Versioning](http://semver.org/) angepasst. Dieser Schritt passiert manuell.
 Die Files welche angepasst werden müssen stehen in der [Definition of Done](CONTRIBUTING.md).
 
 
