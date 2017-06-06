@@ -94,4 +94,13 @@ describe('Upload E2E Test', () => {
     uploadPage.verifyIntegerErrorDivInvisible();
     uploadPage.verifyFloatErrorDivInvisible();
   });
+
+  it('Should show mandatory markers only on mandatory fields', () => {
+    settingImageFieldsPageOjbect.loadPage();
+    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle);
+    uploadPage.reloadPage();
+    uploadPage.verifyBildNameMarkedAsMandatoryField();
+    uploadPage.verifyIntegerNotMarkedAsMandatoryField();
+  });
+
 });
