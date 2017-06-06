@@ -21,6 +21,7 @@ export class LoginPage {
 
   loginForm: FormGroup;
   isShowRestUrlField: boolean = true;
+  version: string = '0.0.1';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService, public alertService: AlertService) {
     this.loginForm = this.formBuilder.group({
