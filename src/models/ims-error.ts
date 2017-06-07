@@ -1,10 +1,8 @@
 export class ImsError extends Error {
-  err: any;
 
-  constructor(message: string, err: any) {
-    super(message);
-    this.message = message;
-    this.err = err;
+  constructor(userFriendlyErrorMessage: string, err: any) {
+    super(err);
+    this.name = userFriendlyErrorMessage;
     Object.setPrototypeOf(this, ImsError.prototype);
   }
 }
