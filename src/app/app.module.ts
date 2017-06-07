@@ -7,7 +7,7 @@ import { ModelService } from './../providers/model-service';
 import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule } from 'ionic-angular';
 import { MobileClient } from './app.component';
 import { UploadPage } from '../pages/upload/upload';
 import { LoginPage } from '../pages/login/login';
