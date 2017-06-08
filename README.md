@@ -48,6 +48,7 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [IMS Publisher Medicine](http://sinv-56028.edu.hsr.ch:40000/ims_publisher_medicine/) | IMS Publisher mit konfiguriertem Medizinarchiv |
 | [Continuous Integration Server](https://travis-ci.org/IMSmobile/app) | Travis Continuous Integration Test Server mit Log |
 | [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes des Mobile Client |
+| [Story Map](https://realtimeboard.com/app/board/o9J_k0HGAYQ=/) | Überblick über sämtliche User-Storys |
 
 ### Glossar
 Siehe [Glossar](docs/glossary.md)
@@ -185,6 +186,7 @@ Unsere Qualitätsmassnahmen umfassen folgende Punkte:
 | Pflegen eines Glossars                                    | Gesamte Projektdauer                       | organisatorisch | Missverständnisse vermeiden
 | Quellcode und Dokumentations unter Versionsverwaltung     | Gesamte Projektdauer                       | organisatorisch | Änderungskontrolle und Nachverfolgbarkeit
 | Wireframes                                                | Gesamte Projektdauer (Ausser bei Prototyp) | analytisch      | Prüfung auf Akzeptanz der Stakeholder
+| Story Map                                                 | Gesamte Projektdauer (Ausser bei Prototyp) | organisatorisch | Übersicht behalten
 
 ### Framework
 Für die Entwicklung der Software benutzen wir das Framework [Ionic 2](http://ionicframework.com/docs/).
@@ -405,6 +407,9 @@ Mit dokumentierten manuellen Test Cases, welche wir vor jedem Sprint-Review und 
 
 ### Wireframes
 Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
+
+### Story Map
+Aus den Anforderungen und dem laufenden Feedback der Stakeholder entstehen User-Storys welche wir nach Themen gruppiert als Kärtchen auf der Story Map auslegen. Während dem Sprint Review zeigen wir jeweils den aktuellen Stand des Projekts bezogen auf die User-Storys.
 
 ## Quellen
 Icons von https://icons8.com/
