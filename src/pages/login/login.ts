@@ -1,4 +1,5 @@
-import { ImsError } from './../../models/ims-error';
+import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
+import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
 import { Filter } from './../../models/filter';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { Component } from '@angular/core';
@@ -66,9 +67,9 @@ export class LoginPage {
 
   loginFailed(response: Response) {
     if (response.status === 401) {
-      throw new ImsError('Benutzername oder Passwort ist falsch.', response);
+      throw new ImsAuthenticationError(response);
     } else {
-      this.alertService.showError('Verbindung zum IMS Rest Server ' + this.loginForm.controls['server'].value + ' nicht möglich.');
+      throw new ImsServerConnectionError(this.loginForm.controls['server'].value, response);
     }
   }
 

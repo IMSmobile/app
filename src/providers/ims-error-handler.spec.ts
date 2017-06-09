@@ -1,5 +1,5 @@
 import { AlertMock } from './../mocks/mocks';
-import { ImsError } from './../models/ims-error';
+import { ImsError } from './../models/errors/ims-error';
 import { AlertService } from './alert-service';
 import { AlertController, IonicErrorHandler } from 'ionic-angular';
 import { TestBed, async, inject } from '@angular/core/testing';

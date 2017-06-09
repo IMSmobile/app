@@ -1,4 +1,4 @@
-import { ImsError } from './../models/ims-error';
+import { ImsError } from './../models/errors/ims-error';
 import { IonicErrorHandler } from 'ionic-angular';
 import { AlertService } from './alert-service';
 import { Injectable } from '@angular/core';
