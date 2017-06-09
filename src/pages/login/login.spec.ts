@@ -1,3 +1,4 @@
+import { ImsError } from './../../models/ims-error';
 import { Info } from './../../models/info';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
@@ -64,7 +65,7 @@ describe('Page: Login', () => {
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show and Hide loading with alert on error', inject([LoadingService, AlertService], (loadingService: LoadingService, alertService: AlertService) => {
+  it('Show and Hide loading with alert on wrong server', inject([LoadingService, AlertService], (loadingService: LoadingService, alertService: AlertService) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     spyOn(alertService, 'showError').and.callThrough();
@@ -75,6 +76,17 @@ describe('Page: Login', () => {
     expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
     expect(alertService.showError).toHaveBeenCalled();
+  }));
+
+ it('Show and Hide loading with error thrown on wrong username', inject([LoadingService, AlertService, ImsBackendMock], (loadingService: LoadingService, alertService: AlertService, imsBackendMock: ImsBackendMock) => {
+    spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'hideLoading').and.callThrough();
+    page.loginForm.controls['server'].setValue(imsBackendMock.credential.server);
+    page.loginForm.controls['user'].setValue('wrong');
+    page.loginForm.controls['password'].setValue('wrong');
+    expect(() => page.login()).toThrowError(ImsError);
+    expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
+    expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
   it('Show and Hide Loading in case of success', inject([LoadingService, ImsBackendMock], (loadingService: LoadingService, imsBackendMock: ImsBackendMock) => {
