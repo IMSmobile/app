@@ -404,9 +404,9 @@ Mit dokumentierten manuellen Test Cases, welche wir vor jedem Sprint-Review und 
 *TODO Example Manual Test Case.*
 
 ### Versionierung
-Mit jedem Pull Request bei welchem Dateien im /src oder /e2e Ordner verändert werden, wird die Version gemäss [Semantic Versioning](http://semver.org/) angepasst. Dieser Schritt passiert manuell. Die Files welche angepasst werden müssen stehen in der [Definition of Done](CONTRIBUTING.md).
+Mit jedem Pull Request bei welchem Dateien im /src oder /e2e Ordner verändert werden, wird die Version gemäss [Semantic Versioning](http://semver.org/) angepasst. Dieser Schritt passiert manuell. Die Files, welche angepasst werden müssen stehen in der [Definition of Done](CONTRIBUTING.md).
 
-Ene Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, _MINOR_ und _PATCH_ welche je nach Änderungsart inkrementiert werden. Beispiele von Änderungsarten wären:
+Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, _MINOR_ und _PATCH_ welche je nach Änderungsart inkrementiert werden. Beispiele von Änderungsarten wären:
 - _MAJOR_: Neue Anforderungen an die Version des IMS Servers; Format der Startparameter wird verändert 
 - _MINOR_: Neue Funktionalität wird eingeführt
 - _PATCH_: Bugs werden behoben; Code wird verbessert (refactored); Design wird angepasst
