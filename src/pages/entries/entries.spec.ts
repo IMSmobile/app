@@ -1,3 +1,4 @@
+import { CameraError } from './../../models/errors/camera-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Storage } from '@ionic/storage';
 import { StorageMock } from './../../mocks/mocks';
@@ -201,28 +202,27 @@ describe('Page: Entries', () => {
     let entryTitle: string = 'Test Entry';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
-    spyOn(cameraService, 'showAlertOnError').and.callThrough();
+    spyOn(cameraService, 'handleError').and.callThrough();
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
     page.takePictureForEntry(parentImageEntryId, entryTitle);
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
-    expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
+    expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
       { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
   }));
 
-  it('Show alert when failing to take picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
-    let error = Observable.throw(new Error('oops'));
-    spyOn(cameraService, 'takePicture').and.returnValue(error);
+  it('Throws error when failing to take picture', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
+    spyOn(cameraService, 'takePicture').and.returnValue(Observable.throw('oops'));
     spyOn(navController, 'push').and.callThrough();
-    spyOn(cameraService, 'showAlertOnError').and.callThrough();
-    page.takePictureForEntry('1', 'test');
+    spyOn(cameraService, 'handleError').and.callThrough();
+    expect(() => page.takePictureForEntry('1', 'test')).toThrowError(CameraError);
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledTimes(0);
-    expect(cameraService.showAlertOnError).toHaveBeenCalled();
+    expect(cameraService.handleError).toHaveBeenCalled();
   }));
 
   it('Push to Upload Page after getting picture from gallery', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
@@ -230,28 +230,28 @@ describe('Page: Entries', () => {
     let entryTitle: string = 'Test Entry';
     let imageSource = '/my/picture.jpg';
     spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
-    spyOn(cameraService, 'showAlertOnError').and.callThrough();
+    spyOn(cameraService, 'handleError').and.callThrough();
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
     page.getGalleryPictureForEntry(parentImageEntryId, entryTitle);
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
-    expect(cameraService.showAlertOnError).toHaveBeenCalledTimes(0);
+    expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
       { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
   }));
 
-  it('Show alert when failing to get picture from gallery', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
+  it('Throws error when failing to get picture from gallery', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(cameraService, 'getGalleryPicture').and.returnValue(error);
     spyOn(navController, 'push').and.callThrough();
-    spyOn(cameraService, 'showAlertOnError').and.callThrough();
-    page.getGalleryPictureForEntry('1', 'test');
+    spyOn(cameraService, 'handleError').and.callThrough();
+    expect(() => page.getGalleryPictureForEntry('1', 'test')).toThrowError(CameraError);
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(navController.push).toHaveBeenCalledTimes(0);
-    expect(cameraService.showAlertOnError).toHaveBeenCalled();
+    expect(cameraService.handleError).toHaveBeenCalled();
   }));
 
   it('Go to Settings Page and dismiss popover on load Settings', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {

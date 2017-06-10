@@ -104,13 +104,12 @@ describe('Page: Upload', () => {
     expect(page.imageSrc).toBe(imageSource);
   }));
 
-  it('show error when failing to take picture', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
-    let error = Observable.throw(new Error('oops'));
-    spyOn(cameraService, 'takePicture').and.returnValue(error);
-    spyOn(alertService, 'showError').and.callThrough();
+  it('calls camera error handler when failing to take picture', inject([CameraService], (cameraService: CameraService) => {
+    spyOn(cameraService, 'takePicture').and.returnValue(Observable.throw('oops'));
+    spyOn(cameraService, 'handleError').and.returnValue(null);
     page.takePicture();
     expect(cameraService.takePicture).toHaveBeenCalled();
-    expect(alertService.showError).toHaveBeenCalled();
+    expect(cameraService.handleError).toHaveBeenCalled();
   }));
 
   it('set imageSrc after getting image from gallery', inject([CameraService], (cameraService: CameraService) => {
@@ -121,13 +120,12 @@ describe('Page: Upload', () => {
     expect(page.imageSrc).toBe(imageSource);
   }));
 
-  it('show error when failing to get image from gallery', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
-    let error = Observable.throw(new Error('oops'));
-    spyOn(cameraService, 'getGalleryPicture').and.returnValue(error);
-    spyOn(alertService, 'showError').and.callThrough();
+  it('calls camera error handler when failing to get image from gallery', inject([CameraService], (cameraService: CameraService) => {
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.throw('oops'));
+    spyOn(cameraService, 'handleError').and.returnValue(null);
     page.getGalleryPicture();
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
-    expect(alertService.showError).toHaveBeenCalled();
+    expect(cameraService.handleError).toHaveBeenCalled();
   }));
 
   it('Show and hide loading when loading parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => { spyOn(loadingService, 'showLoading').and.callThrough();

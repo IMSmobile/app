@@ -36,14 +36,14 @@ export class EntriesPage {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
       imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
       this.cameraService.getGalleryPicture(),
       imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   pushToUploadPageWithPicture(imageSrc: string, parentImageEntryId: string, entryTitle: string) {

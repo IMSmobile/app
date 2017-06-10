@@ -1,3 +1,4 @@
+import { CameraError } from './../models/errors/camera-error';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { CameraService } from './camera-service';
 import { AlertService } from './alert-service';
@@ -47,24 +48,20 @@ describe('Provider: CameraService', () => {
     expect(camera.getPicture).toHaveBeenCalledWith(cameraService.galleryOptions);
   }));
 
-  it('does not show alert on ignored error', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
-    spyOn(alertService, 'showError').and.callThrough();
-    cameraService.showAlertOnError(cameraService.ignoredErrors[0]);
-    expect(alertService.showError).toHaveBeenCalledTimes(0);
+  it('does not throw error on ignored error', inject([CameraService], (cameraService: CameraService) => {
+    spyOn(cameraService, 'handleError').and.callThrough();
+    cameraService.handleError(cameraService.ignoredErrors[0]);
+    expect(cameraService.handleError).toHaveBeenCalledTimes(1);
   }));
 
-  it('shows alert on unexpected error message', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
+  it('throws error on unexpected error message', inject([CameraService], (cameraService: CameraService) => {
     let errorMessage = 'oops!';
-    spyOn(alertService, 'showError').and.callThrough();
-    cameraService.showAlertOnError(errorMessage);
-    expect(alertService.showError).toHaveBeenCalledWith(errorMessage);
+    expect(() => cameraService.handleError(errorMessage)).toThrowError(CameraError);
   }));
 
-  it('shows alert on unexpected error code', inject([CameraService, AlertService], (cameraService: CameraService, alertService: AlertService) => {
+  it('throws error on unexpected error code', inject([CameraService], (cameraService: CameraService) => {
     let errorCode = 666;
-    spyOn(alertService, 'showError').and.callThrough();
-    cameraService.showAlertOnError(666);
-    expect(alertService.showError).toHaveBeenCalledWith(cameraService.errorCodePreMessage + errorCode);
+    expect(() => cameraService.handleError(errorCode)).toThrowError(CameraError);
   }));
 
 });

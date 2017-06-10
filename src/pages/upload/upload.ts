@@ -77,13 +77,13 @@ export class UploadPage {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
       imageData => this.imageSrc = imageData,
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   public getGalleryPicture() {
     this.cameraService.getGalleryPicture().subscribe(
       imageData => this.imageSrc = imageData,
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   public uploadPicture() {
