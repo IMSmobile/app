@@ -1,3 +1,4 @@
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Credential } from './../../models/credential';
 import { DoubleValidator } from './../../validators/double-validator';
 import { FieldValidatorService } from './../../providers/field-validator-service';
@@ -131,32 +132,49 @@ describe('Page: Upload', () => {
     expect(alertService.showError).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading when successful', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
-    spyOn(loadingService, 'showLoading').and.callThrough();
-    spyOn(loadingService, 'hideLoading').and.callThrough();
+  it('Show and hide loading when loading parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => { spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
+    let testInfo: Info = { version: '9000' };
+    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
+    authService.setArchive(imsBackendMock.policeFilter);
+    page.loadParentImageReferenceField();
+    expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
+  }));
+
+  it('Show and hide loading when loading configured metadata fields', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => { spyOn(loadingService, 'showLoading').and.callThrough();
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
-    page.ionViewDidLoad();
+    page.loadUploadFields();
     expect(page.fields.length).toBeGreaterThan(0);
-    expect(loadingService.showLoading).toHaveBeenCalled();
-    expect(loadingService.hideLoading).toHaveBeenCalled();
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading with alert on error', inject([ImsBackendMock, AuthService, LoadingService, ModelService, AlertService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, modelService: ModelService, alertService: AlertService, settingService: SettingService) => {
-    let error = Observable.throw(new Error('oops'));
-    spyOn(loadingService, 'showLoading').and.callThrough();
-    spyOn(loadingService, 'hideLoading').and.callThrough();
-    spyOn(alertService, 'showError').and.callThrough();
-    spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(error);
+  it('Show and hide loading with error thrown when failed to load parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, ModelService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, modelService: ModelService, settingService: SettingService) => {
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
+    spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(Observable.throw('oops'));
+    expect(() => page.loadParentImageReferenceField()).toThrowError(ImsLoadingError);
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
+  }));
+
+  it('Show and hide loading with error thrown when failed to load metadata fields', inject([ImsBackendMock, AuthService, LoadingService, ModelService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, modelService: ModelService, settingService: SettingService) => {
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
+    spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(Observable.throw('oops'));
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
-    page.ionViewDidLoad();
-    expect(loadingService.showLoading).toHaveBeenCalled();
-    expect(loadingService.hideLoading).toHaveBeenCalled();
-    expect(alertService.showError).toHaveBeenCalled();
+    expect(() => page.loadUploadFields()).toThrowError(ImsLoadingError);
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
   }));
 
+  it('Show and hide loading with error thrown when failing to load saved metadata fields', inject([ImsBackendMock, AuthService, LoadingService, ModelService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, modelService: ModelService, settingService: SettingService) => {
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
+    spyOn(modelService, 'getMetadataFieldsOfImageTable').and.returnValue(Observable.of(true));
+    spyOn(settingService, 'getFieldState').and.returnValue(Observable.throw('oops'));
+    expect(() => page.loadUploadFields()).toThrowError(ImsLoadingError);
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
+  }));
 
   it('Check if parent reference is not included', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     let testInfo: Info = { version: '9000' };

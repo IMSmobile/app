@@ -1,3 +1,4 @@
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MetadataField } from './../../models/metadata-field';
 import { ModelService } from './../../providers/model-service';
@@ -29,7 +30,6 @@ export class UploadPage {
   entryTitle: string;
   parentImageReferenceField: string;
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
@@ -47,12 +47,12 @@ export class UploadPage {
       let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
     });
-    this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadParentImageReferenceField() {
     let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
-    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
