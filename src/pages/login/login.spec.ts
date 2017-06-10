@@ -1,3 +1,4 @@
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
 import { Info } from './../../models/info';
@@ -11,7 +12,6 @@ import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { AuthService } from '../../providers/auth-service';
 import { ImsService } from '../../providers/ims-service';
 import { SettingService } from '../../providers/setting-service';
-
 import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
 import { LoadingService } from '../../providers/loading-service';
 import { EntriesPage } from '../entries/entries';
@@ -173,16 +173,14 @@ describe('Page: Login', () => {
     expect(page.navigateAfterLogin).toHaveBeenCalledTimes(1);
   }));
 
-  it('Shows error when failing to load filter', inject([ImsBackendMock, SettingService, AlertService], (imsBackendMock: ImsBackendMock, settingService: SettingService, alertService: AlertService) => {
+  it('Shows error when failing to load filter', inject([ImsBackendMock, SettingService], (imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.throw('oops'));
-    spyOn(alertService, 'showError').and.callThrough();
     let credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
     expect(page.loginForm.valid).toBeTruthy();
-    page.loginSuccessful();
-    expect(alertService.showError).toHaveBeenCalled();
+    expect(() => page.loginSuccessful()).toThrowError(ImsLoadingError);
   }));
 
 });

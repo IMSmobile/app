@@ -1,3 +1,4 @@
+import { ImsLoadingError } from '../../models/errors/ims-loading-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
 import { Filter } from './../../models/filter';
@@ -7,13 +8,11 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SettingService } from '../../providers/setting-service';
-
 import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { EntriesPage } from '../entries/entries';
 import { LoadingService } from '../../providers/loading-service';
 import { AlertService } from '../../providers/alert-service';
-
 
 @Component({
   selector: 'page-login',
@@ -53,7 +52,7 @@ export class LoginPage {
     let credential: Credential = this.createCredential();
     this.settingService.setRestUrl(credential.server);
     this.settingService.setUsername(credential.username);
-    this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => this.alertService.showError('Fehler beim Laden der Archive Einstellungen'));
+    this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); } );
   }
 
   navigateAfterLogin(filter: Filter) {
