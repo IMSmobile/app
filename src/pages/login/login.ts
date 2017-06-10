@@ -12,7 +12,6 @@ import { Credential } from '../../models/credential';
 import { Response } from '@angular/http';
 import { EntriesPage } from '../entries/entries';
 import { LoadingService } from '../../providers/loading-service';
-import { AlertService } from '../../providers/alert-service';
 
 @Component({
   selector: 'page-login',
@@ -23,7 +22,7 @@ export class LoginPage {
   loginForm: FormGroup;
   isShowRestUrlField: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService, public alertService: AlertService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],

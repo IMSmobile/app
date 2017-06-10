@@ -12,7 +12,6 @@ import { EntriesService } from './../../providers/entries-service';
 import { AuthService } from './../../providers/auth-service';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
-import { AlertService } from './../../providers/alert-service';
 import { UploadPage } from '../upload/upload';
 import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
@@ -31,7 +30,7 @@ export class EntriesPage {
   titleField: string;
   parentImageReferenceField: string;
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
