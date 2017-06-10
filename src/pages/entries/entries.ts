@@ -1,3 +1,4 @@
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ModelService } from './../../providers/model-service';
 import { SettingService } from './../../providers/setting-service';
 import { MetadataField } from './../../models/metadata-field';
@@ -57,12 +58,12 @@ export class EntriesPage {
 
   loadParentImageReferenceField() {
     let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
-    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadInitialParentImageEntries() {
     let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
-    this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => { throw new ImsLoadingError('Einträge', err); });
   }
 
   ionViewWillEnter() {
@@ -75,7 +76,7 @@ export class EntriesPage {
       this.titleField = tableFields.identifierField;
       return this.settingService.getActiveFields(this.authService.archive, tableFields);
     });
-    this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err =>  { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   infiniteEntries(infiniteScroll) {
@@ -89,7 +90,7 @@ export class EntriesPage {
         },
         err => {
           infiniteScroll.complete();
-          this.alertService.showError('Beim Laden weiterer Einträge ist ein Fehler aufgetreten.');
+          throw new ImsLoadingError('Einträge', err);
         });
     }
   }
