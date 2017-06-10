@@ -1,3 +1,4 @@
+import { ImsUploadError } from './../../models/errors/ims-upload-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Credential } from './../../models/credential';
 import { DoubleValidator } from './../../validators/double-validator';
@@ -88,12 +89,9 @@ describe('Page: Upload', () => {
     expect(toastController.create).toHaveBeenCalled();
   }));
 
-  it('Show Error after failed upload', inject([AlertService, UploadService], (alertService: AlertService, uploadService: UploadService) => {
-    let error = Observable.throw(new Error('oops'));
-    spyOn(alertService, 'showError').and.callThrough();
-    spyOn(uploadService, 'uploadImage').and.returnValue(error);
-    page.uploadPicture();
-    expect(alertService.showError).toHaveBeenCalled();
+  it('Show Error after failed upload', inject([UploadService], (uploadService: UploadService) => {
+    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.throw('oops'));
+    expect(() => page.uploadPicture()).toThrowError(ImsUploadError);
   }));
 
   it('set imageSrc after taking picture', inject([CameraService, LoadingService], (cameraService: CameraService, loadingService: LoadingService) => {
