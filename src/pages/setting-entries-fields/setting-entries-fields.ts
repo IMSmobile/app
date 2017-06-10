@@ -1,5 +1,5 @@
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { SettingService } from './../../providers/setting-service';
-import { AlertService } from './../../providers/alert-service';
 import { ModelService } from './../../providers/model-service';
 import { AuthService } from './../../providers/auth-service';
 import { LoadingService } from './../../providers/loading-service';
@@ -16,8 +16,7 @@ export class SettingEntriesFieldsPage {
   tableName: string;
   fields: MetadataField[];
 
-  constructor(public loadingService: LoadingService, public authService: AuthService, public modelService: ModelService, public alertService: AlertService, public settingService: SettingService) { }
-
+  constructor(public loadingService: LoadingService, public authService: AuthService, public modelService: ModelService, public settingService: SettingService) { }
 
   ionViewDidLoad() {
     this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive),
@@ -27,7 +26,7 @@ export class SettingEntriesFieldsPage {
         this.fields.forEach(field => this.settingService.getFieldState(this.authService.archive, this.tableName, field.name).subscribe(active => field.active = active));
       },
       err => {
-        this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.');
+        throw new ImsLoadingError('Feldinformationen', err);
       });
   }
 
