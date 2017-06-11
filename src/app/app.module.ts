@@ -1,3 +1,4 @@
+import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,7 +7,7 @@ import { ModelService } from './../providers/model-service';
 import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule } from 'ionic-angular';
 import { MobileClient } from './app.component';
 import { UploadPage } from '../pages/upload/upload';
 import { LoginPage } from '../pages/login/login';
@@ -95,7 +96,7 @@ const cloudSettings: CloudSettings = {
     QueryBuilderService,
     ModelService,
     FieldValidatorService,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: ImsErrorHandler }
   ]
 })
 export class AppModule { }

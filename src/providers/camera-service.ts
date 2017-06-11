@@ -1,6 +1,6 @@
+import { CameraError } from './../models/errors/camera-error';
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { AlertService } from './alert-service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 
@@ -29,9 +29,8 @@ export class CameraService {
     'no image selected',       // iOS: cancelled
     'has no access to camera'  // iOS: permission not granted
   ];
-  errorCodePreMessage: string = 'Error ';
 
-  constructor(public camera: Camera, public AlertService: AlertService) { }
+  constructor(public camera: Camera) { }
 
   public takePicture(): Observable<any> {
     return Observable.fromPromise(this.camera.getPicture(this.pictureOptions));
@@ -41,12 +40,9 @@ export class CameraService {
     return Observable.fromPromise(this.camera.getPicture(this.galleryOptions));
   }
 
-  public showAlertOnError(error: (string | number)) {
+  public handleError(error: (string | number)) {
     if (this.ignoredErrors.indexOf(error) === -1) {
-      if (typeof error === 'number') {
-        error = this.errorCodePreMessage + error;
-      }
-      this.AlertService.showError(error);
+      throw new CameraError(error);
     }
   }
 }

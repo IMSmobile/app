@@ -1,3 +1,4 @@
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ModelService } from './../../providers/model-service';
 import { SettingService } from './../../providers/setting-service';
 import { MetadataField } from './../../models/metadata-field';
@@ -11,7 +12,6 @@ import { EntriesService } from './../../providers/entries-service';
 import { AuthService } from './../../providers/auth-service';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
-import { AlertService } from './../../providers/alert-service';
 import { UploadPage } from '../upload/upload';
 import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
@@ -30,20 +30,20 @@ export class EntriesPage {
   titleField: string;
   parentImageReferenceField: string;
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public alertService: AlertService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
       imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
       this.cameraService.getGalleryPicture(),
       imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   pushToUploadPageWithPicture(imageSrc: string, parentImageEntryId: string, entryTitle: string) {
@@ -57,12 +57,12 @@ export class EntriesPage {
 
   loadParentImageReferenceField() {
     let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
-    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadInitialParentImageEntries() {
     let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
-    this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => this.alertService.showError('Beim Laden der Einträge ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => { throw new ImsLoadingError('Einträge', err); });
   }
 
   ionViewWillEnter() {
@@ -75,7 +75,7 @@ export class EntriesPage {
       this.titleField = tableFields.identifierField;
       return this.settingService.getActiveFields(this.authService.archive, tableFields);
     });
-    this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err =>  { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   infiniteEntries(infiniteScroll) {
@@ -89,7 +89,7 @@ export class EntriesPage {
         },
         err => {
           infiniteScroll.complete();
-          this.alertService.showError('Beim Laden weiterer Einträge ist ein Fehler aufgetreten.');
+          throw new ImsLoadingError('Einträge', err);
         });
     }
   }

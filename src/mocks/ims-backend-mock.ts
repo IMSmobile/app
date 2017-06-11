@@ -1,3 +1,4 @@
+import { ErrorResponse } from './response/error-response';
 import { MetadataField } from './../models/metadata-field';
 import { MetadataTableFields } from './../models/metadata-table-fields';
 import { ModelFieldsPointResponse } from './response/model-fields-point-response';
@@ -8,7 +9,7 @@ import { ModelLink } from './../models/model-link';
 import { ModelArchives } from './../models/model-archives';
 import { QueryBuilderService } from './../providers/query-builder-service';
 import { QueryFragment } from './../models/query-fragment';
-import { Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { Response, ResponseOptions, RequestMethod, ResponseType } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { EntryPointResponse } from './response//entry-point-response';
 import { LicensePointResponse } from './response//license-point-response';
@@ -33,7 +34,12 @@ export class ImsBackendMock extends MockBackend {
     public baseUrl: string = 'http://restserver:9000';
     public segmentName: string = 'Ims Mobile Rest Segement';
     public credential: Credential = new Credential(this.baseUrl, 'admin', 'admin', this.segmentName);
-
+    public unauthorizedResponse: ErrorResponse = new ErrorResponse(new ResponseOptions({
+        body: 'HTTP ERROR: 401',
+        status: 401,
+        statusText: 'Unauthorized',
+        type: ResponseType.Error
+    }));
     public entryPointUrl: string = this.baseUrl + '/rest';
     public licenseUrl: string = this.entryPointUrl + '/license';
     public infoUrl: string = this.entryPointUrl + '/info';
@@ -90,7 +96,11 @@ export class ImsBackendMock extends MockBackend {
     constructor() {
         super();
         this.connections.subscribe((connection) => {
-            if (connection.request.url.endsWith(this.entryPointUrl) && connection.request.method === RequestMethod.Get) {
+            if (!connection.request.url.startsWith(this.baseUrl)) {
+                connection.mockError(new Error('Wrong Url'));
+            } else if (connection.request.headers.get('authorization') !== ('Basic ' + btoa(this.credential.username + ':' + this.credential.password))) {
+                connection.mockError(this.unauthorizedResponse);
+            } else if (connection.request.url.endsWith(this.entryPointUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]));
             } else if (connection.request.url.endsWith(this.licenseUrl) && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new LicensePointResponse(null, new Link('tokens', this.tokensUrl)));

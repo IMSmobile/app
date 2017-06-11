@@ -1,24 +1,22 @@
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { SettingEntriesFieldsPage } from './setting-entries-fields';
 import { Observable } from 'rxjs/Observable';
 import { Info } from './../../models/info';
-import { AlertService } from './../../providers/alert-service';
 import { ModelService } from './../../providers/model-service';
 import { ImsService } from './../../providers/ims-service';
 import { AuthService } from './../../providers/auth-service';
-import { LoadingMock, AlertMock } from './../../mocks/mocks';
+import { LoadingMock } from './../../mocks/mocks';
 import { LoadingService } from './../../providers/loading-service';
 import { ImsBackendMock } from './../../mocks/ims-backend-mock';
 import { Http, BaseRequestOptions } from '@angular/http';
 import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
-import { App, Config, Form, IonicModule, Keyboard, Haptic, GestureController, DomController, NavController, Platform, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { App, Config, Form, IonicModule, Keyboard, Haptic, GestureController, DomController, NavController, Platform, NavParams, LoadingController } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingService } from '../../providers/setting-service';
 import { ConfigMock, PlatformMock, NavParamsMock, AppMock, StorageMock } from '../../mocks/mocks';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/observable/of';
 import { ImsFieldSelectionComponent } from '../../components/ims-field-selection/ims-field-selection';
-
-
 
 describe('Page: Parent Entries Settings Fields', () => {
 
@@ -33,7 +31,7 @@ describe('Page: Parent Entries Settings Fields', () => {
 
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic,
-        GestureController, LoadingService, AuthService, ImsBackendMock, BaseRequestOptions, ImsService, ModelService, AlertService,
+        GestureController, LoadingService, AuthService, ImsBackendMock, BaseRequestOptions, ImsService, ModelService,
         {
           provide: Http,
           useFactory: (ImsBackendMock, options) => {
@@ -41,7 +39,6 @@ describe('Page: Parent Entries Settings Fields', () => {
           },
           deps: [ImsBackendMock, BaseRequestOptions]
         },
-        { provide: AlertController, useClass: AlertMock },
         { provide: App, useClass: AppMock },
         { provide: Config, useClass: ConfigMock },
         { provide: Platform, useClass: PlatformMock },
@@ -81,18 +78,18 @@ describe('Page: Parent Entries Settings Fields', () => {
     expect(page.fields.find(field => field.name === imsBackendMock.parentImageModelFieldOptionalString.name).active).toBeTruthy();
   }));
 
-  it('CHeck if loading service is called. ', inject([ModelService, LoadingService], (modelService: ModelService, loadingService: LoadingService) => {
+  it('Check if loading service is called. ', inject([ModelService, LoadingService, ImsBackendMock], (modelService: ModelService, loadingService: LoadingService, imsBackendMock: ImsBackendMock) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
-    spyOn(modelService, 'getMetadataFieldsOfParentImageTable').and.returnValue(Observable.throw(new Error('Fail')));
+    spyOn(modelService, 'getMetadataFieldsOfParentImageTable').and.returnValue(Observable.of(imsBackendMock.modelFields));
     page.ionViewDidLoad();
     expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
   }));
 
-  it('Alert called in case of error. ', inject([ModelService, AlertService], (modelService: ModelService, alertService: AlertService) => {
-    spyOn(alertService, 'showError').and.callThrough();
-    spyOn(modelService, 'getMetadataFieldsOfParentImageTable').and.returnValue(Observable.throw(new Error('Fail')));
-    page.ionViewDidLoad();
-    expect(alertService.showError).toHaveBeenCalled();
+  it('Loading called and Error thrown on failure', inject([ModelService, LoadingService], (modelService: ModelService, loadingService: LoadingService) => {
+    spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
+    spyOn(modelService, 'getMetadataFieldsOfParentImageTable').and.returnValue(Observable.throw('Fail'));
+    expect(() => page.ionViewDidLoad()).toThrowError(ImsLoadingError);
+    expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
   }));
 
 });

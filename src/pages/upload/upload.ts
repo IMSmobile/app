@@ -1,3 +1,5 @@
+import { ImsUploadError } from './../../models/errors/ims-upload-error';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MetadataField } from './../../models/metadata-field';
 import { ModelService } from './../../providers/model-service';
@@ -9,7 +11,6 @@ import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
-import { AlertService } from '../../providers/alert-service';
 import { SettingService } from '../../providers/setting-service';
 import { FieldValidatorService } from '../../providers/field-validator-service';
 import { Observable } from 'rxjs/Observable';
@@ -29,8 +30,7 @@ export class UploadPage {
   entryTitle: string;
   parentImageReferenceField: string;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public alertService: AlertService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
     this.imageSrc = navParams.get('imageSrc');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
@@ -47,12 +47,12 @@ export class UploadPage {
       let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
     });
-    this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadParentImageReferenceField() {
     let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
-    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => this.alertService.showError('Beim Laden der Feldinformationen ist ein Fehler aufgetreten.'));
+    this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
@@ -77,13 +77,13 @@ export class UploadPage {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
       imageData => this.imageSrc = imageData,
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   public getGalleryPicture() {
     this.cameraService.getGalleryPicture().subscribe(
       imageData => this.imageSrc = imageData,
-      err => this.cameraService.showAlertOnError(err));
+      err => this.cameraService.handleError(err));
   }
 
   public uploadPicture() {
@@ -101,7 +101,7 @@ export class UploadPage {
       let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
       this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, image),
         res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
-        err => this.alertService.showError('Beim Speichern der Bilder ist ein Fehler aufgetreten.')
+        err => { throw new ImsUploadError(err); }
       );
     }
   }
