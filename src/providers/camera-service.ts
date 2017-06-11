@@ -7,25 +7,22 @@ import 'rxjs/add/observable/fromPromise';
 @Injectable()
 export class CameraService {
 
-  pictureOptions: CameraOptions = {
+  cameraOptions: CameraOptions = {
     quality: 100,
-    sourceType: this.camera.PictureSourceType.CAMERA,
     destinationType: this.camera.DestinationType.FILE_URI,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
     correctOrientation: true
   };
 
-  galleryOptions: CameraOptions = {
-    quality: 100,
-    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE,
-    correctOrientation: true
-  };
+  pictureOptions: CameraOptions = Object.assign({
+    sourceType: this.camera.PictureSourceType.CAMERA
+  }, this.cameraOptions);
+  galleryOptions: CameraOptions = Object.assign({
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+  }, this.cameraOptions);
 
-  ignoredErrors: (string|number)[] = [
+  ignoredErrors: (string | number)[] = [
     'Selection cancelled.',    // Android
     'Camera cancelled.',       // Android
     20,                        // Android: permission not granted
@@ -43,7 +40,7 @@ export class CameraService {
     return Observable.fromPromise(this.camera.getPicture(this.galleryOptions));
   }
 
-  public handleError(error: (string|number)) {
+  public handleError(error: (string | number)) {
     if (this.ignoredErrors.indexOf(error) === -1) {
       throw new CameraError(error);
     }
