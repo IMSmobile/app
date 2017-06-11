@@ -18,11 +18,11 @@ describe('IMS Error Handler: Error Handler', () => {
     }).compileComponents();
   }));
 
-  it('should handle a imsError and show alert with name', inject([ImsErrorHandler, AlertService], (imsErrorHandler: ImsErrorHandler, alertService: AlertService) => {
+  it('should handle a imsError and show alert with displayed message', inject([ImsErrorHandler, AlertService], (imsErrorHandler: ImsErrorHandler, alertService: AlertService) => {
     let imsError = new ImsError('Ims Error Text', 'Error Object');
     spyOn(alertService, 'showError').and.callThrough();
     imsErrorHandler.handleError(imsError);
-    expect(alertService.showError).toHaveBeenCalledWith(imsError.name);
+    expect(alertService.showError).toHaveBeenCalledWith(imsError.displayedErrorMessage);
   }));
 
   it('should handle a normal error and show alert with message', inject([ImsErrorHandler, AlertService], (imsErrorHandler: ImsErrorHandler, alertService: AlertService) => {
