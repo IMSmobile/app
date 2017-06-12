@@ -29,6 +29,7 @@ Der **header** hat ein spezielles Format welches zwingend einen **type**, einen 
 ```
 Jede Commit Message Zeile darf eine länge von 100 Zeichen nicht überschreiten.
 Die Commit Message wird in Englisch geschrieben.
+Commits werden durch commitizen mit dem Kommando `git cz` erstellt.
 
 ### Type
 

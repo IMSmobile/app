@@ -232,6 +232,10 @@ git clone https://github.com/IMSmobile/app.git
 ```bash
 npm install
 ```
+- Commitizen für Commit Messages installieren
+```bash
+npm install -g commitizen
+```
 - Test installation
 ```bash
 ionic serve
