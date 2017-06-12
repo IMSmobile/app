@@ -329,6 +329,10 @@ Mit folgendem Befehl kann eine Prüfung durchgeführt werden.
 npm run lint
 ```
 
+#### Commit Message Guidelines
+Um saubere und lesbare Commit History zu erhalten, verwenden wir Commit Message Guidlines. Die Guidlines wurden von den [Angular Commit Message Guidlines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) übernommen und angepasst.
+Die genauen Commit Regeln werden in der [Definition of Done](CONTRIBUTING.md) beschrieben.
+
 ### Testing
 Um eine hohe Qualität zu erreichen und um Fehler nicht zu wiederholen, werden alle Anforderung und Defects unter Tests gestellt. Automatisierte Tests sind zu bevorzugen da diese ohne menschlichen Aufwand immer wieder ausgeführt werden können. Ist ein automatisierter Test nicht möglich oder zu komplex werden manuelle Test Cases erstellt. Auch für die wichtigsten Smoke Tests werden manuelle Testcases geschrieben.
 
