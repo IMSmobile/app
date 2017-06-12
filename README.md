@@ -417,6 +417,21 @@ Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, 
 - _MINOR_: Neue Funktionalität wird eingeführt
 - _PATCH_: Bugs werden behoben; Code wird verbessert (refactored); Design wird angepasst
 
+### Releasing 
+
+Mit jedem Pull Request welcher die Versionsnummer erhöht wird ein neuer Release erstellt. Dies passiert in folgender Reihenfolge:
+
+* Code Änderungen einchecken
+* Commit um Versionsnummer zu erhöhen
+* Commit um Releasenotes anzupassen
+* Git Tag mit Versionsnummer erstellen `git tag x.y.z`
+* Git Tag pushen `git push origin x.y.z`
+* _Add Release Notes_ Button zum erstellten Tag ausführen https://github.com/IMSmobile/app/tags 
+* Versions Nummer im Titel angeben
+* Release Notes von vorherigem Commit hinzufügen
+* `.ipa` and `.apk` von Ionic Package hinzufügen 
+* Release freigeben
+
 ### Wireframes
 Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
 
