@@ -421,6 +421,16 @@ Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, 
 - _MINOR_: Neue Funktionalität wird eingeführt
 - _PATCH_: Bugs werden behoben; Code wird verbessert (refactored); Design wird angepasst
 
+### Release Notes
+Mit jedem Pull Request welcher die Versionsnummer erhöht, müssen Release Notes erstellt werden. Release Notes werden automatisch mit dem Tool [conventional-changelog](https://github.com/conventional-changelog/conventi onal-changelog) anhand der Commit Messages generiert.
+
+Nur Commit Messages welche vom Type fix, feature oder perf sind werden zu den Release Notes hinzugefügt.
+
+Mit folgendem Befehl können die Release Notes automatisch generiert werden.
+```shell
+npm run changelog
+```
+
 ### Releasing 
 
 Mit jedem Pull Request welcher die Versionsnummer erhöht wird ein neuer Release erstellt. Dies passiert in folgender Reihenfolge:
@@ -435,6 +445,8 @@ Mit jedem Pull Request welcher die Versionsnummer erhöht wird ein neuer Release
 * Release Notes von vorherigem Commit hinzufügen
 * `.ipa` and `.apk` von Ionic Package hinzufügen 
 * Release freigeben
+
+
 
 ### Wireframes
 Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
