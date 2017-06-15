@@ -1,9 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { LoadingController, Loading } from 'ionic-angular';
+import { MetadataTableFields } from './../models/metadata-table-fields';
+
 
 @Injectable()
-export class LoadingService {
+export class LoadingService{
 
   loading: Loading;
   concurrentLoadings: number = 0;
