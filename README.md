@@ -321,8 +321,7 @@ npm run test-coverage
 
 #### Code Guideline
 
-Mit [tslint](https://palantir.github.io/tslint/) wird der Quellcode automatisch gegen Code Guidelines geprüft. Das Ionic 2 Team stellt ein [default Ruleset für Guidelines](https://github.com/driftyco/tslint-ionic-rules) zur Verfügung.
-Wir übernehmen diese Guidelines als Standard und erweitern die Datei [tslint.json](tslint.json) mit zusätzlichen Regeln. 
+Mit [codelyzer](https://github.com/mgechev/codelyzer) und [tslint](https://palantir.github.io/tslint/) wird der Quellcode automatisch gegen Code Guidelines geprüft. Das [default Ruleset für Guidelines](https://github.com/driftyco/tslint-ionic-rules) vom Ionic Team wurde als Standard übernommen und um weitere Rules erweitetert, um eine höhere Codequalität zu erreichen.
 
 Mit folgendem Befehl kann eine Prüfung durchgeführt werden.
 ```shell
