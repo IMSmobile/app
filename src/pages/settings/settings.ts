@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SettingService } from '../../providers/setting-service';
 
-
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'

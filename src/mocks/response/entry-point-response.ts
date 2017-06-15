@@ -8,4 +8,3 @@ export class EntryPointResponse extends Response {
         super(new ResponseOptions({ body: new EntryPoint(links) }));
     }
 }
-

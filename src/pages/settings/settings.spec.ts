@@ -9,7 +9,6 @@ import { SettingService } from '../../providers/setting-service';
 import { ConfigMock, PlatformMock, NavParamsMock, AppMock, StorageMock } from '../../mocks/mocks';
 import { Storage } from '@ionic/storage';
 
-
 describe('Page: Settings', () => {
 
   let fixture: ComponentFixture<SettingsPage> = null;

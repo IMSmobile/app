@@ -7,9 +7,6 @@ import { App, GestureController, DomController, Form, Keyboard, NavController, H
 import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
 import { ImsFieldSelectionComponent } from './ims-field-selection';
 
-
-
-
 describe('Component: ImsFieldSelectionComponent', () => {
 
   let fixture: ComponentFixture<ImsFieldSelectionComponent> = null;
@@ -43,7 +40,6 @@ describe('Component: ImsFieldSelectionComponent', () => {
     });
   }));
 
-
   afterEach(() => {
     fixture.destroy();
   });
@@ -63,7 +59,6 @@ describe('Component: ImsFieldSelectionComponent', () => {
     component.sendFieldToggledEvent(imsBackendMock.modelFieldIdentifier);
     expect(component.fieldToggled.emit).toHaveBeenCalledWith(imsBackendMock.modelFieldIdentifier);
   }));
-
 
   it('After search fields are filtered', inject([ImsBackendMock], (imsBackendMock: ImsBackendMock) => {
     component.fields = [imsBackendMock.modelFieldIdentifier, imsBackendMock.modelFieldOptionalString];

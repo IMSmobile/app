@@ -5,7 +5,6 @@ import { LoadingController } from 'ionic-angular';
 import { LoadingService } from './loading-service';
 import 'rxjs/add/observable/of';
 
-
 describe('Provider: LoadingService', () => {
 
     beforeEach(async(() => {
@@ -37,7 +36,6 @@ describe('Provider: LoadingService', () => {
         expect(loadingService.showLoading).toHaveBeenCalled();
         expect(loadingService.hideLoading).toHaveBeenCalled();
     }));
-
 
     it('Show and hide loading with alert on error', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
         spyOn(loadingService, 'showLoading').and.callThrough();

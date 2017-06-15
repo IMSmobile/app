@@ -8,4 +8,3 @@ export class LicensePointResponse extends Response {
         super(new ResponseOptions({ body: new LicensePoint(segments, sessions)}));
     }
 }
-

@@ -27,7 +27,6 @@ describe('Provider: ImsService', () => {
     }).compileComponents();
   }));
 
-
   it('Ims Version', inject([ImsService, ImsBackendMock], (imsService: ImsService, imsBackendMock: ImsBackendMock) => {
     imsService.getInfo(imsBackendMock.credential).subscribe(
       info => expect(info.version).toEqual(imsBackendMock.version),

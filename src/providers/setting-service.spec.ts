@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { SettingService } from './setting-service';
 
-
 describe('Provider: SettingService', () => {
 
     beforeEach(async(() => {
