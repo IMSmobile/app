@@ -14,7 +14,10 @@
     "e2e": "npm run clean && npm run build && node node_modules/protractor/bin/webdriver-manager update && node node_modules/protractor/bin/protractor"
   },
   "config": {
-    "ionic_source_map": "source-map"
+    "ionic_source_map": "source-map",
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "dependencies": {
     "@angular/common": "4.1.0",
@@ -48,6 +51,7 @@
     "@types/node": "^7.0.8",
     "angular2-template-loader": "^0.6.2",
     "connect": "^3.6.1",
+    "cz-conventional-changelog": "^2.0.0",
     "html-loader": "^0.4.5",
     "ionic": "^3.0.0",
     "istanbul-instrumenter-loader": "^2.0.0",
