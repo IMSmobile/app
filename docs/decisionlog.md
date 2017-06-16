@@ -1,6 +1,11 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 16. Juni 2017
+- Während dem Sprint Review werden den Stakeholdern keine Geräte abgegeben.
+- Im Sprint Planning werden auch die gemeinsamen Arbeitszeiten geplant.
+- Keine platformspezifscher Code innerhalb der Applikation. Nur platformspezifische Providers via Dependency Injection.
+
 ## 2. Juni 2017
 - Pro Sprint sollten sich jeder 2 Stunden Zeit nehmen um den Code zu lesen.
 - Refactorings werden im eigenem Branch commitet.
