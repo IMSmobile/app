@@ -2,8 +2,8 @@
 Unsere Entscheidungen werden hier protokolliert.
 
 ## 16. Juni 2017
-- Bei Sprint Review werden den Stakeholder keine Geräte abgegeben.
-- Bei Sprint Planning werden die gemeinsame Arbeitszeiten geplant.
+- Während dem Sprint Review werden den Stakeholdern keine Geräte abgegeben.
+- Im Sprint Planning werden auch die gemeinsamen Arbeitszeiten geplant.
 - Keine platformspezifscher Code innerhalb der Applikation. Nur platformspezifische Providers via Dependency Injection.
 
 ## 2. Juni 2017
