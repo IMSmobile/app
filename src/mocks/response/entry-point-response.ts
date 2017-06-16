@@ -4,7 +4,7 @@ import { Link } from '../../models/link';
 
 export class EntryPointResponse extends Response {
 
-    constructor(links: Link[]) {
-        super(new ResponseOptions({ body: new EntryPoint(links) }));
-    }
+  constructor(links: Link[]) {
+    super(new ResponseOptions({ body: new EntryPoint(links) }));
+  }
 }

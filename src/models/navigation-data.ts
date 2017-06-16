@@ -1,4 +1,4 @@
 export class NavigationData {
-    parentHref: string;
-    subHref: string;
+  parentHref: string;
+  subHref: string;
 }
