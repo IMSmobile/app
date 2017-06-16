@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/IMSmobile/app.svg?branch=master)](https://travis-ci.org/IMSmobile/app)
 [![Coverage Status](https://coveralls.io/repos/github/IMSmobile/app/badge.svg)](https://coveralls.io/github/IMSmobile/app)
 
-Bla
+Bla test
 
 # Imagic IMS Mobile Client
 
