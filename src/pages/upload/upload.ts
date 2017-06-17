@@ -47,7 +47,7 @@ export class UploadPage {
       let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
     });
-    this.loadingService.subscribeWithLoading(fields, fields => this.appendFields(fields), err => { throw new ImsLoadingError('Feldinformationen', err); });
+    this.loadingService.subscribeWithLoading(fields, newFields => this.appendFields(newFields), err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadParentImageReferenceField() {
@@ -65,7 +65,7 @@ export class UploadPage {
   }
 
   initFormData() {
-    var formData = {};
+    let formData = {};
     this.fields.forEach(field => {
       formData[field.name] = [''];
       formData[field.name].push(Validators.compose(this.fieldValidatorService.getValidatorFunctions(field)));
@@ -106,7 +106,6 @@ export class UploadPage {
     }
   }
 
-
   showToastMessage(toastMessage: string) {
     let toast = this.toastCtrl.create({
       message: toastMessage,
@@ -123,4 +122,3 @@ export class UploadPage {
     return this.fieldValidatorService.getErrorMessage(formControl);
   }
 }
-

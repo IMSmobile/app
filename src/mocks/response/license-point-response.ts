@@ -4,8 +4,7 @@ import { Link } from '../../models/link';
 
 export class LicensePointResponse extends Response {
 
-    constructor(segments: Link, sessions: Link) {
-        super(new ResponseOptions({ body: new LicensePoint(segments, sessions)}));
-    }
+  constructor(segments: Link, sessions: Link) {
+    super(new ResponseOptions({ body: new LicensePoint(segments, sessions) }));
+  }
 }
-

@@ -20,7 +20,6 @@ import { LoadingService } from '../../providers/loading-service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
-
 describe('Page: Archive Settings', () => {
 
   let fixture: ComponentFixture<SettingArchivePage> = null;
@@ -75,7 +74,6 @@ describe('Page: Archive Settings', () => {
     page.ionViewDidLoad();
     expect(page.noValidFilters).toBeTruthy();
   }));
-
 
   it('Show and Hide Loading while loading', inject([LoadingService, AuthService, ImsBackendMock], (loadingService: LoadingService, authService: AuthService, imsBackendMock: ImsBackendMock) => {
     let testInfo: Info = { version: '9000' };

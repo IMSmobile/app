@@ -53,4 +53,3 @@ export class UploadService {
     return this.http.post(url, imageEntry.json(), { headers: new ImsHeaders(credential, token) });
   }
 }
-

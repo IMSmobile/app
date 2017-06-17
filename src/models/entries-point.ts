@@ -1,9 +1,9 @@
 import { Filter } from './filter';
 
 export class EntriesPoint {
-    filters: Filter[];
+  filters: Filter[];
 
-    constructor(filters: Filter[]) {
-        this.filters = filters;
-    }
+  constructor(filters: Filter[]) {
+    this.filters = filters;
+  }
 }

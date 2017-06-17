@@ -43,4 +43,3 @@ describe('Provider: EntriesService', () => {
       err => fail(err));
   }));
 });
-
