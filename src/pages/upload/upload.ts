@@ -22,7 +22,7 @@ import 'rxjs/add/observable/concat';
   templateUrl: 'upload.html'
 })
 export class UploadPage {
-  imageSrc: string;
+  image: Image;
   parentImageEntryId: string;
   fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
@@ -31,7 +31,7 @@ export class UploadPage {
   parentImageReferenceField: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
-    this.imageSrc = navParams.get('imageSrc');
+    this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
   }
@@ -50,7 +50,7 @@ export class UploadPage {
     this.loadingService.subscribeWithLoading(fields, newFields => this.appendFields(newFields), err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
-  loadParentImageReferenceField() {
+   loadParentImageReferenceField() {
     let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
@@ -76,13 +76,13 @@ export class UploadPage {
   public takePicture() {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
-      imageData => this.imageSrc = imageData,
+      image => this.image = image,
       err => this.cameraService.handleError(err));
   }
 
   public getGalleryPicture() {
     this.cameraService.getGalleryPicture().subscribe(
-      imageData => this.imageSrc = imageData,
+      image => this.image = image,
       err => this.cameraService.handleError(err));
   }
 
@@ -98,8 +98,7 @@ export class UploadPage {
           imageEntry = imageEntry.set(field.name, value);
         }
       });
-      let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
-      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, image),
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, this.image),
         res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
         err => { throw new ImsUploadError(err); }
       );

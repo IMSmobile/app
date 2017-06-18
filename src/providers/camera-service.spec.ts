@@ -1,3 +1,4 @@
+import { Image } from './../models/image';
 import { CameraError } from './../models/errors/camera-error';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { CameraService } from './camera-service';
@@ -25,9 +26,9 @@ describe('Provider: CameraService', () => {
   }));
 
   it('returns observable from camera with response on success', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {
-    let imageSource = '/my/picture.jpg';
-    spyOn(camera, 'getPicture').and.returnValue(Promise.resolve(imageSource));
-    cameraService.takePicture().subscribe(res => expect(res).toEqual(imageSource), err => expect(err).toBeNull());
+    let imageSrc = '/my/picture.jpg';
+    spyOn(camera, 'getPicture').and.returnValue(Promise.resolve(imageSrc));
+    cameraService.takePicture().subscribe(res => expect(res).toEqual(new Image('CameraPhoto.jpeg', imageSrc)), err => expect(err).toBeNull());
   }));
 
   it('returns observable from camera with error on failure', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {

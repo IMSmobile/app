@@ -1,3 +1,5 @@
+import { Image } from './../../models/image';
+import { PictureRequesterService } from './../../providers/picture-requester.service';
 import { CameraError } from './../../models/errors/camera-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Storage } from '@ionic/storage';
@@ -41,7 +43,7 @@ describe('Page: Entries', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
-        ModelService, SettingService,
+        ModelService, SettingService, PictureRequesterService,
         CameraService, LoadingService, AlertService, QueryBuilderService, Events,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
@@ -200,8 +202,8 @@ describe('Page: Entries', () => {
   it('Push to Upload Page after taking picture', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
-    let imageSource = '/my/picture.jpg';
-    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
+    let image = new Image('picture.jpg', '/my/picture.jpg');
+    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(image));
     spyOn(cameraService, 'handleError').and.callThrough();
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
@@ -211,7 +213,7 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
+      { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
   }));
 
@@ -228,8 +230,8 @@ describe('Page: Entries', () => {
   it('Push to Upload Page after getting picture from gallery', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
-    let imageSource = '/my/picture.jpg';
-    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
+    let image = new Image('picture.jpg', '/my/picture.jpg');
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(image));
     spyOn(cameraService, 'handleError').and.callThrough();
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
@@ -239,7 +241,7 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
+      { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
   }));
 

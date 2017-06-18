@@ -95,13 +95,13 @@ describe('Page: Upload', () => {
   }));
 
   it('set imageSrc after taking picture', inject([CameraService, LoadingService], (cameraService: CameraService, loadingService: LoadingService) => {
-    let imageSource = '/my/picture.jpg';
+    let image = new Image('picture.jpg', '/my/picture.jpg');
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
-    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
+    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(image));
     page.takePicture();
     expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
     expect(cameraService.takePicture).toHaveBeenCalled();
-    expect(page.imageSrc).toBe(imageSource);
+    expect(page.image).toBe(image);
   }));
 
   it('calls camera error handler when failing to take picture', inject([CameraService], (cameraService: CameraService) => {
@@ -112,12 +112,12 @@ describe('Page: Upload', () => {
     expect(cameraService.handleError).toHaveBeenCalled();
   }));
 
-  it('set imageSrc after getting image from gallery', inject([CameraService], (cameraService: CameraService) => {
-    let imageSource = '/my/picture.jpg';
-    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
+  it('set image after getting image from gallery', inject([CameraService], (cameraService: CameraService) => {
+    let image = new Image('picture.jpg', '/my/picture.jpg');
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(image));
     page.getGalleryPicture();
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
-    expect(page.imageSrc).toBe(imageSource);
+    expect(page.image).toBe(image);
   }));
 
   it('calls camera error handler when failing to get image from gallery', inject([CameraService], (cameraService: CameraService) => {
@@ -210,11 +210,12 @@ describe('Page: Upload', () => {
     formData[imsBackendMock.modelFieldOptionalString.name] = ['value'];
     page.fieldsForm = page.formBuilder.group(formData);
     page.parentImageReferenceField = imsBackendMock.modelFieldParentreferenceName;
+    page.image = new Image('picture.jpg', '/my/picture.jpg');
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
     entry = entry.set(imsBackendMock.modelFieldOptionalString.name, 'value');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, page.image);
   }));
 
   it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
@@ -228,10 +229,11 @@ describe('Page: Upload', () => {
     formData[imsBackendMock.modelFieldOptionalString.name] = [''];
     page.fieldsForm = page.formBuilder.group(formData);
     page.parentImageReferenceField = imsBackendMock.modelFieldParentreferenceName;
+    page.image = new Image('picture.jpg', '/my/picture.jpg');
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, jasmine.any(Image));
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, page.image);
   }));
 
   it('should initialize parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {

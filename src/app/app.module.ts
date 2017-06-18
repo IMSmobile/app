@@ -1,3 +1,4 @@
+import { PictureRequesterService } from './../providers/picture-requester.service';
 import { ContainerUploadService } from './../providers/container-upload-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
@@ -90,6 +91,7 @@ const cloudSettings: CloudSettings = {
     AppProviders.getTransferProvider(),
     AppProviders.getCameraProvider(),
     ContainerUploadService,
+    PictureRequesterService,
     SettingService,
     EntriesService,
     CameraService,
