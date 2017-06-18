@@ -2,7 +2,6 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { LoadingController, Loading } from 'ionic-angular';
 
-
 @Injectable()
 export class LoadingService {
 
@@ -24,7 +23,6 @@ export class LoadingService {
         this.hideLoading();
       });
   }
-
 
   showLoading() {
     if (this.concurrentLoadings === 0) {

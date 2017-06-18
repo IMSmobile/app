@@ -12,11 +12,10 @@ import { ImsService } from './ims-service';
 @Injectable()
 export class TokenService {
 
+  private token: Token = null;
   constructor(public http: Http, public imsService: ImsService) {
 
   }
-
-  private token: Token = null;
 
   getToken(credential: Credential): Observable<Token> {
     if (this.token != null && new Date() < new Date(this.token.licenseExpirationDate)) {

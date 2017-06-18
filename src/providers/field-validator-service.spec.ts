@@ -6,7 +6,7 @@ import { Validators, FormControl } from '@angular/forms';
 
 describe('Validator: Field Validator Provider', () => {
 
-  var fieldValidator;
+  let fieldValidator;
 
   beforeEach(function () {
     fieldValidator = new FieldValidatorService();

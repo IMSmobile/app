@@ -21,7 +21,7 @@ export class LoginPage {
 
   loginForm: FormGroup;
   isShowRestUrlField: boolean = true;
-  version: string = '0.2.0';
+  version: string = '0.2.4';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
@@ -32,7 +32,6 @@ export class LoginPage {
   }
 
   login() {
-    this.markAllAsTouched();
     if (this.loginForm.invalid) {
       this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
@@ -78,12 +77,6 @@ export class LoginPage {
       duration: 3000,
     });
     toast.present();
-  }
-
-  markAllAsTouched() {   // TODO this.loginForm.markAsTouched (mark all as touched in a single call) did not working maybe after update to Ionic
-    this.loginForm.controls['server'].markAsTouched();
-    this.loginForm.controls['user'].markAsTouched();
-    this.loginForm.controls['password'].markAsTouched();
   }
 
   ionViewDidLoad() {

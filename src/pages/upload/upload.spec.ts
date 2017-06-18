@@ -28,7 +28,6 @@ import { Transfer } from '@ionic-native/transfer';
 import { SettingService } from '../../providers/setting-service';
 import 'rxjs/add/observable/throw';
 
-
 describe('Page: Upload', () => {
 
   let fixture: ComponentFixture<UploadPage> = null;
@@ -128,7 +127,7 @@ describe('Page: Upload', () => {
     expect(cameraService.handleError).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading when loading parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => { spyOn(loadingService, 'showLoading').and.callThrough();
+  it('Show and hide loading when loading parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     let testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
@@ -138,7 +137,7 @@ describe('Page: Upload', () => {
     expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
   }));
 
-  it('Show and hide loading when loading configured metadata fields', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => { spyOn(loadingService, 'showLoading').and.callThrough();
+  it('Show and hide loading when loading configured metadata fields', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     let testInfo: Info = { version: '9000' };

@@ -57,14 +57,6 @@ export class ImsService {
     return this.getArchiveEntry(credential, filterId, token).map(entry => this.findParentImageTable(entry).dataHref);
   }
 
-  private findImageTable(tableEntry: ArchiveTableEntry): boolean {
-    return tableEntry.uploadHref != null;
-  }
-
-  private findParentImageTable(archiveEntry: ArchiveEntry): ArchiveTableEntry {
-    return archiveEntry.tables[(archiveEntry.tables.length - 2)];
-  }
-
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
     return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
       return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json());
@@ -94,6 +86,13 @@ export class ImsService {
     return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl => {
       return this.get(credential, entriesUrl).map(response => response.json());
     });
+  }
+  private findImageTable(tableEntry: ArchiveTableEntry): boolean {
+    return tableEntry.uploadHref != null;
+  }
+
+  private findParentImageTable(archiveEntry: ArchiveEntry): ArchiveTableEntry {
+    return archiveEntry.tables[(archiveEntry.tables.length - 2)];
   }
 
   private findEntryPointLinkByName(this: string, link: Link): boolean {

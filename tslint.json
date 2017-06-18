@@ -1,9 +1,23 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint-ionic-rules"
+  "extends": [
+    "tslint-ionic-rules"
+  ],
+  "rules": {
+    "align": [
+      true,
+      "statements"
     ],
-    "jsRules": {},
-    "rules": {},
-    "rulesDirectory": []
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "member-ordering": [
+      true,
+      "public-before-private",
+      "static-before-instance",
+      "variables-before-functions"
+    ],
+    "no-var-keyword": true
+  }
 }

@@ -3,10 +3,9 @@ import { HttpModule} from '@angular/http';
 import { ImsService } from './ims-service';
 import { Credential } from '../models/credential';
 
-
 describe('Provider: ImsService Integration Test', () => {
 
-  var originalTimeout;
+  let originalTimeout;
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;

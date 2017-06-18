@@ -42,7 +42,6 @@ describe('Provider: TokenService', () => {
       err => fail(err));
   }));
 
-
   it('Should load Token from Rest API', inject([TokenService, ImsBackendMock], (tokenService: TokenService, imsBackendMock: ImsBackendMock) => {
     tokenService.getToken(imsBackendMock.credential).subscribe(
       token => expect(token.token).toEqual(imsBackendMock.tokenName),

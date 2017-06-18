@@ -17,7 +17,6 @@ export class AuthService {
   archive: string;
   filterId: number;
 
-
   constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) {
   }
 

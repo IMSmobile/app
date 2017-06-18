@@ -8,9 +8,6 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 
-
-
-
 @Injectable()
 export class SettingService {
 
@@ -47,10 +44,6 @@ export class SettingService {
     }))).map(this.mapActiveFields);
   }
 
-  private mapActiveFields(fields: MetadataField[]): MetadataField[] {
-    return fields.filter(field => field.active);
-  }
-
   getFieldState(archive: string, table: string, field: string): Observable<boolean> {
     return this.readKey(this.getFieldKey(archive, table, field));
   }
@@ -81,6 +74,9 @@ export class SettingService {
 
   isShowRestUrlField(): Observable<boolean> {
     return this.readKey(this.isShowRestUrlFieldKey).map(val => val == null ? this.isShowRestUrlFieldDefault : val);
+  }
+  private mapActiveFields(fields: MetadataField[]): MetadataField[] {
+    return fields.filter(field => field.active);
   }
 
   private readKey(key: string): Observable<any> {

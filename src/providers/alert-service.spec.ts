@@ -3,7 +3,6 @@ import { TestBed, inject, async } from '@angular/core/testing';
 import { AlertController } from 'ionic-angular';
 import { AlertService } from './alert-service';
 
-
 describe('Provider: AlertService', () => {
 
   beforeEach(async(() => {

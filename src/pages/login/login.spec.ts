@@ -77,7 +77,7 @@ describe('Page: Login', () => {
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
 
- it('Show and Hide loading with error thrown on wrong username', inject([LoadingService, ImsBackendMock], (loadingService: LoadingService, imsBackendMock: ImsBackendMock) => {
+  it('Show and Hide loading with error thrown on wrong username', inject([LoadingService, ImsBackendMock], (loadingService: LoadingService, imsBackendMock: ImsBackendMock) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
     page.loginForm.controls['server'].setValue(imsBackendMock.credential.server);

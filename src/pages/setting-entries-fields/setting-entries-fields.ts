@@ -6,7 +6,6 @@ import { LoadingService } from './../../providers/loading-service';
 import { MetadataField } from './../../models/metadata-field';
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'page-setting-entries-fields',
   templateUrl: 'setting-entries-fields.html',

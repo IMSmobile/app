@@ -6,7 +6,6 @@ import { AuthService } from './../../providers/auth-service';
 import { LoadingService } from './../../providers/loading-service';
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'page-setting-image-fields',
   templateUrl: 'setting-image-fields.html'

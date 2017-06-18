@@ -9,7 +9,6 @@ import { ImsService } from './../../providers/ims-service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-
 @Component({
   selector: 'page-setting-archive',
   templateUrl: 'setting-archive.html',
@@ -19,7 +18,6 @@ export class SettingArchivePage {
   filters: Filter[] = [];
   filterName: string = 'IMS_Mobile_Client';
   noValidFilters: boolean = false;
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public imsService: ImsService, public authService: AuthService, public loadingService: LoadingService) {
   }
