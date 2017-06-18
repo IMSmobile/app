@@ -250,7 +250,7 @@ describe('Page: Entries', () => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
     let element = document.createElement('div');
-    element.setAttribute('id', 'fileUpload' + parentImageEntryId)
+    element.setAttribute('id', 'fileUpload' + parentImageEntryId);
     document.body.appendChild(element);
     spyOn(platform, 'is').and.returnValue(true);
     spyOn(element, 'click').and.returnValue(null);
@@ -322,7 +322,7 @@ describe('Page: Entries', () => {
     let fileURI = '/dev/0/';
     let file: File = new File([new Blob()], fileName);
     let event = { target: { files: [file], value: 'a' } };
-    let parentImageEntryId = '1'
+    let parentImageEntryId = '1';
     let entryTitle = 'title';
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
