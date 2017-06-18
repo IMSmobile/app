@@ -16,54 +16,48 @@ Eine Issue gilt als abgeschlossen wenn:
   - `src/pages/login.ts`
   - `config.xml`
 
+## Pull Request Format
+Weil wir Pull Requests auf den master squashen um automatiserte Release Notes generieren zu können müssen die Angaben einem speziellen Format entsprechen. Das Format basiert auf den [Commit Message Guidelines von Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines). Der Pull Request wird in Englisch geschrieben.
 
-# Guidlines für Commit Message
-## Commit Message Format
-Jede Commit Message besteht aus einem zwingenden **header** und einem optionalen **body** Element.  
-Der **header** hat ein spezielles Format welches zwingend einen **type**, einen **scope** und einen **content** enthalten muss. 
+### Titel
+Der Titel muss zwingend einen **Type**, optional einen **Scope** sowie zwingend einen **content** enthalten. Er darf eine Länge von 100 Zeichen nicht überschreiten.
 
-```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-```
-Jede Commit Message Zeile darf eine länge von 100 Zeichen nicht überschreiten.  
-Die Commit Message wird in Englisch geschrieben.  
-Commits werden durch commitizen mit dem Kommando `git cz` erstellt.  
-
-### Type
+#### Type
 
 Muss eines der folgenden Konstanten sein:
 
-build: Änderungen welche das build system oder externe Abhängigkeiten betreffen (npm, scripts)  
-ci: Änderungen an der Continuous Integration Konfiguration (Travis)  
-docs: Änderungen in der Dokumentation (Issue mit doc Tag)  
-feat: Ein neues Feature (Issue ohne Tag)  
-fix: Eine Fehlerbehebung (Issue mit bug oder framework-bug Tag)  
-perf: Eine Performance Verbesserung  
-refactor: Codeänderung welche keinen Fix oder kein Feature beinhaltet  
-style: Änderungen am Format des Codes (Lint, Whitespace, Formatierung,Semikolon)  
-test: Hinzufügen oder korrigieren eines bestehenden Tests
+`build`: Änderungen welche das build system oder externe Abhängigkeiten betreffen (npm, scripts)  
+`ci`: Änderungen an der Continuous Integration Konfiguration (Travis)  
+`docs`: Änderungen in der Dokumentation (Issue mit doc Tag)  
+`feat`: Ein neues Feature (Issue ohne Tag)  
+`fix`: Eine Fehlerbehebung (Issue mit bug oder framework-bug Tag)  
+`perf`: Eine Performance Verbesserung  
+`refactor`: Codeänderung welche keinen Fix oder kein Feature beinhaltet  
+`style`: Änderungen am Format des Codes (Lint, Whitespace, Formatierung,Semikolon)  
+`test`: Hinzufügen oder korrigieren eines bestehenden Tests
 
-### Scope
-
+#### Scope
 Muss bei Type feat und fix zwingend angegeben werden und einer von folgenden Konstanten sein:
 
-app  
-login  
-upload  
-setting  
-entries  
-search  
+`app`  
+`login`  
+`upload`  
+`setting`  
+`entries`  
+`search` 
 
-### Subject
+#### Subject
+Im Subject werden die Änderungen zusammengefasst. Es wird der imperativ verwendet: "change" nicht "changed" und auch nicht "changes". Das erste Wort wird nicht gross geschrieben. Kein Punkt am Ende
 
-Im Subject werden die Änderungen zusammengefasst:
+### Text
+Der Text eines Pull Requests besteht aus dem **Body** und einem **Footer**.
 
-Es wird der imperativ verwendet "change" not "changed" auch nicht "changes"
-Das erste Wort wird nicht Gross geschrieben
-Kein Punkt am Ende
+#### Body
+Der Body Beschreibt die Motivation für die Codeänderung sowie die Änderung der Applikation zur bestehenden Version. 
 
-### Body
+#### Footer
+Hier werden falls nötig Breaking Changes genauer beschrieben sowie Issues referenziert.
 
-Im Body steht die Motivation für die Codeänderung sowie die Änderung der Applikation zur bestehenden Version. 
+Der Absatz muss mit `BREAKING CHANGE:` beginnen und die Änderung beschreiben, die Gründe dafür nennen sowie allenfalls nötige Migrationsschritte auflisten.
+
+Danach werden die jeweiligen Issues referenziert.
