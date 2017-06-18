@@ -232,10 +232,6 @@ git clone https://github.com/IMSmobile/app.git
 ```bash
 npm install
 ```
-- Commitizen für Commit Messages installieren
-```bash
-npm install -g commitizen
-```
 - Test installation
 ```bash
 ionic serve
@@ -334,7 +330,7 @@ npm run lint
 ```
 
 #### Commit Message Guidelines
-Um saubere und lesbare Commit History zu erhalten, verwenden wir Commit Message Guidlines. Die Guidlines wurden von den [Angular Commit Message Guidlines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) übernommen und angepasst.
+Um eine saubere und lesbare Commit History zu erhalten verwenden wir Commit Message Guidelines. Diese Guidelines wurden von den [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) übernommen und angepasst.
 Die genauen Commit Regeln werden in der [Definition of Done](CONTRIBUTING.md) beschrieben.
 
 ### Testing
@@ -413,40 +409,23 @@ Mit dokumentierten manuellen Test Cases, welche wir vor jedem Sprint-Review und 
 
 *TODO Example Manual Test Case.*
 
+### Releasing
+Um rasch neue Versionen des Clients bereitstellen zu können setzen wir auf die standardisierte Versionierung mit [Semantic Versioning](http://semver.org/) sowie die automatisierte Erstellung von Release Notes mit [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog).
+
+Dabei wird in einem ersten Schritt die Relevanz der Änderung anhand des [Commit Message Formats](#commit-message-guidelines) beurteilt und die Versionsnummer entsprechend erhöht. Anschliessend werden die Release Notes generiert und der Release freigegeben.
+
+Für die [Versionierung](#versionierung) relevant sind nur Commit Messages vom [Typ](CONTRIBUTING.md#type) `fix`, `feature` oder `perf` sowie Breaking Changes. Es ist Aufgabe des Reviewers nach dem mergen solcher Pull Requests die Erstellung eines neuen Releases anzustossen. Dabei kreiert er einen weiteren Pull Request in dem sich die neue Versionsnummer, eine Markierung (`tag`) für die Versionsverwaltung sowie die aktualisierte Sammlung aller Release Notes ([`CHANGELOG.md`](CHANGELOG.md)) befindet.
+
+Anschliessend wird dieser zweite "Release Pull Request" durch einen weiteren Reviewer beurteilt und gemerged. Dessen Aufgabe ist es wiederum den Release auf GitHub bereitzustellen.
+
 ### Versionierung
-Mit jedem Pull Request bei welchem Dateien im /src oder /e2e Ordner verändert werden, wird die Version gemäss [Semantic Versioning](http://semver.org/) angepasst. Dieser Schritt passiert manuell. Die Files, welche angepasst werden müssen stehen in der [Definition of Done](CONTRIBUTING.md).
+Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, _MINOR_ und _PATCH_ welche je nach Commit Message Typ inkrementiert werden.
 
-Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, _MINOR_ und _PATCH_ welche je nach Änderungsart inkrementiert werden. Beispiele von Änderungsarten wären:
-- _MAJOR_: Neue Anforderungen an die Version des IMS Servers; Format der Startparameter wird verändert 
-- _MINOR_: Neue Funktionalität wird eingeführt
-- _PATCH_: Bugs werden behoben; Code wird verbessert (refactored); Design wird angepasst
-
-### Release Notes
-Mit jedem Pull Request welcher die Versionsnummer erhöht, müssen Release Notes erstellt werden. Release Notes werden automatisch mit dem Tool [conventional-changelog](https://github.com/conventional-changelog/conventi onal-changelog) anhand der Commit Messages generiert.
-
-Nur Commit Messages welche vom Type fix, feature oder perf sind werden zu den Release Notes hinzugefügt.
-
-Mit folgendem Befehl können die Release Notes automatisch generiert werden.
-```shell
-npm run changelog
-```
-
-### Releasing 
-
-Mit jedem Pull Request welcher die Versionsnummer erhöht wird ein neuer Release erstellt. Dies passiert in folgender Reihenfolge:
-
-* Code Änderungen einchecken
-* Commit um Versionsnummer zu erhöhen
-* Commit um Releasenotes anzupassen
-* Git Tag mit Versionsnummer erstellen `git tag x.y.z`
-* Git Tag pushen `git push origin x.y.z`
-* _Add Release Notes_ Button zum erstellten Tag ausführen https://github.com/IMSmobile/app/tags 
-* Versions Nummer im Titel angeben
-* Release Notes von vorherigem Commit hinzufügen
-* `.ipa` and `.apk` von Ionic Package hinzufügen 
-* Release freigeben
-
-
+| Versionskomponente | Commit Message Typ | Beispiel
+| ------------------ | ------------------ | ---------
+| _MAJOR_ | Breaking Changes | Neue Anforderungen an die Version des IMS Servers 
+| _MINOR_ | `feature`        | Neu lassen sich auch Videos hochladen 
+| _PATCH_ | `fix`            | Fehlerbehebung beim Upload grosser Bilder
 
 ### Wireframes
 Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
