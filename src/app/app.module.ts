@@ -1,3 +1,4 @@
+import { ContainerUploadService } from './../providers/container-upload-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
@@ -88,6 +89,7 @@ const cloudSettings: CloudSettings = {
     IonicStorageModule,
     AppProviders.getTransferProvider(),
     AppProviders.getCameraProvider(),
+    ContainerUploadService,
     SettingService,
     EntriesService,
     CameraService,
