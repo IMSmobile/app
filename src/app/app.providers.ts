@@ -1,3 +1,5 @@
+import { BrowserContainerUploadService } from './../providers/browser-container-upload-service';
+import { ContainerUploadService } from './../providers/container-upload-service';
 import { Http } from '@angular/http';
 import { TransferBlobMock } from './../mocks/providers/transfer-blob-mock';
 import { CameraMock } from './../mocks/providers/camera-mock';
@@ -32,7 +34,23 @@ export class AppProviders {
     };
   }
 
+  public static getContainerUploadServiceProvider(): Provider {
+    return {
+      provide: ContainerUploadService, useFactory: (platform: Platform, transfer: Transfer, http: Http) => {
+        if (this.deviceRunningBrowser(platform)) {
+          return new BrowserContainerUploadService(http);
+        } else {
+          return new ContainerUploadService(transfer);
+        }
+      }, deps: [Platform, Transfer, Http]
+    };
+  }
+
   private static deviceRunningCordova(platform: Platform): boolean {
     return platform.is('cordova');
+  }
+
+  private static deviceRunningBrowser(platform: Platform): boolean {
+    return platform.is('core');
   }
 }

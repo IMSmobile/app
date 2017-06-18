@@ -1,5 +1,4 @@
 import { Image } from './../../models/image';
-import { PictureRequesterService } from './../../providers/picture-requester.service';
 import { CameraError } from './../../models/errors/camera-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Storage } from '@ionic/storage';
@@ -29,6 +28,7 @@ import 'rxjs/add/observable/throw';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 
+
 describe('Page: Entries', () => {
 
   let fixture: ComponentFixture<EntriesPage> = null;
@@ -43,7 +43,7 @@ describe('Page: Entries', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
-        ModelService, SettingService, PictureRequesterService,
+        ModelService, SettingService,
         CameraService, LoadingService, AlertService, QueryBuilderService, Events,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
@@ -245,6 +245,19 @@ describe('Page: Entries', () => {
     );
   }));
 
+  it('On browser open file dialog on  after click get picture from gallery', inject([Platform], (platform: Platform) => {
+
+    let parentImageEntryId: string = '123';
+    let entryTitle: string = 'Test Entry';
+    let element = document.createElement('div');
+    element.setAttribute('id', 'fileUpload' + parentImageEntryId)
+    document.body.appendChild(element);
+    spyOn(platform, 'is').and.returnValue(true);
+    spyOn(element, 'click').and.returnValue(null);
+    page.getGalleryPictureForEntry(parentImageEntryId, entryTitle);
+    expect(element.click).toHaveBeenCalledTimes(1);
+  }));
+
   it('Throws error when failing to get picture from gallery', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
     let error = Observable.throw(new Error('oops'));
     spyOn(cameraService, 'getGalleryPicture').and.returnValue(error);
@@ -297,4 +310,25 @@ describe('Page: Entries', () => {
     expect(page.events.unsubscribe).toHaveBeenCalledWith('nav:settings-page');
   }));
 
+  it('Do nothing when no file available in input file dialog', () => {
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    let event = { target: { files: [] } };
+    page.fileSelected(event, null, null);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);
+  });
+
+  it('Push to upload page when file in input file dialog selected', () => {
+    let fileName = 'file.jpg';
+    let fileURI = '/dev/0/';
+    let file: File = new File([new Blob()], fileName);
+    let event = { target: { files: [file], value: 'a' } };
+    let parentImageEntryId = '1'
+    let entryTitle = 'title';
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
+    page.fileSelected(event, parentImageEntryId, entryTitle);
+    let image = new Image(fileName, fileURI, file);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
+    expect(event.target.value).toBeNull();
+  });
 });

@@ -26,7 +26,7 @@
 <ion-content>
   <div class="detail-switch" [ngSwitch]="uploadSegment">
     <div class="detail-image-container" *ngSwitchCase="'image'">
-      <img class="scaled-image" [src]="image.fileURI" />
+      <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
     </div>
     <ion-list *ngSwitchCase="'metadata'" id="id-list">
       <form [formGroup]="fieldsForm">
@@ -46,7 +46,7 @@
 <ion-footer>
   <ion-toolbar>
     <div class="thumbnail-image-container">
-      <img class="scaled-image" [src]="image.fileURI" />
+      <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
     </div>
   </ion-toolbar>
 </ion-footer>

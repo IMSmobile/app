@@ -1,5 +1,4 @@
 import { Image } from './../../models/image';
-import { PictureRequesterService } from './../../providers/picture-requester.service';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ModelService } from './../../providers/model-service';
 import { SettingService } from './../../providers/setting-service';
@@ -18,6 +17,7 @@ import { UploadPage } from '../upload/upload';
 import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-entries',
@@ -32,7 +32,7 @@ export class EntriesPage {
   titleField: string;
   parentImageReferenceField: string;
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public events: Events, public settingService: SettingService, public modelService: ModelService, public pictureRequesterService: PictureRequesterService) { }
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public events: Events, public settingService: SettingService, public modelService: ModelService, public platform: Platform) { }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
@@ -42,10 +42,15 @@ export class EntriesPage {
   }
 
   public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
-    this.loadingService.subscribeWithLoading(
-      this.pictureRequesterService.requestPicture(),
-      image => this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle),
-      err => this.cameraService.handleError(err));
+    if (this.platform.is('core')) {
+      let fileUploadElem = document.getElementById('fileUpload' + parentImageEntryId);
+      fileUploadElem.click();
+    } else {
+      this.loadingService.subscribeWithLoading(
+        this.cameraService.getGalleryPicture(),
+        image => this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle),
+        err => this.cameraService.handleError(err));
+    }
   }
 
   pushToUploadPageWithPicture(image: Image, parentImageEntryId: string, entryTitle: string) {
@@ -123,6 +128,16 @@ export class EntriesPage {
     this.popover.present({
       ev: event
     });
+  }
+
+  fileSelected(event: any, parentImageEntryId: string, entryTitle: string) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      event.target.value = null;
+      let image = new Image(file.name, window.URL.createObjectURL(file), file);
+      this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle);
+    }
   }
 
 }
