@@ -1,3 +1,4 @@
+import { ContainerUploadService } from './../../providers/container-upload-service';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Credential } from './../../models/credential';
@@ -42,7 +43,7 @@ describe('Page: Upload', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
         TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
-        FieldValidatorService,
+        FieldValidatorService, ContainerUploadService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },

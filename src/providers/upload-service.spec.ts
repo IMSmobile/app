@@ -1,3 +1,4 @@
+import { ContainerUploadService } from './container-upload-service';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
@@ -20,6 +21,7 @@ describe('Provider: UploadService', () => {
         ImsService,
         ImsBackendMock,
         BaseRequestOptions,
+        ContainerUploadService,
         { provide: Transfer, useClass: TransferMock },
         {
           provide: Http,
