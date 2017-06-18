@@ -17,7 +17,7 @@ Eine Issue gilt als abgeschlossen wenn:
   - `config.xml`
 
 ## Pull Request Format
-Weil wir Pull Requests auf den master squashen um automatiserte Release Notes generieren zu können müssen die Angaben einem speziellen Format entsprechen. Das Format basiert auf den [Commit Message Guidelines von Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines). Der Pull Request wird in Englisch geschrieben.
+Weil wir Pull Requests auf den master squashen um automatiserte Release Notes generieren zu können müssen die Angaben einem speziellen Format entsprechen. Das Format basiert auf den [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines). Der Pull Request wird in Englisch geschrieben.
 
 ### Titel
 Der Titel muss zwingend einen **Type**, einen **Scope** sowie zwingend einen **content** enthalten. Er darf eine Länge von 100 Zeichen nicht überschreiten.
