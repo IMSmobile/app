@@ -36,7 +36,7 @@ IMS Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Verbesserung der continouse delivery
 
 ### Fragen
-- Rest Segment Name konfigurierbar machen? → Aktuell laut imagic nicht wichtig/aktuell
+- Rest Segment Name konfigurierbar machen? → Aktuell laut Imagic und Picsystem nicht wichtig/aktuell
 - Bildername von Smartphone App → Bildname auf Smartphone nicht relevant, für IMS-Server nicht entscheidend
 - Popup für Settings umgestalten → Findet vor allem bei iOS-User auf Anklang. Sollte umgesetzt werden
 
