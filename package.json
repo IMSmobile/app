@@ -80,5 +80,9 @@
     "typescript": "2.2.1"
   },
   "version": "0.2.0",
-  "description": "Cross-Platform Ionic App for IMS"
+  "description": "Cross-Platform Ionic App for IMS",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/IMSmobile/app.git"
+  } 
 }
