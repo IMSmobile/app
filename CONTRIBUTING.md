@@ -20,7 +20,9 @@ Eine Issue gilt als abgeschlossen wenn:
 Weil wir Pull Requests auf den master squashen um automatiserte Release Notes generieren zu können müssen die Angaben einem speziellen Format entsprechen. Das Format basiert auf den [Commit Message Guidelines von Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines). Der Pull Request wird in Englisch geschrieben.
 
 ### Titel
-Der Titel muss zwingend einen **Type**, optional einen **Scope** sowie zwingend einen **content** enthalten. Er darf eine Länge von 100 Zeichen nicht überschreiten.
+Der Titel muss zwingend einen **Type**, einen **Scope** sowie zwingend einen **content** enthalten. Er darf eine Länge von 100 Zeichen nicht überschreiten.
+
+Das Format ist `type(scope): content`
 
 #### Type
 
@@ -37,7 +39,7 @@ Muss eines der folgenden Konstanten sein:
 `test`: Hinzufügen oder korrigieren eines bestehenden Tests
 
 #### Scope
-Muss bei Type feat und fix zwingend angegeben werden und einer von folgenden Konstanten sein:
+Muss bei Type `feat` und `fix` zwingend angegeben werden und einer der folgenden Konstanten sein:
 
 `app`  
 `login`  
@@ -53,7 +55,7 @@ Im Subject werden die Änderungen zusammengefasst. Es wird der imperativ verwend
 Der Text eines Pull Requests besteht aus dem **Body** und einem **Footer**.
 
 #### Body
-Der Body Beschreibt die Motivation für die Codeänderung sowie die Änderung der Applikation zur bestehenden Version. 
+Beschreibt die Motivation für die Codeänderung sowie die Änderung der Applikation zur bestehenden Version. 
 
 #### Footer
 Hier werden falls nötig Breaking Changes genauer beschrieben sowie Issues referenziert.
