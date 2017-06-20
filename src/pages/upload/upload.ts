@@ -8,7 +8,7 @@ import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
-import { NavController, ToastController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, NavParams, Platform } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
@@ -31,7 +31,7 @@ export class UploadPage {
   entryTitle: string;
   parentImageReferenceField: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
@@ -51,7 +51,7 @@ export class UploadPage {
     this.loadingService.subscribeWithLoading(fields, newFields => this.appendFields(newFields), err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
-   loadParentImageReferenceField() {
+  loadParentImageReferenceField() {
     let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
@@ -82,9 +82,15 @@ export class UploadPage {
   }
 
   public getGalleryPicture() {
-    this.cameraService.getGalleryPicture().subscribe(
-      image => this.image = image,
-      err => this.cameraService.handleError(err));
+    if (this.platform.is('core')) {
+      let fileUploadElem = document.getElementById('fileUpload');
+      fileUploadElem.click();
+    } else {
+      this.loadingService.subscribeWithLoading(
+        this.cameraService.getGalleryPicture(),
+        image => this.image = image,
+        err => this.cameraService.handleError(err));
+    }
   }
 
   public uploadPicture() {
@@ -120,5 +126,14 @@ export class UploadPage {
 
   getErrorMessage(formControl: FormControl): string {
     return this.fieldValidatorService.getErrorMessage(formControl);
+  }
+
+  fileSelected(event: any) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      event.target.value = null;
+      this.image = new Image(file.name, window.URL.createObjectURL(file), file);
+    }
   }
 }

@@ -11,6 +11,7 @@
        <ion-icon name="image"></ion-icon>
      </button>
     </ion-buttons>
+  <input type="file" id="fileUpload" (change)="fileSelected($event)" placeholder="Upload file" accept="image/*" style="display: none">
   </ion-navbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="uploadSegment">
