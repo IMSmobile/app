@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { SettingService } from './setting-service';
 
-describe('Provider: SettingService', () => {
+describe('Provider: BrowserSettingService', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,6 +16,6 @@ describe('Provider: SettingService', () => {
   }));
 
   it('picture from camera is disabled', (inject([SettingService, Storage], (settingService: SettingService) => {
-    expect(settingService.isPictureFromCameraEnabled).toBeFalsy();
+    expect(settingService.isPictureFromCameraEnabled()).toBeFalsy();
   })));
 });

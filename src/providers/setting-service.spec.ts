@@ -49,6 +49,6 @@ describe('Provider: SettingService', () => {
   })));
 
   it('picture from camera is enabled', (inject([SettingService, Storage], (settingService: SettingService) => {
-    expect(settingService.isPictureFromCameraEnabled).toBeTruthy();
+    expect(settingService.isPictureFromCameraEnabled()).toBeTruthy();
   })));
 });
