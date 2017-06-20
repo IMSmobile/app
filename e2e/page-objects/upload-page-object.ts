@@ -26,12 +26,12 @@ export class UploadPageObject {
 
   loadPage() {
     this.entriesPage.loadPage();
-    this.entriesPage.pushEntriesCameraButtonOnEntry34617();
+    this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
 
   reloadPage() {
     this.entriesPage.reloadPage();
-    this.entriesPage.pushEntriesCameraButtonOnEntry34617();
+    this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
   writeToTextField(textField: ElementFinder, text: string) {
     Helpers.waitUntilElementIsReady(textField);

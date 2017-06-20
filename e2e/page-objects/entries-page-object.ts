@@ -50,11 +50,6 @@ export class EntriesPageObject {
     this.logoutButton.click();
   }
 
-  pushEntriesCameraButtonOnEntry34617() {
-    Helpers.waitUntilElementIsReady(this.entriesCameraButton);
-    this.entriesCameraButton.click();
-  }
-
   pushEntriesGalleryButtonOnEntry34617() {
     Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
     this.entriesGalleryButton.click();
