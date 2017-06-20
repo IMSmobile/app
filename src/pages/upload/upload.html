@@ -4,7 +4,7 @@
       {{entryTitle}}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (tap)="takePicture()" color="primary">
+      <button *ngIf="pictureFromCameraEnabled" ion-button icon-only (tap)="takePicture()" color="primary">
        <ion-icon name="camera"></ion-icon>
      </button>
       <button ion-button icon-only (tap)="getGalleryPicture()" id="getGalleryPictureButton" color="primary">

@@ -89,7 +89,7 @@ const cloudSettings: CloudSettings = {
     AppProviders.getTransferProvider(),
     AppProviders.getCameraProvider(),
     AppProviders.getContainerUploadServiceProvider(),
-    SettingService,
+    AppProviders.getSettingServiceProvider(),
     EntriesService,
     CameraService,
     LoadingService,

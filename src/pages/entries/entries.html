@@ -15,7 +15,7 @@
       <ion-item *ngFor="let entry of entries" id="entriesItem{{entry.fields[parentImageReferenceField]}}">
         <h1 ion-text color="primary">{{entry.fields[titleField]}}</h1>
         <div *ngFor="let field of fields" class="entries-fields">{{field.name}} : {{entry.fields[field.name]}}</div>
-        <button ion-button (click)="takePictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="cameraButton" item-right>
+        <button *ngIf="pictureFromCameraEnabled" ion-button (click)="takePictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="cameraButton" item-right>
           <ion-icon name="camera"></ion-icon>
         </button>
         <button ion-button (click)="getGalleryPictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="galleryButton" item-right>

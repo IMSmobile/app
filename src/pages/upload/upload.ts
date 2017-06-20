@@ -30,11 +30,14 @@ export class UploadPage {
   uploadSegment: string = 'metadata';
   entryTitle: string;
   parentImageReferenceField: string;
+  pictureFromCameraEnabled: boolean;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
+    this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
   }
 
   ionViewDidLoad() {

@@ -47,4 +47,8 @@ describe('Provider: SettingService', () => {
   it('Field key', async(inject([SettingService, Storage], (settingService: SettingService, storage: Storage) => {
     expect(settingService.getFieldKey('archive', 'table', 'field1')).toBe('archive.table.field1');
   })));
+
+  it('picture from camera is enabled', (inject([SettingService, Storage], (settingService: SettingService) => {
+    expect(settingService.isPictureFromCameraEnabled).toBeTruthy();
+  })));
 });
