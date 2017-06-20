@@ -1,4 +1,4 @@
-import { EntriesPageObject } from './page-objects/entries-page-object';
+import { SettingsPageOjbect } from './page-objects/settings-page-object';
 import { browser, element, by, ElementFinder, protractor, $, ExpectedConditions } from 'protractor';
 import { LoginPageOjbect } from './page-objects/login-page-object';
 
@@ -6,7 +6,7 @@ describe('Logout E2E Test', () => {
 
   let originalTimeout;
   let loginPage: LoginPageOjbect = new LoginPageOjbect();
-  let entriesPage: EntriesPageObject = new EntriesPageObject();
+  let settingsPage: SettingsPageOjbect = new SettingsPageOjbect();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -29,8 +29,8 @@ describe('Logout E2E Test', () => {
   });
 
   it('Should return to Loginscreen', () => {
-    entriesPage.loadPage();
-    entriesPage.logout();
+    settingsPage.loadPage();
+    settingsPage.logout();
     loginPage.getServerInputText().then(text => expect(text).toEqual(loginPage.server));
     loginPage.getUserInputText().then(text => expect(text).toEqual(loginPage.user));
     loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));

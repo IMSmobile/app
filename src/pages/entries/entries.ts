@@ -5,8 +5,7 @@ import { MetadataField } from './../../models/metadata-field';
 import { Observable } from 'rxjs/Observable';
 import { QueryFragment } from './../../models/query-fragment';
 import { Component } from '@angular/core';
-import { NavController, PopoverController, Popover, Events } from 'ionic-angular';
-import { MorePopoverPage } from '../more-popover/more-popover';
+import { NavController } from 'ionic-angular';
 import { Entry } from '../../models/entry';
 import { EntriesService } from './../../providers/entries-service';
 import { AuthService } from './../../providers/auth-service';
@@ -15,7 +14,6 @@ import { LoadingService } from '../../providers/loading-service';
 import { UploadPage } from '../upload/upload';
 import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
-import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-entries',
@@ -25,12 +23,11 @@ export class EntriesPage {
   entries: Entry[] = [];
   nextPage: string;
   sort: QueryFragment[] = [new QueryFragment('sort', 'IAModificationDate+desc')];
-  popover: Popover;
   fields: MetadataField[];
   titleField: string;
   parentImageReferenceField: string;
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public events: Events, public settingService: SettingService, public modelService: ModelService) { }
+  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService) { }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
@@ -66,7 +63,6 @@ export class EntriesPage {
   }
 
   ionViewWillEnter() {
-    this.subscribeToEvents();
     this.loadSelectedFieldsAndTitle();
   }
 
@@ -99,28 +95,8 @@ export class EntriesPage {
     this.nextPage = entries.pagination.nextPage;
   }
 
-  subscribeToEvents() {
-    this.events.subscribe('nav:settings-page', () => {
-      this.popover.dismiss();
-      this.navCtrl.push(SettingsPage);
-    });
-    this.events.subscribe('nav:login-page', () => {
-      this.popover.dismiss();
-      this.authService.logout();
-      this.navCtrl.setRoot(LoginPage);
-    });
-  }
-
-  ionViewWillLeave() {
-    this.events.unsubscribe('nav:settings-page');
-    this.events.unsubscribe('nav:login-page');
-  }
-
-  presentPopover(event) {
-    this.popover = this.popoverCtrl.create(MorePopoverPage);
-    this.popover.present({
-      ev: event
-    });
+  loadSettings() {
+    this.navCtrl.push(SettingsPage);
   }
 
 }
