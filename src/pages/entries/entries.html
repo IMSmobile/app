@@ -21,7 +21,7 @@
         <button ion-button (click)="getGalleryPictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="galleryButton" item-right>
           <ion-icon name="image"></ion-icon>
         </button>
-        <input type="file" id="fileUpload{{entry.fields[parentImageReferenceField]}}" (change)="fileSelected($event, entry.fields[parentImageReferenceField], entry.fields[titleField])" placeholder="Upload file" accept="image/*" style="display: none">
+        <input class="fileUpload" type="file" id="fileUpload{{entry.fields[parentImageReferenceField]}}" (change)="fileSelected($event, entry.fields[parentImageReferenceField], entry.fields[titleField])" placeholder="Upload file" accept="image/*" style="display: none">
       </ion-item>
     </ion-list>
     <ion-infinite-scroll-content loadingText="Mehr Daten werden geladen..."></ion-infinite-scroll-content>

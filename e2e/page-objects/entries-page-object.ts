@@ -19,7 +19,9 @@ export class EntriesPageObject {
   entriesThirdMetaDataField: ElementFinder = this.entriesFields.get(2);
   entriesCameraButton: ElementFinder = this.entriesItem.element(by.css('.cameraButton'));
   entriesGalleryButton: ElementFinder = this.entriesItem.element(by.css('.galleryButton'));
+  entriesFileUpload: ElementFinder = this.entriesItem.element(by.css('.fileUpload'));
 
+  path = require('path');
   settingArchivePageObject = new SettingArchivePageObject();
   loginPage = new LoginPageOjbect();
 
@@ -57,6 +59,13 @@ export class EntriesPageObject {
     Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
     this.entriesGalleryButton.click();
   }
+
+  chooseJPEGImageInFileDialog() {
+    let fileToUpload = '../assets/mario.jpg';
+    let absolutePath = this.path.resolve(__dirname, fileToUpload);
+    this.entriesFileUpload.sendKeys(absolutePath);
+  }
+
 
   verifyEntriesTitleVisible() {
     browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), Helpers.DEFAULT_WAIT_TIMEOUT);
