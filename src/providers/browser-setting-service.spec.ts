@@ -1,5 +1,4 @@
 import { BrowserSettingService } from './browser-setting-service';
-import { Filter } from './../models/filter';
 import { StorageMock } from '../mocks/mocks';
 import { Storage } from '@ionic/storage';
 import { TestBed, inject, async } from '@angular/core/testing';

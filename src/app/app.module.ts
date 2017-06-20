@@ -22,7 +22,6 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
-import { SettingService } from '../providers/setting-service';
 
 import { EntriesService } from '../providers/entries-service';
 import { CameraService } from '../providers/camera-service';
