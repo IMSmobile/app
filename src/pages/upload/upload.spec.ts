@@ -120,6 +120,14 @@ describe('Page: Upload', () => {
     expect(page.image).toBe(image);
   }));
 
+  it('On browser open file dialog on  after click get picture from gallery', inject([Platform], (platform: Platform) => {
+    let element = document.getElementById('fileUpload');
+    spyOn(platform, 'is').and.returnValue(true);
+    spyOn(element, 'click').and.returnValue(null);
+    page.getGalleryPicture();
+    expect(element.click).toHaveBeenCalledTimes(1);
+  }));
+
   it('calls camera error handler when failing to get image from gallery', inject([CameraService], (cameraService: CameraService) => {
     spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.throw('oops'));
     spyOn(cameraService, 'handleError').and.returnValue(null);
@@ -127,6 +135,27 @@ describe('Page: Upload', () => {
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(cameraService.handleError).toHaveBeenCalled();
   }));
+
+  it('Update imagename when new file in fileinput is selected', () => {
+    let fileName = 'newFile.jpg';
+    let fileURI = '/dev/0/';
+    let oldImage = new Image ('oldvalue', 'oldvalue.jpg');
+    let newFile: File = new File([new Blob()], fileName);
+    let newImage = new Image(fileName, fileURI, newFile);
+    spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
+    page.image = oldImage;
+    let event = { target: { files: [newFile] } };
+    page.fileSelected(event);
+    expect(page.image).toEqual(newImage);
+  });
+
+  it('Do nothing when no file available in input file dialog', () => {
+    let oldImage = new Image ('oldvalue', 'oldvalue.jpg');
+    page.image = oldImage;
+    let event = { target: { files: [] } };
+    page.fileSelected(event);
+    expect(page.image).toEqual(oldImage);
+  });
 
   it('Show and hide loading when loading parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
