@@ -19,6 +19,10 @@ export class UploadPageObject {
   getGalleryPictureButton: ElementFinder = element(by.id('getGalleryPictureButton'));
   bildNameMandatoryMarker: ElementFinder = element(by.id('mandatoryBILDNAME'));
   integerfeldMandatoryMarker: ElementFinder = element(by.id('mandatoryINTEGERFELD'));
+  fileUpload: ElementFinder = element(by.id('fileUpload'));
+
+  path = require('path');
+
 
   loadPage() {
     this.entriesPage.loadPage();
@@ -39,6 +43,7 @@ export class UploadPageObject {
   selectNewPictureFromGallery() {
     Helpers.waitUntilElementIsReady(this.getGalleryPictureButton);
     this.getGalleryPictureButton.click();
+    Helpers.chooseJPEGImageInFileDialog(this.path, this.fileUpload);
   }
 
   clickIntoBildNameTextField() {

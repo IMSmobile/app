@@ -58,12 +58,7 @@ export class EntriesPageObject {
   pushEntriesGalleryButtonOnEntry34617() {
     Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
     this.entriesGalleryButton.click();
-  }
-
-  chooseJPEGImageInFileDialog() {
-    let fileToUpload = '../assets/mario.jpg';
-    let absolutePath = this.path.resolve(__dirname, fileToUpload);
-    this.entriesFileUpload.sendKeys(absolutePath);
+    Helpers.chooseJPEGImageInFileDialog(this.path, this.entriesFileUpload);
   }
 
 

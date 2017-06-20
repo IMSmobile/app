@@ -56,7 +56,6 @@ describe('Upload E2E Test', () => {
   it('Should upload image taken from gallery', () => {
     entriesPage.loadPage();
     entriesPage.pushEntriesGalleryButtonOnEntry34617();
-    entriesPage.chooseJPEGImageInFileDialog();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
