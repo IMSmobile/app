@@ -1,3 +1,4 @@
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
@@ -23,6 +24,7 @@ import 'rxjs/add/observable/concat';
   templateUrl: 'upload.html'
 })
 export class UploadPage {
+  BrowserFileuploadService: any;
   image: Image;
   parentImageEntryId: string;
   fields: MetadataField[] = [];
@@ -33,7 +35,7 @@ export class UploadPage {
   pictureFromCameraEnabled: boolean;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
@@ -132,11 +134,9 @@ export class UploadPage {
   }
 
   fileSelected(event: any) {
-    let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      let file: File = fileList[0];
-      event.target.value = null;
-      this.image = new Image(file.name, window.URL.createObjectURL(file), file);
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    if (selectedImage) {
+      this.image = selectedImage;
     }
   }
 }

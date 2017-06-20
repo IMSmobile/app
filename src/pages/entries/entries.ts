@@ -1,3 +1,4 @@
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ModelService } from './../../providers/model-service';
@@ -33,7 +34,7 @@ export class EntriesPage {
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public events: Events, public settingService: SettingService, public modelService: ModelService, public platform: Platform) {
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public events: Events, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
   }
 
@@ -134,12 +135,9 @@ export class EntriesPage {
   }
 
   fileSelected(event: any, parentImageEntryId: string, entryTitle: string) {
-    let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      let file: File = fileList[0];
-      event.target.value = null;
-      let image = new Image(file.name, window.URL.createObjectURL(file), file);
-      this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle);
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    if (selectedImage) {
+      this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
   }
 

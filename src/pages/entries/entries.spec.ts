@@ -1,3 +1,4 @@
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
 import { CameraError } from './../../models/errors/camera-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
@@ -44,7 +45,7 @@ describe('Page: Entries', () => {
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
         ModelService, SettingService,
-        CameraService, LoadingService, AlertService, QueryBuilderService, Events,
+        CameraService, LoadingService, AlertService, QueryBuilderService, Events, BrowserFileuploadSelectorService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -321,7 +322,7 @@ describe('Page: Entries', () => {
     let fileName = 'file.jpg';
     let fileURI = '/dev/0/';
     let file: File = new File([new Blob()], fileName);
-    let event = { target: { files: [file], value: 'a' } };
+    let event = { target: { files: [file]} };
     let parentImageEntryId = '1';
     let entryTitle = 'title';
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
@@ -329,6 +330,5 @@ describe('Page: Entries', () => {
     page.fileSelected(event, parentImageEntryId, entryTitle);
     let image = new Image(fileName, fileURI, file);
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
-    expect(event.target.value).toBeNull();
   });
 });

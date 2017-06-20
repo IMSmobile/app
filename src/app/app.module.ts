@@ -1,3 +1,4 @@
+import { BrowserFileuploadSelectorService } from './../providers/browser-fileupload-selector-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
@@ -97,6 +98,7 @@ const cloudSettings: CloudSettings = {
     QueryBuilderService,
     ModelService,
     FieldValidatorService,
+    BrowserFileuploadSelectorService,
     { provide: ErrorHandler, useClass: ImsErrorHandler }
   ]
 })
