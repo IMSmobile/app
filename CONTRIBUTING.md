@@ -49,7 +49,7 @@ Muss bei Type `feat` und `fix` zwingend angegeben werden und einer der folgenden
 `search` 
 
 #### Subject
-Im Subject werden die Änderungen zusammengefasst. Es wird der imperativ verwendet: "change" nicht "changed" und auch nicht "changes". Das erste Wort wird nicht gross geschrieben. Kein Punkt am Ende
+Im Subject werden die Änderungen zusammengefasst. Es wird der imperativ verwendet: "change" nicht "changed" und auch nicht "changes". Das erste Wort wird nicht gross geschrieben. Kein Punkt am Ende.
 
 ### Text
 Der Text eines Pull Requests besteht aus dem **Body** und einem **Footer**.
