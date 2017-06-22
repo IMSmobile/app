@@ -19,15 +19,16 @@ export class UploadPageObject {
   getGalleryPictureButton: ElementFinder = element(by.id('getGalleryPictureButton'));
   bildNameMandatoryMarker: ElementFinder = element(by.id('mandatoryBILDNAME'));
   integerfeldMandatoryMarker: ElementFinder = element(by.id('mandatoryINTEGERFELD'));
+  fileUpload: ElementFinder = element(by.id('fileUpload'));
 
   loadPage() {
     this.entriesPage.loadPage();
-    this.entriesPage.pushEntriesCameraButtonOnEntry34617();
+    this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
 
   reloadPage() {
     this.entriesPage.reloadPage();
-    this.entriesPage.pushEntriesCameraButtonOnEntry34617();
+    this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
   writeToTextField(textField: ElementFinder, text: string) {
     Helpers.waitUntilElementIsReady(textField);
@@ -39,6 +40,7 @@ export class UploadPageObject {
   selectNewPictureFromGallery() {
     Helpers.waitUntilElementIsReady(this.getGalleryPictureButton);
     this.getGalleryPictureButton.click();
+    Helpers.chooseJPEGImageInFileDialog(this.fileUpload);
   }
 
   clickIntoBildNameTextField() {

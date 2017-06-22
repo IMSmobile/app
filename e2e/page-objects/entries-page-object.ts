@@ -17,6 +17,7 @@ export class EntriesPageObject {
   entriesThirdMetaDataField: ElementFinder = this.entriesFields.get(2);
   entriesCameraButton: ElementFinder = this.entriesItem.element(by.css('.cameraButton'));
   entriesGalleryButton: ElementFinder = this.entriesItem.element(by.css('.galleryButton'));
+  entriesFileUpload: ElementFinder = this.entriesItem.element(by.css('.fileUpload'));
 
   settingArchivePageObject = new SettingArchivePageObject();
   loginPage = new LoginPageOjbect();
@@ -45,6 +46,7 @@ export class EntriesPageObject {
   pushEntriesGalleryButtonOnEntry34617() {
     Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
     this.entriesGalleryButton.click();
+    Helpers.chooseJPEGImageInFileDialog(this.entriesFileUpload);
   }
 
   verifyEntriesTitleVisible() {

@@ -1,3 +1,5 @@
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { Image } from './../../models/image';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ModelService } from './../../providers/model-service';
 import { SettingService } from './../../providers/setting-service';
@@ -14,6 +16,7 @@ import { LoadingService } from '../../providers/loading-service';
 import { UploadPage } from '../upload/upload';
 import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-entries',
@@ -26,25 +29,33 @@ export class EntriesPage {
   fields: MetadataField[];
   titleField: string;
   parentImageReferenceField: string;
+  pictureFromCameraEnabled: boolean;
 
-  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService) { }
+  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
+    this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
+  }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
-      imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
+      image => this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle),
       err => this.cameraService.handleError(err));
   }
 
   public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
-    this.loadingService.subscribeWithLoading(
-      this.cameraService.getGalleryPicture(),
-      imageSrc => this.pushToUploadPageWithPicture(imageSrc, parentImageEntryId, entryTitle),
-      err => this.cameraService.handleError(err));
+    if (this.platform.is('core')) {
+      let fileUploadElem = document.getElementById('fileUpload' + parentImageEntryId);
+      fileUploadElem.click();
+    } else {
+      this.loadingService.subscribeWithLoading(
+        this.cameraService.getGalleryPicture(),
+        image => this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle),
+        err => this.cameraService.handleError(err));
+    }
   }
 
-  pushToUploadPageWithPicture(imageSrc: string, parentImageEntryId: string, entryTitle: string) {
-    this.navCtrl.push(UploadPage, { 'imageSrc': imageSrc, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle });
+  pushToUploadPageWithPicture(image: Image, parentImageEntryId: string, entryTitle: string) {
+    this.navCtrl.push(UploadPage, { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle });
   }
 
   ionViewDidLoad() {
@@ -71,7 +82,7 @@ export class EntriesPage {
       this.titleField = tableFields.identifierField;
       return this.settingService.getActiveFields(this.authService.archive, tableFields);
     });
-    this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err =>  { throw new ImsLoadingError('Feldinformationen', err); });
+    this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   infiniteEntries(infiniteScroll) {
@@ -97,6 +108,13 @@ export class EntriesPage {
 
   loadSettings() {
     this.navCtrl.push(SettingsPage);
+  }
+
+  fileSelected(event: any, parentImageEntryId: string, entryTitle: string) {
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    if (selectedImage) {
+      this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
+    }
   }
 
 }

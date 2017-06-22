@@ -4,13 +4,14 @@
       {{entryTitle}}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (tap)="takePicture()" color="primary">
+      <button *ngIf="pictureFromCameraEnabled" ion-button icon-only (tap)="takePicture()" color="primary">
        <ion-icon name="camera"></ion-icon>
      </button>
       <button ion-button icon-only (tap)="getGalleryPicture()" id="getGalleryPictureButton" color="primary">
        <ion-icon name="image"></ion-icon>
      </button>
     </ion-buttons>
+  <input type="file" id="fileUpload" (change)="fileSelected($event)" placeholder="Upload file" accept="image/*" style="display: none">
   </ion-navbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="uploadSegment">
@@ -26,7 +27,7 @@
 <ion-content>
   <div class="detail-switch" [ngSwitch]="uploadSegment">
     <div class="detail-image-container" *ngSwitchCase="'image'">
-      <img class="scaled-image" [src]="imageSrc" />
+      <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
     </div>
     <ion-list *ngSwitchCase="'metadata'" id="id-list">
       <form [formGroup]="fieldsForm">
@@ -46,7 +47,7 @@
 <ion-footer>
   <ion-toolbar>
     <div class="thumbnail-image-container">
-      <img class="scaled-image" [src]="imageSrc" />
+      <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
     </div>
   </ion-toolbar>
 </ion-footer>

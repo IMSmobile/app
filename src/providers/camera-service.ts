@@ -1,3 +1,4 @@
+import { Image } from './../models/image';
 import { CameraError } from './../models/errors/camera-error';
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -32,12 +33,12 @@ export class CameraService {
 
   constructor(public camera: Camera) { }
 
-  public takePicture(): Observable<any> {
-    return Observable.fromPromise(this.camera.getPicture(this.pictureOptions));
+  public takePicture(): Observable<Image> {
+    return Observable.fromPromise(this.camera.getPicture(this.pictureOptions)).map(imageSrc => new Image('CameraPhoto.jpeg', imageSrc));
   }
 
-  public getGalleryPicture(): Observable<any> {
-    return Observable.fromPromise(this.camera.getPicture(this.galleryOptions));
+  public getGalleryPicture(): Observable<Image> {
+    return Observable.fromPromise(this.camera.getPicture(this.galleryOptions)).map(imageSrc => new Image('GalleryPhoto.jpeg', imageSrc));
   }
 
   public handleError(error: (string | number)) {

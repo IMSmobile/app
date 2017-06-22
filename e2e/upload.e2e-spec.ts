@@ -36,15 +36,6 @@ describe('Upload E2E Test', () => {
     browser.executeScript('window.indexedDB.deleteDatabase("imsClientDB")');
   });
 
-  it('Should upload image taken from camera', () => {
-    uploadPage.loadPage();
-    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
-    uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('loading-wrapper'))), Helpers.DEFAULT_WAIT_TIMEOUT);
-    browser.wait(ExpectedConditions.invisibilityOf(element(by.className('loading-wrapper'))), Helpers.DEFAULT_WAIT_TIMEOUT);
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
-  });
-
   it('Should allow retaking image from gallery in upload page', () => {
     uploadPage.loadPage();
     uploadPage.selectNewPictureFromGallery();

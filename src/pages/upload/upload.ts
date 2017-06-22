@@ -1,3 +1,5 @@
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
@@ -7,7 +9,7 @@ import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
 import { Component } from '@angular/core';
-import { NavController, ToastController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, NavParams, Platform } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
@@ -22,18 +24,22 @@ import 'rxjs/add/observable/concat';
   templateUrl: 'upload.html'
 })
 export class UploadPage {
-  imageSrc: string;
+  BrowserFileuploadService: any;
+  image: Image;
   parentImageEntryId: string;
   fields: MetadataField[] = [];
   fieldsForm: FormGroup = new FormGroup({});
   uploadSegment: string = 'metadata';
   entryTitle: string;
   parentImageReferenceField: string;
+  pictureFromCameraEnabled: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService) {
-    this.imageSrc = navParams.get('imageSrc');
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
+    this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
+    this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
   }
 
   ionViewDidLoad() {
@@ -76,14 +82,20 @@ export class UploadPage {
   public takePicture() {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
-      imageData => this.imageSrc = imageData,
+      image => this.image = image,
       err => this.cameraService.handleError(err));
   }
 
   public getGalleryPicture() {
-    this.cameraService.getGalleryPicture().subscribe(
-      imageData => this.imageSrc = imageData,
-      err => this.cameraService.handleError(err));
+    if (this.platform.is('core')) {
+      let fileUploadElem = document.getElementById('fileUpload');
+      fileUploadElem.click();
+    } else {
+      this.loadingService.subscribeWithLoading(
+        this.cameraService.getGalleryPicture(),
+        image => this.image = image,
+        err => this.cameraService.handleError(err));
+    }
   }
 
   public uploadPicture() {
@@ -98,8 +110,7 @@ export class UploadPage {
           imageEntry = imageEntry.set(field.name, value);
         }
       });
-      let image = new Image('SmartPhonePhoto.jpeg', this.imageSrc);
-      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, image),
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, this.image),
         res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
         err => { throw new ImsUploadError(err); }
       );
@@ -120,5 +131,12 @@ export class UploadPage {
 
   getErrorMessage(formControl: FormControl): string {
     return this.fieldValidatorService.getErrorMessage(formControl);
+  }
+
+  fileSelected(event: any) {
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    if (selectedImage) {
+      this.image = selectedImage;
+    }
   }
 }

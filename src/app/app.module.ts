@@ -1,3 +1,4 @@
+import { BrowserFileuploadSelectorService } from './../providers/browser-fileupload-selector-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
@@ -20,7 +21,6 @@ import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { ImsService } from '../providers/ims-service';
 import { AuthService } from '../providers/auth-service';
-import { SettingService } from '../providers/setting-service';
 
 import { EntriesService } from '../providers/entries-service';
 import { CameraService } from '../providers/camera-service';
@@ -85,7 +85,8 @@ const cloudSettings: CloudSettings = {
     IonicStorageModule,
     AppProviders.getTransferProvider(),
     AppProviders.getCameraProvider(),
-    SettingService,
+    AppProviders.getContainerUploadServiceProvider(),
+    AppProviders.getSettingServiceProvider(),
     EntriesService,
     CameraService,
     LoadingService,
@@ -93,6 +94,7 @@ const cloudSettings: CloudSettings = {
     QueryBuilderService,
     ModelService,
     FieldValidatorService,
+    BrowserFileuploadSelectorService,
     { provide: ErrorHandler, useClass: ImsErrorHandler }
   ]
 })

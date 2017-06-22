@@ -1,3 +1,5 @@
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { Image } from './../../models/image';
 import { CameraError } from './../../models/errors/camera-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Storage } from '@ionic/storage';
@@ -26,6 +28,7 @@ import { UploadPage } from '../upload/upload';
 import 'rxjs/add/observable/throw';
 import { SettingsPage } from '../settings/settings';
 
+
 describe('Page: Entries', () => {
 
   let fixture: ComponentFixture<EntriesPage> = null;
@@ -41,7 +44,7 @@ describe('Page: Entries', () => {
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
         ModelService, SettingService,
-        CameraService, LoadingService, AlertService, QueryBuilderService, Events,
+        CameraService, LoadingService, AlertService, QueryBuilderService, Events, BrowserFileuploadSelectorService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -193,8 +196,8 @@ describe('Page: Entries', () => {
   it('Push to Upload Page after taking picture', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
-    let imageSource = '/my/picture.jpg';
-    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(imageSource));
+    let image = new Image('picture.jpg', '/my/picture.jpg');
+    spyOn(cameraService, 'takePicture').and.returnValue(Observable.of(image));
     spyOn(cameraService, 'handleError').and.callThrough();
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
@@ -204,7 +207,7 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
+      { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
   }));
 
@@ -221,8 +224,8 @@ describe('Page: Entries', () => {
   it('Push to Upload Page after getting picture from gallery', inject([CameraService, NavController, LoadingService], (cameraService: CameraService, navController: NavController, loadingService: LoadingService) => {
     let parentImageEntryId: string = '123';
     let entryTitle: string = 'Test Entry';
-    let imageSource = '/my/picture.jpg';
-    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(imageSource));
+    let image = new Image('picture.jpg', '/my/picture.jpg');
+    spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(image));
     spyOn(cameraService, 'handleError').and.callThrough();
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(navController, 'push').and.callThrough();
@@ -232,8 +235,21 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'imageSrc': imageSource, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
+      { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
     );
+  }));
+
+  it('On browser open file dialog on  after click get picture from gallery', inject([Platform], (platform: Platform) => {
+
+    let parentImageEntryId: string = '123';
+    let entryTitle: string = 'Test Entry';
+    let element = document.createElement('div');
+    element.setAttribute('id', 'fileUpload' + parentImageEntryId);
+    document.body.appendChild(element);
+    spyOn(platform, 'is').and.returnValue(true);
+    spyOn(element, 'click').and.returnValue(null);
+    page.getGalleryPictureForEntry(parentImageEntryId, entryTitle);
+    expect(element.click).toHaveBeenCalledTimes(1);
   }));
 
   it('Throws error when failing to get picture from gallery', inject([CameraService, NavController], (cameraService: CameraService, navController: NavController) => {
@@ -253,4 +269,24 @@ describe('Page: Entries', () => {
     expect(navController.push).toHaveBeenCalledWith(SettingsPage);
   }));
 
+  it('Do nothing when no file available in input file dialog', () => {
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    let event = { target: { files: [] } };
+    page.fileSelected(event, null, null);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);
+  });
+
+  it('Push to upload page when file in input file dialog selected', () => {
+    let fileName = 'file.jpg';
+    let fileURI = '/dev/0/';
+    let file: File = new File([new Blob()], fileName);
+    let event = { target: { files: [file]} };
+    let parentImageEntryId = '1';
+    let entryTitle = 'title';
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
+    page.fileSelected(event, parentImageEntryId, entryTitle);
+    let image = new Image(fileName, fileURI, file);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
+  });
 });

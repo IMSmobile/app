@@ -104,7 +104,7 @@ export class PlatformMock {
   }
 
   public is(): boolean {
-    return true;
+    return false;
   }
 
   public getElementComputedStyle(container: any): any {
