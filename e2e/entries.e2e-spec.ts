@@ -1,15 +1,15 @@
 import { Helpers } from './helpers/helpers';
 import { browser } from 'protractor';
-import { SettingEntriesFieldsPageOjbect } from './page-objects/setting-entries-field-page-object';
-import { LoginPageOjbect } from './page-objects/login-page-object';
+import { SettingEntriesFieldsPageObject } from './page-objects/setting-entries-field-page-object';
+import { LoginPageObject } from './page-objects/login-page-object';
 import { EntriesPageObject } from './page-objects/entries-page-object';
 
 describe('Entries E2E Test', () => {
 
   let originalTimeout;
-  let loginPage = new LoginPageOjbect();
+  let loginPage = new LoginPageObject();
   let entriesPage = new EntriesPageObject();
-  let settingEntriesFieldsPage = new SettingEntriesFieldsPageOjbect();
+  let settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -21,7 +21,7 @@ describe('Entries E2E Test', () => {
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageOjbect();
+    loginPage = new LoginPageObject();
     loginPage.loadPage();
   });
 

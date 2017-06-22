@@ -1,20 +1,20 @@
 import { Helpers } from './helpers/helpers';
 import { SettingImageFieldsPage } from './../src/pages/setting-image-fields/setting-image-fields';
 import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
-import { SettingsPageOjbect } from './page-objects/settings-page-object';
-import { SettingImageFieldsPageOjbect } from './page-objects/setting-image-field-page-object';
-import { LoginPageOjbect } from './page-objects/login-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { LoginPageObject } from './page-objects/login-page-object';
 import { EntriesPageObject } from './page-objects/entries-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Upload E2E Test', () => {
 
   let originalTimeout;
-  let settingsPage = new SettingsPageOjbect();
-  let loginPage = new LoginPageOjbect();
+  let settingsPage = new SettingsPageObject();
+  let loginPage = new LoginPageObject();
   let entriesPage = new EntriesPageObject();
   let uploadPage = new UploadPageObject();
-  let settingImageFieldsPageOjbect = new SettingImageFieldsPageOjbect();
+  let settingImageFieldsPageObject = new SettingImageFieldsPageObject();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -53,9 +53,9 @@ describe('Upload E2E Test', () => {
   });
 
   it('Should add fields and testing invalid inputs', () => {
-    settingImageFieldsPageOjbect.loadPage();
-    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle);
-    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle);
+    settingImageFieldsPageObject.loadPage();
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldINTEGERFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldFLOATFELDToggle);
     uploadPage.reloadPage();
 
     uploadPage.clickUploadImageButton();
@@ -86,8 +86,8 @@ describe('Upload E2E Test', () => {
   });
 
   it('Should show mandatory markers only on mandatory fields', () => {
-    settingImageFieldsPageOjbect.loadPage();
-    Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldINTEGERFELDToggle);
+    settingImageFieldsPageObject.loadPage();
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldINTEGERFELDToggle);
     uploadPage.reloadPage();
     uploadPage.verifyBildNameMarkedAsMandatoryField();
     uploadPage.verifyIntegerNotMarkedAsMandatoryField();
