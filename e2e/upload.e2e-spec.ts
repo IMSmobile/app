@@ -67,8 +67,7 @@ describe('Upload E2E Test', () => {
     Helpers.toggleFieldSettings(settingImageFieldsPageOjbect.settingsImageFieldFLOATFELDToggle);
     uploadPage.reloadPage();
 
-    uploadPage.clickIntoBildNameTextField();
-    uploadPage.clickIntoIntegerTextField();
+    uploadPage.clickUploadImageButton();
     uploadPage.verifyBildNameErrorDivVisible();
 
     uploadPage.writeToTextField(uploadPage.integerfeldFieldInput, '3.14');
