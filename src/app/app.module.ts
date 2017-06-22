@@ -11,7 +11,6 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MobileClient } from './app.component';
 import { UploadPage } from '../pages/upload/upload';
 import { LoginPage } from '../pages/login/login';
-import { MorePopoverPage } from '../pages/more-popover/more-popover';
 import { SettingsPage } from './../pages/settings/settings';
 import { EntriesPage } from './../pages/entries/entries';
 
@@ -45,7 +44,6 @@ const cloudSettings: CloudSettings = {
     MobileClient,
     UploadPage,
     LoginPage,
-    MorePopoverPage,
     SettingsPage,
     EntriesPage,
     SettingImageFieldsPage,
@@ -71,7 +69,6 @@ const cloudSettings: CloudSettings = {
     MobileClient,
     UploadPage,
     LoginPage,
-    MorePopoverPage,
     SettingsPage,
     EntriesPage,
     SettingImageFieldsPage,
