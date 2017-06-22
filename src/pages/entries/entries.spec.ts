@@ -27,7 +27,6 @@ import { Observable } from 'rxjs/Observable';
 import { UploadPage } from '../upload/upload';
 import 'rxjs/add/observable/throw';
 import { SettingsPage } from '../settings/settings';
-import { LoginPage } from '../login/login';
 
 
 describe('Page: Entries', () => {
@@ -74,12 +73,6 @@ describe('Page: Entries', () => {
   afterEach(() => {
     fixture.destroy();
   });
-
-  it('Presents Popover', inject([PopoverController], (popoverController: PopoverController) => {
-    spyOn(popoverController, 'create').and.callThrough();
-    page.presentPopover(null);
-    expect(popoverController.create).toHaveBeenCalled();
-  }));
 
   it('Load entries when ion view did load', inject([EntriesService, ImsBackendMock, AuthService], (entriesService: EntriesService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     let testInfo: Info = { version: '9000' };
@@ -270,45 +263,10 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalled();
   }));
 
-  it('Go to Settings Page and dismiss popover on load Settings', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
-    page.subscribeToEvents();
-    page.popover = popoverController.create({});
-    spyOn(nav, 'push').and.callThrough();
-    spyOn(page.popover, 'dismiss').and.callThrough();
-
-    events.publish('nav:settings-page');
-
-    expect(nav.push).toHaveBeenCalledWith(SettingsPage);
-    expect(page.popover.dismiss).toHaveBeenCalled();
-  }));
-
-  it('Go to Login Page and dismiss popover on logout button', inject([NavController, PopoverController, Events], (nav: NavController, popoverController: PopoverController, events: Events) => {
-    page.subscribeToEvents();
-    page.popover = popoverController.create({});
-    spyOn(nav, 'setRoot').and.callThrough();
-    spyOn(page.popover, 'dismiss').and.callThrough();
-
-    events.publish('nav:login-page');
-
-    expect(nav.setRoot).toHaveBeenCalledWith(LoginPage);
-    expect(page.popover.dismiss).toHaveBeenCalled();
-  }));
-
-  it('Clear settings on logout button', inject([AuthService, PopoverController, Events], (authService: AuthService, popoverController: PopoverController, events: Events) => {
-    page.subscribeToEvents();
-    page.popover = popoverController.create({});
-    spyOn(authService, 'logout').and.callThrough();
-
-    events.publish('nav:login-page');
-
-    expect(authService.logout).toHaveBeenCalled();
-  }));
-
-  it('Event unsubscribed due to android issue on leaving of page', inject([Events], (events: Events) => {
-    spyOn(page.events, 'unsubscribe').and.callThrough();
-    page.ionViewWillLeave();
-    expect(page.events.unsubscribe).toHaveBeenCalledWith('nav:login-page');
-    expect(page.events.unsubscribe).toHaveBeenCalledWith('nav:settings-page');
+  it('Go to Settings Page', inject([NavController], (navController: NavController) => {
+    spyOn(navController, 'push').and.callThrough();
+    page.loadSettings();
+    expect(navController.push).toHaveBeenCalledWith(SettingsPage);
   }));
 
   it('Do nothing when no file available in input file dialog', () => {

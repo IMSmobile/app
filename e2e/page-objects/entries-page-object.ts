@@ -7,9 +7,7 @@ import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 
 export class EntriesPageObject {
-  moreButton: ElementFinder = element(by.id('barButtonMore'));
-  settingsButton: ElementFinder = element(by.id('morePopoverSettingsButton'));
-  logoutButton: ElementFinder = element(by.id('morePopoverLogoutButton'));
+  settingsButton: ElementFinder = element(by.id('settingsButton'));
   entriesItem: ElementFinder = element(by.id('entriesItem34617'));
   medicineEntriesItem: ElementFinder = element(by.id('entriesItem75'));
   entriesTitle: ElementFinder = this.entriesItem.element(by.tagName('h1'));
@@ -36,17 +34,13 @@ export class EntriesPageObject {
   }
 
   pushToSettingsPage() {
-    Helpers.waitUntilElementIsReady(this.moreButton);
-    this.moreButton.click();
     Helpers.waitUntilElementIsReady(this.settingsButton);
     this.settingsButton.click();
   }
 
-  logout() {
-    Helpers.waitUntilElementIsReady(this.moreButton);
-    this.moreButton.click();
-    Helpers.waitUntilElementIsReady(this.logoutButton);
-    this.logoutButton.click();
+  pushEntriesCameraButtonOnEntry34617() {
+    Helpers.waitUntilElementIsReady(this.entriesCameraButton);
+    this.entriesCameraButton.click();
   }
 
   pushEntriesGalleryButtonOnEntry34617() {
