@@ -134,7 +134,7 @@ export class UploadPage {
   }
 
   fileSelected(event: any) {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
       this.image = selectedImage;
     }

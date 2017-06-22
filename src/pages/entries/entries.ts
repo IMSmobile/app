@@ -111,7 +111,26 @@ export class EntriesPage {
   }
 
   fileSelected(event: any, parentImageEntryId: string, entryTitle: string) {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
+    if (selectedImage) {
+      this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
+    }
+  }
+
+  setCopyDragPointer(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  removeCopyDragPointer(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
