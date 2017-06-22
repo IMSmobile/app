@@ -31,7 +31,7 @@ export class EntriesPage {
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
 
-  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) { 
+  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
   }
 
