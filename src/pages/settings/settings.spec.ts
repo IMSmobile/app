@@ -45,7 +45,7 @@ describe('Page: Settings', () => {
       fixture = TestBed.createComponent(SettingsPage);
       page = fixture.componentInstance;
       fixture.detectChanges();
-    }).catch(console.log);
+    });
   }));
 
   afterEach(() => {
