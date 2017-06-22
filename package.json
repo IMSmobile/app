@@ -91,7 +91,7 @@
     "tslint-ionic-rules": "0.0.8",
     "typescript": "2.2.1"
   },
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Cross-Platform Ionic App for IMS",
   "repository" : {
     "type" : "git",
