@@ -21,7 +21,6 @@ export class EntriesPageObject {
   entriesGalleryButton: ElementFinder = this.entriesItem.element(by.css('.galleryButton'));
   entriesFileUpload: ElementFinder = this.entriesItem.element(by.css('.fileUpload'));
 
-  path = require('path');
   settingArchivePageObject = new SettingArchivePageObject();
   loginPage = new LoginPageOjbect();
 
@@ -53,9 +52,8 @@ export class EntriesPageObject {
   pushEntriesGalleryButtonOnEntry34617() {
     Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
     this.entriesGalleryButton.click();
-    Helpers.chooseJPEGImageInFileDialog(this.path, this.entriesFileUpload);
+    Helpers.chooseJPEGImageInFileDialog(this.entriesFileUpload);
   }
-
 
   verifyEntriesTitleVisible() {
     browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), Helpers.DEFAULT_WAIT_TIMEOUT);

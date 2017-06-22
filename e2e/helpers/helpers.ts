@@ -1,11 +1,10 @@
 import { browser, ElementFinder, $, ExpectedConditions } from 'protractor';
+import * as Path from 'path';
 
 export class Helpers {
 
   static DEFAULT_WAIT_TIMEOUT = 20000;
-
-
-  static waitUntilElementIsReady(element: ElementFinder) {
+    static waitUntilElementIsReady(element: ElementFinder) {
     browser.wait(ExpectedConditions.elementToBeClickable(element), Helpers.DEFAULT_WAIT_TIMEOUT);
     browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')), Helpers.DEFAULT_WAIT_TIMEOUT);
     this.waitUntilLoaderFinished();
@@ -26,9 +25,9 @@ export class Helpers {
     this.waitUntilStorageReady();
   }
 
-  static chooseJPEGImageInFileDialog(path: any, fileInput: ElementFinder) {
+  static chooseJPEGImageInFileDialog(fileInput: ElementFinder) {
     let fileToUpload = '../assets/mario.jpg';
-    let absolutePath = path.resolve(__dirname, fileToUpload);
+    let absolutePath = Path.resolve(__dirname, fileToUpload);
     fileInput.sendKeys(absolutePath);
   }
 
