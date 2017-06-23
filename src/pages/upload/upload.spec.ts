@@ -141,7 +141,7 @@ describe('Page: Upload', () => {
     let fileName = 'newFile.jpg';
     let fileURI = '/dev/0/';
     let oldImage = new Image ('oldvalue', 'oldvalue.jpg');
-    let newFile: File = new File([new Blob()], fileName);
+    let newFile: File = new File([new Blob()], fileName, {type: 'image/jpeg'});
     let newImage = new Image(fileName, fileURI, newFile);
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
     page.image = oldImage;
