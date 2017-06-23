@@ -1,4 +1,4 @@
-import { ImsFileTypeError } from './../models/errors/ims-file-type-error.';
+import { ImsFileTypeError } from './../models/errors/ims-file-type-error';
 import { Image } from './../models/image';
 import { Injectable } from '@angular/core';
 
