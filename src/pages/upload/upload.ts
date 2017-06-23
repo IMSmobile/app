@@ -8,7 +8,7 @@ import { ModelService } from './../../providers/model-service';
 import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { NavController, ToastController, NavParams, Platform } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { CameraService } from '../../providers/camera-service';
@@ -35,11 +35,14 @@ export class UploadPage {
   pictureFromCameraEnabled: boolean;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
+    this.renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));
+    this.renderer.listen('body', 'dragover', event => this.preventDefaultDragAction(event));
+    this.renderer.listen('body', 'drop', event => this.receiveDrop(event));
   }
 
   ionViewDidLoad() {
@@ -139,4 +142,18 @@ export class UploadPage {
       this.image = selectedImage;
     }
   }
+
+  preventDefaultDragAction(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  receiveDrop(event: DragEvent) {
+    this.preventDefaultDragAction(event);
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    if (selectedImage) {
+      this.image = selectedImage;
+    }
+  }
+
 }

@@ -281,4 +281,32 @@ describe('Page: Upload', () => {
     expect(fieldValidatorService.getErrorMessage).toHaveBeenCalledWith(control);
   }));
 
+  it('Prevent standard action when drag event is fired', () => {
+    let event = <DragEvent>new Event('dragover');
+    spyOn(event, 'preventDefault').and.returnValue(null);
+    spyOn(event, 'stopPropagation').and.returnValue(null);
+    page.preventDefaultDragAction(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+    expect(event.stopPropagation).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should update image after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event: DragEvent = <DragEvent>new Event('drop');
+    let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
+    spyOn(page, 'preventDefaultDragAction').and.returnValue(null);
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
+    page.receiveDrop(event);
+    expect(page.preventDefaultDragAction).toHaveBeenCalledTimes(1);
+    expect(page.image).toEqual(droppedImage);
+  }));
+
+  it('Should keep image after receiving drop without image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event: DragEvent = <DragEvent>new Event('drop');
+    let oldImage = new Image('picture.jpg', '/my/picture.jpg');
+    page.image = oldImage;
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
+    page.receiveDrop(event);
+    expect(page.image).toEqual(oldImage);
+  }));
+
 });
