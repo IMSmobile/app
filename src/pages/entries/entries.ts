@@ -6,7 +6,7 @@ import { SettingService } from './../../providers/setting-service';
 import { MetadataField } from './../../models/metadata-field';
 import { Observable } from 'rxjs/Observable';
 import { QueryFragment } from './../../models/query-fragment';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Entry } from '../../models/entry';
 import { EntriesService } from './../../providers/entries-service';
@@ -31,8 +31,11 @@ export class EntriesPage {
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
 
-  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
+  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
+    this.renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));
+    this.renderer.listen('body', 'dragover', event => this.preventDefaultDragAction(event));
+    this.renderer.listen('body', 'drop', event => this.preventDefaultDragAction(event));
   }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
