@@ -3,7 +3,7 @@ import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } f
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 
-export class LoginPageOjbect {
+export class LoginPageObject {
   server: string = 'https://sinv-56028.edu.hsr.ch';
   user: string = 'admin';
   password: string = 'admin';

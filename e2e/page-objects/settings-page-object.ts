@@ -4,7 +4,7 @@ import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 import { EntriesPageObject } from './entries-page-object';
 
-export class SettingsPageOjbect {
+export class SettingsPageObject {
   entriesPage = new EntriesPageObject();
   settingsImageFieldSettingButton: ElementFinder = element(by.id('settingsImageFieldSettingButton'));
   settingsEntriesFieldSettingButton: ElementFinder = element(by.id('settingsEntriesListFieldSettingButton'));
