@@ -280,7 +280,7 @@ describe('Page: Entries', () => {
     let fileName = 'file.jpg';
     let fileURI = '/dev/0/';
     let file: File = new File([new Blob()], fileName);
-    let event = { target: { files: [file]} };
+    let event = { target: { files: [file] } };
     let parentImageEntryId = '1';
     let entryTitle = 'title';
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
@@ -289,4 +289,36 @@ describe('Page: Entries', () => {
     let image = new Image(fileName, fileURI, file);
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
   });
+
+  it('Prevent standard action when drag event is fired', () => {
+    let event = <DragEvent>new Event('dragover');
+    spyOn(event, 'preventDefault').and.returnValue(null);
+    spyOn(event, 'stopPropagation').and.returnValue(null);
+    page.preventDefaultDragAction(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+    expect(event.stopPropagation).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should go to uploadpage after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event: DragEvent = <DragEvent>new Event('drop');
+    let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
+    let parentImageEntryId = '1';
+    let entryTitle = 'title';
+    spyOn(page, 'preventDefaultDragAction').and.returnValue(null);
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    page.receiveDrop(event, parentImageEntryId, entryTitle);
+    expect(page.preventDefaultDragAction).toHaveBeenCalledTimes(1);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(droppedImage, parentImageEntryId, entryTitle);
+  }));
+
+  it('Should not go to uploadpage after receiving no dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event: DragEvent = <DragEvent>new Event('drop');
+    let parentImageEntryId = '1';
+    let entryTitle = 'title';
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    page.receiveDrop(event, parentImageEntryId, entryTitle);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);
+  }));
 });

@@ -117,19 +117,13 @@ export class EntriesPage {
     }
   }
 
-  setCopyDragPointer(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  removeCopyDragPointer(event: DragEvent) {
+  preventDefaultDragAction(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
   }
 
   receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string) {
-    event.preventDefault();
-    event.stopPropagation();
+    this.preventDefaultDragAction(event);
     let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);

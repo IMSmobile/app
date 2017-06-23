@@ -14,7 +14,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
     }).compileComponents();
   }));
 
-  it('should return an image when a event from file pickeris called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+  it('should return an image when a event from file picker is called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let fileName = 'file.jpg';
     let fileURI = '/dev/0/';
     let file: File = new File([new Blob()], fileName);
