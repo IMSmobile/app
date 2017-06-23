@@ -1,8 +1,11 @@
+import { ImsFileTypeError } from './../models/errors/ims-file-type-error.';
 import { Image } from './../models/image';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BrowserFileuploadSelectorService {
+
+  allowedFileTypes = [ 'image/jpeg', 'image/png' ];
 
   getImageFromFilePicker(event: any): Image | undefined {
     let image = this.getImageFromFileList(event.target.files);
@@ -19,7 +22,11 @@ export class BrowserFileuploadSelectorService {
   getImageFromFileList(fileList: FileList): Image | undefined {
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      return new Image(file.name, window.URL.createObjectURL(file), file);
+      if (this.allowedFileTypes.indexOf(file.type) !== -1) {
+        return new Image(file.name, window.URL.createObjectURL(file), file);
+      } else {
+        throw new ImsFileTypeError(file.type);
+      }
     }
   }
 }
