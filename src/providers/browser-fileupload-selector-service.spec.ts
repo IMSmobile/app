@@ -1,5 +1,4 @@
 import { ImsFileTypeError } from './../models/errors/ims-file-type-error';
-import { browser } from 'protractor';
 import { BrowserFileuploadSelectorService } from './browser-fileupload-selector-service';
 import { Image } from './../models/image';
 import { TestBed, inject, async } from '@angular/core/testing';
