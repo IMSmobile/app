@@ -33,15 +33,17 @@ export class UploadPage {
   entryTitle: string;
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
-
+  dragActive: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
-    this.renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));
-    this.renderer.listen('body', 'dragover', event => this.preventDefaultDragAction(event));
+    this.renderer.listen('body', 'dragenter', event => this.activateDropZone(event));
+    this.renderer.listen('body', 'dragover', event => this.activateDropZone(event));
+    this.renderer.listen('body', 'dragleave', event => this.hideDragOverlay());
+    this.renderer.listen('body', 'dragend', event => this.hideDragOverlay());
     this.renderer.listen('body', 'drop', event => this.receiveDrop(event));
   }
 
@@ -143,13 +145,27 @@ export class UploadPage {
     }
   }
 
+  activateDropZone(event: DragEvent) {
+    this.preventDefaultDragAction(event);
+    this.showDragOverlay();
+  }
+
   preventDefaultDragAction(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
   }
 
+  showDragOverlay() {
+    this.dragActive = true;
+  }
+
+  hideDragOverlay() {
+    this.dragActive = false;
+  }
+
   receiveDrop(event: DragEvent) {
     this.preventDefaultDragAction(event);
+    this.hideDragOverlay();
     let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
       this.image = selectedImage;
