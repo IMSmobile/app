@@ -125,11 +125,11 @@ export class EntriesPage {
     let element: Element =  (event.currentTarget as Element);
     if (event.type === 'dragenter') {
       this.dragEventCounter.inc(element.id);
-      this.dragEventCounter.isFirstEvent(element.id, () => element.classList.add('drag'));
+      this.dragEventCounter.callIfFirstEvent(element.id, () => element.classList.add('drag'));
     }
     if (event.type === 'dragleave') {
       this.dragEventCounter.dec(element.id);
-      this.dragEventCounter.isLastEvent(element.id, () => element.classList.remove('drag'));
+      this.dragEventCounter.callIfLastEvent(element.id, () => element.classList.remove('drag'));
     }
   }
 

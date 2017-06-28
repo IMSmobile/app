@@ -6,22 +6,30 @@ export class DragEventCounter {
   }
 
   public inc(id: string) {
-    this.dragEventCountMap[id] = this.dragEventCountMap[id] + 1 || 1;
+    this.ensureInitialisation(id);
+    this.dragEventCountMap[id] = this.dragEventCountMap[id] + 1;
   }
 
-  public isFirstEvent(id: string, callback: Function) {
+  public callIfFirstEvent(id: string, callback: Function) {
     if (this.dragEventCountMap[id] === 1) {
       callback();
     }
   }
 
   public dec(id: string) {
+    this.ensureInitialisation(id);
     this.dragEventCountMap[id] = this.dragEventCountMap[id] - 1;
   }
 
-  public isLastEvent(id: string, callback: Function) {
+  public callIfLastEvent(id: string, callback: Function) {
     if (this.dragEventCountMap[id] === 0) {
       callback();
+    }
+  }
+
+  private ensureInitialisation(id: string) {
+    if (!this.dragEventCountMap[id]) {
+      this.dragEventCountMap[id] = 0;
     }
   }
 }
