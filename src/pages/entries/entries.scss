@@ -1,7 +1,10 @@
 page-entries {
   .drag {
-    border: 2px color($colors, primary) solid;
     background: rgba(color($colors, primary), .1);
+    border-style: dashed;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: color($colors, primary),
   }
 
 }
