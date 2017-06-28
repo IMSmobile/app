@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
 import { CameraError } from './../../models/errors/camera-error';
@@ -279,7 +280,7 @@ describe('Page: Entries', () => {
   it('Push to upload page when file in input file dialog selected', () => {
     let fileName = 'file.jpg';
     let fileURI = '/dev/0/';
-    let file: File = new File([new Blob()], fileName, {type: 'image/jpeg'});
+    let file: File = new File([new Blob()], fileName, { type: 'image/jpeg' });
     let event = { target: { files: [file] } };
     let parentImageEntryId = '1';
     let entryTitle = 'title';
@@ -298,6 +299,44 @@ describe('Page: Entries', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(1);
     expect(event.stopPropagation).toHaveBeenCalledTimes(1);
   });
+
+
+  it('should add drag class on element with first dragenter event', () => {
+    let event = <DragEvent>new Event('dragenter');
+    let element = document.createElement('div')
+    element.id = 'a1';
+    spyOnProperty(event, 'currentTarget', 'get').and.returnValue(element);
+    page.preventDefaultDragAction(event);
+    expect(element.classList.contains('drag')).toBeTruthy();
+  });
+
+  it('should not remove drag class if last dragleave event has not been called', () => {
+    let eventEnter = <DragEvent>new Event('dragenter');
+    let eventLeave = <DragEvent>new Event('dragleave');
+    let element = document.createElement('div')
+    element.id = 'a1';
+    spyOnProperty(eventEnter, 'currentTarget', 'get').and.returnValue(element);
+    spyOnProperty(eventLeave, 'currentTarget', 'get').and.returnValue(element);
+    page.preventDefaultDragAction(eventEnter);
+    page.preventDefaultDragAction(eventEnter);
+    page.preventDefaultDragAction(eventLeave);
+    expect(element.classList.contains('drag')).toBeTruthy();
+  });
+
+  it('should remove drag class on last dragleave event', () => {
+    let eventEnter = <DragEvent>new Event('dragenter');
+    let eventLeave = <DragEvent>new Event('dragleave');
+    let element = document.createElement('div')
+    element.id = 'a1';
+    spyOnProperty(eventEnter, 'currentTarget', 'get').and.returnValue(element);
+    spyOnProperty(eventLeave, 'currentTarget', 'get').and.returnValue(element);
+    page.preventDefaultDragAction(eventEnter);
+    page.preventDefaultDragAction(eventEnter);
+    page.preventDefaultDragAction(eventLeave);
+    page.preventDefaultDragAction(eventLeave);
+    expect(element.classList.contains('drag')).toBeFalsy();
+  });
+
 
   it('Should go to uploadpage after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let event: DragEvent = <DragEvent>new Event('drop');
