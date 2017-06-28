@@ -304,6 +304,7 @@ describe('Page: Entries', () => {
     let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
     let parentImageEntryId = '1';
     let entryTitle = 'title';
+    spyOnProperty(event, 'currentTarget', 'get').and.returnValue(document.createElement('div'));
     spyOn(page, 'preventDefaultDragAction').and.returnValue(null);
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
@@ -316,6 +317,7 @@ describe('Page: Entries', () => {
     let event: DragEvent = <DragEvent>new Event('drop');
     let parentImageEntryId = '1';
     let entryTitle = 'title';
+    spyOnProperty(event, 'currentTarget', 'get').and.returnValue(document.createElement('div'));
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
     page.receiveDrop(event, parentImageEntryId, entryTitle);
