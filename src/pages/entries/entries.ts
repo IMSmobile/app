@@ -1,3 +1,4 @@
+import { DragEventCounter } from './../../models/drag-event-counter';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
@@ -30,12 +31,10 @@ export class EntriesPage {
   titleField: string;
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
+  dragEventCounter: DragEventCounter = new DragEventCounter;
 
   constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
-    this.renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));
-    this.renderer.listen('body', 'dragover', event => this.preventDefaultDragAction(event));
-    this.renderer.listen('body', 'drop', event => this.preventDefaultDragAction(event));
   }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
@@ -122,13 +121,25 @@ export class EntriesPage {
 
   preventDefaultDragAction(event: DragEvent) {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopPropagation()
+    let element: Element =  (event.currentTarget as Element);
+    if (event.type === 'dragenter') {
+      this.dragEventCounter.inc(element.id);
+      this.dragEventCounter.isFirstEvent(element.id, () => element.classList.add('drag'));
+    }
+    if (event.type === 'dragleave') {
+      this.dragEventCounter.dec(element.id);
+      this.dragEventCounter.isLastEvent(element.id, () => element.classList.remove('drag'));
+    }
   }
 
   receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string) {
     this.preventDefaultDragAction(event);
     let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
+      let element: Element = (event.currentTarget as Element);
+      element.classList.remove('drag');
+      this.dragEventCounter.reset(element.id);
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
   }

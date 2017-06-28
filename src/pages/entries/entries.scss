@@ -1,3 +1,8 @@
 page-entries {
+  .drag {
+    border: 2px color($colors, primary) solid;
+    background: rgba(color($colors, primary), .1);
+    cursor: copy;
+  }
 
 }
