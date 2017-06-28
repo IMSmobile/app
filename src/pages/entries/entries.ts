@@ -121,7 +121,7 @@ export class EntriesPage {
 
   preventDefaultDragAction(event: DragEvent) {
     event.preventDefault();
-    event.stopPropagation()
+    event.stopPropagation();
     let element: Element =  (event.currentTarget as Element);
     if (event.type === 'dragenter') {
       this.dragEventCounter.inc(element.id);
