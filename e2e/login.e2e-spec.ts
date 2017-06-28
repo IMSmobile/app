@@ -1,7 +1,7 @@
-import { LoginPageOjbect } from './page-objects/login-page-object';
+import { LoginPageObject } from './page-objects/login-page-object';
 import { browser, element, by, ElementFinder } from 'protractor';
 
-let loginPage = new LoginPageOjbect();
+let loginPage = new LoginPageObject();
 
 describe('Login E2E Test', () => {
 

@@ -1,8 +1,8 @@
 import { element, by, ElementFinder, ElementArrayFinder } from 'protractor';
-import { SettingsPageOjbect } from './settings-page-object';
+import { SettingsPageObject } from './settings-page-object';
 
-export class SettingEntriesFieldsPageOjbect {
-  settingsPage = new SettingsPageOjbect();
+export class SettingEntriesFieldsPageObject {
+  settingsPage = new SettingsPageObject();
   settingsEntriesFieldSearchbar: ElementFinder = element(by.css('input.searchbar-input'));
   settingsEntriesFieldDisplayedFields: ElementArrayFinder = element.all(by.className('fieldItem'));
   settingsEntriesFieldMEMOFELDToggle: ElementFinder = element(by.id('settingsImageFieldMEMOFELDToggle'));

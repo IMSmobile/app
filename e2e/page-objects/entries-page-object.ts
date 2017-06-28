@@ -1,5 +1,5 @@
 import { Helpers } from './../helpers/helpers';
-import { LoginPageOjbect } from './login-page-object';
+import { LoginPageObject } from './login-page-object';
 import { SettingArchivePageObject } from './setting-archive-page-object';
 import { SettingArchivePage } from './../../src/pages/setting-archive/setting-archive';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
@@ -20,7 +20,7 @@ export class EntriesPageObject {
   entriesFileUpload: ElementFinder = this.entriesItem.element(by.css('.fileUpload'));
 
   settingArchivePageObject = new SettingArchivePageObject();
-  loginPage = new LoginPageOjbect();
+  loginPage = new LoginPageObject();
 
   loadPage() {
     this.settingArchivePageObject.loadPage();

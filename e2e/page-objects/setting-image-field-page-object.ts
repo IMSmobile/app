@@ -2,10 +2,10 @@ import { Helpers } from './../helpers/helpers';
 import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
-import { SettingsPageOjbect } from './settings-page-object';
+import { SettingsPageObject } from './settings-page-object';
 
-export class SettingImageFieldsPageOjbect {
-  settingsPage = new SettingsPageOjbect();
+export class SettingImageFieldsPageObject {
+  settingsPage = new SettingsPageObject();
   settingsImageFieldSearchbar: ElementFinder = element(by.css('input.searchbar-input'));
   settingsImageFieldDisplayedFields: ElementArrayFinder = element.all(by.className('fieldItem'));
   settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
