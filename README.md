@@ -413,9 +413,17 @@ Um rasch neue Versionen des Clients bereitstellen zu können setzen wir auf die 
 
 Dabei wird in einem ersten Schritt die Relevanz der Änderung anhand des [Commit Message Formats](#commit-message-guidelines) beurteilt und die Versionsnummer entsprechend erhöht. Anschliessend werden die Release Notes generiert und der Release freigegeben.
 
-Für die [Versionierung](#versionierung) relevant sind nur Commit Messages vom [Typ](CONTRIBUTING.md#type) `fix`, `feature` oder `perf` sowie Breaking Changes. Es ist Aufgabe des Reviewers nach dem mergen solcher Pull Requests die Erstellung eines neuen Releases anzustossen. Dabei kreiert er einen weiteren Pull Request in dem sich die neue Versionsnummer, eine Markierung (`tag`) für die Versionsverwaltung sowie die aktualisierte Sammlung aller Release Notes ([`CHANGELOG.md`](CHANGELOG.md)) befindet.
+Für die [Versionierung](#versionierung) relevant sind nur Commit Messages vom [Typ](CONTRIBUTING.md#type) `fix`, `feature` oder `perf` sowie Breaking Changes. Es ist Aufgabe des Reviewers nach dem mergen solcher Pull Requests die Erstellung eines neuen Releases anzustossen. Wenn ein neuer Release gemacht werden muss, führt er den Release Befehl aus. 
 
-Anschliessend wird dieser zweite "Release Pull Request" durch einen weiteren Reviewer beurteilt und gemerged. Dessen Aufgabe ist es wiederum den Release auf GitHub bereitzustellen.
+```shell
+npm run release
+```
+
+Mit diesem Kommando wird  die neue Versionsnummer erstellt und automatisch aktualisiert, eine Markierung (`tag`) für die Versionsverwaltung erstellt sowie die aktualisierte Sammlung aller Release Notes ([`CHANGELOG.md`](CHANGELOG.md)) generiert.
+
+Anschliessend wird diese Änderung direkt auf dem Master Branch commited. Dafür muss temporär die Commit Berechtigung auf Github aktiviert werden. 
+
+Nach dem Commit muss der Reviewer den Release auf GitHub bereitzustellen und die temporäre Commit Berechtigung wieder aufheben.
 
 ### Versionierung
 Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, _MINOR_ und _PATCH_ welche je nach Commit Message Typ inkrementiert werden.
