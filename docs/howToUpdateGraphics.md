@@ -1,4 +1,4 @@
-# How to update graphics from ims mobile app
+# Udate graphics from ims mobile client
 For customize the app for customers, there is a easy way to change the graphics in the mobile app. Try to keep the quantity of images low for an easier maintenance of the app. 
 
 ## Change Splashscreen
