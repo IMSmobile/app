@@ -1,3 +1,4 @@
+import { DragEventService } from './../../providers/drag-event-service';
 import { DragEventCreator } from './../../mocks/drag-event-creator.spec';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
@@ -141,8 +142,8 @@ describe('Page: Upload', () => {
   it('Update imagename when new file in fileinput is selected', () => {
     let fileName = 'newFile.jpg';
     let fileURI = '/dev/0/';
-    let oldImage = new Image ('oldvalue', 'oldvalue.jpg');
-    let newFile: File = new File([new Blob()], fileName, {type: 'image/jpeg'});
+    let oldImage = new Image('oldvalue', 'oldvalue.jpg');
+    let newFile: File = new File([new Blob()], fileName, { type: 'image/jpeg' });
     let newImage = new Image(fileName, fileURI, newFile);
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
     page.image = oldImage;
@@ -152,7 +153,7 @@ describe('Page: Upload', () => {
   });
 
   it('Do nothing when no file available in input file dialog', () => {
-    let oldImage = new Image ('oldvalue', 'oldvalue.jpg');
+    let oldImage = new Image('oldvalue', 'oldvalue.jpg');
     page.image = oldImage;
     let event = { target: { files: [] } };
     page.fileSelected(event);
@@ -300,5 +301,26 @@ describe('Page: Upload', () => {
     page.receiveDrop(event);
     expect(page.image).toEqual(oldImage);
   }));
+
+  it('Should deactivate dragOverlay on dragenter leave event', () => {
+    page.dragEventService = new DragEventService();
+    let element = document.createElement('div');
+    element.id = 'a1';
+    let eventEnter = new DragEventCreator().createDragEvent('dragenter', element);
+    let eventLeave = new DragEventCreator().createDragEvent('dragleave', element);
+    page.handleDragEvent(eventEnter);
+    page.handleDragEvent(eventEnter);
+    expect(page.dragActive).toBeTruthy();
+    page.handleDragEvent(eventLeave);
+    page.handleDragEvent(eventLeave);
+    expect(page.dragActive).toBeFalsy();
+  });
+
+  it('Should activate dragOverlay on dragenter event', () => {
+    page.dragEventService = new DragEventService();
+    let event = new DragEventCreator().createDragEvent('dragenter');
+    page.handleDragEvent(event);
+    expect(page.dragActive).toBeTruthy();
+  });
 
 });
