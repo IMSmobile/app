@@ -1,7 +1,19 @@
+import { Renderer2 } from '@angular/core';
 import { DragEventCreator } from './../mocks/drag-event-creator.spec';
 import { DragEventService } from './drag-event-service';
+import { TestBed, async } from '@angular/core/testing';
 
 describe('Provider: DragEventService', () => {
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [],
+            providers: [
+                Renderer2,
+            ],
+            imports: []
+        }).compileComponents();
+    }));
 
     it('should prevent standard action for dragstart', () => {
         let service = new DragEventService();
@@ -106,4 +118,3 @@ describe('Provider: DragEventService', () => {
         expect(service.dragEventCounter.reset).toHaveBeenCalledTimes(1);
     });
 });
-

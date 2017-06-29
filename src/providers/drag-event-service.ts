@@ -1,8 +1,16 @@
+import { Renderer2 } from '@angular/core';
 import { DragEventCounter } from './../models/drag-event-counter';
 export class DragEventService {
 
   dragEventCounter: DragEventCounter = new DragEventCounter();
 
+  public preventEventsOnBody(renderer: Renderer2) {
+    renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));
+    renderer.listen('body', 'dragover', event => this.preventDefaultDragAction(event));
+    renderer.listen('body', 'dragleave', event => this.preventDefaultDragAction(event));
+    renderer.listen('body', 'dragend', event => this.preventDefaultDragAction(event));
+    renderer.listen('body', 'drop', event => this.preventDefaultDragAction(event));
+  }
 
   public handleDragEvent(event: DragEvent, enterFunction: Function, leaveFunction: Function) {
     this.preventDefaultDragAction(event);
@@ -15,6 +23,8 @@ export class DragEventService {
       default: throw new Error('Invalid drag event type: ' + event.type);
     }
   }
+
+
 
   public handleDropEvent(event: DragEvent, dropFunction: Function) {
     this.preventDefaultDragAction(event);
