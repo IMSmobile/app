@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
 import { CameraError } from './../../models/errors/camera-error';
@@ -303,7 +302,7 @@ describe('Page: Entries', () => {
 
   it('should add drag class on element with first dragenter event', () => {
     let event = <DragEvent>new Event('dragenter');
-    let element = document.createElement('div')
+    let element = document.createElement('div');
     element.id = 'a1';
     spyOnProperty(event, 'currentTarget', 'get').and.returnValue(element);
     page.preventDefaultDragAction(event);
@@ -313,7 +312,7 @@ describe('Page: Entries', () => {
   it('should not remove drag class if last dragleave event has not been called', () => {
     let eventEnter = <DragEvent>new Event('dragenter');
     let eventLeave = <DragEvent>new Event('dragleave');
-    let element = document.createElement('div')
+    let element = document.createElement('div');
     element.id = 'a1';
     spyOnProperty(eventEnter, 'currentTarget', 'get').and.returnValue(element);
     spyOnProperty(eventLeave, 'currentTarget', 'get').and.returnValue(element);
@@ -326,7 +325,7 @@ describe('Page: Entries', () => {
   it('should remove drag class on last dragleave event', () => {
     let eventEnter = <DragEvent>new Event('dragenter');
     let eventLeave = <DragEvent>new Event('dragleave');
-    let element = document.createElement('div')
+    let element = document.createElement('div');
     element.id = 'a1';
     spyOnProperty(eventEnter, 'currentTarget', 'get').and.returnValue(element);
     spyOnProperty(eventLeave, 'currentTarget', 'get').and.returnValue(element);
