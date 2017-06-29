@@ -1,3 +1,4 @@
+import { MetadataField } from './../../models/metadata-field';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
@@ -140,7 +141,7 @@ describe('Page: Upload', () => {
   it('Update imagename when new file in fileinput is selected', () => {
     let fileName = 'newFile.jpg';
     let fileURI = '/dev/0/';
-    let oldImage = new Image ('oldvalue', 'oldvalue.jpg');
+    let oldImage = new Image('oldvalue', 'oldvalue.jpg');
     let newFile: File = new File([new Blob()], fileName);
     let newImage = new Image(fileName, fileURI, newFile);
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
@@ -151,7 +152,7 @@ describe('Page: Upload', () => {
   });
 
   it('Do nothing when no file available in input file dialog', () => {
-    let oldImage = new Image ('oldvalue', 'oldvalue.jpg');
+    let oldImage = new Image('oldvalue', 'oldvalue.jpg');
     page.image = oldImage;
     let event = { target: { files: [] } };
     page.fileSelected(event);
@@ -279,6 +280,18 @@ describe('Page: Upload', () => {
     let control = new FormControl('12a', DoubleValidator.isValid);
     page.getErrorMessage(control);
     expect(fieldValidatorService.getErrorMessage).toHaveBeenCalledWith(control);
+  }));
+
+  it('Initialize BOOLEAN field type as false', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
+    page.fields = [new MetadataField('booleanField', 'BOOLEAN', false, false, true, true, 10)];
+    page.initFormData();
+    expect(page.fieldsForm.controls['booleanField'].value).toEqual('false');
+  }));
+
+  it('Initialize Text field type as empty string', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
+    page.fields = [new MetadataField('textField', 'TEXT', false, false, true, true, 10)];
+    page.initFormData();
+    expect(page.fieldsForm.controls['textField'].value).toEqual('');
   }));
 
 });
