@@ -35,6 +35,7 @@ export class EntriesPage {
 
   constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
+    this.dragEventService.preventEventsOnBody(renderer);
   }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
