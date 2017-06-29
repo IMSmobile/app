@@ -413,7 +413,7 @@ Um rasch neue Versionen des Clients bereitstellen zu können setzen wir auf die 
 
 Dabei wird in einem ersten Schritt die Relevanz der Änderung anhand des [Commit Message Formats](#commit-message-guidelines) beurteilt und die Versionsnummer entsprechend erhöht. Anschliessend werden die Release Notes generiert und der Release freigegeben.
 
-Für die [Versionierung](#versionierung) relevant sind nur Commit Messages vom [Typ](CONTRIBUTING.md#type) `fix`, `feature` oder `perf` sowie Breaking Changes. Es ist Aufgabe des Reviewers nach dem mergen solcher Pull Requests die Erstellung eines neuen Releases anzustossen. Wenn ein neuer Release gemacht werden muss, führt er den Release Befehl aus. 
+Für die [Versionierung](#versionierung) relevant sind nur Commit Messages vom [Typ](CONTRIBUTING.md#type) `fix`, `feature` oder `perf` sowie Breaking Changes. Es ist Aufgabe des Reviewers nach dem mergen solcher Pull Requests die Erstellung eines neuen Releases anzustossen mit dem Befehl 
 
 ```shell
 npm run release
@@ -421,9 +421,9 @@ npm run release
 
 Mit diesem Kommando wird  die neue Versionsnummer erstellt und automatisch aktualisiert, eine Markierung (`tag`) für die Versionsverwaltung erstellt sowie die aktualisierte Sammlung aller Release Notes ([`CHANGELOG.md`](CHANGELOG.md)) generiert.
 
-Anschliessend wird diese Änderung direkt auf dem Master Branch commited. Dafür muss temporär die Commit Berechtigung auf Github aktiviert werden. 
+Anschliessend wird diese Änderung vom Reviewer direkt auf dem Master Branch commited. Dafür muss temporär der Schutz des Master Braches auf GitHub aufgehoben werden.
 
-Nach dem Commit muss der Reviewer den Release auf GitHub bereitzustellen und die temporäre Commit Berechtigung wieder aufheben.
+Nach dem Commit muss der Reviewer den Schutz sofort wieder aktivieren und den Release unter der entsprechenden Versionsnummer auf GitHub bereitstellen.
 
 ### Versionierung
 Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, _MINOR_ und _PATCH_ welche je nach Commit Message Typ inkrementiert werden.
