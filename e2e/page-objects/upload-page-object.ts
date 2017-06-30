@@ -139,4 +139,8 @@ export class UploadPageObject {
     Helpers.waitUntilElementIsReady(this.uploadImageButton);
     this.uploadImageButton.click();
   }
+
+  verifyToastMessage() {
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
 }

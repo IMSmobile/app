@@ -41,7 +41,7 @@ describe('Upload E2E Test', () => {
     uploadPage.selectNewPictureFromGallery();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    uploadPage.verifyToastMessage();
   });
 
   it('Should upload image taken from gallery', () => {
@@ -49,7 +49,7 @@ describe('Upload E2E Test', () => {
     entriesPage.pushEntriesGalleryButtonOnEntry34617();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    uploadPage.verifyToastMessage();
   });
 
   it('Should add fields and testing invalid inputs', () => {
@@ -102,6 +102,6 @@ describe('Upload E2E Test', () => {
     uploadPage.sendDropEvent();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e drag upload Test');
     uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    uploadPage.verifyToastMessage();
   });
 });
