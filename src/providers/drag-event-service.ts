@@ -49,7 +49,6 @@ export class DragEventService {
   private dragleave(event: DragEvent, leaveFunction: Function) {
     let element: Element = (event.currentTarget as Element);
     this.dragEventCounter.dec(element.id);
-    console.log('hello');
     this.dragEventCounter.callIfLastEvent(element.id, leaveFunction);
   }
 
