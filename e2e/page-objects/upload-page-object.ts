@@ -9,6 +9,7 @@ export class UploadPageObject {
   entriesPage = new EntriesPageObject();
   bildNameFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=BILDNAME]'));
   uploadImageButton: ElementFinder = element(by.id('uploadImageButton'));
+  contentDiv: ElementFinder = element(by.id('content'));
   memofeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=MEMOFELD]'));
   textfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=TEXTFELD]'));
   integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
@@ -57,6 +58,31 @@ export class UploadPageObject {
     browser.waitForAngular();
   }
 
+  createDragEnterEvent() {
+    this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragEnterEventToElement(entriesItemId));
+  }
+
+  createDragLeaveEvent() {
+    this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
+  }
+
+  sendDropEvent() {
+    this.removeEventlistenerFromFilePicker();
+    this.selectNewPictureFromGallery();
+    this.createDropEvent();
+  }
+
+  removeEventlistenerFromFilePicker() {
+    this.fileUpload.getAttribute('id').then(fileUploadId => Helpers.removeEventlistenerFromElement(fileUploadId));
+  }
+
+  createDropEvent() {
+    this.fileUpload.getAttribute('id').then(
+      sourceFileInputId => this.contentDiv.getAttribute('id').then(
+        targetId => Helpers.sendDragDropEventToElement(sourceFileInputId, targetId)
+      ));
+  }
+
   verifyBildNameErrorDivVisible() {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivBILDNAME);
   }
@@ -99,6 +125,14 @@ export class UploadPageObject {
 
   verifyPageLoaded() {
     browser.wait(ExpectedConditions.visibilityOf(this.uploadImageButton), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  verifyDragoverlayVisible() {
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('drag-overlay'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  verifyDragoverlayInvisible() {
+    browser.wait(ExpectedConditions.invisibilityOf(element(by.className('drag-overlay'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
   clickUploadImageButton() {

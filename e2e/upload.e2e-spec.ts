@@ -93,4 +93,15 @@ describe('Upload E2E Test', () => {
     uploadPage.verifyIntegerNotMarkedAsMandatoryField();
   });
 
+  it('Should change style, accept dropped file and upload', () => {
+    uploadPage.loadPage();
+    uploadPage.createDragEnterEvent();
+    uploadPage.verifyDragoverlayVisible();
+    uploadPage.createDragLeaveEvent();
+    uploadPage.verifyDragoverlayInvisible();
+    uploadPage.sendDropEvent();
+    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e drag upload Test');
+    uploadPage.clickUploadImageButton();
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  });
 });
