@@ -85,6 +85,54 @@ export class EntriesPageObject {
     expect(field.getText()).toMatch(new RegExp('^' + text));
   }
 
+  verifyDragoverlayVisible() {
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('drag'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  verifyDragoverlayInvisible() {
+    browser.wait(ExpectedConditions.invisibilityOf(element(by.className('drag'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  sendDropEvent() {
+    this.removeEventlistenerFromFilePicker();
+    this.pushEntriesGalleryButtonOnEntry34617();
+    this.createDropEvent();
+  }
+
+  removeEventlistenerFromFilePicker() {
+    this.entriesFileUpload.getAttribute('id').then(id => {
+      browser.executeScript('let changeElement = document.getElementById("' + id + '");'
+        + 'let cloneElement = changeElement.cloneNode();'
+        + 'changeElement.parentNode.replaceChild(cloneElement, changeElement);');
+    });
+  }
+
+  createDragEnterEvent() {
+    this.entriesItem.getAttribute('id').then(entriesId => {
+      browser.executeScript('let dragEnterEvent = new DragEvent("dragenter");'
+        + 'Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });'
+        + 'document.getElementById("' + entriesId + '").dispatchEvent(dragEnterEvent)');
+    });
+  }
+
+  createDragLeaveEvent() {
+    this.entriesItem.getAttribute('id').then(entriesId => {
+      browser.executeScript('let dragLeaveEvent = new DragEvent("dragleave");'
+        + 'document.getElementById("' + entriesId + '").dispatchEvent(dragLeaveEvent)');
+    });
+  }
+
+  createDropEvent() {
+    this.entriesFileUpload.getAttribute('id').then(uploadId => {
+      this.entriesItem.getAttribute('id').then(entriesId => {
+        browser.executeScript('let dropEvent = new DragEvent("drop");'
+          + 'Object.defineProperty(dropEvent.constructor.prototype, "dataTransfer", { value: {} });'
+          + 'dropEvent.dataTransfer.files = document.getElementById("' + uploadId + '").files;'
+          + 'document.getElementById("' + entriesId + '").dispatchEvent(dropEvent)');
+      });
+    });
+  }
+
   waitEntriesPageLoaded() {
     this.waitIonViewDidLoad();
     this.waitIonViewDidEnter();

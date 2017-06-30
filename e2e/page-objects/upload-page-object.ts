@@ -97,6 +97,10 @@ export class UploadPageObject {
     browser.wait(ExpectedConditions.invisibilityOf(this.integerfeldMandatoryMarker), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
+  verifyPageLoaded() {
+    browser.wait(ExpectedConditions.visibilityOf(this.uploadImageButton), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
   clickUploadImageButton() {
     Helpers.waitUntilElementIsReady(this.uploadImageButton);
     this.uploadImageButton.click();
