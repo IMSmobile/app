@@ -1,4 +1,4 @@
-import { DragEventCreator } from './../../mocks/drag-event-creator.spec';
+import { DragEventMock } from './../../mocks/drag-event-mock';
 import { DragEventService } from './../../providers/drag-event-service';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
@@ -295,7 +295,7 @@ describe('Page: Entries', () => {
 
   it('should add drag class on element with first dragenter event', () => {
     page.dragEventService = new DragEventService();
-    let event = new DragEventCreator().createDragEvent('dragenter');
+    let event = new DragEventMock('dragenter');
     page.handleDragEvent(event);
     let element = event.currentTarget as Element;
     expect(element.classList.contains('drag')).toBeTruthy();
@@ -305,8 +305,8 @@ describe('Page: Entries', () => {
     page.dragEventService = new DragEventService();
     let element = document.createElement('div');
     element.id = 'a1';
-    let eventEnter = new DragEventCreator().createDragEvent('dragenter', element);
-    let eventLeave = new DragEventCreator().createDragEvent('dragleave', element);
+    let eventEnter = new DragEventMock('dragenter', element);
+    let eventLeave = new DragEventMock('dragleave', element);
     page.handleDragEvent(eventEnter);
     page.handleDragEvent(eventEnter);
     expect(element.classList.contains('drag')).toBeTruthy();
@@ -317,7 +317,7 @@ describe('Page: Entries', () => {
 
 
   it('Should go to uploadpage after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
-    let event = new DragEventCreator().createDragEvent('drop');
+    let event = new DragEventMock('drop');
     let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
     let parentImageEntryId = '1';
     let entryTitle = 'title';
@@ -329,10 +329,9 @@ describe('Page: Entries', () => {
 
 
   it('Should not go to uploadpage after receiving no dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
-    let event: DragEvent = <DragEvent>new Event('drop');
+    let event: DragEvent = new DragEventMock('drop', document.createElement('div'));
     let parentImageEntryId = '1';
     let entryTitle = 'title';
-    spyOnProperty(event, 'currentTarget', 'get').and.returnValue(document.createElement('div'));
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
     page.receiveDrop(event, parentImageEntryId, entryTitle);

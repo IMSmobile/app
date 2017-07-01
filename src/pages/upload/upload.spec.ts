@@ -1,5 +1,5 @@
+import { DragEventMock } from './../../mocks/drag-event-mock';
 import { DragEventService } from './../../providers/drag-event-service';
-import { DragEventCreator } from './../../mocks/drag-event-creator.spec';
 import { MetadataField } from './../../models/metadata-field';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
@@ -285,7 +285,7 @@ describe('Page: Upload', () => {
   }));
 
   it('Should update image after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
-    let event: DragEvent = new DragEventCreator().createDragEvent('drop');
+    let event: DragEvent = new DragEventMock('drop');
     let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
     page.receiveDrop(event);
@@ -293,7 +293,7 @@ describe('Page: Upload', () => {
   }));
 
   it('Should keep image after receiving drop without image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
-    let event: DragEvent = new DragEventCreator().createDragEvent('drop');
+    let event: DragEvent = new DragEventMock('drop');
     let oldImage = new Image('picture.jpg', '/my/picture.jpg');
     page.image = oldImage;
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
@@ -305,8 +305,8 @@ describe('Page: Upload', () => {
     page.dragEventService = new DragEventService();
     let element = document.createElement('div');
     element.id = 'a1';
-    let eventEnter = new DragEventCreator().createDragEvent('dragenter', element);
-    let eventLeave = new DragEventCreator().createDragEvent('dragleave', element);
+    let eventEnter = new DragEventMock('dragenter', element);
+    let eventLeave = new DragEventMock('dragleave', element);
     page.handleDragEvent(eventEnter);
     page.handleDragEvent(eventEnter);
     expect(page.dragActive).toBeTruthy();
@@ -317,7 +317,7 @@ describe('Page: Upload', () => {
 
   it('Should activate dragOverlay on dragenter event', () => {
     page.dragEventService = new DragEventService();
-    let event = new DragEventCreator().createDragEvent('dragenter');
+    let event = new DragEventMock('dragenter');
     page.handleDragEvent(event);
     expect(page.dragActive).toBeTruthy();
   });
