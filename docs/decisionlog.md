@@ -1,6 +1,9 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 1. Juli 2017
+- Unsere App nennen wir "Arkivar".
+
 ## 16. Juni 2017
 - Während dem Sprint Review werden den Stakeholdern keine Geräte abgegeben.
 - Im Sprint Planning werden auch die gemeinsamen Arbeitszeiten geplant.
