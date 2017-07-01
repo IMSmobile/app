@@ -11,10 +11,7 @@ Eine Issue gilt als abgeschlossen wenn:
 - Der Pull Request einem Review unterzogen wurde und unseren Qualitätsanforderungen entspricht
 - Das Issue geschlossen wurde (entweder durch Commit-Messages oder manuell auf dem Kanbanboard)
 - Die Funktionalität auf einem iOS und Android Gerät getestet wurde
-- Die Version (gemäss Semantic Versioning) in folgenden Files erhöht wurde
-  - `package.json`
-  - `src/pages/login.ts`
-  - `config.xml`
+
 
 ## Pull Request Format
 Weil wir Pull Requests auf den master squashen um automatiserte Release Notes generieren zu können müssen die Angaben einem speziellen Format entsprechen. Das Format basiert auf den [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines). Der Pull Request wird in Englisch geschrieben.

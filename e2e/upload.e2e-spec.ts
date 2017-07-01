@@ -45,9 +45,12 @@ describe('Upload E2E Test', () => {
   });
 
   it('Should upload image taken from gallery', () => {
-    entriesPage.loadPage();
-    entriesPage.pushEntriesGalleryButtonOnEntry34617();
+    settingImageFieldsPageObject.loadPage();
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldBOOLEANNOToggle);
+
+    uploadPage.reloadPage();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
+    uploadPage.toggleBooleanField();
     uploadPage.clickUploadImageButton();
     uploadPage.verifyToastMessage();
   });

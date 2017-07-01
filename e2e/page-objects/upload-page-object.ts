@@ -14,6 +14,7 @@ export class UploadPageObject {
   textfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=TEXTFELD]'));
   integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
   floatfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=FLOATFELD]'));
+  booleanFieldToggle: ElementFinder = element(by.css('ion-toggle[ng-reflect-name=BOOLEANNO]'));
   uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
   uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
   uploadFieldErrorDivFLOATFELD: ElementFinder = element(by.id('uploadFieldErrorDivFLOATFELD'));
@@ -35,6 +36,12 @@ export class UploadPageObject {
     Helpers.waitUntilElementIsReady(textField);
     textField.clear();
     textField.sendKeys(text);
+    browser.waitForAngular();
+  }
+
+  toggleBooleanField() {
+    Helpers.waitUntilElementIsReady(this.booleanFieldToggle);
+    this.booleanFieldToggle.click();
     browser.waitForAngular();
   }
 

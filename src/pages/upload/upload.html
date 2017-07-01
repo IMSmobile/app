@@ -32,9 +32,10 @@
     <ion-list *ngSwitchCase="'metadata'" id="id-list">
       <form [formGroup]="fieldsForm">
         <div *ngFor="let field of fields">
-          <ion-item>
+          <ion-item [ngSwitch]="field.type">
             <ion-label>{{field.name}}<span *ngIf="field.mandatory" class="mandatory" id="mandatory{{field.name}}"> *</span></ion-label>
-            <ion-input type="text" formControlName="{{field.name}}"></ion-input>
+            <ion-toggle *ngSwitchCase="'BOOLEAN'" formControlName="{{field.name}}"></ion-toggle>
+            <ion-input *ngSwitchDefault type="text" formControlName="{{field.name}}"></ion-input>
           </ion-item>
           <div class="invalid" *ngIf="!fieldsForm.controls[field.name].valid && (fieldsForm.controls[field.name].touched || fieldsForm.controls[field.name].dirty) " id="uploadFieldErrorDiv{{field.name}}">
             <p>{{getErrorMessage(fieldsForm.controls[field.name])}}</p>

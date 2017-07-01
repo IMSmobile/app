@@ -1,3 +1,17 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/IMSmobile/app/compare/0.4.0...v0.5.0) (2017-06-29)
+
+
+### Features
+
+* **upload:** show boolean toggle for boolean upload field type ([eb0c067](https://github.com/IMSmobile/app/commit/eb0c067)), closes [#338](https://github.com/IMSmobile/app/issues/338)
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/IMSmobile/app/compare/0.3.0...0.4.0) (2017-06-22)
 

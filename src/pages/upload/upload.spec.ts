@@ -1,5 +1,6 @@
 import { DragEventService } from './../../providers/drag-event-service';
 import { DragEventCreator } from './../../mocks/drag-event-creator.spec';
+import { MetadataField } from './../../models/metadata-field';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
@@ -323,4 +324,15 @@ describe('Page: Upload', () => {
     expect(page.dragActive).toBeTruthy();
   });
 
+  it('Initialize BOOLEAN field type as false', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
+    page.fields = [new MetadataField('booleanField', 'BOOLEAN', false, false, true, true, 10)];
+    page.initFormData();
+    expect(page.fieldsForm.controls['booleanField'].value).toEqual('false');
+  }));
+
+  it('Initialize Text field type as empty string', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
+    page.fields = [new MetadataField('textField', 'TEXT', false, false, true, true, 10)];
+    page.initFormData();
+    expect(page.fieldsForm.controls['textField'].value).toEqual('');
+  }));
 });

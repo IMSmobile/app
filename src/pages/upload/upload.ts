@@ -76,11 +76,19 @@ export class UploadPage {
   initFormData() {
     let formData = {};
     this.fields.forEach(field => {
-      formData[field.name] = [''];
+      formData[field.name] = [this.getDefaultValue(field.type)];
       formData[field.name].push(Validators.compose(this.fieldValidatorService.getValidatorFunctions(field)));
     });
     this.fieldsForm = this.formBuilder.group(formData);
   }
+
+  getDefaultValue(type: string): string {
+    switch (type) {
+      case 'BOOLEAN': return 'false';
+      default: return '';
+    }
+  }
+
 
   public takePicture() {
     this.loadingService.subscribeWithLoading(
