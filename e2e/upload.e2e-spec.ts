@@ -55,6 +55,13 @@ describe('Upload E2E Test', () => {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   });
 
+  it('Should upload image with sending enter key', () => {
+    uploadPage.loadPage();
+    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e with enter Test');
+    uploadPage.sendEnterKey(uploadPage.bildNameFieldInput);
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  });
+
   it('Should add fields and testing invalid inputs', () => {
     settingImageFieldsPageObject.loadPage();
     Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldINTEGERFELDToggle);
