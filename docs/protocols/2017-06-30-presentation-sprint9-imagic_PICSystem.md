@@ -19,9 +19,9 @@ Ionic App Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 ### Abgeschlossene Aufgaben
 - Dokumentation "Austausch von Logos/Grafiken"
 - Entfernen des Settings-Popover für vereinfachtes GUI und iOS-näheren Verhalten
-- Schiebe Knopf für Boolean Felder
+- Toggle Button für Boolean Felder
 - Browserversion Kamerabutton entfernt und Fileupload mit Auswahlfenster hinzugefügt
-- Releasing überarbeitet (automatisches Generieren von Release Notes, definieren von einheitlichen Commitmessages, Autoupdate von Versionsnummer)
+- Releasing überarbeitet (automatische Generierung von Release Notes, definieren von einheitlichen Commitmessages, Autoupdate von Versionsnummer)
 - Upload Fehler bei langsamen Netzwerken durch Caddy Update gelöst
 - Lintregeln überarbeitet
 - Update auf neuste Ionic Version 3.4
@@ -30,20 +30,20 @@ Ionic App Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Upload mit Drag&Drop (E2E-Tests noch offen)
 
 ### Ausblick
-- Neues Logo und Namen (aufgrund Lizensbedingungen)
+- Neues Logo und Namen (aufgrund Lizenzbedingungen, Opensource Projekt)
 - Veröffentlichung in App Stores
 - Dokumentation (Trademarks, Copyright, Architecture Dokumente, Abstrakt)
 - Keyword und Data Feld Typen
 
 ### Fragen
-- CreateEntry ist aktuell ein Must-Kriterium. Für PIC und Imagic hat es eine tiefe Priorisierung, andere Features sind wichtiger → kann zu einem soll deklariert werden
+- CreateEntry ist aktuell ein Must-Kriterium. Für PIC und Imagic hat es eine tiefe Priorisierung, andere Features sind wichtiger → kann zu einem soll deklariert werden #446
 - Grundsätzliche Priorisierung in Ordnung
 - Verify EXIF Daten für Imagic und PIC höher priosieren
 - JPEG oder PNG von Kamera → Default weiterhin nutzen, für User keinen Unterschied
 
 ### Feedback / Input
 - Windows App Store → Aktuell nicht in unserem Fokus, sollte aber mithilfe des Framework möglich sein
-- TIF Format sollte auch möglich (aktuell noch begrenzt auf .jpg und .png)
+- TIF Format sollte auch möglich (aktuell noch begrenzt auf .jpg und .png) #444
 
 ### Bemerkungen
 Mithilfe des Burnup Diagrams wurde die Priorisierung mit allen Anwesenden besprochen und auch auf nicht erreichbare Aufgaben hingewiesen.  
