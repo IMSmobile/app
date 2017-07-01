@@ -10,7 +10,7 @@ var packageJson = JSON.parse(fs.readFileSync(packageJsonFile, 'utf8'));
 
 var versionBefore = packageJson['version'];
 
-standardVersion({ "skip": { "commit": true }, }).then(function succ() {
+standardVersion({ "skip": { "commit": true, 'tag': true }, }).then(function succ() {
   packageJson = JSON.parse(fs.readFileSync(packageJsonFile, 'utf8'));
   var newVersion = packageJson['version'];
   replaceInFile(configXmlFile, 'id="io.github.imsmobile.app" version="' + versionBefore + '"', 'id="io.github.imsmobile.app" version="' + newVersion + '"');
