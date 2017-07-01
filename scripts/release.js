@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk')
+const figures = require('figures')
 const exec = require('child_process').exec;
 
 const standardVersion = require('standard-version');
@@ -10,15 +12,22 @@ var packageJson = JSON.parse(fs.readFileSync(packageJsonFile, 'utf8'));
 
 var versionBefore = packageJson['version'];
 
-standardVersion({ "skip": { "commit": true, 'tag': true }, }).then(function succ() {
+standardVersion({ 'skip': { 'commit': true, 'tag': true } }).then(function succ() {
   packageJson = JSON.parse(fs.readFileSync(packageJsonFile, 'utf8'));
   var newVersion = packageJson['version'];
   replaceInFile(configXmlFile, 'id="io.github.imsmobile.app" version="' + versionBefore + '"', 'id="io.github.imsmobile.app" version="' + newVersion + '"');
+  console.info(chalk.green(figures.tick) + ' bumping version in config.xml from ' + chalk.bold(versionBefore) + ' to ' + chalk.bold(newVersion));
   replaceInFile(loginTsFile, 'version: string = \'' + versionBefore + '\'', 'version: string = \'' + newVersion + '\'');
-  exec('git tag -d v' + newVersion);
-  exec('git tag ' + newVersion);
+  console.info(chalk.green(figures.tick) + ' bumping version in login.ts from ' + chalk.bold(versionBefore) + ' to ' + chalk.bold(newVersion));
+  printTodoCommand('git add .', 'after checking local changes');
+  printTodoCommand('git commit -m "' + "release: " + newVersion + '"', 'to commit local changes');
+  printTodoCommand('git tag ' + newVersion, 'to create new tag');
+  printTodoCommand('git push --follow-tags origin master', 'to publish');
 });
 
+function printTodoCommand(command, reason) {
+  console.info(chalk.blue(figures.info) + ' run ' + chalk.bold('`' + command + '`') + ' ' + reason);
+}
 
 function replaceInFile(file, searchValue, replaceValue) {
   var content = fs.readFileSync(file, 'utf8');
