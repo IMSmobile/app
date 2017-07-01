@@ -15,7 +15,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
     }).compileComponents();
   }));
 
-  it('should return an image when a event from file picker is called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+  it('should return an image when an event from file picker is called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let fileName = 'file.jpg';
     let fileURI = '/dev/0/';
     let file: File = new File([new Blob()], fileName, {type: browserFileuploadSelectorService.allowedFileTypes[0]});
@@ -41,7 +41,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
     expect(() => browserFileuploadSelectorService.getImageFromFileList(fileList)).toThrowError(ImsFileTypeError);
   }));
 
-  it('should return an image when a event from file dropper called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+  it('should return an image when an event from file dropper called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let fileName = 'file.jpg';
     let fileURI = '/dev/0/';
     let file: File = new File([new Blob()], fileName, {type: browserFileuploadSelectorService.allowedFileTypes[0]});
@@ -65,7 +65,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
     expect(returnedImage).toEqual(referenceImage);
   }));
 
-  it('should return an undefined object when a event from file picker with no files is called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+  it('should return an undefined object when an event from file picker with no files is called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let event = { dataTransfer: { files: [] } };
     let noImage = browserFileuploadSelectorService.getImageFromFileDrop(event);
     expect(noImage).toBeUndefined();
