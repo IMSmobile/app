@@ -93,7 +93,7 @@
         "typescript": "2.3.4"
     },
     "version": "0.5.1",
-    "description": "Arkivar – a Cross-Platform App for Imagic IMS.",
+    "description": "Arkivar – Mobile Client for Imagic IMS",
     "repository": {
         "type": "git",
         "url": "https://github.com/IMSmobile/app.git"
