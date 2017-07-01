@@ -287,10 +287,8 @@ describe('Page: Upload', () => {
   it('Should update image after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let event: DragEvent = new DragEventCreator().createDragEvent('drop');
     let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
-    spyOn(page.dragEventService, 'handleDropEvent').and.callThrough();
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
     page.receiveDrop(event);
-    expect(page.dragEventService.handleDropEvent).toHaveBeenCalledTimes(1);
     expect(page.image).toEqual(droppedImage);
   }));
 

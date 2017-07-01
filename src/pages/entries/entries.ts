@@ -120,19 +120,18 @@ export class EntriesPage {
     }
   }
 
-  handleDragEvent(event: DragEvent) {
+  handleDragEvent(event: DragEvent, parentImageEntryId?: string, entryTitle?: string) {
     let element: Element = (event.currentTarget as Element);
-    this.dragEventService.handleDragEvent(event, () => element.classList.add('drag'), () => element.classList.remove('drag'));
+    this.dragEventService.handleDragEvent(event, () => element.classList.add('drag'), () => element.classList.remove('drag'), () => this.receiveDrop(event, parentImageEntryId, entryTitle));
   }
 
   receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string) {
-    this.dragEventService.handleDropEvent(event, () => {
-      let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
-      if (selectedImage) {
-        let element: Element = (event.currentTarget as Element);
-        element.classList.remove('drag');
-        this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
-      }
-    });
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    if (selectedImage) {
+      let element: Element = (event.currentTarget as Element);
+      element.classList.remove('drag');
+      this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
+    }
   }
+
 }

@@ -152,17 +152,15 @@ export class UploadPage {
   }
 
   handleDragEvent(event: DragEvent) {
-    this.dragEventService.handleDragEvent(event, () => this.showDragOverlay(), () => this.hideDragOverlay());
+    this.dragEventService.handleDragEvent(event, () => this.showDragOverlay(), () => this.hideDragOverlay(), () => this.receiveDrop(event));
   }
 
   receiveDrop(event: DragEvent) {
-    this.dragEventService.handleDropEvent(event, () => {
-      this.hideDragOverlay();
-      let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
-      if (selectedImage) {
-        this.image = selectedImage;
-      }
-    });
+    this.hideDragOverlay();
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    if (selectedImage) {
+      this.image = selectedImage;
+    }
   }
 
   showDragOverlay() {

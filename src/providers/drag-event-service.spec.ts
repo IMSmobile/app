@@ -20,7 +20,7 @@ describe('Provider: DragEventService', () => {
         let event = new DragEventCreator().createDragEvent('dragstart');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(<DragEvent>event, () => { }, () => { });
+        service.handleDragEvent(<DragEvent>event, null, null, null);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -30,7 +30,7 @@ describe('Provider: DragEventService', () => {
         let event = new DragEventCreator().createDragEvent('dragover');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(<DragEvent>event, () => { }, () => { });
+        service.handleDragEvent(<DragEvent>event, null, null, null);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -40,7 +40,7 @@ describe('Provider: DragEventService', () => {
         let event = new DragEventCreator().createDragEvent('dragenter');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(<DragEvent>event, () => { }, () => { });
+        service.handleDragEvent(<DragEvent>event, () => { }, null, null);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -50,7 +50,7 @@ describe('Provider: DragEventService', () => {
         let event = new DragEventCreator().createDragEvent('dragleave');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(<DragEvent>event, () => { }, () => { });
+        service.handleDragEvent(<DragEvent>event, null, () => { }, null);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -60,7 +60,7 @@ describe('Provider: DragEventService', () => {
         let event = new DragEventCreator().createDragEvent('dragexit');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(<DragEvent>event, () => { }, () => { });
+        service.handleDragEvent(<DragEvent>event, null, null, null);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -69,14 +69,14 @@ describe('Provider: DragEventService', () => {
         let service = new DragEventService();
         let event = new DragEventCreator().createDragEvent('dragenter');
         let functionExecuted = false;
-        service.handleDragEvent(<DragEvent>event, () => functionExecuted = true, () => { });
+        service.handleDragEvent(<DragEvent>event, () => functionExecuted = true, null, null);
         expect(functionExecuted).toBeTruthy();
     });
 
     it('should set copy pointer on dragenter function', () => {
         let service = new DragEventService();
         let event = new DragEventCreator().createDragEvent('dragenter');
-        service.handleDragEvent(event, () => { }, () => { });
+        service.handleDragEvent(event, () => { }, null, null);
         expect(event['dataTransfer'].dropEffect).toEqual('copy');
     });
 
@@ -85,9 +85,9 @@ describe('Provider: DragEventService', () => {
         let enterEvent = new DragEventCreator().createDragEvent('dragenter');
         let leaveEvent = new DragEventCreator().createDragEvent('dragleave');
         let functionExecuted = false;
-        service.handleDragEvent(enterEvent, () => { }, () => functionExecuted = true);
+        service.handleDragEvent(enterEvent, () => { }, null, null);
         expect(functionExecuted).toBeFalsy();
-        service.handleDragEvent(leaveEvent, () => { }, () => functionExecuted = true);
+        service.handleDragEvent(leaveEvent, null, () => functionExecuted = true, null);
         expect(functionExecuted).toBeTruthy();
     });
 
@@ -96,9 +96,9 @@ describe('Provider: DragEventService', () => {
         let enterEvent = new DragEventCreator().createDragEvent('dragenter');
         let leaveEvent = new DragEventCreator().createDragEvent('dragleave');
         let functionExecuted = false;
-        service.handleDragEvent(enterEvent, () => { }, () => functionExecuted = true);
-        service.handleDragEvent(enterEvent, () => { }, () => functionExecuted = true);
-        service.handleDragEvent(leaveEvent, () => { }, () => functionExecuted = true);
+        service.handleDragEvent(enterEvent, () => { }, null, null);
+        service.handleDragEvent(enterEvent, () => { }, null, null);
+        service.handleDragEvent(leaveEvent, null, () => functionExecuted = true, null);
         expect(functionExecuted).toBeFalsy();
     });
 
@@ -106,7 +106,7 @@ describe('Provider: DragEventService', () => {
         let service = new DragEventService();
         let event = new DragEventCreator().createDragEvent('drop');
         let functionExecuted = false;
-        service.handleDropEvent(event, () => functionExecuted = true);
+        service.handleDragEvent(event, null, null, () => functionExecuted = true);
     });
 
     it('should reset counter  on drop', () => {
@@ -114,7 +114,7 @@ describe('Provider: DragEventService', () => {
         let event = new DragEventCreator().createDragEvent('drop');
         let functionExecuted = false;
         spyOn(service.dragEventCounter, 'reset').and.callThrough();
-        service.handleDropEvent(event, () => functionExecuted = true);
+        service.handleDragEvent(event, null, null, () => functionExecuted = true);
         expect(service.dragEventCounter.reset).toHaveBeenCalledTimes(1);
     });
 });

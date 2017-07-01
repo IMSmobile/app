@@ -321,11 +321,9 @@ describe('Page: Entries', () => {
     let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
     let parentImageEntryId = '1';
     let entryTitle = 'title';
-    spyOn(page.dragEventService, 'handleDropEvent').and.callThrough();
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
     page.receiveDrop(event, parentImageEntryId, entryTitle);
-    expect(page.dragEventService.handleDropEvent).toHaveBeenCalledTimes(1);
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(droppedImage, parentImageEntryId, entryTitle);
   }));
 

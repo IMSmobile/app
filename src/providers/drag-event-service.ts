@@ -12,7 +12,7 @@ export class DragEventService {
     renderer.listen('body', 'drop', event => this.preventDefaultDragAction(event));
   }
 
-  public handleDragEvent(event: DragEvent, enterFunction: Function, leaveFunction: Function) {
+  public handleDragEvent(event: DragEvent, enterFunction: Function, leaveFunction: Function, dropFunction: Function) {
     this.preventDefaultDragAction(event);
     switch (event.type) {
       case 'dragstart': this.dragstart(event); break;
@@ -20,15 +20,9 @@ export class DragEventService {
       case 'dragenter': this.dragenter(event, enterFunction); break;
       case 'dragleave': this.dragleave(event, leaveFunction); break;
       case 'dragexit': this.dragexit(event); break;
+      case 'drop' : this.drop(event, dropFunction); break;
       default: throw new Error('Invalid drag event type: ' + event.type);
     }
-  }
-
-
-
-  public handleDropEvent(event: DragEvent, dropFunction: Function) {
-    this.preventDefaultDragAction(event);
-    this.drop(event, dropFunction);
   }
 
   private dragstart(event: DragEvent) {
