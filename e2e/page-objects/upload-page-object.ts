@@ -1,5 +1,5 @@
 import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
+import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, protractor } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 import { LoginPageObject } from './login-page-object';
@@ -88,6 +88,12 @@ export class UploadPageObject {
       sourceFileInputId => this.contentDiv.getAttribute('id').then(
         targetId => Helpers.sendDragDropEventToElement(sourceFileInputId, targetId)
       ));
+  }
+
+  sendEnterKey(textField: ElementFinder) {
+    Helpers.waitUntilElementIsReady(textField);
+    textField.sendKeys(protractor.Key.ENTER);
+    browser.waitForAngular();
   }
 
   verifyBildNameErrorDivVisible() {

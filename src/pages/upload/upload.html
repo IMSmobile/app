@@ -30,7 +30,7 @@
       <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
     </div>
     <ion-list *ngSwitchCase="'metadata'" id="id-list">
-      <form [formGroup]="fieldsForm">
+      <form [formGroup]="fieldsForm" (keydown.enter)="uploadPicture()" (ngSubmit)="uploadPicture()">
         <div *ngFor="let field of fields">
           <ion-item [ngSwitch]="field.type">
             <ion-label>{{field.name}}<span *ngIf="field.mandatory" class="mandatory" id="mandatory{{field.name}}"> *</span></ion-label>
