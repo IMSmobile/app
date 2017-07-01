@@ -7,8 +7,6 @@ export class DragEventService {
   public preventEventsOnBody(renderer: Renderer2) {
     renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));
     renderer.listen('body', 'dragover', event => this.preventDefaultDragAction(event));
-    renderer.listen('body', 'dragleave', event => this.preventDefaultDragAction(event));
-    renderer.listen('body', 'dragend', event => this.preventDefaultDragAction(event));
     renderer.listen('body', 'drop', event => this.preventDefaultDragAction(event));
   }
 
