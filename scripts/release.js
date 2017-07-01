@@ -19,9 +19,9 @@ standardVersion({ 'skip': { 'commit': true, 'tag': true } }).then(function succ(
   console.info(chalk.green(figures.tick) + ' bumping version in config.xml from ' + chalk.bold(versionBefore) + ' to ' + chalk.bold(newVersion));
   replaceInFile(loginTsFile, 'version: string = \'' + versionBefore + '\'', 'version: string = \'' + newVersion + '\'');
   console.info(chalk.green(figures.tick) + ' bumping version in login.ts from ' + chalk.bold(versionBefore) + ' to ' + chalk.bold(newVersion));
-  printTodoCommand('git add .', 'after checking local changes');
+  printTodoCommand('git add package.json config.xml src/pages/login/login.ts CHANGELOG.md', 'after checking local changes');
   printTodoCommand('git commit -m "' + "release: " + newVersion + '"', 'to commit local changes');
-  printTodoCommand('git tag ' + newVersion, 'to create new tag');
+  printTodoCommand('git tag -a -m "' + "release: " + newVersion + '" ' + newVersion, 'to create new tag');
   printTodoCommand('git push --follow-tags origin master', 'to publish');
 });
 
