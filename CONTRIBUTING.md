@@ -32,8 +32,11 @@ Muss eines der folgenden Konstanten sein:
 `fix`: Eine Fehlerbehebung (Issue mit bug oder framework-bug Tag)  
 `perf`: Eine Performance Verbesserung  
 `refactor`: Codeänderung welche keinen Fix oder kein Feature beinhaltet  
-`style`: Änderungen am Format des Codes (Lint, Whitespace, Formatierung,Semikolon)  
-`test`: Hinzufügen oder korrigieren eines bestehenden Tests
+`style`: Änderungen am Format des Codes (Lint, Whitespace, Formatierung, Semikolon)  
+`test`: Hinzufügen oder korrigieren eines bestehenden Tests  
+`release`: Hinzufügen eines neuen Releases
+
+
 
 #### Scope
 Muss bei Type `feat` und `fix` zwingend angegeben werden und einer der folgenden Konstanten sein:
@@ -43,7 +46,7 @@ Muss bei Type `feat` und `fix` zwingend angegeben werden und einer der folgenden
 `upload`  
 `setting`  
 `entries`  
-`search` 
+`search`
 
 #### Subject
 Im Subject werden die Änderungen zusammengefasst. Es wird der imperativ verwendet: "change" nicht "changed" und auch nicht "changes". Das erste Wort wird nicht gross geschrieben. Kein Punkt am Ende.
