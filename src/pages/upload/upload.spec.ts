@@ -1,3 +1,5 @@
+import { DragEventMock } from './../../mocks/drag-event-mock';
+import { DragEventService } from './../../providers/drag-event-service';
 import { MetadataField } from './../../models/metadata-field';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
@@ -142,7 +144,7 @@ describe('Page: Upload', () => {
     let fileName = 'newFile.jpg';
     let fileURI = '/dev/0/';
     let oldImage = new Image('oldvalue', 'oldvalue.jpg');
-    let newFile: File = new File([new Blob()], fileName);
+    let newFile: File = new File([new Blob()], fileName, { type: 'image/jpeg' });
     let newImage = new Image(fileName, fileURI, newFile);
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
     page.image = oldImage;
@@ -282,6 +284,44 @@ describe('Page: Upload', () => {
     expect(fieldValidatorService.getErrorMessage).toHaveBeenCalledWith(control);
   }));
 
+  it('Should update image after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event: DragEvent = new DragEventMock('drop');
+    let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
+    page.receiveDrop(event);
+    expect(page.image).toEqual(droppedImage);
+  }));
+
+  it('Should keep image after receiving drop without image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event: DragEvent = new DragEventMock('drop');
+    let oldImage = new Image('picture.jpg', '/my/picture.jpg');
+    page.image = oldImage;
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
+    page.receiveDrop(event);
+    expect(page.image).toEqual(oldImage);
+  }));
+
+  it('Should deactivate dragOverlay after dragenter and dragleave event', () => {
+    page.dragEventService = new DragEventService();
+    let element = document.createElement('div');
+    element.id = 'a1';
+    let eventEnter = new DragEventMock('dragenter', element);
+    let eventLeave = new DragEventMock('dragleave', element);
+    page.handleDragEvent(eventEnter);
+    page.handleDragEvent(eventEnter);
+    expect(page.showDragOverlay).toBeTruthy();
+    page.handleDragEvent(eventLeave);
+    page.handleDragEvent(eventLeave);
+    expect(page.showDragOverlay).toBeFalsy();
+  });
+
+  it('Should activate dragOverlay on dragenter event', () => {
+    page.dragEventService = new DragEventService();
+    let event = new DragEventMock('dragenter');
+    page.handleDragEvent(event);
+    expect(page.showDragOverlay).toBeTruthy();
+  });
+
   it('Initialize BOOLEAN field type as false', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     page.fields = [new MetadataField('booleanField', 'BOOLEAN', false, false, true, true, 10)];
     page.initFormData();
@@ -293,5 +333,4 @@ describe('Page: Upload', () => {
     page.initFormData();
     expect(page.fieldsForm.controls['textField'].value).toEqual('');
   }));
-
 });

@@ -1,3 +1,4 @@
+import { UploadPageObject } from './page-objects/upload-page-object';
 import { Helpers } from './helpers/helpers';
 import { browser } from 'protractor';
 import { SettingEntriesFieldsPageObject } from './page-objects/setting-entries-field-page-object';
@@ -9,6 +10,7 @@ describe('Entries E2E Test', () => {
   let originalTimeout;
   let loginPage = new LoginPageObject();
   let entriesPage = new EntriesPageObject();
+  let uploadPage = new UploadPageObject();
   let settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
 
   beforeEach(function () {
@@ -60,5 +62,14 @@ describe('Entries E2E Test', () => {
     entriesPage.verifyOnlyFirstTwoFieldsVisible();
   });
 
+  it('Should change style, accept dropped file and go to uploadpage', () => {
+    entriesPage.loadPage();
+    entriesPage.createDragEnterEvent();
+    entriesPage.verifyDragoverlayVisible();
+    entriesPage.createDragLeaveEvent();
+    entriesPage.verifyDragoverlayInvisible();
+    entriesPage.sendDropEvent();
+    uploadPage.verifyPageLoaded();
+  });
 });
 

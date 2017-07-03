@@ -1,3 +1,5 @@
+import { DragEventMock } from './../../mocks/drag-event-mock';
+import { DragEventService } from './../../providers/drag-event-service';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
 import { CameraError } from './../../models/errors/camera-error';
@@ -279,8 +281,8 @@ describe('Page: Entries', () => {
   it('Push to upload page when file in input file dialog selected', () => {
     let fileName = 'file.jpg';
     let fileURI = '/dev/0/';
-    let file: File = new File([new Blob()], fileName);
-    let event = { target: { files: [file]} };
+    let file: File = new File([new Blob()], fileName, { type: 'image/jpeg' });
+    let event = { target: { files: [file] } };
     let parentImageEntryId = '1';
     let entryTitle = 'title';
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
@@ -289,4 +291,51 @@ describe('Page: Entries', () => {
     let image = new Image(fileName, fileURI, file);
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
   });
+
+
+  it('should add drag class on element with first dragenter event', () => {
+    page.dragEventService = new DragEventService();
+    let event = new DragEventMock('dragenter');
+    page.handleDragEvent(event);
+    let element = event.currentTarget as Element;
+    expect(element.classList.contains('drag')).toBeTruthy();
+  });
+
+  it('should remove drag class on last dragleave event', () => {
+    page.dragEventService = new DragEventService();
+    let element = document.createElement('div');
+    element.id = 'a1';
+    let eventEnter = new DragEventMock('dragenter', element);
+    let eventLeave = new DragEventMock('dragleave', element);
+    page.handleDragEvent(eventEnter);
+    page.handleDragEvent(eventEnter);
+    expect(element.classList.contains('drag')).toBeTruthy();
+    page.handleDragEvent(eventLeave);
+    page.handleDragEvent(eventLeave);
+    expect(element.classList.contains('drag')).toBeFalsy();
+  });
+
+
+  it('Should go to uploadpage after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event = new DragEventMock('drop');
+    let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
+    let parentImageEntryId = '1';
+    let entryTitle = 'title';
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    page.receiveDrop(event, parentImageEntryId, entryTitle);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(droppedImage, parentImageEntryId, entryTitle);
+  }));
+
+
+  it('Should not go to uploadpage after receiving no dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+    let event: DragEvent = new DragEventMock('drop');
+    let parentImageEntryId = '1';
+    let entryTitle = 'title';
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
+    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    page.receiveDrop(event, parentImageEntryId, entryTitle);
+    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);
+  }));
+
 });

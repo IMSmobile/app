@@ -41,7 +41,7 @@ describe('Upload E2E Test', () => {
     uploadPage.selectNewPictureFromGallery();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    uploadPage.verifyToastMessage();
   });
 
   it('Should upload image taken from gallery', () => {
@@ -52,7 +52,7 @@ describe('Upload E2E Test', () => {
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.toggleBooleanField();
     uploadPage.clickUploadImageButton();
-    browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    uploadPage.verifyToastMessage();
   });
 
   it('Should upload image with sending enter key', () => {
@@ -103,4 +103,15 @@ describe('Upload E2E Test', () => {
     uploadPage.verifyIntegerNotMarkedAsMandatoryField();
   });
 
+  it('Should change style, accept dropped file and upload', () => {
+    uploadPage.loadPage();
+    uploadPage.createDragEnterEvent();
+    uploadPage.verifyDragoverlayVisible();
+    uploadPage.createDragLeaveEvent();
+    uploadPage.verifyDragoverlayInvisible();
+    uploadPage.sendDropEvent();
+    uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e drag upload Test');
+    uploadPage.clickUploadImageButton();
+    uploadPage.verifyToastMessage();
+  });
 });

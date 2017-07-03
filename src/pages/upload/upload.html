@@ -24,7 +24,7 @@
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content id="content" (dragleave)="handleDragEvent($event)" (dragenter)="handleDragEvent($event)" (dragstart)="handleDragEvent($event)" (dragover)="handleDragEvent($event)" (drop)="handleDragEvent($event)">
   <div class="detail-switch" [ngSwitch]="uploadSegment">
     <div class="detail-image-container" *ngSwitchCase="'image'">
       <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
@@ -43,6 +43,9 @@
         </div>
       </form>
     </ion-list>
+  </div>
+  <div class="drag drag-overlay" *ngIf="showDragOverlay">
+    <h1>Bild hier ablegen</h1>
   </div>
 </ion-content>
 <ion-footer>

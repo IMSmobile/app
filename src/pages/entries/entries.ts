@@ -1,3 +1,4 @@
+import { DragEventService } from './../../providers/drag-event-service';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { Image } from './../../models/image';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
@@ -6,7 +7,7 @@ import { SettingService } from './../../providers/setting-service';
 import { MetadataField } from './../../models/metadata-field';
 import { Observable } from 'rxjs/Observable';
 import { QueryFragment } from './../../models/query-fragment';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Entry } from '../../models/entry';
 import { EntriesService } from './../../providers/entries-service';
@@ -30,9 +31,11 @@ export class EntriesPage {
   titleField: string;
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
+  dragEventService: DragEventService = new DragEventService();
 
-  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
+  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
+    this.dragEventService.preventEventsOnBody(renderer);
   }
 
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
@@ -111,8 +114,22 @@ export class EntriesPage {
   }
 
   fileSelected(event: any, parentImageEntryId: string, entryTitle: string) {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
+      this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
+    }
+  }
+
+  handleDragEvent(event: DragEvent, parentImageEntryId?: string, entryTitle?: string) {
+    let element: Element = (event.currentTarget as Element);
+    this.dragEventService.handleDragEvent(event, () => element.classList.add('drag'), () => element.classList.remove('drag'), () => this.receiveDrop(event, parentImageEntryId, entryTitle));
+  }
+
+  receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string) {
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    if (selectedImage) {
+      let element: Element = (event.currentTarget as Element);
+      element.classList.remove('drag');
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
   }

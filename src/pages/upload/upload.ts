@@ -1,3 +1,4 @@
+import { DragEventService } from './../../providers/drag-event-service';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
@@ -8,7 +9,7 @@ import { ModelService } from './../../providers/model-service';
 import { Entry } from './../../models/entry';
 import { UploadService } from './../../providers/upload-service';
 import { AuthService } from './../../providers/auth-service';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { NavController, ToastController, NavParams, Platform } from 'ionic-angular';
 import { Image } from '../../models/image';
 import { CameraService } from '../../providers/camera-service';
@@ -33,13 +34,15 @@ export class UploadPage {
   entryTitle: string;
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
+  showDragOverlay: boolean = false;
+  dragEventService: DragEventService = new DragEventService();
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
+    this.dragEventService.preventEventsOnBody(renderer);
   }
 
   ionViewDidLoad() {
@@ -142,9 +145,22 @@ export class UploadPage {
   }
 
   fileSelected(event: any) {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileList(event);
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
       this.image = selectedImage;
     }
   }
+
+  handleDragEvent(event: DragEvent) {
+    this.dragEventService.handleDragEvent(event, () => this.showDragOverlay = true, () => this.showDragOverlay = false, () => this.receiveDrop(event));
+  }
+
+  receiveDrop(event: DragEvent) {
+    this.showDragOverlay = false;
+    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    if (selectedImage) {
+      this.image = selectedImage;
+    }
+  }
+
 }

@@ -85,6 +85,39 @@ export class EntriesPageObject {
     expect(field.getText()).toMatch(new RegExp('^' + text));
   }
 
+  verifyDragoverlayVisible() {
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('drag'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  verifyDragoverlayInvisible() {
+    browser.wait(ExpectedConditions.invisibilityOf(element(by.className('drag'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  sendDropEvent() {
+    this.removeEventlistenerFromFilePicker();
+    this.pushEntriesGalleryButtonOnEntry34617();
+    this.createDropEvent();
+  }
+
+  removeEventlistenerFromFilePicker() {
+    this.entriesFileUpload.getAttribute('id').then(fileUploadId => Helpers.removeEventlistenerFromElement(fileUploadId));
+  }
+
+  createDragEnterEvent() {
+    this.entriesItem.getAttribute('id').then(entriesItemId => Helpers.sendDragEnterEventToElement(entriesItemId));
+  }
+
+  createDragLeaveEvent() {
+    this.entriesItem.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
+  }
+
+  createDropEvent() {
+    this.entriesFileUpload.getAttribute('id').then(
+      uploadId => this.entriesItem.getAttribute('id').then(
+        entriesId => Helpers.sendDragDropEventToElement(uploadId, entriesId)
+      ));
+  }
+
   waitEntriesPageLoaded() {
     this.waitIonViewDidLoad();
     this.waitIonViewDidEnter();
