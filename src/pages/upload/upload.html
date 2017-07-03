@@ -24,7 +24,7 @@
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-<ion-content id="content" (dragleave)="handleDragEvent($event)" (dragenter)="handleDragEvent($event)" (dragstart)="handleDragEvent($event)" (dragover)="handleDragEvent($event)" (drop)="handleDragEvent($event)">
+<ion-content (dragleave)="handleDragEvent($event)" (dragenter)="handleDragEvent($event)" (dragstart)="handleDragEvent($event)" (dragover)="handleDragEvent($event)" (drop)="handleDragEvent($event)">
   <div class="detail-switch" [ngSwitch]="uploadSegment">
     <div class="detail-image-container" *ngSwitchCase="'image'">
       <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
