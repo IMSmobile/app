@@ -52,7 +52,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
     expect(returnedImage).toEqual(referenceImage);
   }));
 
-  it('should return first image file list contains multiple files', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
+  it('should return first image file when list contains multiple files', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let fileName1 = 'file1.jpg';
     let fileName2 = 'file1.jpg';
     let fileURI = '/dev/0/';

@@ -81,7 +81,7 @@ describe('Provider: DragEventService', () => {
         expect(functionExecuted).toBeTruthy();
     });
 
-    it('should not execute leaveFunction if element not leaved', () => {
+    it('should not execute leaveFunction if element not left', () => {
         let service = new DragEventService();
         let enterEvent = new DragEventMock('dragenter');
         let leaveEvent = new DragEventMock('dragleave');
