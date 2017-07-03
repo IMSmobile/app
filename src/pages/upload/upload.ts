@@ -34,7 +34,7 @@ export class UploadPage {
   entryTitle: string;
   parentImageReferenceField: string;
   pictureFromCameraEnabled: boolean;
-  dragActive: boolean = false;
+  showDragOverlay: boolean = false;
   dragEventService: DragEventService = new DragEventService();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
@@ -152,24 +152,15 @@ export class UploadPage {
   }
 
   handleDragEvent(event: DragEvent) {
-    this.dragEventService.handleDragEvent(event, () => this.showDragOverlay(), () => this.hideDragOverlay(), () => this.receiveDrop(event));
+    this.dragEventService.handleDragEvent(event, () => this.showDragOverlay = true, () => this.showDragOverlay = false, () => this.receiveDrop(event));
   }
 
   receiveDrop(event: DragEvent) {
-    this.hideDragOverlay();
+    this.showDragOverlay = false;
     let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
       this.image = selectedImage;
     }
   }
-
-  showDragOverlay() {
-    this.dragActive = true;
-  }
-
-  hideDragOverlay() {
-    this.dragActive = false;
-  }
-
 
 }
