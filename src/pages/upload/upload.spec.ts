@@ -309,17 +309,17 @@ describe('Page: Upload', () => {
     let eventLeave = new DragEventMock('dragleave', element);
     page.handleDragEvent(eventEnter);
     page.handleDragEvent(eventEnter);
-    expect(page.dragActive).toBeTruthy();
+    expect(page.showDragOverlay).toBeTruthy();
     page.handleDragEvent(eventLeave);
     page.handleDragEvent(eventLeave);
-    expect(page.dragActive).toBeFalsy();
+    expect(page.showDragOverlay).toBeFalsy();
   });
 
   it('Should activate dragOverlay on dragenter event', () => {
     page.dragEventService = new DragEventService();
     let event = new DragEventMock('dragenter');
     page.handleDragEvent(event);
-    expect(page.dragActive).toBeTruthy();
+    expect(page.showDragOverlay).toBeTruthy();
   });
 
   it('Initialize BOOLEAN field type as false', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
