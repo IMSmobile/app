@@ -301,7 +301,7 @@ describe('Page: Upload', () => {
     expect(page.image).toEqual(oldImage);
   }));
 
-  it('Should deactivate dragOverlay on dragenter leave event', () => {
+  it('Should deactivate dragOverlay after dragenter and dragleave event', () => {
     page.dragEventService = new DragEventService();
     let element = document.createElement('div');
     element.id = 'a1';
