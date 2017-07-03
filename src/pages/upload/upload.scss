@@ -51,11 +51,8 @@ page-upload {
      color: color($colors, primary);
    }
 
-   h1 {
-    color: color($colors, primary);
-   }
-
    .drag-overlay {
+     color: color($colors, primary);
      position: absolute;
      top: 0;
      left: 0;
