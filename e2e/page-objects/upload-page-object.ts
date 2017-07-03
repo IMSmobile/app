@@ -15,6 +15,10 @@ export class UploadPageObject {
   integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
   floatfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=FLOATFELD]'));
   booleanFieldToggle: ElementFinder = element(by.css('ion-toggle[ng-reflect-name=BOOLEANNO]'));
+  dateTimeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATETIMEFELD]'));
+  dateInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATEFELD]'));
+  timeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=TIMEFELD]'));
+  ionDateTimeDoneButton: ElementFinder = element(by.css('ion-picker-cmp .picker-toolbar-button:not(.picker-toolbar-cancel) button'));
   uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
   uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
   uploadFieldErrorDivFLOATFELD: ElementFinder = element(by.id('uploadFieldErrorDivFLOATFELD'));
@@ -94,6 +98,13 @@ export class UploadPageObject {
     Helpers.waitUntilElementIsReady(textField);
     textField.sendKeys(protractor.Key.ENTER);
     browser.waitForAngular();
+  }
+
+  pickDefaultFromDateTimePicker(dateTimeField: ElementFinder) {
+    Helpers.waitUntilElementIsReady(dateTimeField);
+    dateTimeField.click();
+    Helpers.waitUntilElementIsReady(this.ionDateTimeDoneButton);
+    this.ionDateTimeDoneButton.click();
   }
 
   verifyBildNameErrorDivVisible() {

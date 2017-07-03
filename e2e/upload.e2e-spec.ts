@@ -114,4 +114,16 @@ describe('Upload E2E Test', () => {
     uploadPage.clickUploadImageButton();
     uploadPage.verifyToastMessage();
   });
+
+  it('Should receive properly formatted date and time values', () => {
+    settingImageFieldsPageObject.loadPage();
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldDATETIMEFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldDATEFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldTIMEFELDToggle);
+    uploadPage.reloadPage();
+    uploadPage.pickDefaultFromDateTimePicker(uploadPage.dateTimeInput);
+    uploadPage.pickDefaultFromDateTimePicker(uploadPage.dateInput);
+    uploadPage.pickDefaultFromDateTimePicker(uploadPage.timeInput);
+    // TODO: verify fields values have the correct format
+  });
 });
