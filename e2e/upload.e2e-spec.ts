@@ -115,7 +115,7 @@ describe('Upload E2E Test', () => {
     uploadPage.verifyToastMessage();
   });
 
-  it('Should receive properly formatted date and time values', () => {
+  it('Should receive properly formatted date and time values from datetime picker', () => {
     settingImageFieldsPageObject.loadPage();
     Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldDATETIMEFELDToggle);
     Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldDATEFELDToggle);
@@ -124,6 +124,8 @@ describe('Upload E2E Test', () => {
     uploadPage.pickDefaultFromDateTimePicker(uploadPage.dateTimeInput);
     uploadPage.pickDefaultFromDateTimePicker(uploadPage.dateInput);
     uploadPage.pickDefaultFromDateTimePicker(uploadPage.timeInput);
-    // TODO: verify fields values have the correct format
+    uploadPage.verifyDateTimeDisplayValue();
+    uploadPage.verifyDateDisplayValue();
+    uploadPage.verifyTimeDisplayValue();
   });
 });
