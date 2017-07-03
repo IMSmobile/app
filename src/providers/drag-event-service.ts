@@ -17,7 +17,6 @@ export class DragEventService {
       case 'dragover': this.dragover(event); break;
       case 'dragenter': this.dragenter(event, enterFunction); break;
       case 'dragleave': this.dragleave(event, leaveFunction); break;
-      case 'dragexit': this.dragexit(event); break;
       case 'drop' : this.drop(event, dropFunction); break;
       default: throw new Error('Invalid drag event type: ' + event.type);
     }
@@ -42,10 +41,6 @@ export class DragEventService {
     let element: Element = (event.currentTarget as Element);
     this.dragEventCounter.dec(element.id);
     this.dragEventCounter.callIfLastEvent(element.id, leaveFunction);
-  }
-
-  private dragexit(event: DragEvent) {
-    // nothing to do
   }
 
   private drop(event: DragEvent, dropFunction: Function) {

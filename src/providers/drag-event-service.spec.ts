@@ -55,16 +55,6 @@ describe('Provider: DragEventService', () => {
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
 
-    it('should prevent standard action for dragexit', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('dragexit');
-        spyOn(event, 'preventDefault').and.returnValue(null);
-        spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(event, null, null, null);
-        expect(event.preventDefault).toHaveBeenCalledTimes(1);
-        expect(event.stopPropagation).toHaveBeenCalledTimes(1);
-    });
-
     it('should execute enterFunction on first dragenter', () => {
         let service = new DragEventService();
         let event = new DragEventMock('dragenter');
