@@ -9,7 +9,7 @@ export class UploadPageObject {
   entriesPage = new EntriesPageObject();
   bildNameFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=BILDNAME]'));
   uploadImageButton: ElementFinder = element(by.id('uploadImageButton'));
-  ionContent: ElementFinder = element(by.tagName('ion-content'));
+  contentDiv: ElementFinder = element(by.id('content'));
   memofeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=MEMOFELD]'));
   textfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=TEXTFELD]'));
   integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
@@ -66,11 +66,11 @@ export class UploadPageObject {
   }
 
   createDragEnterEvent() {
-    this.ionContent.getAttribute('id').then(entriesItemId => Helpers.sendDragEnterEventToElement(entriesItemId));
+    this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragEnterEventToElement(entriesItemId));
   }
 
   createDragLeaveEvent() {
-    this.ionContent.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
+    this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
   }
 
   sendDropEvent() {
@@ -85,7 +85,7 @@ export class UploadPageObject {
 
   createDropEvent() {
     this.fileUpload.getAttribute('id').then(
-      sourceFileInputId => this.ionContent.getAttribute('id').then(
+      sourceFileInputId => this.contentDiv.getAttribute('id').then(
         targetId => Helpers.sendDragDropEventToElement(sourceFileInputId, targetId)
       ));
   }
