@@ -4,10 +4,10 @@ Freitag, 17.03.2017 11:00-12:05 bei Imagic Bildverarbeitungs AG, Glattbrugg
 
 ## Teilnehmer
 Imagic: Urs Gomez, Patrik Wermelinger  
-IMS Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky, Michael Leu
+Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky, Michael Leu
 
 ## Traktanden
-- Feedback einholen zu Stakeholders und Anforderungen in der [Spezifikation IMS Mobile Clent@958e9e1](https://github.com/IMSmobile/app/blob/958e9e116a4184dd0b9abfa13f6da6fcd830ac14/docs/spec.md)
+- Feedback einholen zu Stakeholders und Anforderungen in der [Spezifikation Mobile Clent@958e9e1](https://github.com/IMSmobile/app/blob/958e9e116a4184dd0b9abfa13f6da6fcd830ac14/docs/spec.md)
 
 ## Protokoll
 

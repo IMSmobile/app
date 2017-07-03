@@ -4,17 +4,17 @@ Dienstag, 28.03.2017 16:00-18:30 bei PIC Systems AG, Glattbrugg
 
 ## Teilnehmer
 PIC Systems: Marcel Bachmann, Michael Bachmann  
-IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden  
+Mobile Client Entwickler: Michael Leu, Sandro Zbinden  
 
 ## Traktanden
 - Referenzgerät iOS
-- Besprechen Feedback von Kunden und PIC Systems zu den Anforderungen in der [Spezifikation IMS Mobile Client](https://github.com/IMSmobile/app/blob/master/docs/spec.md)
+- Besprechen Feedback von Kunden und PIC Systems zu den Anforderungen in der [Spezifikation Mobile Client](https://github.com/IMSmobile/app/blob/master/docs/spec.md)
 - Besprechen der Antworten im [Fragenkatalog](https://github.com/IMSmobile/app/blob/master/docs/questions.md)
 
 ## Protokoll
 
 ### Referenzgerät iOS (16:00-16:10)
-- IMS Mobile Client Entwickler haben kein modernes iPhone zur Hand. Gewünscht wäre eine Leihgabe eines iPhone 6 für die Dauer des Projekts. → Marcel klärt es PIC System intern ab. 
+- Mobile Client Entwickler haben kein modernes iPhone zur Hand. Gewünscht wäre eine Leihgabe eines iPhone 6 für die Dauer des Projekts. → Marcel klärt es PIC System intern ab. 
 
 ### Diskussion Feedback funktionale Anforderungen (16:10-17:25)
 
@@ -25,12 +25,12 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
   - Direkt aufgenommenes Bild darf nicht in der Standard-Galerie des Smartphones auftauchen. → Als neue muss Anforderung aufnehmen.
   - Direkt aufgenommene Bilder müssen verschlüsselt abgespeichert werden. → Als neue Anforderung "Direkt aufgenommene Bilder können nicht einfach zugänglich sein" aufnehmen.
   
-- FA6 (Fallauswahl): Keine Anforderung von PIC Systems. → Die Anforderung bleibt damit IMS Mobile Client weiterhin generisch ist.
-- Ergänzung zu FA6 (Fallauswahl): Aufruf des IMS Mobile Client von anderen Apps ist Voraussetzung für den Einsatz bei Polizeieinheiten. → Als neue Anforderung "Navigation zu einem bestimmten Tabellen-Entry im IMS Mobile Client soll mit einem bestimmten Start-Parameter möglich sein" aufnehmen und hoch priorisieren.
+- FA6 (Fallauswahl): Keine Anforderung von PIC Systems. → Die Anforderung bleibt damit der Mobile Client weiterhin generisch ist.
+- Ergänzung zu FA6 (Fallauswahl): Aufruf des Mobile Clients von anderen Apps ist Voraussetzung für den Einsatz bei Polizeieinheiten. → Als neue Anforderung "Navigation zu einem bestimmten Tabellen-Entry im Mobile Client soll mit einem bestimmten Start-Parameter möglich sein" aufnehmen und hoch priorisieren.
 
 - FA15 (Browser): Wird für den internen Einsatz bei Kunden gewünscht. Die vollständige Funktionalität kann einen grossen Aufwand bedeuten. → Neue zusätzliche Anforderung "Ein Upload (FA1) soll auch mit einem Browser möglich sein" aufnehmen.
 
-- FA16 (Direktupload): Daten dürfen im IMS Mobile Client gespeichert werden. → PIC Systems als Quelle streichen.
+- FA16 (Direktupload): Daten dürfen im Mobile Client gespeichert werden. → PIC Systems als Quelle streichen.
 
 - FA24 (Filter): Für PIC Systems unnötig weil ihre Kunden aus anderen Apps direkt zum Fall navigieren. → Anforderung bleibt weil notwendig für Imagic.
 
@@ -58,7 +58,7 @@ IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 
 - Ergänzung zu NF2 (IPA File): Die Verteilung mittels Mobile Device Management kann nicht garantiert werden. → Neue Anforderung "muss fertiges IPA und APK abliefern" aufnehmen.
 
-- NF5 (Offline): Erwartung ist dass gesamte Liste der Fälle im IMS Mobile Client gecached wird. → Anforderung als kann wieder aufnehmen.
+- NF5 (Offline): Erwartung ist dass gesamte Liste der Fälle im Mobile Client gecached wird. → Anforderung als kann wieder aufnehmen.
 
 - NF6 (Verschlüsselung): Muss statt soll. → Anforderung anpassen.
 

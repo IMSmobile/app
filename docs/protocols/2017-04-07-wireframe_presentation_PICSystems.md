@@ -5,7 +5,7 @@ Freitag, 07.04.2017 13:00-14:00 bei PIC Systems AG, Glattbrugg
 ## Teilnehmer
 
 PIC Systems: Marcel Bachmann, Adrian Martin, Michael Bachmann  
-IMS Mobile Client Entwickler: Niklaus Tschirky, Sandro Zbinden
+Mobile Client Entwickler: Niklaus Tschirky, Sandro Zbinden
 
 ## Traktanden
 - Spezifikationen
@@ -19,7 +19,7 @@ IMS Mobile Client Entwickler: Niklaus Tschirky, Sandro Zbinden
 - Grundsätzlich wird ein neuer Fall im myAbi eröffnet, wenn eine Meldung eintrifft. Je nach Verlauf (z.B. nichts passiert, Einbruchsspuren) werden Fotos dazu aufgenommen.
 - Grundsätzlich verwenden alle Korps iOS, jedoch ist eine Windows 10 Variante auch vorgesehen (auf Surface-Tablets). Dies unterstreicht die Wichtigkeit für den Webbrowserunterstützung.
 
-Meeting von PIC System mit Logobject (Hersteller von myAbi) am 24. April. Dabei geht es um eine mögliche Verbindung der myAbi-App zum IMS Mobile Client. Hohe Wichtigkeit, da myAbi eventuell auch ein Konkurrenzprodukt einführen könnte. Abstimmung im Team bezüglich Startparameter nochmals notwendig → als Issue #164 aufgenommen.
+Meeting von PIC System mit Logobject (Hersteller von myAbi) am 24. April. Dabei geht es um eine mögliche Verbindung der myAbi-App zum Mobile Client. Hohe Wichtigkeit, da myAbi eventuell auch ein Konkurrenzprodukt einführen könnte. Abstimmung im Team bezüglich Startparameter nochmals notwendig → als Issue #164 aufgenommen.
 
 ### Wireframe Präsentation durch Sandro (13:15-13:40)
 Fragen von PIC System:

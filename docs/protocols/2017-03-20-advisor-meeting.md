@@ -4,7 +4,7 @@ Montag, 20.03.2017 18:00-19:30 bei Restaurant Atrio, Zürich Hauptbahnhof
 
 ## Teilnehmer
 Betreuer: Roland Weber  
-IMS Mobile Client Entwickler: Michael Leu, Sandro Zbinden
+Mobile Client Entwickler: Michael Leu, Sandro Zbinden
 
 ## Traktanden
 - Feedback einholen zum aktuellen Stands Projekts
