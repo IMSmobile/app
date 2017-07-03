@@ -329,7 +329,7 @@ describe('Page: Entries', () => {
 
 
   it('Should not go to uploadpage after receiving no dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
-    let event: DragEvent = new DragEventMock('drop', document.createElement('div'));
+    let event: DragEvent = new DragEventMock('drop');
     let parentImageEntryId = '1';
     let entryTitle = 'title';
     spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
