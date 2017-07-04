@@ -88,7 +88,7 @@ export class ImsService {
     });
   }
   private findImageTable(tableEntry: ArchiveTableEntry): boolean {
-    return tableEntry.uploadHref != null;
+    return tableEntry.uploadHref !== null;
   }
 
   private findParentImageTable(archiveEntry: ArchiveEntry): ArchiveTableEntry {

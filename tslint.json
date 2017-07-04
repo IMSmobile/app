@@ -54,6 +54,7 @@
     "no-angle-bracket-type-assertion": true,
     "no-irregular-whitespace": true,
     "no-trailing-whitespace": true,
+    "triple-equals": true,
     "one-line": [
       true,
       "check-catch",

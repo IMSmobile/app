@@ -89,7 +89,7 @@ export class EntriesPage {
   }
 
   infiniteEntries(infiniteScroll) {
-    if (this.nextPage == null) {
+    if (this.nextPage === null) {
       infiniteScroll.enable(false);
     } else {
       this.entriesService.getEntries(this.authService.currentCredential, this.nextPage).subscribe(

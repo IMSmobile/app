@@ -73,7 +73,7 @@ export class SettingService {
   }
 
   isShowRestUrlField(): Observable<boolean> {
-    return this.readKey(this.isShowRestUrlFieldKey).map(val => val == null ? this.isShowRestUrlFieldDefault : val);
+    return this.readKey(this.isShowRestUrlFieldKey).map(val => val === null ? this.isShowRestUrlFieldDefault : val);
   }
 
   isPictureFromCameraEnabled(): boolean {

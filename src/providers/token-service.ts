@@ -18,7 +18,7 @@ export class TokenService {
   }
 
   getToken(credential: Credential): Observable<Token> {
-    if (this.token != null && new Date() < new Date(this.token.licenseExpirationDate)) {
+    if (this.token !== null && new Date() < new Date(this.token.licenseExpirationDate)) {
       return Observable.of(this.token);
     } else {
       return this.loadTokenFromServer(credential).map(t => this.cacheToken(t));
