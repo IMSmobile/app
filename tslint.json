@@ -5,7 +5,8 @@
   "rules": {
     "align": [
       true,
-      "statements"
+      "statements",
+      "parameters"
     ],
     "indent": [
       true,
@@ -17,6 +18,53 @@
       "public-before-private",
       "static-before-instance",
       "variables-before-functions"
+    ],
+    "adjacent-overload-signatures": true,
+    "no-internal-module": true,
+    "no-namespace": true,
+    "no-var-requires": true,
+    "curly": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-console": [
+      true
+    ],
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-variable": true,
+    "no-eval": true,
+    "no-for-in-array": true,
+    "no-invalid-this": true,
+    "no-shadowed-variable": true,
+    "no-sparse-arrays": true,
+    "no-switch-case-fall-through": true,
+    "no-unsafe-finally": true,
+    "no-unused-expression": true,
+    "no-unused-variable": true,
+    "no-use-before-declare": true,
+    "radix": true,
+    "use-isnan": true,
+    "eofline": true,
+    "no-default-export": true,
+    "no-mergeable-namespace": true,
+    "no-require-imports": true,
+    "class-name": true,
+    "new-parens": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-irregular-whitespace": true,
+    "no-trailing-whitespace": true,
+    "one-line": [
+      true,
+      "check-catch",
+      "check-finally",
+      "check-else"
+    ],
+    "one-variable-per-declaration": [
+      true
+    ],
+    "whitespace": [
+      true
     ],
     "no-var-keyword": true
   }
