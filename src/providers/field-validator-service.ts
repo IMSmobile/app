@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class FieldValidatorService {
 
-  validationMessages = {
+  validationMessages: any = {
     'required': 'Feld muss zwingend ausgefüllt werden.',
     'not a number': 'Nur Zahlen erlaubt.',
     'not a whole number': 'Nur Ganzzahlen erlaubt.'

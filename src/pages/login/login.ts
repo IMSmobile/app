@@ -31,7 +31,7 @@ export class LoginPage {
     });
   }
 
-  login() {
+  login(): void {
     if (this.loginForm.invalid) {
       this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
@@ -47,14 +47,14 @@ export class LoginPage {
     return new Credential(server, user, password);
   }
 
-  loginSuccessful() {
+  loginSuccessful(): void {
     let credential: Credential = this.createCredential();
     this.settingService.setRestUrl(credential.server);
     this.settingService.setUsername(credential.username);
-    this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); } );
+    this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); });
   }
 
-  navigateAfterLogin(filter: Filter) {
+  navigateAfterLogin(filter: Filter): void {
     if (filter) {
       this.authService.setArchive(filter);
       this.navCtrl.setRoot(EntriesPage);
@@ -63,7 +63,7 @@ export class LoginPage {
     }
   }
 
-  loginFailed(response: Response) {
+  loginFailed(response: Response): void {
     if (response.status === 401) {
       throw new ImsAuthenticationError(response);
     } else {
@@ -71,7 +71,7 @@ export class LoginPage {
     }
   }
 
-  showToastMessage(toastMessage: string) {
+  showToastMessage(toastMessage: string): void {
     let toast = this.toastCtrl.create({
       message: toastMessage,
       duration: 3000,
@@ -79,7 +79,7 @@ export class LoginPage {
     toast.present();
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(): void {
     this.settingService.getRestUrl().subscribe(val => this.loginForm.controls['server'].setValue(val));
     this.settingService.getUsername().subscribe(val => this.loginForm.controls['user'].setValue(val));
     this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);

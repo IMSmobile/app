@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BrowserFileuploadSelectorService {
 
-  allowedFileTypes = [ 'image/jpeg', 'image/png' ];
+  allowedFileTypes: [string] = [ 'image/jpeg', 'image/png' ];
 
   getImageFromFilePicker(event: any): Image | undefined {
     let image = this.getImageFromFileList(event.target.files);

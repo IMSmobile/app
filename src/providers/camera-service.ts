@@ -41,7 +41,7 @@ export class CameraService {
     return Observable.fromPromise(this.camera.getPicture(this.galleryOptions)).map(imageSrc => new Image('GalleryPhoto.jpeg', imageSrc));
   }
 
-  public handleError(error: (string | number)) {
+  public handleError(error: (string | number)): void {
     if (this.ignoredErrors.indexOf(error) === -1) {
       throw new CameraError(error);
     }

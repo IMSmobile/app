@@ -17,7 +17,7 @@ export class SettingImageFieldsPage {
 
   constructor(public loadingService: LoadingService, public authService: AuthService, public modelService: ModelService, public settingService: SettingService) { }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(): void {
     this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive),
       tableFields => {
         this.tableName = tableFields.name;
@@ -30,7 +30,7 @@ export class SettingImageFieldsPage {
       });
   }
 
-  fieldToggled(field: MetadataField) {
+  fieldToggled(field: MetadataField): void {
     this.settingService.setFieldState(this.authService.archive, this.tableName, field.name, field.active);
   }
 }

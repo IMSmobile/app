@@ -10,7 +10,7 @@ export class LoadingService {
 
   constructor(public loadingCtrl: LoadingController) { }
 
-  subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void) {
+  subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void): void {
     this.showLoading();
     observable.subscribe(
       succ => {
@@ -24,7 +24,7 @@ export class LoadingService {
       });
   }
 
-  showLoading() {
+  showLoading(): void {
     if (this.concurrentLoadings === 0) {
       this.loading = this.loadingCtrl.create({
         content: 'Bitte warten...'
@@ -34,7 +34,7 @@ export class LoadingService {
     this.concurrentLoadings = this.concurrentLoadings + 1;
   }
 
-  hideLoading() {
+  hideLoading(): void {
     if (this.concurrentLoadings === 1) {
       this.loading.dismiss();
     }

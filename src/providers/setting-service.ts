@@ -16,20 +16,20 @@ export class SettingService {
   filterKeyPrefix: string = 'filter';
   isShowRestUrlFieldKey: string = 'isShowRestUrlField';
   isShowRestUrlFieldDefault: boolean = true;
-  fieldPathSeparator = '.';
+  fieldPathSeparator: string = '.';
 
   constructor(public storage: Storage) {
   }
 
-  setRestUrl(restUrl: string) {
+  setRestUrl(restUrl: string): void {
     this.storeSetting(this.restUrlKey, restUrl);
   }
 
-  setUsername(username: string) {
+  setUsername(username: string): void {
     this.storeSetting(this.usernameKey, username);
   }
 
-  setFilter(server: string, user: string, filter: Filter) {
+  setFilter(server: string, user: string, filter: Filter): void {
     this.storeSetting(this.getFilterKey(server, user), filter);
   }
 
@@ -48,15 +48,15 @@ export class SettingService {
     return this.readKey(this.getFieldKey(archive, table, field));
   }
 
-  setFieldState(archive: string, table: string, field: string, isActive: boolean) {
+  setFieldState(archive: string, table: string, field: string, isActive: boolean): void {
     this.storeSetting(this.getFieldKey(archive, table, field), isActive);
   }
 
-  getFieldKey(archive: string, table: string, field: string) {
+  getFieldKey(archive: string, table: string, field: string): string {
     return [archive, table, field].join(this.fieldPathSeparator);
   }
 
-  setShowRestUrlField(isShowRestUrlField: boolean) {
+  setShowRestUrlField(isShowRestUrlField: boolean): void {
     this.storeSetting(this.isShowRestUrlFieldKey, isShowRestUrlField);
   }
 

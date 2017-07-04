@@ -8,7 +8,7 @@ describe('Validator: Field Validator Provider', () => {
 
   let fieldValidator;
 
-  beforeEach(function () {
+  beforeEach(() => {
     fieldValidator = new FieldValidatorService();
   });
 

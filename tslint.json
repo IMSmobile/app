@@ -66,6 +66,12 @@
     "whitespace": [
       true
     ],
-    "no-var-keyword": true
+    "no-var-keyword": true,
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "member-variable-declaration"
+    ]
   }
 }

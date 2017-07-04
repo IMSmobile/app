@@ -24,19 +24,6 @@ export class TransferBlobObjectMock {
 
 }
 
-export class TransferBlobMock {
-  http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
-  create() {
-    return new TransferBlobObjectMock(this.http);
-  }
-
-}
-
 function getImage(): Blob {
   let base64 =
     'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB1klEQVR42n2TzytEURTHv3e8N1joRhZG' +
@@ -53,7 +40,7 @@ function getImage(): Blob {
   return new Blob([binary], { type: 'image/png' });
 }
 
-function fixBinary(bin: string) {
+function fixBinary(bin: string): ArrayBuffer {
   let length = bin.length;
   let buf = new ArrayBuffer(length);
   let arr = new Uint8Array(buf);
@@ -61,4 +48,17 @@ function fixBinary(bin: string) {
     arr[i] = bin.charCodeAt(i);
   }
   return buf;
+}
+
+export class TransferBlobMock {
+  http: Http;
+
+  constructor(http: Http) {
+    this.http = http;
+  }
+
+  create(): TransferBlobObjectMock {
+    return new TransferBlobObjectMock(this.http);
+  }
+
 }
