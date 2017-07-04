@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera';
 import { BrowserFileuploadSelectorService } from './../providers/browser-fileupload-selector-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
@@ -83,8 +84,8 @@ const cloudSettings: CloudSettings = {
     StatusBar,
     SplashScreen,
     IonicStorageModule,
+    Camera,
     AppProviders.getTransferProvider(),
-    AppProviders.getCameraProvider(),
     AppProviders.getContainerUploadServiceProvider(),
     AppProviders.getSettingServiceProvider(),
     EntriesService,

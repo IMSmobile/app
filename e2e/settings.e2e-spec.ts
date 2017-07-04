@@ -1,9 +1,8 @@
 import { Helpers } from './helpers/helpers';
-import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
+import { browser, ExpectedConditions} from 'protractor';
 import { SettingsPageObject } from './page-objects/settings-page-object';
 import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { LoginPageObject } from './page-objects/login-page-object';
-import { EntriesPageObject } from './page-objects/entries-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Settings E2E Test', () => {
@@ -11,7 +10,6 @@ describe('Settings E2E Test', () => {
   let originalTimeout;
   let settingsPage = new SettingsPageObject();
   let loginPage = new LoginPageObject();
-  let entriesPage = new EntriesPageObject();
   let uploadPage = new UploadPageObject();
   let settingImageFieldsPage = new SettingImageFieldsPageObject();
 

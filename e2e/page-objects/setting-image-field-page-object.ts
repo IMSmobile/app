@@ -1,7 +1,6 @@
 import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
+import { browser, element, by, ElementFinder, ExpectedConditions, ElementArrayFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
-import { Observable } from 'rxjs/Observable';
 import { SettingsPageObject } from './settings-page-object';
 
 export class SettingImageFieldsPageObject {

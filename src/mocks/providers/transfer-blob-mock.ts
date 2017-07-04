@@ -3,19 +3,6 @@ import { Http, Headers, Response } from '@angular/http';
 import { FileUploadResultMock } from './transfer-mock';
 import 'rxjs/add/operator/toPromise';
 
-export class TransferBlobMock {
-  http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
-  create() {
-    return new TransferBlobObjectMock(this.http);
-  }
-
-}
-
 export class TransferBlobObjectMock {
   http: Http;
 
@@ -33,6 +20,19 @@ export class TransferBlobObjectMock {
     result.headers = response.headers;
     result.responseCode = response.status;
     return result;
+  }
+
+}
+
+export class TransferBlobMock {
+  http: Http;
+
+  constructor(http: Http) {
+    this.http = http;
+  }
+
+  create() {
+    return new TransferBlobObjectMock(this.http);
   }
 
 }

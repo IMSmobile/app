@@ -1,7 +1,6 @@
 import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
+import { browser, element, by, ElementFinder, promise, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
-import { Observable } from 'rxjs/Observable';
 
 export class LoginPageObject {
   server: string = 'https://sinv-56028.edu.hsr.ch';
