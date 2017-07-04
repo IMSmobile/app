@@ -9,7 +9,6 @@ export class SettingArchivePageObject {
   loadArchiveButtonims_med_test_43: ElementFinder = element(by.id('loadArchiveButtonims_med_test_43'));
   archiveSelectionLogoutButton: ElementFinder = element(by.id('archiveSelectionLogoutButton'));
 
-
   loadPage() {
     this.loginPage.login();
   }

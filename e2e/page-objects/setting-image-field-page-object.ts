@@ -49,7 +49,4 @@ export class SettingImageFieldsPageObject {
     toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
   }
 
-
-
 }
-

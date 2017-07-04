@@ -1,9 +1,7 @@
 import { Credential } from './credential';
 import { ImsFileUploadHeaders } from './ims-file-upload-headers';
 
-
 describe('Model: ImsFileUploadHeader', () => {
-
 
   it('Should quote filename', () => {
     let fileName = 'file with space.jpg';
