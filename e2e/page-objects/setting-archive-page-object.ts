@@ -1,7 +1,6 @@
 import { LoginPageObject } from './login-page-object';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
+import { element, by, ElementFinder, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
-import { Observable } from 'rxjs/Observable';
 import { Helpers } from '../helpers/helpers';
 
 export class SettingArchivePageObject {

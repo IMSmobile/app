@@ -1,11 +1,10 @@
 import { LoginPageObject } from './page-objects/login-page-object';
-import { browser, element, by, ElementFinder } from 'protractor';
 
 let loginPage = new LoginPageObject();
 
 describe('Login E2E Test', () => {
 
-  var originalTimeout;
+  let originalTimeout;
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;

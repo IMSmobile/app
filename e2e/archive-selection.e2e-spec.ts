@@ -1,11 +1,10 @@
 import { Helpers } from './helpers/helpers';
 import { SettingArchivePageObject } from './page-objects/setting-archive-page-object';
-import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
+import { browser, ExpectedConditions } from 'protractor';
 import { SettingsPageObject } from './page-objects/settings-page-object';
 import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { LoginPageObject } from './page-objects/login-page-object';
 import { EntriesPageObject } from './page-objects/entries-page-object';
-import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Archive Selection E2E Test', () => {
 
@@ -14,7 +13,6 @@ describe('Archive Selection E2E Test', () => {
   let loginPage = new LoginPageObject();
   let entriesPage = new EntriesPageObject();
   let settingsPage = new SettingsPageObject();
-  let uploadPage = new UploadPageObject();
   let settingImageFieldsPage = new SettingImageFieldsPageObject();
 
   beforeEach(function () {
