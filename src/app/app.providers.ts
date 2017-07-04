@@ -13,18 +13,6 @@ import { Camera } from '@ionic-native/camera';
 
 export class AppProviders {
 
-  public static getCameraProvider(): Provider {
-    return {
-      provide: Camera, useFactory: (platform: Platform) => {
-        if (this.deviceRunningCordova(platform)) {
-          return new Camera();
-        } else {
-          return new CameraMock();
-        }
-      }, deps: [Platform]
-    };
-  }
-
   public static getTransferProvider(): Provider {
     return {
       provide: Transfer, useFactory: (http: Http, platform: Platform) => {
