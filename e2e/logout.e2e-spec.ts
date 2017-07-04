@@ -1,5 +1,5 @@
 import { SettingsPageObject } from './page-objects/settings-page-object';
-import { browser, element, by, ElementFinder, protractor, $, ExpectedConditions } from 'protractor';
+import { browser } from 'protractor';
 import { LoginPageObject } from './page-objects/login-page-object';
 
 describe('Logout E2E Test', () => {
@@ -36,12 +36,3 @@ describe('Logout E2E Test', () => {
     loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));
   });
 });
-
-function waitUntilElementsAreClickable() {
-  browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-  browser.sleep(1000);
-}
-
-function waitUntilPageReady() {
-  browser.sleep(2000);
-}

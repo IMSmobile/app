@@ -1,10 +1,8 @@
 import { Helpers } from './../helpers/helpers';
 import { LoginPageObject } from './login-page-object';
 import { SettingArchivePageObject } from './setting-archive-page-object';
-import { SettingArchivePage } from './../../src/pages/setting-archive/setting-archive';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, ElementArrayFinder } from 'protractor';
+import { browser, element, by, ElementFinder, ElementArrayFinder, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
-import { Observable } from 'rxjs/Observable';
 
 export class EntriesPageObject {
   settingsButton: ElementFinder = element(by.id('settingsButton'));

@@ -1,8 +1,6 @@
 import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, protractor } from 'protractor';
+import { browser, element, by, ElementFinder, ExpectedConditions, protractor } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
-import { Observable } from 'rxjs/Observable';
-import { LoginPageObject } from './login-page-object';
 import { EntriesPageObject } from './entries-page-object';
 
 export class UploadPageObject {
