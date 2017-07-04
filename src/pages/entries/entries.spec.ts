@@ -30,7 +30,6 @@ import { UploadPage } from '../upload/upload';
 import 'rxjs/add/observable/throw';
 import { SettingsPage } from '../settings/settings';
 
-
 describe('Page: Entries', () => {
 
   let fixture: ComponentFixture<EntriesPage> = null;
@@ -292,7 +291,6 @@ describe('Page: Entries', () => {
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
   });
 
-
   it('should add drag class on element with first dragenter event', () => {
     page.dragEventService = new DragEventService();
     let event = new DragEventMock('dragenter');
@@ -315,7 +313,6 @@ describe('Page: Entries', () => {
     expect(element.classList.contains('drag')).toBeFalsy();
   });
 
-
   it('Should go to uploadpage after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let event = new DragEventMock('drop');
     let droppedImage = new Image('picture.jpg', '/my/picture.jpg');
@@ -326,7 +323,6 @@ describe('Page: Entries', () => {
     page.receiveDrop(event, parentImageEntryId, entryTitle);
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(droppedImage, parentImageEntryId, entryTitle);
   }));
-
 
   it('Should not go to uploadpage after receiving no dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     let event: DragEvent = new DragEventMock('drop');

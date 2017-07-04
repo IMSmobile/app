@@ -89,7 +89,6 @@ export class UploadPage {
     }
   }
 
-
   public takePicture() {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),

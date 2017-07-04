@@ -72,4 +72,3 @@ describe('Entries E2E Test', () => {
     uploadPage.verifyPageLoaded();
   });
 });
-
