@@ -5,11 +5,9 @@ import { BrowserContainerUploadService } from './../providers/browser-container-
 import { ContainerUploadService } from './../providers/container-upload-service';
 import { Http } from '@angular/http';
 import { TransferBlobMock } from './../mocks/providers/transfer-blob-mock';
-import { CameraMock } from './../mocks/providers/camera-mock';
 import { Transfer } from '@ionic-native/transfer';
 import { Provider } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera';
 
 export class AppProviders {
 
