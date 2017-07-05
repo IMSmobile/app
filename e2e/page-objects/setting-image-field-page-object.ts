@@ -4,7 +4,7 @@ import { Helpers } from './../helpers/helpers';
 import { SettingsPageObject } from './settings-page-object';
 
 export class SettingImageFieldsPageObject {
-  settingsPage = new SettingsPageObject();
+  settingsPage: SettingsPageObject = new SettingsPageObject();
   settingsImageFieldSearchbar: ElementFinder = element(by.css('input.searchbar-input'));
   settingsImageFieldDisplayedFields: ElementArrayFinder = element.all(by.className('fieldItem'));
   settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
@@ -14,37 +14,37 @@ export class SettingImageFieldsPageObject {
   settingsImageFieldINTEGERFELDToggle: ElementFinder = element(by.id('settingsImageFieldINTEGERFELDToggle'));
   settingsImageFieldFLOATFELDToggle: ElementFinder = element(by.id('settingsImageFieldFLOATFELDToggle'));
 
-  loadPage() {
+  loadPage(): void {
     this.settingsPage.loadPage();
     this.settingsPage.pushToSettingImageFieldsPage();
   }
 
-  reloadPage() {
+  reloadPage(): void {
     this.settingsPage.reloadPage();
     this.settingsPage.pushToSettingImageFieldsPage();
   }
 
-  filterFields(filter: string) {
+  filterFields(filter: string): void {
     Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
     this.settingsImageFieldSearchbar.clear();
     this.settingsImageFieldSearchbar.sendKeys(filter);
     Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
   }
 
-  verifyFieldsDisplayed(count: number) {
+  verifyFieldsDisplayed(count: number): void {
     this.settingsImageFieldDisplayedFields.count().then(actualCount => expect(actualCount).toBe(count));
   }
 
-  verifyToggleActive(toggleField: ElementFinder) {
+  verifyToggleActive(toggleField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(toggleField);
     toggleField.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
   }
 
-  verifyToggleAbsent(toggleField: ElementFinder) {
+  verifyToggleAbsent(toggleField: ElementFinder): void {
     browser.wait(ExpectedConditions.stalenessOf(toggleField), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyToggleInactive(toggleField: ElementFinder) {
+  verifyToggleInactive(toggleField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(toggleField);
     toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
   }

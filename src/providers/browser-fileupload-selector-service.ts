@@ -5,7 +5,7 @@ import { Image } from './../models/image';
 @Injectable()
 export class BrowserFileuploadSelectorService {
 
-  allowedFileTypes = [ 'image/jpeg', 'image/png' ];
+  allowedFileTypes: [string] = [ 'image/jpeg', 'image/png' ];
 
   getImageFromFilePicker(event: any): Image | undefined {
     const image = this.getImageFromFileList(event.target.files);

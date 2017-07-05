@@ -19,23 +19,23 @@ export class SettingsPage {
     this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);
   }
 
-  public notify() {
+  public notify(): void {
     this.settingService.setShowRestUrlField(this.isShowRestUrlField);
   }
 
-  loadImageFieldSettings() {
+  loadImageFieldSettings(): void {
     this.navCtrl.push(SettingImageFieldsPage);
   }
 
-  loadEntriesListFieldSettings() {
+  loadEntriesListFieldSettings(): void {
     this.navCtrl.push(SettingEntriesFieldsPage);
   }
 
-  loadArchiveSettings() {
+  loadArchiveSettings(): void {
     this.navCtrl.push(SettingArchivePage);
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.navCtrl.setRoot(LoginPage);
   }

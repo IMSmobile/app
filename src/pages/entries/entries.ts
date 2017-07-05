@@ -1,6 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import { InfiniteScroll, NavController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { Entries } from '../../models/entries';
 import { Entry } from '../../models/entry';
@@ -38,14 +38,14 @@ export class EntriesPage {
     this.dragEventService.preventEventsOnBody(renderer);
   }
 
-  public takePictureForEntry(parentImageEntryId: string, entryTitle: string) {
+  public takePictureForEntry(parentImageEntryId: string, entryTitle: string): void {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
       image => this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle),
       err => this.cameraService.handleError(err));
   }
 
-  public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
+  public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string): void {
     if (this.platform.is('core')) {
       const fileUploadElem = document.getElementById('fileUpload' + parentImageEntryId);
       fileUploadElem.click();
@@ -57,30 +57,30 @@ export class EntriesPage {
     }
   }
 
-  pushToUploadPageWithPicture(image: Image, parentImageEntryId: string, entryTitle: string) {
+  pushToUploadPageWithPicture(image: Image, parentImageEntryId: string, entryTitle: string): void {
     this.navCtrl.push(UploadPage, { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle });
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(): void {
     this.loadParentImageReferenceField();
     this.loadInitialParentImageEntries();
   }
 
-  loadParentImageReferenceField() {
+  loadParentImageReferenceField(): void {
     const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
-  loadInitialParentImageEntries() {
+  loadInitialParentImageEntries(): void {
     const loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => { throw new ImsLoadingError('Einträge', err); });
   }
 
-  ionViewWillEnter() {
+  ionViewWillEnter(): void {
     this.loadSelectedFieldsAndTitle();
   }
 
-  loadSelectedFieldsAndTitle() {
+  loadSelectedFieldsAndTitle(): void {
     const metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       this.titleField = tableFields.identifierField;
       return this.settingService.getActiveFields(this.authService.archive, tableFields);
@@ -88,7 +88,7 @@ export class EntriesPage {
     this.loadingService.subscribeWithLoading(metaDataFields, fields => this.fields = fields, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
-  infiniteEntries(infiniteScroll) {
+  infiniteEntries(infiniteScroll: InfiniteScroll): void {
     if (this.nextPage == null) {
       infiniteScroll.enable(false);
     } else {
@@ -109,23 +109,23 @@ export class EntriesPage {
     this.nextPage = entries.pagination.nextPage;
   }
 
-  loadSettings() {
+  loadSettings(): void {
     this.navCtrl.push(SettingsPage);
   }
 
-  fileSelected(event: any, parentImageEntryId: string, entryTitle: string) {
+  fileSelected(event: any, parentImageEntryId: string, entryTitle: string): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
   }
 
-  handleDragEvent(event: DragEvent, parentImageEntryId?: string, entryTitle?: string) {
+  handleDragEvent(event: DragEvent, parentImageEntryId?: string, entryTitle?: string): void {
     const element: Element = (event.currentTarget as Element);
     this.dragEventService.handleDragEvent(event, () => element.classList.add('drag'), () => element.classList.remove('drag'), () => this.receiveDrop(event, parentImageEntryId, entryTitle));
   }
 
-  receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string) {
+  receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
       const element: Element = (event.currentTarget as Element);

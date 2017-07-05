@@ -84,6 +84,12 @@
       true,
       "consistent-as-needed"
     ],
-    "prefer-const": true
+    "prefer-const": true,
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "member-variable-declaration"
+    ]
   }
 }

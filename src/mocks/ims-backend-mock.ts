@@ -50,7 +50,7 @@ export class ImsBackendMock extends MockBackend {
   public filterId: number = 40;
   public filterResourceUrl: string = this.entriesUrl + '/' + this.filterId;
   public version: string = 'V17Q1';
-  public versionResponse = { version: this.version };
+  public versionResponse: any = { version: this.version };
   public tokenName: string = 'EDFC';
   public tokenExpirationDate: string = '2015-10-28T16:45:12Z';
   public token: Token = new Token(this.tokenName, this.tokenExpirationDate);
