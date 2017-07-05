@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Credential } from '../models/credential';
 import { ImsHeaders } from '../models/ims-headers';

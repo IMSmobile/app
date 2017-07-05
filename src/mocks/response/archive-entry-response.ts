@@ -1,5 +1,5 @@
-import { ArchiveEntry } from '../../models/archive-entry';
 import { Response, ResponseOptions } from '@angular/http';
+import { ArchiveEntry } from '../../models/archive-entry';
 
 export class ArchiveEntryResponse extends Response {
 

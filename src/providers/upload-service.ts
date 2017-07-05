@@ -1,15 +1,15 @@
-import { ContainerUploadService } from './container-upload-service';
-import { ImsService } from './ims-service';
 import { Injectable } from '@angular/core';
 import { Http, Response} from '@angular/http';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import { Credential } from '../models/credential';
 import { Entry } from '../models/entry';
 import { Image } from '../models/image';
 import { ImsHeaders } from '../models/ims-headers';
 import { Token } from '../models/token';
-import { Observable } from 'rxjs/Observable';
+import { ContainerUploadService } from './container-upload-service';
+import { ImsService } from './ims-service';
 import { TokenService } from './token-service';
 
 @Injectable()

@@ -1,24 +1,24 @@
-import { DragEventService } from './../../providers/drag-event-service';
-import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ImsUploadError } from './../../models/errors/ims-upload-error';
-import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { MetadataField } from './../../models/metadata-field';
-import { ModelService } from './../../providers/model-service';
-import { Entry } from './../../models/entry';
-import { UploadService } from './../../providers/upload-service';
-import { AuthService } from './../../providers/auth-service';
 import { Component, Renderer2 } from '@angular/core';
-import { NavController, ToastController, NavParams, Platform } from 'ionic-angular';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NavController, NavParams, Platform, ToastController } from 'ionic-angular';
+import 'rxjs/add/observable/concat';
+import 'rxjs/add/observable/forkJoin';
+import { Observable } from 'rxjs/Observable';
 import { Image } from '../../models/image';
 import { CameraService } from '../../providers/camera-service';
+import { FieldValidatorService } from '../../providers/field-validator-service';
 import { LoadingService } from '../../providers/loading-service';
 import { SettingService } from '../../providers/setting-service';
-import { FieldValidatorService } from '../../providers/field-validator-service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/observable/concat';
+import { Entry } from './../../models/entry';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
+import { ImsUploadError } from './../../models/errors/ims-upload-error';
+import { MetadataField } from './../../models/metadata-field';
+import { AuthService } from './../../providers/auth-service';
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { DragEventService } from './../../providers/drag-event-service';
+import { ModelService } from './../../providers/model-service';
+import { UploadService } from './../../providers/upload-service';
 
 @Component({
   selector: 'page-upload',
@@ -65,7 +65,7 @@ export class UploadPage {
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
-    return field.mandatory === true && field.name !== parentReferenceFieldName;
+    return field.mandatory && field.name !== parentReferenceFieldName;
   }
 
   appendFields(fields: MetadataField[]) {

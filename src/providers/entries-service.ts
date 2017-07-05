@@ -1,14 +1,14 @@
-import { QueryBuilderService } from './query-builder-service';
-import { QueryFragment } from './../models/query-fragment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ImsService } from './ims-service';
 import { Observable } from 'rxjs/Observable';
-import { TokenService } from './token-service';
 import { Credential } from '../models/credential';
 import { Entries } from '../models/entries';
 import { ImsHeaders } from '../models/ims-headers';
+import { QueryFragment } from './../models/query-fragment';
+import { ImsService } from './ims-service';
+import { QueryBuilderService } from './query-builder-service';
+import { TokenService } from './token-service';
 
 @Injectable()
 export class EntriesService {

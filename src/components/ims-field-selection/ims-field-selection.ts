@@ -1,5 +1,5 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MetadataField } from './../../models/metadata-field';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'ims-field-selection',

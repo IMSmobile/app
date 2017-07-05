@@ -1,7 +1,7 @@
-import { DragEventMock } from './../mocks/drag-event-mock';
 import { Renderer2 } from '@angular/core';
+import { async, TestBed } from '@angular/core/testing';
+import { DragEventMock } from './../mocks/drag-event-mock';
 import { DragEventService } from './drag-event-service';
-import { TestBed, async } from '@angular/core/testing';
 
 describe('Provider: DragEventService', () => {
 

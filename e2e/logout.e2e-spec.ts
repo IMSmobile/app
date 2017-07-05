@@ -1,6 +1,6 @@
-import { SettingsPageObject } from './page-objects/settings-page-object';
 import { browser } from 'protractor';
 import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 
 describe('Logout E2E Test', () => {
 
