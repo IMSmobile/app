@@ -1,11 +1,11 @@
-import { LoginPage } from './../login/login';
-import { AuthService } from './../../providers/auth-service';
-import { SettingArchivePage } from './../setting-archive/setting-archive';
-import { SettingEntriesFieldsPage } from './../setting-entries-fields/setting-entries-fields';
-import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SettingService } from '../../providers/setting-service';
+import { AuthService } from './../../providers/auth-service';
+import { LoginPage } from './../login/login';
+import { SettingArchivePage } from './../setting-archive/setting-archive';
+import { SettingEntriesFieldsPage } from './../setting-entries-fields/setting-entries-fields';
+import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
 
 @Component({
   selector: 'page-settings',

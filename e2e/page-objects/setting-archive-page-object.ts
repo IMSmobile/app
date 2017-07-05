@@ -1,14 +1,13 @@
-import { LoginPageObject } from './login-page-object';
-import { element, by, ElementFinder, ExpectedConditions } from 'protractor';
+import { by, element, ElementFinder, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Helpers } from '../helpers/helpers';
+import { LoginPageObject } from './login-page-object';
 
 export class SettingArchivePageObject {
   loginPage: LoginPageObject = new LoginPageObject();
   loadArchiveButtonworkflow_db1_42: ElementFinder = element(by.id('loadArchiveButtonworkflow_db1_42'));
   loadArchiveButtonims_med_test_43: ElementFinder = element(by.id('loadArchiveButtonims_med_test_43'));
   archiveSelectionLogoutButton: ElementFinder = element(by.id('archiveSelectionLogoutButton'));
-
 
   loadPage(): void {
     this.loginPage.login();

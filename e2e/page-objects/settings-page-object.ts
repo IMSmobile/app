@@ -1,6 +1,6 @@
-import { Helpers } from './../helpers/helpers';
-import { element, by, ElementFinder } from 'protractor';
+import { by, element, ElementFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
+import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
 
 export class SettingsPageObject {
@@ -9,7 +9,6 @@ export class SettingsPageObject {
   settingsEntriesFieldSettingButton: ElementFinder = element(by.id('settingsEntriesListFieldSettingButton'));
   settingsArchiveButton: ElementFinder = element(by.id('settingsArchiveButton'));
   settingsLogoutButton: ElementFinder = element(by.id('settingsLogoutButton'));
-
 
   loadPage(): void {
     this.entriesPage.loadPage();

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Info } from '../models/info';
-import { Credential } from './../models/credential';
-import { ImsHeaders } from '../models/ims-headers';
-import { EntryPoint } from '../models/entry-point';
-import { LicensePoint } from '../models/license-point';
-import { EntriesPoint } from '../models/entries-point';
-import { Token } from '../models/token';
 import { ArchiveEntry } from '../models/archive-entry';
 import { ArchiveTableEntry } from '../models/archive-table-entry';
-import { Link } from '../models/link';
+import { EntriesPoint } from '../models/entries-point';
+import { EntryPoint } from '../models/entry-point';
 import { Filter } from '../models/filter';
+import { ImsHeaders } from '../models/ims-headers';
+import { Info } from '../models/info';
+import { LicensePoint } from '../models/license-point';
+import { Link } from '../models/link';
+import { Token } from '../models/token';
+import { Credential } from './../models/credential';
 import { ModelArchives } from './../models/model-archives';
 
 import 'rxjs/add/operator/map';
@@ -43,7 +43,7 @@ export class ImsService {
   getEntriesTable(credential: Credential): Observable<EntriesPoint> {
     return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl => {
       return this.get(credential, entriesUrl).map(response => {
-        let data = response.json();
+        const data = response.json();
         return new EntriesPoint(data.filters);
       });
     });
@@ -78,7 +78,7 @@ export class ImsService {
   }
 
   get(credential: Credential, url: string): Observable<Response> {
-    let headers = new ImsHeaders(credential);
+    const headers = new ImsHeaders(credential);
     return this.http.get(url, { headers: headers });
   }
 

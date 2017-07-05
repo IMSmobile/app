@@ -1,23 +1,23 @@
-import { DragEventService } from './../../providers/drag-event-service';
-import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
-import { Image } from './../../models/image';
-import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { ModelService } from './../../providers/model-service';
-import { SettingService } from './../../providers/setting-service';
-import { MetadataField } from './../../models/metadata-field';
-import { Observable } from 'rxjs/Observable';
-import { QueryFragment } from './../../models/query-fragment';
 import { Component, Renderer2 } from '@angular/core';
-import { NavController, InfiniteScroll } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
+import { InfiniteScroll, NavController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { Entries } from '../../models/entries';
 import { Entry } from '../../models/entry';
-import { EntriesService } from './../../providers/entries-service';
-import { AuthService } from './../../providers/auth-service';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
-import { UploadPage } from '../upload/upload';
-import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
-import { Platform } from 'ionic-angular';
+import { UploadPage } from '../upload/upload';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
+import { Image } from './../../models/image';
+import { MetadataField } from './../../models/metadata-field';
+import { QueryFragment } from './../../models/query-fragment';
+import { AuthService } from './../../providers/auth-service';
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { DragEventService } from './../../providers/drag-event-service';
+import { EntriesService } from './../../providers/entries-service';
+import { ModelService } from './../../providers/model-service';
+import { SettingService } from './../../providers/setting-service';
 
 @Component({
   selector: 'page-entries',
@@ -47,7 +47,7 @@ export class EntriesPage {
 
   public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string): void {
     if (this.platform.is('core')) {
-      let fileUploadElem = document.getElementById('fileUpload' + parentImageEntryId);
+      const fileUploadElem = document.getElementById('fileUpload' + parentImageEntryId);
       fileUploadElem.click();
     } else {
       this.loadingService.subscribeWithLoading(
@@ -58,7 +58,7 @@ export class EntriesPage {
   }
 
   pushToUploadPageWithPicture(image: Image, parentImageEntryId: string, entryTitle: string): void {
-    this.navCtrl.push(UploadPage, { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle });
+    this.navCtrl.push(UploadPage, { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle });
   }
 
   ionViewDidLoad(): void {
@@ -67,12 +67,12 @@ export class EntriesPage {
   }
 
   loadParentImageReferenceField(): void {
-    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
+    const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadInitialParentImageEntries(): void {
-    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
+    const loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => { throw new ImsLoadingError('Einträge', err); });
   }
 
@@ -81,7 +81,7 @@ export class EntriesPage {
   }
 
   loadSelectedFieldsAndTitle(): void {
-    let metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
+    const metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       this.titleField = tableFields.identifierField;
       return this.settingService.getActiveFields(this.authService.archive, tableFields);
     });
@@ -114,21 +114,21 @@ export class EntriesPage {
   }
 
   fileSelected(event: any, parentImageEntryId: string, entryTitle: string): void {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
+    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
   }
 
   handleDragEvent(event: DragEvent, parentImageEntryId?: string, entryTitle?: string): void {
-    let element: Element = (event.currentTarget as Element);
+    const element: Element = (event.currentTarget as Element);
     this.dragEventService.handleDragEvent(event, () => element.classList.add('drag'), () => element.classList.remove('drag'), () => this.receiveDrop(event, parentImageEntryId, entryTitle));
   }
 
   receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string): void {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
-      let element: Element = (event.currentTarget as Element);
+      const element: Element = (event.currentTarget as Element);
       element.classList.remove('drag');
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }

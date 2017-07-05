@@ -1,5 +1,5 @@
-import { browser, ElementFinder, $, ExpectedConditions } from 'protractor';
 import * as Path from 'path';
+import { $, browser, ElementFinder, ExpectedConditions } from 'protractor';
 
 export class Helpers {
 
@@ -26,8 +26,8 @@ export class Helpers {
   }
 
   static chooseJPEGImageInFileDialog(fileInput: ElementFinder): void {
-    let fileToUpload = '../assets/mario.jpg';
-    let absolutePath = Path.resolve(__dirname, fileToUpload);
+    const fileToUpload = '../assets/mario.jpg';
+    const absolutePath = Path.resolve(__dirname, fileToUpload);
     fileInput.sendKeys(absolutePath);
   }
 
@@ -48,7 +48,7 @@ export class Helpers {
       + 'document.getElementById("' + id + '").dispatchEvent(dragLeaveEvent)');
   }
 
-  static sendDragDropEventToElement(sourceFileInputId: string, targetId: string):void {
+  static sendDragDropEventToElement(sourceFileInputId: string, targetId: string): void {
     browser.executeScript('let dropEvent = new DragEvent("drop");'
       + 'Object.defineProperty(dropEvent.constructor.prototype, "dataTransfer", { value: {} });'
       + 'dropEvent.dataTransfer.files = document.getElementById("' + sourceFileInputId + '").files;'

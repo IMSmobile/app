@@ -1,15 +1,15 @@
+import { browser, by, element, ExpectedConditions } from 'protractor';
 import { Helpers } from './helpers/helpers';
-import { browser, element, by, ExpectedConditions } from 'protractor';
-import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Upload E2E Test', () => {
 
   let originalTimeout;
-  let loginPage = new LoginPageObject();
-  let uploadPage = new UploadPageObject();
-  let settingImageFieldsPageObject = new SettingImageFieldsPageObject();
+  const loginPage = new LoginPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingImageFieldsPageObject = new SettingImageFieldsPageObject();
 
   beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;

@@ -1,19 +1,19 @@
-import { Helpers } from './helpers/helpers';
-import { SettingArchivePageObject } from './page-objects/setting-archive-page-object';
 import { browser, ExpectedConditions } from 'protractor';
-import { SettingsPageObject } from './page-objects/settings-page-object';
-import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
-import { LoginPageObject } from './page-objects/login-page-object';
+import { Helpers } from './helpers/helpers';
 import { EntriesPageObject } from './page-objects/entries-page-object';
+import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingArchivePageObject } from './page-objects/setting-archive-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 
 describe('Archive Selection E2E Test', () => {
 
   let originalTimeout;
-  let settingsArchivePage = new SettingArchivePageObject();
-  let loginPage = new LoginPageObject();
-  let entriesPage = new EntriesPageObject();
-  let settingsPage = new SettingsPageObject();
-  let settingImageFieldsPage = new SettingImageFieldsPageObject();
+  const settingsArchivePage = new SettingArchivePageObject();
+  const loginPage = new LoginPageObject();
+  const entriesPage = new EntriesPageObject();
+  const settingsPage = new SettingsPageObject();
+  const settingImageFieldsPage = new SettingImageFieldsPageObject();
 
   beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -23,7 +23,6 @@ describe('Archive Selection E2E Test', () => {
   afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
-
 
   afterEach(() => {
     browser.manage().deleteAllCookies();

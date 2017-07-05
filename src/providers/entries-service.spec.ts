@@ -1,10 +1,10 @@
-import { QueryBuilderService } from './query-builder-service';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { TokenService } from './token-service';
-import { ImsService } from './ims-service';
 import { EntriesService } from './entries-service';
+import { ImsService } from './ims-service';
+import { QueryBuilderService } from './query-builder-service';
+import { TokenService } from './token-service';
 
 describe('Provider: EntriesService', () => {
 
@@ -37,7 +37,7 @@ describe('Provider: EntriesService', () => {
   }));
 
   it('Gets next page of parent image entries', inject([EntriesService, ImsBackendMock], (entriesService: EntriesService, mockImsBackend: ImsBackendMock) => {
-    let credential = mockImsBackend.credential;
+    const credential = mockImsBackend.credential;
     entriesService.getParentImageEntries(credential, mockImsBackend.filterId, mockImsBackend.query).flatMap(entries => entriesService.getEntries(credential, entries.pagination.nextPage)).subscribe(
       entries => expect(entries).toBe(mockImsBackend.parentImageEntriesNextPage),
       err => fail(err));

@@ -1,10 +1,10 @@
-import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, ExpectedConditions, ElementArrayFinder } from 'protractor';
+import { browser, by, element, ElementArrayFinder, ElementFinder, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
+import { Helpers } from './../helpers/helpers';
 import { SettingsPageObject } from './settings-page-object';
 
 export class SettingImageFieldsPageObject {
-  settingsPage:SettingsPageObject = new SettingsPageObject();
+  settingsPage: SettingsPageObject = new SettingsPageObject();
   settingsImageFieldSearchbar: ElementFinder = element(by.css('input.searchbar-input'));
   settingsImageFieldDisplayedFields: ElementArrayFinder = element.all(by.className('fieldItem'));
   settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
@@ -49,7 +49,4 @@ export class SettingImageFieldsPageObject {
     toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
   }
 
-
-
 }
-

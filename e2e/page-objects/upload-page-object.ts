@@ -1,10 +1,10 @@
-import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, ExpectedConditions, protractor } from 'protractor';
+import { browser, by, element, ElementFinder, ExpectedConditions, protractor } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
+import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
 
 export class UploadPageObject {
-  entriesPage:EntriesPageObject = new EntriesPageObject();
+  entriesPage: EntriesPageObject = new EntriesPageObject();
   bildNameFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=BILDNAME]'));
   uploadImageButton: ElementFinder = element(by.id('uploadImageButton'));
   contentDiv: ElementFinder = element(by.id('content'));

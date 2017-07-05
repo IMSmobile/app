@@ -1,5 +1,5 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MetadataField } from './../../models/metadata-field';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'ims-field-selection',
@@ -26,7 +26,7 @@ export class ImsFieldSelectionComponent {
 
   filterFields(ev: any): void {
     this.allFields.forEach(field => field.display = true);
-    let val = ev.target.value;
+    const val = ev.target.value;
     if (val && val.trim() !== '') {
       this.allFields.forEach(field => {
         if (!(field.name.toLowerCase().indexOf(val.toLowerCase()) > -1)) {

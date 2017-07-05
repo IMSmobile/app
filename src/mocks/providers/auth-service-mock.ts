@@ -1,5 +1,5 @@
-import { Credential } from '../../models/credential';
 import { Observable } from 'rxjs/Observable';
+import { Credential } from '../../models/credential';
 import { Info } from '../../models/info';
 
 export class AuthServiceMock {

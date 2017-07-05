@@ -1,12 +1,12 @@
-import { Filter } from './../models/filter';
-import { MetadataTableFields } from './../models/metadata-table-fields';
-import { MetadataField } from './../models/metadata-field';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { Filter } from './../models/filter';
+import { MetadataField } from './../models/metadata-field';
+import { MetadataTableFields } from './../models/metadata-table-fields';
 
 @Injectable()
 export class SettingService {

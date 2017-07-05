@@ -54,6 +54,7 @@
     "no-angle-bracket-type-assertion": true,
     "no-irregular-whitespace": true,
     "no-trailing-whitespace": true,
+    "no-consecutive-blank-lines": true,
     "one-line": [
       true,
       "check-catch",
@@ -64,9 +65,26 @@
       true
     ],
     "whitespace": [
-      true
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-type",
+      "check-typecast",
+      "check-preblock"
     ],
     "no-var-keyword": true,
+    "ordered-imports": [
+      true
+    ],
+    "no-boolean-literal-compare": true,
+    "object-literal-key-quotes": [
+      true,
+      "consistent-as-needed"
+    ],
+    "prefer-const": true,
     "typedef": [
       true,
       "call-signature",

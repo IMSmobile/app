@@ -1,7 +1,7 @@
+import { Headers, Http, Response } from '@angular/http';
 import { FileUploadOptions, FileUploadResult } from '@ionic-native/transfer';
-import { Http, Headers, Response } from '@angular/http';
-import { FileUploadResultMock } from './transfer-mock';
 import 'rxjs/add/operator/toPromise';
+import { FileUploadResultMock } from './transfer-mock';
 
 export class TransferBlobObjectMock {
   http: Http;
@@ -11,12 +11,12 @@ export class TransferBlobObjectMock {
   }
 
   upload(fileUrl: string, url: string, options?: FileUploadOptions, trustAllHosts?: boolean): Promise<FileUploadResult> {
-    let headers = new Headers(options.headers);
+    const headers = new Headers(options.headers);
     return this.http.post(url, getImage(), { headers: headers }).map(r => this.toFileUploadResult(r)).toPromise();
   }
 
   toFileUploadResult(response: Response): FileUploadResult {
-    let result = new FileUploadResultMock();
+    const result = new FileUploadResultMock();
     result.headers = response.headers;
     result.responseCode = response.status;
     return result;
@@ -25,7 +25,7 @@ export class TransferBlobObjectMock {
 }
 
 function getImage(): Blob {
-  let base64 =
+  const base64 =
     'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB1klEQVR42n2TzytEURTHv3e8N1joRhZG' +
     'zJsoCjsLhcw0jClKWbHwY2GnLGUlIfIP2IjyY2djZTHSMJNQSilFNkz24z0/Ms2MrnvfvMu8mcfZvPvu' +
     'Pfdzz/mecwgKLNYKb0cFEgXbRvwV2s2HuWazCbzKA5LvNecDXayBjv9NL7tEpSNgbYzQ5kZmAlSXgsGG' +
@@ -36,14 +36,14 @@ function getImage(): Blob {
     '9U/AC0ulSXrrhMotka/lQy0Ic08FDeIiAmDvA2HX01W05TopS2j2/H4T6FBVbj4YgV5+AecyLk+Ctvms' +
     'QWK8WZZ+Hdf7QGu7fobMuZHyq1DoJLvUqQrfM966EU/qYGwAAAAASUVORK5CYII=';
 
-  let binary = fixBinary(atob(base64));
+  const binary = fixBinary(atob(base64));
   return new Blob([binary], { type: 'image/png' });
 }
 
 function fixBinary(bin: string): ArrayBuffer {
-  let length = bin.length;
-  let buf = new ArrayBuffer(length);
-  let arr = new Uint8Array(buf);
+  const length = bin.length;
+  const buf = new ArrayBuffer(length);
+  const arr = new Uint8Array(buf);
   for (let i = 0; i < length; i++) {
     arr[i] = bin.charCodeAt(i);
   }

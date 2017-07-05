@@ -1,13 +1,13 @@
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { StorageMock } from './../mocks/mocks';
-import { SettingService } from './setting-service';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { AuthService } from './auth-service';
-import { ImsService } from './ims-service';
 import { Credential } from '../models/credential';
 import { Info } from '../models/info';
+import { StorageMock } from './../mocks/mocks';
+import { AuthService } from './auth-service';
+import { ImsService } from './ims-service';
+import { SettingService } from './setting-service';
 
 describe('Provider: AuthService', () => {
 
@@ -37,7 +37,7 @@ describe('Provider: AuthService', () => {
   }));
 
   it('Should store credentials if succeed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     authService.login(credential).subscribe(
       info => expect(authService.currentCredential.username).toEqual(credential.username),
       err => fail(err)
@@ -45,7 +45,7 @@ describe('Provider: AuthService', () => {
   }));
 
   it('Should not store credentials if failed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     credential.server = credential.server + 'failed';
     authService.login(credential).subscribe(
       info => fail('Should fail'),
@@ -54,7 +54,7 @@ describe('Provider: AuthService', () => {
   }));
 
   it('Should clear credentials on logout', inject([AuthService], (authService: AuthService) => {
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     authService.logout();
     expect(authService.currentCredential).toBeNull();
@@ -62,7 +62,7 @@ describe('Provider: AuthService', () => {
 
   it('Should store the filter after archive selection', inject([AuthService, SettingService, ImsBackendMock], (authService: AuthService, settingService: SettingService, imsBackendMock: ImsBackendMock) => {
     spyOn(settingService, 'setFilter').and.callThrough();
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     authService.setArchive(imsBackendMock.policeFilter);
     expect(settingService.setFilter).toHaveBeenCalledWith(authService.currentCredential.server, authService.currentCredential.username, imsBackendMock.policeFilter);

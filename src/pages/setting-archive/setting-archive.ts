@@ -1,13 +1,13 @@
-import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { LoginPage } from './../login/login';
-import { EntriesPage } from './../entries/entries';
-import { Filter } from './../../models/filter';
-import { Observable } from 'rxjs/Observable';
-import { LoadingService } from './../../providers/loading-service';
-import { AuthService } from './../../providers/auth-service';
-import { ImsService } from './../../providers/ims-service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
+import { Filter } from './../../models/filter';
+import { AuthService } from './../../providers/auth-service';
+import { ImsService } from './../../providers/ims-service';
+import { LoadingService } from './../../providers/loading-service';
+import { EntriesPage } from './../entries/entries';
+import { LoginPage } from './../login/login';
 
 @Component({
   selector: 'page-setting-archive',
@@ -23,7 +23,7 @@ export class SettingArchivePage {
   }
 
   ionViewDidLoad(): void {
-    let filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable(this.authService.currentCredential).map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));
+    const filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable(this.authService.currentCredential).map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));
     this.loadingService.subscribeWithLoading(filtersObservable, filters => this.initFilter(filters), err => { throw new ImsLoadingError('Filter', err); });
   }
 

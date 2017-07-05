@@ -1,8 +1,8 @@
-import { ValidatorFn, Validators, FormControl } from '@angular/forms';
-import { MetadataField } from '../models/metadata-field';
-import { IntegerValidator } from '../validators/integer-validator';
-import { DoubleValidator } from '../validators/double-validator';
 import { Injectable } from '@angular/core';
+import { FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { MetadataField } from '../models/metadata-field';
+import { DoubleValidator } from '../validators/double-validator';
+import { IntegerValidator } from '../validators/integer-validator';
 
 @Injectable()
 export class FieldValidatorService {
@@ -14,7 +14,7 @@ export class FieldValidatorService {
   };
 
   getValidatorFunctions(field: MetadataField): ValidatorFn[] {
-    let validators: ValidatorFn[] = [];
+    const validators: ValidatorFn[] = [];
     if (field.mandatory) {
       validators.push(Validators.required);
     }
@@ -27,7 +27,7 @@ export class FieldValidatorService {
   }
 
   getErrorMessage(formControl: FormControl): string {
-    let errors: string[] = [];
+    const errors: string[] = [];
     for (const key in formControl.errors) {
       errors.push(this.validationMessages[key]);
     }

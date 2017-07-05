@@ -1,24 +1,24 @@
-import { DragEventService } from './../../providers/drag-event-service';
-import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ImsUploadError } from './../../models/errors/ims-upload-error';
-import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { MetadataField } from './../../models/metadata-field';
-import { ModelService } from './../../providers/model-service';
-import { Entry } from './../../models/entry';
-import { UploadService } from './../../providers/upload-service';
-import { AuthService } from './../../providers/auth-service';
 import { Component, Renderer2 } from '@angular/core';
-import { NavController, ToastController, NavParams, Platform } from 'ionic-angular';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NavController, NavParams, Platform, ToastController } from 'ionic-angular';
+import 'rxjs/add/observable/concat';
+import 'rxjs/add/observable/forkJoin';
+import { Observable } from 'rxjs/Observable';
 import { Image } from '../../models/image';
 import { CameraService } from '../../providers/camera-service';
+import { FieldValidatorService } from '../../providers/field-validator-service';
 import { LoadingService } from '../../providers/loading-service';
 import { SettingService } from '../../providers/setting-service';
-import { FieldValidatorService } from '../../providers/field-validator-service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/observable/concat';
+import { Entry } from './../../models/entry';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
+import { ImsUploadError } from './../../models/errors/ims-upload-error';
+import { MetadataField } from './../../models/metadata-field';
+import { AuthService } from './../../providers/auth-service';
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { DragEventService } from './../../providers/drag-event-service';
+import { ModelService } from './../../providers/model-service';
+import { UploadService } from './../../providers/upload-service';
 
 @Component({
   selector: 'page-upload',
@@ -51,21 +51,21 @@ export class UploadPage {
   }
 
   loadUploadFields(): void {
-    let fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
-      let mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
-      let activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
+    const fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
+      const mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
+      const activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
     });
     this.loadingService.subscribeWithLoading(fields, newFields => this.appendFields(newFields), err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadParentImageReferenceField(): void {
-    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
+    const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
-    return field.mandatory === true && field.name !== parentReferenceFieldName;
+    return field.mandatory && field.name !== parentReferenceFieldName;
   }
 
   appendFields(fields: MetadataField[]): void {
@@ -74,7 +74,7 @@ export class UploadPage {
   }
 
   initFormData(): void {
-    let formData = {};
+    const formData = {};
     this.fields.forEach(field => {
       formData[field.name] = [this.getDefaultValue(field.type)];
       formData[field.name].push(Validators.compose(this.fieldValidatorService.getValidatorFunctions(field)));
@@ -89,7 +89,6 @@ export class UploadPage {
     }
   }
 
-
   public takePicture(): void {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
@@ -99,7 +98,7 @@ export class UploadPage {
 
   public getGalleryPicture(): void {
     if (this.platform.is('core')) {
-      let fileUploadElem = document.getElementById('fileUpload');
+      const fileUploadElem = document.getElementById('fileUpload');
       fileUploadElem.click();
     } else {
       this.loadingService.subscribeWithLoading(
@@ -116,7 +115,7 @@ export class UploadPage {
     } else {
       let imageEntry = new Entry().set(this.parentImageReferenceField, this.parentImageEntryId);
       this.fields.forEach(field => {
-        let value = this.fieldsForm.controls[field.name].value;
+        const value = this.fieldsForm.controls[field.name].value;
         if (value) {
           imageEntry = imageEntry.set(field.name, value);
         }
@@ -129,7 +128,7 @@ export class UploadPage {
   }
 
   showToastMessage(toastMessage: string): void {
-    let toast = this.toastCtrl.create({
+    const toast = this.toastCtrl.create({
       message: toastMessage,
       duration: 5000,
     });
@@ -145,7 +144,7 @@ export class UploadPage {
   }
 
   fileSelected(event: any): void {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
+    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
       this.image = selectedImage;
     }
@@ -157,7 +156,7 @@ export class UploadPage {
 
   receiveDrop(event: DragEvent): void {
     this.showDragOverlay = false;
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
       this.image = selectedImage;
     }

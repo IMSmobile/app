@@ -1,17 +1,17 @@
-import { UploadPageObject } from './page-objects/upload-page-object';
-import { Helpers } from './helpers/helpers';
 import { browser } from 'protractor';
-import { SettingEntriesFieldsPageObject } from './page-objects/setting-entries-field-page-object';
-import { LoginPageObject } from './page-objects/login-page-object';
+import { Helpers } from './helpers/helpers';
 import { EntriesPageObject } from './page-objects/entries-page-object';
+import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingEntriesFieldsPageObject } from './page-objects/setting-entries-field-page-object';
+import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Entries E2E Test', () => {
 
   let originalTimeout;
-  let loginPage = new LoginPageObject();
-  let entriesPage = new EntriesPageObject();
-  let uploadPage = new UploadPageObject();
-  let settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
+  const loginPage = new LoginPageObject();
+  const entriesPage = new EntriesPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
 
   beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -23,7 +23,6 @@ describe('Entries E2E Test', () => {
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageObject();
     loginPage.loadPage();
   });
 
@@ -72,4 +71,3 @@ describe('Entries E2E Test', () => {
     uploadPage.verifyPageLoaded();
   });
 });
-

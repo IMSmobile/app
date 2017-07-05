@@ -1,13 +1,13 @@
-import { SettingService } from './setting-service';
-import { Filter } from './../models/filter';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
-import { ImsService } from './ims-service';
 import { Observable } from 'rxjs/Observable';
 import { Credential } from '../models/credential';
 import { Info } from '../models/info';
+import { Filter } from './../models/filter';
+import { ImsService } from './ims-service';
+import { SettingService } from './setting-service';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
     return this.imsService.getInfo(credentials).map(info => this.setCurrentCredential(info, credentials)).timeout(this.DEFAULT_LOGIN_TIMEOUT);
   }
 
-  logout():void {
+  logout(): void {
     this.currentCredential = null;
   }
 
@@ -33,7 +33,7 @@ export class AuthService {
     return info;
   }
 
-  setArchive(filter: Filter):void {
+  setArchive(filter: Filter): void {
     this.settingService.setFilter(this.currentCredential.server, this.currentCredential.username, filter);
     this.archive = filter.archiveName;
     this.filterId = Number(filter.id);

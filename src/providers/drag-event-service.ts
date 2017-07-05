@@ -31,20 +31,19 @@ export class DragEventService {
   }
 
   private dragenter(event: DragEvent, enterFunction: Function): void {
-    let element: Element = (event.currentTarget as Element);
+    const element: Element = (event.currentTarget as Element);
     this.dragEventCounter.inc(element.id);
     this.dragEventCounter.callIfFirstEvent(element.id, enterFunction);
     event.dataTransfer.dropEffect = 'copy';
   }
-
   private dragleave(event: DragEvent, leaveFunction: Function): void {
-    let element: Element = (event.currentTarget as Element);
+    const element: Element = (event.currentTarget as Element);
     this.dragEventCounter.dec(element.id);
     this.dragEventCounter.callIfLastEvent(element.id, leaveFunction);
   }
 
   private drop(event: DragEvent, dropFunction: Function): void {
-    let element: Element = (event.currentTarget as Element);
+    const element: Element = (event.currentTarget as Element);
     this.dragEventCounter.reset(element.id);
     dropFunction();
   }
