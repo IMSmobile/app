@@ -16,15 +16,15 @@ export class ImsFieldSelectionComponent {
     this.allFields = fields;
   }
 
-  @Output() fieldToggled = new EventEmitter<MetadataField>();
+  @Output() fieldToggled: EventEmitter<MetadataField> = new EventEmitter<MetadataField>();
 
   constructor() { }
 
-  sendFieldToggledEvent(field: MetadataField) {
+  sendFieldToggledEvent(field: MetadataField): void {
     this.fieldToggled.emit(field);
   }
 
-  filterFields(ev: any) {
+  filterFields(ev: any): void {
     this.allFields.forEach(field => field.display = true);
     const val = ev.target.value;
     if (val && val.trim() !== '') {

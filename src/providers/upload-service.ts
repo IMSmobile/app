@@ -34,7 +34,7 @@ export class UploadService {
     });
   }
 
-  createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry) {
+  createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry): Observable<Response> {
     return this.http.post(url, imageEntry.json(), { headers: new ImsHeaders(credential, token) });
   }
 }

@@ -20,11 +20,11 @@ export class AuthService {
   constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) {
   }
 
-  login(credentials): Observable<Info> {
+  login(credentials: Credential): Observable<Info> {
     return this.imsService.getInfo(credentials).map(info => this.setCurrentCredential(info, credentials)).timeout(this.DEFAULT_LOGIN_TIMEOUT);
   }
 
-  logout() {
+  logout(): void {
     this.currentCredential = null;
   }
 
@@ -33,7 +33,7 @@ export class AuthService {
     return info;
   }
 
-  setArchive(filter: Filter) {
+  setArchive(filter: Filter): void {
     this.settingService.setFilter(this.currentCredential.server, this.currentCredential.username, filter);
     this.archive = filter.archiveName;
     this.filterId = Number(filter.id);

@@ -31,7 +31,7 @@ export class TransferBlobObjectMock {
     return new Blob([binary], { type: 'image/png' });
   }
 
-  fixBinary(bin: string) {
+  fixBinary(bin: string): ArrayBuffer {
     const length = bin.length;
     const buf = new ArrayBuffer(length);
     const arr = new Uint8Array(buf);
@@ -57,7 +57,7 @@ export class TransferBlobMock {
     this.http = http;
   }
 
-  create() {
+  create(): TransferBlobObjectMock {
     return new TransferBlobObjectMock(this.http);
   }
 

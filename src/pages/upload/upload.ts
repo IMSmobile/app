@@ -45,12 +45,12 @@ export class UploadPage {
     this.dragEventService.preventEventsOnBody(renderer);
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(): void {
     this.loadParentImageReferenceField();
     this.loadUploadFields();
   }
 
-  loadUploadFields() {
+  loadUploadFields(): void {
     const fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       const mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
       const activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
@@ -59,7 +59,7 @@ export class UploadPage {
     this.loadingService.subscribeWithLoading(fields, newFields => this.appendFields(newFields), err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
-  loadParentImageReferenceField() {
+  loadParentImageReferenceField(): void {
     const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
@@ -68,12 +68,12 @@ export class UploadPage {
     return field.mandatory && field.name !== parentReferenceFieldName;
   }
 
-  appendFields(fields: MetadataField[]) {
+  appendFields(fields: MetadataField[]): void {
     this.fields = this.fields.concat(fields);
     this.initFormData();
   }
 
-  initFormData() {
+  initFormData(): void {
     const formData = {};
     this.fields.forEach(field => {
       formData[field.name] = [this.getDefaultValue(field.type)];
@@ -89,14 +89,14 @@ export class UploadPage {
     }
   }
 
-  public takePicture() {
+  public takePicture(): void {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
       image => this.image = image,
       err => this.cameraService.handleError(err));
   }
 
-  public getGalleryPicture() {
+  public getGalleryPicture(): void {
     if (this.platform.is('core')) {
       const fileUploadElem = document.getElementById('fileUpload');
       fileUploadElem.click();
@@ -108,7 +108,7 @@ export class UploadPage {
     }
   }
 
-  public uploadPicture() {
+  public uploadPicture(): void {
     this.markAllAsTouched();
     if (this.fieldsForm.invalid) {
       this.showToastMessage('Alle Felder müssen valide sein');
@@ -127,7 +127,7 @@ export class UploadPage {
     }
   }
 
-  showToastMessage(toastMessage: string) {
+  showToastMessage(toastMessage: string): void {
     const toast = this.toastCtrl.create({
       message: toastMessage,
       duration: 5000,
@@ -135,7 +135,7 @@ export class UploadPage {
     toast.present();
   }
 
-  markAllAsTouched() {
+  markAllAsTouched(): void {
     this.fields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
   }
 
@@ -143,18 +143,18 @@ export class UploadPage {
     return this.fieldValidatorService.getErrorMessage(formControl);
   }
 
-  fileSelected(event: any) {
+  fileSelected(event: any): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
       this.image = selectedImage;
     }
   }
 
-  handleDragEvent(event: DragEvent) {
+  handleDragEvent(event: DragEvent): void {
     this.dragEventService.handleDragEvent(event, () => this.showDragOverlay = true, () => this.showDragOverlay = false, () => this.receiveDrop(event));
   }
 
-  receiveDrop(event: DragEvent) {
+  receiveDrop(event: DragEvent): void {
     this.showDragOverlay = false;
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
