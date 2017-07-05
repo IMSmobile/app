@@ -35,8 +35,8 @@ import { FieldValidatorService } from '../providers/field-validator-service';
 import { ImsFieldSelectionComponent } from '../components/ims-field-selection/ims-field-selection';
 
 const cloudSettings: CloudSettings = {
-  'core': {
-    'app_id': '4f2a84b8'
+  core: {
+    app_id: '4f2a84b8'
   }
 };
 

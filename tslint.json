@@ -67,6 +67,10 @@
     "whitespace": [
       true
     ],
-    "no-var-keyword": true
+    "no-var-keyword": true,
+    "object-literal-key-quotes": [
+      true,
+      "consistent-as-needed"
+    ]
   }
 }

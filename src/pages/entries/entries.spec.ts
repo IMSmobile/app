@@ -208,7 +208,7 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
+      { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle }
     );
   }));
 
@@ -236,7 +236,7 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle }
+      { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle }
     );
   }));
 
