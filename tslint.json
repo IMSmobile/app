@@ -90,6 +90,7 @@
       "call-signature",
       "parameter",
       "member-variable-declaration"
-    ]
+    ],
+    "only-arrow-functions": [true]
   }
 }
