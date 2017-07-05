@@ -1,6 +1,6 @@
-import { AlertMock } from '../mocks/mocks';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { AlertController } from 'ionic-angular';
+import { AlertMock } from '../mocks/mocks';
 import { AlertService } from './alert-service';
 
 describe('Provider: AlertService', () => {

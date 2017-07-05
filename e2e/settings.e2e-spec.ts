@@ -1,8 +1,8 @@
-import { Helpers } from './helpers/helpers';
 import { browser, ExpectedConditions} from 'protractor';
-import { SettingsPageObject } from './page-objects/settings-page-object';
-import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { Helpers } from './helpers/helpers';
 import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Settings E2E Test', () => {

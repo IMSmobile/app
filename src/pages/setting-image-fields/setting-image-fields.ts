@@ -1,10 +1,10 @@
+import { Component } from '@angular/core';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { SettingService } from './../../providers/setting-service';
 import { MetadataField } from './../../models/metadata-field';
-import { ModelService } from './../../providers/model-service';
 import { AuthService } from './../../providers/auth-service';
 import { LoadingService } from './../../providers/loading-service';
-import { Component } from '@angular/core';
+import { ModelService } from './../../providers/model-service';
+import { SettingService } from './../../providers/setting-service';
 
 @Component({
   selector: 'page-setting-image-fields',
@@ -21,7 +21,7 @@ export class SettingImageFieldsPage {
     this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive),
       tableFields => {
         this.tableName = tableFields.name;
-        this.fields = tableFields.fields.filter(field => field.mandatory === false && field.name !== tableFields.parentReferenceField && field.writable === true);
+        this.fields = tableFields.fields.filter(field => !field.mandatory && field.name !== tableFields.parentReferenceField && field.writable);
         this.fields.forEach(field => field.display = true);
         this.fields.forEach(field => this.settingService.getFieldState(this.authService.archive, this.tableName, field.name).subscribe(active => field.active = active));
       },

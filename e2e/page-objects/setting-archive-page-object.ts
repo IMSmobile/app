@@ -1,7 +1,7 @@
-import { LoginPageObject } from './login-page-object';
-import { element, by, ElementFinder, ExpectedConditions } from 'protractor';
+import { by, element, ElementFinder, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Helpers } from '../helpers/helpers';
+import { LoginPageObject } from './login-page-object';
 
 export class SettingArchivePageObject {
   loginPage = new LoginPageObject();

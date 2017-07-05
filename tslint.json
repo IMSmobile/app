@@ -68,6 +68,14 @@
       true
     ],
     "no-var-keyword": true,
+    "ordered-imports": [
+      true
+    ],
+    "no-boolean-literal-compare": true,
+    "object-literal-key-quotes": [
+      true,
+      "consistent-as-needed"
+    ],
     "prefer-const": true
   }
 }

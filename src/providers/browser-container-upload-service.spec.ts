@@ -1,9 +1,9 @@
-import { BrowserContainerUploadService } from './browser-container-upload-service';
-import { Http, HttpModule, BaseRequestOptions, RequestOptions } from '@angular/http';
-import { ImsFileUploadHeaders } from './../models/ims-file-upload-headers';
-import { Image } from './../models/image';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule, RequestOptions } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { Image } from './../models/image';
+import { ImsFileUploadHeaders } from './../models/ims-file-upload-headers';
+import { BrowserContainerUploadService } from './browser-container-upload-service';
 
 describe('Provider: BrowserContainerUploadService', () => {
 

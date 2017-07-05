@@ -1,6 +1,6 @@
+import { async, inject, TestBed } from '@angular/core/testing';
 import { QueryFragment } from './../models/query-fragment';
 import { QueryBuilderService } from './query-builder-service';
-import { TestBed, inject, async } from '@angular/core/testing';
 
 describe('Provider: QueryBuilderService', () => {
 

@@ -1,23 +1,23 @@
-import { ImsLoadingError } from './../../models/errors/ims-loading-error';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
+import { Storage } from '@ionic/storage';
+import { AlertController, App, Config, DomController, Form, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { ImsBackendMock } from '../../mocks/ims-backend-mock';
+import { AlertMock, AppMock, ConfigMock, LoadingMock, NavParamsMock, PlatformMock, StorageMock, ToastMock } from '../../mocks/mocks';
+import { AlertService } from '../../providers/alert-service';
+import { AuthService } from '../../providers/auth-service';
+import { ImsService } from '../../providers/ims-service';
+import { LoadingService } from '../../providers/loading-service';
+import { SettingService } from '../../providers/setting-service';
+import { EntriesPage } from '../entries/entries';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
 import { Info } from './../../models/info';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
-import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { LoginPage } from './login';
-import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { ImsBackendMock } from '../../mocks/ims-backend-mock';
-import { AuthService } from '../../providers/auth-service';
-import { ImsService } from '../../providers/ims-service';
-import { SettingService } from '../../providers/setting-service';
-import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
-import { LoadingService } from '../../providers/loading-service';
-import { EntriesPage } from '../entries/entries';
-import { Storage } from '@ionic/storage';
-import { AlertService } from '../../providers/alert-service';
-import { Observable } from 'rxjs/Observable';
 
 describe('Page: Login', () => {
 

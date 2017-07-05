@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { LoadingController, Loading } from 'ionic-angular';
+import { Loading, LoadingController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LoadingService {

@@ -1,11 +1,11 @@
-import { Image } from './../models/image';
-import { CameraError } from './../models/errors/camera-error';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { CameraService } from './camera-service';
-import { AlertService } from './alert-service';
-import { AlertController } from 'ionic-angular';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { Camera } from '@ionic-native/camera';
+import { AlertController } from 'ionic-angular';
 import { AlertMock } from './../mocks/mocks';
+import { CameraError } from './../models/errors/camera-error';
+import { Image } from './../models/image';
+import { AlertService } from './alert-service';
+import { CameraService } from './camera-service';
 
 describe('Provider: CameraService', () => {
 

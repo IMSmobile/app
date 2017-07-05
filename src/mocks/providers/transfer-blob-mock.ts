@@ -1,7 +1,7 @@
+import { Headers, Http, Response } from '@angular/http';
 import { FileUploadOptions, FileUploadResult } from '@ionic-native/transfer';
-import { Http, Headers, Response } from '@angular/http';
-import { FileUploadResultMock } from './transfer-mock';
 import 'rxjs/add/operator/toPromise';
+import { FileUploadResultMock } from './transfer-mock';
 
 export class TransferBlobObjectMock {
   http: Http;

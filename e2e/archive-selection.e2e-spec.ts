@@ -1,10 +1,10 @@
-import { Helpers } from './helpers/helpers';
-import { SettingArchivePageObject } from './page-objects/setting-archive-page-object';
 import { browser, ExpectedConditions } from 'protractor';
-import { SettingsPageObject } from './page-objects/settings-page-object';
-import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
-import { LoginPageObject } from './page-objects/login-page-object';
+import { Helpers } from './helpers/helpers';
 import { EntriesPageObject } from './page-objects/entries-page-object';
+import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingArchivePageObject } from './page-objects/setting-archive-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 
 describe('Archive Selection E2E Test', () => {
 

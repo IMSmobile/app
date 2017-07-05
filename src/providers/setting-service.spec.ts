@@ -1,7 +1,7 @@
-import { Filter } from './../models/filter';
-import { StorageMock } from '../mocks/mocks';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { Storage } from '@ionic/storage';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { StorageMock } from '../mocks/mocks';
+import { Filter } from './../models/filter';
 import { SettingService } from './setting-service';
 
 describe('Provider: SettingService', () => {

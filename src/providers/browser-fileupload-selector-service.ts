@@ -1,6 +1,6 @@
+import { Injectable } from '@angular/core';
 import { ImsFileTypeError } from './../models/errors/ims-file-type-error';
 import { Image } from './../models/image';
-import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BrowserFileuploadSelectorService {

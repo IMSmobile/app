@@ -1,7 +1,7 @@
+import { async, inject, TestBed } from '@angular/core/testing';
 import { ImsFileTypeError } from './../models/errors/ims-file-type-error';
-import { BrowserFileuploadSelectorService } from './browser-fileupload-selector-service';
 import { Image } from './../models/image';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { BrowserFileuploadSelectorService } from './browser-fileupload-selector-service';
 
 describe('Provider: BrowserFileuploadSelectorService', () => {
 
