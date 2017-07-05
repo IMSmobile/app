@@ -35,8 +35,8 @@ import { FieldValidatorService } from '../providers/field-validator-service';
 import { AppProviders } from './app.providers';
 
 const cloudSettings: CloudSettings = {
-  'core': {
-    'app_id': '4f2a84b8'
+  core: {
+    app_id: '4f2a84b8'
   }
 };
 

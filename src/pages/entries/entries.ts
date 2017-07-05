@@ -58,7 +58,7 @@ export class EntriesPage {
   }
 
   pushToUploadPageWithPicture(image: Image, parentImageEntryId: string, entryTitle: string) {
-    this.navCtrl.push(UploadPage, { 'image': image, 'parentImageEntryId': parentImageEntryId, 'entryTitle': entryTitle });
+    this.navCtrl.push(UploadPage, { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle });
   }
 
   ionViewDidLoad() {
