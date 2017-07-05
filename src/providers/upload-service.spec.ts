@@ -1,14 +1,14 @@
-import { ContainerUploadService } from './container-upload-service';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
+import { Transfer } from '@ionic-native/transfer';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { UploadService } from './upload-service';
-import { TokenService } from './token-service';
-import { ImsService } from './ims-service';
+import { TransferMock } from '../mocks/providers/transfer-mock';
 import { Entry } from '../models/entry';
 import { Image } from '../models/image';
-import { Transfer } from '@ionic-native/transfer';
-import { TransferMock } from '../mocks/providers/transfer-mock';
+import { ContainerUploadService } from './container-upload-service';
+import { ImsService } from './ims-service';
+import { TokenService } from './token-service';
+import { UploadService } from './upload-service';
 
 describe('Provider: UploadService', () => {
 

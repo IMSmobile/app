@@ -1,10 +1,10 @@
-import { ImsFileUploadHeaders } from './../models/ims-file-upload-headers';
-import { Image } from './../models/image';
-import { ContainerUploadService } from './container-upload-service';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { FileUploadOptions, Transfer } from '@ionic-native/transfer';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Transfer, FileUploadOptions } from '@ionic-native/transfer';
 import { TransferMock } from '../mocks/providers/transfer-mock';
+import { Image } from './../models/image';
+import { ImsFileUploadHeaders } from './../models/ims-file-upload-headers';
+import { ContainerUploadService } from './container-upload-service';
 
 describe('Provider: ContainerUploadService', () => {
 

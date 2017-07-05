@@ -1,9 +1,9 @@
-import { Image } from './../models/image';
-import { CameraError } from './../models/errors/camera-error';
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
+import { Observable } from 'rxjs/Observable';
+import { CameraError } from './../models/errors/camera-error';
+import { Image } from './../models/image';
 
 @Injectable()
 export class CameraService {

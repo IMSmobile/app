@@ -1,23 +1,23 @@
-import { DragEventService } from './../../providers/drag-event-service';
-import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
-import { Image } from './../../models/image';
-import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { ModelService } from './../../providers/model-service';
-import { SettingService } from './../../providers/setting-service';
-import { MetadataField } from './../../models/metadata-field';
-import { Observable } from 'rxjs/Observable';
-import { QueryFragment } from './../../models/query-fragment';
 import { Component, Renderer2 } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { Entries } from '../../models/entries';
 import { Entry } from '../../models/entry';
-import { EntriesService } from './../../providers/entries-service';
-import { AuthService } from './../../providers/auth-service';
 import { CameraService } from '../../providers/camera-service';
 import { LoadingService } from '../../providers/loading-service';
-import { UploadPage } from '../upload/upload';
-import { Entries } from '../../models/entries';
 import { SettingsPage } from '../settings/settings';
-import { Platform } from 'ionic-angular';
+import { UploadPage } from '../upload/upload';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
+import { Image } from './../../models/image';
+import { MetadataField } from './../../models/metadata-field';
+import { QueryFragment } from './../../models/query-fragment';
+import { AuthService } from './../../providers/auth-service';
+import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { DragEventService } from './../../providers/drag-event-service';
+import { EntriesService } from './../../providers/entries-service';
+import { ModelService } from './../../providers/model-service';
+import { SettingService } from './../../providers/setting-service';
 
 @Component({
   selector: 'page-entries',

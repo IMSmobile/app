@@ -1,13 +1,13 @@
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { StorageMock } from './../mocks/mocks';
-import { SettingService } from './setting-service';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { AuthService } from './auth-service';
-import { ImsService } from './ims-service';
 import { Credential } from '../models/credential';
 import { Info } from '../models/info';
+import { StorageMock } from './../mocks/mocks';
+import { AuthService } from './auth-service';
+import { ImsService } from './ims-service';
+import { SettingService } from './setting-service';
 
 describe('Provider: AuthService', () => {
 

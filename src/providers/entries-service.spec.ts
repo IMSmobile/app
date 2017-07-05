@@ -1,10 +1,10 @@
-import { QueryBuilderService } from './query-builder-service';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { TokenService } from './token-service';
-import { ImsService } from './ims-service';
 import { EntriesService } from './entries-service';
+import { ImsService } from './ims-service';
+import { QueryBuilderService } from './query-builder-service';
+import { TokenService } from './token-service';
 
 describe('Provider: EntriesService', () => {
 

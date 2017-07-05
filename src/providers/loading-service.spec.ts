@@ -1,9 +1,9 @@
+import { async, inject, TestBed } from '@angular/core/testing';
+import { LoadingController } from 'ionic-angular';
+import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { LoadingMock } from '../mocks/mocks';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { LoadingController } from 'ionic-angular';
 import { LoadingService } from './loading-service';
-import 'rxjs/add/observable/of';
 
 describe('Provider: LoadingService', () => {
 

@@ -1,10 +1,10 @@
+import { Component } from '@angular/core';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { SettingService } from './../../providers/setting-service';
 import { MetadataField } from './../../models/metadata-field';
-import { ModelService } from './../../providers/model-service';
 import { AuthService } from './../../providers/auth-service';
 import { LoadingService } from './../../providers/loading-service';
-import { Component } from '@angular/core';
+import { ModelService } from './../../providers/model-service';
+import { SettingService } from './../../providers/setting-service';
 
 @Component({
   selector: 'page-setting-image-fields',
