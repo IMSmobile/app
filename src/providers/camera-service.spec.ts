@@ -26,13 +26,13 @@ describe('Provider: CameraService', () => {
   }));
 
   it('returns observable from camera with response on success', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {
-    let imageSrc = '/my/picture.jpg';
+    const imageSrc = '/my/picture.jpg';
     spyOn(camera, 'getPicture').and.returnValue(Promise.resolve(imageSrc));
     cameraService.takePicture().subscribe(res => expect(res).toEqual(new Image('CameraPhoto.jpeg', imageSrc)), err => expect(err).toBeNull());
   }));
 
   it('returns observable from camera with error on failure', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {
-    let error = 'oops';
+    const error = 'oops';
     spyOn(camera, 'getPicture').and.returnValue(Promise.reject(error));
     cameraService.takePicture().subscribe(res => expect(res).toBeNull(), err => expect(err).toEqual(error));
   }));
@@ -56,12 +56,12 @@ describe('Provider: CameraService', () => {
   }));
 
   it('throws error on unexpected error message', inject([CameraService], (cameraService: CameraService) => {
-    let errorMessage = 'oops!';
+    const errorMessage = 'oops!';
     expect(() => cameraService.handleError(errorMessage)).toThrowError(CameraError);
   }));
 
   it('throws error on unexpected error code', inject([CameraService], (cameraService: CameraService) => {
-    let errorCode = 666;
+    const errorCode = 666;
     expect(() => cameraService.handleError(errorCode)).toThrowError(CameraError);
   }));
 

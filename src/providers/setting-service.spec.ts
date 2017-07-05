@@ -21,9 +21,9 @@ describe('Provider: SettingService', () => {
   }));
 
   it('Settings should be written and read from store', async(inject([SettingService, Storage], (settingService: SettingService, storage: Storage) => {
-    let testFilter = new Filter('href', 'id', 'name', 'archiveName');
-    let testRestUrl = 'testUrl';
-    let testUsername = 'testUser';
+    const testFilter = new Filter('href', 'id', 'name', 'archiveName');
+    const testRestUrl = 'testUrl';
+    const testUsername = 'testUser';
     settingService.setRestUrl(testRestUrl);
     settingService.setUsername(testUsername);
     settingService.setShowRestUrlField(false);

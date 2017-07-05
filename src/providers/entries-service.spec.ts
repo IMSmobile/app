@@ -37,7 +37,7 @@ describe('Provider: EntriesService', () => {
   }));
 
   it('Gets next page of parent image entries', inject([EntriesService, ImsBackendMock], (entriesService: EntriesService, mockImsBackend: ImsBackendMock) => {
-    let credential = mockImsBackend.credential;
+    const credential = mockImsBackend.credential;
     entriesService.getParentImageEntries(credential, mockImsBackend.filterId, mockImsBackend.query).flatMap(entries => entriesService.getEntries(credential, entries.pagination.nextPage)).subscribe(
       entries => expect(entries).toBe(mockImsBackend.parentImageEntriesNextPage),
       err => fail(err));

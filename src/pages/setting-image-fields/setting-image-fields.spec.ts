@@ -70,7 +70,7 @@ describe('Page: Image Settings Fields', () => {
   it('Fields have been intialized from archive and  settings store', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();
@@ -81,7 +81,7 @@ describe('Page: Image Settings Fields', () => {
   it('Fields do not contain mandatory or identifier fields ', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();
@@ -92,7 +92,7 @@ describe('Page: Image Settings Fields', () => {
   it('Loading called if successfull', inject([AuthService, ImsBackendMock, ModelService, LoadingService], (authService: AuthService, imsBackendMock: ImsBackendMock, modelService: ModelService, loadingService: LoadingService) => {
     authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     page.ionViewDidLoad();

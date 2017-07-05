@@ -61,7 +61,7 @@ describe('Page: Archive Settings', () => {
   });
 
   it('Should show app filters only', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     page.ionViewDidLoad();
     expect(page.filters).toContain(imsBackendMock.medicineFilter);
@@ -76,7 +76,7 @@ describe('Page: Archive Settings', () => {
   }));
 
   it('Show and Hide Loading while loading', inject([LoadingService, AuthService, ImsBackendMock], (loadingService: LoadingService, authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
@@ -86,14 +86,14 @@ describe('Page: Archive Settings', () => {
   }));
 
   it('Show Error when failing to load entries table', inject([ImsService], (imsService: ImsService) => {
-    let error = Observable.throw(new Error('oops'));
+    const error = Observable.throw(new Error('oops'));
     spyOn(imsService, 'getEntriesTable').and.returnValue(error);
     expect(() => page.ionViewDidLoad()).toThrowError(ImsLoadingError);
   }));
 
   it('Should load EntriesPage after archive selection', inject([NavController, ImsBackendMock, AuthService], (nav: NavController, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(nav, 'setRoot').and.callThrough();
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     page.selectFilter(imsBackendMock.policeFilter);
     expect(nav.setRoot).toHaveBeenCalledWith(EntriesPage);
@@ -101,7 +101,7 @@ describe('Page: Archive Settings', () => {
 
   it('Should select the archive EntriesPage after archive selection', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
     spyOn(authService, 'setArchive').and.callThrough();
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     page.selectFilter(imsBackendMock.policeFilter);
     expect(authService.setArchive).toHaveBeenCalledWith(imsBackendMock.policeFilter);

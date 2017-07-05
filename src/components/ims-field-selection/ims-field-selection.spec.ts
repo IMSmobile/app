@@ -63,7 +63,7 @@ describe('Component: ImsFieldSelectionComponent', () => {
   it('After search fields are filtered', inject([ImsBackendMock], (imsBackendMock: ImsBackendMock) => {
     component.fields = [imsBackendMock.modelFieldIdentifier, imsBackendMock.modelFieldOptionalString];
     expect(component.displayFields.length).toEqual(2);
-    let event = { target: { value: imsBackendMock.modelFieldOptionalString.name } };
+    const event = { target: { value: imsBackendMock.modelFieldOptionalString.name } };
     component.filterFields(event);
     expect(component.displayFields.length).toEqual(1);
     expect(component.displayFields[0]).toEqual(imsBackendMock.modelFieldOptionalString);

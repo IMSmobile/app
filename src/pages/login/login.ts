@@ -35,20 +35,20 @@ export class LoginPage {
     if (this.loginForm.invalid) {
       this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
-      let credential = this.createCredential();
+      const credential = this.createCredential();
       this.loadingService.subscribeWithLoading(this.authService.login(credential), info => this.loginSuccessful(), err => this.loginFailed(err));
     }
   }
 
   createCredential(): Credential {
-    let server = this.loginForm.controls['server'].value;
-    let user = this.loginForm.controls['user'].value;
-    let password = this.loginForm.controls['password'].value;
+    const server = this.loginForm.controls['server'].value;
+    const user = this.loginForm.controls['user'].value;
+    const password = this.loginForm.controls['password'].value;
     return new Credential(server, user, password);
   }
 
   loginSuccessful() {
-    let credential: Credential = this.createCredential();
+    const credential: Credential = this.createCredential();
     this.settingService.setRestUrl(credential.server);
     this.settingService.setUsername(credential.username);
     this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); } );
@@ -72,7 +72,7 @@ export class LoginPage {
   }
 
   showToastMessage(toastMessage: string) {
-    let toast = this.toastCtrl.create({
+    const toast = this.toastCtrl.create({
       message: toastMessage,
       duration: 3000,
     });
