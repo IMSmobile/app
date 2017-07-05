@@ -14,7 +14,7 @@ export class ContainerUploadService {
 
   postToContainer(credential: Credential, url: string, token: Token, image: Image): Observable<any> {
     const fileTransfer: TransferObject = this.transfer.create();
-    let options: FileUploadOptions = {
+    const options: FileUploadOptions = {
       fileName: image.name,
       headers: new ImsFileUploadHeaders(credential, token, image.name)
     };

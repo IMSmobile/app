@@ -26,7 +26,7 @@ export class ImsFieldSelectionComponent {
 
   filterFields(ev: any) {
     this.allFields.forEach(field => field.display = true);
-    let val = ev.target.value;
+    const val = ev.target.value;
     if (val && val.trim() !== '') {
       this.allFields.forEach(field => {
         if (!(field.name.toLowerCase().indexOf(val.toLowerCase()) > -1)) {

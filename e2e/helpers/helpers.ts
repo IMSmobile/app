@@ -26,8 +26,8 @@ export class Helpers {
   }
 
   static chooseJPEGImageInFileDialog(fileInput: ElementFinder) {
-    let fileToUpload = '../assets/mario.jpg';
-    let absolutePath = Path.resolve(__dirname, fileToUpload);
+    const fileToUpload = '../assets/mario.jpg';
+    const absolutePath = Path.resolve(__dirname, fileToUpload);
     fileInput.sendKeys(absolutePath);
   }
 

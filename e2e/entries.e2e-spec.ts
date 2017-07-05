@@ -9,9 +9,9 @@ describe('Entries E2E Test', () => {
 
   let originalTimeout;
   let loginPage = new LoginPageObject();
-  let entriesPage = new EntriesPageObject();
-  let uploadPage = new UploadPageObject();
-  let settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
+  const entriesPage = new EntriesPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -23,7 +23,6 @@ describe('Entries E2E Test', () => {
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageObject();
     loginPage.loadPage();
   });
 

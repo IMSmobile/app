@@ -8,10 +8,10 @@ import { UploadPageObject } from './page-objects/upload-page-object';
 describe('Settings E2E Test', () => {
 
   let originalTimeout;
-  let settingsPage = new SettingsPageObject();
+  const settingsPage = new SettingsPageObject();
   let loginPage = new LoginPageObject();
-  let uploadPage = new UploadPageObject();
-  let settingImageFieldsPage = new SettingImageFieldsPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingImageFieldsPage = new SettingImageFieldsPageObject();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -23,7 +23,6 @@ describe('Settings E2E Test', () => {
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageObject();
     loginPage.loadPage();
   });
 

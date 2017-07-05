@@ -47,7 +47,7 @@ export class EntriesPage {
 
   public getGalleryPictureForEntry(parentImageEntryId: string, entryTitle: string) {
     if (this.platform.is('core')) {
-      let fileUploadElem = document.getElementById('fileUpload' + parentImageEntryId);
+      const fileUploadElem = document.getElementById('fileUpload' + parentImageEntryId);
       fileUploadElem.click();
     } else {
       this.loadingService.subscribeWithLoading(
@@ -67,12 +67,12 @@ export class EntriesPage {
   }
 
   loadParentImageReferenceField() {
-    let imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
+    const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   loadInitialParentImageEntries() {
-    let loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
+    const loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => { throw new ImsLoadingError('Einträge', err); });
   }
 
@@ -81,7 +81,7 @@ export class EntriesPage {
   }
 
   loadSelectedFieldsAndTitle() {
-    let metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
+    const metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
       this.titleField = tableFields.identifierField;
       return this.settingService.getActiveFields(this.authService.archive, tableFields);
     });
@@ -114,21 +114,21 @@ export class EntriesPage {
   }
 
   fileSelected(event: any, parentImageEntryId: string, entryTitle: string) {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
+    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage) {
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
   }
 
   handleDragEvent(event: DragEvent, parentImageEntryId?: string, entryTitle?: string) {
-    let element: Element = (event.currentTarget as Element);
+    const element: Element = (event.currentTarget as Element);
     this.dragEventService.handleDragEvent(event, () => element.classList.add('drag'), () => element.classList.remove('drag'), () => this.receiveDrop(event, parentImageEntryId, entryTitle));
   }
 
   receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string) {
-    let selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
+    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage) {
-      let element: Element = (event.currentTarget as Element);
+      const element: Element = (event.currentTarget as Element);
       element.classList.remove('drag');
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }

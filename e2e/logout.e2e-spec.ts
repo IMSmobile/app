@@ -5,8 +5,8 @@ import { LoginPageObject } from './page-objects/login-page-object';
 describe('Logout E2E Test', () => {
 
   let originalTimeout;
-  let loginPage: LoginPageObject = new LoginPageObject();
-  let settingsPage: SettingsPageObject = new SettingsPageObject();
+  const loginPage: LoginPageObject = new LoginPageObject();
+  const settingsPage: SettingsPageObject = new SettingsPageObject();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;

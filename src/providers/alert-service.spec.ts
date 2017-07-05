@@ -16,7 +16,7 @@ describe('Provider: AlertService', () => {
   }));
 
   it('Should create error with correct attributes', inject([AlertService, AlertController], (alertService: AlertService, alertController: AlertController) => {
-    let errorText = 'FAIL';
+    const errorText = 'FAIL';
     spyOn(alertController, 'create').and.callThrough();
     alertService.showError(errorText);
     expect(alertController.create).toHaveBeenCalledWith({

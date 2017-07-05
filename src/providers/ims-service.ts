@@ -43,7 +43,7 @@ export class ImsService {
   getEntriesTable(credential: Credential): Observable<EntriesPoint> {
     return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl => {
       return this.get(credential, entriesUrl).map(response => {
-        let data = response.json();
+        const data = response.json();
         return new EntriesPoint(data.filters);
       });
     });
@@ -78,7 +78,7 @@ export class ImsService {
   }
 
   get(credential: Credential, url: string): Observable<Response> {
-    let headers = new ImsHeaders(credential);
+    const headers = new ImsHeaders(credential);
     return this.http.get(url, { headers: headers });
   }
 

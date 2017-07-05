@@ -70,7 +70,7 @@ describe('Page: Parent Entries Settings Fields', () => {
   it('Fields have been intialized from archive and  settings store', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.parentImageTableName;
-    let testInfo: Info = { version: '9000' };
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();

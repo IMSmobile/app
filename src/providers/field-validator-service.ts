@@ -14,7 +14,7 @@ export class FieldValidatorService {
   };
 
   getValidatorFunctions(field: MetadataField): ValidatorFn[] {
-    let validators: ValidatorFn[] = [];
+    const validators: ValidatorFn[] = [];
     if (field.mandatory) {
       validators.push(Validators.required);
     }
@@ -27,7 +27,7 @@ export class FieldValidatorService {
   }
 
   getErrorMessage(formControl: FormControl): string {
-    let errors: string[] = [];
+    const errors: string[] = [];
     for (const key in formControl.errors) {
       errors.push(this.validationMessages[key]);
     }

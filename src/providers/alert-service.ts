@@ -10,7 +10,7 @@ export class AlertService {
   constructor(public alertCtrl: AlertController) { }
 
   showError(message: string) {
-    let alert: Alert = this.alertCtrl.create({
+    const alert: Alert = this.alertCtrl.create({
       title: this.errorTitle,
       subTitle: message,
       buttons: [this.errorButtonText]

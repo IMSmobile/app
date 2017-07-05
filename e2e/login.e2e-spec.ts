@@ -1,6 +1,6 @@
 import { LoginPageObject } from './page-objects/login-page-object';
 
-let loginPage = new LoginPageObject();
+const loginPage = new LoginPageObject();
 
 describe('Login E2E Test', () => {
 

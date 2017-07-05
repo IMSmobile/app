@@ -21,12 +21,12 @@ describe('Provider: ContainerUploadService', () => {
   }));
 
   it('Should post to a container', inject([ContainerUploadService, Transfer, ImsBackendMock], (containerUploadService: ContainerUploadService, transfer: Transfer, imsBackendMock: ImsBackendMock) => {
-    let image = new Image('a.jpg', '/dev/0');
-    let fileTransfer = transfer.create();
-    let url = imsBackendMock.baseUrl + '/uploadurl';
+    const image = new Image('a.jpg', '/dev/0');
+    const fileTransfer = transfer.create();
+    const url = imsBackendMock.baseUrl + '/uploadurl';
     spyOn(transfer, 'create').and.returnValue(fileTransfer);
     spyOn(fileTransfer, 'upload').and.callThrough();
-    let options: FileUploadOptions = {
+    const options: FileUploadOptions = {
       fileName: image.name,
       headers: new ImsFileUploadHeaders(imsBackendMock.credential, imsBackendMock.token, image.name)
     };

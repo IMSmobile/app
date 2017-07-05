@@ -43,8 +43,8 @@ describe('Provider: UploadService', () => {
   }));
 
   it('Should upload image', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
-    let imageEntry = new Entry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
-    let image = new Image('image.jpg', '');
+    const imageEntry = new Entry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
+    const image = new Image('image.jpg', '');
     uploadService.uploadImage(imsBackendMock.credential, imsBackendMock.filterId, imageEntry, image).subscribe(
       response => expect(response.headers.get('location')).toEqual(imsBackendMock.imageLocationUrl),
       err => fail(err)

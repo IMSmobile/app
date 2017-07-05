@@ -9,11 +9,11 @@ import { EntriesPageObject } from './page-objects/entries-page-object';
 describe('Archive Selection E2E Test', () => {
 
   let originalTimeout;
-  let settingsArchivePage = new SettingArchivePageObject();
-  let loginPage = new LoginPageObject();
-  let entriesPage = new EntriesPageObject();
-  let settingsPage = new SettingsPageObject();
-  let settingImageFieldsPage = new SettingImageFieldsPageObject();
+  const settingsArchivePage = new SettingArchivePageObject();
+  const loginPage = new LoginPageObject();
+  const entriesPage = new EntriesPageObject();
+  const settingsPage = new SettingsPageObject();
+  const settingImageFieldsPage = new SettingImageFieldsPageObject();
 
   beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;

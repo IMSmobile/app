@@ -16,8 +16,8 @@ describe('Provider: DragEventService', () => {
     }));
 
     it('should prevent standard action for dragstart', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('dragstart');
+        const service = new DragEventService();
+        const event = new DragEventMock('dragstart');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
         service.handleDragEvent(event, null, null, null);
@@ -26,8 +26,8 @@ describe('Provider: DragEventService', () => {
     });
 
     it('should prevent standard action for dragover', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('dragover');
+        const service = new DragEventService();
+        const event = new DragEventMock('dragover');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
         service.handleDragEvent(event, null, null, null);
@@ -36,8 +36,8 @@ describe('Provider: DragEventService', () => {
     });
 
     it('should prevent standard action for dragenter', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('dragenter');
+        const service = new DragEventService();
+        const event = new DragEventMock('dragenter');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
         service.handleDragEvent(event, () => { }, null, null);
@@ -46,8 +46,8 @@ describe('Provider: DragEventService', () => {
     });
 
     it('should prevent standard action for dragleave', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('dragleave');
+        const service = new DragEventService();
+        const event = new DragEventMock('dragleave');
         spyOn(event, 'preventDefault').and.returnValue(null);
         spyOn(event, 'stopPropagation').and.returnValue(null);
         service.handleDragEvent(event, null, () => { }, null);
@@ -56,24 +56,24 @@ describe('Provider: DragEventService', () => {
     });
 
     it('should execute enterFunction on first dragenter', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('dragenter');
+        const service = new DragEventService();
+        const event = new DragEventMock('dragenter');
         let functionExecuted = false;
         service.handleDragEvent(event, () => functionExecuted = true, null, null);
         expect(functionExecuted).toBeTruthy();
     });
 
     it('should set copy pointer on dragenter function', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('dragenter');
+        const service = new DragEventService();
+        const event = new DragEventMock('dragenter');
         service.handleDragEvent(event, () => { }, null, null);
         expect(event.dataTransfer.dropEffect).toEqual('copy');
     });
 
     it('should execute leaveFunction on leave', () => {
-        let service = new DragEventService();
-        let enterEvent = new DragEventMock('dragenter');
-        let leaveEvent = new DragEventMock('dragleave');
+        const service = new DragEventService();
+        const enterEvent = new DragEventMock('dragenter');
+        const leaveEvent = new DragEventMock('dragleave');
         let functionExecuted = false;
         service.handleDragEvent(enterEvent, () => { }, null, null);
         expect(functionExecuted).toBeFalsy();
@@ -82,9 +82,9 @@ describe('Provider: DragEventService', () => {
     });
 
     it('should not execute leaveFunction if element not left', () => {
-        let service = new DragEventService();
-        let enterEvent = new DragEventMock('dragenter');
-        let leaveEvent = new DragEventMock('dragleave');
+        const service = new DragEventService();
+        const enterEvent = new DragEventMock('dragenter');
+        const leaveEvent = new DragEventMock('dragleave');
         let functionExecuted = false;
         service.handleDragEvent(enterEvent, () => { }, null, null);
         service.handleDragEvent(enterEvent, () => { }, null, null);
@@ -93,15 +93,15 @@ describe('Provider: DragEventService', () => {
     });
 
     it('should execute drop function on drop', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('drop');
+        const service = new DragEventService();
+        const event = new DragEventMock('drop');
         let functionExecuted = false;
         service.handleDragEvent(event, null, null, () => functionExecuted = true);
     });
 
     it('should reset counter  on drop', () => {
-        let service = new DragEventService();
-        let event = new DragEventMock('drop');
+        const service = new DragEventService();
+        const event = new DragEventMock('drop');
         let functionExecuted = false;
         spyOn(service.dragEventCounter, 'reset').and.callThrough();
         service.handleDragEvent(event, null, null, () => functionExecuted = true);

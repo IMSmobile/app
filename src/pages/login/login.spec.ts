@@ -91,7 +91,7 @@ describe('Page: Login', () => {
   it('Show and Hide Loading in case of success', inject([LoadingService, ImsBackendMock], (loadingService: LoadingService, imsBackendMock: ImsBackendMock) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
@@ -103,7 +103,7 @@ describe('Page: Login', () => {
   it('Load SettingArchivePage after successfull login without stored filter', inject([NavController, ImsBackendMock, SettingService], (nav: NavController, imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(nav, 'setRoot').and.callThrough();
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(null));
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
@@ -115,8 +115,8 @@ describe('Page: Login', () => {
   it('Load EntriesPage after successfull login with a stored filter', inject([NavController, ImsBackendMock, AuthService, SettingService], (nav: NavController, imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     spyOn(nav, 'setRoot').and.callThrough();
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
-    let credential = imsBackendMock.credential;
-    let testInfo: Info = { version: '9000' };
+    const credential = imsBackendMock.credential;
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, credential);
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
@@ -127,9 +127,9 @@ describe('Page: Login', () => {
   }));
 
   it('Fill login form from Setting Service', inject([SettingService], (settingService: SettingService) => {
-    let testShowRestUrlField = false;
-    let testRestUrl = 'testUrl';
-    let testUsername = 'testUser';
+    const testShowRestUrlField = false;
+    const testRestUrl = 'testUrl';
+    const testUsername = 'testUser';
     spyOn(settingService, 'isShowRestUrlField').and.returnValue(Observable.of(testShowRestUrlField));
     spyOn(settingService, 'getRestUrl').and.returnValue(Observable.of(testRestUrl));
     spyOn(settingService, 'getUsername').and.returnValue(Observable.of(testUsername));
@@ -148,8 +148,8 @@ describe('Page: Login', () => {
   it('Stores user and url', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     spyOn(settingService, 'setRestUrl').and.callThrough();
     spyOn(settingService, 'setUsername').and.callThrough();
-    let credential = imsBackendMock.credential;
-    let testInfo: Info = { version: '9000' };
+    const credential = imsBackendMock.credential;
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, credential);
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
@@ -163,7 +163,7 @@ describe('Page: Login', () => {
   it('Loads filter from settings and continues if successfull', inject([ImsBackendMock, SettingService], (imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
     spyOn(page, 'navigateAfterLogin').and.returnValue(null);
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
@@ -175,7 +175,7 @@ describe('Page: Login', () => {
 
   it('Shows error when failing to load filter', inject([ImsBackendMock, SettingService], (imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.throw('oops'));
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
