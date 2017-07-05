@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Camera } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
-import { AlertController, App, Config, DomController, Events, Form, GestureController, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, PopoverController } from 'ionic-angular';
+import { AlertController, App, Config, DomController, Events, Form, GestureController, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, PopoverController, InfiniteScroll } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { ImsBackendMock } from '../../mocks/ims-backend-mock';
@@ -160,7 +160,7 @@ describe('Page: Entries', () => {
   }));
 
   it('Disables infinite scroll when there is no next page', () => {
-    const infiniteScroll = new InfiniteScrollMock();
+    const infiniteScroll = <InfiniteScroll> new InfiniteScrollMock();
     spyOn(infiniteScroll, 'enable').and.callThrough();
     page.nextPage = null;
     page.infiniteEntries(infiniteScroll);
@@ -168,7 +168,7 @@ describe('Page: Entries', () => {
   });
 
   it('Completes infinite scroll on new items', inject([ImsBackendMock, EntriesService], (imsBackendMock: ImsBackendMock, entriesService: EntriesService) => {
-    const infiniteScroll = new InfiniteScrollMock();
+    const infiniteScroll = <InfiniteScroll> new InfiniteScrollMock();
     spyOn(infiniteScroll, 'complete').and.callThrough();
     spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(imsBackendMock.parentImageEntriesNextPage));
     page.nextPage = imsBackendMock.parentImageEntriesNextPageUrl;
@@ -189,7 +189,7 @@ describe('Page: Entries', () => {
     spyOn(entriesService, 'getEntries').and.returnValue(Observable.of(imsBackendMock.parentImageEntriesNextPage));
     page.nextPage = imsBackendMock.parentImageEntriesNextPageUrl;
     page.entries = new Array(...imsBackendMock.parentImageEntries.entries);
-    page.infiniteEntries(new InfiniteScrollMock());
+    page.infiniteEntries(<InfiniteScroll>new InfiniteScrollMock());
     expect(page.entries).toEqual(imsBackendMock.parentImageEntries.entries.concat(imsBackendMock.parentImageEntriesNextPage.entries));
     expect(page.nextPage).toBe(imsBackendMock.parentImageEntriesNextNextPageUrl);
   }));
