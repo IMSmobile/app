@@ -8,7 +8,7 @@ import { EntriesPageObject } from './page-objects/entries-page-object';
 describe('Entries E2E Test', () => {
 
   let originalTimeout;
-  let loginPage = new LoginPageObject();
+  const loginPage = new LoginPageObject();
   const entriesPage = new EntriesPageObject();
   const uploadPage = new UploadPageObject();
   const settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();

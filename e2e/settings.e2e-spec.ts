@@ -9,7 +9,7 @@ describe('Settings E2E Test', () => {
 
   let originalTimeout;
   const settingsPage = new SettingsPageObject();
-  let loginPage = new LoginPageObject();
+  const loginPage = new LoginPageObject();
   const uploadPage = new UploadPageObject();
   const settingImageFieldsPage = new SettingImageFieldsPageObject();
 
