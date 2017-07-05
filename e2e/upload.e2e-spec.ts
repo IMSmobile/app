@@ -11,12 +11,12 @@ describe('Upload E2E Test', () => {
   const uploadPage = new UploadPageObject();
   const settingImageFieldsPageObject = new SettingImageFieldsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
@@ -24,7 +24,7 @@ describe('Upload E2E Test', () => {
     loginPage.loadPage();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');

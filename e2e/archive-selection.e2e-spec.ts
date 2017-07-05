@@ -15,16 +15,16 @@ describe('Archive Selection E2E Test', () => {
   const settingsPage = new SettingsPageObject();
   const settingImageFieldsPage = new SettingImageFieldsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');

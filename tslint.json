@@ -84,6 +84,7 @@
       true,
       "consistent-as-needed"
     ],
-    "prefer-const": true
+    "prefer-const": true,
+    "only-arrow-functions": [true]
   }
 }
