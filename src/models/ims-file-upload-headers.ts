@@ -1,5 +1,5 @@
-import { ImsHeaders } from './ims-headers';
 import { Credential } from './credential';
+import { ImsHeaders } from './ims-headers';
 import { Token } from './token';
 
 export class ImsFileUploadHeaders extends ImsHeaders {

@@ -1,5 +1,5 @@
-import { browser, ElementFinder, $, ExpectedConditions } from 'protractor';
 import * as Path from 'path';
+import { $, browser, ElementFinder, ExpectedConditions } from 'protractor';
 
 export class Helpers {
 

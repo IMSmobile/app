@@ -1,8 +1,8 @@
-import { ValidatorFn, Validators, FormControl } from '@angular/forms';
-import { MetadataField } from '../models/metadata-field';
-import { IntegerValidator } from '../validators/integer-validator';
-import { DoubleValidator } from '../validators/double-validator';
 import { Injectable } from '@angular/core';
+import { FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { MetadataField } from '../models/metadata-field';
+import { DoubleValidator } from '../validators/double-validator';
+import { IntegerValidator } from '../validators/integer-validator';
 
 @Injectable()
 export class FieldValidatorService {

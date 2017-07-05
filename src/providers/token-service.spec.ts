@@ -1,9 +1,9 @@
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { TokenService } from './token-service';
-import { ImsService } from './ims-service';
 import { Token } from '../models/token';
+import { ImsService } from './ims-service';
+import { TokenService } from './token-service';
 
 describe('Provider: TokenService', () => {
 

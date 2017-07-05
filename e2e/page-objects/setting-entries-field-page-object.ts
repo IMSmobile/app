@@ -1,4 +1,4 @@
-import { element, by, ElementFinder, ElementArrayFinder } from 'protractor';
+import { by, element, ElementArrayFinder, ElementFinder } from 'protractor';
 import { SettingsPageObject } from './settings-page-object';
 
 export class SettingEntriesFieldsPageObject {

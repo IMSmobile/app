@@ -1,5 +1,5 @@
-import { Entries } from '../../models/entries';
 import { Response, ResponseOptions } from '@angular/http';
+import { Entries } from '../../models/entries';
 
 export class ParentImageEntriesResponse extends Response {
 

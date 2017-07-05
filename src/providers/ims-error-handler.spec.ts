@@ -1,8 +1,8 @@
+import { async, inject, TestBed } from '@angular/core/testing';
+import { AlertController, IonicErrorHandler } from 'ionic-angular';
 import { AlertMock } from './../mocks/mocks';
 import { ImsError } from './../models/errors/ims-error';
 import { AlertService } from './alert-service';
-import { AlertController, IonicErrorHandler } from 'ionic-angular';
-import { TestBed, async, inject } from '@angular/core/testing';
 import { ImsErrorHandler } from './ims-error-handler';
 
 describe('IMS Error Handler: Error Handler', () => {
