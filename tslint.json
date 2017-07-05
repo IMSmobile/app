@@ -67,6 +67,7 @@
     "whitespace": [
       true
     ],
-    "no-var-keyword": true
+    "no-var-keyword": true,
+    "no-boolean-literal-compare": true
   }
 }
