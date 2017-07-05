@@ -70,6 +70,7 @@
     "no-var-keyword": true,
     "ordered-imports": [
       true
-    ]
+    ],
+    "no-boolean-literal-compare": true
   }
 }

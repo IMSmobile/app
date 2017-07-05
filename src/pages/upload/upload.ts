@@ -65,7 +65,7 @@ export class UploadPage {
   }
 
   isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
-    return field.mandatory === true && field.name !== parentReferenceFieldName;
+    return field.mandatory && field.name !== parentReferenceFieldName;
   }
 
   appendFields(fields: MetadataField[]) {
