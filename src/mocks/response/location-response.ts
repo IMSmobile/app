@@ -1,4 +1,4 @@
-import { Response, ResponseOptions, Headers } from '@angular/http';
+import { Headers, Response, ResponseOptions } from '@angular/http';
 
 export class LocationResponse extends Response {
 

@@ -67,6 +67,9 @@
     "whitespace": [
       true
     ],
-    "no-var-keyword": true
+    "no-var-keyword": true,
+    "ordered-imports": [
+      true
+    ]
   }
 }

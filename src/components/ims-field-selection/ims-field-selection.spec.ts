@@ -1,10 +1,10 @@
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BaseRequestOptions, Http } from '@angular/http';
+import { App, Config, DomController, Form, GestureController, Haptic, IonicModule, Keyboard, NavController, Platform } from 'ionic-angular';
+import { ImsBackendMock } from './../../mocks/ims-backend-mock';
 import { AppMock, ConfigMock, PlatformMock } from './../../mocks/mocks';
 import { SettingService } from './../../providers/setting-service';
-import { BaseRequestOptions, Http } from '@angular/http';
-import { ImsBackendMock } from './../../mocks/ims-backend-mock';
-import { App, GestureController, DomController, Form, Keyboard, NavController, Haptic, Config, Platform, IonicModule } from 'ionic-angular';
-import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
 import { ImsFieldSelectionComponent } from './ims-field-selection';
 
 describe('Component: ImsFieldSelectionComponent', () => {
