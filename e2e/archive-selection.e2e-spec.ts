@@ -24,7 +24,6 @@ describe('Archive Selection E2E Test', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
-
   afterEach(function () {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');

@@ -10,7 +10,6 @@ export class SettingsPageObject {
   settingsArchiveButton: ElementFinder = element(by.id('settingsArchiveButton'));
   settingsLogoutButton: ElementFinder = element(by.id('settingsLogoutButton'));
 
-
   loadPage() {
     this.entriesPage.loadPage();
     this.entriesPage.pushToSettingsPage();

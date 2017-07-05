@@ -29,5 +29,4 @@ describe('Login E2E Test', () => {
     loginPage.verifyErrorDialog();
   });
 
-
 });
