@@ -39,7 +39,7 @@ export class Helpers {
 
   static sendDragEnterEventToElement(id: string): void {
     browser.executeScript(`let dragEnterEvent = new DragEvent("dragenter");
-      Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });'
+      Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });
       document.getElementById("${id}").dispatchEvent(dragEnterEvent)`);
   }
 
