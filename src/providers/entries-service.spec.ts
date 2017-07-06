@@ -33,13 +33,13 @@ describe('Provider: EntriesService', () => {
   it('Gets parent image entries', inject([EntriesService, ImsBackendMock], (entriesService: EntriesService, mockImsBackend: ImsBackendMock) => {
     entriesService.getParentImageEntries(mockImsBackend.credential, mockImsBackend.filterId, mockImsBackend.query).subscribe(
       entries => expect(entries).toBe(mockImsBackend.parentImageEntries),
-      err => fail(err));
+      fail);
   }));
 
   it('Gets next page of parent image entries', inject([EntriesService, ImsBackendMock], (entriesService: EntriesService, mockImsBackend: ImsBackendMock) => {
     const credential = mockImsBackend.credential;
     entriesService.getParentImageEntries(credential, mockImsBackend.filterId, mockImsBackend.query).flatMap(entries => entriesService.getEntries(credential, entries.pagination.nextPage)).subscribe(
       entries => expect(entries).toBe(mockImsBackend.parentImageEntriesNextPage),
-      err => fail(err));
+      fail);
   }));
 });

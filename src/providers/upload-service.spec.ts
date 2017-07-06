@@ -38,8 +38,7 @@ describe('Provider: UploadService', () => {
   it('Should create a container location', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
     uploadService.createContainerLocation(imsBackendMock.credential, imsBackendMock.filterId, imsBackendMock.token).subscribe(
       location => expect(location).toEqual(imsBackendMock.uploadContainerUrl),
-      err => fail(err)
-    );
+      fail);
   }));
 
   it('Should upload image', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
@@ -47,7 +46,6 @@ describe('Provider: UploadService', () => {
     const image = new Image('image.jpg', '');
     uploadService.uploadImage(imsBackendMock.credential, imsBackendMock.filterId, imageEntry, image).subscribe(
       response => expect(response.headers.get('location')).toEqual(imsBackendMock.imageLocationUrl),
-      err => fail(err)
-    );
+      fail);
   }));
 });
