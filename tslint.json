@@ -91,7 +91,13 @@
       "parameter",
       "member-variable-declaration"
     ],
-    "only-arrow-functions": [true],
-    "variable-name": [true]
+    "only-arrow-functions": [
+      true
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format"
+    ]
   }
 }
