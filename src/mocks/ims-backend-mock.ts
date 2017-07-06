@@ -56,7 +56,7 @@ export class ImsBackendMock extends MockBackend {
   public token: Token = new Token(this.tokenName, this.tokenExpirationDate);
   public modelArchiveName: string = 'workflow_db1';
   public policeFilter: Filter = new Filter(this.filterResourceUrl, this.filterId.toString(), 'IMS_Mobile_Client', this.modelArchiveName);
-  public medicineFilter: Filter = new Filter(this.entriesUrl + '/42', '41', 'IMS_Mobile_Client', 'medref');
+  public medicineFilter: Filter = new Filter(this.entriesUrl + '/41', '41', 'IMS_Mobile_Client', 'medref');
   public notAppFilter: Filter = new Filter(this.entriesUrl + '/42', '42', 'Wrong_Filter_Name', 'any_archive');
   public filterTable: Filter[] = [this.policeFilter, this.medicineFilter, this.notAppFilter];
   public containerRequestUrl: string = this.filterResourceUrl + '/Bild/uploads';
