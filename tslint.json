@@ -96,6 +96,7 @@
     "unified-signatures": true,
     "no-duplicate-super": true,
     "arrow-return-shorthand": true,
+    "typeof-compare": true,
     "no-object-literal-type-assertion": true
   }
 }
