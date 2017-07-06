@@ -15,7 +15,7 @@ describe('Settings E2E Test', () => {
 
   beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = Helpers.JASMINE_TIMEOUT_INTERVAL;
   });
 
   afterEach(() => {
@@ -102,10 +102,11 @@ describe('Settings E2E Test', () => {
   });
 
   it('Should filter image field settings', () => {
+    const testFilters = [{filterText: 'K', expectedFields: 3}, {filterText: 'Key', expectedFields: 2}];
     settingImageFieldsPage.loadPage();
-    settingImageFieldsPage.filterFields('K');
-    settingImageFieldsPage.verifyFieldsDisplayed(3);
-    settingImageFieldsPage.filterFields('Key');
-    settingImageFieldsPage.verifyFieldsDisplayed(2);
+    testFilters.map((testFilter) => {
+      settingImageFieldsPage.filterFields(testFilter.filterText);
+      settingImageFieldsPage.verifyFieldsDisplayed(testFilter.expectedFields);
+    });
   });
 });

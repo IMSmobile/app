@@ -20,6 +20,8 @@ import 'rxjs/add/operator/mergeMap';
 @Injectable()
 export class ImsService {
 
+  parentImageTableOffset: number = 1;
+
   constructor(public http: Http) {
 
   }
@@ -92,7 +94,7 @@ export class ImsService {
   }
 
   private findParentImageTable(archiveEntry: ArchiveEntry): ArchiveTableEntry {
-    return archiveEntry.tables[(archiveEntry.tables.length - 2)];
+    return archiveEntry.tables[(archiveEntry.tables.length - this.parentImageTableOffset - 1)];
   }
 
   private findEntryPointLinkByName(this: string, link: Link): boolean {

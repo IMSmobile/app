@@ -80,17 +80,18 @@ export class ImsBackendMock extends MockBackend {
   public modelTables: ModelTables = new ModelTables(this.modelArchiveName, [new ModelLink(this.modelTableFieldsUrl, 'Fall'), new ModelLink(this.modelImageTableFieldsUrl, this.modelImageTableName)]);
   public modelFieldIdentifierName: string = 'BILDNAME';
   public modelFieldParentreferenceName: string = 'IDFall';
-  public modelFieldIdentifier: MetadataField = new MetadataField(this.modelFieldIdentifierName, 'STRING', false, false, true, true, 10);
-  public modelFieldParentreference: MetadataField = new MetadataField(this.modelFieldParentreferenceName, 'STRING', false, false, true, true, 10);
-  public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, 10);
+  public modelFieldDefaultLength: number = 10;
+  public modelFieldIdentifier: MetadataField = new MetadataField(this.modelFieldIdentifierName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public modelFieldParentreference: MetadataField = new MetadataField(this.modelFieldParentreferenceName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, this.modelFieldDefaultLength);
   public modelFields: MetadataTableFields = new MetadataTableFields(this.modelImageTableName, this.modelFieldIdentifierName, this.modelFieldParentreferenceName, [this.modelFieldIdentifier, this.modelFieldParentreference, this.modelFieldOptionalString]);
 
   public parentImageTableName: string = 'Fall';
   public parentImageModelFieldIdentifierName: string = 'FALL_NR';
   public parentImageModelFieldParentReferenceName: string = 'IDArt';
-  public parentImageModelFieldParentreference: MetadataField = new MetadataField(this.parentImageModelFieldParentReferenceName, 'STRING', false, false, true, true, 10);
-  public parentImageModelFieldIdentifier: MetadataField = new MetadataField(this.parentImageModelFieldIdentifierName, 'STRING', false, false, true, true, 10);
-  public parentImageModelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, 10);
+  public parentImageModelFieldParentreference: MetadataField = new MetadataField(this.parentImageModelFieldParentReferenceName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public parentImageModelFieldIdentifier: MetadataField = new MetadataField(this.parentImageModelFieldIdentifierName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public parentImageModelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, this.modelFieldDefaultLength);
   public parentImageModelFields: MetadataTableFields = new MetadataTableFields(this.parentImageTableName, this.parentImageModelFieldIdentifierName, this.parentImageModelFieldParentReferenceName, [this.parentImageModelFieldIdentifier, this.parentImageModelFieldParentreference, this.parentImageModelFieldOptionalString]);
 
   constructor() {

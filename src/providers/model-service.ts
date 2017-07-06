@@ -11,6 +11,8 @@ import { ImsService } from './ims-service';
 @Injectable()
 export class ModelService {
 
+  parentImageTableOffset: number = 1;
+
   constructor(public imsService: ImsService) {
 
   }
@@ -32,7 +34,7 @@ export class ModelService {
   }
 
   getModelParentImageTableUrl(credential: Credential, archive: string): Observable<string> {
-    return this.getModelTables(credential, archive).map(modelTable => modelTable.tables[(modelTable.tables.length - 2)].dataHref);
+    return this.getModelTables(credential, archive).map(modelTable => modelTable.tables[(modelTable.tables.length - this.parentImageTableOffset - 1)].dataHref);
   }
 
   getModelTables(credential: Credential, archive: string): Observable<ModelTables> {

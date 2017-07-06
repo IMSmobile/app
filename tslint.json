@@ -97,6 +97,7 @@
     "no-duplicate-super": true,
     "arrow-return-shorthand": true,
     "typeof-compare": true,
-    "no-object-literal-type-assertion": true
+    "no-object-literal-type-assertion": true,
+    "no-magic-numbers": true
   }
 }

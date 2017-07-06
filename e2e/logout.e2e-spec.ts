@@ -1,4 +1,5 @@
 import { browser } from 'protractor';
+import { Helpers } from './helpers/helpers';
 import { LoginPageObject } from './page-objects/login-page-object';
 import { SettingsPageObject } from './page-objects/settings-page-object';
 
@@ -10,7 +11,7 @@ describe('Logout E2E Test', () => {
 
   beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = Helpers.JASMINE_TIMEOUT_INTERVAL;
   });
 
   afterEach(() => {
