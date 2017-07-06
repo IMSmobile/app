@@ -23,8 +23,8 @@ describe('Component: ImsFieldSelectionComponent', () => {
         GestureController, ImsBackendMock, BaseRequestOptions,
         {
           provide: Http,
-          useFactory: (ImsBackendMock, options) => {
-            return new Http(ImsBackendMock, options);
+          useFactory: (imsBackendMock, options) => {
+            return new Http(imsBackendMock, options);
           },
           deps: [ImsBackendMock, BaseRequestOptions]
         },

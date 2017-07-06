@@ -25,7 +25,6 @@ import { UploadService } from './../../providers/upload-service';
   templateUrl: 'upload.html'
 })
 export class UploadPage {
-  BrowserFileuploadService: any;
   image: Image;
   parentImageEntryId: string;
   fields: MetadataField[] = [];

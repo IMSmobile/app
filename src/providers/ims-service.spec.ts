@@ -17,8 +17,8 @@ describe('Provider: ImsService', () => {
         BaseRequestOptions,
         {
           provide: Http,
-          useFactory: (mockBackend, options) => {
-            return new Http(mockBackend, options);
+          useFactory: (imsBackendMock, options) => {
+            return new Http(imsBackendMock, options);
           },
           deps: [ImsBackendMock, BaseRequestOptions]
         }
