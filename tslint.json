@@ -91,6 +91,8 @@
       "parameter",
       "member-variable-declaration"
     ],
-    "only-arrow-functions": [true]
+    "only-arrow-functions": [true],
+    "restrict-plus-operands": true,
+    "prefer-template": [true, "allow-single-concat"]
   }
 }
