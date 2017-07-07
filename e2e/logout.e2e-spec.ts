@@ -1,19 +1,19 @@
-import { SettingsPageObject } from './page-objects/settings-page-object';
-import { browser, element, by, ElementFinder, protractor, $, ExpectedConditions } from 'protractor';
+import { browser } from 'protractor';
 import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 
 describe('Logout E2E Test', () => {
 
   let originalTimeout;
-  let loginPage: LoginPageObject = new LoginPageObject();
-  let settingsPage: SettingsPageObject = new SettingsPageObject();
+  const loginPage: LoginPageObject = new LoginPageObject();
+  const settingsPage: SettingsPageObject = new SettingsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
@@ -21,7 +21,7 @@ describe('Logout E2E Test', () => {
     loginPage.loadPage();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');
@@ -36,12 +36,3 @@ describe('Logout E2E Test', () => {
     loginPage.getPasswordInputText().then(text => expect(text).toEqual(''));
   });
 });
-
-function waitUntilElementsAreClickable() {
-  browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')));
-  browser.sleep(1000);
-}
-
-function waitUntilPageReady() {
-  browser.sleep(2000);
-}

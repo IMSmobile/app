@@ -1,33 +1,33 @@
-import { ErrorResponse } from './response/error-response';
+import { RequestMethod, Response, ResponseOptions, ResponseType } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+import { ArchiveEntry } from '../models/archive-entry';
+import { ArchiveTableEntry } from '../models/archive-table-entry';
+import { Credential } from '../models/credential';
+import { Entries } from '../models/entries';
+import { EntriesPoint } from '../models/entries-point';
+import { Entry } from '../models/entry';
+import { Filter } from '../models/filter';
+import { Link } from '../models/link';
+import { Pagination } from '../models/pagination';
+import { Token } from '../models/token';
 import { MetadataField } from './../models/metadata-field';
 import { MetadataTableFields } from './../models/metadata-table-fields';
-import { ModelFieldsPointResponse } from './response/model-fields-point-response';
-import { ModelTables } from './../models/model-tables';
-import { ModelTablesPointResponse } from './response/model-tables-point-response';
-import { ModelArchivesPointResponse } from './response/model-archives-point-response';
-import { ModelLink } from './../models/model-link';
 import { ModelArchives } from './../models/model-archives';
-import { QueryBuilderService } from './../providers/query-builder-service';
+import { ModelLink } from './../models/model-link';
+import { ModelTables } from './../models/model-tables';
 import { QueryFragment } from './../models/query-fragment';
-import { Response, ResponseOptions, RequestMethod, ResponseType } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { QueryBuilderService } from './../providers/query-builder-service';
 import { EntryPointResponse } from './response//entry-point-response';
 import { LicensePointResponse } from './response//license-point-response';
 import { LocationResponse } from './response//location-response';
 import { TokenResponse } from './response//token-response';
-import { EntriesResponse } from './response/entries-response';
 import { ArchiveEntryResponse } from './response/archive-entry-response';
-import { ArchiveTableEntry } from '../models/archive-table-entry';
-import { ArchiveEntry } from '../models/archive-entry';
-import { Token } from '../models/token';
-import { Link } from '../models/link';
-import { Credential } from '../models/credential';
-import { Filter } from '../models/filter';
-import { EntriesPoint } from '../models/entries-point';
+import { EntriesResponse } from './response/entries-response';
+import { ErrorResponse } from './response/error-response';
+import { ModelArchivesPointResponse } from './response/model-archives-point-response';
+import { ModelFieldsPointResponse } from './response/model-fields-point-response';
+import { ModelTablesPointResponse } from './response/model-tables-point-response';
 import { ParentImageEntriesResponse } from './response/parent-image-entries-response';
-import { Entries } from '../models/entries';
-import { Entry } from '../models/entry';
-import { Pagination } from '../models/pagination';
 
 export class ImsBackendMock extends MockBackend {
 
@@ -48,15 +48,15 @@ export class ImsBackendMock extends MockBackend {
   public tokensUrl: string = this.licenseUrl + '/tokens';
   public tokenLoadingUrl: string = this.tokensUrl + '/ABCDE';
   public filterId: number = 40;
-  public filterResourceUrl: string = this.entriesUrl + '/' + this.filterId;
+  public filterResourceUrl: string = `${this.entriesUrl}/${this.filterId}`;
   public version: string = 'V17Q1';
-  public versionResponse = { 'version': this.version };
+  public versionResponse: any = { version: this.version };
   public tokenName: string = 'EDFC';
   public tokenExpirationDate: string = '2015-10-28T16:45:12Z';
   public token: Token = new Token(this.tokenName, this.tokenExpirationDate);
   public modelArchiveName: string = 'workflow_db1';
   public policeFilter: Filter = new Filter(this.filterResourceUrl, this.filterId.toString(), 'IMS_Mobile_Client', this.modelArchiveName);
-  public medicineFilter: Filter = new Filter(this.entriesUrl + '/42', '41', 'IMS_Mobile_Client', 'medref');
+  public medicineFilter: Filter = new Filter(this.entriesUrl + '/41', '41', 'IMS_Mobile_Client', 'medref');
   public notAppFilter: Filter = new Filter(this.entriesUrl + '/42', '42', 'Wrong_Filter_Name', 'any_archive');
   public filterTable: Filter[] = [this.policeFilter, this.medicineFilter, this.notAppFilter];
   public containerRequestUrl: string = this.filterResourceUrl + '/Bild/uploads';
@@ -98,7 +98,7 @@ export class ImsBackendMock extends MockBackend {
     this.connections.subscribe((connection) => {
       if (!connection.request.url.startsWith(this.baseUrl)) {
         connection.mockError(new Error('Wrong Url'));
-      } else if (connection.request.headers.get('authorization') !== ('Basic ' + btoa(this.credential.username + ':' + this.credential.password))) {
+      } else if (connection.request.headers.get('authorization') !== ('Basic ' + btoa(`${this.credential.username}:${this.credential.password}`))) {
         connection.mockError(this.unauthorizedResponse);
       } else if (connection.request.url.endsWith(this.entryPointUrl) && connection.request.method === RequestMethod.Get) {
         connection.mockRespond(new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]));
@@ -133,7 +133,7 @@ export class ImsBackendMock extends MockBackend {
           body: this.versionResponse
         })));
       } else {
-        connection.mockError(new Error('No handling for: ' + connection.request.url));
+        connection.mockError(new Error(`No handling for: ${connection.request.url}`));
       }
     });
   }

@@ -1,14 +1,14 @@
-import { ContainerUploadService } from './container-upload-service';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
+import { Transfer } from '@ionic-native/transfer';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { UploadService } from './upload-service';
-import { TokenService } from './token-service';
-import { ImsService } from './ims-service';
+import { TransferMock } from '../mocks/providers/transfer-mock';
 import { Entry } from '../models/entry';
 import { Image } from '../models/image';
-import { Transfer } from '@ionic-native/transfer';
-import { TransferMock } from '../mocks/providers/transfer-mock';
+import { ContainerUploadService } from './container-upload-service';
+import { ImsService } from './ims-service';
+import { TokenService } from './token-service';
+import { UploadService } from './upload-service';
 
 describe('Provider: UploadService', () => {
 
@@ -43,8 +43,8 @@ describe('Provider: UploadService', () => {
   }));
 
   it('Should upload image', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
-    let imageEntry = new Entry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
-    let image = new Image('image.jpg', '');
+    const imageEntry = new Entry().set('IDFall', '23691').set('BILDNAME', 'Imagic IMS Mobile Client');
+    const image = new Image('image.jpg', '');
     uploadService.uploadImage(imsBackendMock.credential, imsBackendMock.filterId, imageEntry, image).subscribe(
       response => expect(response.headers.get('location')).toEqual(imsBackendMock.imageLocationUrl),
       err => fail(err)

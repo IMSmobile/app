@@ -1,7 +1,7 @@
-import { BrowserSettingService } from './browser-setting-service';
-import { StorageMock } from '../mocks/mocks';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { Storage } from '@ionic/storage';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { StorageMock } from '../mocks/mocks';
+import { BrowserSettingService } from './browser-setting-service';
 import { SettingService } from './setting-service';
 
 describe('Provider: BrowserSettingService', () => {

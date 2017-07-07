@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Credential } from '../models/credential';
 import { ImsHeaders } from '../models/ims-headers';
@@ -36,7 +36,7 @@ export class TokenService {
 
   getTokenForSegment(credential: Credential): Observable<string> {
     return this.imsService.getTokensUrl(credential).flatMap(tokensUrl => {
-      let segment = { 'name': credential.segmentName };
+      const segment = { name: credential.segmentName };
       return this.http.post(tokensUrl, segment, { headers: new ImsHeaders(credential) }).map(r => r.headers.get('location'));
     });
   }

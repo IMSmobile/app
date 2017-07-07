@@ -1,9 +1,9 @@
-import { Image } from './../models/image';
-import { CameraError } from './../models/errors/camera-error';
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
+import { Observable } from 'rxjs/Observable';
+import { CameraError } from './../models/errors/camera-error';
+import { Image } from './../models/image';
 
 @Injectable()
 export class CameraService {
@@ -41,7 +41,7 @@ export class CameraService {
     return Observable.fromPromise(this.camera.getPicture(this.galleryOptions)).map(imageSrc => new Image('GalleryPhoto.jpeg', imageSrc));
   }
 
-  public handleError(error: (string | number)) {
+  public handleError(error: (string | number)): void {
     if (this.ignoredErrors.indexOf(error) === -1) {
       throw new CameraError(error);
     }

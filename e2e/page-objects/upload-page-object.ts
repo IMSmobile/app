@@ -1,12 +1,10 @@
-import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions, protractor } from 'protractor';
+import { browser, by, element, ElementFinder, ExpectedConditions, protractor } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
-import { Observable } from 'rxjs/Observable';
-import { LoginPageObject } from './login-page-object';
+import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
 
 export class UploadPageObject {
-  entriesPage = new EntriesPageObject();
+  entriesPage: EntriesPageObject = new EntriesPageObject();
   bildNameFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=BILDNAME]'));
   uploadImageButton: ElementFinder = element(by.id('uploadImageButton'));
   contentDiv: ElementFinder = element(by.id('content'));
@@ -27,74 +25,74 @@ export class UploadPageObject {
   integerfeldMandatoryMarker: ElementFinder = element(by.id('mandatoryINTEGERFELD'));
   fileUpload: ElementFinder = element(by.id('fileUpload'));
 
-  loadPage() {
+  loadPage(): void {
     this.entriesPage.loadPage();
     this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
 
-  reloadPage() {
+  reloadPage(): void {
     this.entriesPage.reloadPage();
     this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
-  writeToTextField(textField: ElementFinder, text: string) {
+  writeToTextField(textField: ElementFinder, text: string): void {
     Helpers.waitUntilElementIsReady(textField);
     textField.clear();
     textField.sendKeys(text);
     browser.waitForAngular();
   }
 
-  toggleBooleanField() {
+  toggleBooleanField(): void {
     Helpers.waitUntilElementIsReady(this.booleanFieldToggle);
     this.booleanFieldToggle.click();
     browser.waitForAngular();
   }
 
-  selectNewPictureFromGallery() {
+  selectNewPictureFromGallery(): void {
     Helpers.waitUntilElementIsReady(this.getGalleryPictureButton);
     this.getGalleryPictureButton.click();
     Helpers.chooseJPEGImageInFileDialog(this.fileUpload);
   }
 
-  clickIntoBildNameTextField() {
+  clickIntoBildNameTextField(): void {
     this.clickIntoTextField(this.bildNameFieldInput);
   }
 
-  clickIntoIntegerTextField() {
+  clickIntoIntegerTextField(): void {
     this.clickIntoTextField(this.integerfeldFieldInput);
   }
 
-  clickIntoTextField(textField: ElementFinder) {
+  clickIntoTextField(textField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(textField);
     textField.click();
     browser.waitForAngular();
   }
 
-  createDragEnterEvent() {
+  createDragEnterEvent(): void {
     this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragEnterEventToElement(entriesItemId));
   }
 
-  createDragLeaveEvent() {
+  createDragLeaveEvent(): void {
     this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
   }
 
-  sendDropEvent() {
+  sendDropEvent(): void {
     this.removeEventlistenerFromFilePicker();
     this.selectNewPictureFromGallery();
     this.createDropEvent();
   }
 
-  removeEventlistenerFromFilePicker() {
+  removeEventlistenerFromFilePicker(): void {
     this.fileUpload.getAttribute('id').then(fileUploadId => Helpers.removeEventlistenerFromElement(fileUploadId));
   }
 
-  createDropEvent() {
+  createDropEvent(): void {
     this.fileUpload.getAttribute('id').then(
       sourceFileInputId => this.contentDiv.getAttribute('id').then(
         targetId => Helpers.sendDragDropEventToElement(sourceFileInputId, targetId)
       ));
   }
 
-  sendEnterKey(textField: ElementFinder) {
+  sendEnterKey(textField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(textField);
     textField.sendKeys(protractor.Key.ENTER);
     browser.waitForAngular();
@@ -107,64 +105,64 @@ export class UploadPageObject {
     this.ionDateTimeDoneButton.click();
   }
 
-  verifyBildNameErrorDivVisible() {
+  verifyBildNameErrorDivVisible(): void {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivBILDNAME);
   }
 
-  verifyIntegerErrorDivVisible() {
+  verifyIntegerErrorDivVisible(): void {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivINTEGERFELD);
   }
 
-  verifyFloatErrorDivVisible() {
+  verifyFloatErrorDivVisible(): void {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivFLOATFELD);
   }
 
-  verifyErrorDivVisible(errorDiv: ElementFinder) {
+  verifyErrorDivVisible(errorDiv: ElementFinder): void {
     browser.wait(ExpectedConditions.visibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyBildNameErrorDivInvisible() {
+  verifyBildNameErrorDivInvisible(): void {
     this.verifyErrorDivInvisible(this.uploadFieldErrorDivBILDNAME);
   }
 
-  verifyIntegerErrorDivInvisible() {
+  verifyIntegerErrorDivInvisible(): void {
     this.verifyErrorDivInvisible(this.uploadFieldErrorDivINTEGERFELD);
   }
 
-  verifyFloatErrorDivInvisible() {
+  verifyFloatErrorDivInvisible(): void {
     this.verifyErrorDivInvisible(this.uploadFieldErrorDivFLOATFELD);
   }
 
-  verifyErrorDivInvisible(errorDiv: ElementFinder) {
+  verifyErrorDivInvisible(errorDiv: ElementFinder): void {
     browser.wait(ExpectedConditions.invisibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyBildNameMarkedAsMandatoryField() {
+  verifyBildNameMarkedAsMandatoryField(): void {
     browser.wait(ExpectedConditions.visibilityOf(this.bildNameMandatoryMarker), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyIntegerNotMarkedAsMandatoryField() {
+  verifyIntegerNotMarkedAsMandatoryField(): void {
     browser.wait(ExpectedConditions.invisibilityOf(this.integerfeldMandatoryMarker), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyPageLoaded() {
+  verifyPageLoaded(): void {
     browser.wait(ExpectedConditions.visibilityOf(this.uploadImageButton), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyDragoverlayVisible() {
+  verifyDragoverlayVisible(): void {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('drag-overlay'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyDragoverlayInvisible() {
+  verifyDragoverlayInvisible(): void {
     browser.wait(ExpectedConditions.invisibilityOf(element(by.className('drag-overlay'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  clickUploadImageButton() {
+  clickUploadImageButton(): void {
     Helpers.waitUntilElementIsReady(this.uploadImageButton);
     this.uploadImageButton.click();
   }
 
-  verifyToastMessage() {
+  verifyToastMessage(): void {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 

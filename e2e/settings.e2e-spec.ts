@@ -1,35 +1,32 @@
+import { browser, ExpectedConditions} from 'protractor';
 import { Helpers } from './helpers/helpers';
-import { browser, element, by, ElementFinder, ExpectedConditions, protractor, $ } from 'protractor';
-import { SettingsPageObject } from './page-objects/settings-page-object';
-import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { LoginPageObject } from './page-objects/login-page-object';
-import { EntriesPageObject } from './page-objects/entries-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Settings E2E Test', () => {
 
   let originalTimeout;
-  let settingsPage = new SettingsPageObject();
-  let loginPage = new LoginPageObject();
-  let entriesPage = new EntriesPageObject();
-  let uploadPage = new UploadPageObject();
-  let settingImageFieldsPage = new SettingImageFieldsPageObject();
+  const settingsPage = new SettingsPageObject();
+  const loginPage = new LoginPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingImageFieldsPage = new SettingImageFieldsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageObject();
     loginPage.loadPage();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');
