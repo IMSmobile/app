@@ -32,43 +32,37 @@ describe('Provider: ModelService', () => {
   it('Should get image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getMetadataFieldsOfImageTable(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       metadataTableFields => expect(metadataTableFields).toEqual(imsBackendMock.modelFields),
-      err => fail(err)
-    );
+      fail);
   }));
 
   it('Should get parent image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getMetadataFieldsOfParentImageTable(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       metadataTableFields => expect(metadataTableFields).toEqual(imsBackendMock.parentImageModelFields),
-      err => fail(err)
-    );
+      fail);
   }));
 
   it('Should get link to image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getModelImageTableUrl(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       url => expect(url).toEqual(imsBackendMock.modelImageTableFieldsUrl),
-      err => fail(err)
-    );
+      fail);
   }));
 
   it('Should get link to parent image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getModelParentImageTableUrl(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       url => expect(url).toEqual(imsBackendMock.modelTableFieldsUrl),
-      err => fail(err)
-    );
+      fail);
   }));
 
   it('Should get model tables', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getModelTables(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       modelTables => expect(modelTables).toEqual(imsBackendMock.modelTables),
-      err => fail(err)
-    );
+      fail);
   }));
 
   it('Should get link to model tables', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getModelArchiveUrl(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(
       url => expect(url).toEqual(imsBackendMock.modelTablesUrl),
-      err => fail(err)
-    );
+      fail);
   }));
 
 });

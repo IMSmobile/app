@@ -40,7 +40,7 @@ describe('Provider: AuthService', () => {
     const credential = imsBackendMock.credential;
     authService.login(credential).subscribe(
       info => expect(authService.currentCredential.username).toEqual(credential.username),
-      err => fail(err)
+      fail
     );
   }));
 

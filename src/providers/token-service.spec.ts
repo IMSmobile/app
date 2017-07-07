@@ -33,19 +33,19 @@ describe('Provider: TokenService', () => {
   it('Should get Token Location for Segment Name', inject([TokenService, ImsBackendMock], (tokenService: TokenService, imsBackendMock: ImsBackendMock) => {
     tokenService.getTokenForSegment(imsBackendMock.credential).subscribe(
       location => { expect(location).toEqual(imsBackendMock.tokenLoadingUrl); },
-      err => fail(err));
+      fail);
   }));
 
   it('Should get Token from Url', inject([TokenService, ImsBackendMock], (tokenService: TokenService, imsBackendMock: ImsBackendMock) => {
     tokenService.getTokenFromUrl(imsBackendMock.credential, imsBackendMock.tokenLoadingUrl).subscribe(
       token => expect(token.token).toEqual(imsBackendMock.tokenName),
-      err => fail(err));
+      fail);
   }));
 
   it('Should load Token from Rest API', inject([TokenService, ImsBackendMock], (tokenService: TokenService, imsBackendMock: ImsBackendMock) => {
     tokenService.getToken(imsBackendMock.credential).subscribe(
       token => expect(token.token).toEqual(imsBackendMock.tokenName),
-      err => fail(err));
+      fail);
   }));
 
   it('Should load Token from Rest API and then from cache', inject([TokenService, ImsBackendMock], (tokenService: TokenService, imsBackendMock: ImsBackendMock) => {

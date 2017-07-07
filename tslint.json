@@ -91,6 +91,7 @@
       "parameter",
       "member-variable-declaration"
     ],
+    "no-unnecessary-callback-wrapper": true,
     "only-arrow-functions": [
       true
     ],
