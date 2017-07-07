@@ -16,8 +16,8 @@ describe('Provider: BrowserContainerUploadService', () => {
         ImsBackendMock,
         {
           provide: Http,
-          useFactory: (mockImsBackend, options) => {
-            return new Http(mockImsBackend, options);
+          useFactory: (imsBackendMock, options) => {
+            return new Http(imsBackendMock, options);
           },
           deps: [ImsBackendMock, BaseRequestOptions]
         }

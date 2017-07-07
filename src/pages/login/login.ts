@@ -22,6 +22,7 @@ export class LoginPage {
   loginForm: FormGroup;
   isShowRestUrlField: boolean = true;
   version: string = '0.6.0';
+  unauthorizedHttpStatusCode: number = 401;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
@@ -64,7 +65,7 @@ export class LoginPage {
   }
 
   loginFailed(response: Response): void {
-    if (response.status === 401) {
+    if (response.status === this.unauthorizedHttpStatusCode) {
       throw new ImsAuthenticationError(response);
     } else {
       throw new ImsServerConnectionError(this.loginForm.controls['server'].value, response);

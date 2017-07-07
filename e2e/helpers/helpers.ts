@@ -4,6 +4,9 @@ import { $, browser, ElementFinder, ExpectedConditions } from 'protractor';
 export class Helpers {
 
   static DEFAULT_WAIT_TIMEOUT: number = 20000;
+  static DEFAULT_SLEEP_TIME: number = 1000;
+  static JASMINE_TIMEOUT_INTERVAL: number = 100000;
+
   static waitUntilElementIsReady(element: ElementFinder): void {
     browser.wait(ExpectedConditions.elementToBeClickable(element), Helpers.DEFAULT_WAIT_TIMEOUT);
     browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')), Helpers.DEFAULT_WAIT_TIMEOUT);
@@ -16,7 +19,8 @@ export class Helpers {
   }
 
   static waitUntilStorageReady(): void {
-    browser.sleep(2000);
+    browser.sleep(this.DEFAULT_SLEEP_TIME);
+    browser.sleep(this.DEFAULT_SLEEP_TIME);
   }
 
   static toggleFieldSettings(toggleField: ElementFinder): void {
@@ -32,26 +36,26 @@ export class Helpers {
   }
 
   static removeEventlistenerFromElement(id: string): void {
-    browser.executeScript('let changeElement = document.getElementById("' + id + '");'
-      + 'let cloneElement = changeElement.cloneNode();'
-      + 'changeElement.parentNode.replaceChild(cloneElement, changeElement);');
+    browser.executeScript(`let changeElement = document.getElementById("${id}");
+      let cloneElement = changeElement.cloneNode();
+      changeElement.parentNode.replaceChild(cloneElement, changeElement);`);
   }
 
   static sendDragEnterEventToElement(id: string): void {
-    browser.executeScript('let dragEnterEvent = new DragEvent("dragenter");'
-      + 'Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });'
-      + 'document.getElementById("' + id + '").dispatchEvent(dragEnterEvent)');
+    browser.executeScript(`let dragEnterEvent = new DragEvent("dragenter");
+      Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });
+      document.getElementById("${id}").dispatchEvent(dragEnterEvent)`);
   }
 
   static sendDragLeaveEventToElement(id: string): void {
-    browser.executeScript('let dragLeaveEvent = new DragEvent("dragleave");'
-      + 'document.getElementById("' + id + '").dispatchEvent(dragLeaveEvent)');
+    browser.executeScript(`let dragLeaveEvent = new DragEvent("dragleave");
+      document.getElementById("${id}").dispatchEvent(dragLeaveEvent)`);
   }
 
   static sendDragDropEventToElement(sourceFileInputId: string, targetId: string): void {
-    browser.executeScript('let dropEvent = new DragEvent("drop");'
-      + 'Object.defineProperty(dropEvent.constructor.prototype, "dataTransfer", { value: {} });'
-      + 'dropEvent.dataTransfer.files = document.getElementById("' + sourceFileInputId + '").files;'
-      + 'document.getElementById("' + targetId + '").dispatchEvent(dropEvent)');
+    browser.executeScript(`let dropEvent = new DragEvent("drop");
+      Object.defineProperty(dropEvent.constructor.prototype, "dataTransfer", { value: {} });
+      dropEvent.dataTransfer.files = document.getElementById("${sourceFileInputId}").files;
+      document.getElementById("${targetId}").dispatchEvent(dropEvent)`);
   }
 }

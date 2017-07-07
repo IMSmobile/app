@@ -5,8 +5,8 @@ import { LoginPageObject } from './login-page-object';
 
 export class SettingArchivePageObject {
   loginPage: LoginPageObject = new LoginPageObject();
-  loadArchiveButtonworkflow_db1_42: ElementFinder = element(by.id('loadArchiveButtonworkflow_db1_42'));
-  loadArchiveButtonims_med_test_43: ElementFinder = element(by.id('loadArchiveButtonims_med_test_43'));
+  loadArchiveButtonWorkflowDb1Filter42: ElementFinder = element(by.id('loadArchiveButtonworkflow_db1_42'));
+  loadArchiveButtonImsMedTestFilter43: ElementFinder = element(by.id('loadArchiveButtonims_med_test_43'));
   archiveSelectionLogoutButton: ElementFinder = element(by.id('archiveSelectionLogoutButton'));
 
   loadPage(): void {
@@ -20,12 +20,12 @@ export class SettingArchivePageObject {
   }
 
   selectPoliceArchiveWithFilter42(): void {
-    Helpers.waitUntilElementIsReady(this.loadArchiveButtonworkflow_db1_42);
-    this.loadArchiveButtonworkflow_db1_42.click();
+    Helpers.waitUntilElementIsReady(this.loadArchiveButtonWorkflowDb1Filter42);
+    this.loadArchiveButtonWorkflowDb1Filter42.click();
   }
 
   selectMedicineArchiveWithFilter43(): void {
-    Helpers.waitUntilElementIsReady(this.loadArchiveButtonims_med_test_43);
-    this.loadArchiveButtonims_med_test_43.click();
+    Helpers.waitUntilElementIsReady(this.loadArchiveButtonImsMedTestFilter43);
+    this.loadArchiveButtonImsMedTestFilter43.click();
   }
 }

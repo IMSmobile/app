@@ -23,12 +23,17 @@ export class CameraService {
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
   }, this.cameraOptions);
 
+  androidGalleryCancelled: string = 'Selection cancelled.';
+  androidCameraCancelled: string = 'Camera cancelled.';
+  androidPermissionNotGranted: number = 20;
+  iosGalleryOrCameraCancelled: string = 'no image selected';
+  iosPermissionNotGranted: string = 'has no access to camera';
   ignoredErrors: (string | number)[] = [
-    'Selection cancelled.',    // Android
-    'Camera cancelled.',       // Android
-    20,                        // Android: permission not granted
-    'no image selected',       // iOS: cancelled
-    'has no access to camera'  // iOS: permission not granted
+    this.androidGalleryCancelled,
+    this.androidCameraCancelled,
+    this.androidPermissionNotGranted,
+    this.iosGalleryOrCameraCancelled,
+    this.iosPermissionNotGranted
   ];
 
   constructor(public camera: Camera) { }

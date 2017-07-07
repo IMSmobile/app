@@ -48,7 +48,7 @@ export class ImsBackendMock extends MockBackend {
   public tokensUrl: string = this.licenseUrl + '/tokens';
   public tokenLoadingUrl: string = this.tokensUrl + '/ABCDE';
   public filterId: number = 40;
-  public filterResourceUrl: string = this.entriesUrl + '/' + this.filterId;
+  public filterResourceUrl: string = `${this.entriesUrl}/${this.filterId}`;
   public version: string = 'V17Q1';
   public versionResponse: any = { version: this.version };
   public tokenName: string = 'EDFC';
@@ -56,7 +56,7 @@ export class ImsBackendMock extends MockBackend {
   public token: Token = new Token(this.tokenName, this.tokenExpirationDate);
   public modelArchiveName: string = 'workflow_db1';
   public policeFilter: Filter = new Filter(this.filterResourceUrl, this.filterId.toString(), 'IMS_Mobile_Client', this.modelArchiveName);
-  public medicineFilter: Filter = new Filter(this.entriesUrl + '/42', '41', 'IMS_Mobile_Client', 'medref');
+  public medicineFilter: Filter = new Filter(this.entriesUrl + '/41', '41', 'IMS_Mobile_Client', 'medref');
   public notAppFilter: Filter = new Filter(this.entriesUrl + '/42', '42', 'Wrong_Filter_Name', 'any_archive');
   public filterTable: Filter[] = [this.policeFilter, this.medicineFilter, this.notAppFilter];
   public containerRequestUrl: string = this.filterResourceUrl + '/Bild/uploads';
@@ -80,17 +80,18 @@ export class ImsBackendMock extends MockBackend {
   public modelTables: ModelTables = new ModelTables(this.modelArchiveName, [new ModelLink(this.modelTableFieldsUrl, 'Fall'), new ModelLink(this.modelImageTableFieldsUrl, this.modelImageTableName)]);
   public modelFieldIdentifierName: string = 'BILDNAME';
   public modelFieldParentreferenceName: string = 'IDFall';
-  public modelFieldIdentifier: MetadataField = new MetadataField(this.modelFieldIdentifierName, 'STRING', false, false, true, true, 10);
-  public modelFieldParentreference: MetadataField = new MetadataField(this.modelFieldParentreferenceName, 'STRING', false, false, true, true, 10);
-  public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, 10);
+  public modelFieldDefaultLength: number = 10;
+  public modelFieldIdentifier: MetadataField = new MetadataField(this.modelFieldIdentifierName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public modelFieldParentreference: MetadataField = new MetadataField(this.modelFieldParentreferenceName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, this.modelFieldDefaultLength);
   public modelFields: MetadataTableFields = new MetadataTableFields(this.modelImageTableName, this.modelFieldIdentifierName, this.modelFieldParentreferenceName, [this.modelFieldIdentifier, this.modelFieldParentreference, this.modelFieldOptionalString]);
 
   public parentImageTableName: string = 'Fall';
   public parentImageModelFieldIdentifierName: string = 'FALL_NR';
   public parentImageModelFieldParentReferenceName: string = 'IDArt';
-  public parentImageModelFieldParentreference: MetadataField = new MetadataField(this.parentImageModelFieldParentReferenceName, 'STRING', false, false, true, true, 10);
-  public parentImageModelFieldIdentifier: MetadataField = new MetadataField(this.parentImageModelFieldIdentifierName, 'STRING', false, false, true, true, 10);
-  public parentImageModelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, 10);
+  public parentImageModelFieldParentreference: MetadataField = new MetadataField(this.parentImageModelFieldParentReferenceName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public parentImageModelFieldIdentifier: MetadataField = new MetadataField(this.parentImageModelFieldIdentifierName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
+  public parentImageModelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, this.modelFieldDefaultLength);
   public parentImageModelFields: MetadataTableFields = new MetadataTableFields(this.parentImageTableName, this.parentImageModelFieldIdentifierName, this.parentImageModelFieldParentReferenceName, [this.parentImageModelFieldIdentifier, this.parentImageModelFieldParentreference, this.parentImageModelFieldOptionalString]);
 
   constructor() {
@@ -98,7 +99,7 @@ export class ImsBackendMock extends MockBackend {
     this.connections.subscribe((connection) => {
       if (!connection.request.url.startsWith(this.baseUrl)) {
         connection.mockError(new Error('Wrong Url'));
-      } else if (connection.request.headers.get('authorization') !== ('Basic ' + btoa(this.credential.username + ':' + this.credential.password))) {
+      } else if (connection.request.headers.get('authorization') !== ('Basic ' + btoa(`${this.credential.username}:${this.credential.password}`))) {
         connection.mockError(this.unauthorizedResponse);
       } else if (connection.request.url.endsWith(this.entryPointUrl) && connection.request.method === RequestMethod.Get) {
         connection.mockRespond(new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]));
@@ -133,7 +134,7 @@ export class ImsBackendMock extends MockBackend {
           body: this.versionResponse
         })));
       } else {
-        connection.mockError(new Error('No handling for: ' + connection.request.url));
+        connection.mockError(new Error(`No handling for: ${connection.request.url}`));
       }
     });
   }

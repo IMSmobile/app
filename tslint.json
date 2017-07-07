@@ -91,7 +91,23 @@
       "parameter",
       "member-variable-declaration"
     ],
-    "only-arrow-functions": [true],
-    "no-unnecessary-callback-wrapper": true
+    "no-unnecessary-callback-wrapper": true,
+    "only-arrow-functions": [
+      true
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format"
+    ],
+    "restrict-plus-operands": true,
+    "prefer-template": [true, "allow-single-concat"],
+    "prefer-for-of": true,
+    "unified-signatures": true,
+    "no-duplicate-super": true,
+    "arrow-return-shorthand": true,
+    "typeof-compare": true,
+    "no-object-literal-type-assertion": true,
+    "no-magic-numbers": true
   }
 }

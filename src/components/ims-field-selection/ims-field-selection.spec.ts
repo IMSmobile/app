@@ -23,8 +23,8 @@ describe('Component: ImsFieldSelectionComponent', () => {
         GestureController, ImsBackendMock, BaseRequestOptions,
         {
           provide: Http,
-          useFactory: (ImsBackendMock, options) => {
-            return new Http(ImsBackendMock, options);
+          useFactory: (imsBackendMock, options) => {
+            return new Http(imsBackendMock, options);
           },
           deps: [ImsBackendMock, BaseRequestOptions]
         },
@@ -49,9 +49,10 @@ describe('Component: ImsFieldSelectionComponent', () => {
   });
 
   it('should  initialize allFields and displayFields', inject([ImsBackendMock], (imsBackendMock: ImsBackendMock) => {
-    component.fields = [imsBackendMock.modelFieldIdentifier, imsBackendMock.modelFieldOptionalString];
-    expect(component.displayFields.length).toEqual(2);
-    expect(component.allFields.length).toEqual(2);
+    const fields = [imsBackendMock.modelFieldIdentifier, imsBackendMock.modelFieldOptionalString];
+    component.fields = fields;
+    expect(component.displayFields.length).toEqual(fields.length);
+    expect(component.allFields.length).toEqual(fields.length);
   }));
 
   it('should call emit on event after field toggle', inject([ImsBackendMock], (imsBackendMock: ImsBackendMock) => {
@@ -61,8 +62,9 @@ describe('Component: ImsFieldSelectionComponent', () => {
   }));
 
   it('After search fields are filtered', inject([ImsBackendMock], (imsBackendMock: ImsBackendMock) => {
-    component.fields = [imsBackendMock.modelFieldIdentifier, imsBackendMock.modelFieldOptionalString];
-    expect(component.displayFields.length).toEqual(2);
+    const fields = [imsBackendMock.modelFieldIdentifier, imsBackendMock.modelFieldOptionalString];
+    component.fields = fields;
+    expect(component.displayFields.length).toEqual(fields.length);
     const event = { target: { value: imsBackendMock.modelFieldOptionalString.name } };
     component.filterFields(event);
     expect(component.displayFields.length).toEqual(1);
