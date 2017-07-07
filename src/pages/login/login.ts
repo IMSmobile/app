@@ -21,7 +21,7 @@ export class LoginPage {
 
   loginForm: FormGroup;
   isShowRestUrlField: boolean = true;
-  version: string = '0.6.0';
+  version: string = '0.7.0';
   unauthorizedHttpStatusCode: number = 401;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
