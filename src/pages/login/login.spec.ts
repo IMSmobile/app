@@ -34,8 +34,8 @@ describe('Page: Login', () => {
         App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,
         {
           provide: Http,
-          useFactory: (ImsBackendMock, options) => {
-            return new Http(ImsBackendMock, options);
+          useFactory: (imsBackendMock, options) => {
+            return new Http(imsBackendMock, options);
           },
           deps: [ImsBackendMock, BaseRequestOptions]
         },
