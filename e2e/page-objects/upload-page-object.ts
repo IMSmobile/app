@@ -1,4 +1,4 @@
-import { browser, by, element, ElementFinder, ExpectedConditions, protractor } from 'protractor';
+import { browser, by, element, ElementFinder, ExpectedConditions, promise, protractor } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
@@ -98,7 +98,7 @@ export class UploadPageObject {
     browser.waitForAngular();
   }
 
-  pickDefaultFromDateTimePicker(dateTimeField: ElementFinder) {
+  pickDefaultFromDateTimePicker(dateTimeField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(dateTimeField);
     dateTimeField.click();
     Helpers.waitUntilElementIsReady(this.ionDateTimeDoneButton);
@@ -166,15 +166,15 @@ export class UploadPageObject {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyDateTimeDisplayValue() {
+  verifyDateTimeDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
   }
 
-  verifyDateDisplayValue() {
+  verifyDateDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}.[0-9]{2}.[0-9]{4}/);
   }
 
-  verifyTimeDisplayValue() {
+  verifyTimeDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}:[0-9]{2}:[0-9]{2}/);
   }
 
