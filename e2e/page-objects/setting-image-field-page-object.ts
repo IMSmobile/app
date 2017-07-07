@@ -13,6 +13,9 @@ export class SettingImageFieldsPageObject {
   settingsImageFieldTEXTFELDToggle: ElementFinder = element(by.id('settingsImageFieldTEXTFELDToggle'));
   settingsImageFieldINTEGERFELDToggle: ElementFinder = element(by.id('settingsImageFieldINTEGERFELDToggle'));
   settingsImageFieldFLOATFELDToggle: ElementFinder = element(by.id('settingsImageFieldFLOATFELDToggle'));
+  settingsImageFieldDATETIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATETIMEFELDToggle'));
+  settingsImageFieldDATEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATEFELDToggle'));
+  settingsImageFieldTIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldTIMEFELDToggle'));
 
   loadPage(): void {
     this.settingsPage.loadPage();

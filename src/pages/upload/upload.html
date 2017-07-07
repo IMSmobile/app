@@ -35,6 +35,9 @@
           <ion-item [ngSwitch]="field.type">
             <ion-label>{{field.name}}<span *ngIf="field.mandatory" class="mandatory" id="mandatory{{field.name}}"> *</span></ion-label>
             <ion-toggle *ngSwitchCase="'BOOLEAN'" formControlName="{{field.name}}"></ion-toggle>
+            <ion-datetime *ngSwitchCase="'DATETIME'" displayFormat="DD.MM.YYYY HH:mm:ss" doneText="Fertig" cancelText="Abbrechen" formControlName="{{field.name}}"></ion-datetime>
+            <ion-datetime *ngSwitchCase="'DATE'" displayFormat="DD.MM.YYYY" doneText="Fertig" cancelText="Abbrechen"  formControlName="{{field.name}}"></ion-datetime>
+            <ion-datetime *ngSwitchCase="'TIME'" displayFormat="HH:mm:ss" doneText="Fertig" cancelText="Abbrechen"  formControlName="{{field.name}}"></ion-datetime>
             <ion-input *ngSwitchDefault type="text" formControlName="{{field.name}}"></ion-input>
           </ion-item>
           <div class="invalid" *ngIf="!fieldsForm.controls[field.name].valid && (fieldsForm.controls[field.name].touched || fieldsForm.controls[field.name].dirty) " id="uploadFieldErrorDiv{{field.name}}">

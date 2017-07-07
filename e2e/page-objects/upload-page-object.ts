@@ -1,4 +1,4 @@
-import { browser, by, element, ElementFinder, ExpectedConditions, protractor } from 'protractor';
+import { browser, by, element, ElementFinder, ExpectedConditions, promise, protractor } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
@@ -13,6 +13,10 @@ export class UploadPageObject {
   integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
   floatfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=FLOATFELD]'));
   booleanFieldToggle: ElementFinder = element(by.css('ion-toggle[ng-reflect-name=BOOLEANNO]'));
+  dateTimeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATETIMEFELD]'));
+  dateInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATEFELD]'));
+  timeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=TIMEFELD]'));
+  ionDateTimeDoneButton: ElementFinder = element(by.css('ion-picker-cmp .picker-toolbar-button:not(.picker-toolbar-cancel) button'));
   uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
   uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
   uploadFieldErrorDivFLOATFELD: ElementFinder = element(by.id('uploadFieldErrorDivFLOATFELD'));
@@ -94,6 +98,13 @@ export class UploadPageObject {
     browser.waitForAngular();
   }
 
+  pickDefaultFromDateTimePicker(dateTimeField: ElementFinder): void {
+    Helpers.waitUntilElementIsReady(dateTimeField);
+    dateTimeField.click();
+    Helpers.waitUntilElementIsReady(this.ionDateTimeDoneButton);
+    this.ionDateTimeDoneButton.click();
+  }
+
   verifyBildNameErrorDivVisible(): void {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivBILDNAME);
   }
@@ -153,5 +164,21 @@ export class UploadPageObject {
 
   verifyToastMessage(): void {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  verifyDateTimeDisplayValue(): void {
+    expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
+  }
+
+  verifyDateDisplayValue(): void {
+    expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}.[0-9]{2}.[0-9]{4}/);
+  }
+
+  verifyTimeDisplayValue(): void {
+    expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}:[0-9]{2}:[0-9]{2}/);
+  }
+
+  getDateDisplayText(dateInput: ElementFinder): promise.Promise<string> {
+    return dateInput.element(by.css('.datetime-text')).getText();
   }
 }
