@@ -93,7 +93,7 @@
     ],
     "only-arrow-functions": [true],
     "restrict-plus-operands": true,
-    "prefer-template": [true, "allow-single-concat"]
+    "prefer-template": [true, "allow-single-concat"],
     "prefer-for-of": true,
     "unified-signatures": true,
     "no-duplicate-super": true,
