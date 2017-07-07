@@ -66,9 +66,10 @@ describe('Model: DragEventCounter', () => {
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a2');
-    // tslint:disable-next-line:no-magic-numbers
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(2);
-    expect(dragEventCounter.dragEventCountMap['a2']).toEqual(1);
+    const expectedA1Value: number = 2;
+    const expectedA2Value: number = 1;
+    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(expectedA1Value);
+    expect(dragEventCounter.dragEventCountMap['a2']).toEqual(expectedA2Value);
   });
 
   it('should reset counter to 0 ', () => {
@@ -76,10 +77,11 @@ describe('Model: DragEventCounter', () => {
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a1');
-    // tslint:disable-next-line:no-magic-numbers
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(3);
+    let expectedValue: number = 3;
+    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(expectedValue);
     dragEventCounter.reset('a1');
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(0);
+    expectedValue = 0;
+    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(expectedValue);
   });
 
 });

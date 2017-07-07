@@ -27,7 +27,7 @@ export class CameraService {
   androidCameraCancelled: string = 'Camera cancelled.';
   androidPermissionNotGranted: number = 20;
   iosGalleryOrCameraCancelled: string = 'no image selected';
-  iosPermissionNotGranted: 'has no access to camera';
+  iosPermissionNotGranted: string = 'has no access to camera';
   ignoredErrors: (string | number)[] = [
     this.androidGalleryCancelled,
     this.androidCameraCancelled,
