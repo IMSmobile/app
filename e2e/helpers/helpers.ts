@@ -32,26 +32,26 @@ export class Helpers {
   }
 
   static removeEventlistenerFromElement(id: string): void {
-    browser.executeScript('let changeElement = document.getElementById("' + id + '");'
-      + 'let cloneElement = changeElement.cloneNode();'
-      + 'changeElement.parentNode.replaceChild(cloneElement, changeElement);');
+    browser.executeScript(`let changeElement = document.getElementById("${id}");
+      let cloneElement = changeElement.cloneNode();
+      changeElement.parentNode.replaceChild(cloneElement, changeElement);`);
   }
 
   static sendDragEnterEventToElement(id: string): void {
-    browser.executeScript('let dragEnterEvent = new DragEvent("dragenter");'
-      + 'Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });'
-      + 'document.getElementById("' + id + '").dispatchEvent(dragEnterEvent)');
+    browser.executeScript(`let dragEnterEvent = new DragEvent("dragenter");
+      Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });
+      document.getElementById("${id}").dispatchEvent(dragEnterEvent)`);
   }
 
   static sendDragLeaveEventToElement(id: string): void {
-    browser.executeScript('let dragLeaveEvent = new DragEvent("dragleave");'
-      + 'document.getElementById("' + id + '").dispatchEvent(dragLeaveEvent)');
+    browser.executeScript(`let dragLeaveEvent = new DragEvent("dragleave");
+      document.getElementById("${id}").dispatchEvent(dragLeaveEvent)`);
   }
 
   static sendDragDropEventToElement(sourceFileInputId: string, targetId: string): void {
-    browser.executeScript('let dropEvent = new DragEvent("drop");'
-      + 'Object.defineProperty(dropEvent.constructor.prototype, "dataTransfer", { value: {} });'
-      + 'dropEvent.dataTransfer.files = document.getElementById("' + sourceFileInputId + '").files;'
-      + 'document.getElementById("' + targetId + '").dispatchEvent(dropEvent)');
+    browser.executeScript(`let dropEvent = new DragEvent("drop");
+      Object.defineProperty(dropEvent.constructor.prototype, "dataTransfer", { value: {} });
+      dropEvent.dataTransfer.files = document.getElementById("${sourceFileInputId}").files;
+      document.getElementById("${targetId}").dispatchEvent(dropEvent)`);
   }
 }
