@@ -4,6 +4,9 @@ import { $, browser, ElementFinder, ExpectedConditions } from 'protractor';
 export class Helpers {
 
   static DEFAULT_WAIT_TIMEOUT: number = 20000;
+  static DEFAULT_SLEEP_TIME: number = 1000;
+  static JASMINE_TIMEOUT_INTERVAL: number = 100000;
+
   static waitUntilElementIsReady(element: ElementFinder): void {
     browser.wait(ExpectedConditions.elementToBeClickable(element), Helpers.DEFAULT_WAIT_TIMEOUT);
     browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')), Helpers.DEFAULT_WAIT_TIMEOUT);
@@ -16,7 +19,8 @@ export class Helpers {
   }
 
   static waitUntilStorageReady(): void {
-    browser.sleep(2000);
+    browser.sleep(this.DEFAULT_SLEEP_TIME);
+    browser.sleep(this.DEFAULT_SLEEP_TIME);
   }
 
   static toggleFieldSettings(toggleField: ElementFinder): void {

@@ -12,6 +12,7 @@ export class EntriesPageObject {
   entriesFields: ElementArrayFinder = this.entriesItem.all(by.css('.entries-fields'));
   entriesFirstMetaDataField: ElementFinder = this.entriesFields.get(0);
   entriesSecondMetaDataField: ElementFinder = this.entriesFields.get(1);
+  // tslint:disable-next-line:no-magic-numbers
   entriesThirdMetaDataField: ElementFinder = this.entriesFields.get(2);
   entriesCameraButton: ElementFinder = this.entriesItem.element(by.css('.cameraButton'));
   entriesGalleryButton: ElementFinder = this.entriesItem.element(by.css('.galleryButton'));
@@ -122,12 +123,12 @@ export class EntriesPageObject {
   }
 
   waitIonViewDidLoad(): void {
-    browser.sleep(1000);
+    browser.sleep(Helpers.DEFAULT_SLEEP_TIME);
     Helpers.waitUntilLoaderFinished();
   }
 
   waitIonViewDidEnter(): void {
-    browser.sleep(1000);
+    browser.sleep(Helpers.DEFAULT_SLEEP_TIME);
     Helpers.waitUntilLoaderFinished();
   }
 }

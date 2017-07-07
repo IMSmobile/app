@@ -322,15 +322,17 @@ describe('Page: Upload', () => {
     expect(page.showDragOverlay).toBeTruthy();
   });
 
-  it('Initialize BOOLEAN field type as false', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
-    page.fields = [new MetadataField('booleanField', 'BOOLEAN', false, false, true, true, 10)];
+  it('Initialize BOOLEAN field type as false', () => {
+    const fieldLength: number = 10;
+    page.fields = [new MetadataField('booleanField', 'BOOLEAN', false, false, true, true, fieldLength)];
     page.initFormData();
     expect(page.fieldsForm.controls['booleanField'].value).toEqual('false');
-  }));
+  });
 
-  it('Initialize Text field type as empty string', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
-    page.fields = [new MetadataField('textField', 'TEXT', false, false, true, true, 10)];
+  it('Initialize Text field type as empty string', () => {
+    const fieldLength: number = 10;
+    page.fields = [new MetadataField('textField', 'TEXT', false, false, true, true, fieldLength)];
     page.initFormData();
     expect(page.fieldsForm.controls['textField'].value).toEqual('');
-  }));
+  });
 });
