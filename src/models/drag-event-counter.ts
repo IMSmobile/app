@@ -28,7 +28,7 @@ export class DragEventCounter {
   }
 
   private ensureInitialisation(id: string): void {
-    if (!this.dragEventCountMap[id]) {
+    if (!(id in this.dragEventCountMap)) {
       this.dragEventCountMap[id] = 0;
     }
   }

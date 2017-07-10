@@ -108,6 +108,7 @@
     "arrow-return-shorthand": true,
     "typeof-compare": true,
     "no-object-literal-type-assertion": true,
-    "no-magic-numbers": true
+    "no-magic-numbers": true,
+    "strict-boolean-expressions": true
   }
 }

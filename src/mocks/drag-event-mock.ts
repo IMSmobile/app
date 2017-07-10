@@ -47,7 +47,7 @@ export class DragEventMock implements DragEvent {
 
   constructor(type: string, currentTarget?: Element) {
     this.type = type;
-    if (!currentTarget) {
+    if (currentTarget === undefined) {
       currentTarget = document.createElement('div');
       currentTarget.id = 'a1';
     }
