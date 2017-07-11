@@ -18,16 +18,16 @@ import { ModelTables } from './../models/model-tables';
 import { QueryFragment } from './../models/query-fragment';
 import { QueryBuilderService } from './../providers/query-builder-service';
 import { EntryPointResponse } from './response//entry-point-response';
-import { LicensePointResponse } from './response//license-point-response';
-import { LocationResponse } from './response//location-response';
-import { TokenResponse } from './response//token-response';
 import { ArchiveEntryResponse } from './response/archive-entry-response';
 import { EntriesResponse } from './response/entries-response';
 import { ErrorResponse } from './response/error-response';
+import { LicensePointResponse } from './response/license-point-response';
+import { LocationResponse } from './response/location-response';
 import { ModelArchivesPointResponse } from './response/model-archives-point-response';
 import { ModelFieldsPointResponse } from './response/model-fields-point-response';
 import { ModelTablesPointResponse } from './response/model-tables-point-response';
 import { ParentImageEntriesResponse } from './response/parent-image-entries-response';
+import { TokenResponse } from './response/token-response';
 
 export class ImsBackendMock extends MockBackend {
 
@@ -101,41 +101,83 @@ export class ImsBackendMock extends MockBackend {
         connection.mockError(new Error('Wrong Url'));
       } else if (connection.request.headers.get('authorization') !== ('Basic ' + btoa(`${this.credential.username}:${this.credential.password}`))) {
         connection.mockError(this.unauthorizedResponse);
-      } else if (connection.request.url.endsWith(this.entryPointUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]));
-      } else if (connection.request.url.endsWith(this.licenseUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new LicensePointResponse(null, new Link('tokens', this.tokensUrl)));
-      } else if (connection.request.url.endsWith(this.modelsUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new ModelArchivesPointResponse(this.modelArchives));
-      } else if (connection.request.url.endsWith(this.modelTablesUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new ModelTablesPointResponse(this.modelTables));
-      } else if (connection.request.url.endsWith(this.modelImageTableFieldsUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new ModelFieldsPointResponse(this.modelFields));
-      } else if (connection.request.url.endsWith(this.modelTableFieldsUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new ModelFieldsPointResponse(this.parentImageModelFields));
-      } else if (connection.request.url.endsWith(this.tokensUrl) && connection.request.method === RequestMethod.Post) {
-        connection.mockRespond(new LocationResponse(this.tokenLoadingUrl));
-      } else if (connection.request.url.endsWith(this.tokenLoadingUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new TokenResponse(this.token));
-      } else if (connection.request.url.endsWith(this.entriesUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new EntriesResponse(new EntriesPoint(this.filterTable)));
-      } else if (connection.request.url.endsWith(this.filterResourceUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new ArchiveEntryResponse(this.archiveEntry));
-      } else if (connection.request.url.endsWith(this.containerRequestUrl) && connection.request.method === RequestMethod.Post) {
-        connection.mockRespond(new LocationResponse(this.uploadContainerUrl));
-      } else if (connection.request.url.endsWith(this.uploadContainerUrl) && connection.request.method === RequestMethod.Post) {
-        connection.mockRespond(new LocationResponse(this.imageLocationUrl));
-      } else if (connection.request.url.endsWith(this.parentImageEntriesUrlWithQuery) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntries));
-      } else if (connection.request.url.endsWith(this.parentImageEntriesNextPageUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new ParentImageEntriesResponse(this.parentImageEntriesNextPage));
-      } else if (connection.request.url.endsWith(this.infoUrl) && connection.request.method === RequestMethod.Get) {
-        connection.mockRespond(new Response(new ResponseOptions({
-          body: this.versionResponse
-        })));
+      } else {
+        const urlFragments = connection.request.url.replace(this.baseUrl + '/', '').split(/[\/\?&]/);
+        this.handleRequest(connection, urlFragments, this.generateMockStruct());
+      }
+    });
+  }
+
+  private generateMockStruct(): any {
+    return {
+      rest: {
+        [RequestMethod.Get]: new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]),
+        license: {
+          [RequestMethod.Get]: new LicensePointResponse(null, new Link('tokens', this.tokensUrl)),
+          tokens: {
+            [RequestMethod.Post]: new LocationResponse(this.tokenLoadingUrl),
+            ABCDE: {
+              [RequestMethod.Get]: new TokenResponse(this.token)
+            }
+          }
+        },
+        info: {
+          [RequestMethod.Get]: new Response(new ResponseOptions({ body: this.versionResponse }))
+        },
+        entries: {
+          [RequestMethod.Get]: new EntriesResponse(new EntriesPoint(this.filterTable)),
+          [this.filterId]: {
+            [RequestMethod.Get]: new ArchiveEntryResponse(this.archiveEntry),
+            Fall: {
+              'testkey=testvalue': {
+                [RequestMethod.Get]: new ParentImageEntriesResponse(this.parentImageEntries),
+                'start=20': {
+                  'pageSize=20': {
+                    [RequestMethod.Get]: new ParentImageEntriesResponse(this.parentImageEntriesNextPage)
+                  }
+                }
+              }
+            },
+            Bild: {
+              uploads: {
+                [RequestMethod.Post]: new LocationResponse(this.uploadContainerUrl),
+                XYZ: {
+                  [RequestMethod.Post]: new LocationResponse(this.imageLocationUrl),
+                }
+              }
+            }
+          }
+        },
+        models: {
+          [RequestMethod.Get]: new ModelArchivesPointResponse(this.modelArchives),
+          workflow_db1: {
+            [RequestMethod.Get]: new ModelTablesPointResponse(this.modelTables),
+            Fall: {
+              [RequestMethod.Get]: new ModelFieldsPointResponse(this.parentImageModelFields),
+            },
+            Bild: {
+              [RequestMethod.Get]: new ModelFieldsPointResponse(this.modelFields)
+            }
+          }
+        }
+      }
+    };
+  }
+
+  private handleRequest(connection: any, urlFragments: string[], mockStructFragment: any): void {
+    if (urlFragments.length === 0) {
+      if (connection.request.method in mockStructFragment) {
+        connection.mockRespond(mockStructFragment[connection.request.method]);
+      } else {
+        connection.mockError(new Error(`RequestMethod ${connection.request.method} not supported at ${connection.request.url}`));
+      }
+    } else {
+      const fragment = urlFragments.shift();
+      if (fragment in mockStructFragment) {
+        this.handleRequest(connection, urlFragments, mockStructFragment[fragment]);
       } else {
         connection.mockError(new Error(`No handling for: ${connection.request.url}`));
       }
-    });
+    }
   }
 }
