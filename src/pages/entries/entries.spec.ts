@@ -328,7 +328,7 @@ describe('Page: Entries', () => {
     const event: DragEvent = new DragEventMock('drop');
     const parentImageEntryId = '1';
     const entryTitle = 'title';
-    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(undefined);
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
     page.receiveDrop(event, parentImageEntryId, entryTitle);
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);

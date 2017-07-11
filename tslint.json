@@ -109,6 +109,7 @@
     "typeof-compare": true,
     "no-object-literal-type-assertion": true,
     "no-magic-numbers": true,
-    "cyclomatic-complexity": [true]
+    "cyclomatic-complexity": [true],
+    "strict-boolean-expressions": true
   }
 }

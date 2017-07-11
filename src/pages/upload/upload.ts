@@ -144,7 +144,7 @@ export class UploadPage {
 
   fileSelected(event: any): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
-    if (selectedImage) {
+    if (selectedImage !== undefined) {
       this.image = selectedImage;
     }
   }
@@ -156,7 +156,7 @@ export class UploadPage {
   receiveDrop(event: DragEvent): void {
     this.showDragOverlay = false;
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
-    if (selectedImage) {
+    if (selectedImage !== undefined) {
       this.image = selectedImage;
     }
   }

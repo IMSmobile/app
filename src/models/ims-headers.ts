@@ -9,7 +9,7 @@ export class ImsHeaders extends Headers {
     this.append('Content-Type', 'application/json');
     this.append('Allow-Control-Allow-Origin', '*');
     this.append('Authorization', 'Basic ' + btoa(`${credential.username}:${credential.password}`));
-    if (token) {
+    if (token !== null) {
       this.append('ims-rest-token', token.token);
     }
   }

@@ -169,7 +169,7 @@ export class StorageMock {
   }
 
   public get(key: string): Promise<string> {
-    return Promise.resolve(this.store[key]);
+    return Promise.resolve(key in this.store? this.store[key]: null);
   }
 
   public set(key: string, value: string): Promise<{}> {
