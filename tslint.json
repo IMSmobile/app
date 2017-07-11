@@ -110,6 +110,7 @@
     "no-object-literal-type-assertion": true,
     "no-magic-numbers": true,
     "cyclomatic-complexity": [true],
-    "strict-boolean-expressions": true
+    "strict-boolean-expressions": true,
+    "max-file-line-count": [true, 200]
   }
 }
