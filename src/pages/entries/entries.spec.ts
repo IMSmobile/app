@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
