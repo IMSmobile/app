@@ -17,16 +17,13 @@ export class EntriesService {
   }
 
   getParentImageEntries(credential: Credential, filterId: number, queryFragments: QueryFragment[]): Observable<Entries> {
-    return this.tokenService.getToken(credential).flatMap(token => {
-      return this.imsService.getParentImageEntriesLink(credential, filterId, token).flatMap(entriesLink => {
-        return this.getEntries(credential, entriesLink + this.queryBuilderService.generate(queryFragments));
-      });
-    });
+    return this.tokenService.getToken(credential).flatMap(token =>
+      this.imsService.getParentImageEntriesLink(credential, filterId, token).flatMap(entriesLink =>
+        this.getEntries(credential, entriesLink + this.queryBuilderService.generate(queryFragments))));
   }
 
   getEntries(credential: Credential, entriesLink: string): Observable<Entries> {
-    return this.tokenService.getToken(credential).flatMap(token => {
-      return this.http.get(entriesLink, { headers: new ImsHeaders(credential, token) }).map(response => response.json());
-    });
+    return this.tokenService.getToken(credential).flatMap(token =>
+      this.http.get(entriesLink, { headers: new ImsHeaders(credential, token) }).map(response => response.json()));
   }
 }

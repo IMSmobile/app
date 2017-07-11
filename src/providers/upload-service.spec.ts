@@ -25,9 +25,8 @@ describe('Provider: UploadService', () => {
         { provide: Transfer, useClass: TransferMock },
         {
           provide: Http,
-          useFactory: (imsBackendMock, options) => {
-            return new Http(imsBackendMock, options);
-          },
+          useFactory: (imsBackendMock, options) =>
+            new Http(imsBackendMock, options),
           deps: [ImsBackendMock, BaseRequestOptions]
         }
       ],

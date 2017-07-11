@@ -59,9 +59,8 @@ describe('Page: Upload', () => {
         { provide: Storage, useClass: StorageMock },
         {
           provide: Http,
-          useFactory: (imsBackendMock, options) => {
-            return new Http(imsBackendMock, options);
-          },
+          useFactory: (imsBackendMock, options) =>
+            new Http(imsBackendMock, options),
           deps: [ImsBackendMock, BaseRequestOptions]
         },
       ],

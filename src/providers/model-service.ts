@@ -18,9 +18,8 @@ export class ModelService {
   }
 
   getMetadataFieldsOfImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
-    return this.getModelImageTableUrl(credential, archive).flatMap(tableUrl => {
-      return this.imsService.get(credential, tableUrl).map(response => response.json());
-    });
+    return this.getModelImageTableUrl(credential, archive).flatMap(tableUrl =>
+      this.imsService.get(credential, tableUrl).map(response => response.json()));
   }
 
   getModelImageTableUrl(credential: Credential, archive: string): Observable<string> {
@@ -28,9 +27,8 @@ export class ModelService {
   }
 
   getMetadataFieldsOfParentImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
-    return this.getModelParentImageTableUrl(credential, archive).flatMap(tableUrl => {
-      return this.imsService.get(credential, tableUrl).map(response => response.json());
-    });
+    return this.getModelParentImageTableUrl(credential, archive).flatMap(tableUrl =>
+      this.imsService.get(credential, tableUrl).map(response => response.json()));
   }
 
   getModelParentImageTableUrl(credential: Credential, archive: string): Observable<string> {
@@ -38,9 +36,8 @@ export class ModelService {
   }
 
   getModelTables(credential: Credential, archive: string): Observable<ModelTables> {
-    return this.getModelArchiveUrl(credential, archive).flatMap(archiveUrl => {
-      return this.imsService.get(credential, archiveUrl).map(response => response.json());
-    });
+    return this.getModelArchiveUrl(credential, archive).flatMap(archiveUrl =>
+      this.imsService.get(credential, archiveUrl).map(response => response.json()));
   }
 
   getModelArchiveUrl(credential: Credential, archive: string): Observable<string> {
