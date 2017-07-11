@@ -1,18 +1,18 @@
-import { ImsService } from './../../providers/ims-service';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BaseRequestOptions, Http } from '@angular/http';
+import { Storage } from '@ionic/storage';
+import { App, Config, DomController, Form, GestureController, Haptic, IonicModule, Keyboard, NavController, NavParams, Platform } from 'ionic-angular';
+import { AppMock, ConfigMock, NavParamsMock, PlatformMock, StorageMock } from '../../mocks/mocks';
+import { SettingService } from '../../providers/setting-service';
 import { ImsBackendMock } from './../../mocks/ims-backend-mock';
-import { Http, BaseRequestOptions } from '@angular/http';
 import { AuthService } from './../../providers/auth-service';
+import { ImsService } from './../../providers/ims-service';
 import { LoginPage } from './../login/login';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../setting-entries-fields/setting-entries-fields';
 import { SettingImageFieldsPage } from './../setting-image-fields/setting-image-fields';
-import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { SettingsPage } from './settings';
-import { App, Config, Form, IonicModule, Keyboard, Haptic, GestureController, DomController, NavController, Platform, NavParams } from 'ionic-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SettingService } from '../../providers/setting-service';
-import { ConfigMock, PlatformMock, NavParamsMock, AppMock, StorageMock } from '../../mocks/mocks';
-import { Storage } from '@ionic/storage';
 
 describe('Page: Settings', () => {
 
@@ -34,9 +34,8 @@ describe('Page: Settings', () => {
         { provide: Storage, useClass: StorageMock },
         {
           provide: Http,
-          useFactory: (imsBackendMock, options) => {
-            return new Http(imsBackendMock, options);
-          },
+          useFactory: (imsBackendMock, options) =>
+            new Http(imsBackendMock, options),
           deps: [ImsBackendMock, BaseRequestOptions]
         },
       ],

@@ -1,19 +1,20 @@
-import { SettingsPageObject } from './page-objects/settings-page-object';
 import { browser } from 'protractor';
+import { Helpers } from './helpers/helpers';
 import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 
 describe('Logout E2E Test', () => {
 
   let originalTimeout;
-  let loginPage: LoginPageObject = new LoginPageObject();
-  let settingsPage: SettingsPageObject = new SettingsPageObject();
+  const loginPage: LoginPageObject = new LoginPageObject();
+  const settingsPage: SettingsPageObject = new SettingsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = Helpers.JASMINE_TIMEOUT_INTERVAL;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
@@ -21,7 +22,7 @@ describe('Logout E2E Test', () => {
     loginPage.loadPage();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');

@@ -1,8 +1,8 @@
+import { browser, by, element, ElementArrayFinder, ElementFinder, ExpectedConditions } from 'protractor';
+import 'rxjs/add/observable/fromPromise';
 import { Helpers } from './../helpers/helpers';
 import { LoginPageObject } from './login-page-object';
 import { SettingArchivePageObject } from './setting-archive-page-object';
-import { browser, element, by, ElementFinder, ElementArrayFinder, ExpectedConditions } from 'protractor';
-import 'rxjs/add/observable/fromPromise';
 
 export class EntriesPageObject {
   settingsButton: ElementFinder = element(by.id('settingsButton'));
@@ -12,46 +12,47 @@ export class EntriesPageObject {
   entriesFields: ElementArrayFinder = this.entriesItem.all(by.css('.entries-fields'));
   entriesFirstMetaDataField: ElementFinder = this.entriesFields.get(0);
   entriesSecondMetaDataField: ElementFinder = this.entriesFields.get(1);
+  // tslint:disable-next-line:no-magic-numbers
   entriesThirdMetaDataField: ElementFinder = this.entriesFields.get(2);
   entriesCameraButton: ElementFinder = this.entriesItem.element(by.css('.cameraButton'));
   entriesGalleryButton: ElementFinder = this.entriesItem.element(by.css('.galleryButton'));
   entriesFileUpload: ElementFinder = this.entriesItem.element(by.css('.fileUpload'));
 
-  settingArchivePageObject = new SettingArchivePageObject();
-  loginPage = new LoginPageObject();
+  settingArchivePageObject: SettingArchivePageObject = new SettingArchivePageObject();
+  loginPage: LoginPageObject = new LoginPageObject();
 
-  loadPage() {
+  loadPage(): void {
     this.settingArchivePageObject.loadPage();
     this.settingArchivePageObject.selectPoliceArchiveWithFilter42();
     this.waitEntriesPageLoaded();
   }
 
-  reloadPage() {
+  reloadPage(): void {
     this.loginPage.login();
     this.waitEntriesPageLoaded();
   }
 
-  pushToSettingsPage() {
+  pushToSettingsPage(): void {
     Helpers.waitUntilElementIsReady(this.settingsButton);
     this.settingsButton.click();
   }
 
-  pushEntriesCameraButtonOnEntry34617() {
+  pushEntriesCameraButtonOnEntry34617(): void {
     Helpers.waitUntilElementIsReady(this.entriesCameraButton);
     this.entriesCameraButton.click();
   }
 
-  pushEntriesGalleryButtonOnEntry34617() {
+  pushEntriesGalleryButtonOnEntry34617(): void {
     Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
     this.entriesGalleryButton.click();
     Helpers.chooseJPEGImageInFileDialog(this.entriesFileUpload);
   }
 
-  verifyEntriesTitleVisible() {
+  verifyEntriesTitleVisible(): void {
     browser.wait(ExpectedConditions.visibilityOf(this.entriesTitle), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyNoFieldsVisible() {
+  verifyNoFieldsVisible(): void {
     browser.wait(ExpectedConditions.and(
       ExpectedConditions.invisibilityOf(this.entriesFirstMetaDataField),
       ExpectedConditions.invisibilityOf(this.entriesSecondMetaDataField),
@@ -59,75 +60,75 @@ export class EntriesPageObject {
     ), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyOnlyFirstFieldVisible() {
+  verifyOnlyFirstFieldVisible(): void {
     browser.wait(ExpectedConditions.and(
       ExpectedConditions.invisibilityOf(this.entriesSecondMetaDataField),
       ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField)
     ), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyOnlyFirstTwoFieldsVisible() {
+  verifyOnlyFirstTwoFieldsVisible(): void {
     browser.wait(ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyFirstFieldStartsWith(text: string) {
+  verifyFirstFieldStartsWith(text: string): void {
     this.verifyFieldStartsWith(text, this.entriesFirstMetaDataField);
   }
 
-  verifySecondFieldStartsWith(text: string) {
+  verifySecondFieldStartsWith(text: string): void {
     this.verifyFieldStartsWith(text, this.entriesSecondMetaDataField);
   }
 
-  verifyFieldStartsWith(text: string, field: ElementFinder) {
+  verifyFieldStartsWith(text: string, field: ElementFinder): void {
     browser.wait(ExpectedConditions.visibilityOf(field), Helpers.DEFAULT_WAIT_TIMEOUT);
     expect(field.getText()).toMatch(new RegExp('^' + text));
   }
 
-  verifyDragoverlayVisible() {
+  verifyDragoverlayVisible(): void {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('drag'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyDragoverlayInvisible() {
+  verifyDragoverlayInvisible(): void {
     browser.wait(ExpectedConditions.invisibilityOf(element(by.className('drag'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  sendDropEvent() {
+  sendDropEvent(): void {
     this.removeEventlistenerFromFilePicker();
     this.pushEntriesGalleryButtonOnEntry34617();
     this.createDropEvent();
   }
 
-  removeEventlistenerFromFilePicker() {
+  removeEventlistenerFromFilePicker(): void {
     this.entriesFileUpload.getAttribute('id').then(fileUploadId => Helpers.removeEventlistenerFromElement(fileUploadId));
   }
 
-  createDragEnterEvent() {
+  createDragEnterEvent(): void {
     this.entriesItem.getAttribute('id').then(entriesItemId => Helpers.sendDragEnterEventToElement(entriesItemId));
   }
 
-  createDragLeaveEvent() {
+  createDragLeaveEvent(): void {
     this.entriesItem.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
   }
 
-  createDropEvent() {
+  createDropEvent(): void {
     this.entriesFileUpload.getAttribute('id').then(
       uploadId => this.entriesItem.getAttribute('id').then(
         entriesId => Helpers.sendDragDropEventToElement(uploadId, entriesId)
       ));
   }
 
-  waitEntriesPageLoaded() {
+  waitEntriesPageLoaded(): void {
     this.waitIonViewDidLoad();
     this.waitIonViewDidEnter();
   }
 
-  waitIonViewDidLoad() {
-    browser.sleep(1000);
+  waitIonViewDidLoad(): void {
+    browser.sleep(Helpers.DEFAULT_SLEEP_TIME);
     Helpers.waitUntilLoaderFinished();
   }
 
-  waitIonViewDidEnter() {
-    browser.sleep(1000);
+  waitIonViewDidEnter(): void {
+    browser.sleep(Helpers.DEFAULT_SLEEP_TIME);
     Helpers.waitUntilLoaderFinished();
   }
 }

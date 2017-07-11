@@ -1,5 +1,5 @@
-import { ModelArchives } from './../../models/model-archives';
 import { Response, ResponseOptions} from '@angular/http';
+import { ModelArchives } from './../../models/model-archives';
 
 export class ModelArchivesPointResponse extends Response {
 

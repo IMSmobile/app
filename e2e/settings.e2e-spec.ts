@@ -1,33 +1,32 @@
-import { Helpers } from './helpers/helpers';
 import { browser, ExpectedConditions} from 'protractor';
-import { SettingsPageObject } from './page-objects/settings-page-object';
-import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { Helpers } from './helpers/helpers';
 import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
+import { SettingsPageObject } from './page-objects/settings-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Settings E2E Test', () => {
 
   let originalTimeout;
-  let settingsPage = new SettingsPageObject();
-  let loginPage = new LoginPageObject();
-  let uploadPage = new UploadPageObject();
-  let settingImageFieldsPage = new SettingImageFieldsPageObject();
+  const settingsPage = new SettingsPageObject();
+  const loginPage = new LoginPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingImageFieldsPage = new SettingImageFieldsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = Helpers.JASMINE_TIMEOUT_INTERVAL;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageObject();
     loginPage.loadPage();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');
@@ -103,10 +102,11 @@ describe('Settings E2E Test', () => {
   });
 
   it('Should filter image field settings', () => {
+    const testFilters = [{filterText: 'K', expectedFields: 3}, {filterText: 'Key', expectedFields: 2}];
     settingImageFieldsPage.loadPage();
-    settingImageFieldsPage.filterFields('K');
-    settingImageFieldsPage.verifyFieldsDisplayed(3);
-    settingImageFieldsPage.filterFields('Key');
-    settingImageFieldsPage.verifyFieldsDisplayed(2);
+    testFilters.map((testFilter) => {
+      settingImageFieldsPage.filterFields(testFilter.filterText);
+      settingImageFieldsPage.verifyFieldsDisplayed(testFilter.expectedFields);
+    });
   });
 });

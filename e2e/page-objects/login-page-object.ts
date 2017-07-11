@@ -1,6 +1,6 @@
-import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, promise, ExpectedConditions } from 'protractor';
+import { browser, by, element, ElementFinder, ExpectedConditions, promise } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
+import { Helpers } from './../helpers/helpers';
 
 export class LoginPageObject {
   server: string = 'https://sinv-56028.edu.hsr.ch';
@@ -14,15 +14,15 @@ export class LoginPageObject {
   toastMessage: ElementFinder = element(by.className('toast-message'));
   errorDialog: ElementFinder = element(by.className('alert-wrapper'));
 
-  login() {
+  login(): void {
     this.loginWithCredentials(this.user, this.password);
   }
 
-  loginWithUserWithNoAccess() {
+  loginWithUserWithNoAccess(): void {
     this.loginWithCredentials('felizia', 'graypaper');
   }
 
-  loginWithCredentials(user: string, password: string) {
+  loginWithCredentials(user: string, password: string): void {
     this.loadPage();
     this.serverInput.clear();
     this.serverInput.sendKeys(this.server);
@@ -33,20 +33,20 @@ export class LoginPageObject {
     browser.waitForAngular();
   }
 
-  loadPage() {
+  loadPage(): void {
     browser.get('');
   }
 
-  verifyToastErrorMessage() {
+  verifyToastErrorMessage(): void {
     expect(this.toastMessage.isDisplayed()).toBeTruthy();
     browser.wait(ExpectedConditions.visibilityOf(this.toastMessage), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyErrorDialog() {
+  verifyErrorDialog(): void {
     browser.wait(ExpectedConditions.visibilityOf(this.errorDialog), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  clickLoginButton() {
+  clickLoginButton(): void {
     this.loginButton.click();
   }
 

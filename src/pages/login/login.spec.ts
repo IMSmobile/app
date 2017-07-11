@@ -1,23 +1,23 @@
-import { ImsLoadingError } from './../../models/errors/ims-loading-error';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
+import { Storage } from '@ionic/storage';
+import { AlertController, App, Config, DomController, Form, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { ImsBackendMock } from '../../mocks/ims-backend-mock';
+import { AlertMock, AppMock, ConfigMock, LoadingMock, NavParamsMock, PlatformMock, StorageMock, ToastMock } from '../../mocks/mocks';
+import { AlertService } from '../../providers/alert-service';
+import { AuthService } from '../../providers/auth-service';
+import { ImsService } from '../../providers/ims-service';
+import { LoadingService } from '../../providers/loading-service';
+import { SettingService } from '../../providers/setting-service';
+import { EntriesPage } from '../entries/entries';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
+import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
 import { Info } from './../../models/info';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
-import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing';
 import { LoginPage } from './login';
-import { App, Config, Form, IonicModule, Keyboard, DomController, LoadingController, NavController, Platform, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Http, HttpModule, BaseRequestOptions } from '@angular/http';
-import { ImsBackendMock } from '../../mocks/ims-backend-mock';
-import { AuthService } from '../../providers/auth-service';
-import { ImsService } from '../../providers/ims-service';
-import { SettingService } from '../../providers/setting-service';
-import { ConfigMock, PlatformMock, NavParamsMock, ToastMock, AppMock, AlertMock, LoadingMock, StorageMock } from '../../mocks/mocks';
-import { LoadingService } from '../../providers/loading-service';
-import { EntriesPage } from '../entries/entries';
-import { Storage } from '@ionic/storage';
-import { AlertService } from '../../providers/alert-service';
-import { Observable } from 'rxjs/Observable';
 
 describe('Page: Login', () => {
 
@@ -34,9 +34,8 @@ describe('Page: Login', () => {
         App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,
         {
           provide: Http,
-          useFactory: (ImsBackendMock, options) => {
-            return new Http(ImsBackendMock, options);
-          },
+          useFactory: (imsBackendMock, options) =>
+            new Http(imsBackendMock, options),
           deps: [ImsBackendMock, BaseRequestOptions]
         },
         { provide: App, useClass: AppMock },
@@ -91,7 +90,7 @@ describe('Page: Login', () => {
   it('Show and Hide Loading in case of success', inject([LoadingService, ImsBackendMock], (loadingService: LoadingService, imsBackendMock: ImsBackendMock) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
@@ -103,7 +102,7 @@ describe('Page: Login', () => {
   it('Load SettingArchivePage after successfull login without stored filter', inject([NavController, ImsBackendMock, SettingService], (nav: NavController, imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(nav, 'setRoot').and.callThrough();
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(null));
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
@@ -115,8 +114,8 @@ describe('Page: Login', () => {
   it('Load EntriesPage after successfull login with a stored filter', inject([NavController, ImsBackendMock, AuthService, SettingService], (nav: NavController, imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     spyOn(nav, 'setRoot').and.callThrough();
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
-    let credential = imsBackendMock.credential;
-    let testInfo: Info = { version: '9000' };
+    const credential = imsBackendMock.credential;
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, credential);
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
@@ -127,9 +126,9 @@ describe('Page: Login', () => {
   }));
 
   it('Fill login form from Setting Service', inject([SettingService], (settingService: SettingService) => {
-    let testShowRestUrlField = false;
-    let testRestUrl = 'testUrl';
-    let testUsername = 'testUser';
+    const testShowRestUrlField = false;
+    const testRestUrl = 'testUrl';
+    const testUsername = 'testUser';
     spyOn(settingService, 'isShowRestUrlField').and.returnValue(Observable.of(testShowRestUrlField));
     spyOn(settingService, 'getRestUrl').and.returnValue(Observable.of(testRestUrl));
     spyOn(settingService, 'getUsername').and.returnValue(Observable.of(testUsername));
@@ -148,8 +147,8 @@ describe('Page: Login', () => {
   it('Stores user and url', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     spyOn(settingService, 'setRestUrl').and.callThrough();
     spyOn(settingService, 'setUsername').and.callThrough();
-    let credential = imsBackendMock.credential;
-    let testInfo: Info = { version: '9000' };
+    const credential = imsBackendMock.credential;
+    const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, credential);
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
@@ -163,7 +162,7 @@ describe('Page: Login', () => {
   it('Loads filter from settings and continues if successfull', inject([ImsBackendMock, SettingService], (imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
     spyOn(page, 'navigateAfterLogin').and.returnValue(null);
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);
@@ -175,7 +174,7 @@ describe('Page: Login', () => {
 
   it('Shows error when failing to load filter', inject([ImsBackendMock, SettingService], (imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.throw('oops'));
-    let credential = imsBackendMock.credential;
+    const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);
     page.loginForm.controls['password'].setValue(credential.password);

@@ -1,13 +1,13 @@
-import { Storage } from '@ionic/storage';
-import { BrowserSettingService } from './../providers/browser-setting-service';
-import { SettingService } from './../providers/setting-service';
-import { BrowserContainerUploadService } from './../providers/browser-container-upload-service';
-import { ContainerUploadService } from './../providers/container-upload-service';
-import { Http } from '@angular/http';
-import { TransferBlobMock } from './../mocks/providers/transfer-blob-mock';
-import { Transfer } from '@ionic-native/transfer';
 import { Provider } from '@angular/core';
+import { Http } from '@angular/http';
+import { Transfer } from '@ionic-native/transfer';
+import { Storage } from '@ionic/storage';
 import { Platform } from 'ionic-angular';
+import { TransferBlobMock } from './../mocks/providers/transfer-blob-mock';
+import { BrowserContainerUploadService } from './../providers/browser-container-upload-service';
+import { BrowserSettingService } from './../providers/browser-setting-service';
+import { ContainerUploadService } from './../providers/container-upload-service';
+import { SettingService } from './../providers/setting-service';
 
 export class AppProviders {
 

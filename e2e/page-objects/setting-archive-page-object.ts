@@ -1,31 +1,31 @@
-import { LoginPageObject } from './login-page-object';
-import { element, by, ElementFinder, ExpectedConditions } from 'protractor';
+import { by, element, ElementFinder, ExpectedConditions } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
 import { Helpers } from '../helpers/helpers';
+import { LoginPageObject } from './login-page-object';
 
 export class SettingArchivePageObject {
-  loginPage = new LoginPageObject();
-  loadArchiveButtonworkflow_db1_42: ElementFinder = element(by.id('loadArchiveButtonworkflow_db1_42'));
-  loadArchiveButtonims_med_test_43: ElementFinder = element(by.id('loadArchiveButtonims_med_test_43'));
+  loginPage: LoginPageObject = new LoginPageObject();
+  loadArchiveButtonWorkflowDb1Filter42: ElementFinder = element(by.id('loadArchiveButtonworkflow_db1_42'));
+  loadArchiveButtonImsMedTestFilter43: ElementFinder = element(by.id('loadArchiveButtonims_med_test_43'));
   archiveSelectionLogoutButton: ElementFinder = element(by.id('archiveSelectionLogoutButton'));
 
-  loadPage() {
+  loadPage(): void {
     this.loginPage.login();
   }
 
-  logoutWhenNoArchive() {
+  logoutWhenNoArchive(): void {
     Helpers.waitUntilElementIsReady(this.archiveSelectionLogoutButton);
     expect(ExpectedConditions.visibilityOf(this.archiveSelectionLogoutButton));
     this.archiveSelectionLogoutButton.click();
   }
 
-  selectPoliceArchiveWithFilter42() {
-    Helpers.waitUntilElementIsReady(this.loadArchiveButtonworkflow_db1_42);
-    this.loadArchiveButtonworkflow_db1_42.click();
+  selectPoliceArchiveWithFilter42(): void {
+    Helpers.waitUntilElementIsReady(this.loadArchiveButtonWorkflowDb1Filter42);
+    this.loadArchiveButtonWorkflowDb1Filter42.click();
   }
 
-  selectMedicineArchiveWithFilter43() {
-    Helpers.waitUntilElementIsReady(this.loadArchiveButtonims_med_test_43);
-    this.loadArchiveButtonims_med_test_43.click();
+  selectMedicineArchiveWithFilter43(): void {
+    Helpers.waitUntilElementIsReady(this.loadArchiveButtonImsMedTestFilter43);
+    this.loadArchiveButtonImsMedTestFilter43.click();
   }
 }

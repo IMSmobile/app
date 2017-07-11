@@ -1,22 +1,22 @@
+import { browser, by, element, ExpectedConditions } from 'protractor';
 import { Helpers } from './helpers/helpers';
-import { browser, element, by, ExpectedConditions } from 'protractor';
-import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Upload E2E Test', () => {
 
   let originalTimeout;
-  let loginPage = new LoginPageObject();
-  let uploadPage = new UploadPageObject();
-  let settingImageFieldsPageObject = new SettingImageFieldsPageObject();
+  const loginPage = new LoginPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingImageFieldsPageObject = new SettingImageFieldsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = Helpers.JASMINE_TIMEOUT_INTERVAL;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
@@ -24,7 +24,7 @@ describe('Upload E2E Test', () => {
     loginPage.loadPage();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');
@@ -108,5 +108,19 @@ describe('Upload E2E Test', () => {
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e drag upload Test');
     uploadPage.clickUploadImageButton();
     uploadPage.verifyToastMessage();
+  });
+
+  it('Should receive properly formatted date and time values from datetime picker', () => {
+    settingImageFieldsPageObject.loadPage();
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldDATETIMEFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldDATEFELDToggle);
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldTIMEFELDToggle);
+    uploadPage.reloadPage();
+    uploadPage.pickDefaultFromDateTimePicker(uploadPage.dateTimeInput);
+    uploadPage.pickDefaultFromDateTimePicker(uploadPage.dateInput);
+    uploadPage.pickDefaultFromDateTimePicker(uploadPage.timeInput);
+    uploadPage.verifyDateTimeDisplayValue();
+    uploadPage.verifyDateDisplayValue();
+    uploadPage.verifyTimeDisplayValue();
   });
 });
