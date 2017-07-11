@@ -326,13 +326,13 @@ describe('Page: Upload', () => {
     const fieldLength: number = 10;
     page.fields = [new MetadataField('booleanField', 'BOOLEAN', false, false, true, true, fieldLength)];
     page.initFormData();
-    expect(page.fieldsForm.controls['booleanField'].value).toEqual('false');
+    expect(page.fieldsForm.controls.booleanField.value).toEqual('false');
   });
 
   it('Initialize Text field type as empty string', () => {
     const fieldLength: number = 10;
     page.fields = [new MetadataField('textField', 'TEXT', false, false, true, true, fieldLength)];
     page.initFormData();
-    expect(page.fieldsForm.controls['textField'].value).toEqual('');
+    expect(page.fieldsForm.controls.textField.value).toEqual('');
   });
 });

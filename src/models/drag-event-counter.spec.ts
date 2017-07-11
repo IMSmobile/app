@@ -6,7 +6,7 @@ describe('Model: DragEventCounter', () => {
     const dragEventCounter = new DragEventCounter();
     dragEventCounter.inc('a1');
     dragEventCounter.dec('a1');
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(0);
+    expect(dragEventCounter.dragEventCountMap.a1).toEqual(0);
   });
 
   it('first event should be true if inc is called once', () => {
@@ -58,7 +58,7 @@ describe('Model: DragEventCounter', () => {
     const dragEventCounter = new DragEventCounter();
     dragEventCounter.dec('a1');
     dragEventCounter.inc('a1');
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(0);
+    expect(dragEventCounter.dragEventCountMap.a1).toEqual(0);
   });
 
   it('should increment correctly  with different ids', () => {
@@ -68,8 +68,8 @@ describe('Model: DragEventCounter', () => {
     dragEventCounter.inc('a2');
     const expectedA1Value: number = 2;
     const expectedA2Value: number = 1;
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(expectedA1Value);
-    expect(dragEventCounter.dragEventCountMap['a2']).toEqual(expectedA2Value);
+    expect(dragEventCounter.dragEventCountMap.a1).toEqual(expectedA1Value);
+    expect(dragEventCounter.dragEventCountMap.a2).toEqual(expectedA2Value);
   });
 
   it('should reset counter to 0 ', () => {
@@ -78,10 +78,10 @@ describe('Model: DragEventCounter', () => {
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a1');
     let expectedValue: number = 3;
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(expectedValue);
+    expect(dragEventCounter.dragEventCountMap.a1).toEqual(expectedValue);
     dragEventCounter.reset('a1');
     expectedValue = 0;
-    expect(dragEventCounter.dragEventCountMap['a1']).toEqual(expectedValue);
+    expect(dragEventCounter.dragEventCountMap.a1).toEqual(expectedValue);
   });
 
 });
