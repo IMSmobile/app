@@ -101,7 +101,7 @@ describe('Page: Login', () => {
 
   it('Load SettingArchivePage after successfull login without stored filter', inject([NavController, ImsBackendMock, SettingService], (nav: NavController, imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(nav, 'setRoot').and.callThrough();
-    spyOn(settingService, 'getFilter').and.returnValue(Observable.of(null));
+    spyOn(settingService, 'getFilter').and.returnValue(Observable.of(undefined));
     const credential = imsBackendMock.credential;
     page.loginForm.controls['server'].setValue(credential.server);
     page.loginForm.controls['user'].setValue(credential.username);

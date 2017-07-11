@@ -85,7 +85,7 @@ export class SettingService {
   }
 
   private readKey(key: string): Observable<any> {
-    return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.get(key)));
+    return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.get(key)).map(val => val === null ? undefined : val));
   }
 
   private storeSetting(key: string, value: any): void {
