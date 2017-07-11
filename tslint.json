@@ -105,13 +105,13 @@
     "prefer-for-of": true,
     "unified-signatures": true,
     "no-duplicate-super": true,
-    "arrow-return-shorthand": true,
+    "arrow-return-shorthand": [true, "multiline"],
     "typeof-compare": true,
     "no-object-literal-type-assertion": true,
     "no-magic-numbers": true,
     "cyclomatic-complexity": [true],
     "strict-boolean-expressions": true,
-    "no-string-literal": true
-
+    "no-string-literal": true,
+    "max-file-line-count": [true, 200]
   }
 }

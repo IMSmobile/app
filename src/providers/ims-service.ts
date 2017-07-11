@@ -35,20 +35,17 @@ export class ImsService {
   }
 
   getInfo(credential: Credential): Observable<Info> {
-    return this.getEntryPointLink(credential, 'info').flatMap(infoUrl => {
-      return this.get(credential, infoUrl).map(response => {
-        return response.json();
-      });
-    });
+    return this.getEntryPointLink(credential, 'info').flatMap(infoUrl =>
+      this.get(credential, infoUrl).map(response =>
+        response.json()));
   }
 
   getEntriesTable(credential: Credential): Observable<EntriesPoint> {
-    return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl => {
-      return this.get(credential, entriesUrl).map(response => {
+    return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl =>
+      this.get(credential, entriesUrl).map(response => {
         const data = response.json();
         return new EntriesPoint(data.filters);
-      });
-    });
+      }));
   }
 
   getUploadsLink(credential: Credential, filterId: number, token: Token): Observable<string> {
@@ -60,15 +57,13 @@ export class ImsService {
   }
 
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
-    return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
-      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json());
-    });
+    return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl =>
+      this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json()));
   }
 
   getLicensePoint(credential: Credential): Observable<LicensePoint> {
-    return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl => {
-      return this.get(credential, licenseUrl).map(response => response.json());
-    });
+    return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl =>
+      this.get(credential, licenseUrl).map(response => response.json()));
   }
 
   getEntryPointLink(credential: Credential, linkConstant: string): Observable<string> {
@@ -85,9 +80,8 @@ export class ImsService {
   }
 
   getModelArchives(credential: Credential): Observable<ModelArchives> {
-    return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl => {
-      return this.get(credential, entriesUrl).map(response => response.json());
-    });
+    return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl =>
+      this.get(credential, entriesUrl).map(response => response.json()));
   }
   private findImageTable(tableEntry: ArchiveTableEntry): boolean {
     return tableEntry.uploadHref != null;

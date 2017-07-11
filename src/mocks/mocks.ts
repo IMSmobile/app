@@ -271,5 +271,3 @@ export class InfiniteScrollMock {
   public complete() {
   }
 }
-
-/* tslint:enable */

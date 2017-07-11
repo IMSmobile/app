@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
@@ -59,9 +60,8 @@ describe('Page: Upload', () => {
         { provide: Storage, useClass: StorageMock },
         {
           provide: Http,
-          useFactory: (imsBackendMock, options) => {
-            return new Http(imsBackendMock, options);
-          },
+          useFactory: (imsBackendMock, options) =>
+            new Http(imsBackendMock, options),
           deps: [ImsBackendMock, BaseRequestOptions]
         },
       ],
