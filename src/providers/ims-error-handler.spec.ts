@@ -34,7 +34,7 @@ describe('IMS Error Handler: Error Handler', () => {
 
   it('should show no alertservice in developermode', inject([ImsErrorHandler, AlertService], (imsErrorHandler: ImsErrorHandler, alertService: AlertService) => {
     const imsError = new ImsError('Ims Error Text', 'Error Object');
-    window['IonicDevServer'] = 'developermode active';
+    window.IonicDevServer = 'developermode active';
     spyOn(alertService, 'showError').and.callThrough();
     imsErrorHandler.handleError(imsError);
     expect(alertService.showError).toHaveBeenCalledTimes(0);

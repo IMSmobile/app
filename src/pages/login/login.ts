@@ -42,9 +42,9 @@ export class LoginPage {
   }
 
   createCredential(): Credential {
-    const server = this.loginForm.controls['server'].value;
-    const user = this.loginForm.controls['user'].value;
-    const password = this.loginForm.controls['password'].value;
+    const server = this.loginForm.controls.server.value;
+    const user = this.loginForm.controls.user.value;
+    const password = this.loginForm.controls.password.value;
     return new Credential(server, user, password);
   }
 
@@ -68,7 +68,7 @@ export class LoginPage {
     if (response.status === this.unauthorizedHttpStatusCode) {
       throw new ImsAuthenticationError(response);
     } else {
-      throw new ImsServerConnectionError(this.loginForm.controls['server'].value, response);
+      throw new ImsServerConnectionError(this.loginForm.controls.server.value, response);
     }
   }
 
@@ -81,8 +81,8 @@ export class LoginPage {
   }
 
   ionViewDidLoad(): void {
-    this.settingService.getRestUrl().subscribe(val => this.loginForm.controls['server'].setValue(val));
-    this.settingService.getUsername().subscribe(val => this.loginForm.controls['user'].setValue(val));
+    this.settingService.getRestUrl().subscribe(val => this.loginForm.controls.server.setValue(val));
+    this.settingService.getUsername().subscribe(val => this.loginForm.controls.user.setValue(val));
     this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);
   }
 
