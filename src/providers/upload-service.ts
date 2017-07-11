@@ -19,19 +19,15 @@ export class UploadService {
   }
 
   uploadImage(credential: Credential, filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
-    return this.tokenService.getToken(credential).flatMap(token => {
-      return this.createContainerLocation(credential, filterId, token).flatMap(adress => {
-        return this.containerUploadService.postToContainer(credential, adress, token, image).flatMap(response => {
-          return this.createImageEntry(credential, adress, token, imageEntry);
-        });
-      });
-    });
+    return this.tokenService.getToken(credential).flatMap(token =>
+      this.createContainerLocation(credential, filterId, token).flatMap(adress =>
+        this.containerUploadService.postToContainer(credential, adress, token, image).flatMap(response =>
+          this.createImageEntry(credential, adress, token, imageEntry))));
   }
 
   createContainerLocation(credential: Credential, filterId: number, token: Token): Observable<string> {
-    return this.imsService.getUploadsLink(credential, filterId, token).flatMap(url => {
-      return this.http.post(url, null, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location'));
-    });
+    return this.imsService.getUploadsLink(credential, filterId, token).flatMap(url =>
+      this.http.post(url, null, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location')));
   }
 
   createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry): Observable<Response> {
