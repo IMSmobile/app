@@ -115,7 +115,7 @@ export class EntriesPage {
 
   fileSelected(event: any, parentImageEntryId: string, entryTitle: string): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
-    if (selectedImage) {
+    if (selectedImage !== undefined) {
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
     }
   }
@@ -127,7 +127,7 @@ export class EntriesPage {
 
   receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
-    if (selectedImage) {
+    if (selectedImage !== undefined) {
       const element: Element = (event.currentTarget as Element);
       element.classList.remove('drag');
       this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);

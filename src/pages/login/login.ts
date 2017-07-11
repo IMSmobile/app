@@ -56,7 +56,7 @@ export class LoginPage {
   }
 
   navigateAfterLogin(filter: Filter): void {
-    if (filter) {
+    if (filter !== null) {
       this.authService.setArchive(filter);
       this.navCtrl.setRoot(EntriesPage);
     } else {

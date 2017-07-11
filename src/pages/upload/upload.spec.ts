@@ -296,7 +296,7 @@ describe('Page: Upload', () => {
     const event: DragEvent = new DragEventMock('drop');
     const oldImage = new Image('picture.jpg', '/my/picture.jpg');
     page.image = oldImage;
-    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(null);
+    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(undefined);
     page.receiveDrop(event);
     expect(page.image).toEqual(oldImage);
   }));
