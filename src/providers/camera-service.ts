@@ -8,7 +8,7 @@ import { Image } from './../models/image';
 @Injectable()
 export class CameraService {
 
-  cameraOptions: CameraOptions = {
+  public readonly cameraOptions: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.FILE_URI,
     encodingType: this.camera.EncodingType.JPEG,
@@ -16,19 +16,19 @@ export class CameraService {
     correctOrientation: true
   };
 
-  pictureOptions: CameraOptions = Object.assign({
+  public readonly pictureOptions: CameraOptions = Object.assign({
     sourceType: this.camera.PictureSourceType.CAMERA
   }, this.cameraOptions);
-  galleryOptions: CameraOptions = Object.assign({
+  public readonly galleryOptions: CameraOptions = Object.assign({
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
   }, this.cameraOptions);
 
-  androidGalleryCancelled: string = 'Selection cancelled.';
-  androidCameraCancelled: string = 'Camera cancelled.';
-  androidPermissionNotGranted: number = 20;
-  iosGalleryOrCameraCancelled: string = 'no image selected';
-  iosPermissionNotGranted: string = 'has no access to camera';
-  ignoredErrors: (string | number)[] = [
+  public readonly androidGalleryCancelled: string = 'Selection cancelled.';
+  public readonly androidCameraCancelled: string = 'Camera cancelled.';
+  public readonly androidPermissionNotGranted: number = 20;
+  public readonly iosGalleryOrCameraCancelled: string = 'no image selected';
+  public readonly iosPermissionNotGranted: string = 'has no access to camera';
+  public readonly ignoredErrors: (string | number)[] = [
     this.androidGalleryCancelled,
     this.androidCameraCancelled,
     this.androidPermissionNotGranted,

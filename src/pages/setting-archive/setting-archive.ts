@@ -15,31 +15,31 @@ import { LoginPage } from './../login/login';
 })
 export class SettingArchivePage {
 
-  filters: Filter[] = [];
-  filterName: string = 'IMS_Mobile_Client';
-  noValidFilters: boolean = false;
+  public filters: Filter[] = [];
+  public noValidFilters: boolean = false;
+  private readonly filterName: string = 'IMS_Mobile_Client';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public imsService: ImsService, public authService: AuthService, public loadingService: LoadingService) {
   }
 
-  ionViewDidLoad(): void {
+  public ionViewDidLoad(): void {
     const filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable(this.authService.currentCredential).map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));
     this.loadingService.subscribeWithLoading(filtersObservable, filters => this.initFilter(filters), err => { throw new ImsLoadingError('Filter', err); });
   }
 
-  initFilter(filters: Filter[]): void {
-    this.filters = filters;
-    this.noValidFilters = filters.length === 0;
-  }
-
-  selectFilter(filter: Filter): void {
+  public selectFilter(filter: Filter): void {
     this.authService.setArchive(filter);
     this.navCtrl.setRoot(EntriesPage);
   }
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
     this.navCtrl.setRoot(LoginPage);
+  }
+
+  private initFilter(filters: Filter[]): void {
+    this.filters = filters;
+    this.noValidFilters = filters.length === 0;
   }
 
 }

@@ -1,6 +1,6 @@
 export class Token {
-  token: string;
-  licenseExpirationDate: string;
+  public readonly token: string;
+  public readonly licenseExpirationDate: string;
 
   constructor(token: string, licenseExpirationDate: string) {
     this.token = token;

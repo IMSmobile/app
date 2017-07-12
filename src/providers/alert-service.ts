@@ -4,12 +4,12 @@ import { Alert, AlertController } from 'ionic-angular';
 @Injectable()
 export class AlertService {
 
-  errorTitle: string = 'Fehler';
-  errorButtonText: string = 'Schliessen';
+  public readonly errorTitle: string = 'Fehler';
+  public readonly errorButtonText: string = 'Schliessen';
 
   constructor(public alertCtrl: AlertController) { }
 
-  showError(message: string): void {
+  public showError(message: string): void {
     const alert: Alert = this.alertCtrl.create({
       title: this.errorTitle,
       subTitle: message,

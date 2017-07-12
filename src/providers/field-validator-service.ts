@@ -7,13 +7,13 @@ import { IntegerValidator } from '../validators/integer-validator';
 @Injectable()
 export class FieldValidatorService {
 
-  validationMessages: any = {
+  private validationMessages: any = {
     'required': 'Feld muss zwingend ausgefüllt werden.',
     'not a number': 'Nur Zahlen erlaubt.',
     'not a whole number': 'Nur Ganzzahlen erlaubt.'
   };
 
-  getValidatorFunctions(field: MetadataField): ValidatorFn[] {
+  public getValidatorFunctions(field: MetadataField): ValidatorFn[] {
     const validators: ValidatorFn[] = [];
     if (field.mandatory) {
       validators.push(Validators.required);
@@ -26,7 +26,7 @@ export class FieldValidatorService {
     return validators;
   }
 
-  getErrorMessage(formControl: FormControl): string {
+  public getErrorMessage(formControl: FormControl): string {
     const errors: string[] = [];
     for (const key in formControl.errors) {
       errors.push(this.validationMessages[key]);

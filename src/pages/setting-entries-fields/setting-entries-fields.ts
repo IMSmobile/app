@@ -12,12 +12,12 @@ import { SettingService } from './../../providers/setting-service';
 })
 export class SettingEntriesFieldsPage {
 
-  tableName: string;
-  fields: MetadataField[];
+  public tableName: string;
+  public fields: MetadataField[];
 
   constructor(public loadingService: LoadingService, public authService: AuthService, public modelService: ModelService, public settingService: SettingService) { }
 
-  ionViewDidLoad(): void {
+  public ionViewDidLoad(): void {
     this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive),
       tableFields => {
         this.tableName = tableFields.name;
@@ -29,7 +29,7 @@ export class SettingEntriesFieldsPage {
       });
   }
 
-  fieldToggled(field: MetadataField): void {
+  public fieldToggled(field: MetadataField): void {
     this.settingService.setFieldState(this.authService.archive, this.tableName, field.name, field.active);
   }
 }

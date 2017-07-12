@@ -1,7 +1,7 @@
 export class Image {
-  name: string;
-  fileURI: string;
-  file?: File;
+  public readonly name: string;
+  public readonly fileURI: string;
+  public readonly file?: File;
 
   constructor(name: string, fileURI: string, file?: File) {
     this.name = name;

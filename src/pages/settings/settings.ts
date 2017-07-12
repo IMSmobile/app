@@ -23,19 +23,19 @@ export class SettingsPage {
     this.settingService.setShowRestUrlField(this.isShowRestUrlField);
   }
 
-  loadImageFieldSettings(): void {
+  public loadImageFieldSettings(): void {
     this.navCtrl.push(SettingImageFieldsPage);
   }
 
-  loadEntriesListFieldSettings(): void {
+  public loadEntriesListFieldSettings(): void {
     this.navCtrl.push(SettingEntriesFieldsPage);
   }
 
-  loadArchiveSettings(): void {
+  public loadArchiveSettings(): void {
     this.navCtrl.push(SettingArchivePage);
   }
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
     this.navCtrl.setRoot(LoginPage);
   }

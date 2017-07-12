@@ -57,7 +57,7 @@ export class TransferBlobMock {
     this.http = http;
   }
 
-  private create(): TransferBlobObjectMock {
+  public create(): TransferBlobObjectMock {
     return new TransferBlobObjectMock(this.http);
   }
 

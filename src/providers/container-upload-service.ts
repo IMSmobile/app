@@ -12,7 +12,7 @@ export class ContainerUploadService {
   constructor(public transfer: Transfer) {
   }
 
-  postToContainer(credential: Credential, url: string, token: Token, image: Image): Observable<any> {
+  public postToContainer(credential: Credential, url: string, token: Token, image: Image): Observable<any> {
     const fileTransfer: TransferObject = this.transfer.create();
     const options: FileUploadOptions = {
       fileName: image.name,
