@@ -24,7 +24,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
     const returnedImage = browserFileuploadSelectorService.getImageFromFilePicker(event);
     expect(returnedImage).toEqual(referenceImage);
-    expect(event.target.value).toBeUndefined();
+    expect(event.target.value).toEqual('');
   }));
 
   it('should not return anything when file list has no files', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
