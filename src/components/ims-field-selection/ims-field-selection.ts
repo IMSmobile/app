@@ -7,24 +7,24 @@ import { MetadataField } from './../../models/metadata-field';
 })
 export class ImsFieldSelectionComponent {
 
-  displayFields: MetadataField[];
-  allFields: MetadataField[];
+  public displayFields: MetadataField[];
+  public allFields: MetadataField[];
 
   @Input()
-  set fields(fields: MetadataField[]) {
+  public set fields(fields: MetadataField[]) {
     this.displayFields = fields;
     this.allFields = fields;
   }
 
-  @Output() fieldToggled: EventEmitter<MetadataField> = new EventEmitter<MetadataField>();
+  @Output() public fieldToggled: EventEmitter<MetadataField> = new EventEmitter<MetadataField>();
 
   constructor() { }
 
-  sendFieldToggledEvent(field: MetadataField): void {
+  public sendFieldToggledEvent(field: MetadataField): void {
     this.fieldToggled.emit(field);
   }
 
-  filterFields(ev: any): void {
+  public filterFields(ev: any): void {
     this.allFields.forEach(field => field.display = true);
     const val = ev.target.value;
     if (val && val.trim() !== '') {

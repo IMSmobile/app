@@ -1,20 +1,20 @@
 export class DataTransferMock implements DataTransfer {
-  dropEffect: string;
-  effectAllowed: string;
-  files: FileList;
-  items: DataTransferItemList;
-  types: string[];
+  public dropEffect: string;
+  public effectAllowed: string;
+  public files: FileList;
+  public items: DataTransferItemList;
+  public types: string[];
 
-  clearData(format?: string): boolean {
+  public clearData(format?: string): boolean {
     throw new Error('Method not implemented.');
   }
-  getData(format: string): string {
+  public getData(format: string): string {
     throw new Error('Method not implemented.');
   }
-  setData(format: string, data: string): boolean {
+  public setData(format: string, data: string): boolean {
     throw new Error('Method not implemented.');
   }
-  setDragImage(image: Element, x: number, y: number): void {
+  public setDragImage(image: Element, x: number, y: number): void {
     throw new Error('Method not implemented.');
   }
 
