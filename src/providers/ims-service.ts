@@ -83,8 +83,9 @@ export class ImsService {
     return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl =>
       this.get(credential, entriesUrl).map(response => response.json()));
   }
+
   private findImageTable(tableEntry: ArchiveTableEntry): boolean {
-    return tableEntry.uploadHref != null;
+    return 'uploadHref' in tableEntry && tableEntry.uploadHref !== undefined;
   }
 
   private findParentImageTable(archiveEntry: ArchiveEntry): ArchiveTableEntry {
