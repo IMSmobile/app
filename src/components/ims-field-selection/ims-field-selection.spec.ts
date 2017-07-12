@@ -9,8 +9,8 @@ import { ImsFieldSelectionComponent } from './ims-field-selection';
 
 describe('Component: ImsFieldSelectionComponent', () => {
 
-  let fixture: ComponentFixture<ImsFieldSelectionComponent> = null;
-  let component: ImsFieldSelectionComponent = null;
+  let fixture: ComponentFixture<ImsFieldSelectionComponent>;
+  let component: ImsFieldSelectionComponent;
 
   beforeEach(async(() => {
 

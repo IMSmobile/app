@@ -12,13 +12,12 @@ import { ImsService } from './ims-service';
 @Injectable()
 export class TokenService {
 
-  private token: Token = null;
-  constructor(public http: Http, public imsService: ImsService) {
+  private token: Token;
 
-  }
+  constructor(public http: Http, public imsService: ImsService) { }
 
   getToken(credential: Credential): Observable<Token> {
-    if (this.token !== null && new Date() < new Date(this.token.licenseExpirationDate)) {
+    if (this.token !== undefined && new Date() < new Date(this.token.licenseExpirationDate)) {
       return Observable.of(this.token);
     } else {
       return this.loadTokenFromServer(credential).map(t => this.cacheToken(t));

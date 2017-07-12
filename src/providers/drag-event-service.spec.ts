@@ -18,9 +18,9 @@ describe('Provider: DragEventService', () => {
     it('should prevent standard action for dragstart', () => {
         const service = new DragEventService();
         const event = new DragEventMock('dragstart');
-        spyOn(event, 'preventDefault').and.returnValue(null);
-        spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(event, null, null, null);
+        spyOn(event, 'preventDefault').and.returnValue(undefined);
+        spyOn(event, 'stopPropagation').and.returnValue(undefined);
+        service.handleDragEvent(event, undefined, undefined, undefined);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -28,9 +28,9 @@ describe('Provider: DragEventService', () => {
     it('should prevent standard action for dragover', () => {
         const service = new DragEventService();
         const event = new DragEventMock('dragover');
-        spyOn(event, 'preventDefault').and.returnValue(null);
-        spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(event, null, null, null);
+        spyOn(event, 'preventDefault').and.returnValue(undefined);
+        spyOn(event, 'stopPropagation').and.returnValue(undefined);
+        service.handleDragEvent(event, undefined, undefined, undefined);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -38,9 +38,9 @@ describe('Provider: DragEventService', () => {
     it('should prevent standard action for dragenter', () => {
         const service = new DragEventService();
         const event = new DragEventMock('dragenter');
-        spyOn(event, 'preventDefault').and.returnValue(null);
-        spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(event, () => { }, null, null);
+        spyOn(event, 'preventDefault').and.returnValue(undefined);
+        spyOn(event, 'stopPropagation').and.returnValue(undefined);
+        service.handleDragEvent(event, () => { }, undefined, undefined);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -48,9 +48,9 @@ describe('Provider: DragEventService', () => {
     it('should prevent standard action for dragleave', () => {
         const service = new DragEventService();
         const event = new DragEventMock('dragleave');
-        spyOn(event, 'preventDefault').and.returnValue(null);
-        spyOn(event, 'stopPropagation').and.returnValue(null);
-        service.handleDragEvent(event, null, () => { }, null);
+        spyOn(event, 'preventDefault').and.returnValue(undefined);
+        spyOn(event, 'stopPropagation').and.returnValue(undefined);
+        service.handleDragEvent(event, undefined, () => { }, undefined);
         expect(event.preventDefault).toHaveBeenCalledTimes(1);
         expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -59,14 +59,14 @@ describe('Provider: DragEventService', () => {
         const service = new DragEventService();
         const event = new DragEventMock('dragenter');
         let functionExecuted = false;
-        service.handleDragEvent(event, () => functionExecuted = true, null, null);
+        service.handleDragEvent(event, () => functionExecuted = true, undefined, undefined);
         expect(functionExecuted).toBeTruthy();
     });
 
     it('should set copy pointer on dragenter function', () => {
         const service = new DragEventService();
         const event = new DragEventMock('dragenter');
-        service.handleDragEvent(event, () => { }, null, null);
+        service.handleDragEvent(event, () => { }, undefined, undefined);
         expect(event.dataTransfer.dropEffect).toEqual('copy');
     });
 
@@ -75,9 +75,9 @@ describe('Provider: DragEventService', () => {
         const enterEvent = new DragEventMock('dragenter');
         const leaveEvent = new DragEventMock('dragleave');
         let functionExecuted = false;
-        service.handleDragEvent(enterEvent, () => { }, null, null);
+        service.handleDragEvent(enterEvent, () => { }, undefined, undefined);
         expect(functionExecuted).toBeFalsy();
-        service.handleDragEvent(leaveEvent, null, () => functionExecuted = true, null);
+        service.handleDragEvent(leaveEvent, undefined, () => functionExecuted = true, undefined);
         expect(functionExecuted).toBeTruthy();
     });
 
@@ -86,9 +86,9 @@ describe('Provider: DragEventService', () => {
         const enterEvent = new DragEventMock('dragenter');
         const leaveEvent = new DragEventMock('dragleave');
         let functionExecuted = false;
-        service.handleDragEvent(enterEvent, () => { }, null, null);
-        service.handleDragEvent(enterEvent, () => { }, null, null);
-        service.handleDragEvent(leaveEvent, null, () => functionExecuted = true, null);
+        service.handleDragEvent(enterEvent, () => { }, undefined, undefined);
+        service.handleDragEvent(enterEvent, () => { }, undefined, undefined);
+        service.handleDragEvent(leaveEvent, undefined, () => functionExecuted = true, undefined);
         expect(functionExecuted).toBeFalsy();
     });
 
@@ -96,7 +96,7 @@ describe('Provider: DragEventService', () => {
         const service = new DragEventService();
         const event = new DragEventMock('drop');
         let functionExecuted = false;
-        service.handleDragEvent(event, null, null, () => functionExecuted = true);
+        service.handleDragEvent(event, undefined, undefined, () => functionExecuted = true);
     });
 
     it('should reset counter  on drop', () => {
@@ -104,7 +104,7 @@ describe('Provider: DragEventService', () => {
         const event = new DragEventMock('drop');
         let functionExecuted = false;
         spyOn(service.dragEventCounter, 'reset').and.callThrough();
-        service.handleDragEvent(event, null, null, () => functionExecuted = true);
+        service.handleDragEvent(event, undefined, undefined, () => functionExecuted = true);
         expect(service.dragEventCounter.reset).toHaveBeenCalledTimes(1);
     });
 });

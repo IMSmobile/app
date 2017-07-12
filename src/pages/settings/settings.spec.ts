@@ -16,8 +16,8 @@ import { SettingsPage } from './settings';
 
 describe('Page: Settings', () => {
 
-  let fixture: ComponentFixture<SettingsPage> = null;
-  let page: SettingsPage = null;
+  let fixture: ComponentFixture<SettingsPage>;
+  let page: SettingsPage;
 
   beforeEach(async(() => {
 
@@ -85,7 +85,7 @@ describe('Page: Settings', () => {
   })));
 
   it('Should invalidate credentials and go to login page on logout', async(inject([NavController, AuthService], (navController: NavController, authService: AuthService) => {
-    spyOn(authService, 'logout').and.returnValue(null);
+    spyOn(authService, 'logout').and.returnValue(undefined);
     spyOn(navController, 'setRoot').and.callThrough();
     page.logout();
     expect(authService.logout).toHaveBeenCalledTimes(1);

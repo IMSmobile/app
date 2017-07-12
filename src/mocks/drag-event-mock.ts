@@ -86,7 +86,7 @@ export class DragEventMock implements DragEvent {
     // nothing to do
   }
   deepPath(): EventTarget[] {
-    return null;
+    return undefined;
   }
 
 }

@@ -19,8 +19,7 @@ export class SettingArchivePage {
   filterName: string = 'IMS_Mobile_Client';
   noValidFilters: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public imsService: ImsService, public authService: AuthService, public loadingService: LoadingService) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public imsService: ImsService, public authService: AuthService, public loadingService: LoadingService) { }
 
   ionViewDidLoad(): void {
     const filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable(this.authService.currentCredential).map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));

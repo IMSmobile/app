@@ -10,7 +10,7 @@ export class BrowserFileuploadSelectorService {
   getImageFromFilePicker(event: any): Image | undefined {
     const image = this.getImageFromFileList(event.target.files);
     if (image !== undefined) {
-      event.target.value = null;
+      event.target.value = undefined;
     }
     return image;
   }
