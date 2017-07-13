@@ -442,3 +442,6 @@ Aus den Anforderungen und dem laufenden Feedback der Stakeholder entstehen User-
 
 ## Quellen
 Icons von https://icons8.com/
+
+## Markenrechte
+Das Logo von Imagic IMS ist eine eingetragene Marke der [Klasse](https://de.wikipedia.org/wiki/Markenklassifikation) 09 und darf nur mit der ausdrücklichen Erlaubnis von Imagic Bildverarbeitung AG verwendet werden.
