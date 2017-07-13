@@ -6,7 +6,6 @@ img {
   margin: auto;
   display: block;
   margin-top: 2em;
-  margin-bottom: 2em;
   }
 
 h2 {
@@ -18,10 +17,14 @@ h2 {
   height: 1.65em!important;
   font-size: 1.7rem!important;
   margin-top: 1em;
-  }
+ }
 
 .page {
-    background: linear-gradient(to bottom,  #233769 0%, #0391B5 100%);
+    background: linear-gradient(to bottom,  #0391B5 0%, #233769 100%);
+}
+
+.version {
+    font-size: 1.1rem!important;
 }
 
 
@@ -32,7 +35,7 @@ h2 {
   
 }
 
-.login-input {
+.login-content {
   max-width: 500px;
   width: 100%;
   left: 50%;
