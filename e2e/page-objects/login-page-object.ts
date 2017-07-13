@@ -3,26 +3,26 @@ import 'rxjs/add/observable/fromPromise';
 import { Helpers } from './../helpers/helpers';
 
 export class LoginPageObject {
-  server: string = 'https://sinv-56028.edu.hsr.ch';
-  user: string = 'admin';
-  password: string = 'admin';
+  public readonly server: string = 'https://sinv-56028.edu.hsr.ch';
+  public readonly user: string = 'admin';
+  public readonly password: string = 'admin';
 
-  loginButton: ElementFinder = element.all(by.className('button-login')).first();
-  serverInput: ElementFinder = element(by.css('input[formControlName=server]'));
-  userInput: ElementFinder = element(by.css('input[formControlName=user]'));
-  passwordInput: ElementFinder = element(by.css('input[formControlName=password]'));
-  toastMessage: ElementFinder = element(by.className('toast-message'));
-  errorDialog: ElementFinder = element(by.className('alert-wrapper'));
+  public readonly loginButton: ElementFinder = element.all(by.className('button-login')).first();
+  public readonly serverInput: ElementFinder = element(by.css('input[formControlName=server]'));
+  public readonly userInput: ElementFinder = element(by.css('input[formControlName=user]'));
+  public readonly passwordInput: ElementFinder = element(by.css('input[formControlName=password]'));
+  public readonly toastMessage: ElementFinder = element(by.className('toast-message'));
+  public readonly errorDialog: ElementFinder = element(by.className('alert-wrapper'));
 
-  login(): void {
+  public login(): void {
     this.loginWithCredentials(this.user, this.password);
   }
 
-  loginWithUserWithNoAccess(): void {
+  public loginWithUserWithNoAccess(): void {
     this.loginWithCredentials('felizia', 'graypaper');
   }
 
-  loginWithCredentials(user: string, password: string): void {
+  public loginWithCredentials(user: string, password: string): void {
     this.loadPage();
     this.serverInput.clear();
     this.serverInput.sendKeys(this.server);
@@ -33,39 +33,39 @@ export class LoginPageObject {
     browser.waitForAngular();
   }
 
-  loadPage(): void {
+  public loadPage(): void {
     browser.get('');
   }
 
-  verifyToastErrorMessage(): void {
+  public verifyToastErrorMessage(): void {
     expect(this.toastMessage.isDisplayed()).toBeTruthy();
     browser.wait(ExpectedConditions.visibilityOf(this.toastMessage), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyErrorDialog(): void {
+  public verifyErrorDialog(): void {
     browser.wait(ExpectedConditions.visibilityOf(this.errorDialog), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  clickLoginButton(): void {
+  public clickLoginButton(): void {
     this.loginButton.click();
   }
 
-  getServerInputText(): promise.Promise<string> {
+  public getServerInputText(): promise.Promise<string> {
     Helpers.waitUntilElementIsReady(this.serverInput);
     return this.serverInput.getAttribute('value');
   }
 
-  getUserInputText(): promise.Promise<string> {
+  public getUserInputText(): promise.Promise<string> {
     Helpers.waitUntilElementIsReady(this.userInput);
     return this.userInput.getAttribute('value');
   }
 
-  getPasswordInputText(): promise.Promise<string> {
+  public getPasswordInputText(): promise.Promise<string> {
     Helpers.waitUntilElementIsReady(this.passwordInput);
     return this.passwordInput.getAttribute('value');
   }
 
-  isServerInputPresent(): promise.Promise<boolean> {
+  public isServerInputPresent(): promise.Promise<boolean> {
     return browser.isElementPresent(this.serverInput);
   }
 }
