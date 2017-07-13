@@ -1,7 +1,7 @@
 import { Filter } from './filter';
 
 export class EntriesPoint {
-  filters: Filter[];
+  public readonly filters: Filter[];
 
   constructor(filters: Filter[]) {
     this.filters = filters;

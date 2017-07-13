@@ -1,6 +1,6 @@
 export class ImsError extends Error {
 
-  displayedErrorMessage: string;
+  public readonly displayedErrorMessage: string;
 
   constructor(displayedErrorMessage: string, err: any) {
     super(err);

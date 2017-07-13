@@ -15,13 +15,13 @@ export class EntriesService {
 
   constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public queryBuilderService: QueryBuilderService) { }
 
-  getParentImageEntries(credential: Credential, filterId: number, queryFragments: QueryFragment[]): Observable<Entries> {
+  public getParentImageEntries(credential: Credential, filterId: number, queryFragments: QueryFragment[]): Observable<Entries> {
     return this.tokenService.getToken(credential).flatMap(token =>
       this.imsService.getParentImageEntriesLink(credential, filterId, token).flatMap(entriesLink =>
         this.getEntries(credential, entriesLink + this.queryBuilderService.generate(queryFragments))));
   }
 
-  getEntries(credential: Credential, entriesLink: string): Observable<Entries> {
+  public getEntries(credential: Credential, entriesLink: string): Observable<Entries> {
     return this.tokenService.getToken(credential).flatMap(token =>
       this.http.get(entriesLink, { headers: new ImsHeaders(credential, token) }).map(response => response.json()));
   }

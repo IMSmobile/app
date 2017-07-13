@@ -1,7 +1,7 @@
 export class Link {
-  dataHref: string;
-  link: string;
-  description?: string;
+  public readonly dataHref: string;
+  public readonly link: string;
+  public readonly description?: string;
 
   constructor(link: string, dataHref: string, description?: string) {
     this.link = link;

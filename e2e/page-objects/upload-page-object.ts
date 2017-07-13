@@ -4,181 +4,181 @@ import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
 
 export class UploadPageObject {
-  entriesPage: EntriesPageObject = new EntriesPageObject();
-  bildNameFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=BILDNAME]'));
-  uploadImageButton: ElementFinder = element(by.id('uploadImageButton'));
-  contentDiv: ElementFinder = element(by.id('content'));
-  memofeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=MEMOFELD]'));
-  textfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=TEXTFELD]'));
-  integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
-  floatfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=FLOATFELD]'));
-  booleanFieldToggle: ElementFinder = element(by.css('ion-toggle[ng-reflect-name=BOOLEANNO]'));
-  dateTimeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATETIMEFELD]'));
-  dateInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATEFELD]'));
-  timeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=TIMEFELD]'));
-  ionDateTimeDoneButton: ElementFinder = element(by.css('ion-picker-cmp .picker-toolbar-button:not(.picker-toolbar-cancel) button'));
-  uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
-  uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
-  uploadFieldErrorDivFLOATFELD: ElementFinder = element(by.id('uploadFieldErrorDivFLOATFELD'));
-  getGalleryPictureButton: ElementFinder = element(by.id('getGalleryPictureButton'));
-  bildNameMandatoryMarker: ElementFinder = element(by.id('mandatoryBILDNAME'));
-  integerfeldMandatoryMarker: ElementFinder = element(by.id('mandatoryINTEGERFELD'));
-  fileUpload: ElementFinder = element(by.id('fileUpload'));
+  public readonly entriesPage: EntriesPageObject = new EntriesPageObject();
+  public readonly bildNameFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=BILDNAME]'));
+  public readonly uploadImageButton: ElementFinder = element(by.id('uploadImageButton'));
+  public readonly contentDiv: ElementFinder = element(by.id('content'));
+  public readonly memofeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=MEMOFELD]'));
+  public readonly textfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=TEXTFELD]'));
+  public readonly integerfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=INTEGERFELD]'));
+  public readonly floatfeldFieldInput: ElementFinder = element(by.css('input[ng-reflect-name=FLOATFELD]'));
+  public readonly booleanFieldToggle: ElementFinder = element(by.css('ion-toggle[ng-reflect-name=BOOLEANNO]'));
+  public readonly dateTimeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATETIMEFELD]'));
+  public readonly dateInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATEFELD]'));
+  public readonly timeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=TIMEFELD]'));
+  public readonly ionDateTimeDoneButton: ElementFinder = element(by.css('ion-picker-cmp .picker-toolbar-button:not(.picker-toolbar-cancel) button'));
+  public readonly uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
+  public readonly uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
+  public readonly uploadFieldErrorDivFLOATFELD: ElementFinder = element(by.id('uploadFieldErrorDivFLOATFELD'));
+  public readonly getGalleryPictureButton: ElementFinder = element(by.id('getGalleryPictureButton'));
+  public readonly bildNameMandatoryMarker: ElementFinder = element(by.id('mandatoryBILDNAME'));
+  public readonly integerfeldMandatoryMarker: ElementFinder = element(by.id('mandatoryINTEGERFELD'));
+  public readonly fileUpload: ElementFinder = element(by.id('fileUpload'));
 
-  loadPage(): void {
+  public loadPage(): void {
     this.entriesPage.loadPage();
     this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
 
-  reloadPage(): void {
+  public reloadPage(): void {
     this.entriesPage.reloadPage();
     this.entriesPage.pushEntriesGalleryButtonOnEntry34617();
   }
-  writeToTextField(textField: ElementFinder, text: string): void {
+  public writeToTextField(textField: ElementFinder, text: string): void {
     Helpers.waitUntilElementIsReady(textField);
     textField.clear();
     textField.sendKeys(text);
     browser.waitForAngular();
   }
 
-  toggleBooleanField(): void {
+  public toggleBooleanField(): void {
     Helpers.waitUntilElementIsReady(this.booleanFieldToggle);
     this.booleanFieldToggle.click();
     browser.waitForAngular();
   }
 
-  selectNewPictureFromGallery(): void {
+  public selectNewPictureFromGallery(): void {
     Helpers.waitUntilElementIsReady(this.getGalleryPictureButton);
     this.getGalleryPictureButton.click();
     Helpers.chooseJPEGImageInFileDialog(this.fileUpload);
   }
 
-  clickIntoBildNameTextField(): void {
+  public clickIntoBildNameTextField(): void {
     this.clickIntoTextField(this.bildNameFieldInput);
   }
 
-  clickIntoIntegerTextField(): void {
+  public clickIntoIntegerTextField(): void {
     this.clickIntoTextField(this.integerfeldFieldInput);
   }
 
-  clickIntoTextField(textField: ElementFinder): void {
-    Helpers.waitUntilElementIsReady(textField);
-    textField.click();
-    browser.waitForAngular();
-  }
-
-  createDragEnterEvent(): void {
+  public createDragEnterEvent(): void {
     this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragEnterEventToElement(entriesItemId));
   }
 
-  createDragLeaveEvent(): void {
+  public createDragLeaveEvent(): void {
     this.contentDiv.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
   }
 
-  sendDropEvent(): void {
+  public sendDropEvent(): void {
     this.removeEventlistenerFromFilePicker();
     this.selectNewPictureFromGallery();
     this.createDropEvent();
   }
 
-  removeEventlistenerFromFilePicker(): void {
-    this.fileUpload.getAttribute('id').then(fileUploadId => Helpers.removeEventlistenerFromElement(fileUploadId));
-  }
-
-  createDropEvent(): void {
-    this.fileUpload.getAttribute('id').then(
-      sourceFileInputId => this.contentDiv.getAttribute('id').then(
-        targetId => Helpers.sendDragDropEventToElement(sourceFileInputId, targetId)
-      ));
-  }
-
-  sendEnterKey(textField: ElementFinder): void {
+  public sendEnterKey(textField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(textField);
     textField.sendKeys(protractor.Key.ENTER);
     browser.waitForAngular();
   }
 
-  pickDefaultFromDateTimePicker(dateTimeField: ElementFinder): void {
+  public pickDefaultFromDateTimePicker(dateTimeField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(dateTimeField);
     dateTimeField.click();
     Helpers.waitUntilElementIsReady(this.ionDateTimeDoneButton);
     this.ionDateTimeDoneButton.click();
   }
 
-  verifyBildNameErrorDivVisible(): void {
+  public verifyBildNameErrorDivVisible(): void {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivBILDNAME);
   }
 
-  verifyIntegerErrorDivVisible(): void {
+  public verifyIntegerErrorDivVisible(): void {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivINTEGERFELD);
   }
 
-  verifyFloatErrorDivVisible(): void {
+  public verifyFloatErrorDivVisible(): void {
     this.verifyErrorDivVisible(this.uploadFieldErrorDivFLOATFELD);
   }
 
-  verifyErrorDivVisible(errorDiv: ElementFinder): void {
-    browser.wait(ExpectedConditions.visibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
-  }
-
-  verifyBildNameErrorDivInvisible(): void {
+  public verifyBildNameErrorDivInvisible(): void {
     this.verifyErrorDivInvisible(this.uploadFieldErrorDivBILDNAME);
   }
 
-  verifyIntegerErrorDivInvisible(): void {
+  public verifyIntegerErrorDivInvisible(): void {
     this.verifyErrorDivInvisible(this.uploadFieldErrorDivINTEGERFELD);
   }
 
-  verifyFloatErrorDivInvisible(): void {
+  public verifyFloatErrorDivInvisible(): void {
     this.verifyErrorDivInvisible(this.uploadFieldErrorDivFLOATFELD);
   }
 
-  verifyErrorDivInvisible(errorDiv: ElementFinder): void {
-    browser.wait(ExpectedConditions.invisibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
-  }
-
-  verifyBildNameMarkedAsMandatoryField(): void {
+  public verifyBildNameMarkedAsMandatoryField(): void {
     browser.wait(ExpectedConditions.visibilityOf(this.bildNameMandatoryMarker), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyIntegerNotMarkedAsMandatoryField(): void {
+  public verifyIntegerNotMarkedAsMandatoryField(): void {
     browser.wait(ExpectedConditions.invisibilityOf(this.integerfeldMandatoryMarker), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyPageLoaded(): void {
+  public verifyPageLoaded(): void {
     browser.wait(ExpectedConditions.visibilityOf(this.uploadImageButton), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyDragoverlayVisible(): void {
+  public verifyDragoverlayVisible(): void {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('drag-overlay'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyDragoverlayInvisible(): void {
+  public verifyDragoverlayInvisible(): void {
     browser.wait(ExpectedConditions.invisibilityOf(element(by.className('drag-overlay'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  clickUploadImageButton(): void {
+  public clickUploadImageButton(): void {
     Helpers.waitUntilElementIsReady(this.uploadImageButton);
     this.uploadImageButton.click();
   }
 
-  verifyToastMessage(): void {
+  public verifyToastMessage(): void {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyDateTimeDisplayValue(): void {
+  public verifyDateTimeDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
   }
 
-  verifyDateDisplayValue(): void {
+  public verifyDateDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}.[0-9]{2}.[0-9]{4}/);
   }
 
-  verifyTimeDisplayValue(): void {
+  public verifyTimeDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}:[0-9]{2}:[0-9]{2}/);
   }
 
-  getDateDisplayText(dateInput: ElementFinder): promise.Promise<string> {
+  private clickIntoTextField(textField: ElementFinder): void {
+    Helpers.waitUntilElementIsReady(textField);
+    textField.click();
+    browser.waitForAngular();
+  }
+
+  private removeEventlistenerFromFilePicker(): void {
+    this.fileUpload.getAttribute('id').then(fileUploadId => Helpers.removeEventlistenerFromElement(fileUploadId));
+  }
+
+  private createDropEvent(): void {
+    this.fileUpload.getAttribute('id').then(
+      sourceFileInputId => this.contentDiv.getAttribute('id').then(
+        targetId => Helpers.sendDragDropEventToElement(sourceFileInputId, targetId)
+      ));
+  }
+
+  private verifyErrorDivVisible(errorDiv: ElementFinder): void {
+    browser.wait(ExpectedConditions.visibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  private verifyErrorDivInvisible(errorDiv: ElementFinder): void {
+    browser.wait(ExpectedConditions.invisibilityOf(errorDiv), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  private getDateDisplayText(dateInput: ElementFinder): promise.Promise<string> {
     return dateInput.element(by.css('.datetime-text')).getText();
   }
 }

@@ -4,19 +4,19 @@ import { Info } from '../../models/info';
 
 export class AuthServiceMock {
 
-  infoMock: Info = { version: '9000' };
-  currentCredential: Credential;
+  public infoMock: Info = { version: '9000' };
+  public currentCredential: Credential;
 
-  login(credentials: Credential): Observable<Info> {
+  public login(credentials: Credential): Observable<Info> {
     this.currentCredential = credentials;
     return Observable.of(this.infoMock);
   }
 
-  logout(): void {
+  public logout(): void {
     this.currentCredential = undefined;
   }
 
-  setCurrentCredential(info: Info, credentials: Credential): Info {
+  public setCurrentCredential(info: Info, credentials: Credential): Info {
     this.currentCredential = credentials;
     return info;
   }

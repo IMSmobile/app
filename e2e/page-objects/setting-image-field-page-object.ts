@@ -4,50 +4,50 @@ import { Helpers } from './../helpers/helpers';
 import { SettingsPageObject } from './settings-page-object';
 
 export class SettingImageFieldsPageObject {
-  settingsPage: SettingsPageObject = new SettingsPageObject();
-  settingsImageFieldSearchbar: ElementFinder = element(by.css('input.searchbar-input'));
-  settingsImageFieldDisplayedFields: ElementArrayFinder = element.all(by.className('fieldItem'));
-  settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
-  settingsImageFieldBOOLEANNOToggle: ElementFinder = element(by.id('settingsImageFieldBOOLEANNOToggle'));
-  settingsImageFieldMEMOFELDToggle: ElementFinder = element(by.id('settingsImageFieldMEMOFELDToggle'));
-  settingsImageFieldTEXTFELDToggle: ElementFinder = element(by.id('settingsImageFieldTEXTFELDToggle'));
-  settingsImageFieldINTEGERFELDToggle: ElementFinder = element(by.id('settingsImageFieldINTEGERFELDToggle'));
-  settingsImageFieldFLOATFELDToggle: ElementFinder = element(by.id('settingsImageFieldFLOATFELDToggle'));
-  settingsImageFieldDATETIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATETIMEFELDToggle'));
-  settingsImageFieldDATEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATEFELDToggle'));
-  settingsImageFieldTIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldTIMEFELDToggle'));
+  public readonly settingsPage: SettingsPageObject = new SettingsPageObject();
+  public readonly settingsImageFieldSearchbar: ElementFinder = element(by.css('input.searchbar-input'));
+  public readonly settingsImageFieldDisplayedFields: ElementArrayFinder = element.all(by.className('fieldItem'));
+  public readonly settingsShowRestUrlFieldToggle: ElementFinder = element(by.id('settingsShowRestUrlFieldToggle'));
+  public readonly settingsImageFieldBOOLEANNOToggle: ElementFinder = element(by.id('settingsImageFieldBOOLEANNOToggle'));
+  public readonly settingsImageFieldMEMOFELDToggle: ElementFinder = element(by.id('settingsImageFieldMEMOFELDToggle'));
+  public readonly settingsImageFieldTEXTFELDToggle: ElementFinder = element(by.id('settingsImageFieldTEXTFELDToggle'));
+  public readonly settingsImageFieldINTEGERFELDToggle: ElementFinder = element(by.id('settingsImageFieldINTEGERFELDToggle'));
+  public readonly settingsImageFieldFLOATFELDToggle: ElementFinder = element(by.id('settingsImageFieldFLOATFELDToggle'));
+  public readonly settingsImageFieldDATETIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATETIMEFELDToggle'));
+  public readonly settingsImageFieldDATEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATEFELDToggle'));
+  public readonly settingsImageFieldTIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldTIMEFELDToggle'));
 
-  loadPage(): void {
+  public loadPage(): void {
     this.settingsPage.loadPage();
     this.settingsPage.pushToSettingImageFieldsPage();
   }
 
-  reloadPage(): void {
+  public reloadPage(): void {
     this.settingsPage.reloadPage();
     this.settingsPage.pushToSettingImageFieldsPage();
   }
 
-  filterFields(filter: string): void {
+  public filterFields(filter: string): void {
     Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
     this.settingsImageFieldSearchbar.clear();
     this.settingsImageFieldSearchbar.sendKeys(filter);
     Helpers.waitUntilElementIsReady(this.settingsImageFieldSearchbar);
   }
 
-  verifyFieldsDisplayed(count: number): void {
+  public verifyFieldsDisplayed(count: number): void {
     this.settingsImageFieldDisplayedFields.count().then(actualCount => expect(actualCount).toBe(count));
   }
 
-  verifyToggleActive(toggleField: ElementFinder): void {
+  public verifyToggleActive(toggleField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(toggleField);
     toggleField.getAttribute('class').then(classes => expect(classes).toContain('toggle-checked'));
   }
 
-  verifyToggleAbsent(toggleField: ElementFinder): void {
+  public verifyToggleAbsent(toggleField: ElementFinder): void {
     browser.wait(ExpectedConditions.stalenessOf(toggleField), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  verifyToggleInactive(toggleField: ElementFinder): void {
+  public verifyToggleInactive(toggleField: ElementFinder): void {
     Helpers.waitUntilElementIsReady(toggleField);
     toggleField.getAttribute('class').then(classes => expect(classes).not.toContain('toggle-checked'));
   }

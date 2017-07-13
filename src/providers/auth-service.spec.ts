@@ -44,8 +44,7 @@ describe('Provider: AuthService', () => {
   }));
 
   it('Should not store credentials if failed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    const credential = imsBackendMock.credential;
-    credential.server = credential.server + 'failed';
+    const credential = new Credential('invalid', imsBackendMock.credential.username, imsBackendMock.credential.password);
     authService.login(credential).subscribe(
       info => fail('Should fail'),
       err => expect(authService.currentCredential).toBeUndefined()

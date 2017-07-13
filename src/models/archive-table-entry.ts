@@ -1,9 +1,9 @@
 
 export class ArchiveTableEntry {
-  tableName: string;
-  dataHref?: string;
-  modelHref?: string;
-  uploadHref?: string;
+  public readonly tableName: string;
+  public readonly dataHref?: string;
+  public readonly modelHref?: string;
+  public readonly uploadHref?: string;
 
   constructor(tableName: string, dataHref?: string, modelHref?: string, uploadHref?: string) {
     this.tableName = tableName;

@@ -12,27 +12,27 @@ import { SettingService } from './setting-service';
 @Injectable()
 export class AuthService {
 
-  DEFAULT_LOGIN_TIMEOUT: number = 5000;
-  currentCredential: Credential;
-  archive: string;
-  filterId: number;
+  public currentCredential: Credential;
+  public archive: string;
+  public filterId: number;
+  private DEFAULT_LOGIN_TIMEOUT: number = 5000;
 
   constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) { }
 
-  login(credentials: Credential): Observable<Info> {
+  public login(credentials: Credential): Observable<Info> {
     return this.imsService.getInfo(credentials).map(info => this.setCurrentCredential(info, credentials)).timeout(this.DEFAULT_LOGIN_TIMEOUT);
   }
 
-  logout(): void {
+  public logout(): void {
     this.currentCredential = undefined;
   }
 
-  setCurrentCredential(info: Info, credentials: Credential): Info {
+  public setCurrentCredential(info: Info, credentials: Credential): Info {
     this.currentCredential = credentials;
     return info;
   }
 
-  setArchive(filter: Filter): void {
+  public setArchive(filter: Filter): void {
     this.settingService.setFilter(this.currentCredential.server, this.currentCredential.username, filter);
     this.archive = filter.archiveName;
     this.filterId = Number(filter.id);

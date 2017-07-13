@@ -1,9 +1,9 @@
 export class Pagination {
-  start?: number;
-  pageSize?: number;
-  previousPage?: string;
-  nextPage?: string;
-  totalEntries?: number;
+  public readonly start?: number;
+  public readonly pageSize?: number;
+  public readonly previousPage?: string;
+  public readonly nextPage?: string;
+  public readonly totalEntries?: number;
 
   constructor(paginationArgs: PaginationArgs) {
     this.start = paginationArgs.start;

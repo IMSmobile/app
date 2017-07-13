@@ -1,49 +1,49 @@
 import { DataTransferMock } from './data-transfer-mock';
 export class DragEventMock implements DragEvent {
 
-  dataTransfer: DataTransfer = new DataTransferMock();
-  altKey: boolean;
-  button: number;
-  buttons: number;
-  clientX: number;
-  clientY: number;
-  ctrlKey: boolean;
-  fromElement: Element;
-  layerX: number;
-  layerY: number;
-  metaKey: boolean;
-  movementX: number;
-  movementY: number;
-  offsetX: number;
-  offsetY: number;
-  pageX: number;
-  pageY: number;
-  relatedTarget: EventTarget;
-  screenX: number;
-  screenY: number;
-  shiftKey: boolean;
-  toElement: Element;
-  which: number;
-  x: number;
-  y: number;
-  detail: number;
-  view: Window;
-  bubbles: boolean;
-  cancelBubble: boolean;
-  cancelable: boolean;
-  currentTarget: EventTarget;
-  defaultPrevented: boolean;
-  eventPhase: number;
-  isTrusted: boolean;
-  returnValue: boolean;
-  srcElement: Element;
-  target: EventTarget;
-  timeStamp: number;
-  type: string;
-  scoped: boolean;
-  AT_TARGET: number;
-  BUBBLING_PHASE: number;
-  CAPTURING_PHASE: number;
+  public dataTransfer: DataTransfer = new DataTransferMock();
+  public altKey: boolean;
+  public button: number;
+  public buttons: number;
+  public clientX: number;
+  public clientY: number;
+  public ctrlKey: boolean;
+  public fromElement: Element;
+  public layerX: number;
+  public layerY: number;
+  public metaKey: boolean;
+  public movementX: number;
+  public movementY: number;
+  public offsetX: number;
+  public offsetY: number;
+  public pageX: number;
+  public pageY: number;
+  public relatedTarget: EventTarget;
+  public screenX: number;
+  public screenY: number;
+  public shiftKey: boolean;
+  public toElement: Element;
+  public which: number;
+  public x: number;
+  public y: number;
+  public detail: number;
+  public view: Window;
+  public bubbles: boolean;
+  public cancelBubble: boolean;
+  public cancelable: boolean;
+  public currentTarget: EventTarget;
+  public defaultPrevented: boolean;
+  public eventPhase: number;
+  public isTrusted: boolean;
+  public returnValue: boolean;
+  public srcElement: Element;
+  public target: EventTarget;
+  public timeStamp: number;
+  public type: string;
+  public scoped: boolean;
+  public AT_TARGET: number;
+  public BUBBLING_PHASE: number;
+  public CAPTURING_PHASE: number;
 
   constructor(type: string, currentTarget?: Element) {
     this.type = type;
@@ -55,37 +55,42 @@ export class DragEventMock implements DragEvent {
     this.currentTarget = currentTarget;
   }
 
-  initDragEvent(typeArg: string, canBubbleArg: boolean, cancelableArg: boolean, viewArg: Window, detailArg: number, screenXArg: number, screenYArg: number, clientXArg: number, clientYArg: number, ctrlKeyArg: boolean, altKeyArg: boolean, shiftKeyArg: boolean, metaKeyArg: boolean, buttonArg: number, relatedTargetArg: EventTarget, dataTransferArg: DataTransfer): void {
+  public initDragEvent(typeArg: string, canBubbleArg: boolean, cancelableArg: boolean, viewArg: Window, detailArg: number, screenXArg: number, screenYArg: number, clientXArg: number, clientYArg: number, ctrlKeyArg: boolean, altKeyArg: boolean, shiftKeyArg: boolean, metaKeyArg: boolean, buttonArg: number, relatedTargetArg: EventTarget, dataTransferArg: DataTransfer): void {
     // nothing to do;
   }
-  msConvertURL(file: File, targetType: string, targetURL?: string): void {
+
+  public msConvertURL(file: File, targetType: string, targetURL?: string): void {
     // nothing to do
   }
 
-  getModifierState(keyArg: string): boolean {
+  public getModifierState(keyArg: string): boolean {
     return false;
   }
-  initMouseEvent(typeArg: string, canBubbleArg: boolean, cancelableArg: boolean, viewArg: Window, detailArg: number, screenXArg: number, screenYArg: number, clientXArg: number, clientYArg: number, ctrlKeyArg: boolean, altKeyArg: boolean, shiftKeyArg: boolean, metaKeyArg: boolean, buttonArg: number, relatedTargetArg: EventTarget): void {
+
+  public initMouseEvent(typeArg: string, canBubbleArg: boolean, cancelableArg: boolean, viewArg: Window, detailArg: number, screenXArg: number, screenYArg: number, clientXArg: number, clientYArg: number, ctrlKeyArg: boolean, altKeyArg: boolean, shiftKeyArg: boolean, metaKeyArg: boolean, buttonArg: number, relatedTargetArg: EventTarget): void {
     // nothing to do
   }
 
-  initUIEvent(typeArg: string, canBubbleArg: boolean, cancelableArg: boolean, viewArg: Window, detailArg: number): void {
+  public initUIEvent(typeArg: string, canBubbleArg: boolean, cancelableArg: boolean, viewArg: Window, detailArg: number): void {
     // nothing to do
   }
 
-  initEvent(eventTypeArg: string, canBubbleArg: boolean, cancelableArg: boolean): void {
+  public initEvent(eventTypeArg: string, canBubbleArg: boolean, cancelableArg: boolean): void {
     // nothing to do
   }
-  preventDefault(): void {
+
+  public preventDefault(): void {
     // nothing to do
   }
-  stopImmediatePropagation(): void {
+
+  public stopImmediatePropagation(): void {
     // nothing to do
   }
-  stopPropagation(): void {
+
+  public stopPropagation(): void {
     // nothing to do
   }
-  deepPath(): EventTarget[] {
+  public deepPath(): EventTarget[] {
     return undefined;
   }
 
