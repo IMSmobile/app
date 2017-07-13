@@ -7,8 +7,8 @@
   <img src="assets/images/logo.png" class="logo">
 
   <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <ion-item no-lines class="item-trns login-content">
-      <ion-label text-center>Version: {{version}}</ion-label>
+    <ion-item no-lines class="item-trns login-content version">
+      <ion-label text-center>Version {{version}}</ion-label>
     </ion-item>
     <ion-item *ngIf="isShowRestUrlField === true" class="item-trns login-content">
       <ion-icon name="cloud" item-start></ion-icon>
