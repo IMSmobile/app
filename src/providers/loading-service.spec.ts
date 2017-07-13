@@ -1,9 +1,10 @@
+import { async, inject, TestBed } from '@angular/core/testing';
+import { LoadingController } from 'ionic-angular';
+import 'rxjs/add/observable/concat';
+import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { LoadingMock } from '../mocks/mocks';
-import { TestBed, inject, async } from '@angular/core/testing';
-import { LoadingController } from 'ionic-angular';
 import { LoadingService } from './loading-service';
-import 'rxjs/add/observable/of';
 
 describe('Provider: LoadingService', () => {
 
@@ -48,7 +49,7 @@ describe('Provider: LoadingService', () => {
   it('Should call show and hide loading only once with concated observables', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
-    loadingService.subscribeWithLoading(Observable.concat(Observable.of(1), Observable.of(2)), next => { }, err => { });
+    loadingService.subscribeWithLoading(Observable.concat(Observable.of(0), Observable.of(1)), next => { }, err => { });
     expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));
@@ -56,7 +57,7 @@ describe('Provider: LoadingService', () => {
   it('Should call show and hide loading only once with concated observables that fail', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
     spyOn(loadingService, 'showLoading').and.callThrough();
     spyOn(loadingService, 'hideLoading').and.callThrough();
-    loadingService.subscribeWithLoading(Observable.concat(Observable.of(1), Observable.throw(new Error('oops')), Observable.of(2)), next => { }, err => { });
+    loadingService.subscribeWithLoading(Observable.concat(Observable.of(0), Observable.throw(new Error('oops')), Observable.of(1)), next => { }, err => { });
     expect(loadingService.showLoading).toHaveBeenCalledTimes(1);
     expect(loadingService.hideLoading).toHaveBeenCalledTimes(1);
   }));

@@ -1,5 +1,5 @@
-import { ModelTables } from './../../models/model-tables';
 import { Response, ResponseOptions} from '@angular/http';
+import { ModelTables } from './../../models/model-tables';
 
 export class ModelTablesPointResponse extends Response {
 

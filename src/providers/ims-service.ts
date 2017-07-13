@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Info } from '../models/info';
-import { Credential } from './../models/credential';
-import { ImsHeaders } from '../models/ims-headers';
-import { EntryPoint } from '../models/entry-point';
-import { LicensePoint } from '../models/license-point';
-import { EntriesPoint } from '../models/entries-point';
-import { Token } from '../models/token';
 import { ArchiveEntry } from '../models/archive-entry';
 import { ArchiveTableEntry } from '../models/archive-table-entry';
-import { Link } from '../models/link';
+import { EntriesPoint } from '../models/entries-point';
+import { EntryPoint } from '../models/entry-point';
 import { Filter } from '../models/filter';
+import { ImsHeaders } from '../models/ims-headers';
+import { Info } from '../models/info';
+import { LicensePoint } from '../models/license-point';
+import { Link } from '../models/link';
+import { Token } from '../models/token';
+import { Credential } from './../models/credential';
 import { ModelArchives } from './../models/model-archives';
 
 import 'rxjs/add/operator/map';
@@ -19,6 +19,8 @@ import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class ImsService {
+
+  parentImageTableOffset: number = 1;
 
   constructor(public http: Http) {
 
@@ -33,20 +35,17 @@ export class ImsService {
   }
 
   getInfo(credential: Credential): Observable<Info> {
-    return this.getEntryPointLink(credential, 'info').flatMap(infoUrl => {
-      return this.get(credential, infoUrl).map(response => {
-        return response.json();
-      });
-    });
+    return this.getEntryPointLink(credential, 'info').flatMap(infoUrl =>
+      this.get(credential, infoUrl).map(response =>
+        response.json()));
   }
 
   getEntriesTable(credential: Credential): Observable<EntriesPoint> {
-    return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl => {
-      return this.get(credential, entriesUrl).map(response => {
-        let data = response.json();
+    return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl =>
+      this.get(credential, entriesUrl).map(response => {
+        const data = response.json();
         return new EntriesPoint(data.filters);
-      });
-    });
+      }));
   }
 
   getUploadsLink(credential: Credential, filterId: number, token: Token): Observable<string> {
@@ -58,15 +57,13 @@ export class ImsService {
   }
 
   getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
-    return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl => {
-      return this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json());
-    });
+    return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl =>
+      this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json()));
   }
 
   getLicensePoint(credential: Credential): Observable<LicensePoint> {
-    return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl => {
-      return this.get(credential, licenseUrl).map(response => response.json());
-    });
+    return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl =>
+      this.get(credential, licenseUrl).map(response => response.json()));
   }
 
   getEntryPointLink(credential: Credential, linkConstant: string): Observable<string> {
@@ -78,21 +75,21 @@ export class ImsService {
   }
 
   get(credential: Credential, url: string): Observable<Response> {
-    let headers = new ImsHeaders(credential);
+    const headers = new ImsHeaders(credential);
     return this.http.get(url, { headers: headers });
   }
 
   getModelArchives(credential: Credential): Observable<ModelArchives> {
-    return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl => {
-      return this.get(credential, entriesUrl).map(response => response.json());
-    });
+    return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl =>
+      this.get(credential, entriesUrl).map(response => response.json()));
   }
+
   private findImageTable(tableEntry: ArchiveTableEntry): boolean {
-    return tableEntry.uploadHref != null;
+    return 'uploadHref' in tableEntry && tableEntry.uploadHref !== undefined;
   }
 
   private findParentImageTable(archiveEntry: ArchiveEntry): ArchiveTableEntry {
-    return archiveEntry.tables[(archiveEntry.tables.length - 2)];
+    return archiveEntry.tables[(archiveEntry.tables.length - this.parentImageTableOffset - 1)];
   }
 
   private findEntryPointLinkByName(this: string, link: Link): boolean {

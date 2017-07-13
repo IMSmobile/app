@@ -1,7 +1,7 @@
-import { ImsError } from './../models/errors/ims-error';
-import { IonicErrorHandler } from 'ionic-angular';
-import { AlertService } from './alert-service';
 import { Injectable } from '@angular/core';
+import { IonicErrorHandler } from 'ionic-angular';
+import { ImsError } from './../models/errors/ims-error';
+import { AlertService } from './alert-service';
 
 @Injectable()
 export class ImsErrorHandler extends IonicErrorHandler {
@@ -12,8 +12,7 @@ export class ImsErrorHandler extends IonicErrorHandler {
 
   handleError(err: any): void {
     super.handleError(err);
-    let prod = !window['IonicDevServer'];
-    if (prod) {
+    if (!('IonicDevServer' in window)) {
       if (err instanceof ImsError) {
         this.alertService.showError(err.displayedErrorMessage);
       } else {

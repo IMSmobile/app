@@ -1,17 +1,17 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Response } from '@angular/http';
+import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Credential } from '../../models/credential';
 import { ImsLoadingError } from '../../models/errors/ims-loading-error';
-import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
+import { AuthService } from '../../providers/auth-service';
+import { LoadingService } from '../../providers/loading-service';
+import { SettingService } from '../../providers/setting-service';
+import { EntriesPage } from '../entries/entries';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
+import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
 import { Filter } from './../../models/filter';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
-import { Component } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
-import { SettingService } from '../../providers/setting-service';
-import { Credential } from '../../models/credential';
-import { Response } from '@angular/http';
-import { EntriesPage } from '../entries/entries';
-import { LoadingService } from '../../providers/loading-service';
 
 @Component({
   selector: 'page-login',
@@ -21,7 +21,8 @@ export class LoginPage {
 
   loginForm: FormGroup;
   isShowRestUrlField: boolean = true;
-  version: string = '0.5.1';
+  version: string = '0.7.0';
+  unauthorizedHttpStatusCode: number = 401;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
@@ -31,31 +32,31 @@ export class LoginPage {
     });
   }
 
-  login() {
+  login(): void {
     if (this.loginForm.invalid) {
       this.showToastMessage('Alle Felder müssen ausgefüllt werden');
     } else {
-      let credential = this.createCredential();
+      const credential = this.createCredential();
       this.loadingService.subscribeWithLoading(this.authService.login(credential), info => this.loginSuccessful(), err => this.loginFailed(err));
     }
   }
 
   createCredential(): Credential {
-    let server = this.loginForm.controls['server'].value;
-    let user = this.loginForm.controls['user'].value;
-    let password = this.loginForm.controls['password'].value;
+    const server = this.loginForm.controls.server.value;
+    const user = this.loginForm.controls.user.value;
+    const password = this.loginForm.controls.password.value;
     return new Credential(server, user, password);
   }
 
-  loginSuccessful() {
-    let credential: Credential = this.createCredential();
+  loginSuccessful(): void {
+    const credential: Credential = this.createCredential();
     this.settingService.setRestUrl(credential.server);
     this.settingService.setUsername(credential.username);
-    this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); } );
+    this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); });
   }
 
-  navigateAfterLogin(filter: Filter) {
-    if (filter) {
+  navigateAfterLogin(filter: Filter): void {
+    if (filter !== undefined) {
       this.authService.setArchive(filter);
       this.navCtrl.setRoot(EntriesPage);
     } else {
@@ -63,25 +64,25 @@ export class LoginPage {
     }
   }
 
-  loginFailed(response: Response) {
-    if (response.status === 401) {
+  loginFailed(response: Response): void {
+    if (response.status === this.unauthorizedHttpStatusCode) {
       throw new ImsAuthenticationError(response);
     } else {
-      throw new ImsServerConnectionError(this.loginForm.controls['server'].value, response);
+      throw new ImsServerConnectionError(this.loginForm.controls.server.value, response);
     }
   }
 
-  showToastMessage(toastMessage: string) {
-    let toast = this.toastCtrl.create({
+  showToastMessage(toastMessage: string): void {
+    const toast = this.toastCtrl.create({
       message: toastMessage,
       duration: 3000,
     });
     toast.present();
   }
 
-  ionViewDidLoad() {
-    this.settingService.getRestUrl().subscribe(val => this.loginForm.controls['server'].setValue(val));
-    this.settingService.getUsername().subscribe(val => this.loginForm.controls['user'].setValue(val));
+  ionViewDidLoad(): void {
+    this.settingService.getRestUrl().subscribe(val => this.loginForm.controls.server.setValue(val));
+    this.settingService.getUsername().subscribe(val => this.loginForm.controls.user.setValue(val));
     this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);
   }
 

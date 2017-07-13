@@ -1,43 +1,41 @@
-import { Helpers } from './../helpers/helpers';
-import { browser, element, by, ElementFinder, $, promise, ExpectedConditions } from 'protractor';
+import { by, element, ElementFinder } from 'protractor';
 import 'rxjs/add/observable/fromPromise';
-import { Observable } from 'rxjs/Observable';
+import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
 
 export class SettingsPageObject {
-  entriesPage = new EntriesPageObject();
+  entriesPage: EntriesPageObject = new EntriesPageObject();
   settingsImageFieldSettingButton: ElementFinder = element(by.id('settingsImageFieldSettingButton'));
   settingsEntriesFieldSettingButton: ElementFinder = element(by.id('settingsEntriesListFieldSettingButton'));
   settingsArchiveButton: ElementFinder = element(by.id('settingsArchiveButton'));
   settingsLogoutButton: ElementFinder = element(by.id('settingsLogoutButton'));
 
-
-  loadPage() {
+  loadPage(): void {
     this.entriesPage.loadPage();
     this.entriesPage.pushToSettingsPage();
   }
 
-  reloadPage() {
+  reloadPage(): void {
     this.entriesPage.reloadPage();
     this.entriesPage.pushToSettingsPage();
   }
 
-  pushToSettingImageFieldsPage() {
+  pushToSettingImageFieldsPage(): void {
     Helpers.waitUntilElementIsReady(this.settingsImageFieldSettingButton);
     this.settingsImageFieldSettingButton.click();
   }
 
-  pushToSettingEntriesFieldsPage() {
+  pushToSettingEntriesFieldsPage(): void {
     Helpers.waitUntilElementIsReady(this.settingsEntriesFieldSettingButton);
     this.settingsEntriesFieldSettingButton.click();
   }
 
-  pushToSettingArchivePage() {
+  pushToSettingArchivePage(): void {
     Helpers.waitUntilElementIsReady(this.settingsArchiveButton);
     this.settingsArchiveButton.click();
   }
 
-  logout() {
+  logout(): void {
     Helpers.waitUntilElementIsReady(this.settingsLogoutButton);
     this.settingsLogoutButton.click();
   }

@@ -1,12 +1,12 @@
-import { Filter } from './../models/filter';
-import { MetadataTableFields } from './../models/metadata-table-fields';
-import { MetadataField } from './../models/metadata-field';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { Filter } from './../models/filter';
+import { MetadataField } from './../models/metadata-field';
+import { MetadataTableFields } from './../models/metadata-table-fields';
 
 @Injectable()
 export class SettingService {
@@ -16,20 +16,20 @@ export class SettingService {
   filterKeyPrefix: string = 'filter';
   isShowRestUrlFieldKey: string = 'isShowRestUrlField';
   isShowRestUrlFieldDefault: boolean = true;
-  fieldPathSeparator = '.';
+  fieldPathSeparator: string = '.';
 
   constructor(public storage: Storage) {
   }
 
-  setRestUrl(restUrl: string) {
+  setRestUrl(restUrl: string): void {
     this.storeSetting(this.restUrlKey, restUrl);
   }
 
-  setUsername(username: string) {
+  setUsername(username: string): void {
     this.storeSetting(this.usernameKey, username);
   }
 
-  setFilter(server: string, user: string, filter: Filter) {
+  setFilter(server: string, user: string, filter: Filter): void {
     this.storeSetting(this.getFilterKey(server, user), filter);
   }
 
@@ -48,15 +48,15 @@ export class SettingService {
     return this.readKey(this.getFieldKey(archive, table, field));
   }
 
-  setFieldState(archive: string, table: string, field: string, isActive: boolean) {
+  setFieldState(archive: string, table: string, field: string, isActive: boolean): void {
     this.storeSetting(this.getFieldKey(archive, table, field), isActive);
   }
 
-  getFieldKey(archive: string, table: string, field: string) {
+  getFieldKey(archive: string, table: string, field: string): string {
     return [archive, table, field].join(this.fieldPathSeparator);
   }
 
-  setShowRestUrlField(isShowRestUrlField: boolean) {
+  setShowRestUrlField(isShowRestUrlField: boolean): void {
     this.storeSetting(this.isShowRestUrlFieldKey, isShowRestUrlField);
   }
 
@@ -73,7 +73,7 @@ export class SettingService {
   }
 
   isShowRestUrlField(): Observable<boolean> {
-    return this.readKey(this.isShowRestUrlFieldKey).map(val => val == null ? this.isShowRestUrlFieldDefault : val);
+    return this.readKey(this.isShowRestUrlFieldKey).map(val => val === undefined ? this.isShowRestUrlFieldDefault : val);
   }
 
   isPictureFromCameraEnabled(): boolean {
@@ -85,7 +85,7 @@ export class SettingService {
   }
 
   private readKey(key: string): Observable<any> {
-    return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.get(key)));
+    return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.get(key)).map(val => val === null ? undefined : val));
   }
 
   private storeSetting(key: string, value: any): void {

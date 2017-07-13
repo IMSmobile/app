@@ -1,31 +1,32 @@
-import { Helpers } from './helpers/helpers';
 import { browser } from 'protractor';
-import { SettingEntriesFieldsPageObject } from './page-objects/setting-entries-field-page-object';
-import { LoginPageObject } from './page-objects/login-page-object';
+import { Helpers } from './helpers/helpers';
 import { EntriesPageObject } from './page-objects/entries-page-object';
+import { LoginPageObject } from './page-objects/login-page-object';
+import { SettingEntriesFieldsPageObject } from './page-objects/setting-entries-field-page-object';
+import { UploadPageObject } from './page-objects/upload-page-object';
 
 describe('Entries E2E Test', () => {
 
   let originalTimeout;
-  let loginPage = new LoginPageObject();
-  let entriesPage = new EntriesPageObject();
-  let settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
+  const loginPage = new LoginPageObject();
+  const entriesPage = new EntriesPageObject();
+  const uploadPage = new UploadPageObject();
+  const settingEntriesFieldsPage = new SettingEntriesFieldsPageObject();
 
-  beforeEach(function () {
+  beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = Helpers.JASMINE_TIMEOUT_INTERVAL;
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
   beforeEach(() => {
-    loginPage = new LoginPageObject();
     loginPage.loadPage();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.manage().deleteAllCookies();
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');
@@ -60,5 +61,13 @@ describe('Entries E2E Test', () => {
     entriesPage.verifyOnlyFirstTwoFieldsVisible();
   });
 
+  it('Should change style, accept dropped file and go to uploadpage', () => {
+    entriesPage.loadPage();
+    entriesPage.createDragEnterEvent();
+    entriesPage.verifyDragoverlayVisible();
+    entriesPage.createDragLeaveEvent();
+    entriesPage.verifyDragoverlayInvisible();
+    entriesPage.sendDropEvent();
+    uploadPage.verifyPageLoaded();
+  });
 });
-

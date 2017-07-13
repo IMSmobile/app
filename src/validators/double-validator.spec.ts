@@ -24,7 +24,7 @@ describe('Validator: Double Validator', () => {
   });
 
   it('should have an error on alphanumeric character', () => {
-    let validationError = { 'not a number': { name: 'a' } };
+    const validationError = { 'not a number': { name: 'a' } };
     expect(DoubleValidator.isValid(new FormControl('a'))).toEqual(validationError);
   });
 });

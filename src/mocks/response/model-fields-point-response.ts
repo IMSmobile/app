@@ -1,5 +1,5 @@
-import { MetadataTableFields } from './../../models/metadata-table-fields';
 import { Response, ResponseOptions} from '@angular/http';
+import { MetadataTableFields } from './../../models/metadata-table-fields';
 
 export class ModelFieldsPointResponse extends Response {
 

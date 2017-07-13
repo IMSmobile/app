@@ -8,7 +8,7 @@
         "build": "ionic-app-scripts build",
         "ionic:build": "ionic-app-scripts build",
         "ionic:serve": "ionic-app-scripts serve",
-        "lint": "ionic-app-scripts lint --bailOnLintError true && tslint --config tslint-codelyzer.json --project tsconfig.json",
+        "lint": "tslint --config tslint.json --project ts-lintconfig.json && tslint --config tslint-codelyzer.json --project ts-lintconfig.json",
         "test": "karma start ./test-config/karma.conf.js",
         "test-coverage": "karma start ./test-config/karma.conf.js --coverage",
         "e2e": "npm run clean && npm run build && node node_modules/protractor/bin/webdriver-manager update && node node_modules/protractor/bin/protractor",
@@ -92,7 +92,7 @@
         "tslint-ionic-rules": "0.0.8",
         "typescript": "2.3.4"
     },
-    "version": "0.5.1",
+    "version": "0.7.0",
     "description": "Arkivar – Mobile Client for Imagic IMS",
     "repository": {
         "type": "git",
