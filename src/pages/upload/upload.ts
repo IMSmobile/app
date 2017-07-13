@@ -32,9 +32,9 @@ export class UploadPage {
   public entryTitle: string;
   public parentImageReferenceField: string;
   public showDragOverlay: boolean = false;
+  public dragEventService: DragEventService = new DragEventService();
   private pictureFromCameraEnabled: boolean;
   private readonly parentImageEntryId: string;
-  dragEventService: DragEventService = new DragEventService();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.image = navParams.get('image');
@@ -70,13 +70,6 @@ export class UploadPage {
       formData[field.name].push(Validators.compose(this.fieldValidatorService.getValidatorFunctions(field)));
     });
     this.fieldsForm = this.formBuilder.group(formData);
-  }
-
-  getDefaultValue(type: string): string {
-    switch (type) {
-      case 'BOOLEAN': return 'false';
-      default: return '';
-    }
   }
 
   public takePicture(): void {
@@ -137,6 +130,13 @@ export class UploadPage {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
     if (selectedImage !== undefined) {
       this.image = selectedImage;
+    }
+  }
+
+  private getDefaultValue(type: string): string {
+    switch (type) {
+      case 'BOOLEAN': return 'false';
+      default: return '';
     }
   }
 

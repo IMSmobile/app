@@ -6,8 +6,8 @@ export class MetadataField {
   public readonly writable: boolean;
   public readonly mandatory: boolean;
   public readonly length: number;
-  active?: boolean = false;
-  display?: boolean = true;
+  public active?: boolean = false;
+  public display?: boolean = true;
 
   constructor(name: string, type: string, sortable: boolean, searchable: boolean, writable: boolean, mandatory: boolean, length: number) {
     this.name = name;

@@ -2,7 +2,7 @@ import { Renderer2 } from '@angular/core';
 import { DragEventCounter } from './../models/drag-event-counter';
 export class DragEventService {
 
-  dragEventCounter: DragEventCounter = new DragEventCounter();
+  public dragEventCounter: DragEventCounter = new DragEventCounter();
 
   public preventEventsOnBody(renderer: Renderer2): void {
     renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));

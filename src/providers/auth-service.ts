@@ -12,9 +12,9 @@ import { SettingService } from './setting-service';
 @Injectable()
 export class AuthService {
 
-  currentCredential: Credential;
-  archive: string;
-  filterId: number;
+  public currentCredential: Credential;
+  public archive: string;
+  public filterId: number;
   private DEFAULT_LOGIN_TIMEOUT: number = 5000;
 
   constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) {
@@ -28,12 +28,12 @@ export class AuthService {
     this.currentCredential = null;
   }
 
-  setCurrentCredential(info: Info, credentials: Credential): Info {
+  public setCurrentCredential(info: Info, credentials: Credential): Info {
     this.currentCredential = credentials;
     return info;
   }
 
-  setArchive(filter: Filter): void {
+  public setArchive(filter: Filter): void {
     this.settingService.setFilter(this.currentCredential.server, this.currentCredential.username, filter);
     this.archive = filter.archiveName;
     this.filterId = Number(filter.id);

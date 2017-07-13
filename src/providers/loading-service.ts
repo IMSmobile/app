@@ -5,12 +5,12 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LoadingService {
 
-  loading: Loading;
-  concurrentLoadings: number = 0;
+  public loading: Loading;
+  private concurrentLoadings: number = 0;
 
   constructor(public loadingCtrl: LoadingController) { }
 
-  subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void): void {
+  public subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void): void {
     this.showLoading();
     observable.subscribe(
       succ => {
@@ -24,7 +24,7 @@ export class LoadingService {
       });
   }
 
-  showLoading(): void {
+  public showLoading(): void {
     if (this.concurrentLoadings === 0) {
       this.loading = this.loadingCtrl.create({
         content: 'Bitte warten...'
@@ -34,7 +34,7 @@ export class LoadingService {
     this.concurrentLoadings = this.concurrentLoadings + 1;
   }
 
-  hideLoading(): void {
+  public hideLoading(): void {
     if (this.concurrentLoadings === 1) {
       this.loading.dismiss();
     }

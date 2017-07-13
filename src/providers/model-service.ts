@@ -11,36 +11,36 @@ import { ImsService } from './ims-service';
 @Injectable()
 export class ModelService {
 
-  parentImageTableOffset: number = 1;
+  private readonly parentImageTableOffset: number = 1;
 
   constructor(public imsService: ImsService) {
 
   }
 
-  getMetadataFieldsOfImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
+  public getMetadataFieldsOfImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
     return this.getModelImageTableUrl(credential, archive).flatMap(tableUrl =>
       this.imsService.get(credential, tableUrl).map(response => response.json()));
   }
 
-  getModelImageTableUrl(credential: Credential, archive: string): Observable<string> {
+  public getModelImageTableUrl(credential: Credential, archive: string): Observable<string> {
     return this.getModelTables(credential, archive).map(modelTable => modelTable.tables[(modelTable.tables.length - 1)].dataHref);
   }
 
-  getMetadataFieldsOfParentImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
+  public getMetadataFieldsOfParentImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
     return this.getModelParentImageTableUrl(credential, archive).flatMap(tableUrl =>
       this.imsService.get(credential, tableUrl).map(response => response.json()));
   }
 
-  getModelParentImageTableUrl(credential: Credential, archive: string): Observable<string> {
+  public getModelParentImageTableUrl(credential: Credential, archive: string): Observable<string> {
     return this.getModelTables(credential, archive).map(modelTable => modelTable.tables[(modelTable.tables.length - this.parentImageTableOffset - 1)].dataHref);
   }
 
-  getModelTables(credential: Credential, archive: string): Observable<ModelTables> {
+  public getModelTables(credential: Credential, archive: string): Observable<ModelTables> {
     return this.getModelArchiveUrl(credential, archive).flatMap(archiveUrl =>
       this.imsService.get(credential, archiveUrl).map(response => response.json()));
   }
 
-  getModelArchiveUrl(credential: Credential, archive: string): Observable<string> {
+  public getModelArchiveUrl(credential: Credential, archive: string): Observable<string> {
     return this.imsService.getModelArchives(credential).map(modelArchives => modelArchives.archives.find(this.findModelArchive, archive).dataHref);
   }
 
