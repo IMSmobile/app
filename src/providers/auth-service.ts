@@ -17,15 +17,14 @@ export class AuthService {
   public filterId: number;
   private DEFAULT_LOGIN_TIMEOUT: number = 5000;
 
-  constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) {
-  }
+  constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) { }
 
   public login(credentials: Credential): Observable<Info> {
     return this.imsService.getInfo(credentials).map(info => this.setCurrentCredential(info, credentials)).timeout(this.DEFAULT_LOGIN_TIMEOUT);
   }
 
   public logout(): void {
-    this.currentCredential = null;
+    this.currentCredential = undefined;
   }
 
   public setCurrentCredential(info: Info, credentials: Credential): Info {

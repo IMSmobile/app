@@ -55,7 +55,7 @@ describe('Provider: AuthService', () => {
     const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     authService.logout();
-    expect(authService.currentCredential).toBeNull();
+    expect(authService.currentCredential).toBeUndefined();
   }));
 
   it('Should store the filter after archive selection', inject([AuthService, SettingService, ImsBackendMock], (authService: AuthService, settingService: SettingService, imsBackendMock: ImsBackendMock) => {

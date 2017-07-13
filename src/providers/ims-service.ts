@@ -22,9 +22,7 @@ export class ImsService {
 
   private readonly parentImageTableOffset: number = 1;
 
-  constructor(public http: Http) {
-
-  }
+  constructor(public http: Http) { }
 
   public getTokensUrl(credential: Credential): Observable<string> {
     return this.getLicensePoint(credential).map(licensePoint => licensePoint.sessions.dataHref);

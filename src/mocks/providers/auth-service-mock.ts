@@ -13,7 +13,7 @@ export class AuthServiceMock {
   }
 
   public logout(): void {
-    this.currentCredential = null;
+    this.currentCredential = undefined;
   }
 
   public setCurrentCredential(info: Info, credentials: Credential): Info {

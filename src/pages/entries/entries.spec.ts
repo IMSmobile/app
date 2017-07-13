@@ -33,8 +33,8 @@ import { EntriesPage } from './entries';
 
 describe('Page: Entries', () => {
 
-  let fixture: ComponentFixture<EntriesPage> = null;
-  let page: EntriesPage = null;
+  let fixture: ComponentFixture<EntriesPage>;
+  let page: EntriesPage;
 
   beforeEach(async(() => {
 
@@ -162,7 +162,7 @@ describe('Page: Entries', () => {
   it('Disables infinite scroll when there is no next page', () => {
     const infiniteScroll = new InfiniteScrollMock() as InfiniteScroll;
     spyOn(infiniteScroll, 'enable').and.callThrough();
-    page.nextPage = null;
+    page.nextPage = undefined;
     page.infiniteEntries(infiniteScroll);
     expect(infiniteScroll.enable).toHaveBeenCalledWith(false);
   });
@@ -248,7 +248,7 @@ describe('Page: Entries', () => {
     element.setAttribute('id', 'fileUpload' + parentImageEntryId);
     document.body.appendChild(element);
     spyOn(platform, 'is').and.returnValue(true);
-    spyOn(element, 'click').and.returnValue(null);
+    spyOn(element, 'click').and.returnValue(undefined);
     page.getGalleryPictureForEntry(parentImageEntryId, entryTitle);
     expect(element.click).toHaveBeenCalledTimes(1);
   }));
@@ -273,7 +273,7 @@ describe('Page: Entries', () => {
   it('Do nothing when no file available in input file dialog', () => {
     spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
     const event = { target: { files: [] } };
-    page.fileSelected(event, null, null);
+    page.fileSelected(event, undefined, undefined);
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);
   });
 

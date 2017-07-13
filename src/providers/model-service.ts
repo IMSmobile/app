@@ -13,9 +13,7 @@ export class ModelService {
 
   private readonly parentImageTableOffset: number = 1;
 
-  constructor(public imsService: ImsService) {
-
-  }
+  constructor(public imsService: ImsService) { }
 
   public getMetadataFieldsOfImageTable(credential: Credential, archive: string): Observable<MetadataTableFields> {
     return this.getModelImageTableUrl(credential, archive).flatMap(tableUrl =>

@@ -90,9 +90,8 @@ export class DragEventMock implements DragEvent {
   public stopPropagation(): void {
     // nothing to do
   }
-
   public deepPath(): EventTarget[] {
-    return null;
+    return undefined;
   }
 
 }

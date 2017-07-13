@@ -13,8 +13,7 @@ import { TokenService } from './token-service';
 @Injectable()
 export class EntriesService {
 
-  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public queryBuilderService: QueryBuilderService) {
-  }
+  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public queryBuilderService: QueryBuilderService) { }
 
   public getParentImageEntries(credential: Credential, filterId: number, queryFragments: QueryFragment[]): Observable<Entries> {
     return this.tokenService.getToken(credential).flatMap(token =>

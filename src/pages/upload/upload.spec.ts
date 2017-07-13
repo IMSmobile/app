@@ -36,8 +36,8 @@ import { UploadPage } from './upload';
 
 describe('Page: Upload', () => {
 
-  let fixture: ComponentFixture<UploadPage> = null;
-  let page: UploadPage = null;
+  let fixture: ComponentFixture<UploadPage>;
+  let page: UploadPage;
 
   beforeEach(async(() => {
 
@@ -110,7 +110,7 @@ describe('Page: Upload', () => {
 
   it('calls camera error handler when failing to take picture', inject([CameraService], (cameraService: CameraService) => {
     spyOn(cameraService, 'takePicture').and.returnValue(Observable.throw('oops'));
-    spyOn(cameraService, 'handleError').and.returnValue(null);
+    spyOn(cameraService, 'handleError').and.returnValue(undefined);
     page.takePicture();
     expect(cameraService.takePicture).toHaveBeenCalled();
     expect(cameraService.handleError).toHaveBeenCalled();
@@ -127,14 +127,14 @@ describe('Page: Upload', () => {
   it('On browser open file dialog on  after click get picture from gallery', inject([Platform], (platform: Platform) => {
     const element = document.getElementById('fileUpload');
     spyOn(platform, 'is').and.returnValue(true);
-    spyOn(element, 'click').and.returnValue(null);
+    spyOn(element, 'click').and.returnValue(undefined);
     page.getGalleryPicture();
     expect(element.click).toHaveBeenCalledTimes(1);
   }));
 
   it('calls camera error handler when failing to get image from gallery', inject([CameraService], (cameraService: CameraService) => {
     spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.throw('oops'));
-    spyOn(cameraService, 'handleError').and.returnValue(null);
+    spyOn(cameraService, 'handleError').and.returnValue(undefined);
     page.getGalleryPicture();
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
     expect(cameraService.handleError).toHaveBeenCalled();
