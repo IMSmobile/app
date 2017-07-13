@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/IMSmobile/app/compare/0.7.0...v0.8.0) (2017-07-13)
+
+
+### Features
+
+* new design and app name arkivar ([28d810c](https://github.com/IMSmobile/app/commit/28d810c)), closes [#431](https://github.com/IMSmobile/app/issues/431) [#432](https://github.com/IMSmobile/app/issues/432)
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/IMSmobile/app/compare/0.6.0...v0.7.0) (2017-07-07)
 
