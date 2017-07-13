@@ -21,8 +21,8 @@ import { LoginPage } from './login';
 
 describe('Page: Login', () => {
 
-  let fixture: ComponentFixture<LoginPage> = null;
-  let page: LoginPage = null;
+  let fixture: ComponentFixture<LoginPage>;
+  let page: LoginPage;
 
   beforeEach(async(() => {
 
@@ -139,7 +139,7 @@ describe('Page: Login', () => {
   }));
 
   it('Sets archive in auth settings', inject([ImsBackendMock, AuthService], (imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    spyOn(authService, 'setArchive').and.returnValue(null);
+    spyOn(authService, 'setArchive').and.returnValue(undefined);
     page.navigateAfterLogin(imsBackendMock.policeFilter);
     expect(authService.setArchive).toHaveBeenCalledWith(imsBackendMock.policeFilter);
   }));
@@ -161,7 +161,7 @@ describe('Page: Login', () => {
 
   it('Loads filter from settings and continues if successfull', inject([ImsBackendMock, SettingService], (imsBackendMock: ImsBackendMock, settingService: SettingService) => {
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
-    spyOn(page, 'navigateAfterLogin').and.returnValue(null);
+    spyOn(page, 'navigateAfterLogin').and.returnValue(undefined);
     const credential = imsBackendMock.credential;
     page.loginForm.controls.server.setValue(credential.server);
     page.loginForm.controls.user.setValue(credential.username);

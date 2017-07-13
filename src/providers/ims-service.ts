@@ -20,27 +20,25 @@ import 'rxjs/add/operator/mergeMap';
 @Injectable()
 export class ImsService {
 
-  parentImageTableOffset: number = 1;
+  private readonly parentImageTableOffset: number = 1;
 
-  constructor(public http: Http) {
+  constructor(public http: Http) { }
 
-  }
-
-  getTokensUrl(credential: Credential): Observable<string> {
+  public getTokensUrl(credential: Credential): Observable<string> {
     return this.getLicensePoint(credential).map(licensePoint => licensePoint.sessions.dataHref);
   }
 
-  getEntriesFilterUrl(credential: Credential, filterId: number): Observable<string> {
+  public getEntriesFilterUrl(credential: Credential, filterId: number): Observable<string> {
     return this.getEntriesTable(credential).map(entriesPoint => entriesPoint.filters.find(this.findFilterLinkById, filterId).dataHref);
   }
 
-  getInfo(credential: Credential): Observable<Info> {
+  public getInfo(credential: Credential): Observable<Info> {
     return this.getEntryPointLink(credential, 'info').flatMap(infoUrl =>
       this.get(credential, infoUrl).map(response =>
         response.json()));
   }
 
-  getEntriesTable(credential: Credential): Observable<EntriesPoint> {
+  public getEntriesTable(credential: Credential): Observable<EntriesPoint> {
     return this.getEntryPointLink(credential, 'entries').flatMap(entriesUrl =>
       this.get(credential, entriesUrl).map(response => {
         const data = response.json();
@@ -48,40 +46,40 @@ export class ImsService {
       }));
   }
 
-  getUploadsLink(credential: Credential, filterId: number, token: Token): Observable<string> {
+  public getUploadsLink(credential: Credential, filterId: number, token: Token): Observable<string> {
     return this.getArchiveEntry(credential, filterId, token).map(entry => entry.tables.find(this.findImageTable).uploadHref);
   }
 
-  getParentImageEntriesLink(credential: Credential, filterId: number, token: Token): Observable<string> {
+  public getParentImageEntriesLink(credential: Credential, filterId: number, token: Token): Observable<string> {
     return this.getArchiveEntry(credential, filterId, token).map(entry => this.findParentImageTable(entry).dataHref);
   }
 
-  getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
-    return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl =>
-      this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json()));
-  }
-
-  getLicensePoint(credential: Credential): Observable<LicensePoint> {
-    return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl =>
-      this.get(credential, licenseUrl).map(response => response.json()));
-  }
-
-  getEntryPointLink(credential: Credential, linkConstant: string): Observable<string> {
+  public getEntryPointLink(credential: Credential, linkConstant: string): Observable<string> {
     return this.getEntryPoint(credential).map(entryPoint => entryPoint.links.find(this.findEntryPointLinkByName, linkConstant).dataHref);
   }
 
-  getEntryPoint(credential: Credential): Observable<EntryPoint> {
-    return this.get(credential, credential.server + '/rest').map(response => response.json());
-  }
-
-  get(credential: Credential, url: string): Observable<Response> {
+  public get(credential: Credential, url: string): Observable<Response> {
     const headers = new ImsHeaders(credential);
     return this.http.get(url, { headers: headers });
   }
 
-  getModelArchives(credential: Credential): Observable<ModelArchives> {
+  public getModelArchives(credential: Credential): Observable<ModelArchives> {
     return this.getEntryPointLink(credential, 'models').flatMap(entriesUrl =>
       this.get(credential, entriesUrl).map(response => response.json()));
+  }
+
+  private getArchiveEntry(credential: Credential, filterId: number, token: Token): Observable<ArchiveEntry> {
+    return this.getEntriesFilterUrl(credential, filterId).flatMap(filterUrl =>
+      this.http.get(filterUrl, { headers: new ImsHeaders(credential, token) }).map(response => response.json()));
+  }
+
+  private getLicensePoint(credential: Credential): Observable<LicensePoint> {
+    return this.getEntryPointLink(credential, 'license').flatMap(licenseUrl =>
+      this.get(credential, licenseUrl).map(response => response.json()));
+  }
+
+  private getEntryPoint(credential: Credential): Observable<EntryPoint> {
+    return this.get(credential, credential.server + '/rest').map(response => response.json());
   }
 
   private findImageTable(tableEntry: ArchiveTableEntry): boolean {

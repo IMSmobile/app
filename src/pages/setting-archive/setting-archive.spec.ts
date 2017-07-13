@@ -22,8 +22,8 @@ import { SettingArchivePage } from './setting-archive';
 
 describe('Page: Archive Settings', () => {
 
-  let fixture: ComponentFixture<SettingArchivePage> = null;
-  let page: SettingArchivePage = null;
+  let fixture: ComponentFixture<SettingArchivePage>;
+  let page: SettingArchivePage;
 
   beforeEach(async(() => {
 

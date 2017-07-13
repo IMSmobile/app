@@ -1,7 +1,7 @@
 import { Link } from './link';
 
 export class EntryPoint {
-  links: Link[];
+  public readonly links: Link[];
 
   constructor(links: Link[]) {
     this.links = links;

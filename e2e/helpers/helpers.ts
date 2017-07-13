@@ -3,56 +3,56 @@ import { $, browser, ElementFinder, ExpectedConditions } from 'protractor';
 
 export class Helpers {
 
-  static DEFAULT_WAIT_TIMEOUT: number = 20000;
-  static DEFAULT_SLEEP_TIME: number = 1000;
-  static JASMINE_TIMEOUT_INTERVAL: number = 100000;
+  public static DEFAULT_WAIT_TIMEOUT: number = 20000;
+  public static DEFAULT_SLEEP_TIME: number = 1000;
+  public static JASMINE_TIMEOUT_INTERVAL: number = 100000;
 
-  static waitUntilElementIsReady(element: ElementFinder): void {
+  public static waitUntilElementIsReady(element: ElementFinder): void {
     browser.wait(ExpectedConditions.elementToBeClickable(element), Helpers.DEFAULT_WAIT_TIMEOUT);
     browser.wait(ExpectedConditions.stalenessOf($('.click-block-active')), Helpers.DEFAULT_WAIT_TIMEOUT);
     this.waitUntilLoaderFinished();
     browser.waitForAngular();
   }
 
-  static waitUntilLoaderFinished(): void {
+  public static waitUntilLoaderFinished(): void {
     browser.wait(ExpectedConditions.stalenessOf($('.loading-wrapper')), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  static waitUntilStorageReady(): void {
+  public static waitUntilStorageReady(): void {
     browser.sleep(this.DEFAULT_SLEEP_TIME);
     browser.sleep(this.DEFAULT_SLEEP_TIME);
   }
 
-  static toggleFieldSettings(toggleField: ElementFinder): void {
+  public static toggleFieldSettings(toggleField: ElementFinder): void {
     this.waitUntilElementIsReady(toggleField);
     toggleField.click();
     this.waitUntilStorageReady();
   }
 
-  static chooseJPEGImageInFileDialog(fileInput: ElementFinder): void {
+  public static chooseJPEGImageInFileDialog(fileInput: ElementFinder): void {
     const fileToUpload = '../assets/mario.jpg';
     const absolutePath = Path.resolve(__dirname, fileToUpload);
     fileInput.sendKeys(absolutePath);
   }
 
-  static removeEventlistenerFromElement(id: string): void {
+  public static removeEventlistenerFromElement(id: string): void {
     browser.executeScript(`let changeElement = document.getElementById("${id}");
       let cloneElement = changeElement.cloneNode();
       changeElement.parentNode.replaceChild(cloneElement, changeElement);`);
   }
 
-  static sendDragEnterEventToElement(id: string): void {
+  public static sendDragEnterEventToElement(id: string): void {
     browser.executeScript(`let dragEnterEvent = new DragEvent("dragenter");
       Object.defineProperty(dragEnterEvent.constructor.prototype, "dataTransfer", { value: {} });
       document.getElementById("${id}").dispatchEvent(dragEnterEvent)`);
   }
 
-  static sendDragLeaveEventToElement(id: string): void {
+  public static sendDragLeaveEventToElement(id: string): void {
     browser.executeScript(`let dragLeaveEvent = new DragEvent("dragleave");
       document.getElementById("${id}").dispatchEvent(dragLeaveEvent)`);
   }
 
-  static sendDragDropEventToElement(sourceFileInputId: string, targetId: string): void {
+  public static sendDragDropEventToElement(sourceFileInputId: string, targetId: string): void {
     browser.executeScript(`let dropEvent = new DragEvent("drop");
       Object.defineProperty(dropEvent.constructor.prototype, "dataTransfer", { value: {} });
       dropEvent.dataTransfer.files = document.getElementById("${sourceFileInputId}").files;

@@ -9,7 +9,7 @@ export class BrowserSettingService extends SettingService {
     super(storage);
   }
 
-  isPictureFromCameraEnabled(): boolean {
+  public isPictureFromCameraEnabled(): boolean {
     return false;
   }
 }

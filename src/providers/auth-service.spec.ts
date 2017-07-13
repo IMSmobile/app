@@ -44,8 +44,7 @@ describe('Provider: AuthService', () => {
   }));
 
   it('Should not store credentials if failed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
-    const credential = imsBackendMock.credential;
-    credential.server = credential.server + 'failed';
+    const credential = new Credential('invalid', imsBackendMock.credential.username, imsBackendMock.credential.password);
     authService.login(credential).subscribe(
       info => fail('Should fail'),
       err => expect(authService.currentCredential).toBeUndefined()
@@ -56,7 +55,7 @@ describe('Provider: AuthService', () => {
     const testInfo: Info = { version: '9000' };
     authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     authService.logout();
-    expect(authService.currentCredential).toBeNull();
+    expect(authService.currentCredential).toBeUndefined();
   }));
 
   it('Should store the filter after archive selection', inject([AuthService, SettingService, ImsBackendMock], (authService: AuthService, settingService: SettingService, imsBackendMock: ImsBackendMock) => {

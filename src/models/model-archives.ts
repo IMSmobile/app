@@ -1,7 +1,7 @@
 import { ModelLink } from './model-link';
 
 export class ModelArchives {
-  archives: ModelLink[];
+  public readonly archives: ModelLink[];
 
   constructor(archives: ModelLink[]) {
     this.archives = archives;

@@ -9,7 +9,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MobileClient {
 
-  rootPage: any = LoginPage;
+  public rootPage: any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

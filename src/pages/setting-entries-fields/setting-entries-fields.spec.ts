@@ -20,8 +20,8 @@ import { SettingEntriesFieldsPage } from './setting-entries-fields';
 
 describe('Page: Parent Entries Settings Fields', () => {
 
-  let fixture: ComponentFixture<SettingEntriesFieldsPage> = null;
-  let page: SettingEntriesFieldsPage = null;
+  let fixture: ComponentFixture<SettingEntriesFieldsPage>;
+  let page: SettingEntriesFieldsPage;
 
   beforeEach(async(() => {
 

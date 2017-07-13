@@ -1,8 +1,8 @@
 import { Link } from './link';
 
 export class LicensePoint {
-  segments: Link;
-  sessions: Link;
+  public readonly segments: Link;
+  public readonly sessions: Link;
 
   constructor(segments: Link, sessions: Link) {
     this.segments = segments;

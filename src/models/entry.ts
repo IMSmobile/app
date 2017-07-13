@@ -2,16 +2,16 @@
 import { Navigation } from './navigation';
 
 export class Entry {
-  fields: Object = new Object();
-  dataHref: string;
-  navigation: Navigation;
+  public readonly fields: Object = new Object();
+  public readonly dataHref: string;
+  public readonly navigation: Navigation;
 
-  set(key: string, value: string): Entry {
+  public set(key: string, value: string): Entry {
     this.fields[key] = value;
     return this;
   }
 
-  json(): string {
+  public json(): string {
     return JSON.stringify(this);
   }
 }

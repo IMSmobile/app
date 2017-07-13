@@ -1,5 +1,5 @@
 export class DragEventCounter {
-  dragEventCountMap: { [key: string]: number; } = {};
+  public dragEventCountMap: { [key: string]: number; } = {};
 
   public reset(id: string): void {
     this.dragEventCountMap[id] = 0;

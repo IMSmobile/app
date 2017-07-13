@@ -1,8 +1,8 @@
 import { ModelLink } from './model-link';
 
 export class ModelTables {
-  name: string;
-  tables: ModelLink[];
+  public readonly name: string;
+  public readonly tables: ModelLink[];
 
   constructor(name: string, tables: ModelLink[]) {
     this.name = name;

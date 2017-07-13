@@ -15,22 +15,21 @@ import { TokenService } from './token-service';
 @Injectable()
 export class UploadService {
 
-  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public  containerUploadService: ContainerUploadService) {
-  }
+  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public  containerUploadService: ContainerUploadService) { }
 
-  uploadImage(credential: Credential, filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
+  public uploadImage(credential: Credential, filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
     return this.tokenService.getToken(credential).flatMap(token =>
       this.createContainerLocation(credential, filterId, token).flatMap(adress =>
         this.containerUploadService.postToContainer(credential, adress, token, image).flatMap(response =>
           this.createImageEntry(credential, adress, token, imageEntry))));
   }
 
-  createContainerLocation(credential: Credential, filterId: number, token: Token): Observable<string> {
+  public createContainerLocation(credential: Credential, filterId: number, token: Token): Observable<string> {
     return this.imsService.getUploadsLink(credential, filterId, token).flatMap(url =>
-      this.http.post(url, null, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location')));
+      this.http.post(url, undefined, { headers: new ImsHeaders(credential, token) }).map(response => response.headers.get('location')));
   }
 
-  createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry): Observable<Response> {
+  public createImageEntry(credential: Credential, url: string, token: Token, imageEntry: Entry): Observable<Response> {
     return this.http.post(url, imageEntry.json(), { headers: new ImsHeaders(credential, token) });
   }
 }

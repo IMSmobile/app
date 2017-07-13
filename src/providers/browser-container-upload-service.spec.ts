@@ -27,7 +27,7 @@ describe('Provider: BrowserContainerUploadService', () => {
 
   it('Should post to a container', inject([BrowserContainerUploadService, Http, ImsBackendMock], (browserContainerUploadService: BrowserContainerUploadService, http: Http, imsBackendMock: ImsBackendMock) => {
     const file = new File([new Blob([])], 'a.jpg');
-    const image = new Image(null, null, file);
+    const image = new Image(undefined, undefined, file);
     const url = imsBackendMock.uploadContainerUrl;
     spyOn(http, 'post').and.callThrough();
     const options = new RequestOptions({ headers: new ImsFileUploadHeaders(imsBackendMock.credential, imsBackendMock.token, file.name) });
