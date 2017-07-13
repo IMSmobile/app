@@ -4,7 +4,7 @@ Dienstag, 27.06.2017 18:00-19:00 beim MGB, Zürich
 
 ## Teilnehmer
 Betreuer: Roland Weber  
-IMS Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
+Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 
 ## Traktanden
 - Update zum aktuellen Stand des Projekts

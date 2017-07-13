@@ -1,6 +1,6 @@
 # Software Architecture Document
 
-Beschreibt die Archtiektur des IMS Mobile Client.
+Beschreibt die Archtiektur des Mobile Client.
 
 ## Imagic IMS Daten Model
 Um im Imagic IMS Daten via REST API zu speichern müssen wir uns mit dem Datenmodell der Firma Imagic vertraut machen.

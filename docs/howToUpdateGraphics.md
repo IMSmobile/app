@@ -1,5 +1,5 @@
-# Update graphics from IMS Mobile Client
-This document describes how to change graphics for the IMS Mobile Client. Try to keep the quantity of images low for an easier maintenance of the app. 
+# Update graphics in Mobile Client
+This document describes how to change graphics for the Mobile Client. Try to keep the quantity of images low for an easier maintenance of the app. 
 
 ## Change Splashscreen
 The splashscreen is the loading screen that appears during app startup. To change the splashscreen, follow these steps:

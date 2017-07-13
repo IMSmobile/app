@@ -6,7 +6,7 @@ Freitag, 16.06.2017 10:00-10:45 bei PIC Systems AG, Glattbrugg
 
 PIC Systems: Marcel Bachmann, Michael Bachmann  
 Imagic: Urs Gomez, Patrik Wermelinger, Patrick Bohren  
-IMS Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
+Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 
 ## Traktanden
 - Abgeschlossene Aufgaben

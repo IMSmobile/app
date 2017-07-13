@@ -3,24 +3,25 @@
 </ion-header>
 
 
-<ion-content padding>
-  <img src="assets/images/logo.png">
-  <h2>Imagic IMS Mobile Client {{version}}</h2>
+<ion-content padding class="page">
+  <img src="assets/images/logo.png" class="logo">
+
   <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <ion-item *ngIf="isShowRestUrlField === true">
+    <ion-item no-lines class="item-trns login-content version">
+      <ion-label text-center>Version {{version}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="isShowRestUrlField === true" class="item-trns login-content">
       <ion-icon name="cloud" item-start></ion-icon>
       <ion-input type="url" placeholder="IMS Rest Url" formControlName="server"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="item-trns login-content">
       <ion-icon name="person" item-start></ion-icon>
       <ion-input placeholder="IMS Benutzername" formControlName="user" [class.invalid]="submitAttempt" autocapitalize="none"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="item-trns login-content">
       <ion-icon name="lock" item-start></ion-icon>
       <ion-input type="password" placeholder="IMS Passwort" formControlName="password"></ion-input>
     </ion-item>
-    <ion-item>
-      <button type="submit" class="button-login" ion-button full>Anmelden</button>
-    </ion-item>
+    <button ion-button type="submit" class="button-login login-content" ion-button full>Anmelden</button>
   </form>
 </ion-content>

@@ -4,11 +4,11 @@ Freitag, 17.03.2017 13:30-15:10 bei PIC Systems AG, Glattbrugg
 
 ## Teilnehmer
 PIC Systems: Marcel Bachmann  
-IMS Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky, Michael Leu
+Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky, Michael Leu
 
 ## Traktanden
 - Feedback einholen zum [Fragenkatalog@782d85d](https://github.com/IMSmobile/app/blob/782d85d3ab4db55f1c2d2db6a96ef493f28da478/docs/questions.md)
-- Feedback einholen zu Stakeholders und Anforderungen in der [Spezifikation IMS Mobile Clent@026bc68](https://github.com/IMSmobile/app/blob/026bc682222978aa17ae8f9c45229582690e1175/docs/spec.md)
+- Feedback einholen zu Stakeholders und Anforderungen in der [Spezifikation Mobile Clent@026bc68](https://github.com/IMSmobile/app/blob/026bc682222978aa17ae8f9c45229582690e1175/docs/spec.md)
 
 ## Protokoll
 

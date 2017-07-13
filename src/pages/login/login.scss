@@ -1,19 +1,42 @@
 page-login {
-
-img {
-  height: 20vh;
-  width: auto;
-  margin: auto;
-  display: block;
+  img {
+    height: 20vh;
+    width: auto;
+    margin: auto;
+    display: block;
+    margin-top: 2em;
   }
 
-h2 {
-  text-align: center;
+  h2 {
+    text-align: center;
   }
 
-.button-login {
-  padding: 0 1em!important;
-  height: 1.65em!important;
-  font-size: 1.7rem!important;
+  .button-login {
+    padding: 0 1em!important;
+    height: 1.65em!important;
+    font-size: 1.7rem!important;
+    margin-top: 1em;
+  }
+
+  .page {
+    background: linear-gradient(to bottom,  #0391B5 0%, #233769 100%);
+  }
+
+  .version {
+    font-size: 1.3rem!important;
+    opacity: 0.6;
+  }
+
+  .item.item-trns {
+    border-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    color: white; 
+  }
+
+  .login-content {
+    max-width: 500px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

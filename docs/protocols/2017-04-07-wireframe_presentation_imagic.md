@@ -4,7 +4,7 @@ Freitag, 07.04.2017 15:00-15:30 bei Imagic AG, Glattbrugg
 ## Teilnehmer
 
 Imagic: Patrik Wermelinger, Urs Gomez  
-IMS Mobile Client Entwickler: Niklaus Tschirky, Sandro Zbinden
+Mobile Client Entwickler: Niklaus Tschirky, Sandro Zbinden
 
 ## Traktanden
 - Spezifikationen

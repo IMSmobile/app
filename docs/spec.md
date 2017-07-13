@@ -1,7 +1,7 @@
-# Spezifikation Imagic IMS Mobile Client
+# Spezifikation Mobile Client
 
 ## Einleitung
-Mit dem Imagic IMS Mobile Client möchten wir den Kunden von Imagic ermöglichen über iOS und Android Smartphones digitale Medien (Bilder, Audio, Video, Texte) ins digitalen Bildmanagement-System Imagic IMS abzuspeichern.
+Mit dem Mobile Client möchten wir den Kunden von Imagic ermöglichen über iOS und Android Smartphones digitale Medien (Bilder, Audio, Video, Texte) ins digitalen Bildmanagement-System Imagic IMS abzuspeichern.
 
 Als Schnittstelle soll die von Imagic IMS Server bereitgestellte REST-API verwendet werden.
 
@@ -12,7 +12,7 @@ Siehe [Vision](../README.md#vision).
 Siehe [Stakeholder](../README.md#stakeholder).
 
 ## Anforderungskatalog
-Aus Gründen der Lesbarkeit verwenden wir den Begriff _Client_ als Synonym für _Imagic IMS Mobile Client_.
+Aus Gründen der Lesbarkeit verwenden wir den Begriff _Client_ als Synonym für _Mobile Client_.
 
 ### Funktional
 ID   | Name | Beschreibung | Quelle      | Bemerkungen
@@ -53,7 +53,7 @@ FA33 | Bildentgegennahme | Es kann möglich sein, Bilder aus einer dritt App an 
 FA34 | Massenbildupload | Der Client soll bis zu 100 Bilder aus der Galerie in das Imagic IMS speichern können. | PIC Systems | 
 FA35 | Galerieschutz | Es muss sichergestellt sein dass ein im Client direkt von der Kamera des Smartphones aufgenommenes Bild nicht in der Galerie des Smartphones gespeichert wird. | PIC Systems |
 FA36 | Bildschutz | Im Client direkt von der Kamera des Smartphones aufgenommene Bilder können nicht auf triviale Weise von Drittpersonen oder anderen Apps eingesehen werden. | PIC Systems | Als nicht trivial einsehbar gilt, wenn die Bilder nicht mithilfe der Standard Systemapps (Galerie, Cloudmanager usw.) eingesehen werden können. Auch eine kurzfristige Speicherung der Bilder im App-spezifischen Temporärverzeichnis mit sofortiger Löschung nach Upload ist möglich.
-FA37 | Startparameter | Navigation zu einem bestimmten Tabellen-Entry im IMS Mobile Client soll mit einem bestimmten Start-Parameter möglich sein. | PIC Systems | Hohe Priorisierung von PIC Systems gewünscht
+FA37 | Startparameter | Navigation zu einem bestimmten Tabellen-Entry im Client soll mit einem bestimmten Start-Parameter möglich sein. | PIC Systems | Hohe Priorisierung von PIC Systems gewünscht
 FA38 | Browserupload | Ein Bildupload (FA1) soll auch mit einem modernen Browser (Chrome: aktuelle Version, Firefox: aktuelle Version, Edge 14 und Internet Explorer 11) möglich sein. | PIC Systems | 
 ~~FA39~~  | ~~Fallmodifikation~~ | ~~Der Client soll dem Benutzer die Möglichkeit bieten Falldaten anzupassen.~~ | HSR Review | Imagic: nicht gewünscht. PIC Systems: nicht gewünscht.
 FA40 | Dokumentation | Entwickler müssen das Projekt aufsetzen und fortsetzen können.| Betreuer Review | Eine Entwickler Dokumentation reicht für Imagic und PIC Systems.

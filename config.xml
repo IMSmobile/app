@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="io.github.imsmobile.app" version="0.7.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>ims</name>
-  <description>Imagic IMS Mobile Client</description>
+  <name>Arkivar</name>
+  <description>Arkivar – Mobile Client for Imagic IMS</description>
   <author email="imsmobile@pobox.com" href="https://github.com/IMSmobile/app">Imagic IMS Mobile Client Team</author>
   <content src="index.html"/>
   <access origin="*"/>
