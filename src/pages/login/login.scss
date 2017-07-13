@@ -5,6 +5,8 @@ img {
   width: auto;
   margin: auto;
   display: block;
+  margin-top: 2em;
+  margin-bottom: 2em;
   }
 
 h2 {
@@ -16,4 +18,23 @@ h2 {
   height: 1.65em!important;
   font-size: 1.7rem!important;
   }
+
+.page {
+    background: linear-gradient(to bottom,  #233769 0%, #0391B5 100%);
+}
+
+
+.item.item-trns {
+	border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+  color: white; 
+  max-width: 500px;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+
+}
+
+
 }
