@@ -1,9 +1,11 @@
+<h1 align="center">
+  <img src="docs/images/full_logo_blue.png" alt="Arkivar">
+</h1>
+<h3 align="center">Mobiler Client für Imagic IMS</h4>
+
 [![Build Status](https://travis-ci.org/IMSmobile/app.svg?branch=master)](https://travis-ci.org/IMSmobile/app)
 [![Coverage Status](https://coveralls.io/repos/github/IMSmobile/app/badge.svg)](https://coveralls.io/github/IMSmobile/app)
 
-![Arkivar Logo](docs/images/full_logo_blue.png)
-
-# Arkivar – Mobiler Client für Imagic IMS
 
 ## Vision
 Wir möchten es den Kunden von Imagic IMS erlauben auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im Imagic IMS System abzuspeichern. Dazu möchten wir eine plattformunabhängige Mobile-App entwickeln.
