@@ -9,8 +9,7 @@ import { Token } from './../models/token';
 @Injectable()
 export class ContainerUploadService {
 
-  constructor(public transfer: Transfer) {
-  }
+  constructor(public transfer: Transfer) { }
 
   postToContainer(credential: Credential, url: string, token: Token, image: Image): Observable<any> {
     const fileTransfer: TransferObject = this.transfer.create();

@@ -4,7 +4,7 @@ import { IntegerValidator } from './integer-validator';
 describe('Validator: Integer Validator', () => {
 
   it('should have no error on valid integer', () => {
-    expect(IntegerValidator.isValid(new FormControl('1'))).toBeNull();
+    expect(IntegerValidator.isValid(new FormControl('1'))).toBeUndefined();
   });
 
   it('should have an error on floating number', () => {

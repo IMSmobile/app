@@ -28,13 +28,13 @@ describe('Provider: CameraService', () => {
   it('returns observable from camera with response on success', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {
     const imageSrc = '/my/picture.jpg';
     spyOn(camera, 'getPicture').and.returnValue(Promise.resolve(imageSrc));
-    cameraService.takePicture().subscribe(res => expect(res).toEqual(new Image('CameraPhoto.jpeg', imageSrc)), err => expect(err).toBeNull());
+    cameraService.takePicture().subscribe(res => expect(res).toEqual(new Image('CameraPhoto.jpeg', imageSrc)), err => expect(err).toBeUndefined());
   }));
 
   it('returns observable from camera with error on failure', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {
     const error = 'oops';
     spyOn(camera, 'getPicture').and.returnValue(Promise.reject(error));
-    cameraService.takePicture().subscribe(res => expect(res).toBeNull(), err => expect(err).toEqual(error));
+    cameraService.takePicture().subscribe(res => expect(res).toBeUndefined(), err => expect(err).toEqual(error));
   }));
 
   it('requests picture from camera with the correct options', inject([CameraService, Camera], (cameraService: CameraService, camera: Camera) => {

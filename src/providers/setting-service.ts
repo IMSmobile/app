@@ -18,8 +18,7 @@ export class SettingService {
   isShowRestUrlFieldDefault: boolean = true;
   fieldPathSeparator: string = '.';
 
-  constructor(public storage: Storage) {
-  }
+  constructor(public storage: Storage) { }
 
   setRestUrl(restUrl: string): void {
     this.storeSetting(this.restUrlKey, restUrl);
@@ -85,6 +84,7 @@ export class SettingService {
   }
 
   private readKey(key: string): Observable<any> {
+    // tslint:disable-next-line:no-null-keyword
     return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.get(key)).map(val => val === null ? undefined : val));
   }
 

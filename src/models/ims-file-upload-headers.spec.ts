@@ -5,7 +5,7 @@ describe('Model: ImsFileUploadHeader', () => {
 
   it('Should quote filename', () => {
     const fileName = 'file with space.jpg';
-    const image = new ImsFileUploadHeaders(new Credential('', '', ''), null, fileName);
+    const image = new ImsFileUploadHeaders(new Credential('', '', ''), undefined, fileName);
     expect(image.get('Content-Disposition')).toEqual('attachment; filename="file with space.jpg"');
   });
 });

@@ -113,6 +113,7 @@
     "cyclomatic-complexity": [true],
     "strict-boolean-expressions": true,
     "no-string-literal": true,
-    "max-file-line-count": [true, 200]
+    "max-file-line-count": [true, 200],
+    "no-null-keyword": true
   }
 }

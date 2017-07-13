@@ -20,8 +20,8 @@ import { SettingImageFieldsPage } from './setting-image-fields';
 
 describe('Page: Image Settings Fields', () => {
 
-  let fixture: ComponentFixture<SettingImageFieldsPage> = null;
-  let page: SettingImageFieldsPage = null;
+  let fixture: ComponentFixture<SettingImageFieldsPage>;
+  let page: SettingImageFieldsPage;
 
   beforeEach(async(() => {
 

@@ -64,7 +64,7 @@ export class ImsBackendMock extends MockBackend {
   public query: QueryFragment[] = [new QueryFragment('testkey', 'testvalue')];
   public queryBuilder: QueryBuilderService = new QueryBuilderService();
   public parentImageEntriesUrlWithQuery: string = this.parentImageEntriesUrl + this.queryBuilder.generate(this.query);
-  public archiveEntry: ArchiveEntry = new ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', null, null, this.containerRequestUrl)]);
+  public archiveEntry: ArchiveEntry = new ArchiveEntry('workflow db1', [new ArchiveTableEntry('Art'), new ArchiveTableEntry('Fall', this.parentImageEntriesUrl), new ArchiveTableEntry('Bild', undefined, undefined, this.containerRequestUrl)]);
   public uploadContainerUrl: string = this.containerRequestUrl + '/XYZ';
   public imageLocationUrl: string = this.filterResourceUrl + 'Bild/123';
   public parentImageEntriesNextPageUrl: string = this.parentImageEntriesUrlWithQuery + '&start=20&pageSize=20';
@@ -113,7 +113,7 @@ export class ImsBackendMock extends MockBackend {
       rest: {
         [RequestMethod.Get]: new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]),
         license: {
-          [RequestMethod.Get]: new LicensePointResponse(null, new Link('tokens', this.tokensUrl)),
+          [RequestMethod.Get]: new LicensePointResponse(undefined, new Link('tokens', this.tokensUrl)),
           tokens: {
             [RequestMethod.Post]: new LocationResponse(this.tokenLoadingUrl),
             ABCDE: {
