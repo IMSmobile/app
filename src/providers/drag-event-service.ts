@@ -1,8 +1,10 @@
-import { Renderer2 } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 import { DragEventCounter } from './../models/drag-event-counter';
+
+@Injectable()
 export class DragEventService {
 
-  public dragEventCounter: DragEventCounter = new DragEventCounter();
+  constructor(public dragEventCounter: DragEventCounter) { }
 
   public preventEventsOnBody(renderer: Renderer2): void {
     renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));

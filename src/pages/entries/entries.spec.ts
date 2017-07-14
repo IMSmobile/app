@@ -21,6 +21,7 @@ import { SettingsPage } from '../settings/settings';
 import { UploadPage } from '../upload/upload';
 import { DragEventMock } from './../../mocks/drag-event-mock';
 import { StorageMock } from './../../mocks/mocks';
+import { DragEventCounter } from './../../models/drag-event-counter';
 import { CameraError } from './../../models/errors/camera-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Image } from './../../models/image';
@@ -47,6 +48,7 @@ describe('Page: Entries', () => {
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
         ModelService, SettingService,
         CameraService, LoadingService, AlertService, QueryBuilderService, Events, BrowserFileuploadSelectorService,
+        DragEventService, DragEventCounter,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -291,16 +293,14 @@ describe('Page: Entries', () => {
     expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
   });
 
-  it('should add drag class on element with first dragenter event', () => {
-    page.dragEventService = new DragEventService();
+  it('should add drag class on element with first dragenter event', inject([DragEventService], (dragEventService: DragEventService) => {
     const event = new DragEventMock('dragenter');
     page.handleDragEvent(event);
     const element = event.currentTarget as Element;
     expect(element.classList.contains('drag')).toBeTruthy();
-  });
+  }));
 
-  it('should remove drag class on last dragleave event', () => {
-    page.dragEventService = new DragEventService();
+  it('should remove drag class on last dragleave event', inject([DragEventService], (dragEventService: DragEventService) => {
     const element = document.createElement('div');
     element.id = 'a1';
     const eventEnter = new DragEventMock('dragenter', element);
@@ -311,7 +311,7 @@ describe('Page: Entries', () => {
     page.handleDragEvent(eventLeave);
     page.handleDragEvent(eventLeave);
     expect(element.classList.contains('drag')).toBeFalsy();
-  });
+  }));
 
   it('Should go to uploadpage after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     const event = new DragEventMock('drop');

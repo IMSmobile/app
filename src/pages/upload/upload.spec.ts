@@ -20,6 +20,7 @@ import { TokenService } from '../../providers/token-service';
 import { UploadService } from '../../providers/upload-service';
 import { DragEventMock } from './../../mocks/drag-event-mock';
 import { Credential } from './../../models/credential';
+import { DragEventCounter } from './../../models/drag-event-counter';
 import { Entry } from './../../models/entry';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
@@ -48,7 +49,7 @@ describe('Page: Upload', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
         TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
-        FieldValidatorService, ContainerUploadService, BrowserFileuploadSelectorService,
+        FieldValidatorService, ContainerUploadService, BrowserFileuploadSelectorService, DragEventService, DragEventCounter,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
@@ -301,8 +302,7 @@ describe('Page: Upload', () => {
     expect(page.image).toEqual(oldImage);
   }));
 
-  it('Should deactivate dragOverlay after dragenter and dragleave event', () => {
-    page.dragEventService = new DragEventService();
+  it('Should deactivate dragOverlay after dragenter and dragleave event', inject([DragEventService], (dragEventService: DragEventService) => {
     const element = document.createElement('div');
     element.id = 'a1';
     const eventEnter = new DragEventMock('dragenter', element);
@@ -313,14 +313,13 @@ describe('Page: Upload', () => {
     page.handleDragEvent(eventLeave);
     page.handleDragEvent(eventLeave);
     expect(page.showDragOverlay).toBeFalsy();
-  });
+  }));
 
-  it('Should activate dragOverlay on dragenter event', () => {
-    page.dragEventService = new DragEventService();
+  it('Should activate dragOverlay on dragenter event', inject([DragEventService], (dragEventService: DragEventService) => {
     const event = new DragEventMock('dragenter');
     page.handleDragEvent(event);
     expect(page.showDragOverlay).toBeTruthy();
-  });
+  }));
 
   it('Initialize BOOLEAN field type as false', () => {
     const fieldLength: number = 10;

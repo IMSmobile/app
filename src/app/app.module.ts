@@ -6,12 +6,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { LoginPage } from '../pages/login/login';
 import { UploadPage } from '../pages/upload/upload';
+import { DragEventCounter } from './../models/drag-event-counter';
 import { EntriesPage } from './../pages/entries/entries';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
 import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
 import { SettingsPage } from './../pages/settings/settings';
 import { BrowserFileuploadSelectorService } from './../providers/browser-fileupload-selector-service';
+import { DragEventService } from './../providers/drag-event-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { ModelService } from './../providers/model-service';
 import { MobileClient } from './app.component';
@@ -96,6 +98,8 @@ const cloudSettings: CloudSettings = {
     ModelService,
     FieldValidatorService,
     BrowserFileuploadSelectorService,
+    DragEventService,
+    DragEventCounter,
     { provide: ErrorHandler, useClass: ImsErrorHandler }
   ]
 })

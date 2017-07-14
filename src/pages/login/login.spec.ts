@@ -12,10 +12,12 @@ import { ImsService } from '../../providers/ims-service';
 import { LoadingService } from '../../providers/loading-service';
 import { SettingService } from '../../providers/setting-service';
 import { EntriesPage } from '../entries/entries';
+import { DragEventCounter } from './../../models/drag-event-counter';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
 import { Info } from './../../models/info';
+import { DragEventService } from './../../providers/drag-event-service';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { LoginPage } from './login';
 
@@ -31,7 +33,9 @@ describe('Page: Login', () => {
       declarations: [LoginPage],
 
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AuthService,
+        ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,
+        DragEventService, DragEventCounter,
         {
           provide: Http,
           useFactory: (imsBackendMock, options) =>

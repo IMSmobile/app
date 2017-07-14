@@ -1,13 +1,7 @@
 import { DragEventCounter } from './drag-event-counter';
+import { DragEventInvalidStateError } from './errors/drag-event-invalid-state-error';
 
 describe('Model: DragEventCounter', () => {
-
-  it('should be 0 after increment and decrement ', () => {
-    const dragEventCounter = new DragEventCounter();
-    dragEventCounter.inc('a1');
-    dragEventCounter.dec('a1');
-    expect(dragEventCounter.dragEventCountMap.a1).toEqual(0);
-  });
 
   it('first event should be true if inc is called once', () => {
     const dragEventCounter = new DragEventCounter();
@@ -54,34 +48,38 @@ describe('Model: DragEventCounter', () => {
     expect(called).toBeFalsy();
   });
 
-  it('should be 0 after decrement and increment ', () => {
+  it('should throw error if dec is called before inc', () => {
     const dragEventCounter = new DragEventCounter();
-    dragEventCounter.dec('a1');
-    dragEventCounter.inc('a1');
-    expect(dragEventCounter.dragEventCountMap.a1).toEqual(0);
+    expect(() => dragEventCounter.dec('a1')).toThrowError(DragEventInvalidStateError);
   });
 
-  it('should increment correctly  with different ids', () => {
+  it('should increment correctly with different ids', () => {
     const dragEventCounter = new DragEventCounter();
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a2');
-    const expectedA1Value: number = 2;
-    const expectedA2Value: number = 1;
-    expect(dragEventCounter.dragEventCountMap.a1).toEqual(expectedA1Value);
-    expect(dragEventCounter.dragEventCountMap.a2).toEqual(expectedA2Value);
+    let called = false;
+    dragEventCounter.callIfFirstEvent('a1', () => called = true);
+    expect(called).toBeFalsy();
+
+    called = false;
+    dragEventCounter.callIfFirstEvent('a2', () => called = true);
+    expect(called).toBeTruthy();
   });
 
-  it('should reset counter to 0 ', () => {
+  it('should reset counter ', () => {
     const dragEventCounter = new DragEventCounter();
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a1');
     dragEventCounter.inc('a1');
-    let expectedValue: number = 3;
-    expect(dragEventCounter.dragEventCountMap.a1).toEqual(expectedValue);
+    let called = false;
+    dragEventCounter.callIfFirstEvent('a1', () => called = true);
+    expect(called).toBeFalsy();
     dragEventCounter.reset('a1');
-    expectedValue = 0;
-    expect(dragEventCounter.dragEventCountMap.a1).toEqual(expectedValue);
-  });
+    dragEventCounter.inc('a1');
 
+    called = false;
+    dragEventCounter.callIfFirstEvent('a1', () => called = true);
+    expect(called).toBeTruthy();
+  });
 });

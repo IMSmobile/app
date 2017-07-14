@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+import { DragEventInvalidStateError } from './errors/drag-event-invalid-state-error';
+
+@Injectable()
 export class DragEventCounter {
-  public dragEventCountMap: { [key: string]: number; } = {};
+  private dragEventCountMap: { [key: string]: number; } = {};
 
   public reset(id: string): void {
     this.dragEventCountMap[id] = 0;
@@ -17,7 +21,7 @@ export class DragEventCounter {
   }
 
   public dec(id: string): void {
-    this.ensureInitialisation(id);
+    this.checkDecAllowed(id);
     this.dragEventCountMap[id] = this.dragEventCountMap[id] - 1;
   }
 
@@ -30,6 +34,12 @@ export class DragEventCounter {
   private ensureInitialisation(id: string): void {
     if (!(id in this.dragEventCountMap)) {
       this.dragEventCountMap[id] = 0;
+    }
+  }
+
+  private checkDecAllowed(id: string): void {
+    if (!(id in this.dragEventCountMap) || this.dragEventCountMap[id] === 0) {
+      throw new DragEventInvalidStateError(`Drag Event dec mit Wert: ${this.dragEventCountMap[id]} aufgerufen`);
     }
   }
 }
