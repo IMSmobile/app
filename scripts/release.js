@@ -8,6 +8,7 @@ const standardVersion = require('standard-version');
 const packageJsonFile = path.resolve(__dirname, '../package.json');
 const configXmlFile = path.resolve(__dirname, '../config.xml');
 const loginTsFile = path.resolve(__dirname, '../src/pages/login/login.ts');
+const changelogFile = path.resolve(__dirname, '../CHANGELOG.md');
 var packageJson = JSON.parse(fs.readFileSync(packageJsonFile, 'utf8'));
 
 var versionBefore = packageJson['version'];
@@ -19,6 +20,9 @@ standardVersion({ 'skip': { 'commit': true, 'tag': true } }).then(function succ(
   console.info(chalk.green(figures.tick) + ' bumping version in config.xml from ' + chalk.bold(versionBefore) + ' to ' + chalk.bold(newVersion));
   replaceInFile(loginTsFile, 'version: string = \'' + versionBefore + '\'', 'version: string = \'' + newVersion + '\'');
   console.info(chalk.green(figures.tick) + ' bumping version in login.ts from ' + chalk.bold(versionBefore) + ' to ' + chalk.bold(newVersion));
+  replaceInFile(changelogFile, '[standard-version](https://github.com/conventional-changelog/standard-version)', ' [Definition of Done](CONTRIBUTING.md)'); 
+  console.info(chalk.green(figures.tick) + ' link to definition of done for commit guide lines in CHANGELOG.nd');
+
   printTodoCommand('git add package.json config.xml src/pages/login/login.ts CHANGELOG.md', 'after checking local changes');
   printTodoCommand('git commit -m "' + "release: " + newVersion + '"', 'to commit local changes');
   printTodoCommand('git tag -a -m "' + "release: " + newVersion + '" ' + newVersion, 'to create new tag');
