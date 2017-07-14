@@ -23,7 +23,7 @@ FA3  | Bildformat | Der Client muss die Bildformate PNG und JPEG in das Imagic I
 FA4  | Bildattribute | Der Client muss das Bild inkl. EXIF-Daten ins das Imagic IMS speichern können. | PIC Systems |
 FA5  | Metadaten | Der Client muss dem Benutzer vor dem Speichern eines Bildes die Möglichkeit bieten Metadaten pro Bild zu erfassen. | PIC Systems |
 FA6  | Fallauswahl | Der Client muss dem Benutzer die Möglichkeit bieten einen bestehenden Fall auszwählen. | PIC Systems |
-FA7  | Fallerstellung | Der Client muss dem Benutzer die Möglichkeit bieten einen neuen Fall zu erstellen. | PIC Systems |
+FA7  | Fallerstellung | Der Client soll dem Benutzer die Möglichkeit bieten einen neuen Fall zu erstellen. | PIC Systems |
 FA8  | Falldaten | Bei der Erstellung eines neuen Falles soll der Client dem Benutzer die Möglichkeit bieten Metadaten für den neuen Fall zu erfassen. | PIC Systems | 
 FA9  | Strukturtiefe | Eine Fallauswahl oder Fallerstellung muss in einer bis zu 5 Ebenen tiefen Struktur möglich sein. | Imagic | 
 FA10 | Lizenz | Der Client muss sich an die Benutzerbegrenzung der REST-API gemäss Imagic IMS Lizenzmodell halten. | Imagic | 
