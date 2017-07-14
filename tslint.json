@@ -2,6 +2,9 @@
   "extends": [
     "tslint-ionic-rules"
   ],
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
   "rules": {
     "align": [
       true,
@@ -102,19 +105,51 @@
       "check-format"
     ],
     "restrict-plus-operands": true,
-    "prefer-template": [true, "allow-single-concat"],
+    "prefer-template": [
+      true,
+      "allow-single-concat"
+    ],
     "prefer-for-of": true,
     "unified-signatures": true,
     "no-duplicate-super": true,
-    "arrow-return-shorthand": [true, "multiline"],
+    "arrow-return-shorthand": [
+      true,
+      "multiline"
+    ],
     "typeof-compare": true,
     "no-object-literal-type-assertion": true,
     "no-magic-numbers": true,
-    "cyclomatic-complexity": [true],
+    "cyclomatic-complexity": [
+      true
+    ],
     "strict-boolean-expressions": true,
     "no-string-literal": true,
-    "max-file-line-count": [true, 200],
-    "member-access": [true, "check-accessor"],
-    "no-null-keyword": true
+    "max-file-line-count": [
+      true,
+      200
+    ],
+    "member-access": [
+      true,
+      "check-accessor"
+    ],
+    "no-null-keyword": true,
+    "use-input-property-decorator": true,
+    "use-output-property-decorator": true,
+    "use-host-property-decorator": true,
+    "no-attribute-parameter-decorator": true,
+    "no-input-rename": true,
+    "no-output-rename": true,
+    "no-forward-ref": true,
+    "use-life-cycle-interface": false,
+    "use-pipe-transform-interface": true,
+    "pipe-naming": [
+      true,
+      "camelCase",
+      "sg"
+    ],
+    "directive-class-suffix": true,
+    "templates-use-public": false,
+    "no-access-missing-member": false,
+    "invoke-injectable": true
   }
 }
