@@ -21,11 +21,11 @@ import { SettingsPage } from '../settings/settings';
 import { UploadPage } from '../upload/upload';
 import { DragEventMock } from './../../mocks/drag-event-mock';
 import { StorageMock } from './../../mocks/mocks';
-import { DragEventCounter } from './../../models/drag-event-counter';
 import { CameraError } from './../../models/errors/camera-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { Image } from './../../models/image';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
+import { DragEventCounterService } from './../../providers/drag-event-counter-service';
 import { DragEventService } from './../../providers/drag-event-service';
 import { ModelService } from './../../providers/model-service';
 import { QueryBuilderService } from './../../providers/query-builder-service';
@@ -48,7 +48,7 @@ describe('Page: Entries', () => {
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
         ModelService, SettingService,
         CameraService, LoadingService, AlertService, QueryBuilderService, Events, BrowserFileuploadSelectorService,
-        DragEventService, DragEventCounter,
+        DragEventService, DragEventCounterService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },

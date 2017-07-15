@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { DragEventInvalidStateError } from './errors/drag-event-invalid-state-error';
+import { DragEventInvalidStateError } from './../models/errors/drag-event-invalid-state-error';
 
 @Injectable()
-export class DragEventCounter {
+export class DragEventCounterService {
   private dragEventCountMap: { [key: string]: number; } = {};
 
   public reset(id: string): void {

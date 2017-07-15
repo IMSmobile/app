@@ -1,10 +1,10 @@
 import { Injectable, Renderer2 } from '@angular/core';
-import { DragEventCounter } from './../models/drag-event-counter';
+import { DragEventCounterService } from './../providers/drag-event-counter-service';
 
 @Injectable()
 export class DragEventService {
 
-  constructor(public dragEventCounter: DragEventCounter) { }
+  constructor(public dragEventCounterService: DragEventCounterService) { }
 
   public preventEventsOnBody(renderer: Renderer2): void {
     renderer.listen('body', 'dragenter', event => this.preventDefaultDragAction(event));
@@ -34,19 +34,19 @@ export class DragEventService {
 
   private dragenter(event: DragEvent, enterFunction: Function): void {
     const element: Element = (event.currentTarget as Element);
-    this.dragEventCounter.inc(element.id);
-    this.dragEventCounter.callIfFirstEvent(element.id, enterFunction);
+    this.dragEventCounterService.inc(element.id);
+    this.dragEventCounterService.callIfFirstEvent(element.id, enterFunction);
     event.dataTransfer.dropEffect = 'copy';
   }
   private dragleave(event: DragEvent, leaveFunction: Function): void {
     const element: Element = (event.currentTarget as Element);
-    this.dragEventCounter.dec(element.id);
-    this.dragEventCounter.callIfLastEvent(element.id, leaveFunction);
+    this.dragEventCounterService.dec(element.id);
+    this.dragEventCounterService.callIfLastEvent(element.id, leaveFunction);
   }
 
   private drop(event: DragEvent, dropFunction: Function): void {
     const element: Element = (event.currentTarget as Element);
-    this.dragEventCounter.reset(element.id);
+    this.dragEventCounterService.reset(element.id);
     dropFunction();
   }
 

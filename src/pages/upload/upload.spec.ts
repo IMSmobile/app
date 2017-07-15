@@ -20,7 +20,6 @@ import { TokenService } from '../../providers/token-service';
 import { UploadService } from '../../providers/upload-service';
 import { DragEventMock } from './../../mocks/drag-event-mock';
 import { Credential } from './../../models/credential';
-import { DragEventCounter } from './../../models/drag-event-counter';
 import { Entry } from './../../models/entry';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
@@ -29,6 +28,7 @@ import { Info } from './../../models/info';
 import { MetadataField } from './../../models/metadata-field';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
+import { DragEventCounterService } from './../../providers/drag-event-counter-service';
 import { DragEventService } from './../../providers/drag-event-service';
 import { FieldValidatorService } from './../../providers/field-validator-service';
 import { ModelService } from './../../providers/model-service';
@@ -49,7 +49,7 @@ describe('Page: Upload', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
         TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
-        FieldValidatorService, ContainerUploadService, BrowserFileuploadSelectorService, DragEventService, DragEventCounter,
+        FieldValidatorService, ContainerUploadService, BrowserFileuploadSelectorService, DragEventService, DragEventCounterService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
