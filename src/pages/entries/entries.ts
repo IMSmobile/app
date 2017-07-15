@@ -31,9 +31,8 @@ export class EntriesPage {
   public titleField: string;
   public parentImageReferenceField: string;
   public pictureFromCameraEnabled: boolean;
-  public dragEventService: DragEventService = new DragEventService();
 
-  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
+  constructor(public navCtrl: NavController, public entriesService: EntriesService, public authService: AuthService, public cameraService: CameraService, public loadingService: LoadingService, public settingService: SettingService, public modelService: ModelService, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2, public dragEventService: DragEventService) {
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
     this.dragEventService.preventEventsOnBody(renderer);
   }
