@@ -41,18 +41,18 @@ export class LoginPage {
     }
   }
 
-  public createCredential(): Credential {
-    const server = this.loginForm.controls.server.value;
-    const user = this.loginForm.controls.user.value;
-    const password = this.loginForm.controls.password.value;
-    return new Credential(server, user, password);
-  }
-
   public loginSuccessful(): void {
     const credential: Credential = this.createCredential();
     this.settingService.setRestUrl(credential.server);
     this.settingService.setUsername(credential.username);
     this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); });
+  }
+
+  public createCredential(): Credential {
+    const server = this.loginForm.controls.server.value;
+    const user = this.loginForm.controls.user.value;
+    const password = this.loginForm.controls.password.value;
+    return new Credential(server, user, password);
   }
 
   public navigateAfterLogin(filter: Filter): void {
