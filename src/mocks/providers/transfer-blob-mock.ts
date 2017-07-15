@@ -15,7 +15,7 @@ export class TransferBlobObjectMock {
     return this.http.post(url, this.getImage(), { headers: headers }).map(r => this.toFileUploadResult(r)).toPromise();
   }
 
-  private getImage(): Blob {
+  public getImage(): Blob {
     const base64 =
       'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB1klEQVR42n2TzytEURTHv3e8N1joRhZG' +
       'zJsoCjsLhcw0jClKWbHwY2GnLGUlIfIP2IjyY2djZTHSMJNQSilFNkz24z0/Ms2MrnvfvMu8mcfZvPvu' +
@@ -31,7 +31,7 @@ export class TransferBlobObjectMock {
     return new Blob([binary], { type: 'image/png' });
   }
 
-  private fixBinary(bin: string): ArrayBuffer {
+  public fixBinary(bin: string): ArrayBuffer {
     const length = bin.length;
     const buf = new ArrayBuffer(length);
     const arr = new Uint8Array(buf);
@@ -41,7 +41,7 @@ export class TransferBlobObjectMock {
     return buf;
   }
 
-  private toFileUploadResult(response: Response): FileUploadResult {
+  public toFileUploadResult(response: Response): FileUploadResult {
     const result = new FileUploadResultMock();
     result.headers = response.headers;
     result.responseCode = response.status;
@@ -51,7 +51,7 @@ export class TransferBlobObjectMock {
 }
 
 export class TransferBlobMock {
-  private http: Http;
+  public http: Http;
 
   constructor(http: Http) {
     this.http = http;

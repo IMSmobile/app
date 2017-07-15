@@ -22,9 +22,9 @@ export class LoginPage {
   public loginForm: FormGroup;
   public isShowRestUrlField: boolean = true;
   public version: string = '0.8.1';
-  private readonly unauthorizedHttpStatusCode: number = 401;
+  public readonly unauthorizedHttpStatusCode: number = 401;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],

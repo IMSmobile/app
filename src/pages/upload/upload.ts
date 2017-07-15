@@ -26,15 +26,15 @@ import { UploadService } from './../../providers/upload-service';
 })
 export class UploadPage {
   public image: Image;
+  public readonly parentImageEntryId: string;
   public fields: MetadataField[] = [];
   public fieldsForm: FormGroup = new FormGroup({});
   public uploadSegment: string = 'metadata';
   public entryTitle: string;
   public parentImageReferenceField: string;
+  public pictureFromCameraEnabled: boolean;
   public showDragOverlay: boolean = false;
   public dragEventService: DragEventService = new DragEventService();
-  private pictureFromCameraEnabled: boolean;
-  private readonly parentImageEntryId: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2) {
     this.image = navParams.get('image');
@@ -63,6 +63,15 @@ export class UploadPage {
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
+  public isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
+    return field.mandatory && field.name !== parentReferenceFieldName;
+  }
+
+  public appendFields(fields: MetadataField[]): void {
+    this.fields = this.fields.concat(fields);
+    this.initFormData();
+  }
+
   public initFormData(): void {
     const formData = {};
     this.fields.forEach(field => {
@@ -70,6 +79,13 @@ export class UploadPage {
       formData[field.name].push(Validators.compose(this.fieldValidatorService.getValidatorFunctions(field)));
     });
     this.fieldsForm = this.formBuilder.group(formData);
+  }
+
+  public getDefaultValue(type: string): string {
+    switch (type) {
+      case 'BOOLEAN': return 'false';
+      default: return '';
+    }
   }
 
   public takePicture(): void {
@@ -110,6 +126,18 @@ export class UploadPage {
     }
   }
 
+  public showToastMessage(toastMessage: string): void {
+    const toast = this.toastCtrl.create({
+      message: toastMessage,
+      duration: 5000,
+    });
+    toast.present();
+  }
+
+  public markAllAsTouched(): void {
+    this.fields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
+  }
+
   public getErrorMessage(formControl: FormControl): string {
     return this.fieldValidatorService.getErrorMessage(formControl);
   }
@@ -131,34 +159,6 @@ export class UploadPage {
     if (selectedImage !== undefined) {
       this.image = selectedImage;
     }
-  }
-
-  private getDefaultValue(type: string): string {
-    switch (type) {
-      case 'BOOLEAN': return 'false';
-      default: return '';
-    }
-  }
-
-  private isMandatory(field: MetadataField, parentReferenceFieldName: string): boolean {
-    return field.mandatory && field.name !== parentReferenceFieldName;
-  }
-
-  private appendFields(fields: MetadataField[]): void {
-    this.fields = this.fields.concat(fields);
-    this.initFormData();
-  }
-
-  private showToastMessage(toastMessage: string): void {
-    const toast = this.toastCtrl.create({
-      message: toastMessage,
-      duration: 5000,
-    });
-    toast.present();
-  }
-
-  private markAllAsTouched(): void {
-    this.fields.forEach(field => this.fieldsForm.controls[field.name].markAsTouched());
   }
 
 }

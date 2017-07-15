@@ -16,14 +16,19 @@ import { LoginPage } from './../login/login';
 export class SettingArchivePage {
 
   public filters: Filter[] = [];
+  public readonly filterName: string = 'IMS_Mobile_Client';
   public noValidFilters: boolean = false;
-  private readonly filterName: string = 'IMS_Mobile_Client';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public imsService: ImsService, public authService: AuthService, public loadingService: LoadingService) { }
 
   public ionViewDidLoad(): void {
     const filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable(this.authService.currentCredential).map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));
     this.loadingService.subscribeWithLoading(filtersObservable, filters => this.initFilter(filters), err => { throw new ImsLoadingError('Filter', err); });
+  }
+
+  public initFilter(filters: Filter[]): void {
+    this.filters = filters;
+    this.noValidFilters = filters.length === 0;
   }
 
   public selectFilter(filter: Filter): void {
@@ -34,11 +39,6 @@ export class SettingArchivePage {
   public logout(): void {
     this.authService.logout();
     this.navCtrl.setRoot(LoginPage);
-  }
-
-  private initFilter(filters: Filter[]): void {
-    this.filters = filters;
-    this.noValidFilters = filters.length === 0;
   }
 
 }

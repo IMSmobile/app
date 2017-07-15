@@ -1,6 +1,9 @@
 # Decision Log
 Unsere Entscheidungen werden hier protokolliert.
 
+## 3. Juli 2017
+- Bei Pages und Mocks sind alle Members und Methoden `public` weil nur im Testing Instanzen von ihnen gemacht werden.
+
 ## 1. Juli 2017
 - Unsere App nennen wir "Arkivar".
 
