@@ -22,9 +22,9 @@ export class LoginPage {
   public loginForm: FormGroup;
   public isShowRestUrlField: boolean = true;
   public version: string = '0.8.1';
-  private readonly unauthorizedHttpStatusCode: number = 401;
+  public readonly unauthorizedHttpStatusCode: number = 401;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
@@ -41,18 +41,18 @@ export class LoginPage {
     }
   }
 
-  public createCredential(): Credential {
-    const server = this.loginForm.controls.server.value;
-    const user = this.loginForm.controls.user.value;
-    const password = this.loginForm.controls.password.value;
-    return new Credential(server, user, password);
-  }
-
   public loginSuccessful(): void {
     const credential: Credential = this.createCredential();
     this.settingService.setRestUrl(credential.server);
     this.settingService.setUsername(credential.username);
     this.settingService.getFilter(credential.server, credential.username).subscribe(filter => this.navigateAfterLogin(filter), err => { throw new ImsLoadingError('Archiv-Einstellungen', err); });
+  }
+
+  public createCredential(): Credential {
+    const server = this.loginForm.controls.server.value;
+    const user = this.loginForm.controls.user.value;
+    const password = this.loginForm.controls.password.value;
+    return new Credential(server, user, password);
   }
 
   public navigateAfterLogin(filter: Filter): void {

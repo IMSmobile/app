@@ -108,7 +108,7 @@ export class ImsBackendMock extends MockBackend {
     });
   }
 
-  private generateMockStruct(): any {
+  public generateMockStruct(): any {
     return {
       rest: {
         [RequestMethod.Get]: new EntryPointResponse([new Link('license', this.licenseUrl), new Link('info', this.infoUrl), new Link('entries', this.entriesUrl), new Link('models', this.modelsUrl)]),
@@ -164,7 +164,7 @@ export class ImsBackendMock extends MockBackend {
     };
   }
 
-  private handleRequest(connection: any, urlFragments: string[], mockStructFragment: any): void {
+  public handleRequest(connection: any, urlFragments: string[], mockStructFragment: any): void {
     if (urlFragments.length === 0) {
       if (connection.request.method in mockStructFragment) {
         connection.mockRespond(mockStructFragment[connection.request.method]);
