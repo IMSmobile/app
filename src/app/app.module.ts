@@ -12,6 +12,8 @@ import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/sett
 import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
 import { SettingsPage } from './../pages/settings/settings';
 import { BrowserFileuploadSelectorService } from './../providers/browser-fileupload-selector-service';
+import { DragEventCounterService } from './../providers/drag-event-counter-service';
+import { DragEventService } from './../providers/drag-event-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { ModelService } from './../providers/model-service';
 import { MobileClient } from './app.component';
@@ -96,6 +98,8 @@ const cloudSettings: CloudSettings = {
     ModelService,
     FieldValidatorService,
     BrowserFileuploadSelectorService,
+    DragEventService,
+    DragEventCounterService,
     { provide: ErrorHandler, useClass: ImsErrorHandler }
   ]
 })
