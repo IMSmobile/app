@@ -60,7 +60,7 @@ Folgende Technologien werden innerhalb des Projekts verwendet.
 | Webframework                         | Angular            | ![Angular](images/logo/Angular_Logo.jpg) | https://angular.io/                     |
 | Programmiersprache                   | Typescript         | ![Typescript](images/logo/Typescript_Logo.jpg) | https://www.typescriptlang.org          |
 | Unit Testing                         | Jasmine            | ![Jasmine](images/logo/Jasmine_Logo.jpg) | https://jasmine.github.io/              |
-| End To End Testing                   | Protractor         | ![Protractor](images/logo/Protractor_Logo.jpg) | http://www.protractortest.org/#/        |
+| End To End Testing                   | Protractor         | ![Protractor](images/logo/Protractor_Logo.jpg) | http://www.protractortest.org/        |
 | Versionsverwaltungstool              | Git                | ![Git](images/logo/Git_Logo.jpg) | https://git-scm.com/                    |
 | Hoster Versionsverwaltungstool       | Github             | ![Github](images/logo/Github_Logo.jpg) | https://github.com/                     |
 | Build Tool                           | npm                | ![npm](images/logo/npm_Logo.jpg) | https://www.npmjs.com/                  |
@@ -69,4 +69,4 @@ Folgende Technologien werden innerhalb des Projekts verwendet.
 | Dokumentationstool                   | Github             | ![Github](images/logo/Github_Logo.jpg) | https://github.com/                     |
 | Team Kommunikation                   | Slack              | ![Slack](images/logo/Slack_Logo.jpg) | https://slack.com/                      |
 | Entwicklungsumgebung                 | Visual Studio Code | ![Visual Studio Code](images/logo/Visual_Studio_Code_Logo.jpg) | https://code.visualstudio.com/          |
-| Zeiterfassung                        | Goolge Drive       | ![Google Drive](images/logo/Google_Drive_Logo.jpg) | https://drive.google.com/drive/my-drive |
+| Zeiterfassung                        | Goolge Drive       | ![Google Drive](images/logo/Google_Drive_Logo.jpg) | https://drive.google.com/ |
