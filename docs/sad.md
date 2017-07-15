@@ -57,7 +57,7 @@ Folgende Technologien werden innerhalb des Projekts verwendet.
 | Kategorie                            | Technologie        | Logo                            | Link                                    |
 |--------------------------------------|--------------------|---------------------------------|-----------------------------------------|
 | Framework                            | Ionic              | ![Ionic](images/logo/Ionic_Logo.jpg) | http://ionicframework.com/              |
-| Webframework                         | Angular            | ![Angular](images/logo/Angular_Logo.jpg) | https://angular.io/                     |
+| Framework                         | Angular            | ![Angular](images/logo/Angular_Logo.jpg) | https://angular.io/                     |
 | Programmiersprache                   | Typescript         | ![Typescript](images/logo/Typescript_Logo.jpg) | https://www.typescriptlang.org          |
 | Unit Testing                         | Jasmine            | ![Jasmine](images/logo/Jasmine_Logo.jpg) | https://jasmine.github.io/              |
 | End To End Testing                   | Protractor         | ![Protractor](images/logo/Protractor_Logo.jpg) | http://www.protractortest.org/        |
