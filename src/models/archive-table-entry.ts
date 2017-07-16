@@ -1,4 +1,3 @@
-
 export class ArchiveTableEntry {
   public readonly tableName: string;
   public readonly dataHref?: string;

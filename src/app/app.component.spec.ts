@@ -1,9 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
-import { IonicModule } from 'ionic-angular';
-
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { IonicModule } from 'ionic-angular';
 import { MobileClient } from './app.component';
 
 describe('MobileApp Component', () => {
