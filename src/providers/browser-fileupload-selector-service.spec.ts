@@ -1,11 +1,11 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { ImsFileTypeError } from './../models/errors/ims-file-type-error';
 import { Image } from './../models/image';
 import { BrowserFileuploadSelectorService } from './browser-fileupload-selector-service';
 
 describe('Provider: BrowserFileuploadSelectorService', () => {
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       providers: [
@@ -13,7 +13,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
       ],
       imports: []
     });
-  }));
+  });
 
   it('should return an image when an event from file picker is called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     const fileName = 'file.jpg';

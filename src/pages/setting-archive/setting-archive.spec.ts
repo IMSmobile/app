@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -26,11 +26,8 @@ describe('Page: Archive Settings', () => {
   let page: SettingArchivePage;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-
       declarations: [SettingArchivePage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService,
         UploadService, ImsBackendMock, BaseRequestOptions, LoadingService, GestureController, SettingService,

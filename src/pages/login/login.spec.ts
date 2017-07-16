@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -27,11 +27,8 @@ describe('Page: Login', () => {
   let page: LoginPage;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-
       declarations: [LoginPage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AuthService,
         ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http } from '@angular/http';
 import { App, Config, DomController, Form, GestureController, Haptic, IonicModule, Keyboard, NavController, Platform } from 'ionic-angular';
@@ -13,11 +13,8 @@ describe('Component: ImsFieldSelectionComponent', () => {
   let component: ImsFieldSelectionComponent;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-
       declarations: [ImsFieldSelectionComponent],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic,
         GestureController, ImsBackendMock, BaseRequestOptions,

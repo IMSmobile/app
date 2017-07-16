@@ -1,5 +1,5 @@
 /* tslint:disable:max-file-line-count */
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
 import { Camera } from '@ionic-native/camera';
@@ -41,11 +41,8 @@ describe('Page: Upload', () => {
   let page: UploadPage;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-
       declarations: [UploadPage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
         TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,

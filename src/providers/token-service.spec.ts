@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { Token } from '../models/token';
@@ -7,12 +7,9 @@ import { TokenService } from './token-service';
 
 describe('Provider: TokenService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
-
       providers: [
         TokenService,
         ImsService,
@@ -27,7 +24,7 @@ describe('Provider: TokenService', () => {
       ],
       imports: [HttpModule]
     });
-  }));
+  });
 
   it('Should get Token Location for Segment Name', inject([TokenService, ImsBackendMock], (tokenService: TokenService, imsBackendMock: ImsBackendMock) => {
     tokenService.getTokenForSegment(imsBackendMock.credential).subscribe(

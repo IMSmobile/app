@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -24,11 +24,8 @@ describe('Page: Image Settings Fields', () => {
   let page: SettingImageFieldsPage;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-
       declarations: [SettingImageFieldsPage, ImsFieldSelectionComponent],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic,
         GestureController, LoadingService, AuthService, ImsBackendMock, BaseRequestOptions, ImsService, ModelService,

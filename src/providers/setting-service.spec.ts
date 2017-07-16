@@ -6,15 +6,13 @@ import { SettingService } from './setting-service';
 
 describe('Provider: SettingService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
       providers: [SettingService, { provide: Storage, useClass: StorageMock }],
       imports: []
     });
-  }));
+  });
 
   it('Should initialize with default values', inject([SettingService], (settingService: SettingService) => {
     settingService.isShowRestUrlField().subscribe(isShowRestUrlField => expect(isShowRestUrlField).toBe(settingService.isShowRestUrlFieldDefault));

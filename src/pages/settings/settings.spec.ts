@@ -20,11 +20,8 @@ describe('Page: Settings', () => {
   let page: SettingsPage;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-
       declarations: [SettingsPage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic, GestureController, AuthService, ImsBackendMock, BaseRequestOptions, ImsService,
         { provide: App, useClass: AppMock },
@@ -41,6 +38,7 @@ describe('Page: Settings', () => {
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
     });
+
     fixture = TestBed.createComponent(SettingsPage);
     page = fixture.componentInstance;
     fixture.detectChanges();

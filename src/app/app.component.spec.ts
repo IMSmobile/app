@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { IonicModule } from 'ionic-angular';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -10,7 +10,7 @@ describe('MobileApp Component', () => {
   let fixture;
   let component;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [MobileClient],
       imports: [
@@ -21,7 +21,7 @@ describe('MobileApp Component', () => {
         SplashScreen
       ]
     });
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MobileClient);

@@ -1,5 +1,5 @@
 /* tslint:disable:max-file-line-count */
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Camera } from '@ionic-native/camera';
@@ -38,11 +38,8 @@ describe('Page: Entries', () => {
   let page: EntriesPage;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-
       declarations: [EntriesPage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, EntriesService, LoadingController,
         AuthService, ImsService, TokenService, ImsBackendMock, BaseRequestOptions, Camera, GestureController,
@@ -57,7 +54,6 @@ describe('Page: Entries', () => {
         { provide: LoadingController, useClass: LoadingMock },
         { provide: PopoverController, useClass: PopoverControllerMock },
         { provide: Storage, useClass: StorageMock },
-
         {
           provide: Http,
           useFactory: (imsBackendMock, options) =>
