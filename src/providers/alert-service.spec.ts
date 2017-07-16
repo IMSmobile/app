@@ -12,7 +12,7 @@ describe('Provider: AlertService', () => {
       declarations: [],
       providers: [AlertService, { provide: AlertController, useClass: AlertMock }],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('Should create error with correct attributes', inject([AlertService, AlertController], (alertService: AlertService, alertController: AlertController) => {

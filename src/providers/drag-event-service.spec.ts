@@ -13,7 +13,7 @@ describe('Provider: DragEventService', () => {
         Renderer2, DragEventService, DragEventCounterService
       ],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('should prevent standard action for dragstart', inject([DragEventService], (service: DragEventService) => {

@@ -13,7 +13,7 @@ describe('Provider: SettingService', () => {
       declarations: [],
       providers: [SettingService, { provide: Storage, useClass: StorageMock }],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('Should initialize with default values', inject([SettingService], (settingService: SettingService) => {

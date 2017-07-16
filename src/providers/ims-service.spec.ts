@@ -23,7 +23,7 @@ describe('Provider: ImsService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
+    });
   }));
 
   it('Ims Version', inject([ImsService, ImsBackendMock], (imsService: ImsService, imsBackendMock: ImsBackendMock) => {

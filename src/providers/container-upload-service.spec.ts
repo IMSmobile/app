@@ -17,7 +17,7 @@ describe('Provider: ContainerUploadService', () => {
         { provide: Transfer, useClass: TransferMock },
       ],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('Should post to a container', inject([ContainerUploadService, Transfer, ImsBackendMock], (containerUploadService: ContainerUploadService, transfer: Transfer, imsBackendMock: ImsBackendMock) => {

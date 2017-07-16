@@ -11,7 +11,7 @@ describe('Service: DragEventCounter', () => {
         DragEventCounterService
       ],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('first event should be true if inc is called once', inject([DragEventCounterService], (dragEventCounterService: DragEventCounterService) => {

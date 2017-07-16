@@ -26,7 +26,7 @@ describe('Provider: EntriesService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
+    });
   }));
 
   it('Gets parent image entries', inject([EntriesService, ImsBackendMock], (entriesService: EntriesService, mockImsBackend: ImsBackendMock) => {

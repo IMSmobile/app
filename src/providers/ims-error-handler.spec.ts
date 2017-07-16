@@ -15,7 +15,7 @@ describe('IMS Error Handler: Error Handler', () => {
       providers: [ImsErrorHandler, AlertService, IonicErrorHandler,
         { provide: AlertController, useClass: AlertMock }],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('should handle a imsError and show alert with displayed message', inject([ImsErrorHandler, AlertService], (imsErrorHandler: ImsErrorHandler, alertService: AlertService) => {

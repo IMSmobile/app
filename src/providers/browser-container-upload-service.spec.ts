@@ -22,7 +22,7 @@ describe('Provider: BrowserContainerUploadService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
+    });
   }));
 
   it('Should post to a container', inject([BrowserContainerUploadService, Http, ImsBackendMock], (browserContainerUploadService: BrowserContainerUploadService, http: Http, imsBackendMock: ImsBackendMock) => {

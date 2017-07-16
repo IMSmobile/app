@@ -40,7 +40,7 @@ describe('Page: Upload', () => {
   let fixture: ComponentFixture<UploadPage>;
   let page: UploadPage;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -67,12 +67,12 @@ describe('Page: Upload', () => {
         },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(UploadPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(UploadPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

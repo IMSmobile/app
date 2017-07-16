@@ -32,7 +32,7 @@ describe('Provider: AuthService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
+    });
   }));
 
   it('Should store credentials if succeed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {

@@ -15,7 +15,7 @@ describe('Provider: LoadingService', () => {
       declarations: [],
       providers: [LoadingService, { provide: LoadingController, useClass: LoadingMock }],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('Success function called in execute wiht loading', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {

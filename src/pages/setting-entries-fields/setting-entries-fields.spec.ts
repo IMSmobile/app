@@ -23,7 +23,7 @@ describe('Page: Parent Entries Settings Fields', () => {
   let fixture: ComponentFixture<SettingEntriesFieldsPage>;
   let page: SettingEntriesFieldsPage;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -46,12 +46,12 @@ describe('Page: Parent Entries Settings Fields', () => {
         { provide: Storage, useClass: StorageMock }
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SettingEntriesFieldsPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(SettingEntriesFieldsPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

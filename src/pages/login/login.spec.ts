@@ -26,7 +26,7 @@ describe('Page: Login', () => {
   let fixture: ComponentFixture<LoginPage>;
   let page: LoginPage;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -52,12 +52,12 @@ describe('Page: Login', () => {
         { provide: Storage, useClass: StorageMock },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(LoginPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(LoginPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

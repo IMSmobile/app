@@ -31,7 +31,7 @@ describe('Provider: UploadService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
+    });
   }));
 
   it('Should create a container location', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {

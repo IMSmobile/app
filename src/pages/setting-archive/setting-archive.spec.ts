@@ -25,7 +25,7 @@ describe('Page: Archive Settings', () => {
   let fixture: ComponentFixture<SettingArchivePage>;
   let page: SettingArchivePage;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -48,12 +48,12 @@ describe('Page: Archive Settings', () => {
         },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SettingArchivePage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(SettingArchivePage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

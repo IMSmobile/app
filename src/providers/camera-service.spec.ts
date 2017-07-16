@@ -22,7 +22,7 @@ describe('Provider: CameraService', () => {
         { provide: AlertController, useClass: AlertMock },
       ],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('returns observable from camera with response on success', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {

@@ -23,7 +23,7 @@ describe('Page: Image Settings Fields', () => {
   let fixture: ComponentFixture<SettingImageFieldsPage>;
   let page: SettingImageFieldsPage;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -46,12 +46,12 @@ describe('Page: Image Settings Fields', () => {
         { provide: Storage, useClass: StorageMock }
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SettingImageFieldsPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(SettingImageFieldsPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

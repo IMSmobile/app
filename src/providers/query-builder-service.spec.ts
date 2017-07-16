@@ -10,7 +10,7 @@ describe('Provider: QueryBuilderService', () => {
       declarations: [],
       providers: [QueryBuilderService],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('Create a query string from 1 query fragment', inject([QueryBuilderService], (queryBuilderService: QueryBuilderService) => {

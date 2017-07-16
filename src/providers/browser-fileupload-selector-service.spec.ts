@@ -12,7 +12,7 @@ describe('Provider: BrowserFileuploadSelectorService', () => {
         BrowserFileuploadSelectorService
       ],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('should return an image when an event from file picker is called', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {

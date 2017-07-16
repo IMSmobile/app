@@ -11,7 +11,7 @@ describe('Provider: BrowserSettingService', () => {
       declarations: [],
       providers: [{ provide: SettingService, useClass: BrowserSettingService }, { provide: Storage, useClass: StorageMock }],
       imports: []
-    }).compileComponents();
+    });
   }));
 
   it('picture from camera is disabled', (inject([SettingService, Storage], (settingService: SettingService) => {

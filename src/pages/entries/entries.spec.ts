@@ -37,7 +37,7 @@ describe('Page: Entries', () => {
   let fixture: ComponentFixture<EntriesPage>;
   let page: EntriesPage;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -66,12 +66,12 @@ describe('Page: Entries', () => {
         },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(EntriesPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(EntriesPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

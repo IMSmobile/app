@@ -12,7 +12,7 @@ describe('Component: ImsFieldSelectionComponent', () => {
   let fixture: ComponentFixture<ImsFieldSelectionComponent>;
   let component: ImsFieldSelectionComponent;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -32,12 +32,12 @@ describe('Component: ImsFieldSelectionComponent', () => {
         { provide: Platform, useClass: PlatformMock },
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(ImsFieldSelectionComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(ImsFieldSelectionComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

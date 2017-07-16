@@ -19,7 +19,7 @@ describe('Page: Settings', () => {
   let fixture: ComponentFixture<SettingsPage>;
   let page: SettingsPage;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
 
     TestBed.configureTestingModule({
 
@@ -40,12 +40,11 @@ describe('Page: Settings', () => {
         },
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SettingsPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+    fixture = TestBed.createComponent(SettingsPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();
