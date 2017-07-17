@@ -1,12 +1,13 @@
 import { ErrorHandler, NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule} from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Transfer } from '@ionic-native/transfer';
 import { CloudModule, CloudSettings } from '@ionic/cloud-angular';
 import { IonicStorageModule } from '@ionic/storage';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicModule, Platform } from 'ionic-angular';
 import { ImsFieldSelectionComponent } from '../components/ims-field-selection/ims-field-selection';
 import { LoginPage } from '../pages/login/login';
 import { UploadPage } from '../pages/upload/upload';
@@ -25,11 +26,13 @@ import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/sett
 import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
 import { SettingsPage } from './../pages/settings/settings';
 import { BrowserFileuploadSelectorService } from './../providers/browser-fileupload-selector-service';
+import { ContainerUploadService } from './../providers/container-upload-service';
 import { DragEventCounterService } from './../providers/drag-event-counter-service';
 import { DragEventService } from './../providers/drag-event-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
 import { ModelService } from './../providers/model-service';
 import { QueryBuilderService } from './../providers/query-builder-service';
+import { SettingService } from './../providers/setting-service';
 import { MobileClient } from './app.component';
 import { AppProviders } from './app.providers';
 
@@ -84,9 +87,21 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     IonicStorageModule,
     Camera,
-    AppProviders.getTransferProvider(),
-    AppProviders.getContainerUploadServiceProvider(),
-    AppProviders.getSettingServiceProvider(),
+    {
+      provide: Transfer,
+      useFactory: AppProviders.transferFactory,
+      deps: [Http, Platform]
+    },
+    {
+      provide: ContainerUploadService,
+      useFactory: AppProviders.containerUploadFactory,
+      deps: [Platform, Transfer, Http]
+    },
+    {
+      provide: SettingService,
+      useFactory: AppProviders.settingFactory,
+      deps: [Platform, Storage]
+    },
     EntriesService,
     CameraService,
     LoadingService,

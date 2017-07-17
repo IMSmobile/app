@@ -1,4 +1,3 @@
-import { Provider } from '@angular/core';
 import { Http } from '@angular/http';
 import { Transfer } from '@ionic-native/transfer';
 import { Storage } from '@ionic/storage';
@@ -11,40 +10,28 @@ import { SettingService } from './../providers/setting-service';
 
 export class AppProviders {
 
-  public static getTransferProvider(): Provider {
-    return {
-      provide: Transfer, useFactory: (http: Http, platform: Platform) => {
-        if (this.deviceRunningCordova(platform)) {
-          return new Transfer();
-        } else {
-          return new TransferBlobMock(http);
-        }
-      }, deps: [Http, Platform]
-    };
+  public static transferFactory(http: Http, platform: Platform): any {
+    if (this.deviceRunningCordova(platform)) {
+      return new Transfer();
+    } else {
+      return new TransferBlobMock(http);
+    }
   }
 
-  public static getContainerUploadServiceProvider(): Provider {
-    return {
-      provide: ContainerUploadService, useFactory: (platform: Platform, transfer: Transfer, http: Http) => {
-        if (this.deviceRunningBrowser(platform)) {
-          return new BrowserContainerUploadService(http);
-        } else {
-          return new ContainerUploadService(transfer);
-        }
-      }, deps: [Platform, Transfer, Http]
-    };
+  public static containerUploadFactory(platform: Platform, transfer: Transfer, http: Http): any {
+    if (this.deviceRunningBrowser(platform)) {
+      return new BrowserContainerUploadService(http);
+    } else {
+      return new ContainerUploadService(transfer);
+    }
   }
 
-  public static getSettingServiceProvider(): Provider {
-    return {
-      provide: SettingService, useFactory: (platform: Platform, storage: Storage) => {
-        if (this.deviceRunningBrowser(platform)) {
-          return new BrowserSettingService(storage);
-        } else {
-          return new SettingService(storage);
-        }
-      }, deps: [Platform, Storage]
-    };
+  public static settingFactory(platform: Platform, storage: Storage): SettingService {
+    if (this.deviceRunningBrowser(platform)) {
+      return new BrowserSettingService(storage);
+    } else {
+      return new SettingService(storage);
+    }
   }
 
   private static deviceRunningCordova(platform: Platform): boolean {
