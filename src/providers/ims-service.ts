@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 import { Observable } from 'rxjs/Observable';
 import { ArchiveEntry } from '../models/archive-entry';
 import { ArchiveTableEntry } from '../models/archive-table-entry';
@@ -13,9 +15,6 @@ import { Link } from '../models/link';
 import { Token } from '../models/token';
 import { Credential } from './../models/credential';
 import { ModelArchives } from './../models/model-archives';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class ImsService {
