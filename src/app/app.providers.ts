@@ -8,7 +8,7 @@ import { ContainerUploadService } from './../providers/container-upload-service'
 export class AppProviders {
 
   public static transferFactory(http: Http, platform: Platform): any {
-    if (this.deviceRunningCordova(platform)) {
+    if (platform.is('cordova')) {
       return new Transfer();
     } else {
       return new TransferBlobMock(http);
@@ -16,18 +16,10 @@ export class AppProviders {
   }
 
   public static containerUploadFactory(platform: Platform, transfer: Transfer, http: Http): any {
-    if (this.deviceRunningBrowser(platform)) {
+    if (platform.is('core')) {
       return new BrowserContainerUploadService(http);
     } else {
       return new ContainerUploadService(transfer);
     }
-  }
-
-  private static deviceRunningCordova(platform: Platform): boolean {
-    return platform.is('cordova');
-  }
-
-  private static deviceRunningBrowser(platform: Platform): boolean {
-    return platform.is('core');
   }
 }
