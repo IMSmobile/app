@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule, RequestOptions } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { Image } from './../models/image';
@@ -7,7 +7,7 @@ import { BrowserContainerUploadService } from './browser-container-upload-servic
 
 describe('Provider: BrowserContainerUploadService', () => {
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       providers: [
@@ -22,8 +22,8 @@ describe('Provider: BrowserContainerUploadService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Should post to a container', inject([BrowserContainerUploadService, Http, ImsBackendMock], (browserContainerUploadService: BrowserContainerUploadService, http: Http, imsBackendMock: ImsBackendMock) => {
     const file = new File([new Blob([])], 'a.jpg');

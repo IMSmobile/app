@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { Camera } from '@ionic-native/camera';
 import { AlertController } from 'ionic-angular';
 import { AlertMock } from './../mocks/mocks';
@@ -9,12 +9,9 @@ import { CameraService } from './camera-service';
 
 describe('Provider: CameraService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
-
       providers: [
         CameraService,
         AlertService,
@@ -22,8 +19,8 @@ describe('Provider: CameraService', () => {
         { provide: AlertController, useClass: AlertMock },
       ],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('returns observable from camera with response on success', inject([CameraService, Camera, AlertService], (cameraService: CameraService, camera: Camera, alertService: AlertService) => {
     const imageSrc = '/my/picture.jpg';

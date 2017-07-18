@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { FileUploadOptions, Transfer } from '@ionic-native/transfer';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { TransferMock } from '../mocks/providers/transfer-mock';
@@ -8,7 +8,7 @@ import { ContainerUploadService } from './container-upload-service';
 
 describe('Provider: ContainerUploadService', () => {
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       providers: [
@@ -17,8 +17,8 @@ describe('Provider: ContainerUploadService', () => {
         { provide: Transfer, useClass: TransferMock },
       ],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Should post to a container', inject([ContainerUploadService, Transfer, ImsBackendMock], (containerUploadService: ContainerUploadService, transfer: Transfer, imsBackendMock: ImsBackendMock) => {
     const image = new Image('a.jpg', '/dev/0');

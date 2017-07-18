@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -26,12 +26,9 @@ describe('Page: Login', () => {
   let fixture: ComponentFixture<LoginPage>;
   let page: LoginPage;
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [LoginPage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AuthService,
         ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,
@@ -52,12 +49,12 @@ describe('Page: Login', () => {
         { provide: Storage, useClass: StorageMock },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(LoginPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(LoginPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

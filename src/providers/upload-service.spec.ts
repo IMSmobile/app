@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Transfer } from '@ionic-native/transfer';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
@@ -12,7 +12,7 @@ import { UploadService } from './upload-service';
 
 describe('Provider: UploadService', () => {
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       providers: [
@@ -31,8 +31,8 @@ describe('Provider: UploadService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Should create a container location', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
     uploadService.createContainerLocation(imsBackendMock.credential, imsBackendMock.filterId, imsBackendMock.token).subscribe(

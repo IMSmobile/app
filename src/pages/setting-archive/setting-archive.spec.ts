@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -25,12 +25,9 @@ describe('Page: Archive Settings', () => {
   let fixture: ComponentFixture<SettingArchivePage>;
   let page: SettingArchivePage;
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [SettingArchivePage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AuthService, ImsService,
         UploadService, ImsBackendMock, BaseRequestOptions, LoadingService, GestureController, SettingService,
@@ -48,12 +45,12 @@ describe('Page: Archive Settings', () => {
         },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SettingArchivePage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(SettingArchivePage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

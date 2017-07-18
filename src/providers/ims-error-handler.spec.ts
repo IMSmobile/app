@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { AlertController, IonicErrorHandler } from 'ionic-angular';
 import { AlertMock } from './../mocks/mocks';
 import { ImsError } from './../models/errors/ims-error';
@@ -7,16 +7,14 @@ import { ImsErrorHandler } from './ims-error-handler';
 
 describe('IMS Error Handler: Error Handler', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
       providers: [ImsErrorHandler, AlertService, IonicErrorHandler,
         { provide: AlertController, useClass: AlertMock }],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('should handle a imsError and show alert with displayed message', inject([ImsErrorHandler, AlertService], (imsErrorHandler: ImsErrorHandler, alertService: AlertService) => {
     const imsError = new ImsError('Ims Error Text', 'Error Object');

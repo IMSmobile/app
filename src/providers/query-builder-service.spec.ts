@@ -1,17 +1,16 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { QueryFragment } from './../models/query-fragment';
 import { QueryBuilderService } from './query-builder-service';
 
 describe('Provider: QueryBuilderService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       providers: [QueryBuilderService],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Create a query string from 1 query fragment', inject([QueryBuilderService], (queryBuilderService: QueryBuilderService) => {
     const queryFragment1 = new QueryFragment('key', 'value');
