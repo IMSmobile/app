@@ -7,7 +7,7 @@ import { ContainerUploadService } from './../providers/container-upload-service'
 
 export class AppProviders {
 
-  public static transferFactory(http: Http, platform: Platform): any {
+  public static transferFactory(http: Http, platform: Platform): Transfer | TransferBlobMock {
     if (platform.is('cordova')) {
       return new Transfer();
     } else {
@@ -15,7 +15,7 @@ export class AppProviders {
     }
   }
 
-  public static containerUploadFactory(platform: Platform, transfer: Transfer, http: Http): any {
+  public static containerUploadFactory(platform: Platform, transfer: Transfer, http: Http): BrowserContainerUploadService | ContainerUploadService {
     if (platform.is('core')) {
       return new BrowserContainerUploadService(http);
     } else {
