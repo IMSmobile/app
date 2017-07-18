@@ -97,11 +97,7 @@ const cloudSettings: CloudSettings = {
       useFactory: AppProviders.containerUploadFactory,
       deps: [Platform, Transfer, Http]
     },
-    {
-      provide: SettingService,
-      useFactory: AppProviders.settingFactory,
-      deps: [Platform, Storage]
-    },
+    SettingService,
     EntriesService,
     CameraService,
     LoadingService,
