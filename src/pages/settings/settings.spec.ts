@@ -19,12 +19,9 @@ describe('Page: Settings', () => {
   let fixture: ComponentFixture<SettingsPage>;
   let page: SettingsPage;
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [SettingsPage],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic, GestureController, AuthService, ImsBackendMock, BaseRequestOptions, ImsService,
         { provide: App, useClass: AppMock },
@@ -40,12 +37,12 @@ describe('Page: Settings', () => {
         },
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SettingsPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(SettingsPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

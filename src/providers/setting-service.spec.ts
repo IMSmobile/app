@@ -8,10 +8,8 @@ import { SettingService } from './setting-service';
 
 describe('Provider: SettingService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
       providers:
       [
@@ -20,8 +18,8 @@ describe('Provider: SettingService', () => {
         { provide: Platform, useClass: PlatformMock },
       ],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Should initialize with default values', inject([SettingService], (settingService: SettingService) => {
     settingService.isShowRestUrlField().subscribe(isShowRestUrlField => expect(isShowRestUrlField).toBe(settingService.isShowRestUrlFieldDefault));

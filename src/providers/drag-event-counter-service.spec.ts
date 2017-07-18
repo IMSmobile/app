@@ -1,18 +1,18 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DragEventInvalidStateError } from './../models/errors/drag-event-invalid-state-error';
 import { DragEventCounterService } from './drag-event-counter-service';
 
 describe('Service: DragEventCounter', () => {
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       providers: [
         DragEventCounterService
       ],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('first event should be true if inc is called once', inject([DragEventCounterService], (dragEventCounterService: DragEventCounterService) => {
     dragEventCounterService.inc('a1');

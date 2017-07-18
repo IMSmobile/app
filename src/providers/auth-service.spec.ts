@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { Platform } from 'ionic-angular';
@@ -12,12 +12,9 @@ import { SettingService } from './setting-service';
 
 describe('Provider: AuthService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
-
       providers: [
         AuthService,
         ImsService,
@@ -34,8 +31,8 @@ describe('Provider: AuthService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Should store credentials if succeed', inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
     const credential = imsBackendMock.credential;

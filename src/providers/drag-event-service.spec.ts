@@ -1,20 +1,20 @@
 import { Renderer2 } from '@angular/core';
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { DragEventMock } from './../mocks/drag-event-mock';
 import { DragEventCounterService } from './drag-event-counter-service';
 import { DragEventService } from './drag-event-service';
 
 describe('Provider: DragEventService', () => {
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       providers: [
         Renderer2, DragEventService, DragEventCounterService
       ],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('should prevent standard action for dragstart', inject([DragEventService], (service: DragEventService) => {
     const event = new DragEventMock('dragstart');

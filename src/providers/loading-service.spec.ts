@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { LoadingController } from 'ionic-angular';
 import 'rxjs/add/observable/concat';
 import 'rxjs/add/observable/of';
@@ -8,15 +8,13 @@ import { LoadingService } from './loading-service';
 
 describe('Provider: LoadingService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
       providers: [LoadingService, { provide: LoadingController, useClass: LoadingMock }],
       imports: []
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Success function called in execute wiht loading', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
     let toCheck = '';

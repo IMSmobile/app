@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { ImsService } from './ims-service';
@@ -6,12 +6,9 @@ import { ModelService } from './model-service';
 
 describe('Provider: ModelService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
-
       providers: [
         ModelService,
         ImsService,
@@ -25,8 +22,8 @@ describe('Provider: ModelService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Should get image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getMetadataFieldsOfImageTable(imsBackendMock.credential, imsBackendMock.modelArchiveName).subscribe(

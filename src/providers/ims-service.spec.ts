@@ -1,16 +1,13 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { ImsService } from './ims-service';
 
 describe('Provider: ImsService', () => {
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [],
-
       providers: [
         ImsService,
         ImsBackendMock,
@@ -23,8 +20,8 @@ describe('Provider: ImsService', () => {
         }
       ],
       imports: [HttpModule]
-    }).compileComponents();
-  }));
+    });
+  });
 
   it('Ims Version', inject([ImsService, ImsBackendMock], (imsService: ImsService, imsBackendMock: ImsBackendMock) => {
     imsService.getInfo(imsBackendMock.credential).subscribe(

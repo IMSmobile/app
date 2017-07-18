@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -23,12 +23,9 @@ describe('Page: Image Settings Fields', () => {
   let fixture: ComponentFixture<SettingImageFieldsPage>;
   let page: SettingImageFieldsPage;
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [SettingImageFieldsPage, ImsFieldSelectionComponent],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic,
         GestureController, LoadingService, AuthService, ImsBackendMock, BaseRequestOptions, ImsService, ModelService,
@@ -46,12 +43,12 @@ describe('Page: Image Settings Fields', () => {
         { provide: Storage, useClass: StorageMock }
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SettingImageFieldsPage);
-      page = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(SettingImageFieldsPage);
+    page = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http } from '@angular/http';
 import { App, Config, DomController, Form, GestureController, Haptic, IonicModule, Keyboard, NavController, Platform } from 'ionic-angular';
@@ -12,12 +12,9 @@ describe('Component: ImsFieldSelectionComponent', () => {
   let fixture: ComponentFixture<ImsFieldSelectionComponent>;
   let component: ImsFieldSelectionComponent;
 
-  beforeEach(async(() => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [ImsFieldSelectionComponent],
-
       providers: [
         App, DomController, Form, Keyboard, NavController, SettingService, Haptic,
         GestureController, ImsBackendMock, BaseRequestOptions,
@@ -32,12 +29,12 @@ describe('Component: ImsFieldSelectionComponent', () => {
         { provide: Platform, useClass: PlatformMock },
       ],
       imports: [FormsModule, IonicModule, ReactiveFormsModule]
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(ImsFieldSelectionComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
     });
-  }));
+
+    fixture = TestBed.createComponent(ImsFieldSelectionComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   afterEach(() => {
     fixture.destroy();
