@@ -15,7 +15,7 @@ import { TokenService } from './token-service';
 @Injectable()
 export class UploadService {
 
-  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public  containerUploadService: ContainerUploadService) { }
+  constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public containerUploadService: ContainerUploadService) { }
 
   public uploadImage(credential: Credential, filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
     return this.tokenService.getToken(credential).flatMap(token =>

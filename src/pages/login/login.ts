@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Response } from '@angular/http';
-import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Credential } from '../../models/credential';
 import { ImsLoadingError } from '../../models/errors/ims-loading-error';
 import { AuthService } from '../../providers/auth-service';
@@ -24,7 +24,7 @@ export class LoginPage {
   public version: string = '0.8.1';
   public readonly unauthorizedHttpStatusCode: number = 401;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public loadingService: LoadingService, public alertCtrl: AlertController, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public loadingService: LoadingService, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
