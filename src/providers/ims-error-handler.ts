@@ -10,7 +10,7 @@ export class ImsErrorHandler extends IonicErrorHandler {
     super();
   }
 
-  public handleError(err: any): void {
+  public handleError(err: ImsError | Error): void {
     super.handleError(err);
     if (!('IonicDevServer' in window)) {
       if (err instanceof ImsError) {

@@ -10,6 +10,7 @@ export class LoadingService {
 
   constructor(public loadingCtrl: LoadingController) { }
 
+  // tslint:disable-next-line:no-any
   public subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void): void {
     this.showLoading();
     observable.subscribe(

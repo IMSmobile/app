@@ -24,6 +24,7 @@ export class ImsFieldSelectionComponent {
     this.fieldToggled.emit(field);
   }
 
+  // tslint:disable-next-line:no-any
   public filterFields(ev: any): void {
     this.allFields.forEach(field => field.display = true);
     const val = ev.target.value;

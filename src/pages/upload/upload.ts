@@ -141,6 +141,7 @@ export class UploadPage {
     return this.fieldValidatorService.getErrorMessage(formControl);
   }
 
+  // tslint:disable-next-line:no-any
   public fileSelected(event: any): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage !== undefined) {

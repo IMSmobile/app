@@ -150,6 +150,7 @@
     "directive-class-suffix": true,
     "templates-use-public": false,
     "no-access-missing-member": false,
-    "invoke-injectable": true
+    "invoke-injectable": true,
+    "no-any": true
   }
 }

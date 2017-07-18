@@ -35,9 +35,15 @@ export class ImsBackendMock extends MockBackend {
   public segmentName: string = 'Ims Mobile Rest Segement';
   public credential: Credential = new Credential(this.baseUrl, 'admin', 'admin', this.segmentName);
   public unauthorizedResponse: ErrorResponse = new ErrorResponse(new ResponseOptions({
-    body: 'HTTP ERROR: 401',
+    body: 'HTTP ERROR: 401 UNAUTHORIZED',
     status: 401,
     statusText: 'Unauthorized',
+    type: ResponseType.Error
+  }));
+  public notFoundResponse: ErrorResponse = new ErrorResponse(new ResponseOptions({
+    body: 'HTTP ERROR: 404 NOT FOUND',
+    status: 404,
+    statusText: 'Not Found',
     type: ResponseType.Error
   }));
   public entryPointUrl: string = this.baseUrl + '/rest';
@@ -50,6 +56,7 @@ export class ImsBackendMock extends MockBackend {
   public filterId: number = 40;
   public filterResourceUrl: string = `${this.entriesUrl}/${this.filterId}`;
   public version: string = 'V17Q1';
+  // tslint:disable-next-line:no-any
   public versionResponse: any = { version: this.version };
   public tokenName: string = 'EDFC';
   public tokenExpirationDate: string = '2015-10-28T16:45:12Z';
@@ -98,7 +105,7 @@ export class ImsBackendMock extends MockBackend {
     super();
     this.connections.subscribe((connection) => {
       if (!connection.request.url.startsWith(this.baseUrl)) {
-        connection.mockError(new Error('Wrong Url'));
+        connection.mockError(this.notFoundResponse);
       } else if (connection.request.headers.get('authorization') !== ('Basic ' + btoa(`${this.credential.username}:${this.credential.password}`))) {
         connection.mockError(this.unauthorizedResponse);
       } else {
@@ -108,6 +115,7 @@ export class ImsBackendMock extends MockBackend {
     });
   }
 
+  // tslint:disable-next-line:no-any
   public generateMockStruct(): any {
     return {
       rest: {
@@ -164,6 +172,7 @@ export class ImsBackendMock extends MockBackend {
     };
   }
 
+  // tslint:disable-next-line:no-any
   public handleRequest(connection: any, urlFragments: string[], mockStructFragment: any): void {
     if (urlFragments.length === 0) {
       if (connection.request.method in mockStructFragment) {

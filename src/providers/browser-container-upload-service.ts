@@ -11,6 +11,7 @@ export class BrowserContainerUploadService {
 
  constructor(public http: Http) { }
 
+ // tslint:disable-next-line:no-any
  public postToContainer(credential: Credential, url: string, token: Token, image: Image): Observable<any> {
     const options = new RequestOptions({ headers: new ImsFileUploadHeaders(credential, token, image.file.name) });
     return this.http.post(url, image.file, options);

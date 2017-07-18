@@ -7,6 +7,7 @@ import { IntegerValidator } from '../validators/integer-validator';
 @Injectable()
 export class FieldValidatorService {
 
+  // tslint:disable-next-line:no-any
   private validationMessages: any = {
     'required': 'Feld muss zwingend ausgefüllt werden.',
     'not a number': 'Nur Zahlen erlaubt.',

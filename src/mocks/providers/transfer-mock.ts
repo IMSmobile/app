@@ -5,6 +5,7 @@ export class FileUploadResultMock {
   public responseCode: number;
   public response: string;
   public headers: {
+    // tslint:disable-next-line:no-any
     [s: string]: any;
   };
 }

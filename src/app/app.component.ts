@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MobileClient {
 
+  // tslint:disable-next-line:no-any
   public rootPage: any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
