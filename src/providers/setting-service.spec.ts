@@ -1,6 +1,8 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { Storage } from '@ionic/storage';
+import { Platform } from 'ionic-angular';
 import { StorageMock } from '../mocks/mocks';
+import { PlatformMock } from './../mocks/mocks';
 import { Filter } from './../models/filter';
 import { SettingService } from './setting-service';
 
@@ -9,7 +11,12 @@ describe('Provider: SettingService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
-      providers: [SettingService, { provide: Storage, useClass: StorageMock }],
+      providers:
+      [
+        SettingService,
+        { provide: Storage, useClass: StorageMock },
+        { provide: Platform, useClass: PlatformMock },
+      ],
       imports: []
     });
   });
@@ -46,7 +53,15 @@ describe('Provider: SettingService', () => {
     expect(settingService.getFieldKey('archive', 'table', 'field1')).toBe('archive.table.field1');
   })));
 
-  it('picture from camera is enabled', (inject([SettingService, Storage], (settingService: SettingService) => {
+  it('picture from camera is enabled for mobile', (inject([SettingService, Platform], (settingService: SettingService, platform: Platform) => {
+    spyOn(platform, 'is').and.returnValue(false);
     expect(settingService.isPictureFromCameraEnabled()).toBeTruthy();
+    expect(platform.is).toHaveBeenCalledWith('core');
+  })));
+
+  it('picture from camera is disabled for browser', (inject([SettingService, Platform], (settingService: SettingService, platform: Platform) => {
+    spyOn(platform, 'is').and.returnValue(true);
+    expect(settingService.isPictureFromCameraEnabled()).toBeFalsy();
+    expect(platform.is).toHaveBeenCalledWith('core');
   })));
 });

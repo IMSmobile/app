@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Platform } from 'ionic-angular';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -18,7 +19,7 @@ export class SettingService {
   private isShowRestUrlFieldKey: string = 'isShowRestUrlField';
   private fieldPathSeparator: string = '.';
 
-  constructor(public storage: Storage) { }
+  constructor(public storage: Storage, public platform: Platform) { }
 
   public setRestUrl(restUrl: string): void {
     this.storeSetting(this.restUrlKey, restUrl);
@@ -76,7 +77,7 @@ export class SettingService {
   }
 
   public isPictureFromCameraEnabled(): boolean {
-    return true;
+    return !this.platform.is('core');
   }
 
   private mapActiveFields(fields: MetadataField[]): MetadataField[] {
