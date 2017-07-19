@@ -90,6 +90,7 @@ describe('Provider: DragEventService', () => {
     const event = new DragEventMock('drop');
     let functionExecuted = false;
     service.handleDragEvent(event, undefined, undefined, () => functionExecuted = true);
+    expect(functionExecuted).toBeTruthy();
   }));
 
   it('should reset counter  on drop', inject([DragEventService], (service: DragEventService) => {
