@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See  [Definition of Done](CONTRIBUTING.md) for commit guidelines.
 
+<a name="0.8.2"></a>
+## [0.8.2](https://github.com/IMSmobile/app/compare/0.8.1...v0.8.2) (2017-07-20)
+
+
+### Bug Fixes
+
+* **app:** add a infotext for camera and photo library access on ios ([60c2664](https://github.com/IMSmobile/app/commit/60c2664))
+
+
+
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/IMSmobile/app/compare/0.8.0...v0.8.1) (2017-07-14)
 
