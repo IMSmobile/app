@@ -100,7 +100,10 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-camera": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": "Arkivar brauch Zugriff auf deine Kamera.",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "Arkivar braucht Zugriff auf deine Fotos."
+      },
       "cordova-plugin-console": {},
       "cordova-plugin-device": {},
       "cordova-plugin-file": {},

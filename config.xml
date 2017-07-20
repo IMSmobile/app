@@ -87,7 +87,10 @@
   <plugin name="cordova-plugin-statusbar" spec="2.2.1"/>
   <plugin name="cordova-plugin-device" spec="1.1.4"/>
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
-  <plugin name="cordova-plugin-camera" spec="~2.4.0"/>
+  <plugin name="cordova-plugin-camera" spec="~2.4.0">
+    <variable name="CAMERA_USAGE_DESCRIPTION" value="Arkivar brauch Zugriff auf deine Kamera." />
+    <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Arkivar braucht Zugriff auf deine Fotos." />
+  </plugin>
   <plugin name="cordova-plugin-file-transfer" spec="~1.6.2"/>
   <plugin name="cordova-plugin-file" spec="~4.3.2"/>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
