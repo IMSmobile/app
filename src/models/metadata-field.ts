@@ -6,6 +6,7 @@ export class MetadataField {
   public readonly writable: boolean;
   public readonly mandatory: boolean;
   public readonly length: number;
+  public readonly catalogHref?: string;
   public active?: boolean = false;
   public display?: boolean = true;
 

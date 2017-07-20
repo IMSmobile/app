@@ -21,6 +21,7 @@ import { LoadingService } from '../providers/loading-service';
 import { TokenService } from '../providers/token-service';
 import { UploadService } from '../providers/upload-service';
 import { EntriesPage } from './../pages/entries/entries';
+import { KeywordsPage } from './../pages/keywords/keywords';
 import { SettingArchivePage } from './../pages/setting-archive/setting-archive';
 import { SettingEntriesFieldsPage } from './../pages/setting-entries-fields/setting-entries-fields';
 import { SettingImageFieldsPage } from './../pages/setting-image-fields/setting-image-fields';
@@ -30,6 +31,7 @@ import { ContainerUploadService } from './../providers/container-upload-service'
 import { DragEventCounterService } from './../providers/drag-event-counter-service';
 import { DragEventService } from './../providers/drag-event-service';
 import { ImsErrorHandler } from './../providers/ims-error-handler';
+import { KeywordService } from './../providers/keyword-service';
 import { ModelService } from './../providers/model-service';
 import { QueryBuilderService } from './../providers/query-builder-service';
 import { SettingService } from './../providers/setting-service';
@@ -52,7 +54,8 @@ const cloudSettings: CloudSettings = {
     SettingImageFieldsPage,
     SettingEntriesFieldsPage,
     ImsFieldSelectionComponent,
-    SettingArchivePage
+    SettingArchivePage,
+    KeywordsPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ const cloudSettings: CloudSettings = {
     EntriesPage,
     SettingImageFieldsPage,
     SettingEntriesFieldsPage,
-    SettingArchivePage
+    SettingArchivePage,
+    KeywordsPage
   ],
   providers: [
     TokenService,
@@ -108,7 +112,8 @@ const cloudSettings: CloudSettings = {
     BrowserFileuploadSelectorService,
     DragEventService,
     DragEventCounterService,
-    { provide: ErrorHandler, useClass: ImsErrorHandler }
+    { provide: ErrorHandler, useClass: ImsErrorHandler },
+    KeywordService
   ]
 })
 export class AppModule { }
