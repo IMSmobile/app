@@ -48,7 +48,7 @@ export class CameraService {
 
   public handleError(error: (string | number)): void {
     if (this.ignoredErrors.indexOf(error) === -1) {
-      throw new CameraError(error);
+      throw new CameraError(error.toString());
     }
   }
 }

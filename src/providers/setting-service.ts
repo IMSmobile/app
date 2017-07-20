@@ -84,11 +84,13 @@ export class SettingService {
     return fields.filter(field => field.active);
   }
 
+  // tslint:disable-next-line:no-any
   private readKey(key: string): Observable<any> {
     // tslint:disable-next-line:no-null-keyword
     return Observable.fromPromise(this.storage.ready()).flatMap(() => Observable.fromPromise(this.storage.get(key)).map(val => val === null ? undefined : val));
   }
 
+  // tslint:disable-next-line:no-any
   private storeSetting(key: string, value: any): void {
     this.storage.ready().then(() => {
       this.storage.set(key, value);

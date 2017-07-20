@@ -112,6 +112,7 @@ export class EntriesPage {
     this.navCtrl.push(SettingsPage);
   }
 
+  // tslint:disable-next-line:no-any
   public fileSelected(event: any, parentImageEntryId: string, entryTitle: string): void {
     const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
     if (selectedImage !== undefined) {

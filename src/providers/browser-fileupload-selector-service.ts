@@ -7,6 +7,7 @@ export class BrowserFileuploadSelectorService {
 
   public readonly allowedFileTypes: [string] = [ 'image/jpeg', 'image/png' ];
 
+  // tslint:disable-next-line:no-any
   public getImageFromFilePicker(event: any): Image | undefined {
     const image = this.getImageFromFileList(event.target.files);
     if (image !== undefined) {
@@ -15,6 +16,7 @@ export class BrowserFileuploadSelectorService {
     return image;
   }
 
+  // tslint:disable-next-line:no-any
   public getImageFromFileDrop(event: any): Image | undefined {
     return this.getImageFromFileList(event.dataTransfer.files);
   }

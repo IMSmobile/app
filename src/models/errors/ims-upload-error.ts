@@ -1,8 +1,8 @@
 import { ImsError } from './ims-error';
 export class ImsUploadError extends ImsError {
 
-  constructor(err: any) {
-    super('Beim Speichern der Bilder ist ein Fehler aufgetreten.', err);
+  constructor(message: string) {
+    super('Beim Speichern der Bilder ist ein Fehler aufgetreten.', message);
     Object.setPrototypeOf(this, ImsUploadError.prototype);
   }
 }
