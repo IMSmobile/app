@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Response } from '@angular/http';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { App, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Credential } from '../../models/credential';
 import { ImsLoadingError } from '../../models/errors/ims-loading-error';
 import { AuthService } from '../../providers/auth-service';
@@ -24,7 +24,7 @@ export class LoginPage {
   public version: string = '0.8.2';
   public readonly unauthorizedHttpStatusCode: number = 401;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public loadingService: LoadingService, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public loadingService: LoadingService, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService, public app: App) {
     this.loginForm = this.formBuilder.group({
       server: ['', Validators.required],
       user: ['', Validators.required],
@@ -86,4 +86,7 @@ export class LoginPage {
     this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);
   }
 
+  public ionViewWillEnter(): void {
+    this.app.setTitle('Arkivar');
+  }
 }
