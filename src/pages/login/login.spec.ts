@@ -15,7 +15,6 @@ import { EntriesPage } from '../entries/entries';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
-import { Info } from './../../models/info';
 import { DragEventCounterService } from './../../providers/drag-event-counter-service';
 import { DragEventService } from './../../providers/drag-event-service';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
@@ -116,8 +115,7 @@ describe('Page: Login', () => {
     spyOn(nav, 'setRoot').and.callThrough();
     spyOn(settingService, 'getFilter').and.returnValue(Observable.of(imsBackendMock.policeFilter));
     const credential = imsBackendMock.credential;
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, credential);
+    authService.setCurrentCredential(credential);
     page.loginForm.controls.server.setValue(credential.server);
     page.loginForm.controls.user.setValue(credential.username);
     page.loginForm.controls.password.setValue(credential.password);
@@ -149,8 +147,7 @@ describe('Page: Login', () => {
     spyOn(settingService, 'setRestUrl').and.callThrough();
     spyOn(settingService, 'setUsername').and.callThrough();
     const credential = imsBackendMock.credential;
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, credential);
+    authService.setCurrentCredential(credential);
     page.loginForm.controls.server.setValue(credential.server);
     page.loginForm.controls.user.setValue(credential.username);
     page.loginForm.controls.password.setValue(credential.password);

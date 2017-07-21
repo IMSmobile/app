@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 import { Platform } from 'ionic-angular';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { Credential } from '../models/credential';
-import { Info } from '../models/info';
 import { PlatformMock, StorageMock } from './../mocks/mocks';
 import { AuthService } from './auth-service';
 import { ImsService } from './ims-service';
@@ -51,16 +50,14 @@ describe('Provider: AuthService', () => {
   }));
 
   it('Should clear credentials on logout', inject([AuthService], (authService: AuthService) => {
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
+    authService.setCurrentCredential(new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     authService.logout();
     expect(authService.currentCredential).toBeUndefined();
   }));
 
   it('Should store the filter after archive selection', inject([AuthService, SettingService, ImsBackendMock], (authService: AuthService, settingService: SettingService, imsBackendMock: ImsBackendMock) => {
     spyOn(settingService, 'setFilter').and.callThrough();
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
+    authService.setCurrentCredential(new Credential('https://test', 'testuser', 'testpass', 'testsegment'));
     authService.setArchive(imsBackendMock.policeFilter);
     expect(settingService.setFilter).toHaveBeenCalledWith(authService.currentCredential.server, authService.currentCredential.username, imsBackendMock.policeFilter);
   }));
