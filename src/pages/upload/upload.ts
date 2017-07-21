@@ -18,6 +18,7 @@ import { MetadataField } from './../../models/metadata-field';
 import { AuthService } from './../../providers/auth-service';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { DragEventService } from './../../providers/drag-event-service';
+import { KeywordService } from './../../providers/keyword-service';
 import { ModelService } from './../../providers/model-service';
 import { UploadService } from './../../providers/upload-service';
 import { KeywordsPage } from './../keywords/keywords';
@@ -37,7 +38,7 @@ export class UploadPage {
   public pictureFromCameraEnabled: boolean;
   public showDragOverlay: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2, public dragEventService: DragEventService, public events: Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2, public dragEventService: DragEventService, public events: Events, public keywordService: KeywordService) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
@@ -166,7 +167,11 @@ export class UploadPage {
 
   public showSuggestionIfAvailable(field: MetadataField): void {
     if (field.catalogHref !== undefined) {
-      this.navCtrl.push(KeywordsPage, { field: field });
+      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalogue(this.authService.currentCredential, field),
+        keywordCatalogue => {
+          this.navCtrl.push(KeywordsPage, { field: field, keywords: keywordCatalogue.keywords, uploadrootpage: this.navCtrl.getActive()});
+        },
+        err => { throw new ImsLoadingError('Keywordcatalogue', err); });
     }
   }
 
