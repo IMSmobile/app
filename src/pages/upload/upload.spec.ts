@@ -19,7 +19,6 @@ import { SettingService } from '../../providers/setting-service';
 import { TokenService } from '../../providers/token-service';
 import { UploadService } from '../../providers/upload-service';
 import { DragEventMock } from './../../mocks/drag-event-mock';
-import { Credential } from './../../models/credential';
 import { Entry } from './../../models/entry';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
@@ -225,7 +224,6 @@ describe('Page: Upload', () => {
 
   it('should upload non empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
-    const testCredentials: Credential = new Credential('https://test', 'testuser', 'testpass', 'testsegment');
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     const formData = {};
@@ -242,8 +240,6 @@ describe('Page: Upload', () => {
 
   it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
-    const testCredentials: Credential = new Credential('https://test', 'testuser', 'testpass', 'testsegment');
-    authService.setCurrentCredential(testCredentials);
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     const formData = {};

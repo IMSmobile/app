@@ -34,11 +34,14 @@ describe('Provider: BrowserContainerUploadService', () => {
     });
   });
 
+  beforeEach(inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    authService.setCurrentCredential(imsBackendMock.credential);
+  }));
+
   it('Should post to a container', inject([BrowserContainerUploadService, Http, ImsBackendMock, AuthService], (browserContainerUploadService: BrowserContainerUploadService, http: Http, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     const file = new File([new Blob([])], 'a.jpg');
     const image = new Image(undefined, undefined, file);
     const url = imsBackendMock.uploadContainerUrl;
-    authService.setCurrentCredential(imsBackendMock.credential);
     spyOn(http, 'post').and.callThrough();
     const options = new RequestOptions({ headers: new ImsFileUploadHeaders(imsBackendMock.credential, imsBackendMock.token, file.name) });
     browserContainerUploadService.postToContainer(url, imsBackendMock.token, image).subscribe();
