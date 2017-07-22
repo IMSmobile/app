@@ -14,7 +14,7 @@ export class AuthService {
   public currentCredential: Credential;
   public archive: string;
   public filterId: number;
-  private readonly restPath: string = '/rest';
+  public readonly restPath: string = '/rest';
   private DEFAULT_LOGIN_TIMEOUT: number = 5000;
 
   constructor(public http: Http, public settingService: SettingService) { }

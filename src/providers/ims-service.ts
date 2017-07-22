@@ -71,7 +71,7 @@ export class ImsService {
   }
 
   private getEntryPoint(): Observable<EntryPoint> {
-    return this.get(this.authService.currentCredential.server + '/rest').map(response => response.json());
+    return this.get(this.authService.currentCredential.server + this.authService.restPath).map(response => response.json());
   }
 
   private findImageTable(tableEntry: ArchiveTableEntry): boolean {
