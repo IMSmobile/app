@@ -1,10 +1,13 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
+import { Storage } from '@ionic/storage';
+import { Platform } from 'ionic-angular';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
-import { AuthServiceMock } from './../mocks/providers/auth-service-mock';
+import { PlatformMock, StorageMock } from './../mocks/mocks';
 import { AuthService } from './auth-service';
 import { ImsService } from './ims-service';
 import { ModelService } from './model-service';
+import { SettingService } from './setting-service';
 
 describe('Provider: ModelService', () => {
 
@@ -16,7 +19,10 @@ describe('Provider: ModelService', () => {
         ImsService,
         ImsBackendMock,
         BaseRequestOptions,
-        { provide: AuthService, useClass: AuthServiceMock },
+        AuthService,
+        SettingService,
+        { provide: Storage, useClass: StorageMock },
+        { provide: Platform, useClass: PlatformMock },
         {
           provide: Http,
           useFactory: (imsBackendMock, options) =>
@@ -27,6 +33,10 @@ describe('Provider: ModelService', () => {
       imports: [HttpModule]
     });
   });
+
+  beforeEach(inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    authService.setCurrentCredential(imsBackendMock.credential);
+  }));
 
   it('Should get image table metadata fields', inject([ModelService, ImsBackendMock], (modelService: ModelService, imsBackendMock: ImsBackendMock) => {
     modelService.getMetadataFieldsOfImageTable(imsBackendMock.modelArchiveName).subscribe(

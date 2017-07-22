@@ -1,10 +1,13 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
+import { Storage } from '@ionic/storage';
+import { Platform } from 'ionic-angular';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { Token } from '../models/token';
-import { AuthServiceMock } from './../mocks/providers/auth-service-mock';
+import { PlatformMock, StorageMock } from './../mocks/mocks';
 import { AuthService } from './auth-service';
 import { ImsService } from './ims-service';
+import { SettingService } from './setting-service';
 import { TokenService } from './token-service';
 
 describe('Provider: TokenService', () => {
@@ -17,7 +20,10 @@ describe('Provider: TokenService', () => {
         ImsService,
         ImsBackendMock,
         BaseRequestOptions,
-        { provide: AuthService, useClass: AuthServiceMock },
+        AuthService,
+        SettingService,
+        { provide: Storage, useClass: StorageMock },
+        { provide: Platform, useClass: PlatformMock },
         {
           provide: Http,
           useFactory: (imsBackendMock, options) =>
@@ -28,6 +34,10 @@ describe('Provider: TokenService', () => {
       imports: [HttpModule]
     });
   });
+
+  beforeEach(inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    authService.setCurrentCredential(imsBackendMock.credential);
+  }));
 
   it('Should get Token Location for Segment Name', inject([TokenService, ImsBackendMock, AuthService], (tokenService: TokenService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     tokenService.getTokenForSegment(authService.currentCredential.segmentName).subscribe(

@@ -1,14 +1,17 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { Transfer } from '@ionic-native/transfer';
+import { Storage } from '@ionic/storage';
+import { Platform } from 'ionic-angular';
 import { ImsBackendMock } from '../mocks/ims-backend-mock';
 import { TransferMock } from '../mocks/providers/transfer-mock';
 import { Entry } from '../models/entry';
 import { Image } from '../models/image';
-import { AuthServiceMock } from './../mocks/providers/auth-service-mock';
+import { PlatformMock, StorageMock } from './../mocks/mocks';
 import { AuthService } from './auth-service';
 import { ContainerUploadService } from './container-upload-service';
 import { ImsService } from './ims-service';
+import { SettingService } from './setting-service';
 import { TokenService } from './token-service';
 import { UploadService } from './upload-service';
 
@@ -24,8 +27,11 @@ describe('Provider: UploadService', () => {
         ImsBackendMock,
         BaseRequestOptions,
         ContainerUploadService,
+        AuthService,
+        SettingService,
         { provide: Transfer, useClass: TransferMock },
-        { provide: AuthService, useClass: AuthServiceMock },
+        { provide: Storage, useClass: StorageMock },
+        { provide: Platform, useClass: PlatformMock },
         {
           provide: Http,
           useFactory: (imsBackendMock, options) =>
@@ -36,6 +42,10 @@ describe('Provider: UploadService', () => {
       imports: [HttpModule]
     });
   });
+
+  beforeEach(inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    authService.setCurrentCredential(imsBackendMock.credential);
+  }));
 
   it('Should create a container location', inject([UploadService, ImsBackendMock], (uploadService: UploadService, imsBackendMock: ImsBackendMock) => {
     uploadService.createContainerLocation(imsBackendMock.filterId, imsBackendMock.token).subscribe(
