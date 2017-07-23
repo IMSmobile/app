@@ -5,7 +5,7 @@ import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from 
 import { Camera } from '@ionic-native/camera';
 import { Transfer } from '@ionic-native/transfer';
 import { Storage } from '@ionic/storage';
-import { AlertController, App, Config, DomController, Form, GestureController, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, PopoverController, ToastController } from 'ionic-angular';
+import { AlertController, App, Config, DomController, Events, Form, GestureController, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, PopoverController, ToastController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { ImsBackendMock } from '../../mocks/ims-backend-mock';
@@ -31,6 +31,7 @@ import { ContainerUploadService } from './../../providers/container-upload-servi
 import { DragEventCounterService } from './../../providers/drag-event-counter-service';
 import { DragEventService } from './../../providers/drag-event-service';
 import { FieldValidatorService } from './../../providers/field-validator-service';
+import { KeywordService } from './../../providers/keyword-service';
 import { ModelService } from './../../providers/model-service';
 import { DoubleValidator } from './../../validators/double-validator';
 import { UploadPage } from './upload';
@@ -46,7 +47,7 @@ describe('Page: Upload', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
         TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
-        FieldValidatorService, ContainerUploadService, BrowserFileuploadSelectorService, DragEventService, DragEventCounterService,
+        FieldValidatorService, ContainerUploadService, BrowserFileuploadSelectorService, DragEventService, DragEventCounterService, Events, KeywordService,
         { provide: App, useClass: AppMock },
         { provide: AlertController, useClass: AlertMock },
         { provide: Config, useClass: ConfigMock },
