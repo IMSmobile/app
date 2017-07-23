@@ -1,5 +1,4 @@
 import { browser, by, element, ElementArrayFinder, ElementFinder, ExpectedConditions } from 'protractor';
-import 'rxjs/add/observable/fromPromise';
 import { Helpers } from './../helpers/helpers';
 import { LoginPageObject } from './login-page-object';
 import { SettingArchivePageObject } from './setting-archive-page-object';

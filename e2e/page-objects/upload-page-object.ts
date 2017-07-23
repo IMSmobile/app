@@ -1,5 +1,4 @@
 import { browser, by, element, ElementFinder, ExpectedConditions, promise, protractor } from 'protractor';
-import 'rxjs/add/observable/fromPromise';
 import { Helpers } from './../helpers/helpers';
 import { EntriesPageObject } from './entries-page-object';
 
@@ -16,6 +15,7 @@ export class UploadPageObject {
   public readonly dateTimeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATETIMEFELD]'));
   public readonly dateInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=DATEFELD]'));
   public readonly timeInput: ElementFinder = element(by.css('ion-datetime[ng-reflect-name=TIMEFELD]'));
+  public readonly keywordDualInput: ElementFinder = element(by.css('input[ng-reflect-name=KEYWORDDUAL]'));
   public readonly ionDateTimeDoneButton: ElementFinder = element(by.css('ion-picker-cmp .picker-toolbar-button:not(.picker-toolbar-cancel) button'));
   public readonly uploadFieldErrorDivBILDNAME: ElementFinder = element(by.id('uploadFieldErrorDivBILDNAME'));
   public readonly uploadFieldErrorDivINTEGERFELD: ElementFinder = element(by.id('uploadFieldErrorDivINTEGERFELD'));
@@ -59,6 +59,10 @@ export class UploadPageObject {
 
   public clickIntoIntegerTextField(): void {
     this.clickIntoTextField(this.integerfeldFieldInput);
+  }
+
+  public clickIntoKeywordDualTextField(): void {
+    this.clickIntoTextField(this.keywordDualInput);
   }
 
   public createDragEnterEvent(): void {
@@ -151,6 +155,10 @@ export class UploadPageObject {
 
   public verifyTimeDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}:[0-9]{2}:[0-9]{2}/);
+  }
+
+  public verifyKeywordDualFieldFilled(): void {
+    this.keywordDualInput.getAttribute('value').then(value => expect(value.length).not.toEqual(0));
   }
 
   private clickIntoTextField(textField: ElementFinder): void {
