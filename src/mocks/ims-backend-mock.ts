@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { RequestMethod, Response, ResponseOptions, ResponseType } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { ArchiveEntry } from '../models/archive-entry';
@@ -10,6 +11,8 @@ import { Filter } from '../models/filter';
 import { Link } from '../models/link';
 import { Pagination } from '../models/pagination';
 import { Token } from '../models/token';
+import { Keyword } from './../models/keyword';
+import { KeywordCatalogue } from './../models/keyword-catalogue';
 import { MetadataField } from './../models/metadata-field';
 import { MetadataTableFields } from './../models/metadata-table-fields';
 import { ModelArchives } from './../models/model-archives';
@@ -21,6 +24,7 @@ import { EntryPointResponse } from './response//entry-point-response';
 import { ArchiveEntryResponse } from './response/archive-entry-response';
 import { EntriesResponse } from './response/entries-response';
 import { ErrorResponse } from './response/error-response';
+import { KeywordCatalogsResponse } from './response/keyword-catalogs-response';
 import { LicensePointResponse } from './response/license-point-response';
 import { LocationResponse } from './response/location-response';
 import { ModelArchivesPointResponse } from './response/model-archives-point-response';
@@ -88,9 +92,10 @@ export class ImsBackendMock extends MockBackend {
   public modelFieldIdentifierName: string = 'BILDNAME';
   public modelFieldParentreferenceName: string = 'IDFall';
   public modelFieldDefaultLength: number = 10;
+  public modelFieldKeywordHref: string = this.entryPointUrl + '/keywordcatalogs/1';
   public modelFieldIdentifier: MetadataField = new MetadataField(this.modelFieldIdentifierName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
   public modelFieldParentreference: MetadataField = new MetadataField(this.modelFieldParentreferenceName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
-  public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, this.modelFieldDefaultLength);
+  public modelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, this.modelFieldDefaultLength, this.modelFieldKeywordHref);
   public modelFields: MetadataTableFields = new MetadataTableFields(this.modelImageTableName, this.modelFieldIdentifierName, this.modelFieldParentreferenceName, [this.modelFieldIdentifier, this.modelFieldParentreference, this.modelFieldOptionalString]);
 
   public parentImageTableName: string = 'Fall';
@@ -100,6 +105,9 @@ export class ImsBackendMock extends MockBackend {
   public parentImageModelFieldIdentifier: MetadataField = new MetadataField(this.parentImageModelFieldIdentifierName, 'STRING', false, false, true, true, this.modelFieldDefaultLength);
   public parentImageModelFieldOptionalString: MetadataField = new MetadataField('OptionalString', 'STRING', false, false, true, false, this.modelFieldDefaultLength);
   public parentImageModelFields: MetadataTableFields = new MetadataTableFields(this.parentImageTableName, this.parentImageModelFieldIdentifierName, this.parentImageModelFieldParentReferenceName, [this.parentImageModelFieldIdentifier, this.parentImageModelFieldParentreference, this.parentImageModelFieldOptionalString]);
+  public keywordLeaf: Keyword = new Keyword('leaf');
+  public keywordParent: Keyword = new Keyword('keywordparent', [this.keywordLeaf]);
+  public keywordCatalogue: KeywordCatalogue = new KeywordCatalogue('1', 'Test KeywordCatalogue', [this.keywordParent]);
 
   constructor() {
     super();
@@ -154,6 +162,11 @@ export class ImsBackendMock extends MockBackend {
                 }
               }
             }
+          }
+        },
+        keywordcatalogs: {
+          1: {
+            [RequestMethod.Get]: new KeywordCatalogsResponse(this.keywordCatalogue)
           }
         },
         models: {
