@@ -22,7 +22,7 @@ export class SettingArchivePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public imsService: ImsService, public authService: AuthService, public loadingService: LoadingService) { }
 
   public ionViewDidLoad(): void {
-    const filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable(this.authService.currentCredential).map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));
+    const filtersObservable: Observable<Filter[]> = this.imsService.getEntriesTable().map(entriesPoint => entriesPoint.filters.filter(filter => filter.name === this.filterName));
     this.loadingService.subscribeWithLoading(filtersObservable, filters => this.initFilter(filters), err => { throw new ImsLoadingError('Filter', err); });
   }
 

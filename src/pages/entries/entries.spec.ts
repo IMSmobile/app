@@ -9,7 +9,6 @@ import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { AlertMock, AppMock, ConfigMock, InfiniteScrollMock, LoadingMock, NavParamsMock, PlatformMock, PopoverControllerMock } from '../../mocks/mocks';
-import { Info } from '../../models/info';
 import { AlertService } from '../../providers/alert-service';
 import { AuthService } from '../../providers/auth-service';
 import { CameraService } from '../../providers/camera-service';
@@ -69,13 +68,15 @@ describe('Page: Entries', () => {
     fixture.detectChanges();
   });
 
+  beforeEach(inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    authService.setCurrentCredential(imsBackendMock.credential);
+  }));
+
   afterEach(() => {
     fixture.destroy();
   });
 
   it('Load entries when ion view did load', inject([EntriesService, ImsBackendMock, AuthService], (entriesService: EntriesService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.sort = imsBackendMock.query;
     page.ionViewDidLoad();
@@ -85,8 +86,6 @@ describe('Page: Entries', () => {
 
   it('Set parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.loadParentImageReferenceField();
     expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);
@@ -102,8 +101,6 @@ describe('Page: Entries', () => {
 
   it('Show and hide loading when successful when loading initial entries', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.sort = imsBackendMock.query;
     page.loadInitialParentImageEntries();
@@ -118,8 +115,6 @@ describe('Page: Entries', () => {
   }));
 
   it('Sets title field to identifier field', inject([ImsBackendMock, AuthService], (imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.loadSelectedFieldsAndTitle();
     expect(page.titleField).toEqual(imsBackendMock.parentImageModelFieldIdentifierName);
@@ -127,8 +122,6 @@ describe('Page: Entries', () => {
 
   it('Has fields when set in setting service', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.loadSelectedFieldsAndTitle();
     expect(page.fields).toContain(imsBackendMock.parentImageModelFieldOptionalString);
@@ -137,8 +130,6 @@ describe('Page: Entries', () => {
 
   it('Does not have any fields when nothing is set', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.loadSelectedFieldsAndTitle();
     expect(page.fields.length).toBe(0);
@@ -239,7 +230,6 @@ describe('Page: Entries', () => {
   }));
 
   it('On browser open file dialog on  after click get picture from gallery', inject([Platform], (platform: Platform) => {
-
     const parentImageEntryId: string = '123';
     const entryTitle: string = 'Test Entry';
     const element = document.createElement('div');
