@@ -167,11 +167,11 @@ export class UploadPage {
 
   public showSuggestionIfAvailable(field: MetadataField): void {
     if (field.catalogHref !== undefined) {
-      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalogue(this.authService.currentCredential, field),
-        keywordCatalogue => {
-          this.navCtrl.push(KeywordsPage, { field: field, keywords: keywordCatalogue.keywords, uploadrootpage: this.navCtrl.getActive()});
+      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalog(this.authService.currentCredential, field),
+        keywordCatalog => {
+          this.navCtrl.push(KeywordsPage, { field: field, keywords: keywordCatalog.keywords, uploadrootpage: this.navCtrl.getActive()});
         },
-        err => { throw new ImsLoadingError('Keywordcatalogue', err); });
+        err => { throw new ImsLoadingError('Keywordcatalog', err); });
     }
   }
 

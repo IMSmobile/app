@@ -25,9 +25,9 @@ describe('Provider: ModelService', () => {
     });
   });
 
-  it('Should get keyword catalogue', inject([KeywordService, ImsBackendMock], (keywordService: KeywordService, imsBackendMock: ImsBackendMock) => {
-    keywordService.getKeywordCatalogue(imsBackendMock.credential, imsBackendMock.modelFieldOptionalString).subscribe(
-      keywordCatalogue => expect(keywordCatalogue).toEqual(imsBackendMock.keywordCatalogue),
+  it('Should get keyword catalog', inject([KeywordService, ImsBackendMock], (keywordService: KeywordService, imsBackendMock: ImsBackendMock) => {
+    keywordService.getKeywordCatalog(imsBackendMock.credential, imsBackendMock.modelFieldOptionalString).subscribe(
+      keywordCatalog => expect(keywordCatalog).toEqual(imsBackendMock.keywordCatalog),
       fail);
   }));
 

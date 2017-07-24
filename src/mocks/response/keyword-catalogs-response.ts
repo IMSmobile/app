@@ -1,9 +1,9 @@
 import { Response, ResponseOptions } from '@angular/http';
-import { KeywordCatalogue } from './../../models/keyword-catalogue';
+import { KeywordCatalog } from './../../models/keyword-catalog';
 
 export class KeywordCatalogsResponse extends Response {
 
-  constructor(keywordCatalogue: KeywordCatalogue) {
-    super(new ResponseOptions({ body: keywordCatalogue }));
+  constructor(keywordCatalog: KeywordCatalog) {
+    super(new ResponseOptions({ body: keywordCatalog }));
   }
 }
