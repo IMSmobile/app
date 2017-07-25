@@ -18,7 +18,7 @@ export class SettingImageFieldsPage {
   constructor(public loadingService: LoadingService, public authService: AuthService, public modelService: ModelService, public settingService: SettingService) { }
 
   public ionViewDidLoad(): void {
-    this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive),
+    this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfImageTable(this.authService.archive),
       tableFields => {
         this.tableName = tableFields.name;
         this.fields = tableFields.fields.filter(field => !field.mandatory && field.name !== tableFields.parentReferenceField && field.writable);

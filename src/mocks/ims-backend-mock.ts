@@ -12,7 +12,7 @@ import { Link } from '../models/link';
 import { Pagination } from '../models/pagination';
 import { Token } from '../models/token';
 import { Keyword } from './../models/keyword';
-import { KeywordCatalogue } from './../models/keyword-catalogue';
+import { KeywordCatalog } from './../models/keyword-catalog';
 import { MetadataField } from './../models/metadata-field';
 import { MetadataTableFields } from './../models/metadata-table-fields';
 import { ModelArchives } from './../models/model-archives';
@@ -107,7 +107,7 @@ export class ImsBackendMock extends MockBackend {
   public parentImageModelFields: MetadataTableFields = new MetadataTableFields(this.parentImageTableName, this.parentImageModelFieldIdentifierName, this.parentImageModelFieldParentReferenceName, [this.parentImageModelFieldIdentifier, this.parentImageModelFieldParentreference, this.parentImageModelFieldOptionalString]);
   public keywordLeaf: Keyword = new Keyword('leaf');
   public keywordParent: Keyword = new Keyword('keywordparent', [this.keywordLeaf]);
-  public keywordCatalogue: KeywordCatalogue = new KeywordCatalogue('1', 'Test KeywordCatalogue', [this.keywordParent]);
+  public keywordCatalog: KeywordCatalog = new KeywordCatalog('1', 'Test KeywordCatalog', [this.keywordParent]);
 
   constructor() {
     super();
@@ -166,7 +166,7 @@ export class ImsBackendMock extends MockBackend {
         },
         keywordcatalogs: {
           1: {
-            [RequestMethod.Get]: new KeywordCatalogsResponse(this.keywordCatalogue)
+            [RequestMethod.Get]: new KeywordCatalogsResponse(this.keywordCatalog)
           }
         },
         models: {

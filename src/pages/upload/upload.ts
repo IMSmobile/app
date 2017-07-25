@@ -53,12 +53,12 @@ export class UploadPage {
   }
 
   public loadParentImageReferenceField(): void {
-    const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
+    const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   public loadUploadFields(): void {
-    const fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
+    const fields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfImageTable(this.authService.archive).flatMap(tableFields => {
       const mandatoryFields: Observable<MetadataField[]> = Observable.of(tableFields.fields.filter(field => this.isMandatory(field, tableFields.parentReferenceField)));
       const activeFields: Observable<MetadataField[]> = this.settingService.getActiveFields(this.authService.archive, tableFields);
       return Observable.concat(mandatoryFields, activeFields);
@@ -122,7 +122,7 @@ export class UploadPage {
           imageEntry = imageEntry.set(field.name, value);
         }
       });
-      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.currentCredential, this.authService.filterId, imageEntry, this.image),
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.filterId, imageEntry, this.image),
         res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
         err => { throw new ImsUploadError(err); }
       );
@@ -167,11 +167,11 @@ export class UploadPage {
 
   public showSuggestionIfAvailable(field: MetadataField): void {
     if (field.catalogHref !== undefined) {
-      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalogue(this.authService.currentCredential, field),
-        keywordCatalogue => {
-          this.navCtrl.push(KeywordsPage, { field: field, keywords: keywordCatalogue.keywords, uploadrootpage: this.navCtrl.getActive()});
+      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalog(field),
+        keywordCatalog => {
+          this.navCtrl.push(KeywordsPage, { field: field, keywords: keywordCatalog.keywords, uploadrootpage: this.navCtrl.getActive()});
         },
-        err => { throw new ImsLoadingError('Keywordcatalogue', err); });
+        err => { throw new ImsLoadingError('Keywordcatalog', err); });
     }
   }
 

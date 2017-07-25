@@ -19,12 +19,10 @@ import { SettingService } from '../../providers/setting-service';
 import { TokenService } from '../../providers/token-service';
 import { UploadService } from '../../providers/upload-service';
 import { DragEventMock } from './../../mocks/drag-event-mock';
-import { Credential } from './../../models/credential';
 import { Entry } from './../../models/entry';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
 import { Image } from './../../models/image';
-import { Info } from './../../models/info';
 import { MetadataField } from './../../models/metadata-field';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
@@ -45,7 +43,7 @@ describe('Page: Upload', () => {
     TestBed.configureTestingModule({
       declarations: [UploadPage],
       providers: [
-        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, AuthService, ImsService,
+        App, DomController, Form, Keyboard, NavController, LoadingController, AlertController, ImsService, AuthService,
         TokenService, UploadService, ImsBackendMock, BaseRequestOptions, CameraService, Camera, LoadingService, AlertService, Transfer, ModelService, GestureController, SettingService,
         FieldValidatorService, ContainerUploadService, BrowserFileuploadSelectorService, DragEventService, DragEventCounterService, Events, KeywordService,
         { provide: App, useClass: AppMock },
@@ -71,6 +69,10 @@ describe('Page: Upload', () => {
     page = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  beforeEach(inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    authService.setCurrentCredential(imsBackendMock.credential);
+  }));
 
   afterEach(() => {
     fixture.destroy();
@@ -162,8 +164,6 @@ describe('Page: Upload', () => {
 
   it('Show and hide loading when loading parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.loadParentImageReferenceField();
     expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);
@@ -173,8 +173,6 @@ describe('Page: Upload', () => {
   it('Show and hide loading when loading configured metadata fields', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.loadUploadFields();
     expect(page.fields.length).toBeGreaterThan(0);
@@ -205,9 +203,7 @@ describe('Page: Upload', () => {
   }));
 
   it('Check if parent reference is not included', inject([ImsBackendMock, AuthService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService) => {
-    const testInfo: Info = { version: '9000' };
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.ionViewDidLoad();
     expect(page.fields).not.toContain(imsBackendMock.modelFieldParentreference);
@@ -215,8 +211,6 @@ describe('Page: Upload', () => {
 
   it('Additional not mandatory fields', inject([ImsBackendMock, AuthService, SettingService, Storage], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService, storage: Storage) => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.ionViewDidLoad();
     expect(page.fields).toContain(imsBackendMock.modelFieldOptionalString);
@@ -224,8 +218,6 @@ describe('Page: Upload', () => {
 
   it('Do not add additional not mandatory fields when not configured', inject([ImsBackendMock, AuthService, SettingService, Storage], (imsBackendMock: ImsBackendMock, authService: AuthService, settingService: SettingService, storage: Storage) => {
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(false));
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.ionViewDidLoad();
     expect(page.fields).not.toContain(imsBackendMock.modelFieldOptionalString);
@@ -233,9 +225,6 @@ describe('Page: Upload', () => {
 
   it('should upload non empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
-    const testInfo: Info = { version: '9000' };
-    const testCredentials: Credential = new Credential('https://test', 'testuser', 'testpass', 'testsegment');
-    authService.setCurrentCredential(testInfo, testCredentials);
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     const formData = {};
@@ -247,14 +236,11 @@ describe('Page: Upload', () => {
     let entry = new Entry();
     entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
     entry = entry.set(imsBackendMock.modelFieldOptionalString.name, 'value');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, page.image);
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(Number(imsBackendMock.policeFilter.id), entry, page.image);
   }));
 
   it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
-    const testInfo: Info = { version: '9000' };
-    const testCredentials: Credential = new Credential('https://test', 'testuser', 'testpass', 'testsegment');
-    authService.setCurrentCredential(testInfo, testCredentials);
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     const formData = {};
@@ -265,12 +251,10 @@ describe('Page: Upload', () => {
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(testCredentials, Number(imsBackendMock.policeFilter.id), entry, page.image);
+    expect(uploadService.uploadImage).toHaveBeenCalledWith(Number(imsBackendMock.policeFilter.id), entry, page.image);
   }));
 
   it('should initialize parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     authService.setArchive(imsBackendMock.policeFilter);
     page.loadParentImageReferenceField();
     expect(page.parentImageReferenceField).toEqual(imsBackendMock.modelFieldParentreferenceName);

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
 import { Observable } from 'rxjs/Observable';
 import { Credential } from '../models/credential';
-import { Info } from '../models/info';
 import { Filter } from './../models/filter';
-import { ImsService } from './ims-service';
+import { ImsHeaders } from './../models/ims-headers';
 import { SettingService } from './setting-service';
 
 @Injectable()
@@ -15,21 +14,21 @@ export class AuthService {
   public currentCredential: Credential;
   public archive: string;
   public filterId: number;
+  public readonly restPath: string = '/rest';
   private DEFAULT_LOGIN_TIMEOUT: number = 5000;
 
-  constructor(public http: Http, public imsService: ImsService, public settingService: SettingService) { }
+  constructor(public http: Http, public settingService: SettingService) { }
 
-  public login(credentials: Credential): Observable<Info> {
-    return this.imsService.getInfo(credentials).map(info => this.setCurrentCredential(info, credentials)).timeout(this.DEFAULT_LOGIN_TIMEOUT);
+  public login(credentials: Credential): Observable<Response> {
+    return this.http.get(credentials.server + this.restPath, { headers: new ImsHeaders(credentials) }).do(response => this.setCurrentCredential(credentials)).timeout(this.DEFAULT_LOGIN_TIMEOUT);
   }
 
   public logout(): void {
     this.currentCredential = undefined;
   }
 
-  public setCurrentCredential(info: Info, credentials: Credential): Info {
+  public setCurrentCredential(credentials: Credential): void {
     this.currentCredential = credentials;
-    return info;
   }
 
   public setArchive(filter: Filter): void {

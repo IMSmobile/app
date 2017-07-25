@@ -1,5 +1,5 @@
 import { Keyword } from './keyword';
-export class KeywordCatalogue {
+export class KeywordCatalog {
   public readonly id: string;
   public readonly name: string;
   public readonly keywords: Keyword[];

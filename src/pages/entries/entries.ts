@@ -66,12 +66,12 @@ export class EntriesPage {
   }
 
   public loadParentImageReferenceField(): void {
-    const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.currentCredential, this.authService.archive);
+    const imageTableMetaData = this.modelService.getMetadataFieldsOfImageTable(this.authService.archive);
     this.loadingService.subscribeWithLoading(imageTableMetaData, metaData => this.parentImageReferenceField = metaData.parentReferenceField, err => { throw new ImsLoadingError('Feldinformationen', err); });
   }
 
   public loadInitialParentImageEntries(): void {
-    const loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.currentCredential, this.authService.filterId, this.sort);
+    const loadParentImageEntries = this.entriesService.getParentImageEntries(this.authService.filterId, this.sort);
     this.loadingService.subscribeWithLoading(loadParentImageEntries, entries => this.updateEntries(entries), err => { throw new ImsLoadingError('Einträge', err); });
   }
 
@@ -80,7 +80,7 @@ export class EntriesPage {
   }
 
   public loadSelectedFieldsAndTitle(): void {
-    const metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive).flatMap(tableFields => {
+    const metaDataFields: Observable<MetadataField[]> = this.modelService.getMetadataFieldsOfParentImageTable(this.authService.archive).flatMap(tableFields => {
       this.titleField = tableFields.identifierField;
       return this.settingService.getActiveFields(this.authService.archive, tableFields);
     });
@@ -91,7 +91,7 @@ export class EntriesPage {
     if (this.nextPage === undefined) {
       infiniteScroll.enable(false);
     } else {
-      this.entriesService.getEntries(this.authService.currentCredential, this.nextPage).subscribe(
+      this.entriesService.getEntries(this.nextPage).subscribe(
         entries => {
           this.updateEntries(entries);
           infiniteScroll.complete();

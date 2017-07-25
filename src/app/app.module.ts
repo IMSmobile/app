@@ -99,7 +99,7 @@ const cloudSettings: CloudSettings = {
     {
       provide: ContainerUploadService,
       useFactory: AppProviders.containerUploadFactory,
-      deps: [Platform, Transfer, Http]
+      deps: [Platform, Transfer, Http, AuthService]
     },
     SettingService,
     EntriesService,

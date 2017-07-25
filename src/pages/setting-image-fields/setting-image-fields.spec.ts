@@ -11,7 +11,6 @@ import { SettingService } from '../../providers/setting-service';
 import { ImsBackendMock } from './../../mocks/ims-backend-mock';
 import { LoadingMock } from './../../mocks/mocks';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
-import { Info } from './../../models/info';
 import { AuthService } from './../../providers/auth-service';
 import { ImsService } from './../../providers/ims-service';
 import { LoadingService } from './../../providers/loading-service';
@@ -50,6 +49,10 @@ describe('Page: Image Settings Fields', () => {
     fixture.detectChanges();
   });
 
+  beforeEach(inject([AuthService, ImsBackendMock], (authService: AuthService, imsBackendMock: ImsBackendMock) => {
+    authService.setCurrentCredential(imsBackendMock.credential);
+  }));
+
   afterEach(() => {
     fixture.destroy();
   });
@@ -66,8 +69,6 @@ describe('Page: Image Settings Fields', () => {
   it('Fields have been intialized from archive and  settings store', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();
     expect(settingService.getFieldState).toHaveBeenCalledWith(authService.archive, page.tableName, imsBackendMock.modelFieldOptionalString.name);
@@ -77,8 +78,6 @@ describe('Page: Image Settings Fields', () => {
   it('Fields do not contain mandatory or identifier fields ', inject([SettingService, ImsBackendMock, AuthService], (settingService: SettingService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
     authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(settingService, 'getFieldState').and.returnValue(Observable.of(true));
     page.ionViewDidLoad();
     expect(page.fields).not.toContain(imsBackendMock.modelFieldParentreference);
@@ -88,8 +87,6 @@ describe('Page: Image Settings Fields', () => {
   it('Loading called if successfull', inject([AuthService, ImsBackendMock, ModelService, LoadingService], (authService: AuthService, imsBackendMock: ImsBackendMock, modelService: ModelService, loadingService: LoadingService) => {
     authService.archive = imsBackendMock.modelArchiveName;
     page.tableName = imsBackendMock.modelImageTableName;
-    const testInfo: Info = { version: '9000' };
-    authService.setCurrentCredential(testInfo, imsBackendMock.credential);
     spyOn(loadingService, 'subscribeWithLoading').and.callThrough();
     page.ionViewDidLoad();
     expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
