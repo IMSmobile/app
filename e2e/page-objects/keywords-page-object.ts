@@ -1,4 +1,4 @@
-import { by, element, ElementArrayFinder, ElementFinder, ExpectedConditions } from 'protractor';
+import { by, element, ElementArrayFinder, ElementFinder } from 'protractor';
 import { Helpers } from '../helpers/helpers';
 import { UploadPageObject } from './upload-page-object';
 
