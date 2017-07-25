@@ -1,3 +1,5 @@
+import { KeywordsPage } from './../keywords/keywords';
+import { ImsBackendMock } from './../../mocks/ims-backend-mock';
 /* tslint:disable:max-file-line-count */
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +13,6 @@ import { Observable } from 'rxjs/Observable';
 import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { AlertMock, AppMock, ConfigMock, LoadingMock, NavParamsMock, PlatformMock, PopoverControllerMock, StorageMock, ToastMock } from '../../mocks/mocks';
 import { AlertService } from '../../providers/alert-service';
-import { AuthService } from '../../providers/auth-service';
 import { CameraService } from '../../providers/camera-service';
 import { ImsService } from '../../providers/ims-service';
 import { LoadingService } from '../../providers/loading-service';
@@ -23,7 +24,9 @@ import { Entry } from './../../models/entry';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
 import { Image } from './../../models/image';
+import { Keyword } from './../../models/keyword';
 import { MetadataField } from './../../models/metadata-field';
+import { AuthService } from './../../providers/auth-service';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { ContainerUploadService } from './../../providers/container-upload-service';
 import { DragEventCounterService } from './../../providers/drag-event-counter-service';
@@ -316,4 +319,41 @@ describe('Page: Upload', () => {
     page.initFormData();
     expect(page.fieldsForm.controls.textField.value).toEqual('');
   });
+
+  it('Fill field with keyword', () => {
+    const fieldLength: number = 15;
+    const testKeyword: Keyword = new Keyword('TestKeyword');
+    page.fields = [new MetadataField('keywordField', 'TEXT', false, false, true, true, fieldLength, 'ExampleKeywordCatalog')];
+    page.initFormData();
+    page.fillFormWithKeyword(page.fields[0], testKeyword);
+    expect(page.fieldsForm.controls.keywordField.value).toEqual(testKeyword.keyword);
+  });
+
+  it('Show no keywordsuggestion, if no keyword catalog link is available', inject([KeywordService], (keywordService: KeywordService) => {
+    const fieldLength: number = 15;
+    page.fields = [new MetadataField('noKeywordField', 'TEXT', false, false, true, true, fieldLength)];
+    spyOn(keywordService, 'getKeywordCatalog').and.callThrough();
+    page.initFormData();
+    page.showSuggestionIfAvailable(page.fields[0]);
+    expect(keywordService.getKeywordCatalog).toHaveBeenCalledTimes(0);
+  }));
+
+  it('Throw error when keyword catalog is not found', inject([KeywordService], (keywordService: KeywordService) => {
+    const fieldLength: number = 15;
+    page.fields = [new MetadataField('KeywordField', 'TEXT', false, false, true, true, fieldLength, 'ExampleKeywordCatalog')];
+    spyOn(keywordService, 'getKeywordCatalog').and.returnValue(Observable.throw('oops'));
+    page.initFormData();
+    expect(() => page.showSuggestionIfAvailable(page.fields[0])).toThrowError(ImsLoadingError);
+  }));
+
+  it('Show keywordsuggestion, if keyword catalog is available', inject([KeywordService, ImsBackendMock, NavController], (keywordService: KeywordService, imsBackendMock: ImsBackendMock, navCtrl: NavController) => {
+    page.fields = [imsBackendMock.modelFieldOptionalString];
+    spyOn(keywordService, 'getKeywordCatalog').and.callThrough();
+    spyOn(navCtrl, 'push').and.callThrough();
+    page.initFormData();
+    page.showSuggestionIfAvailable(page.fields[0]);
+    expect(keywordService.getKeywordCatalog).toHaveBeenCalledTimes(1);
+    expect(navCtrl.push).toHaveBeenCalledWith(KeywordsPage, { field: imsBackendMock.modelFieldOptionalString, keywords: imsBackendMock.keywordCatalog.keywords, uploadrootpage: page.navCtrl.getActive()});
+
+  }));
 });
