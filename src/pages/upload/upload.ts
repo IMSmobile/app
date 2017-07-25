@@ -167,7 +167,7 @@ export class UploadPage {
 
   public showSuggestionIfAvailable(field: MetadataField): void {
     if (field.catalogHref !== undefined) {
-      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalog(this.authService.currentCredential, field),
+      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalog(field),
         keywordCatalog => {
           this.navCtrl.push(KeywordsPage, { field: field, keywords: keywordCatalog.keywords, uploadrootpage: this.navCtrl.getActive()});
         },
