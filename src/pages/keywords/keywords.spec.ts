@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { App, Config, DomController, Events, Form, GestureController, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, ToastController, ViewController } from 'ionic-angular';
 import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { ConfigMock, NavParamsMock, PlatformMock, ToastMock } from '../../mocks/mocks';
-import { Keyword } from './../../models/keyword';
 import { KeywordsPage } from './keywords';
 
 describe('Page: Keywords', () => {
