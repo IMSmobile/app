@@ -1,5 +1,3 @@
-import { KeywordsPage } from './../keywords/keywords';
-import { ImsBackendMock } from './../../mocks/ims-backend-mock';
 /* tslint:disable:max-file-line-count */
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +8,6 @@ import { Storage } from '@ionic/storage';
 import { AlertController, App, Config, DomController, Events, Form, GestureController, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, PopoverController, ToastController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
-import { ImsBackendMock } from '../../mocks/ims-backend-mock';
 import { AlertMock, AppMock, ConfigMock, LoadingMock, NavParamsMock, PlatformMock, PopoverControllerMock, StorageMock, ToastMock } from '../../mocks/mocks';
 import { AlertService } from '../../providers/alert-service';
 import { CameraService } from '../../providers/camera-service';
@@ -20,6 +17,7 @@ import { SettingService } from '../../providers/setting-service';
 import { TokenService } from '../../providers/token-service';
 import { UploadService } from '../../providers/upload-service';
 import { DragEventMock } from './../../mocks/drag-event-mock';
+import { ImsBackendMock } from './../../mocks/ims-backend-mock';
 import { Entry } from './../../models/entry';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
@@ -35,6 +33,7 @@ import { FieldValidatorService } from './../../providers/field-validator-service
 import { KeywordService } from './../../providers/keyword-service';
 import { ModelService } from './../../providers/model-service';
 import { DoubleValidator } from './../../validators/double-validator';
+import { KeywordsPage } from './../keywords/keywords';
 import { UploadPage } from './upload';
 
 describe('Page: Upload', () => {
