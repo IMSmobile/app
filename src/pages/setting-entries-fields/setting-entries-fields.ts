@@ -18,7 +18,7 @@ export class SettingEntriesFieldsPage {
   constructor(public loadingService: LoadingService, public authService: AuthService, public modelService: ModelService, public settingService: SettingService) { }
 
   public ionViewDidLoad(): void {
-    this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfParentImageTable(this.authService.currentCredential, this.authService.archive),
+    this.loadingService.subscribeWithLoading(this.modelService.getMetadataFieldsOfParentImageTable(this.authService.archive),
       tableFields => {
         this.tableName = tableFields.name;
         this.fields = tableFields.fields;

@@ -92,7 +92,7 @@
     "tslint-ionic-rules": "0.0.8",
     "typescript": "2.3.4"
   },
-  "version": "0.8.1",
+  "version": "0.8.3",
   "description": "Arkivar – Mobile Client for Imagic IMS",
   "repository": {
     "type": "git",
@@ -100,7 +100,10 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-camera": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": "Arkivar braucht Zugriff auf deine Kamera.",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "Arkivar braucht Zugriff auf deine Fotos."
+      },
       "cordova-plugin-console": {},
       "cordova-plugin-device": {},
       "cordova-plugin-file": {},
