@@ -34,29 +34,26 @@ describe('Page: Keywords', () => {
     fixture.destroy();
   });
 
-  it('Should go to upload page after selecting leaf', inject([NavController], (navCtrl: NavController) => {
+  it('Should go to upload page after selecting leaf', inject([NavController, ImsBackendMock], (navCtrl: NavController, imsBackendMock: ImsBackendMock) => {
     page.uploadrootpage = new ViewController();
     spyOn(navCtrl, 'popTo').and.callThrough();
-    page.selectKeyword(new Keyword('leaf'));
+    page.selectKeyword(imsBackendMock.keywordLeaf);
     expect(navCtrl.popTo).toHaveBeenCalledWith(page.uploadrootpage);
   }));
 
   it('Should send event after selecting leaf', inject([Events, ImsBackendMock], (events: Events, imsBackendMock: ImsBackendMock) => {
     page.field = imsBackendMock.modelFieldOptionalString;
     spyOn(events, 'publish').and.callThrough();
-    const keyword: Keyword = new Keyword('leaf');
-    page.selectKeyword(keyword);
-    expect(events.publish).toHaveBeenCalledWith('keyword: selected', imsBackendMock.modelFieldOptionalString, keyword);
+    page.selectKeyword(imsBackendMock.keywordLeaf);
+    expect(events.publish).toHaveBeenCalledWith('keyword: selected', imsBackendMock.modelFieldOptionalString, imsBackendMock.keywordLeaf);
   }));
 
   it('Should load children if they exist', inject([NavController, ImsBackendMock], (navCtrl: NavController, imsBackendMock: ImsBackendMock) => {
     page.uploadrootpage = new ViewController();
     page.field = imsBackendMock.modelFieldOptionalString;
-    const leafs: Keyword[] = [new Keyword('leaf1'), new Keyword('leaf2')];
-    const node: Keyword = new Keyword('node', leafs);
     spyOn(navCtrl, 'push').and.callThrough();
-    page.selectKeyword(node);
-    expect(navCtrl.push).toHaveBeenCalledWith(KeywordsPage, { field: imsBackendMock.modelFieldOptionalString, keywords: leafs, uploadrootpage:  page.uploadrootpage});
+    page.selectKeyword(imsBackendMock.keywordParent);
+    expect(navCtrl.push).toHaveBeenCalledWith(KeywordsPage, { field: imsBackendMock.modelFieldOptionalString, keywords: imsBackendMock.keywordParent.children, uploadrootpage:  page.uploadrootpage});
   }));
 
 });
