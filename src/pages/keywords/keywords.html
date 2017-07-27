@@ -1,0 +1,15 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Keyword Auswahl</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+<ion-list>
+  <button ion-item *ngFor="let keyword of keywords" (click)="selectKeyword(keyword)" >
+    {{ keyword.keyword }}
+  </button>
+</ion-list>
+</ion-content>

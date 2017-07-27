@@ -1,7 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavController, NavParams, Platform, ToastController } from 'ionic-angular';
+import { Events, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import 'rxjs/add/observable/concat';
 import 'rxjs/add/observable/forkJoin';
 import { Observable } from 'rxjs/Observable';
@@ -13,12 +13,15 @@ import { SettingService } from '../../providers/setting-service';
 import { Entry } from './../../models/entry';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsUploadError } from './../../models/errors/ims-upload-error';
+import { Keyword } from './../../models/keyword';
 import { MetadataField } from './../../models/metadata-field';
 import { AuthService } from './../../providers/auth-service';
 import { BrowserFileuploadSelectorService } from './../../providers/browser-fileupload-selector-service';
 import { DragEventService } from './../../providers/drag-event-service';
+import { KeywordService } from './../../providers/keyword-service';
 import { ModelService } from './../../providers/model-service';
 import { UploadService } from './../../providers/upload-service';
+import { KeywordsPage } from './../keywords/keywords';
 
 @Component({
   selector: 'page-upload',
@@ -35,12 +38,13 @@ export class UploadPage {
   public pictureFromCameraEnabled: boolean;
   public showDragOverlay: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2, public dragEventService: DragEventService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2, public dragEventService: DragEventService, public events: Events, public keywordService: KeywordService) {
     this.image = navParams.get('image');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
     this.dragEventService.preventEventsOnBody(renderer);
+    this.events.subscribe('keyword: selected', (field, keyword) => { this.fillFormWithKeyword(field, keyword); });
   }
 
   public ionViewDidLoad(): void {
@@ -159,6 +163,20 @@ export class UploadPage {
     if (selectedImage !== undefined) {
       this.image = selectedImage;
     }
+  }
+
+  public showSuggestionIfAvailable(field: MetadataField): void {
+    if (field.catalogHref !== undefined) {
+      this.loadingService.subscribeWithLoading(this.keywordService.getKeywordCatalog(field),
+        keywordCatalog => {
+          this.navCtrl.push(KeywordsPage, { field: field, keywords: keywordCatalog.keywords, uploadrootpage: this.navCtrl.getActive()});
+        },
+        err => { throw new ImsLoadingError('Keywordcatalog', err); });
+    }
+  }
+
+  public fillFormWithKeyword(field: MetadataField, keyword: Keyword): void {
+    this.fieldsForm.controls[field.name].setValue(keyword.keyword);
   }
 
 }

@@ -1,5 +1,6 @@
 import { browser, by, element, ExpectedConditions } from 'protractor';
 import { Helpers } from './helpers/helpers';
+import { KeywordsPageObject } from './page-objects/keywords-page-object';
 import { LoginPageObject } from './page-objects/login-page-object';
 import { SettingImageFieldsPageObject } from './page-objects/setting-image-field-page-object';
 import { UploadPageObject } from './page-objects/upload-page-object';
@@ -10,6 +11,7 @@ describe('Upload E2E Test', () => {
   const loginPage = new LoginPageObject();
   const uploadPage = new UploadPageObject();
   const settingImageFieldsPageObject = new SettingImageFieldsPageObject();
+  const keywordsPage = new KeywordsPageObject();
 
   beforeEach(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -122,5 +124,13 @@ describe('Upload E2E Test', () => {
     uploadPage.verifyDateTimeDisplayValue();
     uploadPage.verifyDateDisplayValue();
     uploadPage.verifyTimeDisplayValue();
+  });
+
+  it('Should fill keyword field', () => {
+    settingImageFieldsPageObject.loadPage();
+    Helpers.toggleFieldSettings(settingImageFieldsPageObject.settingsImageFieldKEYWORDDUALToggle);
+    keywordsPage.reloadPage();
+    keywordsPage.selectFirstKeyword();
+    uploadPage.verifyKeywordDualFieldFilled();
   });
 });

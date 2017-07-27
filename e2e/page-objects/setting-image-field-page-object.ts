@@ -1,5 +1,4 @@
 import { browser, by, element, ElementArrayFinder, ElementFinder, ExpectedConditions } from 'protractor';
-import 'rxjs/add/observable/fromPromise';
 import { Helpers } from './../helpers/helpers';
 import { SettingsPageObject } from './settings-page-object';
 
@@ -16,6 +15,7 @@ export class SettingImageFieldsPageObject {
   public readonly settingsImageFieldDATETIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATETIMEFELDToggle'));
   public readonly settingsImageFieldDATEFELDToggle: ElementFinder = element(by.id('settingsImageFieldDATEFELDToggle'));
   public readonly settingsImageFieldTIMEFELDToggle: ElementFinder = element(by.id('settingsImageFieldTIMEFELDToggle'));
+  public readonly settingsImageFieldKEYWORDDUALToggle: ElementFinder = element(by.id('settingsImageFieldKEYWORDDUALToggle'));
 
   public loadPage(): void {
     this.settingsPage.loadPage();

@@ -1,5 +1,4 @@
 import { by, element, ElementFinder, ExpectedConditions } from 'protractor';
-import 'rxjs/add/observable/fromPromise';
 import { Helpers } from '../helpers/helpers';
 import { LoginPageObject } from './login-page-object';
 
