@@ -44,7 +44,7 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──────── any-component.spec.ts  # Testklasse des Elements
     ├──────── any-component.ts       # Logik für das Elements
     ├──── mocks                      # Mocks und Klassen für Testing
-    ├────── providers                # obsolet?
+    ├────── providers                # Mock Klassen von Provider
     ├────── response                 # Mock-Antworten der REST API
     ├──── models                     # Model Klassen
     ├──── pages                      # UI Screen Seiten
