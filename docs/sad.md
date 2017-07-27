@@ -50,6 +50,9 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──── themes                     # scss Files für die Gestaltung der App 
     ├── e2e                          # Automatisierte End to End Tests
 
+# Technologie
+Dieses Kapitel beschreibt die eingesetzen Technologien sowie Details bei wichtigen Technologien.
+
 ## Technologie Stack
 
 Folgende Technologien werden innerhalb des Projekts verwendet.
@@ -72,3 +75,10 @@ Folgende Technologien werden innerhalb des Projekts verwendet.
 | Team Kommunikation                   | Slack              | ![Slack](images/logo/Slack_Logo.jpg) | https://slack.com/                      |
 | Entwicklungsumgebung                 | Visual Studio Code | ![Visual Studio Code](images/logo/Visual_Studio_Code_Logo.jpg) | https://code.visualstudio.com/          |
 | Zeiterfassung                        | Goolge Drive       | ![Google Drive](images/logo/Google_Drive_Logo.jpg) | https://drive.google.com/ |
+
+## Assembly Flow
+Der Assembly Flow zeigt die Module und verschiedenen Technologien welche gebraucht werden um eine Ionic App zu bauen.
+
+![Assembly FLow](images/assembly_flow.png)
+
+Im Bild erkennt man, dass mit Hilfe von Apache Cordova und Angular ein Kompilat für verschiedene Mobile Betriebsysteme, aber auch für eine Browser Applikation entsteht. Dabei wird vom Entwickler nur Typescript, HTML und SCSS Code geschrieben. Auch ist es möglich fremdes Javascript oder HTML zu verwenden. Das Ionic Framework stellt eine UI-Library und Service Providers zur Verfügungen mit welchem einfache Single Page Applikationen erstellt werden können. Auch kümmert sich Ionic um das Verbinden der Komponenten.    
