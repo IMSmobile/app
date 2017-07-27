@@ -59,6 +59,12 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──── themes                     # scss Files für die Gestaltung der App 
     ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
 
+## Dataflow Diagramm
+
+![Dataflow Diagramm](images/dataflow_diagram.png)
+
+Um nachvollziehen, welche Daten zum mobilen Client hin- und hergereicht werden, wurde ein Dataflow Diagram erstellt. Dabei ist gut ersichtlich, dass der Grossteil der Kommunikation zwischen dem Client und dem Backend Server läuft. 
+
 ## Technologie Stack
 
 Folgende Technologien werden innerhalb des Projekts verwendet.
