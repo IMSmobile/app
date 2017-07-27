@@ -11,7 +11,7 @@
 
 | Dokument          | Beschreibung                                                         |
 |-------------------|----------------------------------------------------------------------|
-| Projektantrag     | Zeigt Inhalt des Projekts                                            |
+| [Projektantrag](docs/projektantrag.pdf)     | Zeigt Inhalt und Genehmigung des Projekts                                            |
 | [Projektplanung](docs/projektplan.md)    | Details zum Projekt und Projektvorgehen                              |
 | Protokolle        | Zusammenfassungen von Sitzungen über Teilnehmer, Inhalt und Aktionen |
 | Testspezifikation | Resultat der explorativer Testsession                                |
