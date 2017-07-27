@@ -51,11 +51,10 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├── e2e                          # Automatisierte End to End Tests
 
 # Technologie
-Dieses Kapitel beschreibt die eingesetzen Technologien sowie Details bei wichtigen Technologien.
 
 ## Technologie Stack
 
-Folgende Technologien werden innerhalb des Projekts verwendet.
+Folgende Technologien werden innerhalb des Projekts verwendet:
 
 | Kategorie                            | Technologie        | Logo                            | Link                                    |
 |--------------------------------------|--------------------|---------------------------------|-----------------------------------------|
@@ -77,8 +76,8 @@ Folgende Technologien werden innerhalb des Projekts verwendet.
 | Zeiterfassung                        | Goolge Drive       | ![Google Drive](images/logo/Google_Drive_Logo.jpg) | https://drive.google.com/ |
 
 ## Assembly Flow
-Der Assembly Flow zeigt die Module und verschiedenen Technologien welche gebraucht werden um eine Ionic App zu bauen.
+Der Assembly Flow zeigt die Module und verschiedenen Technologien auf, welche gebraucht werden, um eine Ionic App zu bauen.
 
 ![Assembly FLow](images/assembly_flow.png)
 
-Im Bild erkennt man, dass basierend auf Apache Cordova und Angular ein Kompilat für verschiedene mobile Betriebsysteme, aber auch für eine Browser Applikation entsteht. Dabei wird vom Entwickler nur Typescript, HTML und SCSS Code geschrieben. Auch ist es möglich fremdes Javascript oder HTML zu verwenden. Das Ionic Framework stellt eine UI-Library und Service Providers zur Verfügungen mit welchem einfache Single Page Applikationen erstellt werden können. Auch kümmert sich Ionic um das Verbinden der Komponenten.    
+Ionic basiert auf Angular und bietet weitere Funktionen wie Templates, Komponenten und vorgefertigte Providers. Ausserdem gibt es die Struktur vor und ist zuständig für das Verbinden der Komponenten. Für die Smartphone-Anbindung werden Cordova-Plugins verwendet, damit auch die nativen Betriebssystemfunktionen (z.B. Kamera) benutzt werden können. Zur Einbindung dieser Ionic-Funktionen wird Typescript genutzt, welches die Grundlage für den eigenen Code ist. Dieser kann erweitert werden durch HTML und Sass. Auch ist es möglich fremdes Javascript oder HTML zu verwenden. Das komplette Paket kann anschliessend zu einem App für verschiedene mobile Betriebssysteme oder zu einer Browserapplikation kompiliert werden.
