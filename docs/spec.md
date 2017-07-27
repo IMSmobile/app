@@ -1,5 +1,19 @@
 # Spezifikation Mobile Client
 
+## Inhaltsverzeichnis
+- [Einleitung](#einleitung)
+- [Vision](#vision)
+- [Stakeholder](#stakeholder)
+- [Anforderungskatalog](#anforderungskatalog)
+  - [Funktional](#funktional)
+  - [Nicht-Funktional](#nicht-funktional)
+- [Priorisierung](#priorisierung)
+  - [Vorgehen](#vorgehen)
+  - [Priorisierungsmatrix](#priorisierungsmatrix)
+  - [Initiale Priorität der Anforderungen](#initiale-priorität-der-anforderungen)
+- [Quelle](#quelle)
+- [Glossar](#glossar)
+
 ## Einleitung
 Mit dem Mobile Client möchten wir den Kunden von Imagic ermöglichen über iOS und Android Smartphones digitale Medien (Bilder, Audio, Video, Texte) ins digitalen Bildmanagement-System Imagic IMS abzuspeichern.
 

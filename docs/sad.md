@@ -1,5 +1,13 @@
 # Software Architecture Document
 
+## Inhaltsverzeichnis
+  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
+  - [Imagic IMS Daten Model](#imagic-ims-daten-model)
+    - [Datenmodell](#datenmodell)
+    - [Objektmodell](#objektmodell)
+  - [Ordner Struktur Konventionen](#ordner-struktur-konventionen)
+  - [Technologie Stack](#technologie-stack)
+
 Beschreibt die Archtiektur des Mobile Client.
 
 ## Imagic IMS Daten Model
