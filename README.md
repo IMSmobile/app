@@ -30,10 +30,10 @@
 | [Risikonanalyse](docs/risikoanalyse.md)                      | Risiken des Projekts und Risikominimierung                    |
 | [Framework-Anforderungsspezifikation](docs/frameworkanforderungen.md) | Anforderung für eine Frameworkevoluation                      |
 | [Framework-Anforderungsspezifikation](docs/frameworkanforderungen.md)              | Beschreibung weshalb Framwork ausgewählt wurde                |
-| Architekur-Designdokumentation      | Hilfe für Entwickler sich rasch im Projekt zurecht zu finden  |
-| Decisionlog                         | Entscheidungen die während dem Projekt entstanden sind        |
-| Grafik Update                       | Beschreibung wie Logo, Icons gewechselt werden können         |
-| Marketing Text                      | Text welche für App-Store und Play-Store verwendet werden     |
+| [Architekur-Designdokumentation](docs/sad.md)      | Hilfe für Entwickler sich rasch im Projekt zurecht zu finden  |
+| [Decisionlog](docs/decisionlog.md)                         | Entscheidungen die während dem Projekt entstanden sind        |
+| [Grafik Update](docs/howToUpdateGraphics.md)                       | Beschreibung wie Logo, Icons gewechselt werden können         |
+| [Marketing Text](docs/store/store.md)                      | Text welche für App-Store und Play-Store verwendet werden     |
 | Sprint Review                       | Präsentationen welche bei den Sprint Reviews verwendet wurden |
 | Sprint Burndown Charts              | Grafik der Verteilung vom Abschluss eines Item pro Sprint     |
 | Projekt Burnup Chart                | Übersicht über Velocity und Ausblick                          |
