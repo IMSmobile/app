@@ -81,4 +81,4 @@ Der Assembly Flow zeigt die Module und verschiedenen Technologien welche gebrauc
 
 ![Assembly FLow](images/assembly_flow.png)
 
-Im Bild erkennt man, dass mit Hilfe von Apache Cordova und Angular ein Kompilat für verschiedene Mobile Betriebsysteme, aber auch für eine Browser Applikation entsteht. Dabei wird vom Entwickler nur Typescript, HTML und SCSS Code geschrieben. Auch ist es möglich fremdes Javascript oder HTML zu verwenden. Das Ionic Framework stellt eine UI-Library und Service Providers zur Verfügungen mit welchem einfache Single Page Applikationen erstellt werden können. Auch kümmert sich Ionic um das Verbinden der Komponenten.    
+Im Bild erkennt man, dass basierend auf Apache Cordova und Angular ein Kompilat für verschiedene Mobile Betriebsysteme, aber auch für eine Browser Applikation entsteht. Dabei wird vom Entwickler nur Typescript, HTML und SCSS Code geschrieben. Auch ist es möglich fremdes Javascript oder HTML zu verwenden. Das Ionic Framework stellt eine UI-Library und Service Providers zur Verfügungen mit welchem einfache Single Page Applikationen erstellt werden können. Auch kümmert sich Ionic um das Verbinden der Komponenten.    
