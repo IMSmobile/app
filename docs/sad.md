@@ -30,16 +30,25 @@ Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist do
 Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden verwenden wir eine Order Struktur Konventionen. Diese Konventionen entsprechen im Grundsatz der Konvention von einem Ionic 2 Projekt.  
 
     .
+    ├── e2e                          # Automatisierte End to End Tests
     ├── docs                         # Dokumentationen
     ├── resources                    # Icon, Splashscreen
-    |── scripts                      # Scripts für Travis CI oder Installationen
+    |── scripts                      # Scripts für Travis CI oder Entwickler
     ├── src                          # Sourcecode Files
     ├──── app                        # Zusammenstellung der App, Dependency Managment Konfiguration
     ├──── assets                     # Bilder die innerhalb der App gebraucht werden
+    ├──── components                 # Wiederverwendbare UI Elemente
+    ├────── any-component            # Überordner eines Elements
+    ├──────── any-component.html     # Struktur und UI des Elements
+    ├──────── any-component.scss     # Gestaltung des Elements
+    ├──────── any-component.spec.ts  # Testklasse des Elements
+    ├──────── any-component.ts       # Logik für das Elements
     ├──── mocks                      # Mocks und Klassen für Testing
+    ├────── providers                # Mock Klassen von Provider
+    ├────── response                 # Mock-Antworten der REST API
     ├──── models                     # Model Klassen
     ├──── pages                      # UI Screen Seiten
-    ├────── anyPage                  # Überordner einer Seite
+    ├────── any-page                 # Überordner einer Seite
     ├──────── any-page.html          # Struktur und UI Elemente der Seite
     ├──────── any-page.scss          # Gestaltung der Seite
     ├──────── any-page.spec.ts       # Testklasse der Seite
@@ -48,7 +57,7 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──────── any-service.spec.ts    # Testklasse des Services
     ├──────── any-service.ts         # Serviceklasse
     ├──── themes                     # scss Files für die Gestaltung der App 
-    ├── e2e                          # Automatisierte End to End Tests
+    ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
 
 ## Technologie Stack
 
