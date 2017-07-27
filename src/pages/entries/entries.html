@@ -13,8 +13,10 @@
   <ion-infinite-scroll (ionInfinite)="infiniteEntries($event)">
     <ion-list>
       <ion-item *ngFor="let entry of entries" id="entriesItem{{entry.fields[parentImageReferenceField]}}" (dragleave)="handleDragEvent($event)" (dragenter)="handleDragEvent($event)" (dragstart)="handleDragEvent($event)" (dragover)="handleDragEvent($event)" (drop)="handleDragEvent($event, entry.fields[parentImageReferenceField], entry.fields[titleField])">
-        <h1 ion-text color="primary">{{entry.fields[titleField]}}</h1>
-        <div *ngFor="let field of fields" class="entries-fields">{{field.name}} : {{entry.fields[field.name]}}</div>
+        <div class="entryContent">
+          <h1 ion-text color="primary">{{entry.fields[titleField]}}</h1>
+          <div *ngFor="let field of fields" class="entries-fields">{{field.name}} : {{entry.fields[field.name]}}</div>
+        </div>
         <button *ngIf="pictureFromCameraEnabled" ion-button (click)="takePictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="cameraButton" item-right>
           <ion-icon name="camera"></ion-icon>
         </button>
