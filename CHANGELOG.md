@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See  [Definition of Done](CONTRIBUTING.md) for commit guidelines.
 
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/IMSmobile/app/compare/0.8.3...v0.9.0) (2017-07-27)
+
+
+### Features
+
+* **upload:** keyword leaf selection ([c52bf5e](https://github.com/IMSmobile/app/commit/c52bf5e)), closes [#504](https://github.com/IMSmobile/app/issues/504)
+
+
+
 <a name="0.8.3"></a>
 ## [0.8.3](https://github.com/IMSmobile/app/compare/0.8.2...v0.8.3) (2017-07-25)
 
