@@ -15,7 +15,7 @@
       <ion-item *ngFor="let entry of entries" id="entriesItem{{entry.fields[parentImageReferenceField]}}" (dragleave)="handleDragEvent($event)" (dragenter)="handleDragEvent($event)" (dragstart)="handleDragEvent($event)" (dragover)="handleDragEvent($event)" (drop)="handleDragEvent($event, entry.fields[parentImageReferenceField], entry.fields[titleField])">
         <div class="entryContent">
           <h1 ion-text color="primary">{{entry.fields[titleField]}}</h1>
-          <div *ngFor="let field of fields" class="entries-fields">{{entry.fields[field.name]}}</div>
+          <div *ngFor="let field of fields" attr.fieldname="{{field.name}}" class="entries-fields">{{entry.fields[field.name]}}</div>
         </div>
         <button *ngIf="pictureFromCameraEnabled" ion-button (click)="takePictureForEntry(entry.fields[parentImageReferenceField], entry.fields[titleField])" class="cameraButton" item-right>
           <ion-icon name="camera"></ion-icon>
