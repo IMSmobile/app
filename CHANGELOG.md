@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See  [Definition of Done](CONTRIBUTING.md) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/IMSmobile/app/compare/0.9.1...v0.10.0) (2017-07-28)
+
+
+### Features
+
+* **entries:** display only field content in entries list ([80d984c](https://github.com/IMSmobile/app/commit/80d984c)), closes [#519](https://github.com/IMSmobile/app/issues/519)
+
+
+
 <a name="0.9.1"></a>
 ## [0.9.1](https://github.com/IMSmobile/app/compare/0.9.0...v0.9.1) (2017-07-27)
 
