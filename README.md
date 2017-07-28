@@ -15,8 +15,8 @@
 | [Projektplanung](docs/projektplan.md)    | Details zum Projekt und Projektvorgehen                              |
 | [Protokolle](docs/protokolle.md)        | Zusammenfassungen von Sitzungen über Teilnehmer, Inhalt und Aktionen |
 | Testspezifikation | Resultat der explorativer Testsession                                |
-| Zeiterfassung     | Liste aller Stunden                                                  |
-| Zeitauswertung    | Verbrauchte Stunden pro Sprint und Kategorie                         |
+| [Zeiterfassung](docs/zeiterfassung.pdf)     | Liste aller Stunden                                                  |
+| [Zeitauswertung](docs/zeitauswertung.pdf)    | Verbrauchte Stunden pro Sprint und Kategorie                         |
 | [Abstrakt](docs/abstract.md)          | Kurzbeschreibung des Projekts                                        |
 | Schlussbericht    | Feedback und Abschluss des Projekts                                  |
 | [Glossar](docs/glossary.md)           | Beschreibung des Projektwortschatz                                   |
