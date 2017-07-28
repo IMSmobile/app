@@ -1,12 +1,12 @@
 # Software Architecture Document
 
-Beschreibt die Archtiektur des Mobile Client.
+Dieses Dokument beschreibt die Architektur des Mobile Client.
 
 ### Komponentendiagramm
 
 ![Komponentendiagramm](images/components.png)
 
-Der Mobile Client besteht aus mehreren **Pages** welche wiederum auf **Services** zugreifen. Dabei unterscheiden wir zwischen Imagic IMS spezifischen **Services** und allgemeinen **Infrastruktur Komponenten**.
+Der Mobile Client besteht aus mehreren **Pages**, welche wiederum auf **Services** zugreifen. Dabei unterscheiden wir zwischen Imagic IMS spezifischen **Services** und allgemeinen **Infrastruktur Komponenten**.
 Die Verbindungen zeigen die Abhängigkeiten untereinander auf. Infrastruktur Komponenten sind in sich geschlossen und können unabhängig genutzt werden.
 Die Reihenfolge der Pages entspricht einem typischen Ablauf von Login, Konfiguration und Upload.
 
