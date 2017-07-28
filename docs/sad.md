@@ -63,7 +63,7 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
 
 ![Dataflow Diagramm](images/dataflow_diagram.png)
 
-Um nachvollziehen, welche Daten zum mobilen Client hin- und hergereicht werden, wurde ein Dataflow Diagram erstellt. Dabei ist gut ersichtlich, dass der Grossteil der Kommunikation zwischen dem Client und dem Backend Server läuft. 
+Ein Dataflow Diagramm bietet einen Überblick über die Richtung des  Datenflusses und zeigt auf, wo die Daten persistiert werden. Beim Arkivar Mobile Clients liefert der IMS Server alle Informationen, welche für den Aufbau der Navigationstruktur notwendig sind. Die Bilder können von verschiedenen Quellen eingelesen werden und mit Feldeinträgen vom User komplettiert werden. Beim Upload werden die Bilder mit den Feldinformationen vom Mobile Client an den IMS Server übertragen. 
 
 ## Technologie Stack
 
