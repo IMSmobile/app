@@ -47,7 +47,7 @@ describe('Entries E2E Test', () => {
     settingEntriesFieldsPage.loadPage();
     Helpers.toggleFieldSettings(settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle);
     entriesPage.reloadPage();
-    entriesPage.verifyFirstFieldStartsWith('MEMOFELD');
+    entriesPage.verifyFirstFieldName('MEMOFELD');
     entriesPage.verifyOnlyFirstFieldVisible();
   });
 
@@ -56,8 +56,8 @@ describe('Entries E2E Test', () => {
     Helpers.toggleFieldSettings(settingEntriesFieldsPage.settingsEntriesFieldMEMOFELDToggle);
     Helpers.toggleFieldSettings(settingEntriesFieldsPage.settingsEntriesFieldTEXTFELDToggle);
     entriesPage.reloadPage();
-    entriesPage.verifyFirstFieldStartsWith('MEMOFELD');
-    entriesPage.verifySecondFieldStartsWith('TEXTFELD');
+    entriesPage.verifyFirstFieldName('MEMOFELD');
+    entriesPage.verifySecondFieldName('TEXTFELD');
     entriesPage.verifyOnlyFirstTwoFieldsVisible();
   });
 

@@ -64,12 +64,12 @@ export class EntriesPageObject {
     browser.wait(ExpectedConditions.invisibilityOf(this.entriesThirdMetaDataField), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
-  public verifyFirstFieldStartsWith(text: string): void {
-    this.verifyFieldStartsWith(text, this.entriesFirstMetaDataField);
+  public verifyFirstFieldName(text: string): void {
+    this.verifyFieldName(text, this.entriesFirstMetaDataField);
   }
 
-  public verifySecondFieldStartsWith(text: string): void {
-    this.verifyFieldStartsWith(text, this.entriesSecondMetaDataField);
+  public verifySecondFieldName(text: string): void {
+    this.verifyFieldName(text, this.entriesSecondMetaDataField);
   }
 
   public verifyDragoverlayVisible(): void {
@@ -94,9 +94,9 @@ export class EntriesPageObject {
     this.entriesItem.getAttribute('id').then(entriesItemId => Helpers.sendDragLeaveEventToElement(entriesItemId));
   }
 
-  private verifyFieldStartsWith(text: string, field: ElementFinder): void {
+  private verifyFieldName(expectedFieldname: string, field: ElementFinder): void {
     browser.wait(ExpectedConditions.visibilityOf(field), Helpers.DEFAULT_WAIT_TIMEOUT);
-    expect(field.getText()).toMatch(new RegExp('^' + text));
+    field.getAttribute('fieldname').then(actualFieldname => expect(actualFieldname).toEqual(expectedFieldname));
   }
 
   private removeEventlistenerFromFilePicker(): void {
