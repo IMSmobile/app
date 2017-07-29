@@ -1,14 +1,27 @@
 # Software Architecture Document
 
-## Inhaltsverzeichnis
-  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
+
+  - [Komponentendiagramm](#komponentendiagramm)
   - [Imagic IMS Daten Model](#imagic-ims-daten-model)
     - [Datenmodell](#datenmodell)
     - [Objektmodell](#objektmodell)
   - [Ordner Struktur Konventionen](#ordner-struktur-konventionen)
-  - [Technologie Stack](#technologie-stack)
+  - [Data Flow Diagramm](#data-flow-diagramm)
+  - [Technologie](#technologie)
+    - [Technologie Stack](#technologie-stack)
+    - [Assembly Flow](#assembly-flow)
 
-Beschreibt die Archtiektur des Mobile Client.
+Dieses Dokument beschreibt die Architektur des Mobile Client.
+
+## Komponentendiagramm
+
+![Komponentendiagramm](images/components.png)
+
+Der Mobile Client besteht aus mehreren **Pages**, welche wiederum auf **Services** zugreifen. Dabei unterscheiden wir zwischen Imagic IMS spezifischen **Services** und allgemeinen **Infrastruktur Komponenten**.
+Die Verbindungen zeigen die Abhängigkeiten untereinander auf. Infrastruktur Komponenten sind in sich geschlossen und können unabhängig genutzt werden.
+Die Reihenfolge der Pages entspricht einem typischen Ablauf von Login, Konfiguration und Upload.
+
+Auf die Darstellung der **Models** und **Mocks** wurde aus Gründen der Übersichtlichkeit verzichtet.
 
 ## Imagic IMS Daten Model
 Um im Imagic IMS Daten via REST API zu speichern müssen wir uns mit dem Datenmodell der Firma Imagic vertraut machen.
@@ -38,16 +51,25 @@ Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist do
 Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden verwenden wir eine Order Struktur Konventionen. Diese Konventionen entsprechen im Grundsatz der Konvention von einem Ionic 2 Projekt.  
 
     .
+    ├── e2e                          # Automatisierte End to End Tests
     ├── docs                         # Dokumentationen
     ├── resources                    # Icon, Splashscreen
-    |── scripts                      # Scripts für Travis CI oder Installationen
+    |── scripts                      # Scripts für Travis CI oder Entwickler
     ├── src                          # Sourcecode Files
     ├──── app                        # Zusammenstellung der App, Dependency Managment Konfiguration
     ├──── assets                     # Bilder die innerhalb der App gebraucht werden
+    ├──── components                 # Wiederverwendbare UI Elemente
+    ├────── any-component            # Überordner eines Elements
+    ├──────── any-component.html     # Struktur und UI des Elements
+    ├──────── any-component.scss     # Gestaltung des Elements
+    ├──────── any-component.spec.ts  # Testklasse des Elements
+    ├──────── any-component.ts       # Logik für das Elements
     ├──── mocks                      # Mocks und Klassen für Testing
+    ├────── providers                # Mock Klassen von Provider
+    ├────── response                 # Mock-Antworten der REST API
     ├──── models                     # Model Klassen
     ├──── pages                      # UI Screen Seiten
-    ├────── anyPage                  # Überordner einer Seite
+    ├────── any-page                 # Überordner einer Seite
     ├──────── any-page.html          # Struktur und UI Elemente der Seite
     ├──────── any-page.scss          # Gestaltung der Seite
     ├──────── any-page.spec.ts       # Testklasse der Seite
@@ -56,11 +78,19 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──────── any-service.spec.ts    # Testklasse des Services
     ├──────── any-service.ts         # Serviceklasse
     ├──── themes                     # scss Files für die Gestaltung der App 
-    ├── e2e                          # Automatisierte End to End Tests
+    ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
 
-## Technologie Stack
+## Data Flow Diagramm
 
-Folgende Technologien werden innerhalb des Projekts verwendet.
+![Data Flow Diagramm](images/dataflow_diagram.png)
+
+Ein Data Flow Diagramm bietet einen Überblick über die Richtung des Datenflusses und zeigt auf, wo die Daten persistiert werden. Beim Arkivar Mobile Clients liefert der IMS Server alle Informationen, welche für den Aufbau der Navigationsstruktur notwendig sind. Die Bilder können von verschiedenen Quellen eingelesen werden und mit Feldeinträgen vom User komplettiert werden. Beim Upload werden die Bilder mit den Feldinformationen vom Mobile Client an den IMS Server übertragen. 
+
+## Technologie
+
+### Technologie Stack
+
+Folgende Technologien werden innerhalb des Projekts verwendet:
 
 | Kategorie                            | Technologie        | Logo                            | Link                                    |
 |--------------------------------------|--------------------|---------------------------------|-----------------------------------------|
@@ -79,4 +109,11 @@ Folgende Technologien werden innerhalb des Projekts verwendet.
 | Dokumentationstool                   | Github             | ![Github](images/logo/Github_Logo.jpg) | https://github.com/                     |
 | Team Kommunikation                   | Slack              | ![Slack](images/logo/Slack_Logo.jpg) | https://slack.com/                      |
 | Entwicklungsumgebung                 | Visual Studio Code | ![Visual Studio Code](images/logo/Visual_Studio_Code_Logo.jpg) | https://code.visualstudio.com/          |
-| Zeiterfassung                        | Goolge Drive       | ![Google Drive](images/logo/Google_Drive_Logo.jpg) | https://drive.google.com/ |
+| Zeiterfassung                        | Google Drive       | ![Google Drive](images/logo/Google_Drive_Logo.jpg) | https://drive.google.com/ |
+
+### Assembly Flow
+Der Assembly Flow zeigt die Module und verschiedenen Technologien auf, welche gebraucht werden, um eine Ionic App zu bauen.
+
+![Assembly FLow](images/assembly_flow.png)
+
+Ionic basiert auf Angular und bietet weitere Funktionen wie Templates, Komponenten und vorgefertigte Providers. Ausserdem gibt es die Struktur vor und ist zuständig für das Verbinden der Komponenten. Für die Smartphone-Anbindung werden Cordova-Plugins verwendet, damit auch die nativen Betriebssystemfunktionen (z.B. Kamera) benutzt werden können. Zur Einbindung dieser Ionic-Funktionen wird Typescript genutzt, welches die Grundlage für den eigenen Code ist. Dieser kann erweitert werden durch HTML und Sass. Auch ist es möglich fremdes Javascript oder HTML zu verwenden. Das komplette Paket kann anschliessend zu einem App für verschiedene mobile Betriebssysteme oder zu einer Browser Applikation kompiliert werden.
