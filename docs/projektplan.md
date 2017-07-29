@@ -283,8 +283,7 @@ Um besser mit Ionic arbeiten müssen folgende Plugins der Entwicklungsumgebung i
 | [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) | `ext install debugger-for-chrome` | Javascript und Typescript Debugging via Google Chrome |
 |[TSLint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint) | `ext install tslint` | Integration des [tslint Linters](#code-guideline) für TypeScript |
 |[Markdown TOC](https://marketplace.visualstudio.com/items?itemName=AlanWalk.markdown-toc) | `ext install markdown-toc` | Automatisiertes generieren des Inhaltsverzeichnis (Table of Content) für Markdown Dateien. |
-
-**Plugin Installation**: In Visual Studio Code mit Shortcut `Ctrl + P` und dem Befehl (z.B. ext install ionic2) ein Plugin installieren.
+|[Auto Import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport) | `ext install autoimport` | Automatisches importieren von Klassen in Typescript via Code Completion.
 
 ###### Debugging
 Um eine Ionic App zu debuggen:
