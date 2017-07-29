@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/IMSmobile/app/badge.svg)](https://coveralls.io/github/IMSmobile/app)
 
 
-# Projektdokumente
+## Projektdokumente
 
 | Dokument          | Beschreibung                                                         |
 |-------------------|----------------------------------------------------------------------|
@@ -21,7 +21,7 @@
 | Schlussbericht    | Feedback und Abschluss des Projekts                                  |
 | [Glossar](docs/glossary.md)           | Beschreibung des Projektwortschatz                                   |
 
-# Produktdokumente
+## Produktdokumente
 
 | Dokument                            | Beschreibung                                                  |
 |-------------------------------------|---------------------------------------------------------------|
@@ -36,3 +36,8 @@
 | [Marketing Text](docs/store/store.md)                      | Text welche für App-Store und Play-Store verwendet werden     |
 | [Sprint Dokumente](docs/sprints.md)                       | Präsentationen, Protokolle und Burndown Charts von den Sprints |
 
+## Quellen
+Icons von https://icons8.com/
+
+## Markenrechte
+Imagic IMS ist eine eingetragene Marke der [Klasse](https://de.wikipedia.org/wiki/Markenklassifikation) 09 und darf nur mit der ausdrücklichen Erlaubnis von Imagic Bildverarbeitung AG verwendet werden.

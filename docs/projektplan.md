@@ -470,9 +470,3 @@ Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die 
 
 ### Story Map
 Aus den Anforderungen und dem laufenden Feedback der Stakeholder entstehen User-Storys welche wir nach Themen gruppiert als Kärtchen auf der Story Map auslegen. Während dem Sprint Review zeigen wir jeweils den aktuellen Stand des Projekts bezogen auf die User-Storys.
-
-## Quellen
-Icons von https://icons8.com/
-
-## Markenrechte
-Imagic IMS ist eine eingetragene Marke der [Klasse](https://de.wikipedia.org/wiki/Markenklassifikation) 09 und darf nur mit der ausdrücklichen Erlaubnis von Imagic Bildverarbeitung AG verwendet werden.
