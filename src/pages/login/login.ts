@@ -10,6 +10,7 @@ import { SettingService } from '../../providers/setting-service';
 import { EntriesPage } from '../entries/entries';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
+import { UpdateError } from './../../models/errors/update-error';
 import { Filter } from './../../models/filter';
 import { UpdateService } from './../../providers/update-service';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
@@ -31,7 +32,6 @@ export class LoginPage {
       user: ['', Validators.required],
       password: ['', Validators.required],
     });
-    this.loadingService.subscribeWithLoading(this.updateService.updateIfAvailable(), () => { }, () => { });
   }
 
   public login(): void {
@@ -83,6 +83,7 @@ export class LoginPage {
   }
 
   public ionViewDidLoad(): void {
+    this.loadingService.subscribeWithLoading(this.updateService.updateIfAvailable(), () => { }, err => { throw new UpdateError(err); } );
     this.settingService.getRestUrl().subscribe(val => this.loginForm.controls.server.setValue(val));
     this.settingService.getUsername().subscribe(val => this.loginForm.controls.user.setValue(val));
     this.settingService.isShowRestUrlField().subscribe(val => this.isShowRestUrlField = val);

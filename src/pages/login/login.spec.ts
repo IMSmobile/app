@@ -1,6 +1,8 @@
+/* tslint:disable:max-file-line-count */
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
+import { Deploy } from '@ionic/cloud-angular';
 import { Storage } from '@ionic/storage';
 import { AlertController, App, Config, DomController, Form, IonicModule, Keyboard, LoadingController, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
@@ -12,11 +14,14 @@ import { ImsService } from '../../providers/ims-service';
 import { LoadingService } from '../../providers/loading-service';
 import { SettingService } from '../../providers/setting-service';
 import { EntriesPage } from '../entries/entries';
+import { DeployMock } from './../../mocks/mocks';
 import { ImsAuthenticationError } from './../../models/errors/ims-authentication-error';
 import { ImsLoadingError } from './../../models/errors/ims-loading-error';
 import { ImsServerConnectionError } from './../../models/errors/ims-server-connection-error';
+import { UpdateError } from './../../models/errors/update-error';
 import { DragEventCounterService } from './../../providers/drag-event-counter-service';
 import { DragEventService } from './../../providers/drag-event-service';
+import { UpdateService } from './../../providers/update-service';
 import { SettingArchivePage } from './../setting-archive/setting-archive';
 import { LoginPage } from './login';
 
@@ -31,7 +36,7 @@ describe('Page: Login', () => {
       providers: [
         App, DomController, Form, Keyboard, NavController, LoadingController, AuthService,
         ImsService, ImsBackendMock, BaseRequestOptions, LoadingService, AlertService, SettingService,
-        DragEventService, DragEventCounterService,
+        DragEventService, DragEventCounterService, UpdateService,
         {
           provide: Http,
           useFactory: (imsBackendMock, options) =>
@@ -46,6 +51,7 @@ describe('Page: Login', () => {
         { provide: ToastController, useClass: ToastMock },
         { provide: LoadingController, useClass: LoadingMock },
         { provide: Storage, useClass: StorageMock },
+        { provide: Deploy, useClass: DeployMock },
       ],
       imports: [HttpModule, FormsModule, IonicModule, ReactiveFormsModule]
     });
@@ -178,6 +184,17 @@ describe('Page: Login', () => {
     page.loginForm.controls.password.setValue(credential.password);
     expect(page.loginForm.valid).toBeTruthy();
     expect(() => page.loginSuccessful()).toThrowError(ImsLoadingError);
+  }));
+
+  it('Checks for updates', inject([UpdateService], (updateService: UpdateService) => {
+    spyOn(updateService, 'updateIfAvailable').and.callThrough();
+    page.ionViewDidLoad();
+    expect(updateService.updateIfAvailable).toHaveBeenCalled();
+  }));
+
+  it('Throws update error when update fails', inject([UpdateService], (updateService: UpdateService) => {
+    spyOn(updateService, 'updateIfAvailable').and.returnValue(Observable.throw('oops'));
+    expect(() => page.ionViewDidLoad()).toThrowError(UpdateError);
   }));
 
 });
