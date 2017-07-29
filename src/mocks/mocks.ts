@@ -256,3 +256,19 @@ export class InfiniteScrollMock {
   public complete() {
   }
 }
+
+export class DeployMock {
+  public check(): Promise<boolean> {
+    return Promise.resolve(false);
+  }
+
+  public download(): Promise<void> {
+    return Promise.resolve(undefined);
+  }
+
+  public extract(): Promise<void> {
+    return Promise.resolve(undefined);
+  }
+
+  public load(): void { }
+}
