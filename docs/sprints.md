@@ -1,4 +1,5 @@
-Liste mit Links zu den Sprint Review Präsentation sowie Links zum jeweiligen Protokoll
+Übersicht der Sprints mit Link zur jeweiligen Präsentation, Protokoll und Burndown Chart.
+
 
 | Datum                    | Präsentation                                           | Protokoll                                                                                           | Burndown Chart                                                            |
 |--------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
