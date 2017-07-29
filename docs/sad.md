@@ -1,8 +1,19 @@
 # Software Architecture Document
 
+
+  - [Komponentendiagramm](#komponentendiagramm)
+  - [Imagic IMS Daten Model](#imagic-ims-daten-model)
+    - [Datenmodell](#datenmodell)
+    - [Objektmodell](#objektmodell)
+  - [Ordner Struktur Konventionen](#ordner-struktur-konventionen)
+  - [Data Flow Diagramm](#data-flow-diagramm)
+  - [Technologie](#technologie)
+    - [Technologie Stack](#technologie-stack)
+    - [Assembly Flow](#assembly-flow)
+
 Dieses Dokument beschreibt die Architektur des Mobile Client.
 
-### Komponentendiagramm
+## Komponentendiagramm
 
 ![Komponentendiagramm](images/components.png)
 
