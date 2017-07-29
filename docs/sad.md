@@ -69,11 +69,11 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──── themes                     # scss Files für die Gestaltung der App 
     ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
 
-## Dataflow Diagramm
+## Data Flow Diagramm
 
-![Dataflow Diagramm](images/dataflow_diagram.png)
+![Data Flow Diagramm](images/dataflow_diagram.png)
 
-Ein Dataflow Diagramm bietet einen Überblick über die Richtung des  Datenflusses und zeigt auf, wo die Daten persistiert werden. Beim Arkivar Mobile Clients liefert der IMS Server alle Informationen, welche für den Aufbau der Navigationstruktur notwendig sind. Die Bilder können von verschiedenen Quellen eingelesen werden und mit Feldeinträgen vom User komplettiert werden. Beim Upload werden die Bilder mit den Feldinformationen vom Mobile Client an den IMS Server übertragen. 
+Ein Data Flow Diagramm bietet einen Überblick über die Richtung des Datenflusses und zeigt auf, wo die Daten persistiert werden. Beim Arkivar Mobile Clients liefert der IMS Server alle Informationen, welche für den Aufbau der Navigationsstruktur notwendig sind. Die Bilder können von verschiedenen Quellen eingelesen werden und mit Feldeinträgen vom User komplettiert werden. Beim Upload werden die Bilder mit den Feldinformationen vom Mobile Client an den IMS Server übertragen. 
 
 ## Technologie
 
