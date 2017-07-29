@@ -254,7 +254,7 @@ Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der S
 #### Entwicklungs Setup
 Dieses Kapitel beschreibt die Installation um mit Ionic zu arbeiten.
 ##### Initialer Setup
-- Install Ionic and Cordova according to the [installation documentation](http://ionicframework.com/intro/installation/)
+- Install Ionic and Cordova according to the [installation documentation](http://ionicframework.com/docs/intro/installation/)
 - [Clone git repository](https://help.github.com/articles/cloning-a-repository/)
 ```bash
 git clone https://github.com/IMSmobile/app.git
