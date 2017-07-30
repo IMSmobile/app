@@ -22,7 +22,7 @@ describe('Provider: Update Service', () => {
     spyOn(deploy, 'check').and.returnValue(Promise.resolve(false));
     spyOn(deploy, 'download').and.callThrough();
     updateService.updateIfAvailable().subscribe(() => {
-      expect(deploy.download).not.toHaveBeenCalled();
+      expect(deploy.download).toHaveBeenCalledTimes(1);
     });
   }));
 
