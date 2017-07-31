@@ -25,16 +25,16 @@
 
 | Dokument                            | Beschreibung                                                  |
 |-------------------------------------|---------------------------------------------------------------|
-| [Fragekatalog](docs/questions.md)                        | Fragen um initilae Anforderung zu ergänzen                    |
+| [Fragekatalog](docs/questions.md)                        | Fragen um initiale Anforderung zu ergänzen                    |
 | [Anforderungspezifikation](docs/spec.md)            | Gewünschte Anforderungen und ihre Priorität                   |
 | [Risikonanalyse](docs/risikoanalyse.md)                      | Risiken des Projekts und Risikominimierung                    |
-| [Framework-Anforderungsspezifikation](docs/frameworkanforderungen.md) | Anforderung für eine Frameworkevoluation                      |
-| [Framework-Anforderungsspezifikation](docs/frameworkanforderungen.md)              | Beschreibung weshalb Framwork ausgewählt wurde                |
+| [Framework-Anforderungsspezifikation](docs/frameworkanforderungen.md) | Anforderung für eine Frameworkevaluation                      |
+| [Framework-Entscheid](docs/Frameworkentscheid.md)              | Beschreibung weshalb Framework ausgewählt wurde                |
 | [Architekur-Designdokumentation](docs/sad.md)      | Hilfe für Entwickler sich rasch im Projekt zurecht zu finden  |
 | [Decisionlog](docs/decisionlog.md)                         | Entscheidungen die während dem Projekt entstanden sind        |
-| [Grafik Update](docs/howToUpdateGraphics.md)                       | Beschreibung wie Logo, Icons gewechselt werden können         |
-| [Marketing Text](docs/store/store.md)                      | Text welche für App-Store und Play-Store verwendet werden     |
-| [Sprint Dokumente](docs/sprints.md)                       | Präsentationen, Protokolle und Burndown Charts von den Sprints |
+| [Grafik Update](docs/howToUpdateGraphics.md)                       | Beschreibung wie Logo und Icons gewechselt werden können         |
+| [Marketing Text](docs/store/store.md)                      | Text welcher für App-Store und Play-Store verwendet wird     |
+| [Sprint Dokumente](docs/sprints.md)                       | Präsentationen, Protokolle und Burndown Charts der Sprints |
 
 ## Quellen
 Icons von https://icons8.com/
