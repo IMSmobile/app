@@ -40,7 +40,7 @@ export class EntriesPage {
   public takePictureForEntry(parentImageEntryId: string, entryTitle: string): void {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
-      image => this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle),
+      image => this.pushToUploadPageWithPictures([image], parentImageEntryId, entryTitle),
       err => this.cameraService.handleError(err));
   }
 
@@ -51,13 +51,13 @@ export class EntriesPage {
     } else {
       this.loadingService.subscribeWithLoading(
         this.cameraService.getGalleryPicture(),
-        image => this.pushToUploadPageWithPicture(image, parentImageEntryId, entryTitle),
+        image => this.pushToUploadPageWithPictures([image], parentImageEntryId, entryTitle),
         err => this.cameraService.handleError(err));
     }
   }
 
-  public pushToUploadPageWithPicture(image: Image, parentImageEntryId: string, entryTitle: string): void {
-    this.navCtrl.push(UploadPage, { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle });
+  public pushToUploadPageWithPictures(images: Image[], parentImageEntryId: string, entryTitle: string): void {
+    this.navCtrl.push(UploadPage, { images: images, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle });
   }
 
   public ionViewDidLoad(): void {
@@ -114,9 +114,9 @@ export class EntriesPage {
 
   // tslint:disable-next-line:no-any
   public fileSelected(event: any, parentImageEntryId: string, entryTitle: string): void {
-    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
-    if (selectedImage !== undefined) {
-      this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
+    const selectedImages: Image[] = this.browserFileuploadSelectorService.getImagesFromFilePicker(event);
+    if (selectedImages.length > 0) {
+      this.pushToUploadPageWithPictures(selectedImages, parentImageEntryId, entryTitle);
     }
   }
 
@@ -126,11 +126,11 @@ export class EntriesPage {
   }
 
   public receiveDrop(event: DragEvent, parentImageEntryId: string, entryTitle: string): void {
-    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
-    if (selectedImage !== undefined) {
+    const selectedImages: Image[] = this.browserFileuploadSelectorService.getImagesFromFileDrop(event);
+    if (selectedImages.length > 0) {
       const element: Element = (event.currentTarget as Element);
       element.classList.remove('drag');
-      this.pushToUploadPageWithPicture(selectedImage, parentImageEntryId, entryTitle);
+      this.pushToUploadPageWithPictures(selectedImages, parentImageEntryId, entryTitle);
     }
   }
 

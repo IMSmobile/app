@@ -11,7 +11,7 @@
        <ion-icon name="image"></ion-icon>
      </button>
     </ion-buttons>
-  <input type="file" id="fileUpload" (change)="fileSelected($event)" placeholder="Upload file" accept="image/*" style="display: none">
+  <input type="file" id="fileUpload" (change)="fileSelected($event)" placeholder="Upload file" accept="image/*" multiple="multiple" style="display: none">
   </ion-navbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="uploadSegment">
@@ -27,7 +27,7 @@
 <ion-content id="content" (dragleave)="handleDragEvent($event)" (dragenter)="handleDragEvent($event)" (dragstart)="handleDragEvent($event)" (dragover)="handleDragEvent($event)" (drop)="handleDragEvent($event)">
   <div class="detail-switch" [ngSwitch]="uploadSegment">
     <div class="detail-image-container" *ngSwitchCase="'image'">
-      <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
+      <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(images[0].fileURI)" />
     </div>
     <ion-list *ngSwitchCase="'metadata'" id="id-list">
       <form [formGroup]="fieldsForm" (keydown.enter)="uploadPicture()" (ngSubmit)="uploadPicture()">
@@ -53,7 +53,7 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <div class="thumbnail-image-container">
+    <div *ngFor="let image of images" class="thumbnail-image-container">
       <img class="scaled-image" [src]="domSanitizer.bypassSecurityTrustUrl(image.fileURI)" />
     </div>
   </ion-toolbar>

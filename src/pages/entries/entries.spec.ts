@@ -197,7 +197,7 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle }
+      { images: [image], parentImageEntryId: parentImageEntryId, entryTitle: entryTitle }
     );
   }));
 
@@ -225,7 +225,7 @@ describe('Page: Entries', () => {
     expect(cameraService.handleError).toHaveBeenCalledTimes(0);
     expect(navController.push).toHaveBeenCalledWith(
       UploadPage,
-      { image: image, parentImageEntryId: parentImageEntryId, entryTitle: entryTitle }
+      { images: [image], parentImageEntryId: parentImageEntryId, entryTitle: entryTitle }
     );
   }));
 
@@ -259,10 +259,10 @@ describe('Page: Entries', () => {
   }));
 
   it('Do nothing when no file available in input file dialog', () => {
-    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    spyOn(page, 'pushToUploadPageWithPictures').and.callThrough();
     const event = { target: { files: [] } };
     page.fileSelected(event, undefined, undefined);
-    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);
+    expect(page.pushToUploadPageWithPictures).toHaveBeenCalledTimes(0);
   });
 
   it('Push to upload page when file in input file dialog selected', () => {
@@ -272,11 +272,11 @@ describe('Page: Entries', () => {
     const event = { target: { files: [file] } };
     const parentImageEntryId = '1';
     const entryTitle = 'title';
-    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    spyOn(page, 'pushToUploadPageWithPictures').and.callThrough();
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
     page.fileSelected(event, parentImageEntryId, entryTitle);
     const image = new Image(fileName, fileURI, file);
-    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(image, parentImageEntryId, entryTitle);
+    expect(page.pushToUploadPageWithPictures).toHaveBeenCalledWith([image], parentImageEntryId, entryTitle);
   });
 
   it('should add drag class on element with first dragenter event', inject([DragEventService], (dragEventService: DragEventService) => {
@@ -304,20 +304,20 @@ describe('Page: Entries', () => {
     const droppedImage = new Image('picture.jpg', '/my/picture.jpg');
     const parentImageEntryId = '1';
     const entryTitle = 'title';
-    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
-    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    spyOn(browserFileuploadSelectorService, 'getImagesFromFileDrop').and.returnValue([droppedImage]);
+    spyOn(page, 'pushToUploadPageWithPictures').and.callThrough();
     page.receiveDrop(event, parentImageEntryId, entryTitle);
-    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledWith(droppedImage, parentImageEntryId, entryTitle);
+    expect(page.pushToUploadPageWithPictures).toHaveBeenCalledWith([droppedImage], parentImageEntryId, entryTitle);
   }));
 
   it('Should not go to uploadpage after receiving no dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     const event: DragEvent = new DragEventMock('drop');
     const parentImageEntryId = '1';
     const entryTitle = 'title';
-    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(undefined);
-    spyOn(page, 'pushToUploadPageWithPicture').and.callThrough();
+    spyOn(browserFileuploadSelectorService, 'getImagesFromFileDrop').and.returnValue([]);
+    spyOn(page, 'pushToUploadPageWithPictures').and.callThrough();
     page.receiveDrop(event, parentImageEntryId, entryTitle);
-    expect(page.pushToUploadPageWithPicture).toHaveBeenCalledTimes(0);
+    expect(page.pushToUploadPageWithPictures).toHaveBeenCalledTimes(0);
   }));
 
 });

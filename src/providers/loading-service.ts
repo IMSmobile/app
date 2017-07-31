@@ -11,7 +11,7 @@ export class LoadingService {
   constructor(public loadingCtrl: LoadingController) { }
 
   // tslint:disable-next-line:no-any
-  public subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void): void {
+  public subscribeWithLoading<T>(observable: Observable<T>, next: (value: T) => void, error: (error: any) => void, completed?: () => void): void {
     this.showLoading();
     observable.subscribe(
       succ => {
@@ -21,6 +21,9 @@ export class LoadingService {
         this.hideLoading();
         error(err);
       }, () => {
+        if (completed !== undefined) {
+          completed();
+        }
         this.hideLoading();
       });
   }
