@@ -35,7 +35,7 @@ describe('Upload E2E Test', () => {
 
   it('Should allow retaking image from gallery in upload page', () => {
     uploadPage.loadPage();
-    uploadPage.selectNewPictureFromGallery();
+    uploadPage.selectNewPicturesFromGallery();
     uploadPage.writeToTextField(uploadPage.bildNameFieldInput, 'e2e Test');
     uploadPage.clickUploadImageButton();
     uploadPage.verifyToastMessage();

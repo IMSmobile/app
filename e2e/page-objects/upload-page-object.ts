@@ -47,10 +47,10 @@ export class UploadPageObject {
     browser.waitForAngular();
   }
 
-  public selectNewPictureFromGallery(): void {
+  public selectNewPicturesFromGallery(): void {
     Helpers.waitUntilElementIsReady(this.getGalleryPictureButton);
     this.getGalleryPictureButton.click();
-    Helpers.chooseJPEGImageInFileDialog(this.fileUpload);
+    Helpers.chooseJPEGImagesInFileDialog(this.fileUpload);
   }
 
   public clickIntoBildNameTextField(): void {
@@ -75,7 +75,7 @@ export class UploadPageObject {
 
   public sendDropEvent(): void {
     this.removeEventlistenerFromFilePicker();
-    this.selectNewPictureFromGallery();
+    this.selectNewPicturesFromGallery();
     this.createDropEvent();
   }
 
