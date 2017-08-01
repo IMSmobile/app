@@ -92,7 +92,7 @@ describe('Provider: LoadingService', () => {
     expect(toCheck).toBe('compelted');
   }));
 
-  it('Complete function is not called in cas of error', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
+  it('Complete function is not called in case of error', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
     let toCheck = '';
     loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), suc => next => { }, err => { }, () => toCheck = 'compelted');
     expect(toCheck).toBe('');
