@@ -146,8 +146,9 @@ export class UploadPageObject {
   }
 
   public verifyThumbnailsDisplayed(): void {
+    const numberOfImages: number = 2;
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('thumbnail-image-container'))), Helpers.DEFAULT_WAIT_TIMEOUT);
-    element.all(by.className('thumbnail-image-container')).count().then(actualCount => expect(actualCount).toEqual(2)); 
+    element.all(by.className('thumbnail-image-container')).count().then(actualCount => expect(actualCount).toEqual(numberOfImages));
   }
 
   public verifyDateTimeDisplayValue(): void {

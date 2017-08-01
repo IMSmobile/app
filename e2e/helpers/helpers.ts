@@ -34,7 +34,7 @@ export class Helpers {
     const fileToUpload2 = '../assets/luigi.jpg';
     const absolutePath1 = Path.resolve(__dirname, fileToUpload1);
     const absolutePath2 = Path.resolve(__dirname, fileToUpload2);
-    fileInput.sendKeys(absolutePath1 + "\n" + absolutePath2);
+    fileInput.sendKeys([absolutePath1, absolutePath2].join('\n'));
   }
 
   public static removeEventlistenerFromElement(id: string): void {
