@@ -145,6 +145,11 @@ export class UploadPageObject {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
   }
 
+  public verifyThumbnailsDisplayed(): void {
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('thumbnail-image-container'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    element.all(by.className('thumbnail-image-container')).count().then(actualCount => expect(actualCount).toEqual(2)); 
+  }
+
   public verifyDateTimeDisplayValue(): void {
     expect(this.getDateDisplayText(this.dateTimeInput)).toMatch(/[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
   }
