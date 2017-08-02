@@ -69,6 +69,7 @@ describe('Page: Upload', () => {
 
     fixture = TestBed.createComponent(UploadPage);
     page = fixture.componentInstance;
+    page.images = [];
     fixture.detectChanges();
   });
 
@@ -97,7 +98,7 @@ describe('Page: Upload', () => {
   }));
 
   it('Show Error after failed upload', inject([UploadService], (uploadService: UploadService) => {
-    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.throw('oops'));
+    spyOn(uploadService, 'uploadImages').and.returnValue(Observable.throw('oops'));
     expect(() => page.uploadPicture()).toThrowError(ImsUploadError);
   }));
 
@@ -108,7 +109,7 @@ describe('Page: Upload', () => {
     page.takePicture();
     expect(loadingService.subscribeWithLoading).toHaveBeenCalled();
     expect(cameraService.takePicture).toHaveBeenCalled();
-    expect(page.image).toBe(image);
+    expect(page.images).toEqual([image]);
   }));
 
   it('calls camera error handler when failing to take picture', inject([CameraService], (cameraService: CameraService) => {
@@ -124,7 +125,7 @@ describe('Page: Upload', () => {
     spyOn(cameraService, 'getGalleryPicture').and.returnValue(Observable.of(image));
     page.getGalleryPicture();
     expect(cameraService.getGalleryPicture).toHaveBeenCalled();
-    expect(page.image).toBe(image);
+    expect(page.images).toEqual([image]);
   }));
 
   it('On browser open file dialog on  after click get picture from gallery', inject([Platform], (platform: Platform) => {
@@ -150,18 +151,18 @@ describe('Page: Upload', () => {
     const newFile: File = new File([new Blob()], fileName, { type: 'image/jpeg' });
     const newImage = new Image(fileName, fileURI, newFile);
     spyOn(window.URL, 'createObjectURL').and.returnValue(fileURI);
-    page.image = oldImage;
+    page.images = [oldImage];
     const event = { target: { files: [newFile] } };
     page.fileSelected(event);
-    expect(page.image).toEqual(newImage);
+    expect(page.images).toEqual([newImage]);
   });
 
   it('Do nothing when no file available in input file dialog', () => {
-    const oldImage = new Image('oldvalue', 'oldvalue.jpg');
-    page.image = oldImage;
+    const oldImages = [new Image('oldvalue', 'oldvalue.jpg')];
+    page.images = oldImages;
     const event = { target: { files: [] } };
     page.fileSelected(event);
-    expect(page.image).toEqual(oldImage);
+    expect(page.images).toEqual(oldImages);
   });
 
   it('Show and hide loading when loading parent image reference field', inject([ImsBackendMock, AuthService, LoadingService, SettingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService, settingService: SettingService) => {
@@ -226,34 +227,34 @@ describe('Page: Upload', () => {
   }));
 
   it('should upload non empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    spyOn(uploadService, 'uploadImages').and.returnValue(Observable.of(new Response(new ResponseOptions())));
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     const formData = {};
     formData[imsBackendMock.modelFieldOptionalString.name] = ['value'];
     page.fieldsForm = page.formBuilder.group(formData);
     page.parentImageReferenceField = imsBackendMock.modelFieldParentreferenceName;
-    page.image = new Image('picture.jpg', '/my/picture.jpg');
+    page.images = [new Image('picture.jpg', '/my/picture.jpg')];
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
     entry = entry.set(imsBackendMock.modelFieldOptionalString.name, 'value');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(Number(imsBackendMock.policeFilter.id), entry, page.image);
+    expect(uploadService.uploadImages).toHaveBeenCalledWith(Number(imsBackendMock.policeFilter.id), entry, page.images);
   }));
 
   it('should not upload empty fields metadata fields', inject([UploadService, ImsBackendMock, AuthService], (uploadService: UploadService, imsBackendMock: ImsBackendMock, authService: AuthService) => {
-    spyOn(uploadService, 'uploadImage').and.returnValue(Observable.of(new Response(new ResponseOptions())));
+    spyOn(uploadService, 'uploadImages').and.returnValue(Observable.of(new Response(new ResponseOptions())));
     authService.setArchive(imsBackendMock.policeFilter);
     page.fields.push(imsBackendMock.modelFieldOptionalString);
     const formData = {};
     formData[imsBackendMock.modelFieldOptionalString.name] = [''];
     page.fieldsForm = page.formBuilder.group(formData);
     page.parentImageReferenceField = imsBackendMock.modelFieldParentreferenceName;
-    page.image = new Image('picture.jpg', '/my/picture.jpg');
+    page.images = [new Image('picture.jpg', '/my/picture.jpg')];
     page.uploadPicture();
     let entry = new Entry();
     entry = entry.set(imsBackendMock.modelFieldParentreferenceName, 'default');
-    expect(uploadService.uploadImage).toHaveBeenCalledWith(Number(imsBackendMock.policeFilter.id), entry, page.image);
+    expect(uploadService.uploadImages).toHaveBeenCalledWith(Number(imsBackendMock.policeFilter.id), entry, page.images);
   }));
 
   it('should initialize parent image reference field', inject([ImsBackendMock, AuthService, LoadingService], (imsBackendMock: ImsBackendMock, authService: AuthService, loadingService: LoadingService) => {
@@ -271,19 +272,19 @@ describe('Page: Upload', () => {
 
   it('Should update image after receiving dropped image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     const event: DragEvent = new DragEventMock('drop');
-    const droppedImage = new Image('picture.jpg', '/my/picture.jpg');
-    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(droppedImage);
+    const droppedImages = [new Image('picture.jpg', '/my/picture.jpg')];
+    spyOn(browserFileuploadSelectorService, 'getImagesFromFileDrop').and.returnValue(droppedImages);
     page.receiveDrop(event);
-    expect(page.image).toEqual(droppedImage);
+    expect(page.images).toEqual(droppedImages);
   }));
 
   it('Should keep image after receiving drop without image', inject([BrowserFileuploadSelectorService], (browserFileuploadSelectorService: BrowserFileuploadSelectorService) => {
     const event: DragEvent = new DragEventMock('drop');
-    const oldImage = new Image('picture.jpg', '/my/picture.jpg');
-    page.image = oldImage;
-    spyOn(browserFileuploadSelectorService, 'getImageFromFileDrop').and.returnValue(undefined);
+    const oldImages = [new Image('picture.jpg', '/my/picture.jpg')];
+    page.images = oldImages;
+    spyOn(browserFileuploadSelectorService, 'getImagesFromFileDrop').and.returnValue([]);
     page.receiveDrop(event);
-    expect(page.image).toEqual(oldImage);
+    expect(page.images).toEqual(oldImages);
   }));
 
   it('Should deactivate dragOverlay after dragenter and dragleave event', inject([DragEventService], (dragEventService: DragEventService) => {

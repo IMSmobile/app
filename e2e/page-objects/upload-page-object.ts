@@ -47,10 +47,10 @@ export class UploadPageObject {
     browser.waitForAngular();
   }
 
-  public selectNewPictureFromGallery(): void {
+  public selectNewPicturesFromGallery(): void {
     Helpers.waitUntilElementIsReady(this.getGalleryPictureButton);
     this.getGalleryPictureButton.click();
-    Helpers.chooseJPEGImageInFileDialog(this.fileUpload);
+    Helpers.chooseJPEGImagesInFileDialog(this.fileUpload);
   }
 
   public clickIntoBildNameTextField(): void {
@@ -75,7 +75,7 @@ export class UploadPageObject {
 
   public sendDropEvent(): void {
     this.removeEventlistenerFromFilePicker();
-    this.selectNewPictureFromGallery();
+    this.selectNewPicturesFromGallery();
     this.createDropEvent();
   }
 
@@ -143,6 +143,12 @@ export class UploadPageObject {
 
   public verifyToastMessage(): void {
     browser.wait(ExpectedConditions.visibilityOf(element(by.className('toast-message'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+  }
+
+  public verifyThumbnailsDisplayed(): void {
+    const numberOfImages: number = 2;
+    browser.wait(ExpectedConditions.visibilityOf(element(by.className('thumbnail-image-container'))), Helpers.DEFAULT_WAIT_TIMEOUT);
+    element.all(by.className('thumbnail-image-container')).count().then(actualCount => expect(actualCount).toEqual(numberOfImages));
   }
 
   public verifyDateTimeDisplayValue(): void {

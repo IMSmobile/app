@@ -24,6 +24,11 @@ page-upload {
     border: 2px solid color($colors, primary);
   }
 
+  .thumbnail-image-container {
+    float: left;
+    padding-right: 2px;
+  }
+
   .scaled-image {
     max-width: 100%;
     max-height: 100%;

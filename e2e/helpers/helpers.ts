@@ -29,10 +29,12 @@ export class Helpers {
     this.waitUntilStorageReady();
   }
 
-  public static chooseJPEGImageInFileDialog(fileInput: ElementFinder): void {
-    const fileToUpload = '../assets/mario.jpg';
-    const absolutePath = Path.resolve(__dirname, fileToUpload);
-    fileInput.sendKeys(absolutePath);
+  public static chooseJPEGImagesInFileDialog(fileInput: ElementFinder): void {
+    const fileToUpload1 = '../assets/mario.jpg';
+    const fileToUpload2 = '../assets/luigi.jpg';
+    const absolutePath1 = Path.resolve(__dirname, fileToUpload1);
+    const absolutePath2 = Path.resolve(__dirname, fileToUpload2);
+    fileInput.sendKeys([absolutePath1, absolutePath2].join('\n'));
   }
 
   public static removeEventlistenerFromElement(id: string): void {

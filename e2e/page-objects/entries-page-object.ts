@@ -38,7 +38,7 @@ export class EntriesPageObject {
   public pushEntriesGalleryButtonOnEntry34617(): void {
     Helpers.waitUntilElementIsReady(this.entriesGalleryButton);
     this.entriesGalleryButton.click();
-    Helpers.chooseJPEGImageInFileDialog(this.entriesFileUpload);
+    Helpers.chooseJPEGImagesInFileDialog(this.entriesFileUpload);
   }
 
   public verifyEntriesTitleVisible(): void {

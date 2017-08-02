@@ -85,4 +85,17 @@ describe('Provider: LoadingService', () => {
     expect(loadingController.create).toHaveBeenCalledTimes(1);
     expect(loadingService.loading.dismiss).toHaveBeenCalledTimes(1);
   }));
+
+  it('Complete function called in execute with loading', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
+    let toCheck = '';
+    loadingService.subscribeWithLoading(Observable.of('success'), suc => { }, err => { }, () => toCheck = 'completed');
+    expect(toCheck).toBe('completed');
+  }));
+
+  it('Complete function is not called in case of error', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
+    let toCheck = '';
+    loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), suc => next => { }, err => { }, () => toCheck = 'completed');
+    expect(toCheck).toBe('');
+  }));
+
 });

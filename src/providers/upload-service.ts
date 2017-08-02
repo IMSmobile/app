@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response} from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 import { Entry } from '../models/entry';
 import { Image } from '../models/image';
 import { ImsHeaders } from '../models/ims-headers';
@@ -16,6 +17,14 @@ import { TokenService } from './token-service';
 export class UploadService {
 
   constructor(public http: Http, public tokenService: TokenService, public imsService: ImsService, public containerUploadService: ContainerUploadService, public authService: AuthService) { }
+
+  public uploadImages(filterId: number, imageEntry: Entry, images: Image[]): Observable<Response> {
+    let observables: Observable<Response> = new EmptyObservable();
+    for (const image of images) {
+      observables = Observable.concat(observables, this.uploadImage(this.authService.filterId, imageEntry, image));
+    }
+    return observables;
+  }
 
   public uploadImage(filterId: number, imageEntry: Entry, image: Image): Observable<Response> {
     return this.tokenService.getToken().flatMap(token =>

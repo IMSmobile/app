@@ -28,7 +28,7 @@ import { KeywordsPage } from './../keywords/keywords';
   templateUrl: 'upload.html'
 })
 export class UploadPage {
-  public image: Image;
+  public images: Image[];
   public readonly parentImageEntryId: string;
   public fields: MetadataField[] = [];
   public fieldsForm: FormGroup = new FormGroup({});
@@ -39,7 +39,7 @@ export class UploadPage {
   public showDragOverlay: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2, public dragEventService: DragEventService, public events: Events, public keywordService: KeywordService) {
-    this.image = navParams.get('image');
+    this.images = navParams.get('images');
     this.parentImageEntryId = navParams.get('parentImageEntryId');
     this.entryTitle = navParams.get('entryTitle');
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
@@ -94,7 +94,7 @@ export class UploadPage {
   public takePicture(): void {
     this.loadingService.subscribeWithLoading(
       this.cameraService.takePicture(),
-      image => this.image = image,
+      image => this.images = [image],
       err => this.cameraService.handleError(err));
   }
 
@@ -105,7 +105,7 @@ export class UploadPage {
     } else {
       this.loadingService.subscribeWithLoading(
         this.cameraService.getGalleryPicture(),
-        image => this.image = image,
+        image => this.images = [image],
         err => this.cameraService.handleError(err));
     }
   }
@@ -122,9 +122,10 @@ export class UploadPage {
           imageEntry = imageEntry.set(field.name, value);
         }
       });
-      this.loadingService.subscribeWithLoading(this.uploadService.uploadImage(this.authService.filterId, imageEntry, this.image),
-        res => this.showToastMessage('Bild wurde erfolgreich gespeichert!'),
-        err => { throw new ImsUploadError(err); }
+      this.loadingService.subscribeWithLoading(this.uploadService.uploadImages(this.authService.filterId, imageEntry, this.images),
+        res => {},
+        err => { throw new ImsUploadError(err); },
+        () => this.showToastMessage('Hochladen erfolgreich!')
       );
     }
   }
@@ -147,9 +148,9 @@ export class UploadPage {
 
   // tslint:disable-next-line:no-any
   public fileSelected(event: any): void {
-    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFilePicker(event);
-    if (selectedImage !== undefined) {
-      this.image = selectedImage;
+    const selectedImages: Image[] = this.browserFileuploadSelectorService.getImagesFromFilePicker(event);
+    if (selectedImages.length > 0) {
+      this.images = selectedImages;
     }
   }
 
@@ -159,9 +160,9 @@ export class UploadPage {
 
   public receiveDrop(event: DragEvent): void {
     this.showDragOverlay = false;
-    const selectedImage: Image = this.browserFileuploadSelectorService.getImageFromFileDrop(event);
-    if (selectedImage !== undefined) {
-      this.image = selectedImage;
+    const selectedImages: Image[] = this.browserFileuploadSelectorService.getImagesFromFileDrop(event);
+    if (selectedImages.length > 0) {
+      this.images = selectedImages;
     }
   }
 
