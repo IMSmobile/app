@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See  [Definition of Done](CONTRIBUTING.md) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/IMSmobile/app/compare/0.10.0...v0.11.0) (2017-08-02)
+
+
+### Features
+
+* automatic update on client start ([c1fe985](https://github.com/IMSmobile/app/commit/c1fe985)), closes [#401](https://github.com/IMSmobile/app/issues/401)
+
+
+
 <a name="0.10.0"></a>
 # [0.10.0](https://github.com/IMSmobile/app/compare/0.9.1...v0.10.0) (2017-07-28)
 
