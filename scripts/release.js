@@ -26,7 +26,8 @@ standardVersion({ 'skip': { 'commit': true, 'tag': true } }).then(function succ(
   printTodoCommand('git add package.json config.xml src/pages/login/login.ts CHANGELOG.md', 'after checking local changes');
   printTodoCommand('git commit -m "' + "release: " + newVersion + '"', 'to commit local changes');
   printTodoCommand('git tag -a -m "' + "release: " + newVersion + '" ' + newVersion, 'to create new tag');
-  printTodoCommand('git push --follow-tags origin master', 'to publish');
+  printTodoCommand('git push --follow-tags origin master', 'to publish to github');
+  printTodoCommand('ionic upload --note "version: ' + newVersion + '" --deploy production', 'to release in production');
 });
 
 function printTodoCommand(command, reason) {

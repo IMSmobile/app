@@ -34,6 +34,7 @@ export class LoginPageObject {
 
   public loadPage(): void {
     browser.get('');
+    Helpers.waitUntilLoaderFinished();
   }
 
   public verifyToastErrorMessage(): void {
@@ -46,6 +47,7 @@ export class LoginPageObject {
   }
 
   public clickLoginButton(): void {
+    Helpers.waitUntilElementIsReady(this.loginButton);
     this.loginButton.click();
   }
 

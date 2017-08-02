@@ -11,7 +11,7 @@
     "lint": "tslint --config tslint.json --project ts-lintconfig.json",
     "test": "karma start ./test-config/karma.conf.js",
     "test-coverage": "karma start ./test-config/karma.conf.js --coverage",
-    "e2e": "npm run clean && npm run build && node node_modules/protractor/bin/webdriver-manager update && node node_modules/protractor/bin/protractor",
+    "e2e": "node scripts/e2e-deploy-mock.js add && npm run clean && npm run build && node node_modules/protractor/bin/webdriver-manager update && node node_modules/protractor/bin/protractor && node scripts/e2e-deploy-mock.js remove",
     "release": "node scripts/release.js"
   },
   "config": {
@@ -111,7 +111,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
-      "ionic-plugin-keyboard": {}
+      "ionic-plugin-keyboard": {},
+      "ionic-plugin-deploy": {}
     },
     "platforms": [
       "android",

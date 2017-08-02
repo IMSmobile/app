@@ -1,11 +1,11 @@
 import { ErrorHandler, NgModule } from '@angular/core';
-import { Http, HttpModule} from '@angular/http';
+import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Transfer } from '@ionic-native/transfer';
-import { CloudModule, CloudSettings } from '@ionic/cloud-angular';
+import { CloudModule, CloudSettings, Deploy } from '@ionic/cloud-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule, Platform } from 'ionic-angular';
 import { ImsFieldSelectionComponent } from '../components/ims-field-selection/ims-field-selection';
@@ -35,6 +35,7 @@ import { KeywordService } from './../providers/keyword-service';
 import { ModelService } from './../providers/model-service';
 import { QueryBuilderService } from './../providers/query-builder-service';
 import { SettingService } from './../providers/setting-service';
+import { UpdateService } from './../providers/update-service';
 import { MobileClient } from './app.component';
 import { AppProviders } from './app.providers';
 
@@ -113,7 +114,12 @@ const cloudSettings: CloudSettings = {
     DragEventService,
     DragEventCounterService,
     { provide: ErrorHandler, useClass: ImsErrorHandler },
-    KeywordService
+    KeywordService,
+    {
+      provide: UpdateService,
+      useFactory: AppProviders.updateServiceFactory,
+      deps: [Platform, Deploy]
+    },
   ]
 })
 export class AppModule { }
