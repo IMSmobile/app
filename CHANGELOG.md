@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See  [Definition of Done](CONTRIBUTING.md) for commit guidelines.
 
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/IMSmobile/app/compare/0.11.0...v0.12.0) (2017-08-02)
+
+
+### Features
+
+* **upload:** allow multi image selection and upload with file dialog and drag & drop in browser ([8b5dcdd](https://github.com/IMSmobile/app/commit/8b5dcdd)), closes [#549](https://github.com/IMSmobile/app/issues/549)
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/IMSmobile/app/compare/0.10.0...v0.11.0) (2017-08-02)
 
