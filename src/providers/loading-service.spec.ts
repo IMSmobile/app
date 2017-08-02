@@ -86,15 +86,15 @@ describe('Provider: LoadingService', () => {
     expect(loadingService.loading.dismiss).toHaveBeenCalledTimes(1);
   }));
 
-  it('Complete function called in execute wiht loading', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
+  it('Complete function called in execute with loading', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
     let toCheck = '';
-    loadingService.subscribeWithLoading(Observable.of('success'), suc => { }, err => { }, () => toCheck = 'compelted');
-    expect(toCheck).toBe('compelted');
+    loadingService.subscribeWithLoading(Observable.of('success'), suc => { }, err => { }, () => toCheck = 'completed');
+    expect(toCheck).toBe('completed');
   }));
 
   it('Complete function is not called in case of error', inject([LoadingService, LoadingController], (loadingService: LoadingService, loadingController: LoadingController) => {
     let toCheck = '';
-    loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), suc => next => { }, err => { }, () => toCheck = 'compelted');
+    loadingService.subscribeWithLoading(Observable.throw(new Error('oops')), suc => next => { }, err => { }, () => toCheck = 'completed');
     expect(toCheck).toBe('');
   }));
 
