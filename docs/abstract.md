@@ -1,6 +1,6 @@
 # Abstract
 
-Ziel der Arbeit war, eine plattformunabhängige Mobile-App zu entwickeln, die Kunden von Imagic Bildverarbeitung AG und PIC Systems AG erlaubt, digitale Medien auf einfache Art im Imagic IMS Archiv abzuspeichern. Dabei soll eine hohe Softwarequalität angestrebt werden, sodass zukünftige Erweiterungen einfach realisiert werden können. Unsere persönliche Ziele waren Cross-Platform Frameworks und Continuous Deployment kennen zu lernen.
+Ziel der Arbeit war, eine plattformunabhängige Mobile-App zu entwickeln, welche den Kunden von Imagic Bildverarbeitung AG und PIC Systems AG erlaubt, digitale Medien auf einfache Weise im Imagic IMS Archiv abzuspeichern. Dabei soll eine hohe Softwarequalität angestrebt werden, sodass zukünftige Erweiterungen einfach realisiert werden können. Unsere persönliche Ziele waren Cross-Platform Frameworks und Continuous Deployment kennen zu lernen.
 
 Wir verwendeten das Angular und Ionic Framework und entschlossen uns die Applikationslogik im Functional Reactive Programming Paradigma zu implementieren.
 
