@@ -7,7 +7,7 @@ Imagic: Urs Gomez, Patrik Wermelinger
 Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky, Michael Leu
 
 ## Traktanden
-- Feedback einholen zu Stakeholders und Anforderungen in der [Spezifikation Mobile Clent@958e9e1](https://github.com/IMSmobile/app/blob/958e9e116a4184dd0b9abfa13f6da6fcd830ac14/docs/spec.md)
+- Feedback einholen zu Stakeholdern und Anforderungen in der [Spezifikation Mobile Clent@958e9e1](https://github.com/IMSmobile/app/blob/958e9e116a4184dd0b9abfa13f6da6fcd830ac14/docs/spec.md)
 
 ## Protokoll
 
@@ -17,8 +17,8 @@ Mobile Client Entwickler: Sandro Zbinden, Niklaus Tschirky, Michael Leu
 
 ### Vorstellung und Diskussion funktionale Anforderungen (11:10-11:44)
 - FA16: Quelle ist auch der Medizinal-Sektor bei Imagic. → Quelle anpassen
-- FA5: Nicht klar wenn es Pflichtfelder gibt. → FA5 präzisieren
-- FA7: Ist auch für Imagic ein muss.
+- FA5: Nicht klar, wenn es Pflichtfelder gibt. → FA5 präzisieren
+- FA7: Ist auch für Imagic ein Muss.
 - Anforderung "Bild muss der untersten Ebene zugeteilt werden können" nicht vorhanden. → Anforderung erfassen
 - FA6-9: generischere Formulierung statt "Fall" gewünscht → Begriff muss noch gefunden werden
 - FA10: Ist eine Vorgabe von Imagic. → Quelle anpassen

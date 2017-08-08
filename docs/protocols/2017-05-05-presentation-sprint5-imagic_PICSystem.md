@@ -25,7 +25,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Emailadresse mit Google/Apple Developer Account eingerichtet
 
 ### In progress
-- Ionic View: Demonstration. Für eine Einsatz beim Kunden muss zwischen Dev und Production Build unterschieden werden. Anfrage bei Ionic notwendig. Imagic und PIC interessiert an diesem Feature.
+- Ionic View: Demonstration. Für einen Einsatz beim Kunden muss zwischen Dev und Production Build unterschieden werden. Anfrage bei Ionic notwendig. Imagic und PIC interessiert an diesem Feature.
 - Documentation / HSR Review
 
 ### Ausblick
@@ -34,8 +34,8 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Upload von Bildern mit Feldern
 
 ### Fragen
-- Internationalization: Deutsch von Polizeikorps gewünscht (muss), für Imagic für erste Phase ist Deutsch in Ordnung.
-- Bearbeiten von Fällen: Muss nicht möglich sein. Bei PIC Systems wird Fall oft von übergeordneten System erstellt. Ansonsten Änderungen per PC-Client nachführen.
+- Internationalization: Deutsch von Polizeikorps gewünscht (muss); für Imagic für erste Phase ist Deutsch in Ordnung.
+- Bearbeiten von Fällen: Muss nicht möglich sein. Bei PIC Systems wird Fall oft von übergeordnetem System erstellt. Ansonsten Änderungen per PC-Client nachführen.
 
 ### Feedback / Input
 - Parentanzeige bei Entry Selection wichtig für Imagic und PIC Systems

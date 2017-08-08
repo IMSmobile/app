@@ -21,7 +21,7 @@ Mobile Client Entwickler: Niklaus Tschirky, Sandro Zbinden
 - Bilderanzahl: 20 Bilder muss, 100 Bilder soll
 
 ### Präsentation Wireframes (15:10-15:40)
-- Berechtigung für neue Ebenen noch offen. Erste Versionen wird keine Restriktionen enthalten. Schlussversion wird Fehler melden oder Felder nicht anzeigen.
+- Berechtigung für neue Ebenen noch offen. Erste Version wird keine Restriktionen enthalten. Schlussversion wird Fehler melden oder Felder nicht anzeigen.
 - Gruppieren von Favoriten (z.B. im Spital für Visite) → für Masterarbeit nicht vorgesehen
 - Gutes Feedback zu Bilderauswahl und Metadateneingabe
 - Auch Interesse an MDM-Konfiguration vorhanden
