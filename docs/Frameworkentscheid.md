@@ -42,7 +42,7 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 ### Vorteile
 - Grosse Auswahl an bisherigen DOTNET-Bibliotheken
 - Native Funktionen können OS-spezifisch implementiert werden
-- XML-Code für den Layoutbeschrieb
+- XML-Code für die Layoutbeschreibung
 - Testing gut implementiert (Unit Test, Device Test auf Cloud usw.)
 
 ### Nachteile
