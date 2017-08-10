@@ -18,3 +18,4 @@ Liste aller Sitzungen und Link zu den Protokollen
 | 2017-06-30 | [Sprint 9 Review Imagic PICSystem](protocols/2017-06-30-presentation-sprint9-imagic_PICSystem.md)   |
 | 2017-07-14 | [Sprint 10 Review Imagic PICSystem](protocols/2017-07-14-presentation-sprint10-imagic_PICSystem.md) |
 | 2017-07-14 | [Sprint 11 Review Imagic PICSystem](protocols/2017-07-28-presentation-sprint11-imagic_PICSystem.md) |
+| 2017-08-08 | [Betreuer Meeting](protocols/2017-08-08-advisor-meeting.md) |
