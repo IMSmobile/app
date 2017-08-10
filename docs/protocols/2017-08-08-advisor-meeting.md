@@ -26,7 +26,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Begründung für Technologiewahl (Verlinkung oder kurze Begründung)
 - Proxy-Service fast nirgendwo in Dokumentation sichtbar
 - Vorschlag für übersichtliches Architekturmodell: 4+1 Modell
-- für grössere Projekte mehr Strukturen notwendig, für kleineres Projekt wie unsereres okay
+- für grössere Projekte mehr Strukturen notwendig, für kleineres Projekt wie unseres okay
 - Bezug in Architektur zu den Projektanforderungen bringen
 
 ### Organisatorisches (18:20- 18:25)
@@ -35,6 +35,6 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 
 ### Aktueller Stand (18:25-19:10)
 - Neues Logo und Loginscreen präsentiert
-- Appstoreantrag (Playstore und App Store) auf Anhieb bewilligt
+- Storeantrag (Play Store und App Store) auf Anhieb bewilligt
 - Multiupload aktueller Stand
 - Allgemein: Erfahrungen und Lernerlebnisse ausgetauscht
