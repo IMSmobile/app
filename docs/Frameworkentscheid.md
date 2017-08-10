@@ -1,7 +1,7 @@
 # Framework Entscheid
 ## Einleitung
 
-Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithilfe dieser Prototypen sollte abgeklärt werden, ob das Framework unseren Anforderungen entspricht. Die Anforderungen an den Prototyp wurde im Dokument Frameworkanforderungen zusammengefasst. Die Prototypen und Frameworkbeschreibungen sind auf der Github-Seite einsehbar.
+Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithilfe dieser Prototypen sollte abgeklärt werden, ob das Framework unseren Anforderungen entspricht. Die Anforderungen an den Prototyp wurden im Dokument [Frameworkanforderungen](frameworkanforderungen.md) zusammengefasst. Die Prototypen und Frameworkbeschreibungen sind auf der GitHub-Seite einsehbar.
 
 ## Anforderungsmatrix
 | Anforderung | Ionic 2 | React Native | Xamarin |
@@ -9,7 +9,7 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 | Android Support | Ja | Ja | Ja |
 | iOS-Support |	Ja |	Ja | Ja |
 | Kamera-Support | Ja |	Ja |Ja |
-| Gallerie-Support | Ja |	Ja |	Begrenzt (Multipicture Selection nicht implementiert) |
+| Galerie-Support | Ja |	Ja |	Begrenzt (Multipicture Selection nicht implementiert) |
 | Persistent Data |	Ja |	Ja |	Muss nativ eingepflegt werden |
 | REST-Client |	Ja |	Ja | Ja |
 | Unterstützt SSL |	Ja |	Ja |	Ja, jedoch Probleme mit Prototype |
@@ -22,7 +22,7 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 - Layout kann in HTML beschrieben werden
 - Wird im Webbrowser unterstützt
 - Betriebsystemspezifsche UI-Komponenten
-- TypeScript erlaubt sauberere Javascript Programmierung
+- TypeScript erlaubt sauberere JavaScript Programmierung
 ### Nachteile
 - Wenn Feature von Cordova nicht unterstützt wird, dann ist es schwierig zu implementieren
 - Relativ neu, keine Global Players dahinter
@@ -36,19 +36,19 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 
 ### Nachteile
 - Layout wird dynamisch erstellt
-- Framework auf asynchrone Ereignisse ausgerichtet
+- Framework ist für asynchrone Ereignisse ausgerichtet
 
 ## Xamarin
 ### Vorteile
 - Grosse Auswahl an bisherigen DOTNET-Bibliotheken
 - Native Funktionen können OS-spezifisch implementiert werden
-- XML-Code für den Layoutbeschreib
-- Testing gut implementiert (Unittest, Device Test auf Cloud usw.)
+- XML-Code für die Layoutbeschreibung
+- Testing gut implementiert (Unit Test, Device Test auf Cloud usw.)
 
 ### Nachteile
 - Bibliotheksfunktionen teilweise unvollständig
 - DOTNET-Bibliotheken unterstützen nicht immer das Xamarin Framework
-- Auf proprioritäre Software (Visual Studio oder Xamarin Studio) angewiesen
+- Auf proprietäre Software (Visual Studio oder Xamarin Studio) angewiesen
 - Wird im Webbrowser nicht unterstützt
 
 ## Entscheid

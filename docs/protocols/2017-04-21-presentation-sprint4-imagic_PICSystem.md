@@ -41,7 +41,7 @@ Coverage:
 - Einfache Auswahl von Entries sollte möglich sein
 
 ### Feedback / Input
-Auswahl von Netzwerk für Upload (WLAN, 4G, 3G oder langsamer) einbinden. → Ist bereits als Anforderung aufgenommen
+Auswahl von Netzwerk für Upload (WLAN, 4G, 3G oder langsamer) einbinden. → Ist bereits als Anforderung aufgenommen.  
 Kann Geräte-ID mitgegeben werden? Aktuell nicht wichtig, jedoch notiert.
 
 Am 9. Mai Treffen von PIC mit Aargauer Kantonspolizei, wo wenn möglich ein erster Ansatz gezeigt werden kann.

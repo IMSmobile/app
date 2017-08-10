@@ -40,7 +40,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 
 ### Feedback / Input
 - Feedback von Markus Gmür: Zufrieden, keine Erklärungen notwendig, einfach bedienbar, klappt alles auf Anhieb
-- Hide von Eintragsfelder defaultmässig einschalten 
+- Hide von Eintragsfeldern defaultmässig einschalten 
 - Suche von Keyword-Feldern nicht wichtig
 - Link für MAS-Präsentation an alle verschicken
 

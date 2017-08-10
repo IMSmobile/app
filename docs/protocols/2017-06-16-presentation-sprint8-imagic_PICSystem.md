@@ -22,7 +22,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Versionierung in App und Github (u.a. ersichtlich auf Loginpage)
 - Global Error Handling (Im Fehlerfall wird der Alertservice aufgerufen)
 - Workaround mit iOS mit falschen Logindaten (Timeout, falls keine Antwort zurückgegeben wird)
-- Caddy timeout erneut konfiguriert, um von grösseren Dateien respektive Uploads bei langsamer Verbindung zu gewährleisten
+- Caddy timeout erneut konfiguriert, um Upload von grösseren Dateien und Upload bei langsamer Verbindung zu gewährleisten
 - Storyboard auf Realtimestoryboard umgehostet
 
 ### In Bearbeitung
@@ -32,22 +32,22 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 
 ### Ausblick
 - Veröffentlichung in App Stores
-- Validierungshilfen bei Uploadfelder (Datepicker, Schiebebutton)
-- Verbesserung der continouse delivery
+- Validierungshilfen bei Uploadfeldern (Datepicker, Schiebebutton)
+- Verbesserung der Continuous Delivery
 
 ### Fragen
 - Rest Segment Name konfigurierbar machen? → Aktuell laut Imagic und Picsystem nicht wichtig/aktuell
-- Bildername von Smartphone App → Bildname auf Smartphone nicht relevant, für IMS-Server nicht entscheidend
+- Bildname von Smartphone App → Bildname auf Smartphone nicht relevant, für IMS-Server nicht entscheidend
 - Popup für Settings umgestalten → Findet vor allem bei iOS-User auf Anklang. Sollte umgesetzt werden
 
 ### Feedback / Input
 - iPad mini Absturz → Aufstarten der Kamera und Abbruch mit Cancel führt zum "Whitescreen"
-- Eventuell überladen mit 2 Buttons für Gallerie und Kamera, vorerst aber in Ordnung
+- Eventuell überladen mit 2 Buttons für Galerie und Kamera; vorerst aber in Ordnung
 - Multiupload für Imagic ein sehr wichtiger Punkt
 - Patrick Bohren auf Emailverteiler nehmen
 
 ### Bemerkungen
-Prioriserung des Backlog im Anschluss des Meetings mit Urs Gomez durchgeführt.
+Prioriserung des Backlogs im Anschluss des Meetings mit Urs Gomez durchgeführt.
 
 ### Nächster Termin
 30.06.2017 um 10:00
