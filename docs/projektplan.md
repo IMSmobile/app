@@ -252,21 +252,7 @@ Dank dem [Burnup Chart](https://docs.google.com/spreadsheets/d/1xm9ytSJTCfuZGIuy
 Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich zugänglichen [GitHub Repository](https://github.com/IMSmobile/app/) zur Verfügung.
 
 #### Entwicklungs Setup
-Dieses Kapitel beschreibt die Installation um mit Ionic zu arbeiten.
-##### Initialer Setup
-- Install Ionic and Cordova according to the [installation documentation](http://ionicframework.com/docs/intro/installation/)
-- [Clone git repository](https://help.github.com/articles/cloning-a-repository/)
-```bash
-git clone https://github.com/IMSmobile/app.git
-```
-- Download npm dependencies
-```bash
-npm install
-```
-- Test installation
-```bash
-ionic serve
-```
+Um neuen Entwicklern einen schnellen Start ins Projekt zu ermöglichen, wurde ein [Schnellstartanleitung](/schnellstartanleitung.md) mit den gängigsten Befehlen geschrieben.
 
 ##### IMS Rest Konfiguration
 Damit der Mobile Client mit einem Imagic IMS funktioniert muss mindestens ein Filter mit dem Namen **IMS_Mobile_Client** existieren.  
