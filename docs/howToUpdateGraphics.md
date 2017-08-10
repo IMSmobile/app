@@ -8,7 +8,7 @@ ionic platform add ios
 ```
 
 ## Change Splash Screen
-The splashscreen is the loading screen that appears during app startup. To change the splash screen, follow these steps:
+The splash screen is the loading screen that appears during app startup. To change the splash screen, follow these steps:
 1. Replace the splash-file in /resources with a new graphic.  
   Requirements for new graphic:
    - `png`, `psd` or `ai` file format
@@ -21,10 +21,10 @@ The splashscreen is the loading screen that appears during app startup. To chang
 ionic cordova resources --splash
 ```
 
-Note: For platform specific splashscree, place the image file into the platform specific directory e.g `/resources/ios` or `/resources/android` and remove the file in the parent directory.
+Note: For platform specific splash screen, place the image file into the platform specific directory e.g `/resources/ios` or `/resources/android` and remove the file in the parent directory.
 
 ## Update App Icon
-The icon will be showed on the Homescreen of the operating system.
+The icon will be showed on the home screen of the operating system.
 1. Replace the icon.png in /resources/ios and /resources/android folder with a new graphic.  
   Requirements for new graphic:
    - `png`, `psd` or `ai` file format
