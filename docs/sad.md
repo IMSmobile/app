@@ -46,7 +46,11 @@ Das Polizeiarchiv workflow_db1 hat drei Tabellen. Auf der höchsten Ebene steht 
 
 Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist dort ein Patient, danach kommen Besuche (Visit), Studien (Study) und am Schluss, wie von IMS vorgegeben, die Bilder Tabelle. Als Beispiel eines Keyword Katalogs wurde das Geschlecht (Sex) bei einem Patienten gewählt. Man erkennt, dass innerhalb des Keyword Kataloges die Werte masculin und feminin ausgewählt werden können.
 
-## Ordnerstruktur Konventionen
+## Design Prinzipien
+
+Die Design Prinzipien beschreiben die wichtigsten architektonischen Richtlinien und Design Patterns. Sie helfen einem Entwickler bestehende Lösungen zu übernehmen und einen Einheitlichen Code zu erhalten. 
+
+### Ordnerstruktur Konventionen
 
 Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden, verwenden wir eine Ordnerstruktur Konvention. Diese entsprechen im Grundsatz den Konventionen eines Ionic 2 Projekts.  
 
@@ -79,6 +83,48 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──────── any-service.ts         # Serviceklasse
     ├──── themes                     # scss Files für die Gestaltung der App 
     ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
+
+### Blockierende Aktionen
+
+Für blockierende Aktionen, bei welchen der Benutzer auf ein Ereignis wartet, wird der LoadingService verwendet. Der LoadingService zeigt ein modales `Bitte Warten Popup` bis ein Observable abgeschlossen ist.
+
+Das Codebeispiel zeigt die Verwendung des LoadingService.
+
+```javascript
+Observable<Response> responseObservable = this.http.get('http://slowloadingside.com')
+loadingService.subscribeWithLoading(responseObservable, 
+  response => { successMethod(response) }, 
+  err => { throw new ImsLoadingError('Homepage', err) },
+  () => { finishedMethod();});
+```
+### Fehlerbehandlung
+
+Bei unerwartet Ereignissen wie z.B. Netzwerk-Unterbruch Fehlkonfiguration der Rest Schnittstelle oder falschem Programmcode kümmert sich die ImsErrorHandler Klasse um die korrekte Verarbeitung.
+
+Im Prodkutivbetrieb zeigt der ImsErrorHandler dem Benutzer ein `Fehlermeldungs Popup` mit einer nicht technischen Fehlermeldung an. Im Entwicklungsbetrieb wird die Standard Ionic Error Seite mit Stacktraces geladen.
+
+Damit im Produktivbetrieb die richtige Fehlermeldung angezeigt werden kann müssen alle Observables im Fehlerfall eine von ImsError geerbte Exception werfen.
+
+```javascript
+loadingService.subscribeWithLoading(responseObservable, 
+  response => { successMethod(response) }, 
+  err => { throw new ImsLoadingError('Homepage', err) });
+```
+
+Beispiel einer ImsError implementation. Der erste Parameter im Konstruktor ist die Fehlermeldung welche dem Kunden im Produktivbetrieb angezeigt wird.
+
+```javascript
+import { ImsError } from './ims-error';
+export class ImsLoadingError extends ImsError {
+
+  constructor(wantedToLoad: string, message: string) {
+    super('Fehler beim Laden der ' + wantedToLoad, message);
+    Object.setPrototypeOf(this, ImsLoadingError.prototype);
+  }
+}
+```
+
+
 
 ## Data Flow Diagramm
 
