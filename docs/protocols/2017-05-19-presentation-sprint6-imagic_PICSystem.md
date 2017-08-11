@@ -20,7 +20,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - UI für Kameraupload
 - Felderdarstellung mit Einstellungsmöglichkeiten
 - Backlog aufgeräumt und geschätzt
-- Kamera Abbruch zeigt kein Fehler mehr an
+- Kamera Abbruch zeigt keinen Fehler mehr an
 - Update to Ionic 3
 - Fix Bug: Settingsdialog Button funktioniert nicht immer
 - Fix Bug: Entry List läuft schneller
@@ -44,7 +44,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Tablet: Finanzierung sollte klappen.
 
 ### Feedback / Input
-- iOS: Zurückgehen von Settings durch klicken auf "weisse Fläche"
+- iOS: Zurückgehen von Settings durch Klicken auf "weisse Fläche"
 - iOS: Scrolling immer noch nicht ganz nativ (hat aber nicht oberste Priorität)
 
 ### Nächster Termin
