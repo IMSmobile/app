@@ -1,6 +1,6 @@
 # Schnellstartanleitung
 ## Einleitung
-Die vielfältige Auswahl an Tools und Services für die Entwicklung des mobilen Clients benötigt eine Einarbeitungszeit. Um diese zu verkürzen, werden in der Schnellstartanleitung die gängigsten Kommandos erläutert, welche notwendig sind, um das Projekt zu laden und zu kompilieren.
+Die vielfältige Auswahl an Tools und Services für die Entwicklung des mobilen Clients benötigt eine Einarbeitungszeit. Um diese zu verkürzen, werden in der Schnellstartanleitung die wichtigsten Kommandos erläutert, welche notwendig sind, um das Projekt zu laden und zu kompilieren.
 
 ## Lokales GitHub Repository einrichten
 In einem ersten Schritt wird das Projekt auf den lokalen Rechner geklont. Dafür wird ein [Git Client](https://git-scm.com) benötigt. In der Kommandozeile kann das Projekt mit folgendem Befehl heruntergeladen werden: 
@@ -12,7 +12,7 @@ Ab diesem Zeitpunkt wird [Visual Studio Code](https://code.visualstudio.com) als
 
 ## Ionic installieren und App in Browser starten
 
-Für den Start mit Ionic muss zuerst [NodeJS](https://nodejs.org/en/) installiert werden. Anschliessend kann Ionic und Cordova einfach über die Commandozeile installiert werden:  
+Für den Start mit Ionic muss zuerst [NodeJS](https://nodejs.org/en/) installiert werden. Anschliessend kann Ionic und Cordova einfach über die Kommandozeile installiert werden:  
 ```shell
 npm install -g cordova ionic
 ```
