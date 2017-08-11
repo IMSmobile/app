@@ -252,7 +252,7 @@ Dank dem [Burn Up Chart](https://docs.google.com/spreadsheets/d/1xm9ytSJTCfuZGIu
 Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich zugänglichen [GitHub Repository](https://github.com/IMSmobile/app/) zur Verfügung.
 
 #### Entwicklungs Setup
-Um neuen Entwicklern einen schnellen Start ins Projekt zu ermöglichen, wurde ein [Schnellstartanleitung](/schnellstartanleitung.md) mit den gängigsten Befehlen geschrieben.
+Um neuen Entwicklern einen schnellen Start ins Projekt zu ermöglichen, wurde eine [Schnellstartanleitung](/schnellstartanleitung.md) mit den gängigsten Befehlen geschrieben.
 
 ##### IMS Rest Konfiguration
 Damit der Mobile Client mit einem Imagic IMS funktioniert muss mindestens ein Filter mit dem Namen **IMS_Mobile_Client** existieren.  
