@@ -1,11 +1,13 @@
 # Schnellstartanleitung
 ## Einleitung
-Die vielfältige Auswahl an Tools und Services für die Entwicklung des mobilen Clients benötigt einiges an Einarbeitungszeit. Um die wichti zu verkürzen wurde eine Schnellstartanleitung erstellt, welche die wichtigsten Programme und Funktionen kurz erklärt.
-
-Um diese zu verkürzen, werden in der Schnellstartanleitung die gängigsten Kommandos erläutert, welche notwendig sind, um das Projekt zu laden und kompilieren.
+Die vielfältige Auswahl an Tools und Services für die Entwicklung des mobilen Clients benötigt eine Einarbeitungszeit. Um diese zu verkürzen, wurde eine Schnellstartanleitung erstellt. Diese erklärt die wichtigsten Programme und Funktionen.
 
 ## Lokales GitHub Repository einrichten
-In einem ersten Schritt wird das Projekt auf den lokalen Rechner geklont. Dafür wird ein [Git Client](https://git-scm.com) benötigt. In der Kommandozeile kann das Projekt mit dem Befehl `git clone https://github.com/IMSmobile/app.git` lokal gespiegelt werden. Ab diesem Zeitpunkt wird [Visual Studio Code](https://code.visualstudio.com) als Entwicklertool empfohlen. Dieser frei erhältlicher Quelltexteditor arbeitet mit der vorhandenen Ordnerstruktur, besitzt einen integrierten Git-Client und kann mit Extensions erweitert werden.  
+In einem ersten Schritt wird das Projekt auf den lokalen Rechner geklont. Dafür wird ein [Git Client](https://git-scm.com) benötigt. In der Kommandozeile kann das Projekt mit folgendem Befehl heruntergeladen werden. 
+
+`git clone https://github.com/IMSmobile/app.git`  
+
+Ab diesem Zeitpunkt wird [Visual Studio Code](https://code.visualstudio.com) als Entwicklertool empfohlen. Dieser frei erhältlicher Quelltext-Editor arbeitet mit der vorhandenen Ordnerstruktur, besitzt einen integrierten Git-Client und kann mit [Extensions](projektplan.md#plugins) erweitert werden.
 
 ## Ionic installieren und App in Browser starten
 
@@ -19,7 +21,7 @@ Anschliessend müssen die gewünschten Plattformen hinzugefügt werden:
 ionic cordova platform add ios
 ionic cordova platform add android
 ```
-Um alle Plugins und Pakete zu laden, müssen vor dem ersten Aufstarten die NPM-Abhängigkeiten installiert werden:  
+Um alle Plugins und Pakete zu laden, muss vor dem ersten Aufstarten die NPM-Abhängigkeiten installiert werden:  
 ```shell
 npm install
 ```
@@ -27,16 +29,23 @@ npm install
 Das Projekt kann mit dem Konsolenbefehl `ionic serve` gestartet werden. Als Alternative kann die App auch mit einer emulierte Smartphone-Ansicht über den Befehl `ionic lab` gestartet werden.
 
 ## Installieren der Entwicklerversion auf einem Android Gerät
-Natürlich kann ein Projekt auch direkt auf einem Smartphone getestet werden. Bei einem Android Smartphone muss zuerst auf dem Gerät der Developer Modus freigeschaltet werden ([Anleitung](https://developer.android.com/studio/debug/dev-options.html)). Für die Übertragung auf das Gerät muss zuerst das Android Studio installiert werden. Mit dem folgendem Befehl kann die App an das Smartphone gesendet werden:  
+Natürlich kann ein Projekt auch direkt auf einem Smartphone getestet werden. Bei einem Android Smartphone muss zuerst auf dem Gerät der Developer Modus freigeschaltet werden ([Anleitung](https://developer.android.com/studio/debug/dev-options.html)). Für die Übertragung auf das Gerät reicht es Android Studio zu installiert. Bei Problemen kann der [Cordova Android Platform Guide](https://cordova.apache.org/docs/en/7.x/guide/platforms/android/) konsultiert werden. Mit dem folgendem wird die App auf dem  Smartphone installiert:  
 ```shell
 ionic cordova run android
 ```
 
-Falls kein Smartphone gefunden wird, wird automatisch der Emulator gestartet (sofern installiert). 
+Falls kein Smartphone gefunden wird, startet der Android-Emulator automatisch, sofern dieser installiert und verfügbar ist.
 
 ## Installieren der Entwicklerversion auf dem iPhone
-Für das Testen mit einem iPhone muss zwingend ein Apple Developer Account vorhanden sein. Mit einem Apple Computer kann das Projekt analog zur Android-Version kompiliert werden. Falls kein Apple Computer vorhanden ist, kann mithilfe von Ionic Cloud ein IPA-File kompiliert werden. Für diese Variante muss zuerst das gewünschte Gerät mit seiner UUID-Nummer im Developer Account eingetragen werden. Im Developer Account kann man anschliessend einen neuen Schlüssel erzeugen, der in der Ionic Cloud hinterlegt werden muss. Die App kann nach diesen Schritten mit dem folgenden Kommando gebuildet werden:  
+Für das Testen mit einem iPhone muss zwingend ein Apple ID vorhanden sein. Mit einem Apple Computer kann das Projekt analog zur Android-Version kompiliert werden. Falls kein Apple Computer vorhanden ist, kann mithilfe von Ionic Cloud ein IPA-File kompiliert werden. Für diese Variante muss zuerst das gewünschte Gerät mit seiner [UDID-Nummer](https://docs.ionic.io/services/profiles/ios-udid.html) im Developer Account eingetragen werden. Im Developer Account kann danach einen neuen Schlüssel erzeugen, der in der Ionic Cloud hinterlegt werden muss. Details zum einrichten der iOS Zertifikate und dem Provisioning Profile findet man in der [Ionic Cloud Dokumentation](https://docs.ionic.io/services/profiles/#ios-app-certificate--provisioning-profile). Die App kann nach diesen Schritten mit dem folgenden Kommando gebaut werden:  
 ```shell
 ionic package build ios
 ```
-Das erzeugte IPA-File kann entweder über CLI mit `ionic package download` und der dazugehörigen Buildnummer oder direkt von dem Ionic Benutzerkonto heruntergeladen werden. Das IPA-File kann anschliessend im Apple iTunes importiert und mit dem Gerät synchronisiert werden.
+Das erzeugte IPA-File kann entweder über CLI mit `ionic package download` und der dazugehörigen Buildnummer oder direkt von dem Ionic Benutzerkonto heruntergeladen werden. Das IPA-File via Apple iTunes direkt auf dem Gerät installiert werden.
+
+
+## Mitarbeit und Richtlinien
+
+Eine Übersicht der Architektur und der wichtigsten Richtlinien findet man im [Software Architecture Dokument](sad.md)
+
+Detailinformationen über den Entwicklungsprozess, Testing, Code-Coverage und statische Codeanalyse können im [Projektplan](projektplan.md#qualitätsmassnahmen) ab dem Kapitel Qualitätsmassnahmen eingesehen werden.
