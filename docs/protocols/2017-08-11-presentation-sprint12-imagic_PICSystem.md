@@ -1,4 +1,4 @@
-# Kurzprotokoll Sprint 11 Review
+# Kurzprotokoll Sprint 12 Review
 
 Freitag, 11.08.2017 10:00-10:40 bei PIC Systems AG, Glattbrugg
 
@@ -26,7 +26,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 
 ### In Bearbeitung
 - Schnellstartanleitung für Entwickler
-- Beschreibung der Design-Prinzipen
+- Beschreibung der Design-Prinzipien
 
 ### Ausblick
 - Finale explorative Test-Session
@@ -38,8 +38,8 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Präsentation an der HSR
 
 ### Feedback / Input
-- HSR Präsentationstitel *Arkivar - Mobiler Client für Imagic IMS* ist i.O. für Imagic
-- Ablauf bei mehreren Bildern von der Kamera besprochen. → Anforderungen können pro Kunden-Segment völlig unterschiedlich sein.
+- HSR Präsentationstitel *Arkivar - Mobiler Client für Imagic IMS* ist i.O. für Imagic.
+- Ablauf bei mehreren Bildern von der Kamera besprochen. → Anforderungen können pro Kundensegment völlig unterschiedlich sein.
 - Mobile Client Entwickler bedanken sich herzlich für die Mitarbeit aller Stakeholder!
 
 ### Nächster Termin
