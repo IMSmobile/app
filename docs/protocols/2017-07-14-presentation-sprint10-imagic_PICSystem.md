@@ -30,7 +30,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 ### Ausblick
 - Upload in App Stores
 - Keyword Field Type
-- Vertiefung der Continuous Delivery
+- Vertiefung des Continuous Deployment
 - Upload von mehreren Bildern
 
 ### Feedback / Input

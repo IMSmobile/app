@@ -5,6 +5,8 @@ Deutsch | Englisch | Bedeutung
 Archiv | archive | Unterteilt die Datenbank des Imagic IMS in mehrere Bereiche.
 Arkivar | Arkivar | Name der Software welche wir entwickeln. Steht für Archivar auf Dänisch.
 Bilder Tabelle | image table | Letzte Tabelle in der Hierarchie eines Archivs.
+Continuous Delivery | Continuous Delivery | Praktiken, welche sicherstellen, dass jede Codeänderung automatisiert getestet und dadurch mit geringem Risiko ausgeliefert werden kann.
+Continuous Deployment | Continuous Deployment | Erweiterung von Continuous Delivery, bei der jede Codeänderung sofort ausgeliefert wird.
 Eintrag | Entry | Element innerhalb einer bestimmten Tabellen-Hierarchie.
 Elternbildtabelle | Parent image table | Zweitletzte Tabelle in der Tabellen-Hierarchie eines Archivs.
 Fall | case | Begriff der Polizei für eine Ebene im Imagic IMS, entspricht der Elternbildtabelle.

@@ -33,7 +33,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 ### Ausblick
 - Veröffentlichung in App Stores
 - Validierungshilfen bei Uploadfeldern (Datepicker, Schiebebutton)
-- Verbesserung der Continuous Delivery
+- Verbesserung im Continuous Deployment
 
 ### Fragen
 - Rest Segment Name konfigurierbar machen? → Aktuell laut Imagic und Picsystem nicht wichtig/aktuell
