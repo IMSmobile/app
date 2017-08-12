@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See  [Definition of Done](CONTRIBUTING.md) for commit guidelines.
 
+<a name="0.12.1"></a>
+## [0.12.1](https://github.com/IMSmobile/app/compare/0.12.0...v0.12.1) (2017-08-12)
+
+
+### Bug Fixes
+
+* **upload:** selection not working immediately after adding keyword field ([7be4924](https://github.com/IMSmobile/app/commit/7be4924)), closes [#570](https://github.com/IMSmobile/app/issues/570)
+
+
+
 <a name="0.12.0"></a>
 # [0.12.0](https://github.com/IMSmobile/app/compare/0.11.0...v0.12.0) (2017-08-02)
 
