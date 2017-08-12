@@ -48,7 +48,7 @@ Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist do
 
 ## Design Prinzipien
 
-Die Design Prinzipien beschreiben die wichtigsten architektonischen Richtlinien und Design Patterns. Sie helfen einem Entwickler bestehende Lösungen zu übernehmen und einen Einheitlichen Code zu erhalten. 
+Die Design Prinzipien beschreiben die wichtigsten architektonischen Richtlinien und Design Patterns. Sie helfen einem Entwickler bestehende Lösungen zu übernehmen und einen einheitlichen Code zu erhalten. 
 
 ### Ordnerstruktur Konventionen
 
@@ -88,7 +88,7 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
 
 Ein Model ist eine Klasse mit Attributen, welche Informationen beinhalten. Model Klassen werden hauptsächlich für die Repräsentation der Rückgabewerte von der REST Schnittstelle und für Error Klassen eingesetzt. 
 
-Ein wichtigeR Designentscheid ist, dass Model Klassen **keine Methoden** haben. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziiert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit können nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
+Ein wichtiger Designentscheid ist, dass Model Klassen **keine Methoden** enthalten. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziiert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit kann nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
 
 ```typescript
   public getCredential(): Observable<Credential> {
@@ -99,7 +99,7 @@ Ein wichtigeR Designentscheid ist, dass Model Klassen **keine Methoden** haben. 
 
 Mit dem **readonly** Modifier bei Attributen wird sichergestellt, dass Model Klasse unveränderlich (immutable) sind. 
 
-Ein Beispiel einer Model Klasse.
+Ein Beispiel einer Model Klasse:
 
 ```typescript
 export class Credential {
@@ -115,7 +115,7 @@ export class Credential {
 
 ### Pages
 
-Pages sind von Ionic entwickelte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen einer Mobile Screen Seite wie zum Beispiel dem Loginscreen und werden in  drei Files unterteilt:
+Pages sind von Ionic erweiterte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen einer Bildschrimseite wie zum Beispiel dem Loginscreen und werden in drei Files unterteilt:
 
  * HTML für UI-Elemente
  * SCSS für Design 
@@ -137,7 +137,7 @@ Ein neuer Provider kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 ionic generate provider [<name>]
 ```
 
-Beispiel eines Providers mit der zwingenden Injectable Annotation.
+Beispiel eines Providers mit der zwingenden `@Injectable()` Annotation für Dependency Injection:
 
 ```typescript
 import { Observable } from 'rxjs/Observable';
@@ -147,7 +147,7 @@ import { Injectable } from '@angular/core';
 export class CameraServiceProvider {
   
   public acquireImage(): Observable<Image> {
-    //logic to acquire Image
+    // Logic to acquire Image
   }
 }
 ```
@@ -167,11 +167,13 @@ loadingService.subscribeWithLoading(responseObservable,
 ```
 ### Fehlerbehandlung
 
-Bei unerwartet Ereignissen wie z.B. Netzwerk-Unterbruch Fehlkonfiguration der Rest Schnittstelle oder falschem Programmcode kümmert sich die ImsErrorHandler Klasse um die korrekte Verarbeitung.
+Bei unerwarteten Ereignissen wie z.B. einem Netzwerk-Unterbruch, einer Fehlkonfiguration der REST Schnittstelle oder falschem Programmcode kümmert sich die ImsErrorHandler Klasse um die korrekte Behandlung des Fehlers.
 
-Im Prodkutivbetrieb zeigt der ImsErrorHandler dem Benutzer ein `Fehlermeldungs Popup` mit einer nicht technischen Fehlermeldung an. Im Entwicklungsbetrieb wird die Standard Ionic Error Seite mit Stacktraces geladen.
+Im Produktivbetrieb zeigt der ImsErrorHandler dem Benutzer einen Dialog mit einem kurzen Fehlerbeschrieb an. Im Entwicklermodus wird hingegen die Standard Ionic Error Seite mit der technischen Fehlermeldung sowein einem Stacktrace dargestellt.
 
-Damit im Produktivbetrieb die richtige Fehlermeldung angezeigt werden kann müssen alle Observables im Fehlerfall eine von ImsError geerbte Exception werfen.
+Damit im Produktivbetrieb die richtige Fehlerbeschreibung angezeigt werden kann, müssen alle Observables im Fehlerfall eine von ImsError geerbte Exception werfen.
+
+Beispielverwendung in der Applikationslogik:
 
 ```typescript
 loadingService.subscribeWithLoading(responseObservable, 
@@ -179,7 +181,7 @@ loadingService.subscribeWithLoading(responseObservable,
   err => { throw new ImsLoadingError('Homepage', err) });
 ```
 
-Beispiel einer ImsError implementation. Der erste Parameter im Konstruktor ist die Fehlermeldung welche dem Kunden im Produktivbetrieb angezeigt wird.
+Die Implementation der im vorherigen Beispiel verwendenten Exception Klasse:
 
 ```javascript
 import { ImsError } from './ims-error';
@@ -192,7 +194,9 @@ export class ImsLoadingError extends ImsError {
 }
 ```
 
+Dabei wird aus dem ersten Parameter im Konstruktor die benutzerfreundliche Fehlermeldung erstellt und an `ImsError` übergeben. Gleichzeitig wird für den Entwicklermodus die ursprüngliche Fehlermeldung als zweiten Parameter unverändert durchgereicht.
 
+`Object.setPrototypeOf()` ist wegen einer [Limitation von TypeScript beim Ableiten von Error](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work) nötig.
 
 ## Data Flow Diagramm
 
