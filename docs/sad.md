@@ -97,7 +97,7 @@ Ein wichtigeR Designentscheid ist, dasS Model Klassen **keine Methoden** haben. 
 }
 ``` 
 
-Mit dem **readonly** Modifier bei Attributen wird sichergestellt das Model Klasse Immutable sind. 
+Mit dem **readonly** Modifier bei Attributen wird sichergestellt, dass Model Klasse unveränderlich (immutable) sind. 
 
 Ein Beispiel einer Model Klasse.
 
