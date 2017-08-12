@@ -113,6 +113,26 @@ export class Credential {
 }
 ```
 
+### Pages
+
+Pages sind von Ionic entwickelte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen  einer Mobile Screen Seite wie zum Beispiel dem Loginscreen und werden in  drei Files unterteilt:
+
+ * HTML für UI-Elemente
+ * SCSS für Design 
+ * Typescript für die Logik
+
+Eine neue Page kann mit dem Ionic CLI Kommando automatisch erstellt werden.
+
+```typescript
+ionic generate page [<name>]
+```
+
+
+
+
+ 
+
+
 
 
 ### Blockierende Aktionen
