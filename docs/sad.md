@@ -192,7 +192,7 @@ Das folgende vereinfachte Beispiel zeigt die häufigste Verwenden von Observable
 ### Dependency Injection
 Dependency Injection ist ein Pattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin- und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind unabhängig voneinander.  
 
-Um die Applikationslogik möglichst plattformneutral zu halten sollten plattform-spezifische Variante einer Komponenten erstellt werden und mithilfe von Dependency Injection die generische Komponente ersetzen.
+Um die Applikationslogik möglichst plattformneutral zu halten soll die plattform-spezifische Variante einer Komponente mithilfe der Dependency Injection `useFactory` geladen werden.
 
 Die Provider müssen, wie im [Kapitel Provider](#provider--service) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im `app.module.ts` im Abschnitt @NgModule registriert werden.
 
