@@ -153,7 +153,7 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class CameraServiceProvider {
+export class CameraService {
   
   public acquireImage(): Observable<Image> {
     // Logic to acquire Image
@@ -191,29 +191,27 @@ Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser A
 ```
 
 ### Dependency Injection
-Dependency Injection ist eines der Grundpattern von Angular und bietet mehrere Vorteile. Durch Dependency Injection müssen die Objektinstanzen nicht ständig hin-und hergeschoben werden, sondern können einfach injected werden. Dies ergibt automatisch eine bessere Testbarkeit. Die einzelnen Module können besser voneinander abgekoppelt werden und werden dadurch unabhängiger voneinander.  
-Für eine saubere Trennung zwischen den Plattformen soll plattform-spezifischer Code über Dependency Injection implementiert werden.  
+Dependency Injection ist eines Grundpattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin-und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind Unabhängig voneinander.  
 
-Die Provider müssen wie im [Kapitel Provider](#provider--service) erwähnt, eine Annotation dafür besitzen, dass sie Injectable sind. Zusätzlich müssen sie im app.module.ts im @NgModule registriert werden:
+Für eine saubere Trennung zwischen den Plattformen soll in dieser Applikation plattform-spezifischer Code über Dependency Injection implementiert werden.
+
+Die Provider müssen wie im [Kapitel Provider](#provider--service) erwähnt, eine Annotiert sein. Zusätzlich müssen sie im app.module.ts im @NgModule Bereich registriert werden.
+
 ```typescript
 @NgModule({
-  imports: [
-    BrowserModule
-  ],
-  declarations: [
-    AppComponent
-  ],
+  // ...
   providers: [
-    YourNewProvider
+    CameraServiceProvider 
   ],
-  bootstrap: [ AppComponent ]
+  // ...
 })
 ```
 
-Um einen Provider mit Dependency Injection in einer Page oder Funktion zu nutzen, kann er ganz einfach im Constructor der Klasse deklariert werden:
+Um einen Provider zu nutzen, kann er Konstruktor der Klasse deklariert werden:
+
 ```typescript
-constructor(yourNewProvider: YourNewProvider) {
-  this.information = yourNewProvider.getMoreInformation();
+constructor(cameraService: CameraService) {
+  cameraServiceProvider.acquireImage();
 }
 ```
 
