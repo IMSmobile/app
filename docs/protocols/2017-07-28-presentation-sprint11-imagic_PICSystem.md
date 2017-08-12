@@ -21,7 +21,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 - Abstrakt für MAS-Programmheft
 - Technologieübersicht für ein erleichtertes Einarbeiten
 - Komponentendiagramm
-- Plan zum Continous Delivery erarbeitet (mithilfe von Ionic Services)
+- Plan zum Continous Deployment erarbeitet (mithilfe von Ionic Services)
 - Leaf Selection von Keywords
 - Horizontales Scrolling bei abgeschnittenen Texten
 - Bei Loginpage wird der Pagetitel gesetzt (vorher immer von der letzten Page übernommen)
@@ -34,7 +34,7 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 ### Ausblick
 - Neuladen der Liste mittels Refresh-Funktion
 - Keyword Field Type auch Parent Leafs auswählbar
-- Umsetzung von Continuous Delivery in den Store
+- Umsetzung von Continuous Deployment in den Store
 - Upload von mehreren Bildern
 - Dokumentation Design Principles und Developer Guide
 
