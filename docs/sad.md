@@ -84,13 +84,44 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──── themes                     # scss Files für die Gestaltung der App 
     ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
 
+### Model
+
+Ein Model ist eine Klasse mit Attributen, welche Informationen beinhalten. Model Klassen werden hauptsächlich für die Repräsentation der Rückgabewerte von der REST Schnittstelle und für Error Klassen eingesetzt. 
+
+Ein wichtigeR Designentscheid ist, dasS Model Klassen **keine Methoden** haben. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit können nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
+
+```typescript
+  public getCredential(): Observable<Credential> {
+   this.http.get('rest/info').map(response => response.json());
+  } 
+}
+``` 
+
+Mit dem **readonly** Modifier bei Attributen wird sichergestellt das Model Klasse Immutable sind. 
+
+Ein Beispiel einer Model Klasse.
+
+```typescript
+export class Credential {
+  public readonly username: string;
+  public readonly password: string;
+  
+  constructor(string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
+}
+```
+
+
+
 ### Blockierende Aktionen
 
 Für blockierende Aktionen, bei welchen der Benutzer auf ein Ereignis wartet, wird der LoadingService verwendet. Der LoadingService zeigt ein modales `Bitte Warten Popup` bis ein Observable abgeschlossen ist.
 
 Das Codebeispiel zeigt die Verwendung des LoadingService.
 
-```javascript
+```typescript
 Observable<Response> responseObservable = this.http.get('http://slowloadingside.com')
 loadingService.subscribeWithLoading(responseObservable, 
   response => { successMethod(response) }, 
@@ -105,7 +136,7 @@ Im Prodkutivbetrieb zeigt der ImsErrorHandler dem Benutzer ein `Fehlermeldungs P
 
 Damit im Produktivbetrieb die richtige Fehlermeldung angezeigt werden kann müssen alle Observables im Fehlerfall eine von ImsError geerbte Exception werfen.
 
-```javascript
+```typescript
 loadingService.subscribeWithLoading(responseObservable, 
   response => { successMethod(response) }, 
   err => { throw new ImsLoadingError('Homepage', err) });
