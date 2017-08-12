@@ -88,7 +88,7 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
 
 Ein Model ist eine Klasse mit Attributen, welche Informationen beinhalten. Model Klassen werden hauptsächlich für die Repräsentation der Rückgabewerte von der REST Schnittstelle und für Error Klassen eingesetzt. 
 
-Ein wichtigeR Designentscheid ist, dass Model Klassen **keine Methoden** haben. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit können nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
+Ein wichtigeR Designentscheid ist, dass Model Klassen **keine Methoden** haben. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziiert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit können nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
 
 ```typescript
   public getCredential(): Observable<Credential> {
@@ -129,7 +129,7 @@ ionic generate page [<name>]
 
 ### Provider / Service
 
-Ein Provider ist eine Klasse, welche ein Service für bestimmte Funktionen beinhalten. Ein Beispiel ist der Kamera Service, der für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Depdency Injection geladen und sind in der Regel Singelton Objekte.
+Ein Provider ist eine Klasse, welche ein Service für bestimmte Funktionen beinhalten. Ein Beispiel ist der Kamera Service, der für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singelton Objekte.
 
 Ein neuer Provider kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 
