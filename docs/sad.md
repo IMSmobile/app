@@ -191,6 +191,31 @@ Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser A
 ```
 
 ### Dependency Injection
+Dependency Injection ist eines der Grundpattern von Angular und bietet mehrere Vorteile. Durch Dependency Injection müssen die Objektinstanzen nicht ständig hin-und hergeschoben werden, sondern können einfach injected werden. Dies ergibt automatisch eine bessere Testbarkeit. Die einzelnen Module können besser voneinander abgekoppelt werden und werden dadurch unabhängiger voneinander.  
+Für eine saubere Trennung zwischen den Plattformen soll plattform-spezifischer Code über Dependency Injection implementiert werden.  
+
+Die Provider müssen wie im [Kapitel Provider](#provider--service) erwähnt, eine Annotation dafür besitzen, dass sie Injectable sind. Zusätzlich müssen sie im app.module.ts im @NgModule registriert werden:
+```typescript
+@NgModule({
+  imports: [
+    BrowserModule
+  ],
+  declarations: [
+    AppComponent
+  ],
+  providers: [
+    YourNewProvider
+  ],
+  bootstrap: [ AppComponent ]
+})
+```
+
+Um einen Provider mit Dependency Injection in einer Page oder Funktion zu nutzen, kann er ganz einfach im Constructor der Klasse deklariert werden:
+```typescript
+constructor(yourNewProvider: YourNewProvider) {
+  this.information = yourNewProvider.getMoreInformation();
+}
+```
 
 ### Blockierende Aktionen
 
