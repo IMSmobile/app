@@ -88,7 +88,7 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
 
 Ein Model ist eine Klasse mit Attributen, welche Informationen beinhalten. Model Klassen werden hauptsächlich für die Repräsentation der Rückgabewerte von der REST Schnittstelle und für Error Klassen eingesetzt. 
 
-Ein wichtigeR Designentscheid ist, dasS Model Klassen **keine Methoden** haben. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit können nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
+Ein wichtigeR Designentscheid ist, dass Model Klassen **keine Methoden** haben. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit können nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
 
 ```typescript
   public getCredential(): Observable<Credential> {
@@ -115,7 +115,7 @@ export class Credential {
 
 ### Pages
 
-Pages sind von Ionic entwickelte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen  einer Mobile Screen Seite wie zum Beispiel dem Loginscreen und werden in  drei Files unterteilt:
+Pages sind von Ionic entwickelte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen einer Mobile Screen Seite wie zum Beispiel dem Loginscreen und werden in  drei Files unterteilt:
 
  * HTML für UI-Elemente
  * SCSS für Design 
@@ -123,17 +123,34 @@ Pages sind von Ionic entwickelte [Angular Komponenten](https://angular.io/api/co
 
 Eine neue Page kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 
-```typescript
+```bash
 ionic generate page [<name>]
 ```
 
+### Provider / Service
 
+Ein Provider ist eine Klasse, welche ein Service für bestimmte Funktionen beinhalten. Ein Beispiel ist der Kamera Service, der für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Depdency Injection geladen und sind in der Regel Singelton Objekte.
 
+Ein neuer Provider kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 
- 
+```bash
+ionic generate provider [<name>]
+```
 
+Beispiel eines Providers mit der zwingenden Injectable Annotation.
 
+```typescript
+import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
 
+@Injectable()
+export class CameraServiceProvider {
+  
+  public acquireImage(): Observable<Image> {
+    //logic to acquire Image
+  }
+}
+```
 
 ### Blockierende Aktionen
 
