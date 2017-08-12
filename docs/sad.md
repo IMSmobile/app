@@ -55,7 +55,7 @@ Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist do
 
 ## Design Prinzipien
 
-Die Design Prinzipien beschreiben die wichtigsten architektonischen Richtlinien und Design Patterns. Sie helfen einem Entwickler bestehende Lösungen zu übernehmen und einen einheitlichen Code zu erhalten. 
+Die Design Prinzipien beschreiben die wichtigsten architektischen Richtlinien und Design Patterns. Sie helfen dem Entwickler bestehende Lösungen zu übernehmen und einen einheitlichen Code zu schreiben. 
 
 ### Ordnerstruktur Konventionen
 
@@ -88,14 +88,14 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──── providers                  # Services, welche innerhalb der Pages gebraucht werden können
     ├──────── any-service.spec.ts    # Testklasse des Services
     ├──────── any-service.ts         # Serviceklasse
-    ├──── themes                     # scss Files für die Gestaltung der App 
+    ├──── themes                     # SCSS Files für die Gestaltung der App 
     ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
 
 ### Model
 
 Ein Model ist eine Klasse mit Attributen, welche Informationen beinhalten. Model Klassen werden hauptsächlich für die Repräsentation der Rückgabewerte von der REST Schnittstelle und für Error Klassen eingesetzt. 
 
-Ein wichtiger Designentscheid ist, dass Model Klassen **keine Methoden** enthalten. Dies weil beim Mapping einer Angular HTTP Response ein Model nicht automatisch Instanziiert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential, somit kann nur auf Attribute nicht aber auf Methoden zugegriffen werden.  
+Ein wichtiger Designentscheid ist, dass Model Klassen **keine Methoden** enthalten. Dies liegt daran, dass beim Mapping einer Angular HTTP Response ein Model nicht automatisch instanziiert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential. Somit kann nur auf Attribute, nicht aber auf Methoden, zugegriffen werden.  
 
 ```typescript
   public getCredential(): Observable<Credential> {
@@ -122,7 +122,7 @@ export class Credential {
 
 ### Pages
 
-Pages sind von Ionic erweiterte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen einer Bildschrimseite wie zum Beispiel dem Loginscreen und werden in drei Files unterteilt:
+Pages sind von Ionic erweiterte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen einer Bildschirmseite wie zum Beispiel dem Loginscreen und werden in drei Files unterteilt:
 
  * HTML für UI-Elemente
  * SCSS für Design 
@@ -134,11 +134,11 @@ Eine neue Page kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 ionic generate page [<name>]
 ```
 
-Sämtliche Members und Methoden einer Page sind `public` weil ausser im Testing nie mehrere Instanzen davon erstellt werden.
+Sämtliche Members und Methoden einer Page sind `public`, weil ausser im Testing nie mehrere Instanzen davon erstellt werden.
 
 ### Provider / Service
 
-Ein Provider ist eine Klasse, welche ein Service für bestimmte Funktionen beinhalten. Ein Beispiel ist der Kamera Service, der für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singelton Objekte.
+Ein Provider ist eine Klasse, welche ein Service für bestimmte Funktionen beinhalten. Ein Beispiel ist der Kamera Service, der für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singleton Objekte.
 
 Ein neuer Provider kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 
@@ -162,9 +162,9 @@ export class CameraService {
 ```
 ### Functional Reactive Programming / Observable
 
-Um Probleme mit Zustand und weiteren Seiteneffekte zu verringern, wird mit dem Angular Framework im [Functional Reactive Style](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
+Um Probleme mit Zustand und weiteren Seiteneffekte zu verringern, wird im Angular Framework mit [Functional Reactive Style](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
 
-Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem Entwickler mit Kentnissen in prozeduralen oder objektorientierten Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
+Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem Entwickler mit Kenntnissen in prozeduralen oder objektorientierten Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
 
 Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser Applikation. Mithilfe der Observable *flatMap* Methode wird das Laden vom Token und das Laden der Einträge verkettet. Die User Interface Methode *loadEntries* aktiviert mit *subscribe* das neu verkettete Observable. Erst dann werden Daten vom REST Server abgerufen. 
 
@@ -191,11 +191,11 @@ Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser A
 ```
 
 ### Dependency Injection
-Dependency Injection ist eines Grundpattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin-und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind Unabhängig voneinander.  
+Dependency Injection ist eines Grundpattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin-und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind unabhängig voneinander.  
 
 Für eine saubere Trennung zwischen den Plattformen soll in dieser Applikation plattform-spezifischer Code über Dependency Injection implementiert werden.
 
-Die Provider müssen wie im [Kapitel Provider](#provider--service) erwähnt, eine Annotiert sein. Zusätzlich müssen sie im app.module.ts im @NgModule Bereich registriert werden.
+Die Provider müssen, wie im [Kapitel Provider](#provider--service) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im app.module.ts im @NgModule Abschnitt registriert werden.
 
 ```typescript
 @NgModule({
@@ -207,7 +207,7 @@ Die Provider müssen wie im [Kapitel Provider](#provider--service) erwähnt, ein
 })
 ```
 
-Um einen Provider zu nutzen, kann er Konstruktor der Klasse deklariert werden:
+Um einen Provider zu nutzen, kann er im Konstruktor der Klasse deklariert werden:
 
 ```typescript
 constructor(cameraService: CameraService) {
@@ -244,7 +244,7 @@ loadingService.subscribeWithLoading(responseObservable,
   err => { throw new ImsLoadingError('Homepage', err) });
 ```
 
-Die Implementation der im vorherigen Beispiel verwendenten Exception Klasse:
+Die Implementation, der im vorherigen Beispiel verwendeten Exception Klasse:
 
 ```javascript
 import { ImsError } from './ims-error';
