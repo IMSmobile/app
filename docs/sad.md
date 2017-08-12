@@ -162,20 +162,20 @@ export class CameraService {
 ```
 ### Functional Reactive Programming / Observable
 
-Um Probleme mit Zustand und somit Seiteneffekte zu verringern, wird das Angular Framework im [Functional Reactive Style](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
+Um Probleme mit Zustand und weiteren Seiteneffekte zu verringern, wird mit dem Angular Framework im [Functional Reactive Style](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
 
-Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream der Daten holt. Es wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vorallem für Entwickler mit Prozeduralen oder Objektorientiert Programmierung Hintergrund führt die Verwendung von Observables zu einem Paradigmenwechsel.
+Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem Entwickler mit Kentnissen in prozeduralen oder objektorientierten Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
 
-Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser Applikation. Mithilfe der Observable *flatMap* Methode wird  das Laden vom Token und das Laden der Einträge verkettet. Die User Interface Methode *loadEntries* aktiviert mit *subscribe* das Observable. Erst dann werden Daten vom REST Server geholt. 
+Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser Applikation. Mithilfe der Observable *flatMap* Methode wird das Laden vom Token und das Laden der Einträge verkettet. Die User Interface Methode *loadEntries* aktiviert mit *subscribe* das neu verkettete Observable. Erst dann werden Daten vom REST Server abgerufen. 
 
 ```typescript
-  //Prodvider Function
+  //Provider Function
   public getEntries(entriesLink: string): Observable<Entries> {
     return this.getToken().flatMap(token =>
       this.http.get(entriesLink).map(response => response.json()));
   }
   
-  //Prodvider Function
+  //Provider Function
   public getToken(): Observable<Token> {
     return http.get(tokenLink).map(t => this.cacheToken(t));
   }
