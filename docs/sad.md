@@ -1,18 +1,25 @@
 # Software Architecture Document
 
+Dieses Dokument beschreibt die Architektur des Mobile Client.
 
   - [Komponentendiagramm](#komponentendiagramm)
   - [Imagic IMS Daten Model](#imagic-ims-daten-model)
     - [Datenmodell](#datenmodell)
     - [Objektmodell](#objektmodell)
-  - [Ordner Struktur Konventionen](#ordner-struktur-konventionen)
+  - [Design Prinzipien](#design-prinzipien)
+    - [Ordnerstruktur Konventionen](#ordnerstruktur-konventionen)
+    - [Model](#model)
+    - [Pages](#pages)
+    - [Provider / Service](#provider--service)
+    - [Functional Reactive Programming / Observable](#functional-reactive-programming--observable)
+    - [Dependency Injection](#dependency-injection)
+    - [Blockierende Aktionen](#blockierende-aktionen)
+    - [Fehlerbehandlung](#fehlerbehandlung)
   - [Data Flow Diagramm](#data-flow-diagramm)
   - [Technologie](#technologie)
     - [Technologie Stack](#technologie-stack)
     - [Assembly Flow](#assembly-flow)
-
-Dieses Dokument beschreibt die Architektur des Mobile Client.
-
+    
 ## Komponentendiagramm
 
 ![Komponentendiagramm](images/components.png)
@@ -182,6 +189,8 @@ Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser A
     );
   }
 ```
+
+### Dependency Injection
 
 ### Blockierende Aktionen
 
