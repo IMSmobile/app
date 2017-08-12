@@ -12,7 +12,8 @@
     "test": "karma start ./test-config/karma.conf.js",
     "test-coverage": "karma start ./test-config/karma.conf.js --coverage",
     "e2e": "node scripts/e2e-deploy-mock.js add && npm run clean && npm run build && node node_modules/protractor/bin/webdriver-manager update && node node_modules/protractor/bin/protractor && node scripts/e2e-deploy-mock.js remove",
-    "release": "node scripts/release.js"
+    "release": "node scripts/release.js",
+    "doc": "node scripts/document-collection.js"
   },
   "config": {
     "ionic_source_map": "source-map",
