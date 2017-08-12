@@ -127,6 +127,8 @@ Eine neue Page kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 ionic generate page [<name>]
 ```
 
+Sämtliche Members und Methoden einer Page sind `public` weil ausser im Testing nie mehrere Instanzen davon erstellt werden.
+
 ### Provider / Service
 
 Ein Provider ist eine Klasse, welche ein Service für bestimmte Funktionen beinhalten. Ein Beispiel ist der Kamera Service, der für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singelton Objekte.
