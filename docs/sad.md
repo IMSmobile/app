@@ -138,7 +138,7 @@ Sämtliche Members und Methoden einer Page sind `public`, weil ausser im Testing
 
 ### Provider / Service
 
-Ein Provider ist eine Klasse, welche ein Service für bestimmte Funktionen beinhalten. Ein Beispiel ist der Kamera Service, der für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singleton Objekte.
+Ein Provider ist eine Klasse, welche einen Service für einen bestimmten Zweck bereitstellt. Ein Beispiel ist der Kamera Service, welcher für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singleton Objekte.
 
 Ein neuer Provider kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 
@@ -146,7 +146,7 @@ Ein neuer Provider kann mit dem Ionic CLI Kommando automatisch erstellt werden.
 ionic generate provider [<name>]
 ```
 
-Beispiel eines Providers mit der zwingenden `@Injectable()` Annotation für Dependency Injection:
+Beispiel eines Providers, versehen mit der zwingenden `@Injectable()` Annotation für Dependency Injection:
 
 ```typescript
 import { Observable } from 'rxjs/Observable';
@@ -162,40 +162,39 @@ export class CameraService {
 ```
 ### Functional Reactive Programming / Observable
 
-Um Probleme mit Zustand und weiteren Seiteneffekte zu verringern, wird im Angular Framework mit [Functional Reactive Style](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
+Um Probleme mit Zustand und weiteren Seiteneffekte zu verringern, wird im Angular Framework mit dem [Functional Reactive Programming Paradigma](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
 
-Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem Entwickler mit Kenntnissen in prozeduralen oder objektorientierten Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
+Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem für Entwickler mit Kenntnissen in prozeduraler oder objektorientierter Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
 
-Das folgende Beispiel zeigt die häufigste Verwenden von Observables in dieser Applikation. Mithilfe der Observable *flatMap* Methode wird das Laden vom Token und das Laden der Einträge verkettet. Die User Interface Methode *loadEntries* aktiviert mit *subscribe* das neu verkettete Observable. Erst dann werden Daten vom REST Server abgerufen. 
+Das folgende vereinfachte Beispiel zeigt die häufigste Verwenden von Observables in dieser Applikation. Mithilfe der Observable *flatMap* Methode wird das Laden vom Token und das Laden der Einträge verkettet. Die User Interface Methode *loadEntries* aktiviert mit *subscribe* das neu verkettete Observable. Erst dann werden Daten von der REST Schnittstelle abgerufen. 
 
 ```typescript
-  //Provider Function
-  public getEntries(entriesLink: string): Observable<Entries> {
+  // Provider Functions
+  public getEntries(): Observable<Entries> {
     return this.getToken().flatMap(token =>
-      this.http.get(entriesLink).map(response => response.json()));
+      this.http.get('rest/entries', token).map(response => response.json())
+    );
   }
-  
-  //Provider Function
   public getToken(): Observable<Token> {
-    return http.get(tokenLink).map(t => this.cacheToken(t));
+    return http.get('rest/tokens').map(response => response.json());
   }
 
-  //Page Function
+  // Page Function
   public loadEntries(): void {
-    Observable<Entires> entriesStream = getEntries(entriesLink); //no http calls until now 
-    entriesStream.subscribe( //subscribe executes the observable
+    Observable<Entires> entriesStream = getEntries(); // no http calls until now 
+    entriesStream.subscribe( // subscribe executes the observable
       entries => displayEntries(entries);
-      err => //do error handling
+      err => // do error handling
     );
   }
 ```
 
 ### Dependency Injection
-Dependency Injection ist eines Grundpattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin-und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind unabhängig voneinander.  
+Dependency Injection ist ein Pattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin- und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind unabhängig voneinander.  
 
-Für eine saubere Trennung zwischen den Plattformen soll in dieser Applikation plattform-spezifischer Code über Dependency Injection implementiert werden.
+Um die Applikationslogik möglichst plattformneutral zu halten sollten plattform-spezifische Variante einer Komponenten erstellt werden und mithilfe von Dependency Injection die generische Komponente ersetzen.
 
-Die Provider müssen, wie im [Kapitel Provider](#provider--service) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im app.module.ts im @NgModule Abschnitt registriert werden.
+Die Provider müssen, wie im [Kapitel Provider](#provider--service) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im `app.module.ts` im Abschnitt @NgModule registriert werden.
 
 ```typescript
 @NgModule({
@@ -207,7 +206,7 @@ Die Provider müssen, wie im [Kapitel Provider](#provider--service) erwähnt, mi
 })
 ```
 
-Um einen Provider zu nutzen, kann er im Konstruktor der Klasse deklariert werden:
+Um einen Provider via Dependency Injection zu nutzen, muss er lediglich im Konstruktor der Klasse deklariert werden:
 
 ```typescript
 constructor(cameraService: CameraService) {
@@ -217,12 +216,12 @@ constructor(cameraService: CameraService) {
 
 ### Blockierende Aktionen
 
-Für blockierende Aktionen, bei welchen der Benutzer auf ein Ereignis wartet, wird der LoadingService verwendet. Der LoadingService zeigt ein modales `Bitte Warten Popup` bis ein Observable abgeschlossen ist.
+Für blockierende Aktionen, bei welchen der Benutzer auf ein Ereignis wartet, wird der LoadingService verwendet. Der LoadingService zeigt einen modalen `Bitte Warten` Dialog an bis das Observable abgeschlossen ist.
 
 Das Codebeispiel zeigt die Verwendung des LoadingService.
 
 ```typescript
-Observable<Response> responseObservable = this.http.get('http://slowloadingside.com')
+Observable<Response> responseObservable = this.http.get('http://slowloadingsite.com');
 loadingService.subscribeWithLoading(responseObservable, 
   response => { successMethod(response) }, 
   err => { throw new ImsLoadingError('Homepage', err) },
