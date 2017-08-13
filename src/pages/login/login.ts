@@ -23,7 +23,7 @@ export class LoginPage {
 
   public loginForm: FormGroup;
   public isShowRestUrlField: boolean = true;
-  public version: string = '0.12.0';
+  public version: string = '0.12.1';
   public readonly unauthorizedHttpStatusCode: number = 401;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public loadingService: LoadingService, public toastCtrl: ToastController, public authService: AuthService, public settingService: SettingService, public app: App, public updateService: UpdateService) {

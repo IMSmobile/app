@@ -354,6 +354,19 @@ describe('Page: Upload', () => {
     page.showSuggestionIfAvailable(page.fields[0]);
     expect(keywordService.getKeywordCatalog).toHaveBeenCalledTimes(1);
     expect(navCtrl.push).toHaveBeenCalledWith(KeywordsPage, { field: imsBackendMock.modelFieldOptionalString, keywords: imsBackendMock.keywordCatalog.keywords, uploadrootpage: page.navCtrl.getActive()});
-
   }));
+
+  it('Subscribes to keywordSelection event on page load', inject([AuthService, ImsBackendMock, Events], (authService: AuthService, imsBackendMock: ImsBackendMock, events: Events) => {
+    spyOn(events, 'subscribe').and.callThrough();
+    authService.setArchive(imsBackendMock.policeFilter);
+    page.ionViewDidLoad();
+    expect(events.subscribe).toHaveBeenCalledWith(page.keywordSelectionTopic, jasmine.any(Function));
+  }));
+
+  it('Unsubscribes from keywordSelection event on page unload', inject([Events], (events: Events) => {
+    spyOn(events, 'unsubscribe').and.callThrough();
+    page.ionViewWillUnload();
+    expect(events.unsubscribe).toHaveBeenCalledWith(page.keywordSelectionTopic);
+  }));
+
 });

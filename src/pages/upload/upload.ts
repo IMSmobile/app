@@ -37,6 +37,7 @@ export class UploadPage {
   public parentImageReferenceField: string;
   public pictureFromCameraEnabled: boolean;
   public showDragOverlay: boolean = false;
+  public readonly keywordSelectionTopic: string = 'keyword: selected';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cameraService: CameraService, public uploadService: UploadService, public authService: AuthService, public loadingService: LoadingService, public toastCtrl: ToastController, public modelService: ModelService, public formBuilder: FormBuilder, public settingService: SettingService, public fieldValidatorService: FieldValidatorService, public domSanitizer: DomSanitizer, public platform: Platform, public browserFileuploadSelectorService: BrowserFileuploadSelectorService, public renderer: Renderer2, public dragEventService: DragEventService, public events: Events, public keywordService: KeywordService) {
     this.images = navParams.get('images');
@@ -44,12 +45,16 @@ export class UploadPage {
     this.entryTitle = navParams.get('entryTitle');
     this.pictureFromCameraEnabled = settingService.isPictureFromCameraEnabled();
     this.dragEventService.preventEventsOnBody(renderer);
-    this.events.subscribe('keyword: selected', (field, keyword) => { this.fillFormWithKeyword(field, keyword); });
   }
 
   public ionViewDidLoad(): void {
     this.loadParentImageReferenceField();
     this.loadUploadFields();
+    this.events.subscribe(this.keywordSelectionTopic, (field, keyword) => { this.fillFormWithKeyword(field, keyword); });
+  }
+
+  public ionViewWillUnload(): void {
+    this.events.unsubscribe(this.keywordSelectionTopic);
   }
 
   public loadParentImageReferenceField(): void {
