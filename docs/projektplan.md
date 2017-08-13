@@ -391,6 +391,8 @@ npm run e2e
 
 End to End Tests werden mit dem [Protractor Framework](http://protractor.com/) geschrieben. Damit ein lesbarer und wiederverwendbarer Testcode entsteht wird das Page Object Pattern eingesetzt.
 
+Hier ein Beispiel eines End to End Tests.
+
 ```javascript
 describe('Settings E2E Test', () => {
 
