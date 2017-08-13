@@ -105,7 +105,7 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 Siehe [Glossar](glossary.md)
 
 ## Projektübersicht
-Im Rahmen des Projekts _Arkivar – Mobile Client for Imagic IMS_ entsteht eine Applikation, um Medien via Mobile Devices im digitalen Bildmanagementsystem von Imagic IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.
+Im Rahmen des Projekts _Arkivar – Mobile Client for Imagic IMS_ entsteht eine Applikation, um Medien via Mobile Devices im digitalen Bildmanagementsystem von Imagic IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](https://www.hsr.ch/de/) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.
 
 Die Anforderungen sowie auch deren Priorisierung erfolgt in Abstimmung mit den Firmen Imagic AG und PIC Systems AG.
 

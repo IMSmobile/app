@@ -2,7 +2,7 @@ Liste aller Sitzungen und Link zu den Protokollen
 
 | Datum      | Sitzung                                                                                                  |
 |------------|----------------------------------------------------------------------------------------------------------|
-| 2017-03-17 | [Diskussion Imagic Anforderungen](2017-03-17-review-imagic.md)                                           |
+| 2017-03-17 | [Diskussion Imagic Anforderungen](protocols/2017-03-17-review-imagic.md)                                           |
 | 2017-03-17 | [Diskussion PIC Systems Anforderungen](protocols/2017-03-17-review-picsystems.md)                    |
 | 2017-03-20 | [Betreuer Meeting](protocols/2017-03-20-advisor-meeting.md)                                      |
 | 2017-03-28 | [Diskussion PIC Systems Anforderungen](protocols/2017-03-28-requirements-picsystems.md)              |
