@@ -1,18 +1,25 @@
 # Software Architecture Document
 
+Dieses Dokument beschreibt die Architektur des Mobile Client.
 
   - [Komponentendiagramm](#komponentendiagramm)
   - [Imagic IMS Daten Model](#imagic-ims-daten-model)
     - [Datenmodell](#datenmodell)
     - [Objektmodell](#objektmodell)
-  - [Ordner Struktur Konventionen](#ordner-struktur-konventionen)
+  - [Design Prinzipien](#design-prinzipien)
+    - [Ordnerstruktur Konventionen](#ordnerstruktur-konventionen)
+    - [Model](#model)
+    - [Pages](#pages)
+    - [Provider / Service](#provider--service)
+    - [Functional Reactive Programming / Observable](#functional-reactive-programming--observable)
+    - [Dependency Injection](#dependency-injection)
+    - [Blockierende Aktionen](#blockierende-aktionen)
+    - [Fehlerbehandlung](#fehlerbehandlung)
   - [Data Flow Diagramm](#data-flow-diagramm)
   - [Technologie](#technologie)
     - [Technologie Stack](#technologie-stack)
     - [Assembly Flow](#assembly-flow)
-
-Dieses Dokument beschreibt die Architektur des Mobile Client.
-
+    
 ## Komponentendiagramm
 
 ![Komponentendiagramm](images/components.png)
@@ -46,7 +53,11 @@ Das Polizeiarchiv workflow_db1 hat drei Tabellen. Auf der höchsten Ebene steht 
 
 Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist dort ein Patient, danach kommen Besuche (Visit), Studien (Study) und am Schluss, wie von IMS vorgegeben, die Bilder Tabelle. Als Beispiel eines Keyword Katalogs wurde das Geschlecht (Sex) bei einem Patienten gewählt. Man erkennt, dass innerhalb des Keyword Kataloges die Werte masculin und feminin ausgewählt werden können.
 
-## Ordnerstruktur Konventionen
+## Design Prinzipien
+
+Die Design Prinzipien beschreiben die wichtigsten architektischen Richtlinien und Design Patterns. Sie helfen dem Entwickler bestehende Lösungen zu übernehmen und einen einheitlichen Code zu schreiben. 
+
+### Ordnerstruktur Konventionen
 
 Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden, verwenden wir eine Ordnerstruktur Konvention. Diese entsprechen im Grundsatz den Konventionen eines Ionic 2 Projekts.  
 
@@ -77,8 +88,177 @@ Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurecht
     ├──── providers                  # Services, welche innerhalb der Pages gebraucht werden können
     ├──────── any-service.spec.ts    # Testklasse des Services
     ├──────── any-service.ts         # Serviceklasse
-    ├──── themes                     # scss Files für die Gestaltung der App 
+    ├──── themes                     # SCSS Files für die Gestaltung der App 
     ├──── validators                 # Validationsklassen für unterschiedliche Feldtypen
+
+### Model
+
+Ein Model ist eine Klasse mit Attributen, welche Informationen beinhalten. Model Klassen werden hauptsächlich für die Repräsentation der Rückgabewerte von der REST Schnittstelle und für Error Klassen eingesetzt. 
+
+Ein wichtiger Designentscheid ist, dass Model Klassen **keine Methoden** enthalten. Dies liegt daran, dass beim Mapping einer Angular HTTP Response ein Model nicht automatisch instanziiert wird. Das folgende Beispiel gibt zwar Credentials zurück, jedoch ist das Objekt keine Instanz von Credential. Somit kann nur auf Attribute, nicht aber auf Methoden, zugegriffen werden.  
+
+```typescript
+  public getCredential(): Observable<Credential> {
+   this.http.get('rest/info').map(response => response.json());
+  } 
+}
+``` 
+
+Mit dem **readonly** Modifier bei Attributen wird sichergestellt, dass Model Klasse unveränderlich (immutable) sind. 
+
+Ein Beispiel einer Model Klasse:
+
+```typescript
+export class Credential {
+  public readonly username: string;
+  public readonly password: string;
+  
+  constructor(string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
+}
+```
+
+### Pages
+
+Pages sind von Ionic erweiterte [Angular Komponenten](https://angular.io/api/core/Component). Sie entsprechen einer Bildschirmseite wie zum Beispiel dem Loginscreen und werden in drei Files unterteilt:
+
+ * HTML für UI-Elemente
+ * SCSS für Design 
+ * Typescript für die Logik
+
+Eine neue Page kann mit dem Ionic CLI Kommando automatisch erstellt werden.
+
+```bash
+ionic generate page [<name>]
+```
+
+Sämtliche Members und Methoden einer Page sind `public`, weil ausser im Testing nie mehrere Instanzen davon erstellt werden.
+
+### Provider / Service
+
+Ein Provider ist eine Klasse, welche einen Service für einen bestimmten Zweck bereitstellt. Ein Beispiel ist der Kamera Service, welcher für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singleton Objekte.
+
+Ein neuer Provider kann mit dem Ionic CLI Kommando automatisch erstellt werden.
+
+```bash
+ionic generate provider [<name>]
+```
+
+Beispiel eines Providers, versehen mit der zwingenden `@Injectable()` Annotation für Dependency Injection:
+
+```typescript
+import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class CameraService {
+  
+  public acquireImage(): Observable<Image> {
+    // Logic to acquire Image
+  }
+}
+```
+### Functional Reactive Programming / Observable
+
+Um Probleme mit Zustand und weiteren Seiteneffekte zu verringern, wird im Angular Framework mit dem [Functional Reactive Programming Paradigma](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
+
+Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem für Entwickler mit Kenntnissen in prozeduraler oder objektorientierter Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
+
+Das folgende vereinfachte Beispiel zeigt die häufigste Verwenden von Observables in dieser Applikation. Mithilfe der Observable *flatMap* Methode wird das Laden vom Token und das Laden der Einträge verkettet. Die User Interface Methode *loadEntries* aktiviert mit *subscribe* das neu verkettete Observable. Erst dann werden Daten von der REST Schnittstelle abgerufen. 
+
+```typescript
+  // Provider Functions
+  public getEntries(): Observable<Entries> {
+    return this.getToken().flatMap(token =>
+      this.http.get('rest/entries', token).map(response => response.json())
+    );
+  }
+  public getToken(): Observable<Token> {
+    return http.get('rest/tokens').map(response => response.json());
+  }
+
+  // Page Function
+  public loadEntries(): void {
+    Observable<Entires> entriesStream = getEntries(); // no http calls until now 
+    entriesStream.subscribe( // subscribe executes the observable
+      entries => displayEntries(entries);
+      err => // do error handling
+    );
+  }
+```
+
+### Dependency Injection
+Dependency Injection ist ein Pattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin- und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind unabhängig voneinander.  
+
+Um die Applikationslogik möglichst plattformneutral zu halten soll die plattform-spezifische Variante einer Komponente mithilfe der Dependency Injection `useFactory` geladen werden.
+
+Die Provider müssen, wie im [Kapitel Provider](#provider--service) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im `app.module.ts` im Abschnitt @NgModule registriert werden.
+
+```typescript
+@NgModule({
+  // ...
+  providers: [
+    CameraServiceProvider 
+  ],
+  // ...
+})
+```
+
+Um einen Provider via Dependency Injection zu nutzen, muss er lediglich im Konstruktor der Klasse deklariert werden:
+
+```typescript
+constructor(cameraService: CameraService) {
+  cameraServiceProvider.acquireImage();
+}
+```
+
+### Blockierende Aktionen
+
+Für blockierende Aktionen, bei welchen der Benutzer auf ein Ereignis wartet, wird der LoadingService verwendet. Der LoadingService zeigt einen modalen `Bitte Warten` Dialog an bis das Observable abgeschlossen ist.
+
+Das Codebeispiel zeigt die Verwendung des LoadingService.
+
+```typescript
+Observable<Response> responseObservable = this.http.get('http://slowloadingsite.com');
+loadingService.subscribeWithLoading(responseObservable, 
+  response => { successMethod(response) }, 
+  err => { throw new ImsLoadingError('Homepage', err) },
+  () => { finishedMethod();});
+```
+### Fehlerbehandlung
+
+Bei unerwarteten Ereignissen wie z.B. einem Netzwerk-Unterbruch, einer Fehlkonfiguration der REST Schnittstelle oder falschem Programmcode kümmert sich die ImsErrorHandler Klasse um die korrekte Behandlung des Fehlers.
+
+Im Produktivbetrieb zeigt der ImsErrorHandler dem Benutzer einen Dialog mit einem kurzen Fehlerbeschrieb an. Im Entwicklermodus wird hingegen die Standard Ionic Error Seite mit der technischen Fehlermeldung sowein einem Stacktrace dargestellt.
+
+Damit im Produktivbetrieb die richtige Fehlerbeschreibung angezeigt werden kann, müssen alle Observables im Fehlerfall eine von ImsError geerbte Exception werfen.
+
+Beispielverwendung in der Applikationslogik:
+
+```typescript
+loadingService.subscribeWithLoading(responseObservable, 
+  response => { successMethod(response) }, 
+  err => { throw new ImsLoadingError('Homepage', err) });
+```
+
+Die Implementation, der im vorherigen Beispiel verwendeten Exception Klasse:
+
+```javascript
+import { ImsError } from './ims-error';
+export class ImsLoadingError extends ImsError {
+
+  constructor(wantedToLoad: string, message: string) {
+    super('Fehler beim Laden der ' + wantedToLoad, message);
+    Object.setPrototypeOf(this, ImsLoadingError.prototype);
+  }
+}
+```
+
+Dabei wird aus dem ersten Parameter im Konstruktor die benutzerfreundliche Fehlermeldung erstellt und an `ImsError` übergeben. Gleichzeitig wird für den Entwicklermodus die ursprüngliche Fehlermeldung als zweiten Parameter unverändert durchgereicht.
+
+`Object.setPrototypeOf()` ist wegen einer [Limitation von TypeScript beim Ableiten von Error](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work) nötig.
 
 ## Data Flow Diagramm
 
