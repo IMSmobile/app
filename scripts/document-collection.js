@@ -45,7 +45,11 @@ function convertMDToHTML() {
   glob("**/*.md", { 'ignore': ignoredMDs }, function (er, files) {
     console.info(chalk.blue(figures.info) + ' converting all .md documents. This could take a while...');
     files.forEach(function (file) {
-      exportFile = exportDir + "\\" + file.replace('.md', '.html');
+      if (file.endsWith('README.md')) {
+        exportFile = exportDir + "\\" + file.replace('README.md', 'index.html');
+      } else {
+        exportFile = exportDir + "\\" + file.replace('.md', '.html');
+      }
       ensureDirectory(exportFile);
       execSync('grip ' + [file, '--quiet', '--export', exportFile].join(' '));
       console.info(chalk.green(figures.tick) + ' successfull converted ' + file);
