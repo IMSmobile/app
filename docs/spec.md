@@ -20,10 +20,10 @@ Mit dem Mobile Client möchten wir den Kunden von Imagic ermöglichen, über iOS
 Als Schnittstelle soll die von Imagic IMS Server bereitgestellte REST-API verwendet werden.
 
 ## Vision
-Siehe [Vision](../README.md#vision).
+Siehe [Vision](projektplan.md#vision).
 
 ## Stakeholder
-Siehe [Stakeholder](../README.md#stakeholder).
+Siehe [Stakeholder](projektplan.md#stakeholder).
 
 ## Anforderungskatalog
 Aus Gründen der Lesbarkeit verwenden wir den Begriff _Client_ als Synonym für _Mobile Client_.
