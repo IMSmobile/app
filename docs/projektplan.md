@@ -389,9 +389,9 @@ Mit folgendem Befehl können alle End to End Tests ausgeführt werden.
 npm run e2e
 ```
 
-End to End Tests werden mit dem [Protractor Framework](http://protractor.com/) geschrieben. Damit ein lesbarer und wiederverwendbarer Testcode entsteht wird das Page Object Pattern eingesetzt.
+End to End Tests werden mit dem [Protractor Framework](http://protractor.com/) durchgeführt. Damit ein lesbarer und wiederverwendbarer Testcode entsteht wird das Page Object Pattern eingesetzt.
 
-Hier ein Beispiel eines End to End Tests.
+Hier ein Beispiel eines End to End Tests:
 
 ```javascript
 describe('Settings E2E Test', () => {
@@ -409,8 +409,6 @@ describe('Settings E2E Test', () => {
 
 });
 ```
-
-
 #### Build Testing
 Mit Build Testing stellen wir sicher, dass unsere Software in ein gültiges Paketformat (`.ipa` oder `.apk`) für Smartphones umgewandelt werden kann. Dazu verwenden wir den Service [Ionic Package](https://docs.ionic.io/services/package/).
 
@@ -430,7 +428,7 @@ Das Ergebnis der Continuous Integration wird grafisch in GitHub sowie auf unsere
 Dank dieses Tools ist es möglich, eine stabile und unabhängige Testumgebung zu entwickeln und mit wenig Aufwand zu betreiben. Sie kombiniert die Tests mit einem automatischen Build und nimmt durch die Automatisierung viele manuelle Arbeitsschritte ab.
 
 #### Manual Testing
-Nicht alle Fehler können durch Unit und End to End Testing abgesichert werden. Für eine Prüfung der Darstellung auf den Referenzgeräten im Vergleich zu den Wireframes sind noch immer manuelle Tests nötig. Jedes neue Feature wird manuell auf einem iOS und Android Gerät getestet.
+Nicht alle Fehler können durch Unit und End to End Testing gefunden werden. Für eine Prüfung der Darstellung auf den Referenzgeräten im Vergleich zu den Wireframes sind noch immer manuelle Tests nötig. Daher wird jedes neue Feature manuell auf einem iOS und Android Gerät getestet.
 
 Um während der Entwicklung einen raschen Testzyklus auf iOS-Geräten zu erreichen setzen wir den Service [Ionic View](http://view.ionic.io/) ein. Mit folgenden Befehlen kann die Software für Ionic View paketiert und hochgeladen werden:
 ```shell
@@ -439,7 +437,7 @@ ionic upload
 ```
 Anschliessend kann die soeben hochgeladene Software-Version sofort innerhalb des Ionic View auf einem Smartphone überprüft werden.
 
-Zum Projektabschluss wird zusätlich eine explorative Testsession durchgeführt.
+Zum Projektabschluss wird zusätzlich eine explorative Testsession durchgeführt.
 
 ### Releasing
 Um rasch neue Versionen des Clients bereitstellen zu können setzen wir auf die standardisierte Versionierung mit [Semantic Versioning](http://semver.org/) sowie die automatisierte Erstellung von Release Notes mit [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog).
