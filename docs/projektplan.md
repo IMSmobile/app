@@ -458,7 +458,11 @@ ionic upload
 ```
 Anschliessend kann die soeben hochgeladene Software-Version sofort innerhalb des Ionic View auf einem Smartphone überprüft werden.
 
-Zum Projektabschluss wird zusätzlich eine explorative Testsession durchgeführt.
+Zum Projektabschluss wurde zusätzlich eine explorative Testsession mit zwei Test Charters durchgeführt:
+1. *Explore Settings with Web Browser, iPhone and Android Phone to discover persistency or concurrency errors*
+2. *Explore Upload with Web Browser, iPhone and Android Phone to discover field validation*
+
+Mithilfe des Tools [Rapid Reporter](http://testing.gershon.info/reporter/) wurde der Ablauf sowie alle Entdeckungen im [Protokoll der Testsession](testsession/sessionreport.md) festgehalten.
 
 ### Releasing
 Um rasch neue Versionen des Clients bereitstellen zu können setzen wir auf die standardisierte Versionierung mit [Semantic Versioning](http://semver.org/) sowie die automatisierte Erstellung von Release Notes mit [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog).
