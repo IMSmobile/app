@@ -3,6 +3,7 @@
  * Prerequisites:
  * - Python in Path
  *  - pip install grip
+ * - Pandoc in Path
  */
 const path = require('path');
 const spawn = require('child_process').spawn;
@@ -14,6 +15,31 @@ const figures = require('figures')
 
 const exportDirName = 'document-collection'
 const ignoredMDs = ['node_modules/**/*.md', 'platforms/**/*.md', 'plugins/**/*.md'];
+const mdFilesForPublication = [
+  'README.md',
+  'docs/projektplan.md',
+  'docs/risikoanalyse.md',
+  'docs/frameworkanforderungen.md',
+  'docs/frameworkentscheid.md',
+  'docs/questions.md',
+  'docs/spec.md',
+  'docs/sad.md',
+  'docs/schnellstartanleitung.md',
+  'CONTRIBUTING.md',
+  'docs/glossary.md'
+];
+const mdFileLinkToTitleMap = {
+  'projektplan.md': '#projektplan',
+  'risikoanalyse.md': '#risiko-analyse',
+  'Frameworkentscheid.md': '#framework-entscheid',
+  'frameworkanforderungen.md': '#anforderungen-an-das-framework',
+  'questions.md': '#fragenkatalog-für-stakeholder',
+  'spec.md': '#spezifikation',
+  'sad.md': '#software-architecture-document',
+  'schnellstartanleitung.md': '#schnellstartanleitung',
+  '../CONTRIBUTING.md': '#guidelines-for-contribution',
+  'glossary.md': '#glossar',
+};
 const rootDir = path.resolve(__dirname, '../.');
 const exportDir = path.resolve(__dirname, '../' + exportDirName);
 const glob = require('glob');
@@ -27,6 +53,7 @@ copyToExportDirectory('*.md');
 copyToExportDirectory('*.json');
 copyToExportDirectory('*.xml');
 convertMDToHTML();
+createPublication();
 
 function copyToExportDirectory(wildcard) {
   glob(wildcard, {}, function (er, files) {
@@ -58,6 +85,51 @@ function convertMDToHTML() {
   })
 }
 
+function createPublication() {
+  const publication = exportDirName + '//' + 'publication';
+  const publicationMd = publication + '.md';
+  const publicationDocx = publication + '.docx';
+  fs.removeSync(publicationMd);
+  fs.removeSync(publicationDocx);
+  ensureDirectory(publicationMd);
+  mdFilesForPublication.forEach(function (file) {
+    const content = cleanupForPublication(fs.readFileSync(rootDir + '//' + file, {encoding: 'utf8'}));
+    fs.appendFileSync(publicationMd, content);
+  });
+  execSync('pandoc ' + ['--from=markdown_github', '--to=docx', '--toc', '--standalone', '--output=' + publicationDocx, publicationMd].join(' '));
+}
+
+function cleanupForPublication(content) {
+  content = removeBadges(content);
+  content = fixImagePaths(content);
+  content = fixDocumentLinks(content);
+  content = convertTsCodeblocksToJs(content);
+  return content;
+}
+
+function fixImagePaths(content) {
+  return content.replace(/\(images\//g, '(docs/images/')
+}
+
+function removeBadges(content) {
+  return content.replace(/\[!\[[^\]]*\]\(http.*/g, '')
+}
+
+function fixDocumentLinks(content) {
+  Object.keys(mdFileLinkToTitleMap).forEach(function (link) {
+    let internalMdFilePattern = new RegExp('\\\]\\\(' + link + '[^#]*\\\)', 'g')
+    let internalMdFileChapterPattern = new RegExp('\\\]\\\(' + link + '#', 'g')
+    content = content.replace(internalMdFilePattern, '](' + mdFileLinkToTitleMap[link] + ')');
+    content = content.replace(internalMdFileChapterPattern, '](#');
+  });
+  return content;
+}
+
+function convertTsCodeblocksToJs(content) {
+  return content.replace(/```typescript/g, '```javascript')
+}
+
+
 function sanitizeHTMLLinks() {
   glob(exportDirName + '/**/*.html', {}, function (er, files) {
     console.info(chalk.blue(figures.info) + ' sanitizing all .html documents. This could take a while...');
@@ -74,7 +146,6 @@ function sanitizeHTMLLinks() {
     console.info(chalk.green(figures.tick) + ' sanitized all html links');
   })
 }
-
 
 function replaceInternalMDLinkWithHTML($, link) {
   href = $(link).attr('href')
