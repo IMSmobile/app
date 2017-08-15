@@ -85,7 +85,7 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 Dieses Dokument beschreibt die Organisation, Vorgehensweise sowie die verwendeten Werkzeuge für die Umsetzung des Projekts. Es dient als Einstiegspunkt, um sämtliche projektbezogenen Information zu finden.
 
 ### Gültigkeitsbereich
-Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden fortlaufend eingepflegt und können in der [Commit History](https://github.com/IMSmobile/app/commits/master/docs/protokolle.md) dieses Dokuments angesehen werden.
+Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden fortlaufend eingepflegt und können in der [Commit History](https://github.com/IMSmobile/app/commits/master/docs/projektplan.md) dieses Dokuments angesehen werden.
 
 ### Referenzen
 | Link        | Beschreibung |
