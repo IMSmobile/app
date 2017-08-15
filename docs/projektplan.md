@@ -4,6 +4,7 @@
 
 - [Vision](#vision)
 - [Allgemeine Angaben](#allgemeine-angaben)
+  - [Autor](#autor)
 - [Einführung](#einführung)
   - [Zweck](#zweck)
   - [Gültigkeitsbereich](#gültigkeitsbereich)
@@ -20,19 +21,38 @@
 - [Risikomanagement](#risikomanagement)
 - [Management Abläufe](#management-abläufe)
   - [Zeitliche Planung](#zeitliche-planung)
+    - [Phasen](#phasen)
 - [Infrastruktur](#infrastruktur)
 - [Qualitätsmassnahmen](#qualitätsmassnahmen)
   - [Framework](#framework)
   - [Dokumentation](#dokumentation)
   - [Projektmanagement](#projektmanagement)
   - [Entwicklung](#entwicklung)
+    - [Entwicklungs Setup](#entwicklungs-setup)
+      - [IMS Rest Konfiguration](#ims-rest-konfiguration)
+      - [Entwicklungsumgebung](#entwicklungsumgebung)
+        - [Plugins](#plugins)
+        - [Debugging](#debugging)
+    - [Vorgehen](#vorgehen)
+    - [Events](#events)
+    - [Artefakte](#artefakte)
+    - [Team](#team)
+    - [Code Reviews](#code-reviews)
+    - [Code Coverage](#code-coverage)
+    - [Code Guideline](#code-guideline)
+    - [Commit Message Guidelines](#commit-message-guidelines)
   - [Testing](#testing)
- - [Releasing](#releasing)
+    - [Jasmine](#jasmine)
+    - [Karma](#karma)
+    - [Unit Testing](#unit-testing)
+    - [End to End Testing](#end-to-end-testing)
+    - [Build Testing](#build-testing)
+    - [Continuous Integration](#continuous-integration)
+    - [Manual Testing](#manual-testing)
+  - [Releasing](#releasing)
   - [Versionierung](#versionierung)
   - [Wireframes](#wireframes)
   - [Story Map](#story-map)
-- [Quellen](#quellen)
-- [Markenrechte](#markenrechte)
 
 ## Vision
 Wir möchten es den Kunden von Imagic IMS erlauben, auf einfache Weise via mobilen Clients digitale Medien (Bilder, Audio, Video, Texte) im Imagic IMS System abzuspeichern. Dazu möchten wir eine plattformunabhängige Mobile-App entwickeln.
@@ -65,7 +85,8 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 Dieses Dokument beschreibt die Organisation, Vorgehensweise sowie die verwendeten Werkzeuge für die Umsetzung des Projekts. Es dient als Einstiegspunkt, um sämtliche projektbezogenen Information zu finden.
 
 ### Gültigkeitsbereich
-Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden fortlaufend eingepflegt und können in der [Commit History](https://github.com/IMSmobile/app/commits/master/README.md) dieses Dokuments angesehen werden.
+Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden fortlaufend eingepflegt und können in der [Commit History](https://github.com/IMSmobile/app/commits/master/docs/projektplan.md) dieses Dokuments angesehen werden.
+
 ### Referenzen
 | Link        | Beschreibung |
 | ------------- |-------------|
@@ -85,7 +106,7 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 Siehe [Glossar](glossary.md)
 
 ## Projektübersicht
-Im Rahmen des Projekts _Arkivar – Mobile Client for Imagic IMS_ entsteht eine Applikation, um Medien via Mobile Devices im digitalen Bildmanagementsystem von Imagic IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](www.hsr.ch) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.
+Im Rahmen des Projekts _Arkivar – Mobile Client for Imagic IMS_ entsteht eine Applikation, um Medien via Mobile Devices im digitalen Bildmanagementsystem von Imagic IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](https://www.hsr.ch/de/) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.
 
 Die Anforderungen sowie auch deren Priorisierung erfolgt in Abstimmung mit den Firmen Imagic AG und PIC Systems AG.
 
