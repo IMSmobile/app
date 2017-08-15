@@ -1,5 +1,6 @@
-Übersicht der Sprints mit Link zur jeweiligen Präsentation, Protokoll und Burndown Chart.
+# Sprints
 
+Übersicht der Sprints mit Link zur jeweiligen Präsentation, Protokoll und Burndown Chart.
 
 | Startdatum | Präsentation                                                        | Protokoll                                                                                    | Burndown Chart                                                            | Abgeschlossene Tasks                                                       |
 |------------|---------------------------------------------------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------|
@@ -17,6 +18,7 @@
 | 2017-07-28 | [Sprint 12 Review Präsentation](sprint-review/sprint_12_review.pdf) | [Sprint 12 Review Protokoll](protocols/2017-08-11-presentation-sprint12-imagic_PICSystem.md) | [Sprint 12 Burndown Chart](sprint-burndown-charts/sprint_12_burndown.png) | [Sprint 12 Issues](https://github.com/IMSmobile/app/milestone/12?closed=1) |
 | 2017-08-11 | [Sprint 13 Review Präsentation](sprint-review/sprint_13_review.pdf) | [Sprint 13 Review Protokoll](protocols/2017-08-25-presentation-sprint13-imagic_PICSystem.md) | [Sprint 13 Burndown Chart](sprint-burndown-charts/sprint_13_burndown.png) | [Sprint 13 Issues](https://github.com/IMSmobile/app/milestone/13?closed=1) |
 
-Auf dem Burnup Chart erkennt man das im Backlog noch arbeit bis zum Sprint 19 vorhanden ist.
+## Burn Up Chart
+Auf dem Burn Up Chart erkennt man, dass im Backlog noch Arbeit bis zum Sprint 19 vorhanden ist.
 
-![Burnup Chart](images/burnup_chart.png)
+![Burn Up Chart](images/burnup_chart.png)
