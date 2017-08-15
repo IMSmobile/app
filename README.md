@@ -33,6 +33,7 @@
 | [Framework-Entscheid](docs/Frameworkentscheid.md)              | Beschreibung weshalb Framework ausgewählt wurde                |
 | [Architekur-Designdokumentation](docs/sad.md)      | Hilfe für Entwickler sich rasch im Projekt zurecht zu finden  |
 | [Decisionlog](docs/decisionlog.md)                         | Entscheidungen die während dem Projekt entstanden sind        |
+| [Schnellstartanleitung](docs/schnellstartanleitung.md)                       | Kurzanleitung für neue Entwickler        |
 | [Grafik Update](docs/howToUpdateGraphics.md)                       | Beschreibung wie Logo und Icons gewechselt werden können         |
 | [Marketing Text](docs/store/store.md)                      | Text welcher für App-Store und Play-Store verwendet wird     |
 | [Sprint Dokumente](docs/sprints.md)                       | Präsentationen, Protokolle und Burndown Charts der Sprints |
