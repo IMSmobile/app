@@ -1,20 +1,29 @@
 # Framework Entscheid
 ## Einleitung
 
-Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithilfe dieser Prototypen sollte abgeklärt werden, ob das Framework unseren Anforderungen entspricht. Die Anforderungen an den Prototyp wurden im Dokument [Frameworkanforderungen](frameworkanforderungen.md) zusammengefasst. Die Prototypen und Frameworkbeschreibungen sind auf der GitHub-Seite einsehbar.
+Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithilfe dieser Prototypen sollte abgeklärt werden, ob das Framework unseren Anforderungen entspricht. Die Anforderungen an den Prototyp wurden im Dokument [Frameworkanforderungen](frameworkanforderungen.md) zusammengefasst. Die Prototypen und Frameworkbeschreibungen sind auf den GitHub-Seiten einsehbar:
 
-## Anforderungsmatrix
-| Anforderung | Ionic 2 | React Native | Xamarin |
-| ----------- | ------- | ------------ | ------- |
-| Android Support | Ja | Ja | Ja |
-| iOS-Support |	Ja |	Ja | Ja |
-| Kamera-Support | Ja |	Ja |Ja |
-| Galerie-Support | Ja |	Ja |	Begrenzt (Multipicture Selection nicht implementiert) |
-| Persistent Data |	Ja |	Ja |	Muss nativ eingepflegt werden |
-| REST-Client |	Ja |	Ja | Ja |
-| Unterstützt SSL |	Ja |	Ja |	Ja, jedoch Probleme mit Prototype |
-| Dynamische Felder | Ja, jedoch nicht optimal | Ja | Ja |			
-| Unterstützt Webbrowser | Ja | Nein | Nein (Projekt in Entwicklung) |
+- [Ionic 2](https://github.com/IMSmobile/ionic2-prototype)
+- [React Native](https://github.com/IMSmobile/rn-prototype)
+- [Xamarin](https://github.com/IMSmobile/XamarinPrototype)
+
+## Evaluierte Anforderungen
+
+Nur eine Auswahl der wichtigsten Framworkanforderungen konnte im im Prototyp implementiert und bewertet werden.
+
+| ID | Anforderung | Ionic 2 | React Native | Xamarin |
+| -- | ----------- | ------- | ------------ | ------- |
+|  1 | Android Support | Ja | Ja | Ja |
+|  2 | iOS-Support |	Ja |	Ja | Ja |
+|  3 | Unterstützt Webbrowser | Ja | Nein | Nein (Projekt in Entwicklung) |
+|  4 | REST-Client |	Ja |	Ja | Ja |
+|  5 | Galerie-Support | Ja |	Ja |	Begrenzt (Multipicture Selection nicht implementiert) |
+|  6 | Kamera-Support | Ja |	Ja |Ja |
+| 12 | Gleiche Codebasis | Ja | Ja | Ja |
+| 14 | Unterstützt SSL |	Ja |	Ja |	Ja, jedoch Probleme mit Prototype |
+| 16 | Persistent Data |	Ja |	Ja |	Muss nativ eingepflegt werden |
+| 17 | Authentifizierung | Ja | Ja | Ja |
+| 21 | Dynamische Felder | Ja, jedoch nicht optimal | Ja | Ja |			
 
 ## Ionic 2
 ### Vorteile
