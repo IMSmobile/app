@@ -1,4 +1,4 @@
-# Anforderungen an das Cross-Platform Framework
+# Anforderungen an das Framework
 
 ## Technisch
 
