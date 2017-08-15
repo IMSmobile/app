@@ -3,6 +3,7 @@
  * Prerequisites:
  * - Python in Path
  *  - pip install grip
+ * - git in Path
  * - Pandoc in Path
  */
 const path = require('path');
@@ -45,27 +46,13 @@ const exportDir = path.resolve(__dirname, '../' + exportDirName);
 const glob = require('glob');
 
 fs.removeSync(exportDir);
-copyToExportDirectory('docs/**/*');
-copyToExportDirectory('e2e/**/*');
-copyToExportDirectory('src/**/*');
-copyToExportDirectory('scripts/**/*');
-copyToExportDirectory('*.md');
-copyToExportDirectory('*.json');
-copyToExportDirectory('*.xml');
+copyToExportDirectory();
 convertMDToHTML();
 createPublication();
 
-function copyToExportDirectory(wildcard) {
-  glob(wildcard, {}, function (er, files) {
-    files.forEach(function (file) {
-      exportFile = exportDir + "/" + file;
-      if (!fs.lstatSync(file).isDirectory()) {
-        ensureDirectory(exportFile);
-        fs.createReadStream(file).pipe(fs.createWriteStream(exportFile));
-      }
-    });
-    console.info(chalk.green(figures.tick) + ' copied files with wildcard ' + wildcard + ' to export directory ' + exportDir);
-  });
+function copyToExportDirectory() {
+  execSync('git ' + ['clone', '--quiet', rootDir, exportDir].join(' '));
+  console.info(chalk.green(figures.tick) + ' copied files to export directory ' + exportDir);
 }
 
 function convertMDToHTML() {
@@ -79,24 +66,25 @@ function convertMDToHTML() {
       }
       ensureDirectory(exportFile);
       execSync('grip ' + [file, '--quiet', '--export', exportFile].join(' '));
-      console.info(chalk.green(figures.tick) + ' successfull converted ' + file);
+      console.info(chalk.green(figures.tick) + ' successfully converted ' + file);
     });
     sanitizeHTMLLinks();
   })
 }
 
 function createPublication() {
-  const publication = exportDirName + '//' + 'publication';
+  const publication = exportDirName + '/' + 'publication';
   const publicationMd = publication + '.md';
   const publicationDocx = publication + '.docx';
   fs.removeSync(publicationMd);
   fs.removeSync(publicationDocx);
   ensureDirectory(publicationMd);
   mdFilesForPublication.forEach(function (file) {
-    const content = cleanupForPublication(fs.readFileSync(rootDir + '//' + file, {encoding: 'utf8'}));
+    const content = cleanupForPublication(fs.readFileSync(rootDir + '/' + file, {encoding: 'utf8'}));
     fs.appendFileSync(publicationMd, content);
   });
   execSync('pandoc ' + ['--from=markdown_github', '--to=docx', '--toc', '--standalone', '--output=' + publicationDocx, publicationMd].join(' '));
+  console.info(chalk.green(figures.tick) + ' created ' + publicationDocx);
 }
 
 function cleanupForPublication(content) {
