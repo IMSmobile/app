@@ -41,6 +41,21 @@ const mdFileLinkToTitleMap = {
   '../CONTRIBUTING.md': '#guidelines-for-contribution',
   'glossary.md': '#glossar',
 };
+const publicationPretext = '![Arkivar](docs/images/full_logo_blue.png)\n-----\n';
+const publicationPolishingSteps = [
+  'Datei → Eigenschaften → Dokumenteigenschaften ausfüllen ...',
+  'Einfügen → Deckblatt → tbd',
+  'Logo von erster Seite übernehmen',
+  'Kapitel "Projektdokumente" löschen',
+  'Kapitel "Produktdokumente" löschen',
+  'Kapitel "Projektplan → Inhaltsverzeichnis" löschen',
+  'Kapitel "Spezifikation → Inhaltsverzeichnis" löschen',
+  'Inhaltsverzeichnis im Kapitel "Software Architecture Document" löschen',
+  'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
+  'Kopf und Fusszeilen einfügen...?',
+  'Tabellen Formatieren ...',
+  'Als PDF speichern'
+]
 const rootDir = path.resolve(__dirname, '../.');
 const exportDir = path.resolve(__dirname, '../' + exportDirName);
 const glob = require('glob');
@@ -73,18 +88,24 @@ function convertMDToHTML() {
 }
 
 function createPublication() {
-  const publication = exportDirName + '/' + 'publication';
+  const publication = exportDirName + '/' + 'publikation';
   const publicationMd = publication + '.md';
   const publicationDocx = publication + '.docx';
   fs.removeSync(publicationMd);
   fs.removeSync(publicationDocx);
   ensureDirectory(publicationMd);
+  fs.appendFileSync(publicationMd, publicationPretext);
   mdFilesForPublication.forEach(function (file) {
     const content = cleanupForPublication(fs.readFileSync(rootDir + '/' + file, {encoding: 'utf8'}));
     fs.appendFileSync(publicationMd, content);
   });
   execSync('pandoc ' + ['--from=markdown_github', '--to=docx', '--toc', '--standalone', '--output=' + publicationDocx, publicationMd].join(' '));
   console.info(chalk.green(figures.tick) + ' created ' + publicationDocx);
+  console.info('\nNow you need to do some manual work:');
+  publicationPolishingSteps.forEach(function (step) {
+    console.info(chalk.blue(figures.checkboxOff) + ' ' + step);
+  });
+  console.info('Good Luck!');
 }
 
 function cleanupForPublication(content) {
