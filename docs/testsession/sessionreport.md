@@ -51,7 +51,7 @@
 <tr class="Note"> <td>14.08.2017 21:54:16</td><td class="notetype">Note</td><td>Time is in UTC; not local time</td><td>&nbsp;</td></tr>
 <tr class="Test"> <td>14.08.2017 21:54:49</td><td class="notetype">Test</td><td>Select BOOLEANYES field to enable it</td><td>&nbsp;</td></tr>
 <tr class="Check"> <td>14.08.2017 21:56:17</td><td class="notetype">Check</td><td>upload was successfull on all devices; BOOLEANYES field data was received by IMS server</td><td><a href="7_20170814_215540.jpg" target="_blank"><img src="7_20170814_215540.jpg"></a>&nbsp;</td></tr>
-<tr class="Test"> <td>14.08.2017 21:56:30</td><td class="notetype">Test</td><td>FLOADFELD: enter ''abc'' as value and try to upload</td><td>&nbsp;</td></tr>
+<tr class="Test"> <td>14.08.2017 21:56:30</td><td class="notetype">Test</td><td>FLOATFELD: enter ''abc'' as value and try to upload</td><td>&nbsp;</td></tr>
 <tr class="Check"> <td>14.08.2017 21:57:05</td><td class="notetype">Check</td><td>All devices show warning about invalid fields</td><td><a href="8_20170814_215645.jpg" target="_blank"><img src="8_20170814_215645.jpg"></a>&nbsp;</td></tr>
 <tr class="Test"> <td>14.08.2017 21:57:30</td><td class="notetype">Test</td><td>FLOATFELD: enter ''12.a'' as value and try to upload</td><td>&nbsp;</td></tr>
 <tr class="Check"> <td>14.08.2017 21:58:17</td><td class="notetype">Check</td><td>All devices show warning about invalid fields</td><td><a href="9_20170814_215737.jpg" target="_blank"><img src="9_20170814_215737.jpg"></a>&nbsp;</td></tr>

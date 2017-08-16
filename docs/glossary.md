@@ -23,7 +23,7 @@ REST API Eingangspunkt | REST API Endpoint | URL, welche die Navigation auf weit
 Store | | Apple Appstore oder Google Play Store.
 Schlüsselwort | Keyword | Gültiger Wert eines Felds vom Typ *KeywordField*.
 Tabelle | table | Gliedert das Archiv in hierarchisch geordnete Ebenen.
-Test Charter | Test Charter | Leitfaden für eine  explorative Test Session.
+Test Charter | Test Charter | Leitfaden für eine explorative Testsession. 
 URL | URL | Uniform Resource Locator, Identifikator für eine Resource im Web, siehe auch [Wikipedia](https://de.wikipedia.org/wiki/Uniform_Resource_Identifier).
 kann | nice-to-have | Optionale Anforderung, nach IEEE Std 830-1998.
 muss | mandatory | Zwingende Anforderung, nach IEEE Std 830-1998.
