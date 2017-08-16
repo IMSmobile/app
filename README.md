@@ -15,7 +15,6 @@
 | [Projektantrag](docs/projektantrag.pdf)     | Zeigt Inhalt und Genehmigung des Projekts                                            |
 | [Projektplanung](docs/projektplan.md)    | Details zum Projekt und Projektvorgehen                              |
 | [Protokolle](docs/protokolle.md)        | Zusammenfassungen von Sitzungen über Teilnehmer, Inhalt und Aktionen |
-| Testspezifikation | Resultat der explorativer Testsession                                |
 | [Zeiterfassung](docs/zeiterfassung.pdf)     | Liste aller Stunden                                                  |
 | [Zeitauswertung](docs/zeitauswertung.pdf)    | Verbrauchte Stunden pro Sprint und Kategorie                         |
 | [Abstrakt](docs/abstract.md)          | Kurzbeschreibung des Projekts                                        |
@@ -37,6 +36,7 @@
 | [Grafik Update](docs/howToUpdateGraphics.md)                       | Beschreibung wie Logo und Icons gewechselt werden können         |
 | [Marketing Text](docs/store/store.md)                      | Text welcher für App-Store und Play-Store verwendet wird     |
 | [Sprint Dokumente](docs/sprints.md)                       | Präsentationen, Protokolle und Burndown Charts der Sprints |
+| [Testprotokoll](docs/testsession/sessionreport.md) | Resultat der explorativen Testsession                                |
 
 ## Quellen
 Icons von https://icons8.com/
