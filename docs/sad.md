@@ -22,7 +22,7 @@ Dieses Dokument beschreibt die Architektur des Mobile Client.
     - [Assembly Flow](#assembly-flow)
     
 ## Einleitung
-Aus den wichtigsten [Anforderungen](spec.md#anforderungskatalog) Bildupload (FA1), Kameraupload (FA2), Metadaten (FA5) und Fallauswahl (FA6) ergibt sich eine Architektur welche sich primär auf die Entgegennahme von Benutzerdaten ausrichtet.
+Aus den wichtigsten [Anforderungen](spec.md#anforderungskatalog) Bildupload (FA1), Kameraupload (FA2), Metadaten (FA5) und Fallauswahl (FA6) ergibt sich eine Architektur welche sich primär auf die Entgegennahme und Verarbeitung von Benutzerdaten in einem dynamischen Datenmodell ausrichtet.
 
 Die Unterteilung der Services und die Struktur der Models orientiert sich an der der vorgegebenen Schnittstelle des Imagic IMS Servers (FA17). Damit bleibt das Datenmodell des Imagic IMS erhalten, was den Einstieg für Imagic IMS Entwickler erleichtern soll (NF19).
 
