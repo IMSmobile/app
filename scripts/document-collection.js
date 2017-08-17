@@ -102,7 +102,7 @@ function isInternalLink(href) {
 
 
 function clonePrototypes() {
-  prototypeBaseDir = exportDir + '/prototype';
+  prototypeBaseDir = exportDir + '/prototypes';
   clonePrototype(prototypeBaseDir, 'ionic2-prototype');
   clonePrototype(prototypeBaseDir, 'XamarinPrototype');
   clonePrototype(prototypeBaseDir, 'rn-prototype');
