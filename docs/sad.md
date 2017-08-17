@@ -67,7 +67,7 @@ Die Design Prinzipien beschreiben die wichtigsten architektischen Richtlinien un
 
 ### Ordnerstruktur Konventionen
 
-Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden, verwenden wir eine Ordnerstruktur Konvention. Diese entsprechen im Grundsatz den Konventionen eines Ionic 2 Projekts.  
+Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden, verwenden wir eine Ordnerstruktur Konvention. Diese entsprechen im Grundsatz den Konventionen eines Ionic Projekts.  
 
     .
     ├── e2e                          # Automatisierte End to End Tests

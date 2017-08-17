@@ -3,7 +3,7 @@
 
 Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithilfe dieser Prototypen sollte abgeklärt werden, ob das Framework unseren Anforderungen entspricht. Die Anforderungen an den Prototyp wurden im Dokument [Frameworkanforderungen](frameworkanforderungen.md) zusammengefasst. Die Prototypen und Frameworkbeschreibungen sind auf den GitHub-Seiten einsehbar:
 
-- [Ionic 2](https://github.com/IMSmobile/ionic2-prototype)
+- [Ionic](https://github.com/IMSmobile/ionic2-prototype)
 - [React Native](https://github.com/IMSmobile/rn-prototype)
 - [Xamarin](https://github.com/IMSmobile/XamarinPrototype)
 
@@ -11,7 +11,7 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 
 Nur eine Auswahl der wichtigsten Framworkanforderungen konnte im im Prototyp implementiert und bewertet werden.
 
-| ID | Anforderung | Ionic 2 | React Native | Xamarin |
+| ID | Anforderung | Ionic | React Native | Xamarin |
 | -- | ----------- | ------- | ------------ | ------- |
 |  1 | Android Support | Ja | Ja | Ja |
 |  2 | iOS-Support |	Ja |	Ja | Ja |
