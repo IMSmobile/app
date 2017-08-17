@@ -3,7 +3,7 @@
 
 Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithilfe dieser Prototypen sollte abgeklärt werden, ob das Framework unseren Anforderungen entspricht. Die Anforderungen an den Prototyp wurden im Dokument [Frameworkanforderungen](frameworkanforderungen.md) zusammengefasst. Die Prototypen und Frameworkbeschreibungen sind auf den GitHub-Seiten einsehbar:
 
-- [Ionic 2](https://github.com/IMSmobile/ionic2-prototype)
+- [Ionic](https://github.com/IMSmobile/ionic2-prototype)
 - [React Native](https://github.com/IMSmobile/rn-prototype)
 - [Xamarin](https://github.com/IMSmobile/XamarinPrototype)
 
@@ -11,7 +11,7 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 
 Nur eine Auswahl der wichtigsten Framworkanforderungen konnte im im Prototyp implementiert und bewertet werden.
 
-| ID | Anforderung | Ionic 2 | React Native | Xamarin |
+| ID | Anforderung | Ionic | React Native | Xamarin |
 | -- | ----------- | ------- | ------------ | ------- |
 |  1 | Android Support | Ja | Ja | Ja |
 |  2 | iOS-Support |	Ja |	Ja | Ja |
@@ -25,7 +25,7 @@ Nur eine Auswahl der wichtigsten Framworkanforderungen konnte im im Prototyp imp
 | 17 | Authentifizierung | Ja | Ja | Ja |
 | 21 | Dynamische Felder | Ja, jedoch nicht optimal | Ja | Ja |			
 
-## Ionic 2
+## Ionic
 ### Vorteile
 - Gute und komplette Bibliotheksfunktionen für HW-Ansteuerung
 - Layout kann in HTML beschrieben werden
@@ -61,4 +61,4 @@ Nur eine Auswahl der wichtigsten Framworkanforderungen konnte im im Prototyp imp
 - Wird im Webbrowser nicht unterstützt
 
 ## Entscheid
-Alle Frameworks liefern eine gute Ausgangslage für die Entwicklung des mobilen Clients. Wir haben uns für Ionic 2 entschieden, da uns die integrierten Bibliotheksfunktionen und die eine einfache Layouterstellung überzeugt haben. Ausserdem ist es lauffähig im Webbrowser. Ionic 2 baut auf dem Angular Framework auf. Dies hilft bei der Strukturierung des Quellcodes. Auch wenn wir noch Vorbehalte gegenüber der fehlenden (Global Player) Unterstützung haben, denken wir, dass die Vorteile überwiegen.
+Alle Frameworks liefern eine gute Ausgangslage für die Entwicklung des mobilen Clients. Wir haben uns für Ionic entschieden, da uns die integrierten Bibliotheksfunktionen und die eine einfache Layouterstellung überzeugt haben. Ausserdem ist es lauffähig im Webbrowser. Ionic baut auf dem Angular Framework auf. Dies hilft bei der Strukturierung des Quellcodes. Auch wenn wir noch Vorbehalte gegenüber der fehlenden (Global Player) Unterstützung haben, denken wir, dass die Vorteile überwiegen.

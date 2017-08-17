@@ -241,12 +241,12 @@ Unsere Qualitätsmassnahmen umfassen folgende Punkte:
 | Story Map                                                 | Gesamte Projektdauer (ausser bei Prototyp) | organisatorisch | Übersicht behalten
 
 ### Framework
-Für die Entwicklung der Software benutzen wir das Framework [Ionic 2](http://ionicframework.com/).
+Für die Entwicklung der Software benutzen wir das Framework [Ionic](http://ionicframework.com/).
 Die Anforderungen an das Framework wurden in einem speziell dafür geschaffenen [Anforderungskatalog](frameworkanforderungen.md) festgehalten. Drei Prototypen wurden erstellt und gegen die Anforderungen geprüft. Die Auswahl des Frameworks kann im Dokument [Framework Entscheid](Frameworkentscheid.md) nachgelesen werden.  
 
 | Framework   | Prototype   |
 |---|---|
-| Ionic 2  | https://github.com/IMSmobile/ionic2-prototype   |
+| Ionic | https://github.com/IMSmobile/ionic2-prototype   |
 | Xamarin  | https://github.com/IMSmobile/XamarinPrototype  |
 | React Native | https://github.com/IMSmobile/rn-prototype   |
 
@@ -286,7 +286,7 @@ Um besser mit Ionic arbeiten zu können, müssen folgende Plugins der Entwicklun
 
 | Plugin      | Befehl | Beschreibung |
 |---------|-------------|--------|
-|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2) | `ext install ionic2` | Ionic 2 Code Completion       |
+|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2) | `ext install ionic2` | Ionic Code Completion       |
 | [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) | `ext install debugger-for-chrome` | Javascript und Typescript Debugging via Google Chrome |
 |[TSLint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint) | `ext install tslint` | Integration des [tslint Linters](#code-guideline) für TypeScript |
 |[Markdown TOC](https://marketplace.visualstudio.com/items?itemName=AlanWalk.markdown-toc) | `ext install markdown-toc` | Automatisiertes generieren des Inhaltsverzeichnis (Table of Content) für Markdown Dateien. |
