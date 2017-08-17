@@ -1,6 +1,6 @@
 # Sprints
 
-Übersicht der Sprints mit Link zur jeweiligen Präsentation, Protokoll und Burndown Chart.
+Übersicht der Sprints mit Link zur jeweiligen Präsentation, Protokoll, Burndown Chart und Tasks.
 
 | Nr | Startdatum | Zielsetzung | Review Präsentation                                                        | Review Protokoll                                                                                    | Burn Down Chart                                                            | Abgeschlossene Tasks                                                       |
 |----|------------|-------------|---------------------------------------------------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------|
