@@ -56,3 +56,5 @@ Verbesserungswürdig:
 ### Abschluss
 - Imagic und PIC Systems haben interesse an der Beurteilung -> Issue [#610](https://github.com/IMSmobile/app/issues/610) erstellt.
 - Einladung zum gemeinsamen Abendessen
+
+![Danke!](../images/thankyou.png)
