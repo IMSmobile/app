@@ -47,17 +47,17 @@ const publicationPolishingSteps = [
   'Dokumenteneigenschaft Titel umbenennen in "Arkivar - Mobiler Client für Imagic IMS"',
   'Dokumenteneigenschaft Thema umbenennen in "MAS Abschlussarbeit"',
   'Dokumenteneigenschaft Autor umbenennen in "Michael Leu;Niklaus Tschirky;Sandro Zbinden"',
-  'Titelblatt von Template übernehmen',
+  'Titelblatt von Template (resources/publication-template.docx) übernehmen',
   'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
   'Kapitel "Projektplan → Inhaltsverzeichnis" löschen',
   'Kapitel "Spezifikation → Inhaltsverzeichnis" löschen',
-  'Inhaltsverzeichnis im Kapitel "Software Architecture Document" löschen',
-
+  'Kapitel "Software Architecture Document → Inhaltsverzeichnis" löschen',
   'Kopf und Fusszeilen kontrollieren (Formatprobleme)',
   'Tabellen formatieren mit "Github Stil Tabelle"',
   'Tabellenformatoption "Gebänderte Zeilen" aktivieren',
   'Kapitel "Projektdokumente" löschen',
   'Kapitel "Produktdokumente" löschen',
+  'Inhaltsverzeichnis aktualisieren',
   'Als PDF speichern'
 ]
 const rootDir = path.resolve(__dirname, '../.');
