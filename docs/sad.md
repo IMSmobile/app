@@ -3,10 +3,11 @@
 Dieses Dokument beschreibt die Architektur des Mobile Client.
 
   - [Einleitung](#einleitung)
-  - [Komponentendiagramm](#komponentendiagramm)
+  - [Data Flow Diagramm](#data-flow-diagramm)
   - [Imagic IMS Daten Model](#imagic-ims-daten-model)
     - [Datenmodell](#datenmodell)
     - [Objektmodell](#objektmodell)
+  - [Komponentendiagramm](#komponentendiagramm)
   - [Design Prinzipien](#design-prinzipien)
     - [Ordnerstruktur Konventionen](#ordnerstruktur-konventionen)
     - [Model](#model)
@@ -16,10 +17,8 @@ Dieses Dokument beschreibt die Architektur des Mobile Client.
     - [Dependency Injection](#dependency-injection)
     - [Blockierende Aktionen](#blockierende-aktionen)
     - [Fehlerbehandlung](#fehlerbehandlung)
-  - [Data Flow Diagramm](#data-flow-diagramm)
-  - [Technologie](#technologie)
-    - [Technologie Stack](#technologie-stack)
-    - [Assembly Flow](#assembly-flow)
+  - [Assembly Flow](#assembly-flow)
+  - [Technologie Stack](#technologie-stack)
     
 ## Einleitung
 Aus den wichtigsten [Anforderungen](spec.md#anforderungskatalog) Bildupload (FA1), Kameraupload (FA2), Metadaten (FA5) und Fallauswahl (FA6) ergibt sich eine Architektur welche sich primär auf die Entgegennahme und Übermittlung von Benutzerdaten in ein dynamisches Datenmodell ausrichtet.
@@ -28,15 +27,11 @@ Die Unterteilung der Services und die Struktur der Models orientiert sich an der
 
 Eine granulare Aufteilung auf Komponenten- und Methoden-Ebene erhöht die Testbarkeit. Dies soll zur Fehlerverminderung (NF18) beitragen. Die konsequente Navigation über den Einstiegspunkt (FA18) bedeutet pro Aktion eine Kette von Anfragen zur REST Schnittstelle. Diese Kette wird mithilfe von Functional Reactive Programming aus wiederverwendbaren Observables zusammengestellt.
 
-## Komponentendiagramm
+## Data Flow Diagramm
 
-![Komponentendiagramm](images/components.png)
+![Data Flow Diagramm](images/dataflow_diagram.png)
 
-Der Mobile Client besteht aus mehreren **Pages**, welche wiederum auf **Services** zugreifen. Dabei unterscheiden wir zwischen Imagic IMS spezifischen **Services** und allgemeinen **Infrastruktur Komponenten**.
-Die Verbindungen zeigen die Abhängigkeiten untereinander auf. Infrastruktur Komponenten sind in sich geschlossen und können unabhängig genutzt werden.
-Die Reihenfolge der Pages entspricht einem typischen Ablauf von Login, Konfiguration und Upload.
-
-Auf die Darstellung der **Models** und **Mocks** wurde aus Gründen der Übersichtlichkeit verzichtet.
+Ein Data Flow Diagramm bietet einen Überblick über die Richtung des Datenflusses und zeigt auf, wo die Daten persistiert werden. Beim Arkivar Mobile Clients liefert der IMS Server alle Informationen, welche für den Aufbau der Navigationsstruktur notwendig sind. Die Bilder können von verschiedenen Quellen eingelesen werden und mit Feldeinträgen vom User komplettiert werden. Beim Upload werden die Bilder mit den Feldinformationen vom Mobile Client an den IMS Server übertragen. 
 
 ## Imagic IMS Daten Model
 Um im Imagic IMS Daten via REST API zu speichern, müssen wir uns mit dem Datenmodell der Firma Imagic vertraut machen.
@@ -60,6 +55,16 @@ Das Polizeiarchiv workflow_db1 hat drei Tabellen. Auf der höchsten Ebene steht 
 ![Objektmodell Medizinarchiv](images/Medizinarchiv_Objectmodell.png)
 
 Das Medizinarchiv beinhaltet völlig andere Tabellen. Auf höchster Ebene ist dort ein Patient, danach kommen Besuche (Visit), Studien (Study) und am Schluss, wie von IMS vorgegeben, die Bilder Tabelle. Als Beispiel eines Keyword Katalogs wurde das Geschlecht (Sex) bei einem Patienten gewählt. Man erkennt, dass innerhalb des Keyword Kataloges die Werte masculin und feminin ausgewählt werden können.
+
+## Komponentendiagramm
+
+![Komponentendiagramm](images/components.png)
+
+Der Mobile Client besteht aus mehreren **Pages**, welche wiederum auf **Services** zugreifen. Dabei unterscheiden wir zwischen Imagic IMS spezifischen **Services** und allgemeinen **Infrastruktur Komponenten**.
+Die Verbindungen zeigen die Abhängigkeiten untereinander auf. Infrastruktur Komponenten sind in sich geschlossen und können unabhängig genutzt werden.
+Die Reihenfolge der Pages entspricht einem typischen Ablauf von Login, Konfiguration und Upload.
+
+Auf die Darstellung der **Models** und **Mocks** wurde aus Gründen der Übersichtlichkeit verzichtet.
 
 ## Design Prinzipien
 
@@ -268,15 +273,16 @@ Dabei wird aus dem ersten Parameter im Konstruktor die benutzerfreundliche Fehle
 
 `Object.setPrototypeOf()` ist wegen einer [Limitation von TypeScript beim Ableiten von Error](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work) nötig.
 
-## Data Flow Diagramm
 
-![Data Flow Diagramm](images/dataflow_diagram.png)
+## Assembly Flow
+Der Assembly Flow zeigt die Module und verschiedenen Technologien auf, welche gebraucht werden, um eine Ionic App zu bauen.
 
-Ein Data Flow Diagramm bietet einen Überblick über die Richtung des Datenflusses und zeigt auf, wo die Daten persistiert werden. Beim Arkivar Mobile Clients liefert der IMS Server alle Informationen, welche für den Aufbau der Navigationsstruktur notwendig sind. Die Bilder können von verschiedenen Quellen eingelesen werden und mit Feldeinträgen vom User komplettiert werden. Beim Upload werden die Bilder mit den Feldinformationen vom Mobile Client an den IMS Server übertragen. 
+![Assembly FLow](images/assembly_flow.png)
 
-## Technologie
+Ionic basiert auf Angular und bietet weitere Funktionen wie Templates, Komponenten und vorgefertigte Providers. Ausserdem gibt es die Struktur vor und ist zuständig für das Verbinden der Komponenten. Für die Smartphone-Anbindung werden Cordova-Plugins verwendet, damit auch die nativen Betriebssystemfunktionen (z.B. Kamera) benutzt werden können. Zur Einbindung dieser Ionic-Funktionen wird Typescript genutzt, welches die Grundlage für den eigenen Code ist. Dieser kann erweitert werden durch HTML und Sass. Auch ist es möglich, fremdes Javascript oder HTML zu verwenden. Das komplette Paket kann anschliessend zu einem App für verschiedene mobile Betriebssysteme oder zu einer Browser Applikation kompiliert werden.
 
-### Technologie Stack
+
+## Technologie Stack
 
 Folgende Technologien werden innerhalb des Projekts verwendet:
 
@@ -299,9 +305,3 @@ Folgende Technologien werden innerhalb des Projekts verwendet:
 | Entwicklungsumgebung                 | Visual Studio Code | ![Visual Studio Code](images/logo/Visual_Studio_Code_Logo.jpg) | https://code.visualstudio.com/          |
 | Zeiterfassung                        | Google Drive       | ![Google Drive](images/logo/Google_Drive_Logo.jpg) | https://drive.google.com/ |
 
-### Assembly Flow
-Der Assembly Flow zeigt die Module und verschiedenen Technologien auf, welche gebraucht werden, um eine Ionic App zu bauen.
-
-![Assembly FLow](images/assembly_flow.png)
-
-Ionic basiert auf Angular und bietet weitere Funktionen wie Templates, Komponenten und vorgefertigte Providers. Ausserdem gibt es die Struktur vor und ist zuständig für das Verbinden der Komponenten. Für die Smartphone-Anbindung werden Cordova-Plugins verwendet, damit auch die nativen Betriebssystemfunktionen (z.B. Kamera) benutzt werden können. Zur Einbindung dieser Ionic-Funktionen wird Typescript genutzt, welches die Grundlage für den eigenen Code ist. Dieser kann erweitert werden durch HTML und Sass. Auch ist es möglich, fremdes Javascript oder HTML zu verwenden. Das komplette Paket kann anschliessend zu einem App für verschiedene mobile Betriebssysteme oder zu einer Browser Applikation kompiliert werden.
