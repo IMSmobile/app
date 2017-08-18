@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|
 | 1  | Militäreinsatz Niklaus  | Hoch  | Ausfall 33% der Manpower am Ende der Projektphase | Hoch  | Antrag Verschiebung  | Antrag angenommen |
 | 2  | Falsche Wahl des Cross-Platform Frameworks | Mittel | Aufwändige Umgehungslösungen oder sogar Neuentwicklung nötig | Hoch | Evaluationsphase mit Prototypen, welche möglichst alle voraussichtlichen Framework-Anforderungen abdeckt | Evaluation abgeschlossen |
-| 3  | App wird von den Appstores nicht zugelassen | Mittel | App kann von Benutzer nicht wie gewohnt installiert werden | Klein | Vertraut machen mit Design und Sicherheitsregeln des App Stores | Erledigt mit Issue #68 |
+| 3  | App wird von den Appstores nicht zugelassen | Mittel | App kann von Benutzer nicht wie gewohnt installiert werden | Klein | Vertraut machen mit Design und Sicherheitsregeln des App Stores | Erledigt mit Issue [#68](https://github.com/IMSmobile/app/issues/68) |
 | 4  | Koordinationsproblem bei Teamarbeit | Mittel | Aufgabenverteilung unklar, schlechter Output | Mittel | Termine für gemeinsames Arbeiten erfassen. Team Kommunikation sicherstellen (z.B. durch Slack) | Erledigt |
 | 5  | Änderungen der Anforderungen durch Stakeholder | Klein | Unzufriedene Stakeholder. Nicht genügend Zeit für das Fertigstellen der Masterarbeit | Hoch | Spezifikation der Anforderungen erstellt. Erwartungen der Stakeholder geklärt. Abnahme durch Stakeholder. | Erledigt |
 | 6  | Fehlender Experte im Bereich Mobiledevelopment | Hoch | App wird keine gewohnte Mobile App. Usability leidet. | Mittel | Experte im Umgang mit gewähltem Framework als Consultant finden | Erledigt durch Lernmaterialien und erstellen der Wireframes
