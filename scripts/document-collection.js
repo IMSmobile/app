@@ -18,7 +18,6 @@ const gitclone = require('gitclone')
 const exportDirName = 'document-collection'
 const ignoredMDs = ['node_modules/**/*.md', 'platforms/**/*.md', 'plugins/**/*.md'];
 const mdFilesForPublication = [
-  'README.md',
   'docs/projektplan.md',
   'docs/risikoanalyse.md',
   'docs/frameworkanforderungen.md',
@@ -28,6 +27,7 @@ const mdFilesForPublication = [
   'docs/sad.md',
   'docs/schnellstartanleitung.md',
   'CONTRIBUTING.md',
+  'README.md',
   'docs/glossary.md'
 ];
 const mdFileLinkToTitleMap = {
@@ -43,16 +43,18 @@ const mdFileLinkToTitleMap = {
   'glossary.md': '#glossar',
 };
 const publicationPolishingSteps = [
-  'Datei → Eigenschaften → Dokumenteigenschaften ausfüllen ...',
+  'Datei → Eigenschaften → Dokumenteigenschaften ausfüllen ',
   'Titelblatt von Template übernehmen',
-  'Kapitel "Projektdokumente" löschen',
-  'Kapitel "Produktdokumente" löschen',
+  'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
   'Kapitel "Projektplan → Inhaltsverzeichnis" löschen',
   'Kapitel "Spezifikation → Inhaltsverzeichnis" löschen',
   'Inhaltsverzeichnis im Kapitel "Software Architecture Document" löschen',
-  'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
+
   'Kopf und Fusszeilen kontrollieren (Formatprobleme)',
-  'Tabellen Formatieren ...',
+  'Tabellen formatieren mit "Github Stil Tabelle"',
+  'Tabellenformatoption "Gebänderte Zeilen" aktivieren',
+  'Kapitel "Projektdokumente" löschen',
+  'Kapitel "Produktdokumente" löschen',
   'Als PDF speichern'
 ]
 const rootDir = path.resolve(__dirname, '../.');
