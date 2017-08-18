@@ -498,3 +498,5 @@ Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die 
 
 ### Story Map
 Aus den Anforderungen und dem laufenden Feedback der Stakeholder entstehen User-Storys welche wir nach Themen gruppiert als Kärtchen auf der Story Map auslegen. Während dem Sprint Review zeigen wir jeweils den aktuellen Stand des Projekts bezogen auf die User-Storys.
+
+![Story Map](images/storymap-example.jpg)
