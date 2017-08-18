@@ -13,6 +13,7 @@ const execSync = require('child_process').execSync;
 const fs = require('fs-extra')
 const chalk = require('chalk')
 const figures = require('figures')
+const gitclone = require('gitclone')
 
 const exportDirName = 'document-collection'
 const ignoredMDs = ['node_modules/**/*.md', 'platforms/**/*.md', 'plugins/**/*.md'];
@@ -174,6 +175,21 @@ function fixUmlautLinks($, link) {
 
 function isInternalLink(href) {
   return !href.startsWith('http');
+}
+
+
+function clonePrototypes() {
+  prototypeBaseDir = exportDir + '/prototypes';
+  clonePrototype(prototypeBaseDir, 'ionic2-prototype');
+  clonePrototype(prototypeBaseDir, 'XamarinPrototype');
+  clonePrototype(prototypeBaseDir, 'rn-prototype');
+}
+
+function clonePrototype(prototypeBaseDir, prototypeName) {
+  prototypeDir = prototypeBaseDir + "/" + prototypeName;
+  ensureDirectory(prototypeDir);
+  gitclone('https://github.com/IMSmobile/' + prototypeName, { dest: prototypeDir })
+  console.info(chalk.green(figures.tick) + ' cloning ' + prototypeName + ' prototype to ' + prototypeDir);
 }
 
 function ensureDirectory(file) {

@@ -2,6 +2,7 @@
 
 Dieses Dokument beschreibt die Architektur des Mobile Client.
 
+  - [Einleitung](#einleitung)
   - [Komponentendiagramm](#komponentendiagramm)
   - [Imagic IMS Daten Model](#imagic-ims-daten-model)
     - [Datenmodell](#datenmodell)
@@ -20,6 +21,13 @@ Dieses Dokument beschreibt die Architektur des Mobile Client.
     - [Technologie Stack](#technologie-stack)
     - [Assembly Flow](#assembly-flow)
     
+## Einleitung
+Aus den wichtigsten [Anforderungen](spec.md#anforderungskatalog) Bildupload (FA1), Kameraupload (FA2), Metadaten (FA5) und Fallauswahl (FA6) ergibt sich eine Architektur welche sich primär auf die Entgegennahme und Übermittlung von Benutzerdaten in ein dynamisches Datenmodell ausrichtet.
+
+Die Unterteilung der Services und die Struktur der Models orientiert sich an der der vorgegebenen Schnittstelle des Imagic IMS Servers (FA17). Damit bleibt das Datenmodell des Imagic IMS erhalten, was den Einstieg für Imagic IMS Entwickler erleichtern soll (NF19).
+
+Eine granulare Aufteilung auf Komponenten- und Methoden-Ebene erhöht die Testbarkeit. Dies soll zur Fehlerverminderung (NF18) beitragen. Die konsequente Navigation über den Einstiegspunkt (FA18) bedeutet pro Aktion eine Kette von Anfragen zur REST Schnittstelle. Diese Kette wird mithilfe von Functional Reactive Programming aus wiederverwendbaren Observables zusammengestellt.
+
 ## Komponentendiagramm
 
 ![Komponentendiagramm](images/components.png)
@@ -59,7 +67,7 @@ Die Design Prinzipien beschreiben die wichtigsten architektischen Richtlinien un
 
 ### Ordnerstruktur Konventionen
 
-Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden, verwenden wir eine Ordnerstruktur Konvention. Diese entsprechen im Grundsatz den Konventionen eines Ionic 2 Projekts.  
+Damit das Projekt sauber strukturiert ist und sich neue Entwickler rasch zurechtfinden, verwenden wir eine Ordnerstruktur Konvention. Diese entsprechen im Grundsatz den Konventionen eines Ionic Projekts.  
 
     .
     ├── e2e                          # Automatisierte End to End Tests

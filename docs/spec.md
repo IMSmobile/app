@@ -17,7 +17,7 @@
 ## Einleitung
 Mit dem Mobile Client möchten wir den Kunden von Imagic ermöglichen, über iOS und Android Smartphones digitale Medien (Bilder, Audio, Video, Texte) ins digitale Bildmanagement-System Imagic IMS abzuspeichern.
 
-Als Schnittstelle soll die von Imagic IMS Server bereitgestellte REST-API verwendet werden.
+Als Schnittstelle soll die vom Imagic IMS Server bereitgestellte REST-API verwendet werden.
 
 ## Anforderungskatalog
 Aus Gründen der Lesbarkeit verwenden wir den Begriff _Client_ als Synonym für _Mobile Client_.
