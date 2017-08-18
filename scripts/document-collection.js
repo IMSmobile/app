@@ -43,7 +43,10 @@ const mdFileLinkToTitleMap = {
   'glossary.md': '#glossar',
 };
 const publicationPolishingSteps = [
-  'Datei → Eigenschaften → Dokumenteigenschaften ausfüllen ',
+  'Datei → Eigenschaften → Dokumenteigenschaften aufrufen',
+  'Dokumenteneigenschaft Titel umbenennen in "Arkivar - Mobiler Client für Imagic IMS"',
+  'Dokumenteneigenschaft Thema umbenennen in "MAS Abschlussarbeit"',
+  'Dokumenteneigenschaft Autor umbenennen in "Michael Leu;Niklaus Tschirky;Sandro Zbinden"',
   'Titelblatt von Template übernehmen',
   'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
   'Kapitel "Projektplan → Inhaltsverzeichnis" löschen',
