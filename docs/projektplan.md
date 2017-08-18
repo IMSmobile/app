@@ -493,5 +493,8 @@ Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, 
 ### Wireframes
 Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
 
+| ![Login](images/wireframes-example/login.png) | ![Einträge](images/wireframes-example/entries.png) | ![Einstellungen](images/wireframes-example/fieldsettings.png) | ![Upload](images/wireframes-example/upload.png) |
+|--------------------------------------|--------------------------------------|--------------------------------------|-------------------------------------|
+
 ### Story Map
 Aus den Anforderungen und dem laufenden Feedback der Stakeholder entstehen User-Storys welche wir nach Themen gruppiert als Kärtchen auf der Story Map auslegen. Während dem Sprint Review zeigen wir jeweils den aktuellen Stand des Projekts bezogen auf die User-Storys.
