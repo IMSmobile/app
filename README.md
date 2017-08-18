@@ -35,7 +35,7 @@
 | [Schnellstartanleitung](docs/schnellstartanleitung.md)                       | Kurzanleitung für neue Entwickler        |
 | [Grafik Update](docs/howToUpdateGraphics.md)                       | Beschreibung wie Logo und Icons gewechselt werden können         |
 | [Marketing Text](docs/store/store.md)                      | Text welcher für App-Store und Play-Store verwendet wird     |
-| [Sprint Dokumente](docs/sprints.md)                       | Präsentationen, Protokolle und Burndown Charts der Sprints |
+| [Sprint Dokumente](docs/sprints.md)                       | Präsentationen, Protokolle und Burn Down Charts der Sprints |
 | [Testprotokoll](docs/testsession/sessionreport.md) | Resultat der explorativen Testsession                                |
 
 ## Quellen
