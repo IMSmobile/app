@@ -1,4 +1,4 @@
-## Schulussbericht
+# Schulussbericht
 
 ## Phase Anforderungsanalyse und Prototype
 Von Beginn weg konnten wir mit den Stakeholdern einen offenen und ehrlichen Diaglog führen. Beide Firmen nahmen sich genügend Zeit damit wir an jeweils zwei Meetings ihre Anforderungen verstehen und aufnehemen konnten. Das hat unserem allgemeinen Verstandnis des Produkts und deren Einsatz im Polizeibereich enorm geholfen.
