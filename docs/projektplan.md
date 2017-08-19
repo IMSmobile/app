@@ -1,5 +1,5 @@
 # Projektplan
-
+Zeigt die Details zum Projekt und Projektvorgehen.
 ## Inhaltsverzeichnis
 
 - [Vision](#vision)
