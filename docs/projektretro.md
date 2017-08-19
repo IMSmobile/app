@@ -22,4 +22,5 @@ Die späte Einführung einer Vielzahl neuer Regeln der statischen Codeanalyse wa
 
 ### Phase Abschluss und Übergabe
 
-*TODO*
+In der Abschlussphase ging es hauptsächlich darum, alle Dokumente für die Abgabe vorzubereiten und einen Abschlussgespräch mit unseren Stakeholdern zu führen. Für die Abschlussdokumentation haben wir soviel wie möglich automatisiert, damit unsere bisherigen Dokumente sauber einbinden und weiterhin verwenden können.  
+Das Abschlussgespräche mit Imagic und PIC System haben wir mit einem Fragebogen vorbereitet und verlief sehr positiv. Speziell die Kommunikation und die Selbständigkeit des Teams wurden gelobt. 
