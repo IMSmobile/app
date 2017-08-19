@@ -40,6 +40,7 @@
 
 ## Quellen
 - Agiles Manifest: http://agilemanifesto.org/iso/de/manifesto.html
+- Assembly Flow: https://forum.ionicframework.com/t/is-there-a-graphic-diagram-available-that-shows-how-ionic-2-and-all-related-technologies-connect/88375/19
 - Icons: https://icons8.com/
 - Wiegers Priorisierungsmatrix: http://www.orgismus.de/methoden/priorisieren-aber-richtig/
 
