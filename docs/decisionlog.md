@@ -47,7 +47,7 @@ Unsere Entscheidungen werden hier protokolliert.
 - Beim HSR Review übernimmt Michael die Rolle des _Lead Autors_ und Niklaus die Rolle des _Lead Prüfers_.
 
 ## 24. März 2017
-- Wir entwickeln mit dem Framework Ionic2.
+- Wir entwickeln mit dem Framework Ionic.
 - Pro Sprint ist eine Person im Team verantwortlich für die Kommunikation mit Stakeholdern und Betreuer.
 - Sprint Backlog und Backlog müssen immer priorisiert sein.
 
