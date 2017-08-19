@@ -1,9 +1,21 @@
 # Persönliches Fazit
-## Michael
+## Michael Leu
 
-*TODO*
+Unser Projekt war für mich persönlich eine super Erfahrung. Es hat Spass gemacht eine agile Software-Entwicklung mit einem Fokus auf Qualität in der Praxis auch tatsächlich zu erleben.
 
-## Niklaus
+Als Dreier-Team mit haben wir uns meiner Meinung nach gegenseitig ideal ergänzt, weil jeder einen anderen Hintergrund hatte. Ich war froh kannte Sandro das Imagic IMS bereits sehr gut und wir waren dafür nicht auf die Stakeholder angewiesen. Aufgrund des bereits existierenden Backends konnte ich zwar einige interessante Themen aus dem MAS nicht anwenden, aber es blieben uns auch so mehr als genug Herausforderungen, u.A. wegen dem für uns völlig neuen Framework. Dass wir diese mit Pair-Programming angegangen sind habe ich als sehr zielführend empfunden.
+
+Ich habe auch erlebt wie effektiv eine Aufteilung in möglichst kleine Einheiten sein kann. Selbst wenn sich vermeintlich kleine Dinge als grosse Brocken entpuppten nahmen wir uns die Zeit den Abschluss zu suchen bevor neues in Angriff genommen wurde, was ich sehr schätzte.
+
+Die Sprint Retrospektiven haben mir gezeigt wie man die Zusammenarbeit kontinuierlich verbessern kann. Ich fand es sehr gut dass wir uns alle zwei Wochen mind. eine Stunde Zeit dafür genommen haben. Äusserst hilfreich war meiner Meinung nach auch, dass wir auch für wichtige Team-Entscheide immer schnell einen Konsens finden konnten.
+
+Erstaunt hat mich der Komfort bei den Entwicklertools und Services. Mir persönlich gefiel es auch dass wir die Dokumentationen gleich wie den Code behandelten.
+
+Dass wir beide Stakeholder während der gesamten Projektdauer zufriedenstellen konnten hat mich persönlich stolz gemacht, denn zu Beginn des Projekts hatte ich Bedenken ob uns der Spagat zwischen den zwei Firmen gelingen wird.
+
+So bin ich zur Erkenntnis gekommen, dass eine nachhaltige Software-Entwicklung immer länger braucht als man denkt, sich aber definitiv lohnt. Eine lehrreiche Zeit!
+
+## Niklaus Tschirky
 
 Zu Beginn des Projekts war ich schon etwas nervös, da es sich für mich um ein total neues Technologiegebiet handelte. Auch hatte ich zuvor noch nie in einer agilen Software Umgebung gearbeitet. Umso mehr war ich überrascht, wie einfach die Einarbeitung von sich ging. 
 
@@ -15,6 +27,15 @@ Ich habe festgestellt, dass die Mobile-Entwicklung eine sehr schnelllebige Techn
 
 Für mich persönlich war das Projekt ein Erfolg, da ich viele neue Technologien und Projektmethoden kennenlernen und erfolgreich ausprobieren durfte.
 
-## Sandro
+## Sandro Zbinden
 
-*TODO*
+Mit dem gesamten Verlauf der Masterarbeit bin ich sehr zufrieden. Wir haben es geschafft, in einem iterativen Prozess, Qualitativ hochstehende Software zu liefern und unsere persönlichen Ziele zu erreichen. 
+
+Durch die sehr nahe Zusammenarbeit vor allem beim Pair Programming und dem gemeinsamen Entscheiden sämtlicher Fragen, entstand ein Produkt, welches vom Team und nicht von individuen geschaffen wurde.  Die Offenheit und das Vertrauen innerhalb des Teams war erstaunlich. Bei Sprint Retrospektiven konnten wir auch heikle, persönliche Themen ansprechen und diese gemeinsam lösen. 
+
+Auch die zweiwöchentlichen Treffen mit den Stakeholder waren positiv. Die enge Zusammenarbeit und die grosse Freude welche die Stakeholder am Produkt zeigten, haben mich immer wieder angetrieben und motiviert. 
+
+Persönlich konnte ich von dieser Arbeit viel profitieren. Die Auseinandersetzung mit Continuous Deployment war sehr spannend. Durch den Einsatz modernster Open Source Frameworks konnte ich neue Konzepte kennenlernen und adaptieren. Vor allem im Bereich des automatisierten Webtesting lernte ich viele neue Praktiken.
+
+Zusammenfassend kann ich nur positiv über die Arbeit berichten. Die vielen Arbeitsstunden waren gut investiert und haben mir sehr viel Spass gemacht. 
+
