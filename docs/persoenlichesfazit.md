@@ -17,4 +17,13 @@ Für mich persönlich war das Projekt ein Erfolg, da ich viele neue Technologien
 
 ## Sandro
 
-*TODO*
+Mit dem gesamten Verlauf der Masterarbeit bin ich sehr zufrieden. Wir haben es geschafft, in einem iterativen Prozess, Qualitativ hochstehende Software zu liefern und unsere persönlichen Ziele zu erreichen. 
+
+Durch die sehr nahe Zusammenarbeit vor allem beim Pair Programming und dem gemeinsamen Entscheiden sämtlicher Fragen, entstand ein Produkt, welches vom Team und nicht von individuen geschaffen wurde.  Die Offenheit und das Vertrauen innerhalb des Teams war erstaunlich. Bei Sprint Retrospektiven konnten wir auch heikle, persönliche Themen ansprechen und diese gemeinsam lösen. 
+
+Auch die zweiwöchentlichen Treffen mit den Stakeholder waren positiv. Die enge Zusammenarbeit und die grosse Freude welche die Stakeholder am Produkt zeigten, haben mich immer wieder angetrieben und motiviert. 
+
+Persönlich konnte ich von dieser Arbeit viel profitieren. Die Auseinandersetzung mit Continuous Deployment war sehr spannend. Durch den Einsatz modernster Open Source Frameworks konnte ich neue Konzepte kennenlernen und adaptieren. Vor allem im Bereich des automatisierten Webtesting lernte ich viele neue Praktiken.
+
+Zusammenfassend kann ich nur positiv über die Arbeit berichten. Die vielen Arbeitsstunden waren gut investiert und haben mir sehr viel Spass gemacht. 
+
