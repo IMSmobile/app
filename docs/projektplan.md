@@ -4,7 +4,7 @@
 
 - [Vision](#vision)
 - [Allgemeine Angaben](#allgemeine-angaben)
-  - [Autor](#autor)
+  - [Autorschaft](#autorschaft)
 - [Einführung](#einführung)
   - [Zweck](#zweck)
   - [Gültigkeitsbereich](#gültigkeitsbereich)
@@ -71,13 +71,11 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 
 ## Allgemeine Angaben
-### Autor
+### Autorschaft
 
-| Photo        | Name | E-Mail |
-| ------------ | ---- | ------ |
-| ![Michael Leu](images/michael_leu.png) |Michael Leu|michael.leu@hsr.ch|
-| ![Niklaus Tschirky](images/niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
-| ![Sandro Zbinden](images/sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
+| ![Michael Leu](images/michael_leu.png) | ![Niklaus Tschirky](images/niklaus_tschirky.png) | ![Sandro Zbinden](images/sandro_zbinden.png) |
+| -- | -- | -- |
+| Michael Leu | Niklaus Tschirky | Sandro Zbinden |
 
 
 ## Einführung
