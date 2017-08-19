@@ -4,7 +4,7 @@
 
 - [Vision](#vision)
 - [Allgemeine Angaben](#allgemeine-angaben)
-  - [Autor](#autor)
+  - [Autorschaft](#autorschaft)
 - [Einführung](#einführung)
   - [Zweck](#zweck)
   - [Gültigkeitsbereich](#gültigkeitsbereich)
