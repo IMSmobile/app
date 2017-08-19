@@ -73,7 +73,7 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 ## Allgemeine Angaben
 ### Autorschaft
 
-| ![Michael Leu](images/michael_leu.png) | ![Sandro Zbinden](images/sandro_zbinden.png) | ![Niklaus Tschirky](images/niklaus_tschirky.png) |
+| ![Michael Leu](images/michael_leu.png) | ![Niklaus Tschirky](images/niklaus_tschirky.png) | ![Sandro Zbinden](images/sandro_zbinden.png) |
 | -- | -- | -- |
 | Michael Leu | Niklaus Tschirky | Sandro Zbinden |
 
