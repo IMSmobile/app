@@ -20,10 +20,10 @@ const ignoredMDs = ['node_modules/**/*.md', 'platforms/**/*.md', 'plugins/**/*.m
 const mdFilesForPublication = [
   'docs/projektplan.md',
   'docs/risikoanalyse.md',
-  'docs/frameworkanforderungen.md',
-  'docs/frameworkentscheid.md',
   'docs/questions.md',
   'docs/spec.md',
+  'docs/frameworkanforderungen.md',
+  'docs/frameworkentscheid.md',
   'docs/sad.md',
   'docs/schnellstartanleitung.md',
   'CONTRIBUTING.md',
