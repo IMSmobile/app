@@ -1,15 +1,14 @@
 # Projektplan
-
+Zeigt die Details zum Projekt und Projektvorgehen.
 ## Inhaltsverzeichnis
 
 - [Vision](#vision)
 - [Allgemeine Angaben](#allgemeine-angaben)
-  - [Autor](#autor)
+  - [Autorschaft](#autorschaft)
 - [Einführung](#einführung)
   - [Zweck](#zweck)
   - [Gültigkeitsbereich](#gültigkeitsbereich)
   - [Referenzen](#referenzen)
-  - [Glossar](#glossar)
 - [Projektübersicht](#projektübersicht)
   - [Lieferumfang](#lieferumfang)
   - [Kostenvorgabe](#kostenvorgabe)
@@ -71,13 +70,11 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 
 
 ## Allgemeine Angaben
-### Autor
+### Autorschaft
 
-| Photo        | Name | E-Mail |
-| ------------ | ---- | ------ |
-| ![Michael Leu](images/michael_leu.png) |Michael Leu|michael.leu@hsr.ch|
-| ![Niklaus Tschirky](images/niklaus_tschirky.png) |Niklaus Tschirky|niklaus.tschirky@hsr.ch|
-| ![Sandro Zbinden](images/sandro_zbinden.png) |Sandro Zbinden|sandro.zbinden@hsr.ch|
+| ![Michael Leu](images/michael_leu.png) | ![Niklaus Tschirky](images/niklaus_tschirky.png) | ![Sandro Zbinden](images/sandro_zbinden.png) |
+| -- | -- | -- |
+| Michael Leu | Niklaus Tschirky | Sandro Zbinden |
 
 
 ## Einführung
@@ -101,9 +98,6 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [Continuous Integration Server](https://travis-ci.org/IMSmobile/app) | Travis Continuous Integration Test Server mit Log |
 | [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes des Mobile Client |
 | [Story Map](https://realtimeboard.com/app/board/o9J_k0HGAYQ=/) | Überblick über sämtliche User-Storys |
-
-### Glossar
-Siehe [Glossar](glossary.md)
 
 ## Projektübersicht
 Im Rahmen des Projekts _Arkivar – Mobile Client for Imagic IMS_ entsteht eine Applikation, um Medien via Mobile Devices im digitalen Bildmanagementsystem von Imagic IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](https://www.hsr.ch/de/) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.
@@ -241,12 +235,12 @@ Unsere Qualitätsmassnahmen umfassen folgende Punkte:
 | Story Map                                                 | Gesamte Projektdauer (ausser bei Prototyp) | organisatorisch | Übersicht behalten
 
 ### Framework
-Für die Entwicklung der Software benutzen wir das Framework [Ionic 2](http://ionicframework.com/).
+Für die Entwicklung der Software benutzen wir das Framework [Ionic](http://ionicframework.com/).
 Die Anforderungen an das Framework wurden in einem speziell dafür geschaffenen [Anforderungskatalog](frameworkanforderungen.md) festgehalten. Drei Prototypen wurden erstellt und gegen die Anforderungen geprüft. Die Auswahl des Frameworks kann im Dokument [Framework Entscheid](Frameworkentscheid.md) nachgelesen werden.  
 
 | Framework   | Prototype   |
 |---|---|
-| Ionic 2  | https://github.com/IMSmobile/ionic2-prototype   |
+| Ionic | https://github.com/IMSmobile/ionic2-prototype   |
 | Xamarin  | https://github.com/IMSmobile/XamarinPrototype  |
 | React Native | https://github.com/IMSmobile/rn-prototype   |
 
@@ -286,7 +280,7 @@ Um besser mit Ionic arbeiten zu können, müssen folgende Plugins der Entwicklun
 
 | Plugin      | Befehl | Beschreibung |
 |---------|-------------|--------|
-|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2) | `ext install ionic2` | Ionic 2 Code Completion       |
+|[Ionic 2 Commands with Snippets](https://marketplace.visualstudio.com/items?itemName=Thavarajan.ionic2) | `ext install ionic2` | Ionic Code Completion       |
 | [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) | `ext install debugger-for-chrome` | Javascript und Typescript Debugging via Google Chrome |
 |[TSLint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint) | `ext install tslint` | Integration des [tslint Linters](#code-guideline) für TypeScript |
 |[Markdown TOC](https://marketplace.visualstudio.com/items?itemName=AlanWalk.markdown-toc) | `ext install markdown-toc` | Automatisiertes generieren des Inhaltsverzeichnis (Table of Content) für Markdown Dateien. |
@@ -493,5 +487,10 @@ Eine Version nach Semantic Versioning besteht aus den drei Komponenten _MAJOR_, 
 ### Wireframes
 Mit Hilfe von Wireframes skizzieren wir die Benutzeroberfläche und stellen die Abläufe dar. Sie dienen als Basis für die Entwicklung des User Interface und der Navigation zwischen den verschiedenen Screens. Um unsere Wireframes interaktiv bedienbar zu machen benutzen wir [NinjaMock](https://ninjamock.com).
 
+| ![Login](images/wireframes-example/login.png) | ![Einträge](images/wireframes-example/entries.png) | ![Einstellungen](images/wireframes-example/fieldsettings.png) | ![Upload](images/wireframes-example/upload.png) |
+|--------------------------------------|--------------------------------------|--------------------------------------|-------------------------------------|
+
 ### Story Map
 Aus den Anforderungen und dem laufenden Feedback der Stakeholder entstehen User-Storys welche wir nach Themen gruppiert als Kärtchen auf der Story Map auslegen. Während dem Sprint Review zeigen wir jeweils den aktuellen Stand des Projekts bezogen auf die User-Storys.
+
+![Story Map](images/storymap-example.jpg)
