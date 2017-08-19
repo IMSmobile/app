@@ -1,7 +1,7 @@
 # Software Architecture Document
 
-Dieses Dokument beschreibt die Architektur des Mobile Client.
-
+Beschreibt die Architektur des Mobile Client.
+## Inhaltsverzeichnis
   - [Einleitung](#einleitung)
   - [Komponentendiagramm](#komponentendiagramm)
   - [Imagic IMS Daten Model](#imagic-ims-daten-model)
