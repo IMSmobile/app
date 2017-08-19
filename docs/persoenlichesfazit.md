@@ -1,9 +1,9 @@
 # Persönliches Fazit
-## Michael
+## Michael Leu
 
 *TODO*
 
-## Niklaus
+## Niklaus Tschirky
 
 Zu Beginn des Projekts war ich schon etwas nervös, da es sich für mich um ein total neues Technologiegebiet handelte. Auch hatte ich zuvor noch nie in einer agilen Software Umgebung gearbeitet. Umso mehr war ich überrascht, wie einfach die Einarbeitung von sich ging. 
 
@@ -15,7 +15,7 @@ Ich habe festgestellt, dass die Mobile-Entwicklung eine sehr schnelllebige Techn
 
 Für mich persönlich war das Projekt ein Erfolg, da ich viele neue Technologien und Projektmethoden kennenlernen und erfolgreich ausprobieren durfte.
 
-## Sandro
+## Sandro Zbinden
 
 Mit dem gesamten Verlauf der Masterarbeit bin ich sehr zufrieden. Wir haben es geschafft, in einem iterativen Prozess, Qualitativ hochstehende Software zu liefern und unsere persönlichen Ziele zu erreichen. 
 
