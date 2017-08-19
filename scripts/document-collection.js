@@ -33,10 +33,10 @@ const mdFilesForPublication = [
 const mdFileLinkToTitleMap = {
   'projektplan.md': '#projektplan',
   'risikoanalyse.md': '#risiko-analyse',
-  'Frameworkentscheid.md': '#framework-entscheid',
-  'frameworkanforderungen.md': '#anforderungen-an-das-framework',
   'questions.md': '#fragenkatalog-für-stakeholder',
   'spec.md': '#spezifikation',
+  'frameworkanforderungen.md': '#anforderungen-an-das-framework',
+  'Frameworkentscheid.md': '#framework-entscheid',
   'sad.md': '#software-architecture-document',
   'schnellstartanleitung.md': '#schnellstartanleitung',
   '../CONTRIBUTING.md': '#guidelines-for-contribution',
