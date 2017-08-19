@@ -27,6 +27,7 @@ const mdFilesForPublication = [
   'docs/sad.md',
   'docs/schnellstartanleitung.md',
   'CONTRIBUTING.md',
+  'docs/projektretro.md',
   'README.md',
   'docs/glossary.md'
 ];
@@ -40,6 +41,7 @@ const mdFileLinkToTitleMap = {
   'sad.md': '#software-architecture-document',
   'schnellstartanleitung.md': '#schnellstartanleitung',
   '../CONTRIBUTING.md': '#guidelines-for-contribution',
+  'projektretro.md': '#schlussbericht',
   'glossary.md': '#glossar',
 };
 const publicationPolishingSteps = [
@@ -66,7 +68,7 @@ const glob = require('glob');
 
 fs.removeSync(exportDir);
 copyToExportDirectory();
-convertMDToHTML();
+// convertMDToHTML();
 createPublication();
 
 function copyToExportDirectory() {
