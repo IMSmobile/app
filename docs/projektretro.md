@@ -22,4 +22,4 @@ Die späte Einführung einer Vielzahl neuer Regeln der statischen Codeanalyse wa
 
 In der Abschlussphase ging es hauptsächlich darum, alle Dokumente für die Abgabe vorzubereiten und einen Abschlussgespräch mit unseren Stakeholdern zu führen. Das Abschlussgespräche mit Imagic und PIC System haben wir mit einem Fragebogen vorbereitet und das Feedback war sehr positiv. Speziell die Kommunikation und die Selbständigkeit des Teams wurden gelobt. Das Erstellen der Abschlussdokumentation als Dokumentensammlung haben wir weitgehend automatisiert. Somit konnten Änderungen am Schluss effizient exportiert werden.
 
-Mit dem Ergebnis der Masterarbeit sind wir sehr zufrieden. Wir freuen uns dass Imagic und auch Pic Systems die Entwicklung weiterführen wird.
+Mit dem Ergebnis der Masterarbeit sind wir sehr zufrieden. Wir freuen uns dass Imagic und auch PIC Systems die Entwicklung weiterführen wird.

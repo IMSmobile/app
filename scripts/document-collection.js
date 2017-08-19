@@ -68,7 +68,7 @@ const glob = require('glob');
 
 fs.removeSync(exportDir);
 copyToExportDirectory();
-// convertMDToHTML();
+convertMDToHTML();
 createPublication();
 
 function copyToExportDirectory() {
