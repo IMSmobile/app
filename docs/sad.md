@@ -1,7 +1,7 @@
 # Software Architecture Document
 
-Dieses Dokument beschreibt die Architektur des Mobile Client.
-
+Beschreibt die Architektur des Mobile Client.
+## Inhaltsverzeichnis
   - [Einleitung](#einleitung)
   - [Data Flow Diagramm](#data-flow-diagramm)
   - [Imagic IMS Daten Model](#imagic-ims-daten-model)
@@ -12,7 +12,7 @@ Dieses Dokument beschreibt die Architektur des Mobile Client.
     - [Ordnerstruktur Konventionen](#ordnerstruktur-konventionen)
     - [Model](#model)
     - [Pages](#pages)
-    - [Provider / Service](#provider--service)
+    - [Provider](#provider)
     - [Functional Reactive Programming / Observable](#functional-reactive-programming--observable)
     - [Dependency Injection](#dependency-injection)
     - [Blockierende Aktionen](#blockierende-aktionen)
@@ -149,7 +149,7 @@ ionic generate page [<name>]
 
 Sämtliche Members und Methoden einer Page sind `public`, weil ausser im Testing nie mehrere Instanzen davon erstellt werden.
 
-### Provider / Service
+### Provider
 
 Ein Provider ist eine Klasse, welche einen Service für einen bestimmten Zweck bereitstellt. Ein Beispiel ist der Kamera Service, welcher für das Aufnehmen von Fotos verantwortlich ist. Provider werden via Dependency Injection geladen und sind in der Regel Singleton Objekte.
 
@@ -207,7 +207,7 @@ Dependency Injection ist ein Pattern zum Auflösen von Abhängigkeiten zur Laufz
 
 Um die Applikationslogik möglichst plattformneutral zu halten soll die plattform-spezifische Variante einer Komponente mithilfe der Dependency Injection `useFactory` geladen werden.
 
-Die Provider müssen, wie im [Kapitel Provider](#provider--service) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im `app.module.ts` im Abschnitt @NgModule registriert werden.
+Die Provider müssen, wie im [Kapitel Provider](#provider) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im `app.module.ts` im Abschnitt @NgModule registriert werden.
 
 ```typescript
 @NgModule({

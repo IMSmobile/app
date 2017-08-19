@@ -1,5 +1,5 @@
 # Projektplan
-
+Zeigt die Details zum Projekt und Projektvorgehen.
 ## Inhaltsverzeichnis
 
 - [Vision](#vision)
@@ -9,7 +9,6 @@
   - [Zweck](#zweck)
   - [Gültigkeitsbereich](#gültigkeitsbereich)
   - [Referenzen](#referenzen)
-  - [Glossar](#glossar)
 - [Projektübersicht](#projektübersicht)
   - [Lieferumfang](#lieferumfang)
   - [Kostenvorgabe](#kostenvorgabe)
@@ -99,9 +98,6 @@ Dieses Dokument ist über die ganze Projektdauer gültig. Änderungen werden for
 | [Continuous Integration Server](https://travis-ci.org/IMSmobile/app) | Travis Continuous Integration Test Server mit Log |
 | [Wireframes](https://ninjamock.com/s/CM1BL) | Wireframes des Mobile Client |
 | [Story Map](https://realtimeboard.com/app/board/o9J_k0HGAYQ=/) | Überblick über sämtliche User-Storys |
-
-### Glossar
-Siehe [Glossar](glossary.md)
 
 ## Projektübersicht
 Im Rahmen des Projekts _Arkivar – Mobile Client for Imagic IMS_ entsteht eine Applikation, um Medien via Mobile Devices im digitalen Bildmanagementsystem von Imagic IMS zu sichern. Das Projekt wird im Rahmen einer Masterarbeit von der Hochschule für Technik in Rapperswil [HSR](https://www.hsr.ch/de/) für den Studiengang MAS Software-Engineering 2015-2017 durchgeführt.

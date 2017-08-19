@@ -39,7 +39,8 @@
 | [Testprotokoll](docs/testsession/sessionreport.md) | Resultat der explorativen Testsession                                |
 
 ## Quellen
-Icons von https://icons8.com/
+- Icons: https://icons8.com/
+- Wiegers Priorisierungsmatrix: http://www.orgismus.de/methoden/priorisieren-aber-richtig/
 
 ## Markenrechte
 Imagic IMS ist eine eingetragene Marke der [Klasse](https://de.wikipedia.org/wiki/Markenklassifikation) 09 und darf nur mit der ausdrücklichen Erlaubnis von Imagic Bildverarbeitung AG verwendet werden.
