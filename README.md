@@ -39,6 +39,7 @@
 | [Testprotokoll](docs/testsession/sessionreport.md) | Resultat der explorativen Testsession                                |
 
 ## Quellen
+- Agiles Manifest: http://agilemanifesto.org/iso/de/manifesto.html
 - Icons: https://icons8.com/
 - Wiegers Priorisierungsmatrix: http://www.orgismus.de/methoden/priorisieren-aber-richtig/
 
