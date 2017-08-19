@@ -18,7 +18,7 @@
 | [Zeiterfassung](docs/zeiterfassung.pdf)     | Liste aller Stunden                                                  |
 | [Zeitauswertung](docs/zeitauswertung.pdf)    | Verbrauchte Stunden pro Sprint und Kategorie                         |
 | [Abstrakt](docs/abstract.md)          | Kurzbeschreibung des Projekts                                        |
-| [Schlussbericht](docs/projektretro.md)    | Projekt-Retrospektive und persönliche Fazite                                  |
+| [Schlussbericht](docs/projektretro.md)    | Projekt-Retrospektive                                                         |
 | [Glossar](docs/glossary.md)           | Beschreibung des Projektwortschatz                                   |
 
 ## Produktdokumente
