@@ -18,7 +18,7 @@
 | [Zeiterfassung](docs/zeiterfassung.pdf)     | Liste aller Stunden                                                  |
 | [Zeitauswertung](docs/zeitauswertung.pdf)    | Verbrauchte Stunden pro Sprint und Kategorie                         |
 | [Abstrakt](docs/abstract.md)          | Kurzbeschreibung des Projekts                                        |
-| Schlussbericht    | Feedback und Abschluss des Projekts                                  |
+| [Schlussbericht](docs/projektretro.md)    | Projekt-Retrospektive                                                         |
 | [Glossar](docs/glossary.md)           | Beschreibung des Projektwortschatz                                   |
 
 ## Produktdokumente
@@ -39,6 +39,8 @@
 | [Testprotokoll](docs/testsession/sessionreport.md) | Resultat der explorativen Testsession                                |
 
 ## Quellen
+- Agiles Manifest: http://agilemanifesto.org/iso/de/manifesto.html
+- Assembly Flow: https://forum.ionicframework.com/t/is-there-a-graphic-diagram-available-that-shows-how-ionic-2-and-all-related-technologies-connect/88375/19
 - Icons: https://icons8.com/
 - Wiegers Priorisierungsmatrix: http://www.orgismus.de/methoden/priorisieren-aber-richtig/
 
