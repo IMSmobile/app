@@ -1,4 +1,4 @@
-# Persönliches Fazit
+# Persönliche Fazite
 ## Michael Leu
 
 Unser Projekt war für mich persönlich eine super Erfahrung. Es hat Spass gemacht eine agile Software-Entwicklung mit einem Fokus auf Qualität in der Praxis auch tatsächlich zu erleben.
