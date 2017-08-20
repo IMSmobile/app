@@ -165,7 +165,7 @@ function sanitizeHTMLLinks() {
 function replaceInternalMDLinkWithHTML($, link) {
   href = $(link).attr('href')
   if (isInternalLink(href)) {
-    if (href.endsWith('.md')) {
+    if (href.includes('.md')) {
       $(link).attr('href', href.replace('.md', '.html'));
     }
   }
