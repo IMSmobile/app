@@ -31,7 +31,7 @@ Für mich persönlich war das Projekt ein Erfolg, da ich viele neue Technologien
 
 Mit dem gesamten Verlauf der Masterarbeit bin ich sehr zufrieden. Wir haben es geschafft, in einem iterativen Prozess, qualitativ hochstehende Software zu liefern und unsere persönlichen Ziele zu erreichen. 
 
-Durch die sehr nahe Zusammenarbeit vor allem beim Pair Programming und dem gemeinsamen Entscheiden sämtlicher Fragen, entstand ein Produkt, welches vom Team und nicht von Individuen geschaffen wurde. Die Offenheit und das Vertrauen innerhalb des Teams war erstaunlich. Bei Sprint Retrospektiven konnten wir auch heikle, persönliche Themen ansprechen und diese gemeinsam lösen. 
+Durch die sehr nahe Zusammenarbeit vor allem beim Pair Programming und dem gemeinsamen Entscheiden sämtlicher Fragen, entstand ein Produkt, welches vom Team und nicht von Individuen geschaffen wurde. Die Offenheit und das Vertrauen innerhalb des Teams waren erstaunlich. Bei Sprint Retrospektiven konnten wir auch heikle, persönliche Themen ansprechen und diese gemeinsam lösen.
 
 Auch die zweiwöchentlichen Treffen mit den Stakeholdern waren positiv. Die enge Zusammenarbeit und die grosse Freude, welche die Stakeholder am Produkt zeigten, haben mich immer wieder angetrieben und motiviert. 
 
