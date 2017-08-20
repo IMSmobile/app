@@ -18,6 +18,7 @@ const gitclone = require('gitclone')
 const exportDirName = 'document-collection'
 const ignoredMDs = ['node_modules/**/*.md', 'platforms/**/*.md', 'plugins/**/*.md', exportDirName + '/**/*.md'];
 const mdFilesForPublication = [
+  'docs/abstract.md',
   'docs/projektplan.md',
   'docs/risikoanalyse.md',
   'docs/questions.md',
@@ -32,6 +33,7 @@ const mdFilesForPublication = [
   'docs/glossary.md'
 ];
 const mdFileLinkToTitleMap = {
+  'abstract.md': '#abstract',
   'projektplan.md': '#projektplan',
   'risikoanalyse.md': '#risiko-analyse',
   'questions.md': '#fragenkatalog-für-stakeholder',
@@ -46,9 +48,6 @@ const mdFileLinkToTitleMap = {
 };
 const publicationPolishingSteps = [
   'Datei → Eigenschaften → Dokumenteigenschaften aufrufen',
-  'Dokumenteneigenschaft Titel umbenennen in "Arkivar - Mobiler Client für Imagic IMS"',
-  'Dokumenteneigenschaft Thema umbenennen in "MAS Abschlussarbeit"',
-  'Dokumenteneigenschaft Autor umbenennen in "Michael Leu;Niklaus Tschirky;Sandro Zbinden"',
   'Titelblatt von Template (resources/publication-template.docx) übernehmen',
   'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
   'Kapitel "Projektplan → Inhaltsverzeichnis" löschen',
@@ -61,7 +60,9 @@ const publicationPolishingSteps = [
   'Kapitel "Produktdokumente" löschen',
   'Kapitel "Quellen" als Überschrift 1',
   'Kapitel "Markenrechte" als Überschrift 1',
+  'Kapitel "#Risiko Analyse" Suchen und als Überschrift 1',
   'Inhaltsverzeichnis aktualisieren',
+  'Überprüfen der Dokumenteneigenschaft Titel, Thema und Autor',
   'Als PDF speichern',
   'Überprüfen ob index.html ein API Limit Reached Exception hat.'
 ]
