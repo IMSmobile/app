@@ -60,7 +60,6 @@ const publicationPolishingSteps = [
   'Kapitel "Produktdokumente" löschen',
   'Kapitel "Quellen" als Überschrift 1',
   'Kapitel "Markenrechte" als Überschrift 1',
-  'Kapitel "#Risiko Analyse" Suchen und als Überschrift 1',
   'Inhaltsverzeichnis aktualisieren',
   'Überprüfen der Dokumenteneigenschaft Titel, Thema und Autor',
   'Als PDF speichern',
