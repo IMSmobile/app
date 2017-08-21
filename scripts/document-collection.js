@@ -16,8 +16,9 @@ const figures = require('figures')
 const gitclone = require('gitclone')
 
 const exportDirName = 'document-collection'
-const ignoredMDs = ['node_modules/**/*.md', 'platforms/**/*.md', 'plugins/**/*.md'];
+const ignoredMDs = ['node_modules/**/*.md', 'platforms/**/*.md', 'plugins/**/*.md', exportDirName + '/**/*.md'];
 const mdFilesForPublication = [
+  'docs/abstract.md',
   'docs/projektplan.md',
   'docs/risikoanalyse.md',
   'docs/questions.md',
@@ -32,6 +33,7 @@ const mdFilesForPublication = [
   'docs/glossary.md'
 ];
 const mdFileLinkToTitleMap = {
+  'abstract.md': '#abstract',
   'projektplan.md': '#projektplan',
   'risikoanalyse.md': '#risiko-analyse',
   'questions.md': '#fragenkatalog-für-stakeholder',
@@ -45,10 +47,6 @@ const mdFileLinkToTitleMap = {
   'glossary.md': '#glossar',
 };
 const publicationPolishingSteps = [
-  'Datei → Eigenschaften → Dokumenteigenschaften aufrufen',
-  'Dokumenteneigenschaft Titel umbenennen in "Arkivar - Mobiler Client für Imagic IMS"',
-  'Dokumenteneigenschaft Thema umbenennen in "MAS Abschlussarbeit"',
-  'Dokumenteneigenschaft Autor umbenennen in "Michael Leu;Niklaus Tschirky;Sandro Zbinden"',
   'Titelblatt von Template (resources/publication-template.docx) übernehmen',
   'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
   'Kapitel "Projektplan → Inhaltsverzeichnis" löschen',
@@ -56,11 +54,14 @@ const publicationPolishingSteps = [
   'Kapitel "Software Architecture Document → Inhaltsverzeichnis" löschen',
   'Kopf und Fusszeilen kontrollieren (Formatprobleme)',
   'Macro scripts/github-table-macro.bas importieren und ausführen")',
-  'Alle Tabellenformatoption "Gebänderte Zeilen / Verbundene Zeilen" aktivieren',
   'Kapitel "Projektdokumente" löschen',
   'Kapitel "Produktdokumente" löschen',
+  'Kapitel "Quellen" als Überschrift 1',
+  'Kapitel "Markenrechte" als Überschrift 1',
   'Inhaltsverzeichnis aktualisieren',
-  'Als PDF speichern'
+  'Überprüfen der Dokumenteneigenschaft Titel, Thema und Autor',
+  'Als PDF speichern',
+  'Überprüfen ob index.html ein API Limit Reached Exception hat.'
 ]
 const rootDir = path.resolve(__dirname, '../.');
 const exportDir = path.resolve(__dirname, '../' + exportDirName);
@@ -90,8 +91,10 @@ function convertMDToHTML() {
       console.info(chalk.green(figures.tick) + ' successfully converted ' + file);
     });
     sanitizeHTMLLinks();
+    printFinalManualSteps();
   })
 }
+
 
 function createPublication() {
   const publication = exportDirName + '/' + 'publikation';
@@ -105,13 +108,8 @@ function createPublication() {
     const content = cleanupForPublication(fs.readFileSync(rootDir + '/' + file, { encoding: 'utf8' }));
     fs.appendFileSync(publicationMd, content);
   });
-  execSync('pandoc ' + ['--from=markdown_github', '--to=docx', '--toc', '--standalone', '--output=' + publicationDocx, '--reference-docx='+ publicationTemplate, publicationMd].join(' '));
+  execSync('pandoc ' + ['--from=markdown_github', '--to=docx', '--toc', '--standalone', '--output=' + publicationDocx, '--reference-docx=' + publicationTemplate, publicationMd].join(' '));
   console.info(chalk.green(figures.tick) + ' created ' + publicationDocx);
-  console.info('\nNow you need to do some manual work:');
-  publicationPolishingSteps.forEach(function (step) {
-    console.info(chalk.blue(figures.checkboxOff) + ' ' + step);
-  });
-  console.info('Good Luck!');
 }
 
 function cleanupForPublication(content) {
@@ -165,7 +163,7 @@ function sanitizeHTMLLinks() {
 function replaceInternalMDLinkWithHTML($, link) {
   href = $(link).attr('href')
   if (isInternalLink(href)) {
-    if (href.endsWith('.md')) {
+    if (href.includes('.md')) {
       $(link).attr('href', href.replace('.md', '.html'));
     }
   }
@@ -197,6 +195,14 @@ function clonePrototype(prototypeBaseDir, prototypeName) {
   ensureDirectory(prototypeDir);
   gitclone('https://github.com/IMSmobile/' + prototypeName, { dest: prototypeDir })
   console.info(chalk.green(figures.tick) + ' cloning ' + prototypeName + ' prototype to ' + prototypeDir);
+}
+
+function printFinalManualSteps() {
+  console.info('\nNow you need to do some manual work:');
+  publicationPolishingSteps.forEach(function (step) {
+    console.info(chalk.blue(figures.checkboxOff) + ' ' + step);
+  });
+  console.info('Good Luck! You have done a great job');
 }
 
 function ensureDirectory(file) {

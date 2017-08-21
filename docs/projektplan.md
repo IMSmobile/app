@@ -372,7 +372,7 @@ Um automatisierte Tests zu schreiben, brauchen wir das JavaScript Framework [jas
 
 #### Karma
 
-Um automatisierte Tests auszuführen, benutzen wir das Framework  [Karma](https://karma-runner.github.io/1.0/index.html). Diese Tool startet einen Webbrowser (Google Chrome) und führt die JavaScript Tests direkt auf dem Webbrowser aus. Dort wird auch direkt das Resultat der Tests dargestellt. Zudem erkennt Karma Codeänderungen und führt im Hintergrund alle benötigten Tests automatisch aus.
+Um automatisierte Tests auszuführen, benutzen wir das Framework  [Karma](https://karma-runner.github.io/1.0/index.html). Dieses Tool startet einen Webbrowser (Google Chrome) und führt die JavaScript Tests direkt auf dem Webbrowser aus. Dort wird auch direkt das Resultat der Tests dargestellt. Zudem erkennt Karma Codeänderungen und führt im Hintergrund alle benötigten Tests automatisch aus.
 
 #### Unit Testing
 Unit Tests dienen dazu sicherzustellen dass eine Klasse modular gebaut ist und wiederverwendet werden kann. Zudem dienen Unit Tests als Dokumentation der Klasse. Das Ausführen aller Unit Tests darf nicht länger als 30 Sekunden dauern.
@@ -396,7 +396,7 @@ describe("A module ", function() {
 ```
 
 #### End to End Testing
-Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
+Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt, dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
 Mit folgendem Befehl können alle End to End Tests ausgeführt werden.
 

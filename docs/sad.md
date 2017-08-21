@@ -68,7 +68,7 @@ Auf die Darstellung der **Models** und **Mocks** wurde aus Gründen der Übersic
 
 ## Design Prinzipien
 
-Die Design Prinzipien beschreiben die wichtigsten architektischen Richtlinien und Design Patterns. Sie helfen dem Entwickler bestehende Lösungen zu übernehmen und einen einheitlichen Code zu schreiben. 
+Die Design Prinzipien beschreiben die wichtigsten architektonischen Richtlinien und Design Patterns. Sie helfen dem Entwickler bestehende Lösungen zu übernehmen und einen einheitlichen Code zu schreiben. 
 
 ### Ordnerstruktur Konventionen
 
@@ -244,7 +244,7 @@ loadingService.subscribeWithLoading(responseObservable,
 
 Bei unerwarteten Ereignissen wie z.B. einem Netzwerk-Unterbruch, einer Fehlkonfiguration der REST Schnittstelle oder falschem Programmcode kümmert sich die ImsErrorHandler Klasse um die korrekte Behandlung des Fehlers.
 
-Im Produktivbetrieb zeigt der ImsErrorHandler dem Benutzer einen Dialog mit einem kurzen Fehlerbeschrieb an. Im Entwicklermodus wird hingegen die Standard Ionic Error Seite mit der technischen Fehlermeldung sowein einem Stacktrace dargestellt.
+Im Produktivbetrieb zeigt der ImsErrorHandler dem Benutzer einen Dialog mit einem kurzen Fehlerbeschrieb an. Im Entwicklermodus wird hingegen die Standard Ionic Error Seite mit der technischen Fehlermeldung sowie in einem Stacktrace dargestellt.
 
 Damit im Produktivbetrieb die richtige Fehlerbeschreibung angezeigt werden kann, müssen alle Observables im Fehlerfall eine von ImsError geerbte Exception werfen.
 

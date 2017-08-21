@@ -9,7 +9,7 @@ Für die Framework Entscheidung wurde pro Framework ein Prototyp erstellt. Mithi
 
 ## Evaluierte Anforderungen
 
-Nur eine Auswahl der wichtigsten Framworkanforderungen konnte im im Prototyp implementiert und bewertet werden.
+Nur eine Auswahl der wichtigsten Frameworkanforderungen konnte im im Prototyp implementiert und bewertet werden.
 
 | ID | Anforderung | Ionic | React Native | Xamarin |
 | -- | ----------- | ------- | ------------ | ------- |
