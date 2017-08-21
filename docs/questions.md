@@ -20,7 +20,7 @@ Dürfen wir während der Entwicklung Feedback zum Mobile Client bei 1-2 Personen
 
 ### Themenbereich Prozesse
 Nach welchen Kriterien findet man heute die richtige Fallnummer im IMS zum Bild?  
-> Hauptsächlich mittels der Journal-Nummer (Beispiel Kanton SO) oder aber über die ABI nummer.
+> Hauptsächlich mittels der Journal-Nummer (Beispiel Kanton SO) oder aber über die ABI Nummer.
 
 Wie ist der Prozess heute, um ein Bild im Imagic IMS abzulegen, wozu noch keine Fallnummer existiert?  
 > Grundsätzlich haben alle Benutzer die Rechte einen neuen Fall anzulegen. Daher wird bei Bedarf ein Neuer erstellt.  

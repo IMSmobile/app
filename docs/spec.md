@@ -71,7 +71,7 @@ Aus Gründen der Lesbarkeit verwenden wir den Begriff _Client_ als Synonym für 
 | ---- | ---- | ------------ | ----------- | ----------- |
 | NF1  | Design | Die Gestaltung des Clients soll die Design-Guidelines von Android und iOS erfüllen. | PIC Systems ||
 | NF2  | Publisher | Der Client soll von einem Privat- oder Firmenkonto in den Store publiziert werden können. | Google und Apple || 
-| NF3  | Kompabilität | Der Client muss mit REST-API Version 16Q2 bis und mit 17Q1 funktionieren. | PIC Systems ||
+| NF3  | Kompatibilität | Der Client muss mit REST-API Version 16Q2 bis und mit 17Q1 funktionieren. | PIC Systems ||
 | NF4  | Selbsterklärend | Der Client soll durch einen Benutzer, welcher mit der Bedienung von Imagic IMS vertraut ist, ohne Schulung bedient werden können. |||
 | NF5  | Offline | Der Client kann auch ohne Netzwerkverbindung Bilder mit Metadaten erfassen. | PIC Systems ||
 | NF6  | Verschlüsselung | Der Client muss verschlüsselt mit der REST-API kommunizieren können. | PIC Systems ||
@@ -101,8 +101,8 @@ Zur initialen Priorisierung der Anforderungen arbeiten wir mit Wiegers Priorisie
 
 - Welchen Nutzen man hat, wenn die Anforderung umgesetzt wird?
 - Welchen Schaden erleidet man, wenn man eine Anforderung nicht umsetzt?
-- Wie hoch ist der Aufwand bzw. die Kosten ?
-- Wie hoch ist das Risiko ?
+- Wie hoch ist der Aufwand bzw. die Kosten?
+- Wie hoch ist das Risiko?
 
 Danach werden aus Anforderungen User Stories und Epics. Bei User Stories werden die Anforderungen aus Sicht des Users betrachtet. Es kann sein, dass mehrere Anforderungen in einer User Story abgeschlossen werden. Der Aufwand der User Stories wird mit Story Points im Team geschätzt und mit kleineren Prioritätsanpassungen durchgeführt.
 
