@@ -47,7 +47,6 @@ const mdFileLinkToTitleMap = {
   'glossary.md': '#glossar',
 };
 const publicationPolishingSteps = [
-  'Datei → Eigenschaften → Dokumenteigenschaften aufrufen',
   'Titelblatt von Template (resources/publication-template.docx) übernehmen',
   'Titel des Inhaltsverzeichnis auf "Inhaltsverzeichnis" ändern',
   'Kapitel "Projektplan → Inhaltsverzeichnis" löschen',
@@ -55,7 +54,6 @@ const publicationPolishingSteps = [
   'Kapitel "Software Architecture Document → Inhaltsverzeichnis" löschen',
   'Kopf und Fusszeilen kontrollieren (Formatprobleme)',
   'Macro scripts/github-table-macro.bas importieren und ausführen")',
-  'Alle Tabellenformatoption "Gebänderte Zeilen / Verbundene Zeilen" aktivieren',
   'Kapitel "Projektdokumente" löschen',
   'Kapitel "Produktdokumente" löschen',
   'Kapitel "Quellen" als Überschrift 1',
