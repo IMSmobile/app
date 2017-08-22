@@ -270,7 +270,7 @@ Dank dem [Burn Up Chart](https://docs.google.com/spreadsheets/d/1xm9ytSJTCfuZGIu
 
 Unser Entwicklungszyklus besteht aus vier Phasen:
 - Entwicklung: Zu zweit wird programmiert und dabei permanent mit automatisierten Tests die Qualität sichergestellt.
-- Review: Das Entwicklungsergebnis wird testweise mit dem Master Branch kombiniert und erneut automatisch geprüft. Zusätzlich wird der Code vom Prüfer gelesen, manuell getestet und für den Release freigegeben.
+- Review: Das Entwicklungsergebnis wird testweise mit dem Master Branch kombiniert und erneut automatisch geprüft. Zusätzlich wird der Code vom Prüfer gelesen, manuell getestet und für das Release freigegeben.
 - Release: Eine neue Version wird gebaut und das Changelog ergänzt.
 - Production: Die neue Version wird für das automatische Deployment aller Kunden publiziert.
 
