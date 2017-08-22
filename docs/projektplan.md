@@ -5,6 +5,7 @@ Zeigt die Details zum Projekt und Projektvorgehen.
 - [Vision](#vision)
 - [Allgemeine Angaben](#allgemeine-angaben)
   - [Autorschaft](#autorschaft)
+  - [Lizenz](#lizenz)
 - [Einführung](#einführung)
   - [Zweck](#zweck)
   - [Gültigkeitsbereich](#gültigkeitsbereich)
@@ -75,6 +76,9 @@ Am Schluss soll eine funktional vollständige Android und iOS App entstehen, wel
 | ![Michael Leu](images/michael_leu.png) | ![Niklaus Tschirky](images/niklaus_tschirky.png) | ![Sandro Zbinden](images/sandro_zbinden.png) |
 | -- | -- | -- |
 | Michael Leu | Niklaus Tschirky | Sandro Zbinden |
+
+### Lizenz
+Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich zugänglichen [GitHub Repository](https://github.com/IMSmobile/app/) zur Verfügung.
 
 
 ## Einführung
@@ -264,7 +268,15 @@ Dank dem [Burn Up Chart](https://docs.google.com/spreadsheets/d/1xm9ytSJTCfuZGIu
 
 ### Entwicklung
 
-Das Projekt wird als Open Source Software unter der MIT Lizenz entwickelt. Der Source Code steht in einem öffentlich zugänglichen [GitHub Repository](https://github.com/IMSmobile/app/) zur Verfügung.
+Unser Entwicklungszyklus besteht aus vier Phasen:
+- Entwicklung: Zu zweit wird programmiert und dabei permanent mit automatisierten Tests die Qualität sichergestellt.
+- Review: Das Entwicklungsergebnis wird testweise mit dem Master Branch kombiniert und erneut automatisch geprüft. Zusätzlich wird der Code vom Prüfer gelesen, manuell getestet und für das Release freigegeben.
+- Release: Eine neue Version wird gebaut und das Changelog ergänzt.
+- Production: Die neue Version wird für das automatische Deployment aller Kunden publiziert.
+
+![Development Cycle](images/development_cycle.png)
+
+Für ein qualitativ hochwertiges Continuous Deployment wird die Qualitätsprüfung am frühest möglichen Zeitpunkt durchgeführt.
 
 #### Entwicklungs Setup
 Um neuen Entwicklern einen schnellen Start ins Projekt zu ermöglichen, wurde eine [Schnellstartanleitung](schnellstartanleitung.md) mit den gängigsten Befehlen geschrieben.
