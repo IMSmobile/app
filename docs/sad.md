@@ -1,6 +1,6 @@
 # Software Architecture Document
 
-Beschreibt die Architektur des Mobile Client.
+Beschreibt die Architektur des Mobile Clients.
 ## Inhaltsverzeichnis
   - [Einleitung](#einleitung)
   - [Data Flow Diagramm](#data-flow-diagramm)
@@ -21,11 +21,11 @@ Beschreibt die Architektur des Mobile Client.
   - [Technologie Stack](#technologie-stack)
     
 ## Einleitung
-Aus den wichtigsten [Anforderungen](spec.md#anforderungskatalog) Bildupload (FA1), Kameraupload (FA2), Metadaten (FA5) und Fallauswahl (FA6) ergibt sich eine Architektur welche sich primär auf die Entgegennahme und Übermittlung von Benutzerdaten in ein dynamisches Datenmodell ausrichtet.
+Aus den wichtigsten [Anforderungen](spec.md#anforderungskatalog) Bildupload (FA1), Kameraupload (FA2), Metadaten (FA5) und Fallauswahl (FA6) ergibt sich eine Architektur, welche sich primär auf die Entgegennahme und Übermittlung von Benutzerdaten in ein dynamisches Datenmodell ausrichtet.
 
 Die Unterteilung der Services und die Struktur der Models orientiert sich an der der vorgegebenen Schnittstelle des Imagic IMS Servers (FA17). Damit bleibt das Datenmodell des Imagic IMS erhalten, was den Einstieg für Imagic IMS Entwickler erleichtern soll (NF19).
 
-Eine granulare Aufteilung auf Komponenten- und Methoden-Ebene erhöht die Testbarkeit. Dies soll zur Fehlerverminderung (NF18) beitragen. Die konsequente Navigation über den Einstiegspunkt (FA18) bedeutet pro Aktion eine Kette von Anfragen zur REST Schnittstelle. Diese Kette wird mithilfe von Functional Reactive Programming aus wiederverwendbaren Observables zusammengestellt.
+Eine granulare Aufteilung auf Komponenten- und Methoden-Ebene erhöht die Testbarkeit. Dies soll zur Fehlerverminderung (NF18) beitragen. Die konsequente Navigation über den Einstiegspunkt (FA18) bedeutet pro Aktion eine Kette von Anfragen zur REST Schnittstelle. Diese Kette wird mit hilfe von Functional Reactive Programming aus wiederverwendbaren Observables zusammengestellt.
 
 ## Data Flow Diagramm
 
@@ -68,7 +68,7 @@ Auf die Darstellung der **Models** und **Mocks** wurde aus Gründen der Übersic
 
 ## Design Prinzipien
 
-Die Design Prinzipien beschreiben die wichtigsten architektonischen Richtlinien und Design Patterns. Sie helfen dem Entwickler bestehende Lösungen zu übernehmen und einen einheitlichen Code zu schreiben. 
+Die Design Prinzipien beschreiben die wichtigsten architektonischen Richtlinien und Design Patterns. Sie helfen dem Entwickler, bestehende Lösungen zu übernehmen und einen einheitlichen Code zu schreiben. 
 
 ### Ordnerstruktur Konventionen
 
@@ -117,7 +117,7 @@ Ein wichtiger Designentscheid ist, dass Model Klassen **keine Methoden** enthalt
 }
 ``` 
 
-Mit dem **readonly** Modifier bei Attributen wird sichergestellt, dass Model Klasse unveränderlich (immutable) sind. 
+Mit dem **readonly** Modifier bei Attributen wird sichergestellt, dass Model Klassen unveränderlich (immutable) sind. 
 
 Ein Beispiel einer Model Klasse:
 
@@ -175,9 +175,9 @@ export class CameraService {
 ```
 ### Functional Reactive Programming / Observable
 
-Um Probleme mit Zustand und weiteren Seiteneffekte zu verringern, wird im Angular Framework mit dem [Functional Reactive Programming Paradigma](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
+Um Probleme mit Zustand und weiteren Seiteneffekten zu verringern, wird die Software im Angular Framework mit dem [Functional Reactive Programming Paradigma](https://en.wikipedia.org/wiki/Functional_reactive_programming) entwickelt.
 
-Ein zentraler Baustein ist die Verwendung von Observable. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem für Entwickler mit Kenntnissen in prozeduraler oder objektorientierter Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
+Ein zentraler Baustein ist die Verwendung von Observables. Ein Observable ist ein Stream von Ereignissen. Zum besseren Verständnis wird empfohlen, Literatur über den [ReactiveX Standard](http://reactivex.io/) zu lesen. Vor allem für Entwickler mit Kenntnissen in prozeduraler oder objektorientierter Programmierung führt die Verwendung von Observables zu einem Paradigmenwechsel.
 
 Das folgende vereinfachte Beispiel zeigt die häufigste Verwenden von Observables in dieser Applikation. Mithilfe der Observable *flatMap* Methode wird das Laden vom Token und das Laden der Einträge verkettet. Die User Interface Methode *loadEntries* aktiviert mit *subscribe* das neu verkettete Observable. Erst dann werden Daten von der REST Schnittstelle abgerufen. 
 
@@ -205,7 +205,7 @@ Das folgende vereinfachte Beispiel zeigt die häufigste Verwenden von Observable
 ### Dependency Injection
 Dependency Injection ist ein Pattern zum Auflösen von Abhängigkeiten zur Laufzeit. Angular hat Dependency Injection fest im Framework integriert. Durch Dependency Injection müssen die Objektinstanzen nicht hin- und hergeschoben werden und die Testbarkeit wird erleichtert. Module können besser abgekoppelt werden und sind unabhängig voneinander.  
 
-Um die Applikationslogik möglichst plattformneutral zu halten soll die plattform-spezifische Variante einer Komponente mithilfe der Dependency Injection `useFactory` geladen werden.
+Um die Applikationslogik möglichst plattformneutral zu halten, soll die plattform-spezifische Variante einer Komponente mithilfe der Dependency Injection `useFactory` geladen werden.
 
 Die Provider müssen, wie im [Kapitel Provider](#provider) erwähnt, mit einem Label annotiert sein. Zusätzlich müssen sie im `app.module.ts` im Abschnitt @NgModule registriert werden.
 
@@ -229,7 +229,7 @@ constructor(cameraService: CameraService) {
 
 ### Blockierende Aktionen
 
-Für blockierende Aktionen, bei welchen der Benutzer auf ein Ereignis wartet, wird der LoadingService verwendet. Der LoadingService zeigt einen modalen `Bitte Warten` Dialog an bis das Observable abgeschlossen ist.
+Für blockierende Aktionen, bei welchen der Benutzer auf ein Ereignis wartet, wird der LoadingService verwendet. Der LoadingService zeigt einen modalen `Bitte Warten` Dialog an, bis das Observable abgeschlossen ist.
 
 Das Codebeispiel zeigt die Verwendung des LoadingService.
 
@@ -242,9 +242,9 @@ loadingService.subscribeWithLoading(responseObservable,
 ```
 ### Fehlerbehandlung
 
-Bei unerwarteten Ereignissen wie z.B. einem Netzwerk-Unterbruch, einer Fehlkonfiguration der REST Schnittstelle oder falschem Programmcode kümmert sich die ImsErrorHandler Klasse um die korrekte Behandlung des Fehlers.
+Bei unerwarteten Ereignissen wie z.B. einem Netzwerk-Unterbruch, einer Fehlkonfiguration der REST Schnittstelle oder falschem Programmcode, kümmert sich die ImsErrorHandler Klasse um die korrekte Behandlung des Fehlers.
 
-Im Produktivbetrieb zeigt der ImsErrorHandler dem Benutzer einen Dialog mit einem kurzen Fehlerbeschrieb an. Im Entwicklermodus wird hingegen die Standard Ionic Error Seite mit der technischen Fehlermeldung sowie in einem Stacktrace dargestellt.
+Im Produktivbetrieb zeigt der ImsErrorHandler dem Benutzer einen Dialog mit einem kurzen Fehlerbeschrieb an. Im Entwicklermodus wird hingegen die Standard Ionic Error Seite mit der technischen Fehlermeldung sowie ein Stacktrace dargestellt.
 
 Damit im Produktivbetrieb die richtige Fehlerbeschreibung angezeigt werden kann, müssen alle Observables im Fehlerfall eine von ImsError geerbte Exception werfen.
 
@@ -256,7 +256,7 @@ loadingService.subscribeWithLoading(responseObservable,
   err => { throw new ImsLoadingError('Homepage', err) });
 ```
 
-Die Implementation, der im vorherigen Beispiel verwendeten Exception Klasse:
+Die Implementation der im vorherigen Beispiel verwendeten Exception Klasse:
 
 ```javascript
 import { ImsError } from './ims-error';
@@ -269,7 +269,7 @@ export class ImsLoadingError extends ImsError {
 }
 ```
 
-Dabei wird aus dem ersten Parameter im Konstruktor die benutzerfreundliche Fehlermeldung erstellt und an `ImsError` übergeben. Gleichzeitig wird für den Entwicklermodus die ursprüngliche Fehlermeldung als zweiten Parameter unverändert durchgereicht.
+Dabei wird aus dem ersten Parameter im Konstruktor die benutzerfreundliche Fehlermeldung erstellt und an `ImsError` übergeben. Gleichzeitig wird für den Entwicklermodus die ursprüngliche Fehlermeldung als zweiter Parameter unverändert durchgereicht.
 
 `Object.setPrototypeOf()` ist wegen einer [Limitation von TypeScript beim Ableiten von Error](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work) nötig.
 

@@ -17,12 +17,12 @@ Mobile Client Entwickler: Michael Leu, Niklaus Tschirky, Sandro Zbinden
 ### Umfrage
 - Hohe Beteiligung
 - Alle Bewertungen zwischen 4-5 auf einer Skala von 1-5
-- Kommunikation und Informationsfluss wurde mit Bestnoten beurteilt
+- Kommunikation und Informationsfluss wurden mit Bestnoten beurteilt
 
 ### Feedbackrunde
 #### Persönliche Meinungen der Stakeholder
 Positiv:
-- Durch motiviertes Team ist mehr zurückgekommen als erwartet
+- Durch motiviertes Team ist mehr zurückgekommen, als erwartet
 - Guter Teamspirit und Agilität, kein Dienst nach Vorschrift
 - Beeindruckt vom Konsens unter den Entwicklern
 - Hohe Selbständigkeit hat gefallen
@@ -35,7 +35,7 @@ Negativ:
 - *Keine Punkte*
 
 Verbesserungswürdig:
-- Früher Klarheit schaffen über den richtigen Zeitpunkt um Betatester einzubinden
+- Früher Klarheit schaffen über den richtigen Zeitpunkt, um Betatester einzubinden
 
 #### Persönliche Meinungen der Entwickler 
 Positiv:
@@ -47,14 +47,14 @@ Positiv:
 - Unkomplizierte und flexible Stakeholder
 
 Negativ:
-- Doppeltes Meetings zu Wireframes war unnötig
+- Doppeltes Meeting zu Wireframes war unnötig
 - Verzetteln in den Lint Rules hat viel Zeit gekostet
 
 Verbesserungswürdig:
-- Unsicherheit ob die gewählte Balance zwischen Qualität und Features so stimmte
+- Unsicherheit, ob die gewählte Balance zwischen Qualität und Features so stimmte
 
 ### Abschluss
-- Imagic und PIC Systems haben interesse an der Beurteilung -> Issue [#610](https://github.com/IMSmobile/app/issues/610) erstellt.
+- Imagic und PIC Systems haben Interesse an der Beurteilung -> Issue [#610](https://github.com/IMSmobile/app/issues/610) erstellt.
 - Einladung zum gemeinsamen Abendessen
 
 ![Danke!](../images/thankyou.png)
