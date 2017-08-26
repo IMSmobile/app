@@ -16,7 +16,7 @@
 | 10 | 2017-06-30 | *Sellout!* | [🎦](sprint-review/sprint_10_review.pdf) | [📝](protocols/2017-07-14-presentation-sprint10-imagic_PICSystem.md) | [📉](sprint-burndown-charts/sprint_10_burndown.png) | [☑️](https://github.com/IMSmobile/app/milestone/10?closed=1) |
 | 11 | 2017-07-14 | *Upload to all the Archives!* | [🎦](sprint-review/sprint_11_review.pdf) | [📝](protocols/2017-07-28-presentation-sprint11-imagic_PICSystem.md) | [📉](sprint-burndown-charts/sprint_11_burndown.png) | [☑️](https://github.com/IMSmobile/app/milestone/11?closed=1) |
 | 12 | 2017-07-28 | *Finalize Project!* | [🎦](sprint-review/sprint_12_review.pdf) | [📝](protocols/2017-08-11-presentation-sprint12-imagic_PICSystem.md) | [📉](sprint-burndown-charts/sprint_12_burndown.png) | [☑️](https://github.com/IMSmobile/app/milestone/12?closed=1) |
-| 13 | 2017-08-11 | *Go for Gold!* | [🎦](sprint-review/sprint_13_review.pdf) | [📝](protocols/2017-08-25-presentation-sprint13-imagic_PICSystem.md) | [📉](sprint-burndown-charts/sprint_13_burndown.png) | [☑️](https://github.com/IMSmobile/app/milestone/13?closed=1) |
+| 13 | 2017-08-11 | *Go for Gold!* | |  | [📉](sprint-burndown-charts/sprint_13_burndown.png) | [☑️](https://github.com/IMSmobile/app/milestone/13?closed=1) |
 
 ## Burn Up Chart
 Auf dem Burn Up Chart erkennt man, dass im Backlog noch Arbeit bis zum Sprint 19 vorhanden ist.
