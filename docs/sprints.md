@@ -19,6 +19,6 @@
 | 13 | 2017-08-11 | *Go for Gold!* | |  | [📉](sprint-burndown-charts/sprint_13_burndown.png) | [☑️](https://github.com/IMSmobile/app/milestone/13?closed=1) |
 
 ## Burn Up Chart
-Auf dem Burn Up Chart erkennt man, dass im Backlog noch Arbeit bis zum Sprint 19 vorhanden ist.
+Auf dem Burn Up Chart erkennt man, dass im Backlog noch Arbeit bis zum Sprint 20 vorhanden ist.
 
 ![Burn Up Chart](images/burnup_chart.png)
