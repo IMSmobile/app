@@ -19,6 +19,7 @@
 | [Zeitauswertung](docs/zeitauswertung.pdf)    | Verbrauchte Stunden pro Sprint und Kategorie                         |
 | [Abstrakt](docs/abstract.md)          | Kurzbeschreibung des Projekts                                        |
 | [Schlussbericht](docs/projektretro.md)    | Projekt-Retrospektive                        |
+| [Präsentation](docs/presentation.pdf)    | Abschlusspräsentation der Arbeit                        |
 | [Persönliche Fazite](docs/persoenlichesfazit.md)    | Persönliche Fazite zur Arbeit                     |
 | [Glossar](docs/glossary.md)           | Beschreibung des Projektwortschatz                                   |
 
