@@ -408,6 +408,9 @@ describe("A module ", function() {
 ```
 
 #### End to End Testing
+
+:warning: Nach Fertigstellung der Masterarbeit wurde der von der HSR zur Verfügung gestellte IMS Service ausgeschalten. Deshalb wurde die Ausführung der E2E Tests im Travis deaktiviert. 
+
 Bei End to End Testing werden Anforderungen automatisiert getestet. Es wird sichergestellt, dass die Integration und Zusammenarbeit der verschiedenen Komponenten funktioniert. Diese Tests dauern in der Regel länger und sollen von einem Continuous Integration Server automatisiert ausgeführt werden.
 
 Mit folgendem Befehl können alle End to End Tests ausgeführt werden.
