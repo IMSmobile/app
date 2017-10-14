@@ -20,7 +20,6 @@ before_script:
 script: 
   - npm run lint
   - npm run test-coverage
-  - npm run e2e
   - chmod ugo+x scripts/version-consistency.sh
   - ./scripts/version-consistency.sh
   - chmod ugo+x scripts/run-ionic-cloud-builds-on-pr-or-master.sh
