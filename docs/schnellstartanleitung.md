@@ -5,7 +5,7 @@ Die vielfältige Auswahl an Tools und Services für die Entwicklung des mobilen 
 ## Lokales GitHub Repository einrichten
 In einem ersten Schritt wird das Projekt auf den lokalen Rechner geklont. Dafür wird ein [Git Client](https://git-scm.com) benötigt. In der Kommandozeile kann das Projekt mit folgendem Befehl heruntergeladen werden: 
 ```shell
-git clone https://github.com/IMSmobile/app.git
+git clone https://github.com/imagicag/mobileclient.git
 ``` 
 
 Ab diesem Zeitpunkt wird [Visual Studio Code](https://code.visualstudio.com) als Entwicklertool empfohlen. Dieser frei erhältliche Quelltext-Editor arbeitet mit der vorhandenen Ordnerstruktur, besitzt einen integrierten Git-Client und kann mit [Extensions](projektplan.md#plugins) erweitert werden.
