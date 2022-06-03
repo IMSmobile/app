@@ -53,7 +53,7 @@
     "ionicons": "3.0.0",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12",
+    "zone.js": "0.11.5",
     "ionic-plugin-keyboard": "~2.2.1"
   },
   "devDependencies": {
